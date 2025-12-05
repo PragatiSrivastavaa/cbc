@@ -1,0 +1,45 @@
+<div class="carousel">
+
+  {% set first_slide = true %}
+  {% set video_urls = [] %}
+
+  {% for row in rows %}
+    {% set node = row.content['#row']._entity %}
+    {% set video_url = '' %}
+
+    {# Get video from node media field #}
+    {% if node.field_banner_video.entity is not empty %}
+      {% set media = node.field_banner_video.entity %}
+      {% if media.field_media_video_file.entity is not empty %}
+        {% set file = media.field_media_video_file.entity %}
+        {% set video_url = file_url(file.uri.value) %}
+      {% endif %}
+    {% endif %}
+
+    {% set video_urls = video_urls|merge([video_url]) %}
+
+    {% if first_slide %}
+      <video id="bg-video" autoplay muted loop playsinline preload="auto">
+        {% if video_url %}
+          <source src="{{ video_url }}" type="video/mp4" />
+        {% endif %}
+        Your browser does not support the video tag.
+      </video>
+      {% set first_slide = false %}
+    {% endif %}
+
+    <div class="slide-content {% if loop.first %}active{% endif %}" id="slide{{ loop.index }}">
+    </div>
+  {% endfor %}
+
+  <div class="nav-buttons">
+    {% for i in 1..rows|length %}
+      <button class="{% if i == 1 %}active{% endif %}" data-slide="{{ i }}"></button>
+    {% endfor %}
+  </div>
+
+</div>
+
+<script>
+  const slideVideos = {{ video_urls|json_encode|raw }};
+</script>

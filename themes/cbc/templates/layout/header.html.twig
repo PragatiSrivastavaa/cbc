@@ -1,0 +1,27 @@
+<!-- Top Bar -->
+<div class="top-bar">
+  <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap px-3">
+    <div class="d-flex align-items-center">
+      <a href="#">Skip to main content</a>|
+      <a class="header-border" href="#">Screen Reader</a>
+       <!-- Language Toggle -->
+  <div class="language-toggle">
+          <ul>
+          <li class="lang-select">
+								{{ page.language }}
+					</li></ul>
+        </div> 
+    </div>
+   
+    <div class="d-flex align-items-center mt-2 mt-md-0">
+      <img src="{{ base_path }}themes/cbc/img/accessability.png" alt="Accessibility Options - Click to Open" class="access-icon" role="button" tabindex="0" title="Open Accessibility Options (Alt+A)" />
+      <div class="search-wrapper">
+        {{ page.search_section }}
+        <!-- <i class="bi bi-search"></i> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Navbar -->
+ {{ page.primary_menu }}

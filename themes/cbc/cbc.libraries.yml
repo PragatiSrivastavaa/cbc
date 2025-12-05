@@ -1,0 +1,17 @@
+global-styling:
+  css:
+    theme:
+      css/bootstrap.min.css: {}
+      css/pages.css: {}
+      css/home.css: {}
+      css/accessibility.css: {}  
+global-scripts:
+  js:  
+    js/bootstrap.bundle.min.js: {}
+    js/homePageInit.js: {}
+    js/eventsPage.js: {}
+    js/accessibility.js: {}
+  dependencies:
+    - core/jquery.form
+    - core/tabbable
+    - core/jquery

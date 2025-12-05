@@ -1,0 +1,58 @@
+# This theme is marked as @internal. It is intended to evolve and change over
+# minor releases.
+# As the UI of Drupal improves between minor versions, the markup and assets in
+# the cbc theme will change. The cbc theme is not backwards compatible
+# If you wish to modify the output or assets of cbc you can:
+# 1. Copy the whole of cbc and rename it as your own theme. You will need to
+# manually manage your own updates if you want to stay up to date with cbc's
+# bug fixes and feature support.
+#
+# 2. Sub-theme cbc. This is only recommended if you want to make minor
+# tweaks and understand that cbc could break your modifications as it
+# changes.
+name: cbc
+type: theme
+base theme: false
+description: A clean, accessible, and flexible Drupal front-end theme.
+alt text: Screenshot of cbc, Drupal front-end theme.
+package: Core
+core_version_requirement: ^11
+# version: VERSION
+libraries:
+  - cbc/global-styling
+  - cbc/global-scripts
+regions:
+  header: Header
+  logo: Logo
+  center_logos: Center Logos
+  language: Language
+  search_section: Search
+  primary_menu: Primary menu
+  secondary_menu: Secondary menu
+  banner_section: Banner section
+  announcements: Announcements
+  news_highlights: News & Highlights
+  alerts: Alerts
+  our_business: Our Business
+  about_us: About Us
+  our_power_stations: Our Power Stations
+  chairmans_corner: Chairman’s Corner
+  hero: Hero (full width)
+  highlighted: Highlighted
+  page_title: Page Title
+  breadcrumb: Breadcrumb
+  right_menu: Right Menu
+  social: Social Bar
+  content_above: Content Above
+  content: Content
+  sidebar: Sidebar
+  content_below: Content Below
+  quick_access_links: Quick Access Links
+  photo_gallery: Photo Gallery
+  logo_carousel: Logo Carousel
+  footer_top: Footer Top
+  footer_bottom: Footer Bottom
+# Information added by Drupal.org packaging script on 2025-10-02
+version: '11.2.5'
+project: 'drupal'
+datestamp: 1759391063

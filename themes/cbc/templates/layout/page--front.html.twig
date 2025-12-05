@@ -1,0 +1,1663 @@
+{% include 'themes/cbc/templates/layout/header.html.twig' %}
+
+  <!-- Main Content Container -->
+  <main id="app-content">
+
+    <!-- slider section -->
+
+     <section>
+        {{ page.banner_section }}
+    </section>
+
+    <!-- Alert Bar Section -->
+    <div class="alert-bar-container">
+      <div class="alert-bar-content">
+        <!-- <div class="alert-label">
+        <i class="fas fa-exclamation-circle"></i>
+        <span>Alert</span>
+      </div> -->
+
+        <div class="alert-bar-wrapper">
+          <div class="alert-bar-track" id="alertTrack">
+            <div class="alert-item">
+              <span class="alert-dot"></span>
+              <span>New training programs available on iGOT Karmayogi platform</span>
+            </div>
+            <div class="alert-item">
+              <span class="alert-dot"></span>
+              <span>Registration open for National Training Conclave 2025</span>
+            </div>
+            <div class="alert-item">
+              <span class="alert-dot"></span>
+              <span>Latest competency frameworks now available for download</span>
+            </div>
+            <div class="alert-item">
+              <span class="alert-dot"></span>
+              <span>Workshop on State-Level Capacity Building Plans scheduled</span>
+            </div>
+            <div class="alert-item">
+              <span class="alert-dot"></span>
+              <span>New training programs available on iGOT Karmayogi platform</span>
+            </div>
+            <div class="alert-item">
+              <span class="alert-dot"></span>
+              <span>Registration open for National Training Conclave 2025</span>
+            </div>
+            <div class="alert-item">
+              <span class="alert-dot"></span>
+              <span>Latest competency frameworks now available for download</span>
+            </div>
+            <div class="alert-item">
+              <span class="alert-dot"></span>
+              <span>Workshop on State-Level Capacity Building Plans scheduled</span>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="alert-controls">
+        <button class="alert-control-btn" id="alertPrevBtn" title="Previous">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="alert-control-btn" id="alertPauseBtn" title="Pause/Play">
+          <i class="fas fa-pause"></i>
+        </button>
+        <button class="alert-control-btn" id="alertNextBtn" title="Next">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div> -->
+      </div>
+    </div>
+
+    <!-- About CBC & Modi Section -->
+    <section class="info-wrapper">
+      <div class="about-pm-section">
+        <!-- Left Column: About CBC -->
+        <div class="about-cbc-column">
+          <div class="mission-karmayogi-section-alt">
+            <div class="mission-content">
+              <h2 class="mission-title">
+                About <span class="accent-text">Us</span>
+              </h2>
+              <p class="mission-text">Capacity Building Commission (CBC), is the executive
+                body of the Mission Karmayogi framework, to
+                drive civil service reforms through capacity building and competency-based learning. It works to
+                strengthen the human resource foundations of the government by focusing on developing
+                individual and institutional capacities, promoting citizen-centric governance, future readiness, and
+                fostering a culture of lifelong learning across all levels of public administration. The Commission
+                designs frameworks, sets standards, and encourages collaboration to make governance more
+                transparent, accountable, citizen-centric, and future-ready.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: PM Modi -->
+        <div class="pm-modi-column">
+          <div class="modi-card">
+            <div class="modi-content-wrapper">
+            <!-- Modi Section -->
+            <div class="modi-section">
+              <div class="modi-image-wrapper">
+                <img src="{{ base_path }}themes/cbc/img/pm_modi.jpg" alt="Prime Minister Narendra Modi" class="modi-image" />
+              </div>
+            </div>
+            <div class="modi-message-section">
+              <p class="mission-text modi-message-text">"National Programme for Civil Services Capacity
+                Building will radically improve the Human Resource Management practices in the Government through state
+                of the art infrastructure to augment the capacity of Civil Servants."</p>
+              <p class="modi-message-attribution">- Hon'ble Prime Minister</p>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- New Combined Row Section -->
+      <div class="combined-info-row">
+        <div class="row">
+          <!-- Jitender Ji Section -->
+          <div class="col-lg-4">
+            <div class="jitender-card">
+              <div class="jitender-content-wrapper">
+                <div class="jitender-section">
+                  <div class="jitender-image-wrapper">
+                    <img src="{{ base_path }}themes/cbc/img/Jitendra_Singh.jpg" alt="Dr. Jitendra Singh" class="jitender-image" />
+                  </div>
+                </div>
+                <div class="jitender-message-section">
+                  <p class="mission-text jitender-message-text">"National Standards for Civil Service Training Institutes 2.0 is not just a compliance tool—it is a transformative step toward institutional excellence."</p>
+                  <div class="jitender-name-badge">
+                    <p>Dr. Jitendra Singh</p>
+                    <p class="f-6">Hon'ble Minister of State</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- What's New Card -->
+          <div class="col-lg-5">
+            <div class="whts-box">
+              <div class="news-section">
+                <div class="news-header">
+                  <div class="news-title-wrapper">
+                    <h2 class="wave-text">
+                      <img src="{{ base_path }}themes/cbc/img/whats_new.gif" alt="What's New" class="whats-new-gif" />
+                      <span class="blink-dot"></span>What's New
+                    </h2>
+                    <div class="title-underline"></div>
+                  </div>
+                  <button class="toggle-slide" id="toggleSlideBtn" title="Pause/Play">
+                    <i class="fas fa-pause"></i>
+                  </button>
+                </div>
+                <div class="news-wrapper high-contrast-border" id="newsWrapper">
+                  <div class="news-banner-track" id="newsTrack">
+                    <div class="news-banner high-contrast-border">
+                      <!-- <div class="new-badge">
+                      <span class="badge-text">NEW</span>
+                      <div class="badge-glow"></div>
+                    </div> -->
+                      <div class="news-banner-content">
+                        <p>Hon'ble MoS (PP) Dr. Jitendra Singh inaugurates workshop on developing state-level capacity
+                          building plans.</p>
+                      </div>
+                    </div>
+                    <div class="news-banner high-contrast-border">
+                      <!-- <div class="new-badge">
+                      <span class="badge-text">NEW</span>
+                      <div class="badge-glow"></div>
+                    </div> -->
+                      <div class="news-banner-content">
+                        <p>Under Phase 2 of the Rashtriya Karmayogi Jan Seva Program, over 6 lakh employees have been
+                          trained
+                          nationwide.</p>
+                      </div>
+                    </div>
+                    <div class="news-banner high-contrast-border">
+                      <div class="new-badge">
+                        <span class="badge-text">NEW</span>
+                        <div class="badge-glow"></div>
+                      </div>
+                      <div class="news-banner-content">
+                        <p>The upgraded NSCSTI 2.0 framework launched — streamlining training institute standards across
+                          India.</p>
+                      </div>
+                    </div>
+                    <div class="news-banner high-contrast-border">
+                      <div class="new-badge">
+                        <span class="badge-text">NEW</span>
+                        <div class="badge-glow"></div>
+                      </div>
+                      <div class="news-banner-content">
+                        <p>More than 1.26 crore learners across India benefitted from the iGOT Karmayogi platform.</p>
+                      </div>
+                    </div>
+                    <div class="news-banner high-contrast-border">
+                      <!-- <div class="new-badge">
+                      <span class="badge-text">NEW</span>
+                      <div class="badge-glow"></div>
+                    </div> -->
+                      <div class="news-banner-content">
+                        <p>CBC introduces new AI-based feedback analytics tool for training institutes.</p>
+                      </div>
+                    </div>
+                    <div class="news-banner high-contrast-border">
+                      <div class="new-badge">
+                        <span class="badge-text">NEW</span>
+                        <div class="badge-glow"></div>
+                      </div>
+                      <div class="news-banner-content">
+                        <p>CBC and DoPT launch new Competency Dictionary 3.0 for public service excellence.</p>
+                      </div>
+                    </div>
+                    <div class="news-banner high-contrast-border">
+                      <!-- <div class="new-badge">
+                      <span class="badge-text">NEW</span>
+                      <div class="badge-glow"></div>
+                    </div> -->
+                      <div class="news-banner-content">
+                        <p>50+ Government Training Institutions onboarded on iGOT Karmayogi platform this quarter.</p>
+                      </div>
+                    </div>
+                    <div class="news-banner high-contrast-border">
+                      <div class="new-badge">
+                        <span class="badge-text">NEW</span>
+                        <div class="badge-glow"></div>
+                      </div>
+                      <div class="news-banner-content">
+                        <p>CBC signs collaboration MoU with Lal Bahadur Shastri National Academy of Administration for
+                          leadership programs.</p>
+                      </div>
+                    </div>
+                    <div class="news-banner high-contrast-border">
+                      <!-- <div class="new-badge">
+                      <span class="badge-text">NEW</span>
+                      <div class="badge-glow"></div>
+                    </div> -->
+                      <div class="news-banner-content">
+                        <p>Annual Capacity Building Plans (ACBPs) for 20 central ministries approved under Mission
+                          Karmayogi.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="news-banner high-contrast-border">
+                      <!-- <div class="new-badge">
+                      <span class="badge-text">NEW</span>
+                      <div class="badge-glow"></div>
+                    </div> -->
+                      <div class="news-banner-content">
+                        <p>Launch of the National Capacity Building Dashboard for real-time monitoring and evaluation.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="news-banner high-contrast-border">
+                      <!-- <div class="new-badge">
+                      <span class="badge-text">NEW</span>
+                      <div class="badge-glow"></div>
+                    </div> -->
+                      <div class="news-banner-content">
+                        <p>Over 1,200 master trainers certified in emerging technologies and digital governance.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="news-footer">
+                  <a href="pages/whats-new.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- In Focus Card -->
+          <div class="col-lg-3">
+            <div class="infocus-container high-contrast-border">
+              <div class="infocus-title-wrapper">
+                <div class="focus-circle-frame">
+                  <div class="circle-animation"></div>
+                  <div class="circle-glow"></div>
+                  <div class="inner-white-circle"></div>
+                  <h2 class="infocus-title">
+                    <span class="blink-dot"></span>In Focus
+                  </h2>
+                </div>
+              </div>
+              <div class="infocus-content">
+                <h2 class="infocus-heading">Rashtriya Karmayogi Large Scale Jan Seva Program</h2>
+                <p class="infocus-desc">
+                  National Programme for Civil Services Capacity Building(NPCSCB) - Mission Karmayogi
+                  aims to create a competent civil service rooted in Indian ethos, with a shared
+                  understanding of India's priorities, working in harmonisation for effective and
+                  efficient public service delivery.
+                </p>
+                <a target="_blank" class="infocus-btn">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- event section -->
+      <section class="events-section">
+        <div class="events-header">
+          <h2><span>Latest</span> Events</h2>
+          <div class="events-header-controls">
+            <button class="events-carousel-nav prev" id="eventsPrevBtn" aria-label="Previous events">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="events-carousel-nav next" id="eventsNextBtn" aria-label="Next events">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+        <!-- Events Cards Only (Full Width) -->
+        <div class="events-content-wrappe high-contrast-no-borderr">
+          <div class="events-cards-container high-contrast-no-border">
+            <div class="events-cards-list high-contrast-no-border" id="homeEventsCardsList">
+              <!-- Event Card 1 -->
+              <div class="home-event-card high-contrast-border" data-event-id="home-event-1" data-date="2025-11-07" data-venue="Capacity Building Commission">
+                <div class="home-event-card-image">
+                  <img src="{{ base_path }}themes/cbc/img/latest_events/Vande_Mataram.jpeg" alt="The Capacity Building Commission organised the mass singing of 'Vande Mataram' today, joining the nationwide commemoration marking 150 years of India's National Song" onerror="this.src='{{ base_path }}themes/cbc/img/event1.jpg'">
+                </div>
+                <div class="home-event-card-content">
+                  <div class="home-event-card-date">
+                    <i class="fas fa-calendar"></i> November 7, 2025
+                  </div>
+                  <h3 class="home-event-card-title">The Capacity Building Commission organised the mass singing of 'Vande Mataram' today, joining the nationwide commemoration marking 150 years of India's National Song</h3>
+                  <p class="home-event-card-description">The Capacity Building Commission organised the mass singing of 'Vande Mataram' today, joining the nationwide commemoration marking 150 years of India's National Song.</p>
+                  <div class="home-event-card-read-more">
+                    Read More <i class="fas fa-arrow-right"></i>
+                  </div>
+                </div>
+              </div>
+              <!-- Event Card 2 -->
+              <div class="home-event-card high-contrast-border" data-event-id="home-event-2" data-date="2025-10-31" data-venue="Capacity Building Commission">
+                <div class="home-event-card-image">
+                  <img src="{{ base_path }}themes/cbc/img/latest_events/Samuhik_charcha1.jpeg" alt="Samuchik charcha on vigilance awareness week at CBC" onerror="this.src='{{ base_path }}themes/cbc/img/event1.jpg'">
+                </div>
+                <div class="home-event-card-content">
+                  <div class="home-event-card-date">
+                    <i class="fas fa-calendar"></i> October 31, 2025
+                  </div>
+                  <h3 class="home-event-card-title">Samuchik charcha on vigilance awareness week at CBC</h3>
+                  <p class="home-event-card-description">As part of the Vigilance Awareness Week 2025, being observed from 27th October to 2nd November, the Capacity Building Commission (CBC) organized a #SamuhikCharcha on the theme "Vigilance: Our Shared Responsibility."</p>
+                  <div class="home-event-card-read-more">
+                    Read More <i class="fas fa-arrow-right"></i>
+                  </div>
+                </div>
+              </div>
+              <!-- Event Card 3 -->
+              <div class="home-event-card high-contrast-border" data-event-id="home-event-3" data-date="2025-10-31" data-venue="Capacity Building Commission">
+                <div class="home-event-card-image">
+                  <img src="{{ base_path }}themes/cbc/img/event1.jpg" alt="Rashtriya Ekta Diwas 2025" onerror="this.src='{{ base_path }}themes/cbc/img/event1.jpg'">
+                </div>
+                <div class="home-event-card-content">
+                  <div class="home-event-card-date">
+                    <i class="fas fa-calendar"></i> October 31, 2025
+                  </div>
+                  <h3 class="home-event-card-title">Rashtriya Ekta Diwas 2025</h3>
+                  <p class="home-event-card-description">On the occasion of #RashtriyaEktaDiwas 2025, officers and staff of the Capacity Building Commission, took the Integrity Pledge, reaffirming their commitment to uphold unity, integrity and security of the nation.</p>
+                  <div class="home-event-card-read-more">
+                    Read More <i class="fas fa-arrow-right"></i>
+                  </div>
+                </div>
+              </div>
+              <!-- Event Card 4 -->
+              <div class="home-event-card high-contrast-border" data-event-id="home-event-4" data-date="2025-10-16" data-venue="Capacity Building Commission">
+                <div class="home-event-card-image">
+                  <img src="{{ base_path }}themes/cbc/img/event1.jpg" alt="Capacity Building Commission (CBC), in collaboration with LBSNAA and Karmayogi Bharat, organized a workshop" onerror="this.src='{{ base_path }}themes/cbc/img/event1.jpg'">
+                </div>
+                <div class="home-event-card-content">
+                  <div class="home-event-card-date">
+                    <i class="fas fa-calendar"></i> October 16, 2025
+                  </div>
+                  <h3 class="home-event-card-title">Capacity Building Commission (CBC), in collaboration with LBSNAA and Karmayogi Bharat, organized a workshop</h3>
+                  <p class="home-event-card-description">Capacity Building Commission (CBC), in collaboration with Lal Bahadur Shastri National Academy of Administration (LBSNAA) and Karmayogi Bharat, organized a workshop</p>
+                  <div class="home-event-card-read-more">
+                    Read More <i class="fas fa-arrow-right"></i>
+                  </div>
+                </div>
+              </div>
+              <!-- Event Card 5 -->
+              <div class="home-event-card high-contrast-border" data-event-id="home-event-5" data-date="2025-10-01" data-venue="Capacity Building Commission">
+                <div class="home-event-card-image">
+                  <img src="{{ base_path }}themes/cbc/img/event2.jpeg" alt="Signing of a tripartite MoU between the Capacity Building Commission, the School of Ultimate Leadership, and the Government of Gujarat" onerror="this.src='{{ base_path }}themes/cbc/img/event1.jpg'">
+                </div>
+                <div class="home-event-card-content">
+                  <div class="home-event-card-date">
+                    <i class="fas fa-calendar"></i> October 1, 2025
+                  </div>
+                  <h3 class="home-event-card-title">Signing of a tripartite MoU between the Capacity Building Commission, the School of Ultimate Leadership, and the Government of Gujarat</h3>
+                  <p class="home-event-card-description">It is our privilege to announce the signing of a tripartite MoU between the Capacity Building Commission, the School of Ultimate Leadership, and the Government of Gujarat</p>
+                  <div class="home-event-card-read-more">
+                    Read More <i class="fas fa-arrow-right"></i>
+                  </div>
+                </div>
+              </div>
+              <!-- Event Card 6 -->
+              <div class="home-event-card high-contrast-border" data-event-id="home-event-6" data-date="2025-09-30" data-venue="AIIMS, Delhi">
+                <div class="home-event-card-image">
+                  <img src="{{ base_path }}themes/cbc/img/event3.jpeg" alt="Dr. R Balasubramaniam, Member HR, Capacity Building Commission, and the team visited AIIMS, Delhi" onerror="this.src='{{ base_path }}themes/cbc/img/event1.jpg'">
+                </div>
+                <div class="home-event-card-content">
+                  <div class="home-event-card-date">
+                    <i class="fas fa-calendar"></i> September 30, 2025
+                  </div>
+                  <h3 class="home-event-card-title">Dr. R Balasubramaniam, Member HR, Capacity Building Commission, and the team visited AIIMS, Delhi</h3>
+                  <p class="home-event-card-description">Dr. R Balasubramaniam, Member HR, Capacity Building Commission, and the team visited AIIMS, Delhi.</p>
+                  <div class="home-event-card-read-more">
+                    Read More <i class="fas fa-arrow-right"></i>
+                  </div>
+                </div>
+              </div>
+              <!-- Duplicate cards for seamless infinite scroll -->
+              <!-- Event Card 1 (Duplicate) -->
+              <div class="home-event-card high-contrast-border" data-event-id="home-event-1" data-date="2025-11-07" data-venue="Capacity Building Commission">
+                <div class="home-event-card-image">
+                  <img src="{{ base_path }}themes/cbc/img/latest_events/Vande_Mataram.jpeg" alt="The Capacity Building Commission organised the mass singing of 'Vande Mataram' today, joining the nationwide commemoration marking 150 years of India's National Song" onerror="this.src='{{ base_path }}themes/cbc/img/event1.jpg'">
+                </div>
+                <div class="home-event-card-content">
+                  <div class="home-event-card-date">
+                    <i class="fas fa-calendar"></i> November 7, 2025
+                  </div>
+                  <h3 class="home-event-card-title">The Capacity Building Commission organised the mass singing of 'Vande Mataram' today, joining the nationwide commemoration marking 150 years of India's National Song</h3>
+                  <p class="home-event-card-description">The Capacity Building Commission organised the mass singing of 'Vande Mataram' today, joining the nationwide commemoration marking 150 years of India's National Song.</p>
+                  <div class="home-event-card-read-more">
+                    Read More <i class="fas fa-arrow-right"></i>
+                  </div>
+                </div>
+              </div>
+              <!-- Event Card 2 (Duplicate) -->
+              <div class="home-event-card high-contrast-border" data-event-id="home-event-2" data-date="2025-10-31" data-venue="Capacity Building Commission">
+                <div class="home-event-card-image">
+                  <img src="{{ base_path }}themes/cbc/img/latest_events/Samuhik_charcha1.jpeg" alt="Samuchik charcha on vigilance awareness week at CBC" onerror="this.src='{{ base_path }}themes/cbc/img/event1.jpg'">
+                </div>
+                <div class="home-event-card-content">
+                  <div class="home-event-card-date">
+                    <i class="fas fa-calendar"></i> October 31, 2025
+                  </div>
+                  <h3 class="home-event-card-title">Samuchik charcha on vigilance awareness week at CBC</h3>
+                  <p class="home-event-card-description">As part of the Vigilance Awareness Week 2025, being observed from 27th October to 2nd November, the Capacity Building Commission (CBC) organized a #SamuhikCharcha on the theme "Vigilance: Our Shared Responsibility."</p>
+                  <div class="home-event-card-read-more">
+                    Read More <i class="fas fa-arrow-right"></i>
+                  </div>
+                </div>
+              </div>
+              <!-- Event Card 3 (Duplicate) -->
+              <div class="home-event-card high-contrast-border" data-event-id="home-event-3" data-date="2025-10-31" data-venue="Capacity Building Commission">
+                <div class="home-event-card-image">
+                  <img src="{{ base_path }}themes/cbc/img/event1.jpg" alt="Rashtriya Ekta Diwas 2025" onerror="this.src='{{ base_path }}themes/cbc/img/event1.jpg'">
+                </div>
+                <div class="home-event-card-content">
+                  <div class="home-event-card-date">
+                    <i class="fas fa-calendar"></i> October 31, 2025
+                  </div>
+                  <h3 class="home-event-card-title">Rashtriya Ekta Diwas 2025</h3>
+                  <p class="home-event-card-description">On the occasion of #RashtriyaEktaDiwas 2025, officers and staff of the Capacity Building Commission, took the Integrity Pledge, reaffirming their commitment to uphold unity, integrity and security of the nation.</p>
+                  <div class="home-event-card-read-more">
+                    Read More <i class="fas fa-arrow-right"></i>
+                  </div>
+                </div>
+              </div>
+              <!-- Event Card 4 (Duplicate) -->
+              <div class="home-event-card high-contrast-border" data-event-id="home-event-4" data-date="2025-10-16" data-venue="Capacity Building Commission">
+                <div class="home-event-card-image">
+                  <img src="{{ base_path }}themes/cbc/img/event1.jpg" alt="Capacity Building Commission (CBC), in collaboration with LBSNAA and Karmayogi Bharat, organized a workshop" onerror="this.src='{{ base_path }}themes/cbc/img/event1.jpg'">
+                </div>
+                <div class="home-event-card-content">
+                  <div class="home-event-card-date">
+                    <i class="fas fa-calendar"></i> October 16, 2025
+                  </div>
+                  <h3 class="home-event-card-title">Capacity Building Commission (CBC), in collaboration with LBSNAA and Karmayogi Bharat, organized a workshop</h3>
+                  <p class="home-event-card-description">Capacity Building Commission (CBC), in collaboration with Lal Bahadur Shastri National Academy of Administration (LBSNAA) and Karmayogi Bharat, organized a workshop</p>
+                  <div class="home-event-card-read-more">
+                    Read More <i class="fas fa-arrow-right"></i>
+                  </div>
+                </div>
+              </div>
+              <!-- Event Card 5 (Duplicate) -->
+              <div class="home-event-card high-contrast-border" data-event-id="home-event-5" data-date="2025-10-01" data-venue="Capacity Building Commission">
+                <div class="home-event-card-image">
+                  <img src="{{ base_path }}themes/cbc/img/event2.jpeg" alt="Signing of a tripartite MoU between the Capacity Building Commission, the School of Ultimate Leadership, and the Government of Gujarat" onerror="this.src='{{ base_path }}themes/cbc/img/event1.jpg'">
+                </div>
+                <div class="home-event-card-content">
+                  <div class="home-event-card-date">
+                    <i class="fas fa-calendar"></i> October 1, 2025
+                  </div>
+                  <h3 class="home-event-card-title">Signing of a tripartite MoU between the Capacity Building Commission, the School of Ultimate Leadership, and the Government of Gujarat</h3>
+                  <p class="home-event-card-description">It is our privilege to announce the signing of a tripartite MoU between the Capacity Building Commission, the School of Ultimate Leadership, and the Government of Gujarat</p>
+                  <div class="home-event-card-read-more">
+                    Read More <i class="fas fa-arrow-right"></i>
+                  </div>
+                </div>
+              </div>
+              <!-- Event Card 6 (Duplicate) -->
+              <div class="home-event-card high-contrast-border" data-event-id="home-event-6" data-date="2025-09-30" data-venue="AIIMS, Delhi">
+                <div class="home-event-card-image">
+                  <img src="{{ base_path }}themes/cbc/img/event3.jpeg" alt="Dr. R Balasubramaniam, Member HR, Capacity Building Commission, and the team visited AIIMS, Delhi" onerror="this.src='{{ base_path }}themes/cbc/img/event1.jpg'">
+                </div>
+                <div class="home-event-card-content">
+                  <div class="home-event-card-date">
+                    <i class="fas fa-calendar"></i> September 30, 2025
+                  </div>
+                  <h3 class="home-event-card-title">Dr. R Balasubramaniam, Member HR, Capacity Building Commission, and the team visited AIIMS, Delhi</h3>
+                  <p class="home-event-card-description">Dr. R Balasubramaniam, Member HR, Capacity Building Commission, and the team visited AIIMS, Delhi.</p>
+                  <div class="home-event-card-read-more">
+                    Read More <i class="fas fa-arrow-right"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- See More Button -->
+        <div class="events-footer high-contrast-no-border">
+          <a href="pages/events.html" class="events-see-more-btn">
+            See More Events
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </section>
+
+      <!-- Section 2: Social Media, Media Corner, and Newsletters - Side by Side -->
+      <div class="information-corner-header">
+        <div class="information-corner-title">
+          <h2>Information Corner</h2>
+        </div>
+      </div>
+      <div class="whts-sec">
+        <div class="row">
+          <!-- Social Media Card - 4 columns -->
+          <div class="col-lg-4">
+            <div class="social-section-right socil-bg">
+              <div class="section-header social-header">
+                <h3 class="section-header-title">SOCIAL MEDIA</h3>
+                <div class="section-header-controls">
+                  <button class="social-prev"><i class="fas fa-chevron-left"></i></button>
+                  <button class="social-next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+              </div>
+              <div class="section-body">
+                <div class="social-carousel d-flex gap-3 overflow-auto" id="socialCarousel">
+                  <!-- Twitter/X Feed -->
+                  <div class="social-card bg-white rounded-3 shadow-sm flex-shrink-0">
+                    <div id="twitter-widget-container" class="w-100 social-embed-container">
+                      <a class="twitter-timeline" data-dnt="true" data-theme="light" data-width="350" data-height="400"
+                        data-chrome="noheader nofooter noborders noscrollbar"
+                        href="https://twitter.com/CBC_MK?ref_src=twsrc%5Etfw">
+                        Tweets by CBC_MK
+                      </a>
+                    </div>
+                    <div class="social-overlay text-white">
+                      <i class="fab fa-x-twitter"></i> Twitter/X
+                    </div>
+                  </div>
+
+                  <!-- LinkedIn Company Page Feed -->
+                  <div class="social-card bg-white rounded-3 shadow-sm flex-shrink-0">
+                    <div id="linkedin-widget-container" class="w-100 social-embed-container">
+                      <div class="linkedin-company-feed">
+                        <div
+                          style="padding: 40px 20px; text-align: center; background: #f3f2ef; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                          <a href="https://www.linkedin.com/company/capacity-building-commission/" target="_blank"
+                            style="text-decoration: none; color: #0077b5;">
+                            <i class="fab fa-linkedin"
+                              style="font-size: 3rem; margin-bottom: 15px; display: block;"></i>
+                            <p style="margin: 0; font-weight: 600; font-size: 1.1rem;">Capacity Building Commission</p>
+                            <p style="margin: 10px 0 0 0; font-size: 0.9rem; color: #666;">Follow us on LinkedIn</p>
+                          </a>
+                          <div style="margin-top: 20px;">
+                            <script type="IN/FollowCompany" data-id="capacity-building-commission" data-counter="none">
+                        </script>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="social-overlay text-white">
+                      <i class="fab fa-linkedin-in"></i> LinkedIn
+                    </div>
+                  </div>
+
+                  <!-- Instagram Feed -->
+                  <div class="social-card bg-white rounded-3 shadow-sm flex-shrink-0">
+                    <div id="instagram-widget-container" class="w-100 social-embed-container">
+                      <iframe src="https://www.instagram.com/capacitybuildingcommission/embed/"
+                        class="w-100 social-iframe" frameborder="0" scrolling="no" allowtransparency="true"
+                        allow="encrypted-media">
+                      </iframe>
+                    </div>
+                    <div class="social-overlay text-white">
+                      <i class="fab fa-instagram"></i> Instagram
+                    </div>
+                  </div>
+
+                  <!-- Facebook Feed -->
+                  <div class="social-card bg-white rounded-3 shadow-sm flex-shrink-0">
+                    <div id="facebook-widget-container" class="w-100 social-embed-container">
+                      <div class="facebook-page-feed">
+                        <div
+                          style="padding: 40px 20px; text-align: center; background: #f0f2f5; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                          <a href="https://www.facebook.com/capacitybuildingcommission" target="_blank"
+                            style="text-decoration: none; color: #1877f2;">
+                            <i class="fab fa-facebook"
+                              style="font-size: 3rem; margin-bottom: 15px; display: block;"></i>
+                            <p style="margin: 0; font-weight: 600; font-size: 1.1rem;">Capacity Building Commission</p>
+                            <p style="margin: 10px 0 0 0; font-size: 0.9rem; color: #666;">Follow us on Facebook</p>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="social-overlay text-white">
+                      <i class="fab fa-facebook"></i> Facebook
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Media Corner Card - 4 columns -->
+          <div class="col-lg-4">
+            <section class="media-corner-section">
+              <div class="section-header media-header-bg">
+                <h3 class="section-header-title">MEDIA CORNER</h3>
+                <div class="section-header-controls">
+                  <button class="toggle-slide" id="toggleMediaSlideBtn" title="Pause/Play">
+                    <i class="fas fa-pause"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="section-body">
+                <div class="media-corner-box high-contrast-border position-relative overflow-hidden">
+                  <div class="media-track" id="mediaTrack">
+                    <div class="media-item">
+                      <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2171312" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="{{ base_path }}themes/cbc/img/media_corner/image1.jpg" alt="ATIs to Function as Pivotal Pillars">
+                        <p>ATIs to Function as Pivotal Pillars and Catalysts for Capacity Building in States: Ms. S.
+                          Radha Chauhan</p>
+                      </a>
+                    </div>
+                    <div class="media-item">
+                      <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2171312" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="{{ base_path }}themes/cbc/img/media_corner/image2.jpg" alt="Mrs. S. Radha Chauhan assumes charge">
+                        <p>Mrs. S. Radha Chauhan assumes charge as Chairperson, Capacity Building Commission</p>
+                      </a>
+                    </div>
+                    <div class="media-item">
+                      <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2147730" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="{{ base_path }}themes/cbc/img/media_corner/image3.jpeg"
+                          alt="Capacity Building Commission and Housing & Urban Development">
+                        <p>Capacity Building Commission and Housing & Urban Development Dept., Govt of Odisha, organize
+                          workshop to Strengthen Urban Governance through Mission Karmayogi</p>
+                      </a>
+                    </div>
+                    <div class="media-item">
+                      <a href="https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=2132501" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="{{ base_path }}themes/cbc/img/media_corner/image4.jpg" alt="Government of NCT of Delhi Signs MoU">
+                        <p>Government of NCT of Delhi Signs MoU with Capacity Building Commission and Karmayogi Bharat
+                          for Implementation of Mission Karmayogi</p>
+                      </a>
+                    </div>
+                    <div class="media-item">
+                      <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2141751" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="{{ base_path }}themes/cbc/img/media_corner/image5.jpg"
+                          alt="Strengthening Capacity Building of Civil Servants in Telangana">
+                        <p>Strengthening Capacity Building of Civil Servants in Telangana: Mission Karmayogi Team Meets
+                          Governor of Telangana and Chief Secretary, Government of Telangana</p>
+                      </a>
+                    </div>
+                    <div class="media-item">
+                      <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2151876" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="{{ base_path }}themes/cbc/img/media_corner/image6.jpeg" alt="Pondicherry University in collaboration">
+                        <p>Pondicherry University in collaboration with the Capacity Building Commission, Government of
+                          India conducts Master Trainers Training Workshop on Rashtriya Karmayogi Large Scale Jan Seva
+                          Programme</p>
+                      </a>
+                    </div>
+                    <div class="media-item">
+                      <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2149776" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="{{ base_path }}themes/cbc/img/media_corner/image7.jpeg"
+                          alt="Capacity Building Commission, Karmayogi Bharat and Govt of Chhattisgarh">
+                        <p>Capacity Building Commission, Karmayogi Bharat and Govt of Chhattisgarh sign a MoU</p>
+                      </a>
+                    </div>
+                    <div class="media-item">
+                      <a href="https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2094027" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="{{ base_path }}themes/cbc/img/media_corner/image8.jpg"
+                          alt="Capacity Building Commission successfully concludes Master Trainers' training">
+                        <p>Capacity Building Commission successfully concludes Master Trainers' training as a part of
+                          Phase-1 of Rashtriya Karmayogi Large-Scale Jan Seva Programme</p>
+                      </a>
+                    </div>
+                    <div class="media-item">
+                      <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2145819" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="{{ base_path }}themes/cbc/img/media_corner/image9.jpg"
+                          alt="Union Minister Dr. Jitendra Singh Launches NSCSTI 2.0 Framework">
+                        <p>Union Minister Dr. Jitendra Singh Launches NSCSTI 2.0 Framework, Heralds a New Era in Civil
+                          Services Training Standards</p>
+                      </a>
+                    </div>
+                    <div class="media-item">
+                      <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2153068" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="{{ base_path }}themes/cbc/img/media_corner/Image10.jpg"
+                          alt="Government of J&K, Capacity Building Commission and Karmayogi Bharat">
+                        <p>Government of J&K, Capacity Building Commission and Karmayogi Bharat sign MoU for capacity
+                          building of civil servants</p>
+                      </a>
+                    </div>
+                    <div class="media-item">
+                      <a href="https://www.pib.gov.in/PressReleseDetail.aspx?PRID=2170806" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="{{ base_path }}themes/cbc/img/media_corner/image11.jpg"
+                          alt="DoPT Minister Calls for Greater Centre–State Integration">
+                        <p>DoPT Minister Calls for Greater Centre–State Integration for 'Whole of Government' Model in
+                          Administration and Training</p>
+                      </a>
+                    </div>
+                    <div class="media-item">
+                      <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=1961219" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="{{ base_path }}themes/cbc/img/media_corner/image12.jpg"
+                          alt="Dr Jitendra Singh launches the Capacity Building Plan">
+                        <p>Dr Jitendra Singh launches the Capacity Building Plan (CBP) for Government employees</p>
+                      </a>
+                    </div>
+                    <div class="media-item">
+                      <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=1961219" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="{{ base_path }}themes/cbc/img/media_corner/image13.jpg"
+                          alt="Union Minister Dr. Jitendra Singh launches Amrit Gyaan Kosh">
+                        <p>Union Minister Dr. Jitendra Singh launches "Amrit Gyaan Kosh" Portal to strengthen governance
+                          training</p>
+                      </a>
+                    </div>
+                    <div class="media-item">
+                      <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=1650633" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="{{ base_path }}themes/cbc/img/media_corner/image15.jpg" alt="Cabinet approves Mission Karmayogi">
+                        <p>Cabinet approves "Mission Karmayogi"- National Programme for Civil Services Capacity Building
+                          (NPCSCB)</p>
+                      </a>
+                    </div>
+                    <div class="media-item">
+                      <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2090630" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="{{ base_path }}themes/cbc/img/media_corner/image16.jpg" alt="Capacity Building Commission begins training">
+                        <p>Capacity Building Commission (CBC) begins training of DS/Director level officers from MDOs as
+                          Master trainers as part of Rashtriya Karmayogi – Large Scale Jan Seva' Program</p>
+                      </a>
+                    </div>
+                    <div class="media-item">
+                      <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=1954415" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="{{ base_path }}themes/cbc/img/media_corner/image18.jpg" alt="Government pioneers capacity building initiatives">
+                        <p>Government pioneers capacity building initiatives for 3 Ministries, elevating competency and
+                          transforming civil services</p>
+                      </a>
+                    </div>
+                    <div class="media-item">
+                      <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2083603" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="{{ base_path }}themes/cbc/img/media_corner/image19.jpg" alt="Bihar Govt onboarded over 2.4 lakh Govt officials">
+                        <p>Bihar Govt onboarded over 2.4 lakh Govt officials on iGOT Karmayogi Platform under Mission
+                          Karmayogi</p>
+                      </a>
+                    </div>
+                    <div class="media-item">
+                      <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2144907" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="{{ base_path }}themes/cbc/img/media_corner/image20.jpg" alt="CBC and SCOPE facilitate Inaugural Ceremony">
+                        <p>CBC and SCOPE facilitate Inaugural Ceremony of DAKSH Classroom Immersion at IIM Ahmedabad</p>
+                      </a>
+                    </div>
+                    <div class="media-item">
+                      <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2094127" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="{{ base_path }}themes/cbc/img/media_corner/image21.jpeg"
+                          alt="Capacity Building Commission successfully concludes Master Trainers' training">
+                        <p>Capacity Building Commission successfully concludes Master Trainers' training as a part of
+                          Phase-1 of Rashtriya Karmayogi Large-Scale Jan Seva Programme</p>
+                      </a>
+                    </div>
+                    <div class="media-item">
+                      <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=1964681" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="{{ base_path }}themes/cbc/img/media_corner/image1.jpg" alt="More than Rs. 18 lakh crores invested">
+                        <p>More than Rs. 18 lakh crores invested since 2014 in the transformation of our cities and
+                          towns: Housing & Urban Affairs Minister Hardeep S Puri</p>
+                      </a>
+                    </div>
+                    <div class="media-item">
+                      <a href="https://cbc.gov.in/node/900" target="_blank" rel="noopener noreferrer">
+                        <img src="{{ base_path }}themes/cbc/img/media_corner/image2.jpg" alt="Workshop for Urban Local Bodies">
+                        <p>Workshop for Urban Local Bodies (ULBs) at the School of Planning & Architecture Vijayawada
+                        </p>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="media-footer mt-3 text-end">
+                  <a href="pages/media-corner.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- Newsletters Card - 4 columns -->
+          <div class="col-lg-4">
+            <section class="newsletters-section">
+              <div class="section-header newsletters-header-bg">
+                <h3 class="section-header-title">NEWSLETTERS</h3>
+                <div class="section-header-controls">
+                  <button class="toggle-slide" id="toggleNewslettersSlideBtn" title="Pause/Play">
+                    <i class="fas fa-pause"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="section-body">
+                <div class="newsletters-box high-contrast-border position-relative overflow-hidden">
+                  <div class="newsletters-track" id="newslettersTrack">
+                    <div class="newsletters-item high-contrast-border">
+                      <a href="pages/newsletters/raknpa-accreditation-journey.html" rel="noopener noreferrer">
+                        <div class="newsletters-icon">
+                          <i class="fas fa-newspaper"></i>
+                        </div>
+                        <p>RAKNPA - Our Accreditation Journey</p>
+                      </a>
+                    </div>
+                    <div class="newsletters-item high-contrast-border">
+                      <a href="pages/newsletters/culture-we-build.html" rel="noopener noreferrer">
+                        <div class="newsletters-icon">
+                          <i class="fas fa-newspaper"></i>
+                        </div>
+                        <p>The Culture We Build: Lessons In Leadership</p>
+                      </a>
+                    </div>
+                    <div class="newsletters-item high-contrast-border">
+                      <a href="pages/newsletters/nca-finance-accreditation.html" rel="noopener noreferrer">
+                        <div class="newsletters-icon">
+                          <i class="fas fa-newspaper"></i>
+                        </div>
+                        <p>NCA-F: A Transformational Journey to Excellence</p>
+                      </a>
+                    </div>
+                    <div class="newsletters-item high-contrast-border">
+                      <a href="#" target="_blank" rel="noopener noreferrer">
+                        <div class="newsletters-icon">
+                          <i class="fas fa-newspaper"></i>
+                        </div>
+                        <p>January 2025 Newsletter - Capacity Building Initiatives</p>
+                      </a>
+                    </div>
+                    <div class="newsletters-item high-contrast-border">
+                      <a href="#" target="_blank" rel="noopener noreferrer">
+                        <div class="newsletters-icon">
+                          <i class="fas fa-newspaper"></i>
+                        </div>
+                        <p>December 2024 Newsletter - Mission Karmayogi Updates</p>
+                      </a>
+                    </div>
+                    <div class="newsletters-item">
+                      <a href="#" target="_blank" rel="noopener noreferrer">
+                        <div class="newsletters-icon">
+                          <i class="fas fa-newspaper"></i>
+                        </div>
+                        <p>November 2024 Newsletter - Training Programs & Workshops</p>
+                      </a>
+                    </div>
+                    <div class="newsletters-item high-contrast-border">
+                      <a href="#" target="_blank" rel="noopener noreferrer">
+                        <div class="newsletters-icon">
+                          <i class="fas fa-newspaper"></i>
+                        </div>
+                        <p>October 2024 Newsletter - State-Level Capacity Building</p>
+                      </a>
+                    </div>
+                    <div class="newsletters-item high-contrast-border">
+                      <a href="#" target="_blank" rel="noopener noreferrer">
+                        <div class="newsletters-icon">
+                          <i class="fas fa-newspaper"></i>
+                        </div>
+                        <p>September 2024 Newsletter - Competency Framework Updates</p>
+                      </a>
+                    </div>
+                    <div class="newsletters-item high-contrast-border">
+                      <a href="#" target="_blank" rel="noopener noreferrer">
+                        <div class="newsletters-icon">
+                          <i class="fas fa-newspaper"></i>
+                        </div>
+                        <p>August 2024 Newsletter - iGOT Karmayogi Platform Enhancements</p>
+                      </a>
+                    </div>
+                    <div class="newsletters-item high-contrast-border">
+                      <a href="#" target="_blank" rel="noopener noreferrer">
+                        <div class="newsletters-icon">
+                          <i class="fas fa-newspaper"></i>
+                        </div>
+                        <p>July 2024 Newsletter - National Training Conclave Highlights</p>
+                      </a>
+                    </div>
+                    <div class="newsletters-item high-contrast-border">
+                      <a href="#" target="_blank" rel="noopener noreferrer">
+                        <div class="newsletters-icon">
+                          <i class="fas fa-newspaper"></i>
+                        </div>
+                        <p>June 2024 Newsletter - Collaboration & Partnership News</p>
+                      </a>
+                    </div>
+                    <div class="newsletters-item">
+                      <a href="#" target="_blank" rel="noopener noreferrer">
+                        <div class="newsletters-icon">
+                          <i class="fas fa-newspaper"></i>
+                        </div>
+                        <p>May 2024 Newsletter - Digital Governance Initiatives</p>
+                      </a>
+                    </div>
+                    <div class="newsletters-item high-contrast-border">
+                      <a href="#" target="_blank" rel="noopener noreferrer">
+                        <div class="newsletters-icon">
+                          <i class="fas fa-newspaper"></i>
+                        </div>
+                        <p>April 2024 Newsletter - Leadership Development Programs</p>
+                      </a>
+                    </div>
+                    <div class="newsletters-item high-contrast-border">
+                      <a href="#" target="_blank" rel="noopener noreferrer">
+                        <div class="newsletters-icon">
+                          <i class="fas fa-newspaper"></i>
+                        </div>
+                        <p>March 2024 Newsletter - Civil Services Excellence Awards</p>
+                      </a>
+                    </div>
+                    <div class="newsletters-item high-contrast-border">
+                      <a href="#" target="_blank" rel="noopener noreferrer">
+                        <div class="newsletters-icon">
+                          <i class="fas fa-newspaper"></i>
+                        </div>
+                        <p>February 2024 Newsletter - Capacity Building Best Practices</p>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="newsletters-footer mt-3 text-end">
+                  <a href="pages/newsletters.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <div class="collab-section">
+        <div class="collab-header-full">
+          <div class="collab-header-content">
+            <h2>Our Collaboration Matters</h2>
+          </div>
+        </div>
+        <div class="collab-content-wrapper">
+          <button class="collab-arrow left" id="prevBtn">❮</button>
+          <div class="collab-carousel">
+
+
+            <div class="collab-track" id="collabTrack">
+              <div class="collab-box high-contrast-border">
+                <img src="{{ base_path }}themes/cbc/img/collaboration_matter_01.jpeg" alt="Collaboration Matter 01" class="collab-image">
+                <h3>Excellence deserves to be celebrated.</h3>
+                <p>Congratulations to Rafi Ahmed Kidwai National Postal Academy (RKNPA) on being re-accredited with a
+                  5-Star
+                  rating after QIP implementation done by CBC.
+
+                  Capacity Building Commission is proud to see institutions continue raising the bar for public service
+                  learning.</p>
+              </div>
+              <div class="collab-box high-contrast-border">
+                <img src="{{ base_path }}themes/cbc/img/collaboration_matter_02.jpeg" alt="Collaboration Matter 02" class="collab-image">
+                <h3> Excellence deserves to be celebrated.</h3>
+                <p>OCongratulations to Rafi Ahmed Kidwai National Postal Academy (RKNPA) on being re-accredited with a
+                  5-Star rating after QIP implementation done by CBC.
+
+                  Capacity Building Commission is proud to see institutions continue raising the bar for public service
+                  learning.</p>
+              </div>
+              <div class="collab-box high-contrast-border">
+                <img src="{{ base_path }}themes/cbc/img/collaboration_matter_03.jpeg" alt="Collaboration Matter 03" class="collab-image">
+                <h3>6,00,000 officers trained under Rashtriya Karmayogi Jan Sewa Programme.</h3>
+                <p>A shared culture of learning & #SevaBhav is taking root across depts-breaking silos, making service
+                  more
+                  humane, more responsive & more reliable. Governance is strengthening itself from within as we move
+                  toward
+                  a #ViksitBharat2047</p>
+              </div>
+              <div class="collab-box high-contrast-border">
+                <img src="{{ base_path }}themes/cbc/img/collaboration_matter_04.jpeg" alt="Collaboration Matter 04" class="collab-image">
+                <h3>𝐓𝐢𝐟𝐟𝐢𝐧 𝐁𝐚𝐢𝐭𝐡𝐚𝐤</h3>
+                <p>The 𝗠𝗶𝗻𝗶𝘀𝘁𝗿𝘆 𝗼𝗳 𝗔𝘆𝘂𝘀𝗵 organized its first 𝐓𝐢𝐟𝐟𝐢𝐧 𝐁𝐚𝐢𝐭𝐡𝐚𝐤 under Mission
+                  Karmayogi. This informal interactive session was held under the Secretary, Ministry of Ayush, bringing
+                  together officers from different divisions.</p>
+              </div>
+              <div class="collab-box high-contrast-border">
+                <img src="{{ base_path }}themes/cbc/img/collaboration_matter_05.jpeg" alt="Collaboration Matter 05" class="collab-image">
+                <h3>Mission Karmayogi</h3>
+                <p>Valedictory of 100 Hrs to Mission Karmayogi for Lakshadweep Police</p>
+              </div>
+            </div>
+
+
+          </div>
+          <button class="collab-arrow right" id="nextBtn">❯</button>
+        </div>
+        <div class="collab-footer">
+          <a href="pages/collaborations.html" class="view-more">View More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- leadership  -->
+    <section class="leadership-section">
+      <h2 class="leadership-title">Commission Leadership</h2>
+
+      <div class="leadership-grid-new">
+        <!-- Left: Chairperson Image and Content -->
+        <div class="chairperson-image-card high-contrast-border">
+          <div class="chairperson-image-wrapper">
+            <img src="{{ base_path }}themes/cbc/img/cbc chairman.png" alt="Ms. S. Radha Chauhan">
+            <div class="chairperson-overlay">
+              <p>Ms. S. Radha Chauhan is a seasoned civil servant with 36+ years of leadership across public policy,
+                fiscal governance, institutional reform, and digital transformation. She is a 1988 Batch IAS officer of
+                UP Cadre (Retd.).</p>
+              <a href="pages/leadership.html" class="view-more">View More →</a>
+            </div>
+          </div>
+          <div class="chairperson-content">
+            <h3>Ms. S. Radha Chauhan</h3>
+            <p class="chairperson-designation">Chairperson</p>
+          </div>
+        </div>
+
+        <!-- Middle: Chairperson Message -->
+        <div class="chairperson-message-card high-contrast-border">
+          <div class="message-preview-container" id="chairpersonMessageImage">
+            <div class="message-preview-letter">
+              <div class="preview-letter-header-new">
+                <div class="preview-letter-title-wrapper">
+                  <h4 class="preview-letter-title-new">FROM THE <br> CHAIRPERSON'S DESK<span class="preview-pencil-icon">✏️</span></h4>
+                </div>
+                <div class="preview-chairperson-photo">
+                  <img src="{{ base_path }}themes/cbc/img/cbc chairman.png" alt="Ms. S. Radha Chauhan" class="preview-chairperson-img">
+                </div>
+              </div>
+              <div class="preview-letter-divider"></div>
+              <div class="preview-letter-content">
+                <div class="preview-letter-text">
+                  <p class="preview-letter-intro">
+                    Let us join hands for continuously empowering our learning eco-system.
+                  </p>
+                  <p class="preview-letter-paragraph">
+                    Mission Karmayogi is a path-breaking and a first of its kind initiative envisioned by Hon'ble Prime
+                    Minister Shri Narendra Modi, in the year 2020. Since its inception, Mission Karmayogi team has
+                    functioned with dedication towards developing an eco-system which strives to enable lifelong
+                    learning for the Civil Servants, who are an important link for citizen-centric delivery of services.
+                    The Capacity Building Commission, established on 1st April, 2021, functions at the core of Mission
+                    Karmayogi, through policy frameworks laying foundation of capacity building initiatives.
+                  </p>
+                  <p class="preview-letter-paragraph">
+                    It gives me immense pride to lead the efforts of Capacity Building Commission. We together need to
+                    take this journey ahead.
+                  </p>
+                  <p class="preview-letter-paragraph">
+                    As we are aware, civil servants perform in a ever-growing and sometimes uncertain environment. The
+                    emerging and new technologies are not only providing unseen opportunities, but at the same time
+                    posing challenges never imagined before. As civil servants, our duty is to deliver in any given
+                    situation and upkeep the trust of the citizens. Continuous capacity building is the key to strive
+                    through any challenge that might come and to optimally utilise the opportunities that might go
+                    unutilised if we are not well-equipped to handle them.
+                  </p>
+                  <p class="preview-letter-paragraph">
+                    It is pertinent to mention here that we all need to come together to continuously build a learning
+                    eco-system which enables our manpower to be ready to face and utilise any given situation to the
+                    best advantage of the citizens. Our civil servants across the Central and State Governments need to
+                    be a part of this learning process. The wider the chain, the greater the impact will be.
+                  </p>
+                  <p class="preview-letter-paragraph">
+                    We at the Commission are continuously functioning to arrive at the frameworks and policies that
+                    emphasise upon innovation, foresight and research. We wish to build an eco-system where we learn
+                    from the capacity building best practices of each other and institutionalise them as part of our
+                    eco-system.
+                  </p>
+                  <p class="preview-letter-paragraph">
+                    We emphasise on the capacity enhancement and upgrading of our Training Institute in all aspects
+                    while acknowledging that they are the backbone of our learning framework.
+                  </p>
+                  <p class="preview-letter-paragraph">
+                    I feel that excellence should not only be institutionalised but also celebrated by all of us. I wish
+                    to acknowledge the efforts put by you, which has set an example for other to strive towards
+                    excellence.
+                  </p>
+                  <p class="preview-letter-paragraph">
+                    I consider all my stakeholder an important part of my team & journey and we are open to any
+                    feedback, suggestions that might help us grow together.
+                  </p>
+                </div>
+              </div>
+              <div class="preview-letter-signature">
+                <div class="preview-signature-wishes">Best Wishes,</div>
+                <div class="preview-signature-name">Ms. S. Radha Chauhan</div>
+                <div class="preview-signature-title">Chairperson</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Members -->
+        <div class="members-column">
+          <!-- Top Right: Member - Human Resource -->
+          <div class="member-card">
+            <div class="member-image-wrapper">
+              <img src="{{ base_path }}themes/cbc/img/cbc balasubramani.jpg" alt="Dr. R Balasubramaniam">
+              <div class="member-overlay">
+                <p>Dr. R Balasubramaniam (Balu) is a widely respected development expert, public policy analyst,
+                  leadership trainer and author. He has spent several decades working among forest-based tribal
+                  communities in southern India.</p>
+                <a href="pages/leadership.html" class="view-more">View More →</a>
+              </div>
+            </div>
+            <div class="member-info">
+              <h3>Dr. R Balasubramaniam (Balu)</h3>
+              <p>Member - Human Resource</p>
+            </div>
+          </div>
+
+          <!-- Bottom Right: Member - Administration -->
+          <div class="member-card">
+            <div class="member-image-wrapper">
+              <img src="{{ base_path }}themes/cbc/img/cbc Alka_Mittal.jpeg" alt="Dr. Alka Mittal">
+              <div class="member-overlay">
+                <p>Dr. Alka Mittal is former CMD and Director (HR) of ONGC. She was also the Chairperson of ONGC Group
+                  of Companies viz. ONGC Videsh, MRPL, OPAL, OTPC, etc.</p>
+                <a href="#" class="view-more">View More →</a>
+              </div>
+            </div>
+            <div class="member-info">
+              <h3>Dr. Alka Mittal</h3>
+              <p>Member - Administration</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chairperson Message Modal -->
+    <div class="chairperson-modal" id="chairpersonModal">
+      <div class="modal-backdrop" id="modalBackdrop"></div>
+      <div class="modal-content-wrapper" id="modalContentWrapper">
+        <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
+        <div class="letter-container" id="letterContainer">
+          <div class="letter-paper">
+            <div class="letter-header-new">
+              <div class="letter-title-wrapper">
+                <h2 class="letter-title-new">FROM THE <br> CHAIRPERSON'S DESK<span class="letter-pencil-icon">✏️</span></h2>
+              </div>
+              <div class="letter-chairperson-photo">
+                <img src="{{ base_path }}themes/cbc/img/cbc chairman.png" alt="Ms. S. Radha Chauhan" class="letter-chairperson-img">
+              </div>
+            </div>
+            <div class="letter-divider"></div>
+            <div class="letter-content" id="letterContent">
+              <div class="letter-text">
+                <p class="letter-intro">
+                  Let us join hands for continuously empowering our learning eco-system.
+                </p>
+                <p class="letter-paragraph">
+                  Mission Karmayogi is a path-breaking and a first of its kind initiative envisioned by Hon'ble Prime
+                  Minister Shri Narendra Modi, in the year 2020. Since its inception, Mission Karmayogi team has
+                  functioned with dedication towards developing an eco-system which strives to enable lifelong learning
+                  for the Civil Servants, who are an important link for citizen-centric delivery of services. The
+                  Capacity Building Commission, established on 1st April, 2021, functions at the core of Mission
+                  Karmayogi, through policy frameworks laying foundation of capacity building initiatives.
+                </p>
+                <p class="letter-paragraph">
+                  It gives me immense pride to lead the efforts of Capacity Building Commission. We together need to
+                  take this journey ahead.
+                </p>
+                <p class="letter-paragraph">
+                  As we are aware, civil servants perform in a ever-growing and sometimes uncertain environment. The
+                  emerging and new technologies are not only providing unseen opportunities, but at the same time posing
+                  challenges never imagined before. As civil servants, our duty is to deliver in any given situation and
+                  upkeep the trust of the citizens. Continuous capacity building is the key to strive through any
+                  challenge that might come and to optimally utilise the opportunities that might go unutilised if we
+                  are not well-equipped to handle them.
+                </p>
+                <p class="letter-paragraph">
+                  It is pertinent to mention here that we all need to come together to continuously build a learning
+                  eco-system which enables our manpower to be ready to face and utilise any given situation to the best
+                  advantage of the citizens. Our civil servants across the Central and State Governments need to be a
+                  part of this learning process. The wider the chain, the greater the impact will be.
+                </p>
+                <p class="letter-paragraph">
+                  We at the Commission are continuously functioning to arrive at the frameworks and policies that
+                  emphasise upon innovation, foresight and research. We wish to build an eco-system where we learn from
+                  the capacity building best practices of each other and institutionalise them as part of our
+                  eco-system.
+                </p>
+                <p class="letter-paragraph">
+                  We emphasise on the capacity enhancement and upgrading of our Training Institute in all aspects while
+                  acknowledging that they are the backbone of our learning framework.
+                </p>
+                <p class="letter-paragraph">
+                  I feel that excellence should not only be institutionalised but also celebrated by all of us. I wish
+                  to acknowledge the efforts put by you, which has set an example for other to strive towards
+                  excellence.
+                </p>
+                <p class="letter-paragraph">
+                  I consider all my stakeholder an important part of my team & journey and we are open to any feedback,
+                  suggestions that might help us grow together.
+                </p>
+              </div>
+            </div>
+            <div class="letter-signature">
+              <div class="signature-wishes">Best Wishes,</div>
+              <div class="signature-name">Ms. S. Radha Chauhan</div>
+              <div class="signature-title">Chairperson</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="collab-header-full">
+      <div class="collab-header-content">
+        <h2>Opinions Do Matter</h2>
+      </div>
+    </div>
+    <!-- opinion section -->
+    <section class="cbc-blog-carousel">
+
+      <div class="carousel-controls">
+        <button id="blogPrevBtn">‹</button>
+        <button id="blogNextBtn">›</button>
+      </div>
+
+      <div class="carousel-track" id="carouselTrack">
+
+        <div class="blog-card">
+          <img src="{{ base_path }}themes/cbc/img/opinion_do_matter/pratibha_nath.png" alt="RAKNPA Accreditation Journey">
+          <div class="blog-card-content">
+            <h3>RAKNPA - Our Accreditation Journey</h3>
+            <p>Rafi Ahmed Kidwai National Postal Academy achieves prestigious 5-Star rating from CBC - a transformative journey from 2-Star to excellence.</p>
+          </div>
+          <a href="pages/newsletters/raknpa-accreditation-journey.html">Read More →</a>
+        </div>
+
+        <div class="blog-card">
+          <img src="{{ base_path }}themes/cbc/img/opinion_do_matter/anju_rathi.png" alt="The Culture We Build">
+          <div class="blog-card-content">
+            <h3>The Culture We Build: Lessons In Leadership</h3>
+            <p>Dr. Anju Rathi Rana shares insights on building a culture of learning, seva bhav, and santushti in governance.</p>
+          </div>
+          <a href="pages/newsletters/culture-we-build.html">Read More →</a>
+        </div>
+
+        <div class="blog-card">
+          <img src="{{ base_path }}themes/cbc/img/opinion_do_matter/madhavi_das.png" alt="NCA-F Accreditation Journey">
+          <div class="blog-card-content">
+            <h3>NCA-F: A Transformational Journey to Excellence</h3>
+            <p>Madhavi Das shares how earning the prestigious 5-star "Sarvotkrisht" rating transformed NCA-F's operational excellence.</p>
+          </div>
+          <a href="pages/newsletters/nca-finance-accreditation.html">Read More →</a>
+        </div>
+
+        <div class="blog-card">
+          <img src="{{ base_path }}themes/cbc/img/opinion_do_matter/mili_bhowmick.png" alt="Mili Bhowmick Testimonial">
+          <div class="blog-card-content">
+            <h3>A Changed Perspective on Nation Building</h3>
+            <p>Smt. Mili Bhowmick shares how the National Karmayogi training program transformed her view of work from responsibility to opportunity.</p>
+          </div>
+          <a href="pages/newsletters/testimonial-mili-bhowmick.html">Read More →</a>
+        </div>
+
+        <div class="blog-card">
+          <img src="{{ base_path }}themes/cbc/img/opinion_do_matter/sanjukta.png" alt="Sanjukta Rakshit Testimonial">
+          <div class="blog-card-content">
+            <h3>From Process-Driven to Purpose-Driven Work</h3>
+            <p>Smt. Sanjukta Rakshit reflects on how the program helped her see work as purpose-driven contribution to nation building.</p>
+          </div>
+          <a href="pages/newsletters/testimonial-sanjukta-rakshit.html">Read More →</a>
+        </div>
+
+        <div class="blog-card">
+          <img src="{{ base_path }}themes/cbc/img/opinion_do_matter/sharad_kumar_tripathi.png" alt="Sharad Kumar Tripathi Testimonial">
+          <div class="blog-card-content">
+            <h3>Awakening the Spirit of Service</h3>
+            <p>Sh. Sharad Kumar Tripathi shares insights on awakening the spirit of service that exists within everyone.</p>
+          </div>
+          <a href="pages/newsletters/testimonial-sharad-kumar-tripathi.html">Read More →</a>
+        </div>
+
+        <div class="blog-card">
+          <img src="{{ base_path }}themes/cbc/img/opinion_do_matter/participant.png" alt="NLC Participant Testimonial">
+          <div class="blog-card-content">
+            <h3>A Commitment to Citizen-Centric Service</h3>
+            <p>A participant from NLC India Limited shares their commitment to ensuring positive impact on citizens through their actions.</p>
+          </div>
+          <a href="pages/newsletters/testimonial-nlc-participant.html">Read More →</a>
+        </div>
+      </div>
+
+      <!-- See More Button -->
+      <div class="blog-footer">
+        <a href="pages/opinions-do-matter.html" class="blog-see-more-btn">
+          See More
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- socil media -->
+    <section class="social-section">
+      <div class="information-corner-header">
+        <div class="information-corner-title">
+          <h2>Stay Connected</h2>
+        </div>
+      </div>
+      <div class="container">
+        <div class="text-center mb-5">
+        
+        </div>
+
+        <div class="row g-4 align-items-center">
+          <!-- Video Gallery Section -->
+          <div class="col-lg-12 col-md-12">
+            <div class="youtube-section p-3 rounded-4 socil-bg position-relative">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="social-heading d-flex align-items-center gap-2 mb-0">
+                  <i class="fa-regular fa-circle-play text-info"></i> Videos
+                </h3>
+                <div class="d-flex align-items-center gap-3">
+                  <div class="carousel-controls d-flex gap-2">
+                    <button class="youtube-prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="youtube-next"><i class="fas fa-chevron-right"></i></button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="youtube-carousel-wrapper position-relative">
+                <div class="youtube-carousel d-flex" id="youtubeCarousel">
+                  <!-- Video 1 - NLW 2024 Video-1 -->
+                  <div class="youtube-card high-contrast-border flex-shrink-0 w-100">
+                    <div class="video-container">
+                      <video class="w-100 rounded-3" controls muted preload="metadata">
+                        <source
+                          src="https://cbc.gov.in/sites/default/files/video-thumbnails/2025-01/About_NLW_Teaser_Video.mp4"
+                          type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="video-caption">
+                      <h4 class="video-title">NLW 2024 Video-1</h4>
+                      <p class="video-description">National Learning Week 2024 introductory video.</p>
+                    </div>
+                  </div>
+
+                  <!-- Video 2 - Adil Zainulbhai -->
+                  <div class="youtube-card high-contrast-border flex-shrink-0 w-100">
+                    <div class="video-container">
+                      <video class="w-100 rounded-3" controls muted preload="metadata">
+                        <source
+                          src="https://cbc.gov.in/sites/default/files/video-thumbnails/2025-01/Adil_Zainulbhai_Chairperson_Capacity_Building_Commission.mp4"
+                          type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="video-caption">
+                      <h4 class="video-title">Adil Zainulbhai (Former Chairperson- Capacity Building Commission) on National Learning Week</h4>
+                      <p class="video-description">Message from the Former Chairperson of Capacity Building Commission on National Learning Week.</p>
+                    </div>
+                  </div>
+
+                  <!-- Video 3 - Dr. Alka Mittal -->
+                  <div class="youtube-card high-contrast-border flex-shrink-0 w-100">
+                    <div class="video-container">
+                      <video class="w-100 rounded-3" controls muted preload="metadata">
+                        <source
+                          src="https://cbc.gov.in/sites/default/files/video-thumbnails/2025-01/DR_ALKA_MITTAL_MEMBER_ADMINISTRATION_CAPACITY_BUILDING_COMMISSION.mp4"
+                          type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="video-caption">
+                      <h4 class="video-title">Dr. Alka Mittal (Member Admin- Capacity Building Commission) on National Learning Week</h4>
+                      <p class="video-description">Dr. Alka Mittal shares insights on National Learning Week and capacity building initiatives.</p>
+                    </div>
+                  </div>
+
+                  <!-- Video 4 - Dr. Balasubramaniam -->
+                  <div class="youtube-card high-contrast-border flex-shrink-0 w-100">
+                    <div class="video-container">
+                      <video class="w-100 rounded-3" controls muted preload="metadata">
+                        <source
+                          src="https://cbc.gov.in/sites/default/files/video-thumbnails/2025-01/Dr_R_Balasubramaniam_Member_HR_CBC.mp4"
+                          type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="video-caption">
+                      <h4 class="video-title">Dr. Balasubramaniam (Member HR- Capacity Building Commission) on National Learning Week</h4>
+                      <p class="video-description">Dr. Balasubramaniam shares perspectives on National Learning Week and human resource development.</p>
+                    </div>
+                  </div>
+
+                  <!-- Video 5 - CEO-KB, Secretary -->
+                  <div class="youtube-card high-contrast-border flex-shrink-0 w-100">
+                    <div class="video-container">
+                      <video class="w-100 rounded-3" controls muted preload="metadata">
+                        <source
+                          src="https://cbc.gov.in/sites/default/files/video-thumbnails/2025-01/V_Lalithalakshmi_CEO_KB_Secretary_CBC_0.mp4"
+                          type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="video-caption">
+                      <h4 class="video-title">CEO-KB, Secretary - CBC on National Learning Week Video</h4>
+                      <p class="video-description">Message from CEO-KB and Secretary of Capacity Building Commission on National Learning Week.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- View All Button -->
+              <div class="video-gallery-footer text-end">
+                <a href="pages/video-gallery.html" class="view-all-videos-btn">
+                  View All Videos <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Event Details Modal -->
+    <div class="event-modal" id="homeEventModal">
+      <div class="event-modal-backdrop" id="homeEventModalBackdrop"></div>
+      <div class="event-modal-content">
+        <button class="event-modal-close" id="homeEventModalClose">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="event-modal-body" id="homeEventModalBody">
+          <!-- Event details will be populated here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- count section -->
+    <section class="stats-section">
+      <div class="stat">
+        <h2 class="count" data-target="13949992">0</h2>
+        <p>Users Onboarded on iGOT</p>
+      </div>
+
+      <div class="stat">
+        <h2 class="count" data-target="108">0</h2>
+        <p>Ministries and Depts. Engaged</p>
+      </div>
+
+      <div class="stat">
+        <h2 class="count" data-target="195">0</h2>
+        <p>Training Institutes Accredited</p>
+      </div>
+
+      <div class="stat">
+        <h2 class="count" data-target="27">0</h2>
+        <p>MoUs (States/UTs)</p>
+      </div>
+
+      <div class="stat">
+        <h2 class="count" data-target="3679">0</h2>
+        <p>Total Courses</p>
+      </div>
+    </section>
+
+    <!-- partner section -->
+    <section class="partners-section">
+      <div class="container">
+        <!-- Header row -->
+        <div class="partners-header mb-3">
+          <h2>Our Partners</h2>
+          <div class="slider-controls">
+            <button class="slider-btn" id="partnerPrev">&#10094;</button>
+            <button class="slider-btn" id="partnerNext">&#10095;</button>
+          </div>
+        </div>
+
+        <!-- Slider -->
+        <div class="partners-slider" id="partnersSlider">
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/CGG-Logo.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/crisp.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/FAST-India-Logo.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/Flame-Uni-logo.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/IDInsight-logo.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/IIM-Calcutta-Logo_0.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/IIM-Mumbai-Logo.png"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/IIM_Bangalore_Logo.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/IIM_Indore_Logo.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/IIM_Lucknow_0.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/IIM_Visakhapatnam_2.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/IIMA_0.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/IISc.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/IIT-Madras-Logo.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/IIT_guwahati_0.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/IIT_Jodhpur.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/isb-logo_0.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/isppp-org.png"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/logo-2-2.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/logo_iimraipur.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/MRC_0.png"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/NISG-Logo.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/Niti-Aayog-logo.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/nmims-university-logo.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/school of planning and architecture2 (1).jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/spjimr-logo.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/Wadhwani-AI-logo.jpg"></div>
+          <div class="partner-card"><img src="{{ base_path }}themes/cbc/img/partner/wfglobal-logo_0.jpg"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <!-- End of Main Content Container -->
+
+
+  
+  <!-- Accessibility Drawer -->
+  <div class="accessibility-drawer" id="accessibilityDrawer" role="dialog" aria-label="Accessibility Options" aria-modal="true" data-state="closed">
+    <div class="accessibility-header">
+      <h2><i class="fas fa-universal-access"></i> Accessibility Options</h2>
+      <button class="accessibility-close-btn" id="closeAccessibilityBtn" aria-label="Close Accessibility Menu">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="accessibility-content">
+      <div class="accessibility-section">
+        <h3><i class="fas fa-text-height"></i> Text Size</h3>
+        <div class="text-size-controls">
+          <button class="text-size-btn high-contrast-border" data-size="small" aria-label="Small Text Size" aria-pressed="false"><span>A-</span></button>
+          <button class="text-size-btn high-contrast-border" data-size="normal" aria-label="Normal Text Size" aria-pressed="true"><span>A</span></button>
+          <button class="text-size-btn high-contrast-border" data-size="large" aria-label="Large Text Size" aria-pressed="false"><span>A+</span></button>
+          <button class="text-size-btn high-contrast-border" data-size="extra-large" aria-label="Extra Large Text Size" aria-pressed="false"><span>A++</span></button>
+        </div>
+      </div>
+
+      <div class="accessibility-section">
+        <h3><i class="fas fa-adjust"></i> Display Themes</h3>
+        <div class="contrast-themes">
+          <button class="contrast-btn high-contrast-border" data-theme="default" aria-label="Default Theme" aria-pressed="true">
+            <div class="contrast-preview high-contrast-border default">Aa</div>
+            <span class="contrast-name">Normal</span>
+          </button>
+          <button class="contrast-btn high-contrast-border" data-theme="high-contrast" aria-label="High Contrast Theme" aria-pressed="false">
+            <div class="contrast-preview high-contrast">Aa</div>
+            <span class="contrast-name">High Contrast</span>
+          </button>
+          <button class="contrast-btn high-contrast-border" data-theme="dark" aria-label="Dark Mode Theme" aria-pressed="false">
+            <div class="contrast-preview dark-mode">Aa</div>
+            <span class="contrast-name">Dark Mode</span>
+          </button>
+          <button class="contrast-btn high-contrast-border" data-theme="yellow-black" aria-label="Yellow Black Theme" aria-pressed="false">
+            <div class="contrast-preview yellow-black">Aa</div>
+            <span class="contrast-name">Yellow-Black</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="accessibility-section">
+        <h3><i class="fas fa-mouse-pointer"></i> Cursor Size</h3>
+        <div class="cursor-size-controls">
+          <div class="cursor-size-option high-contrast-border" data-cursor="normal" role="button" tabindex="0" aria-pressed="true">
+            <span class="cursor-label">Normal Cursor</span>
+            <div class="cursor-demo normal">●</div>
+          </div>
+          <div class="cursor-size-option high-contrast-border" data-cursor="large" role="button" tabindex="0" aria-pressed="false">
+            <span class="cursor-label">Large Cursor</span>
+            <div class="cursor-demo large">●</div>
+          </div>
+          <div class="cursor-size-option high-contrast-border" data-cursor="extra-large" role="button" tabindex="0" aria-pressed="false">
+            <span class="cursor-label">Extra Large Cursor</span>
+            <div class="cursor-demo extra-large">●</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accessibility-section">
+        <h3><i class="fas fa-eye"></i> Visual Adjustments</h3>
+        <div class="accessibility-toggle-group">
+          <div class="accessibility-toggle high-contrast-border" data-feature="hide-images" role="button" tabindex="0" aria-pressed="false" data-state="off">
+            <span class="toggle-label"><i class="fas fa-image"></i> Hide Images</span>
+            <div class="toggle-switch high-contrast-border" role="switch" aria-checked="false" aria-label="Toggle Hide Images" data-state="off"></div>
+          </div>
+          <div class="accessibility-toggle high-contrast-border" data-feature="highlight-links" role="button" tabindex="0" aria-pressed="false" data-state="off">
+            <span class="toggle-label"><i class="fas fa-link"></i> Highlight Links</span>
+            <div class="toggle-switch high-contrast-border" role="switch" aria-checked="false" aria-label="Toggle Highlight Links" data-state="off"></div>
+          </div>
+          <div class="accessibility-toggle high-contrast-border" data-feature="increased-line-height" role="button" tabindex="0" aria-pressed="false" data-state="off">
+            <span class="toggle-label"><i class="fas fa-align-justify"></i> Increase Line Height</span>
+            <div class="toggle-switch high-contrast-border" role="switch" aria-checked="false" aria-label="Toggle Increased Line Height" data-state="off"></div>
+          </div>
+        </div>
+      </div>
+
+      <button class="accessibility-reset-btn high-contrast-border" id="resetAccessibilityBtn" aria-label="Reset All Accessibility Settings">
+        <i class="fas fa-redo-alt"></i> Reset All Settings
+      </button>
+    </div>
+  </div>
+  <div class="accessibility-overlay" id="accessibilityOverlay" data-state="hidden"></div>
+
+    <!-- Footer -->
+ {% include 'themes/cbc/templates/layout/footer.html.twig' %}
+
+  <!-- Twitter Widget Script -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+  <!-- LinkedIn Widget Script -->
+  <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+
+  <!-- Initialize Twitter Widget -->
+  <script>
+    // Ensure Twitter timeline loads after widgets.js is ready
+    window.addEventListener('load', function () {
+      if (window.twttr && window.twttr.ready) {
+        window.twttr.ready(function () {
+          window.twttr.widgets.load();
+        });
+      } else {
+        // Poll until twttr is available
+        var checkInterval = setInterval(function () {
+          if (window.twttr && window.twttr.ready) {
+            window.twttr.ready(function () {
+              window.twttr.widgets.load();
+            });
+            clearInterval(checkInterval);
+          }
+        }, 100);
+
+        // Stop checking after 10 seconds
+        setTimeout(function () {
+          clearInterval(checkInterval);
+        }, 10000);
+      }
+    });
+  </script>
+</body>
+
+</html>
