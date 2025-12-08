@@ -1,0 +1,22 @@
+uuid: e88c1990-ae87-492f-a346-e26a3c606bd7
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - cbc
+_core:
+  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
+id: cbc_content
+theme: cbc
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

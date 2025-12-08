@@ -1,0 +1,23 @@
+uuid: 2b2014f3-13d5-4779-a7c3-78e95781c05c
+langcode: en
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - cbc
+_core:
+  default_config_hash: pbbed0hdqGDF-_QWVVTWRAwgDIotFuAvWH5mWUZu0fA
+id: cbc_search_form_wide
+theme: cbc
+region: secondary_menu
+weight: -5
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form (wide)'
+  label_display: '0'
+  provider: search
+  page_id: null
+visibility: {  }

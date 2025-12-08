@@ -1,0 +1,24 @@
+uuid: b4348601-f29f-40b6-be30-4357d6d2e0d9
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.home_banner
+  module:
+    - views
+  theme:
+    - cbc
+id: cbc_views_block__home_banner_block_1
+theme: cbc
+region: banner_section
+weight: 0
+provider: null
+plugin: 'views_block:home_banner-block_1'
+settings:
+  id: 'views_block:home_banner-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility: {  }

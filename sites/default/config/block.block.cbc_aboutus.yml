@@ -1,0 +1,25 @@
+uuid: 4bfa2a60-1f74-4adc-afc8-094c94859fc1
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:a8ac2645-f3bc-45ab-819c-adef7e404253'
+  module:
+    - block_content
+  theme:
+    - cbc
+id: cbc_aboutus
+theme: cbc
+region: about_us
+weight: 0
+provider: null
+plugin: 'block_content:a8ac2645-f3bc-45ab-819c-adef7e404253'
+settings:
+  id: 'block_content:a8ac2645-f3bc-45ab-819c-adef7e404253'
+  label: 'About us'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

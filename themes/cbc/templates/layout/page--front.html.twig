@@ -70,21 +70,12 @@
     <!-- About CBC & Modi Section -->
     <section class="info-wrapper">
       <div class="about-pm-section">
+        
         <!-- Left Column: About CBC -->
         <div class="about-cbc-column">
           <div class="mission-karmayogi-section-alt">
             <div class="mission-content">
-              <h2 class="mission-title">
-                About <span class="accent-text">Us</span>
-              </h2>
-              <p class="mission-text">Capacity Building Commission (CBC), is the executive
-                body of the Mission Karmayogi framework, to
-                drive civil service reforms through capacity building and competency-based learning. It works to
-                strengthen the human resource foundations of the government by focusing on developing
-                individual and institutional capacities, promoting citizen-centric governance, future readiness, and
-                fostering a culture of lifelong learning across all levels of public administration. The Commission
-                designs frameworks, sets standards, and encourages collaboration to make governance more
-                transparent, accountable, citizen-centric, and future-ready.</p>
+            {{ page.about_us}}
             </div>
           </div>
         </div>
@@ -92,20 +83,7 @@
         <!-- Right Column: PM Modi -->
         <div class="pm-modi-column">
           <div class="modi-card">
-            <div class="modi-content-wrapper">
-            <!-- Modi Section -->
-            <div class="modi-section">
-              <div class="modi-image-wrapper">
-                <img src="{{ base_path }}themes/cbc/img/pm_modi.jpg" alt="Prime Minister Narendra Modi" class="modi-image" />
-              </div>
-            </div>
-            <div class="modi-message-section">
-              <p class="mission-text modi-message-text">"National Programme for Civil Services Capacity
-                Building will radically improve the Human Resource Management practices in the Government through state
-                of the art infrastructure to augment the capacity of Civil Servants."</p>
-              <p class="modi-message-attribution">- Hon'ble Prime Minister</p>
-            </div>
-          </div>
+           {{ page.modi_content }}
           </div>
         </div>
       </div>
@@ -116,20 +94,7 @@
           <!-- Jitender Ji Section -->
           <div class="col-lg-4">
             <div class="jitender-card">
-              <div class="jitender-content-wrapper">
-                <div class="jitender-section">
-                  <div class="jitender-image-wrapper">
-                    <img src="{{ base_path }}themes/cbc/img/Jitendra_Singh.jpg" alt="Dr. Jitendra Singh" class="jitender-image" />
-                  </div>
-                </div>
-                <div class="jitender-message-section">
-                  <p class="mission-text jitender-message-text">"National Standards for Civil Service Training Institutes 2.0 is not just a compliance tool—it is a transformative step toward institutional excellence."</p>
-                  <div class="jitender-name-badge">
-                    <p>Dr. Jitendra Singh</p>
-                    <p class="f-6">Hon'ble Minister of State</p>
-                  </div>
-                </div>
-              </div>
+              {{ page.jitender_content }}
             </div>
           </div>
           

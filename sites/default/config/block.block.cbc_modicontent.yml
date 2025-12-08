@@ -1,0 +1,25 @@
+uuid: 834cff67-c901-4b74-a7ea-926ee1a92dde
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:a74e1d51-db48-4136-a8c6-855804dfe51d'
+  module:
+    - block_content
+  theme:
+    - cbc
+id: cbc_modicontent
+theme: cbc
+region: modi_content
+weight: 0
+provider: null
+plugin: 'block_content:a74e1d51-db48-4136-a8c6-855804dfe51d'
+settings:
+  id: 'block_content:a74e1d51-db48-4136-a8c6-855804dfe51d'
+  label: 'modi content'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

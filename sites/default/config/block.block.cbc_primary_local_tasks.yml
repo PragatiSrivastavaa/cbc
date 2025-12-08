@@ -1,0 +1,22 @@
+uuid: b755420c-fbd3-4b68-9f89-49c9a8c24b32
+langcode: en
+status: true
+dependencies:
+  theme:
+    - cbc
+_core:
+  default_config_hash: nGE3EoPQQaQCuqTUtZgw0-KIzmrqdKDzdNQf2JyPUt4
+id: cbc_primary_local_tasks
+theme: cbc
+region: highlighted
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: false
+visibility: {  }

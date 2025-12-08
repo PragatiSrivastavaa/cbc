@@ -1,0 +1,25 @@
+uuid: 78d48816-f4cf-44db-94f1-6a5bab18c40d
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:a6b01df3-ebd6-4f9b-b1a2-1f5b0c9d3bd4'
+  module:
+    - block_content
+  theme:
+    - cbc
+id: cbc_jitendercontent
+theme: cbc
+region: jitender_content
+weight: 0
+provider: null
+plugin: 'block_content:a6b01df3-ebd6-4f9b-b1a2-1f5b0c9d3bd4'
+settings:
+  id: 'block_content:a6b01df3-ebd6-4f9b-b1a2-1f5b0c9d3bd4'
+  label: jitender-content
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

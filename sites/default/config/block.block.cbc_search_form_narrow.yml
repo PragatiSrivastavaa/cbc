@@ -1,0 +1,23 @@
+uuid: 3aa75717-838e-49aa-a5bd-c3e3b51536bb
+langcode: en
+status: false
+dependencies:
+  module:
+    - search
+  theme:
+    - cbc
+_core:
+  default_config_hash: _nZjxxdypO6xrOAJkCYD81v0L7wh2zbCAVO7_C-UKIc
+id: cbc_search_form_narrow
+theme: cbc
+region: primary_menu
+weight: -4
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form (narrow)'
+  label_display: '0'
+  provider: search
+  page_id: null
+visibility: {  }
