@@ -1,0 +1,29 @@
+uuid: 6b5ddbf1-1f56-4493-8df8-79e38f2d6e6f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ministry
+    - node.type.event
+    - taxonomy.vocabulary.ministry
+id: node.event.field_ministry
+field_name: field_ministry
+entity_type: node
+bundle: event
+label: Ministry
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      ministry: ministry
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

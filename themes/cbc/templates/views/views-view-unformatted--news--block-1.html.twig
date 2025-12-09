@@ -1,0 +1,17 @@
+<div class="alert-bar-wrapper">
+  <div class="alert-bar-track" id="alertTrack">
+
+    {% for row in rows %}
+      {% set node = row.content['#row']._entity %}
+      
+      {% if node.field_alert.value == "1" %}
+        <div class="alert-item">
+          <span class="alert-dot"></span>
+          <span>{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ title }}'] }}</span>
+        </div>
+      {% endif %}
+
+    {% endfor %}
+
+  </div>
+</div>

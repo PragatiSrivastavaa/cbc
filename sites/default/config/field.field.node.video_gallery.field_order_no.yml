@@ -1,0 +1,21 @@
+uuid: 5e412501-5c0c-405d-9c08-e3990ce83711
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_order_no
+    - node.type.video_gallery
+  module:
+    - options
+id: node.video_gallery.field_order_no
+field_name: field_order_no
+entity_type: node
+bundle: video_gallery
+label: "Order No\t"
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

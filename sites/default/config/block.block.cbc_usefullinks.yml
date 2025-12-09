@@ -1,0 +1,25 @@
+uuid: 4faa13e4-7eb1-40a5-b0f2-f5b6b58ca1c5
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.useful-links
+  module:
+    - system
+  theme:
+    - cbc
+id: cbc_usefullinks
+theme: cbc
+region: header
+weight: 0
+provider: null
+plugin: 'system_menu_block:useful-links'
+settings:
+  id: 'system_menu_block:useful-links'
+  label: 'Useful Links'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: null
+  expand_all_items: false
+visibility: {  }

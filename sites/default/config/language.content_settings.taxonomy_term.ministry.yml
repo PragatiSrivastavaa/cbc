@@ -1,0 +1,11 @@
+uuid: 7f01979d-24b3-4fe1-a280-0130961f80aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.ministry
+id: taxonomy_term.ministry
+target_entity_type_id: taxonomy_term
+target_bundle: ministry
+default_langcode: site_default
+language_alterable: false

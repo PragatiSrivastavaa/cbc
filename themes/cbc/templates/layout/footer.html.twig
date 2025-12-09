@@ -2,29 +2,15 @@
 <div class="footer-wrapper">
   <!-- Left Column -->
   <div class="footer-about">
-    <h2>Capacity Building Commission</h2>
-    <p>
-      Strengthening governance and empowering civil services through innovation, training,
-      and collaborative leadership under Mission Karmayogi.
-    </p>
-    <div class="social-icons">
-      <a href="#"><i class="fab fa-x-twitter"></i></a>
-      <a href="#"><i class="fab fa-linkedin"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-facebook"></i></a>
-    </div>
+    {{ page.footer_top }}
+    
   </div>
 
   <!-- Useful Links -->
   <div class="footer-links">
     <h3>Useful Links</h3>
     <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="pages/about/about-cbc.html">About CBC</a></li>
-      <li><a href="pages/about/team-cbc.html">Our Team</a></li>
-      <li><a href="pages/newsletters.html">Newsletters</a></li>
-      <li><a href="pages/tender.html">Tender</a></li>
-      <li><a href="pages/circulars-notices.html">Circulars/Notices</a></li>
+      {{ page.footer_useful_links }}
     </ul>
   </div>
 
@@ -32,20 +18,14 @@
   <div class="footer-links">
     <h3>Quick Links</h3>
     <ul>
-      <li><a href="pages/mission-karmayogi.html">Mission Karmayogi</a></li>
-      <li><a href="#">iGOT Portal</a></li>
-      <li><a href="pages/gallery.html">Gallery</a></li>
-      <li><a href="pages/events.html">Events</a></li>
-      <li><a href="pages/about/contact.html">Contact Us</a></li>
+  {{ page.footer_quick_links }}
     </ul>
   </div>
 
   <!-- Contact Info -->
   <div class="footer-contact">
     <h3>Contact Us</h3>
-    <p><i class="fas fa-map-marker-alt"></i> 7th Floor, NDCC-II Building, New Delhi, India</p>
-    <p><i class="fas fa-phone-alt"></i> +91 11 2309 3200</p>
-    <p><i class="fas fa-envelope"></i> info@cbc.gov.in</p>
+    {{ page.contact_us }}
 
     <div class="visit-stats">
       <p><strong>Last Updated:</strong> 31 Oct 2025</p>

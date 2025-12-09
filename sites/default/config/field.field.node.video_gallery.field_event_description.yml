@@ -1,0 +1,26 @@
+uuid: 828d2aec-429a-4f86-b0ed-cb97962447d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_event_description
+    - filter.format.full_html
+    - node.type.video_gallery
+  module:
+    - text
+id: node.video_gallery.field_event_description
+field_name: field_event_description
+entity_type: node
+bundle: video_gallery
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+  allowed_formats:
+    - full_html
+field_type: text_with_summary

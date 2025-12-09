@@ -1,0 +1,25 @@
+uuid: f385f711-b046-4063-a9b9-5a5eeeca8720
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:c0de0f33-cad8-4ae7-a31f-f39e874b03c7'
+  module:
+    - block_content
+  theme:
+    - cbc
+id: cbc_contactus
+theme: cbc
+region: contact_us
+weight: 0
+provider: null
+plugin: 'block_content:c0de0f33-cad8-4ae7-a31f-f39e874b03c7'
+settings:
+  id: 'block_content:c0de0f33-cad8-4ae7-a31f-f39e874b03c7'
+  label: 'Contact Us'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

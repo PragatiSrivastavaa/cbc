@@ -1,0 +1,24 @@
+uuid: 4c78b9a5-5837-4f5c-9fb0-182b5c685822
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.events
+  module:
+    - views
+  theme:
+    - cbc
+id: cbc_views_block__events_block_1
+theme: cbc
+region: events_section
+weight: 0
+provider: null
+plugin: 'views_block:events-block_1'
+settings:
+  id: 'views_block:events-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility: {  }

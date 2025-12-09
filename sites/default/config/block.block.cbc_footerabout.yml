@@ -1,0 +1,25 @@
+uuid: 7b3004b2-fcc9-4509-8df5-d27998c9a51d
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:3c48b163-61bc-4f4e-a88e-a9c8ac2821b6'
+  module:
+    - block_content
+  theme:
+    - cbc
+id: cbc_footerabout
+theme: cbc
+region: footer_top
+weight: 0
+provider: null
+plugin: 'block_content:3c48b163-61bc-4f4e-a88e-a9c8ac2821b6'
+settings:
+  id: 'block_content:3c48b163-61bc-4f4e-a88e-a9c8ac2821b6'
+  label: footer-about
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

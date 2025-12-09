@@ -1,0 +1,11 @@
+uuid: b5b33453-e6b9-4d57-9a1a-4de7146f8578
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.video_gallery
+id: node.video_gallery
+target_entity_type_id: node
+target_bundle: video_gallery
+default_langcode: site_default
+language_alterable: false

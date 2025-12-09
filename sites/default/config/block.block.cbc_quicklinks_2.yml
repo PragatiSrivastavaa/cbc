@@ -1,0 +1,25 @@
+uuid: c6269f35-9000-4a22-8057-188be127d19a
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.quick-links
+  module:
+    - system
+  theme:
+    - cbc
+id: cbc_quicklinks_2
+theme: cbc
+region: footer_quick_links
+weight: 0
+provider: null
+plugin: 'system_menu_block:quick-links'
+settings:
+  id: 'system_menu_block:quick-links'
+  label: 'Quick Links'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: null
+  expand_all_items: false
+visibility: {  }

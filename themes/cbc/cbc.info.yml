@@ -30,13 +30,15 @@ regions:
   primary_menu: Primary menu
   secondary_menu: Secondary menu
   banner_section: Banner section
-  announcements: Announcements
-  news_highlights: News & Highlights
+  what_s_news: What's New
+  in_focus: In Focus Card
   alerts: Alerts
   about_us: About Us
   modi_content: Modi Content
   jitender_content: Jitender Content
-  chairmans_corner: Chairman’s Corner
+  events_section: Events Section
+  social_media: Social Media
+  training_map: Training Map
   hero: Hero (full width)
   highlighted: Highlighted
   page_title: Page Title
@@ -47,11 +49,13 @@ regions:
   content: Content
   sidebar: Sidebar
   content_below: Content Below
-  quick_access_links: Quick Access Links
+  video_gallery_section: Video Gallery Section
   photo_gallery: Photo Gallery
   logo_carousel: Logo Carousel
   footer_top: Footer Top
-  footer_bottom: Footer Bottom
+  footer_useful_links: Footer Useful links
+  footer_quick_links: Footer Quick links
+  contact_us: Contact Us
 # Information added by Drupal.org packaging script on 2025-10-02
 version: '11.2.5'
 project: 'drupal'

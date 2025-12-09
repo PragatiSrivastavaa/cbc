@@ -1,6 +1,6 @@
 uuid: 322810db-8fde-4656-8e82-5f643158a3bd
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - system
@@ -10,7 +10,7 @@ _core:
   default_config_hash: eYL19CLDyinGTWYQfBD1DswWzglEotE_kHnHx3AxTXM
 id: cbc_powered
 theme: cbc
-region: footer_bottom
+region: header
 weight: 0
 provider: null
 plugin: system_powered_by_block

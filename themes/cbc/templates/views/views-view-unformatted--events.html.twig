@@ -1,0 +1,66 @@
+{#
+/**
+ * @file
+ * Theme override to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ */
+#}
+
+<div class="events-content-wrappe high-contrast-no-borderr">
+          <div class="events-cards-container high-contrast-no-border">
+            <div class="events-cards-list high-contrast-no-border" id="homeEventsCardsList">
+        {% for row in rows %}
+        {% set node = row.content['#row']._entity %}
+              <!-- Event Card 1 -->
+              <div class="home-event-card high-contrast-border" data-event-id="home-event-1" data-date="2025-11-07" data-venue="Capacity Building Commission">
+                <div class="home-event-card-image">
+                  <img src="{{ base_path }}themes/cbc/img/latest_events/Vande_Mataram.jpeg" alt="The Capacity Building Commission organised the mass singing of 'Vande Mataram' today, joining the nationwide commemoration marking 150 years of India's National Song" onerror="this.src='{{ base_path }}themes/cbc/img/event1.jpg'">
+                </div>
+                <div class="home-event-card-content">
+                  <div class="home-event-card-date">
+                    <i class="fas fa-calendar"></i> {{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ field_event_start }}'] }}
+                  </div>
+                  <h3 class="home-event-card-title">{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ title }}'] }}</h3>
+                  <p class="home-event-card-description">{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ field_event_description }}'] }}</p>
+                  <div class="home-event-card-read-more">
+                     <a href="{{ path('entity.node.canonical', {'node': node.id}) }}">
+                    Read More</a> <i class="fas fa-arrow-right"></i>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+              <!-- Duplicate cards for seamless infinite scroll -->
+              <!-- Event Card 1 (Duplicate) -->
+              <div class="home-event-card high-contrast-border" data-event-id="home-event-1" data-date="2025-11-07" data-venue="Capacity Building Commission">
+                <div class="home-event-card-image">
+                  <img src="{{ base_path }}themes/cbc/img/latest_events/Vande_Mataram.jpeg" alt="The Capacity Building Commission organised the mass singing of 'Vande Mataram' today, joining the nationwide commemoration marking 150 years of India's National Song" onerror="this.src='{{ base_path }}themes/cbc/img/event1.jpg'">
+                </div>
+                <div class="home-event-card-content">
+                  <div class="home-event-card-date">
+                    <i class="fas fa-calendar"></i>{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ field_event_start }}'] }}
+                  </div>
+                  <h3 class="home-event-card-title">{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ title }}'] }}</h3>
+                  <p class="home-event-card-description">{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ field_event_description }}'] }}</p>
+                  <div class="home-event-card-read-more">
+                   <a href="{{ path('entity.node.canonical', {'node': node.id}) }}">
+                    Read More</a> <i class="fas fa-arrow-right"></i>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>

@@ -1,0 +1,9 @@
+uuid: aed4fba2-6f6f-4434-93c5-0d6b1c2fcb45
+langcode: en
+status: true
+dependencies: {  }
+name: Ministry
+vid: ministry
+description: null
+weight: 0
+new_revision: false
