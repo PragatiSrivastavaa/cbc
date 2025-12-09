@@ -1,0 +1,11 @@
+uuid: 67df78a9-b887-49a3-ba24-775cbd24e3ec
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.media_corner
+id: node.media_corner
+target_entity_type_id: node
+target_bundle: media_corner
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,25 @@
+uuid: 20e4cc26-9ee8-40d2-b9f8-e6b3d86a0de4
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:be91e2d1-02a6-430d-892b-a8609ae08c10'
+  module:
+    - block_content
+  theme:
+    - cbc
+id: cbc_countsection
+theme: cbc
+region: count_section
+weight: 0
+provider: null
+plugin: 'block_content:be91e2d1-02a6-430d-892b-a8609ae08c10'
+settings:
+  id: 'block_content:be91e2d1-02a6-430d-892b-a8609ae08c10'
+  label: 'Count Section'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

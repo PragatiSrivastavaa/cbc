@@ -23,8 +23,6 @@ libraries:
   - cbc/global-scripts
 regions:
   header: Header
-  logo: Logo
-  center_logos: Center Logos
   language: Language
   search_section: Search
   primary_menu: Primary menu
@@ -38,8 +36,9 @@ regions:
   jitender_content: Jitender Content
   events_section: Events Section
   social_media: Social Media
-  training_map: Training Map
-  hero: Hero (full width)
+  media_corner: Media Corner
+  newsletters: Newsletters
+  our_collaboration_matters: Our Collaboration Matters
   highlighted: Highlighted
   page_title: Page Title
   breadcrumb: Breadcrumb
@@ -51,6 +50,7 @@ regions:
   content_below: Content Below
   video_gallery_section: Video Gallery Section
   photo_gallery: Photo Gallery
+  count_section: Count Section
   logo_carousel: Logo Carousel
   footer_top: Footer Top
   footer_useful_links: Footer Useful links

@@ -1,0 +1,37 @@
+uuid: 74e32f34-f615-4f7c-aae6-529ab3d42c96
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.media_corner.field_image
+    - field.field.node.media_corner.field_link
+    - image.style.medium
+    - node.type.media_corner
+  module:
+    - image
+    - user
+id: node.media_corner.teaser
+targetEntityType: node
+bundle: media_corner
+mode: teaser
+content:
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: content
+      image_style: medium
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: -1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_link: true
+  langcode: true

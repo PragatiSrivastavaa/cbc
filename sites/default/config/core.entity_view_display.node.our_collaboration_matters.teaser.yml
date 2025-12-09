@@ -1,0 +1,37 @@
+uuid: 09505662-77cc-4696-8e26-776910b6622a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.our_collaboration_matters.field_event_description
+    - field.field.node.our_collaboration_matters.field_image
+    - image.style.medium
+    - node.type.our_collaboration_matters
+  module:
+    - image
+    - user
+id: node.our_collaboration_matters.teaser
+targetEntityType: node
+bundle: our_collaboration_matters
+mode: teaser
+content:
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: content
+      image_style: medium
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: -1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_event_description: true
+  langcode: true

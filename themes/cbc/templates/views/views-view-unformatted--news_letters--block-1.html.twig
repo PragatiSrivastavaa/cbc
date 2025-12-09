@@ -1,0 +1,46 @@
+
+              <div class="section-header newsletters-header-bg">
+                <h3 class="section-header-title">NEWSLETTERS</h3>
+                <div class="section-header-controls">
+                  <button class="toggle-slide" id="toggleNewslettersSlideBtn" title="Pause/Play">
+                    <i class="fas fa-pause"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="section-body">
+                <div class="newsletters-box high-contrast-border position-relative overflow-hidden">
+                  <div class="newsletters-track" id="newslettersTrack">
+                                {% for row in rows %}
+                                {% set entity = row.content['#row']._entity %}
+                                {% set tokens = row.content['#view'].style_plugin.render_tokens[loop.index0] %}
+
+                                {# Default: open node if no document file #}
+                                {% set link_url = path('entity.node.canonical', {'node': entity.id}) %}
+
+                                {# If document file exists, replace link_url with file URL #}
+                                {% if entity.field_document|length > 0 %}
+                                  {% set file_entity = entity.field_document.0.entity %}
+                                  {% set link_url = file_url(file_entity.fileuri) %}
+                                {% endif %}
+
+                                <div class="newsletters-item high-contrast-border">
+                                  <a href="{{ link_url }}" target="_blank" rel="noopener noreferrer">
+                                    <div class="newsletters-icon">
+                                      <i class="fas fa-newspaper"></i>
+                                    </div>
+
+                                    <p>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</p>
+                                  </a>
+                                </div>
+                              {% endfor %}
+                  </div>
+                </div>
+                <div class="newsletters-footer mt-3 text-end">
+                  <a href="pages/newsletters.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                </div>
+              </div>
+
+
+
+  
+

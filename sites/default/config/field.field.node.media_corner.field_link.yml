@@ -1,0 +1,23 @@
+uuid: 06c89e63-fec0-4879-86a4-b718114cad40
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_link
+    - node.type.media_corner
+  module:
+    - link
+id: node.media_corner.field_link
+field_name: field_link
+entity_type: node
+bundle: media_corner
+label: link
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

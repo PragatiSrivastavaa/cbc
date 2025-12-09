@@ -1,0 +1,11 @@
+uuid: b0f535cd-8e19-42c1-b63b-49d7cb1a04f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.our_collaboration_matters
+id: node.our_collaboration_matters
+target_entity_type_id: node
+target_bundle: our_collaboration_matters
+default_langcode: site_default
+language_alterable: false

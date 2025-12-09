@@ -1,0 +1,25 @@
+uuid: 128d2668-e9f3-4589-8566-eb6bf976b664
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:1630d569-098e-4b73-a1c4-3bd1e712f094'
+  module:
+    - block_content
+  theme:
+    - cbc
+id: cbc_socialmedia
+theme: cbc
+region: social_media
+weight: 0
+provider: null
+plugin: 'block_content:1630d569-098e-4b73-a1c4-3bd1e712f094'
+settings:
+  id: 'block_content:1630d569-098e-4b73-a1c4-3bd1e712f094'
+  label: 'Social Media'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

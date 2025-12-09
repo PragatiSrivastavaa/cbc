@@ -1,0 +1,41 @@
+
+
+              <div class="section-header media-header-bg">
+                <h3 class="section-header-title">MEDIA CORNER</h3>
+                <div class="section-header-controls">
+                  <button class="toggle-slide" id="toggleMediaSlideBtn" title="Pause/Play">
+                    <i class="fas fa-pause"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="section-body">
+                <div class="media-corner-box high-contrast-border position-relative overflow-hidden">
+                  <div class="media-track" id="mediaTrack">
+                    {% for row in rows %}
+                    {% set entity = row.content['#row']._entity %}
+                   {% set link_item = entity.field_link.0 %}
+
+                {% if link_item %}
+                  {# Convert internal/external link to usable URL #}
+                  {% set link = link_item.url %}
+                {% else %}
+                  {# If linked field is empty, link to node page #}
+                  {% set link = path('entity.node.canonical', {'node': entity.id()}) %}
+                {% endif %}
+                    <div class="media-item">
+                      <a href="{{ link }}" target="_blank"
+                        rel="noopener noreferrer">
+                        {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}
+                        <p>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</p>
+                      </a>
+                    </div>
+
+                    {% endfor %}
+                  </div>
+                </div>
+
+                <div class="media-footer mt-3 text-end">
+                  <a href="pages/media-corner.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                </div>
+              </div>
+            

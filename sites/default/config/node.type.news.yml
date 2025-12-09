@@ -9,7 +9,7 @@ third_party_settings:
     available_menus:
       - main
     parent: 'main:'
-name: news
+name: News
 type: news
 description: null
 help: null

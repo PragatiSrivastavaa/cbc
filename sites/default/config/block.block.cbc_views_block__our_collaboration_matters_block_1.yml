@@ -1,0 +1,24 @@
+uuid: 060b2e79-59b5-46d8-8a10-27ffcd0133c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.our_collaboration_matters
+  module:
+    - views
+  theme:
+    - cbc
+id: cbc_views_block__our_collaboration_matters_block_1
+theme: cbc
+region: our_collaboration_matters
+weight: 0
+provider: null
+plugin: 'views_block:our_collaboration_matters-block_1'
+settings:
+  id: 'views_block:our_collaboration_matters-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility: {  }
