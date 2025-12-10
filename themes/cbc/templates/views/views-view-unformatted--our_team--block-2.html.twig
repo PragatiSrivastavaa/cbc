@@ -1,0 +1,20 @@
+   
+	  {% for row in rows %}
+              {% set entity = row.content['#row']._entity %}
+          <div class="member-card">
+		   
+            <div class="member-image-wrapper">
+              {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}
+              <div class="member-overlay">
+                <p>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}'] }}</p>
+                <a href="pages/leadership.html" class="view-more">View More →</a>
+              </div>
+            </div>
+            <div class="member-info">
+              <h3>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
+              <p>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_team_members }}'] }}</p>
+            </div>
+			
+          </div>
+ {% endfor %}
+       

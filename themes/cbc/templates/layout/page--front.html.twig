@@ -168,21 +168,8 @@
 
       <div class="leadership-grid-new">
         <!-- Left: Chairperson Image and Content -->
-        <div class="chairperson-image-card high-contrast-border">
-          <div class="chairperson-image-wrapper">
-            <img src="{{ base_path }}themes/cbc/img/cbc chairman.png" alt="Ms. S. Radha Chauhan">
-            <div class="chairperson-overlay">
-              <p>Ms. S. Radha Chauhan is a seasoned civil servant with 36+ years of leadership across public policy,
-                fiscal governance, institutional reform, and digital transformation. She is a 1988 Batch IAS officer of
-                UP Cadre (Retd.).</p>
-              <a href="pages/leadership.html" class="view-more">View More →</a>
-            </div>
-          </div>
-          <div class="chairperson-content">
-            <h3>Ms. S. Radha Chauhan</h3>
-            <p class="chairperson-designation">Chairperson</p>
-          </div>
-        </div>
+     
+		{{ page.our_team }}
 
         <!-- Middle: Chairperson Message -->
 		<div class="chairperson-message-card high-contrast-border">
@@ -195,40 +182,10 @@
 	  </div>
 
         <!-- Right Column: Members -->
-        <div class="members-column">
-          <!-- Top Right: Member - Human Resource -->
-          <div class="member-card">
-            <div class="member-image-wrapper">
-              <img src="{{ base_path }}themes/cbc/img/cbc balasubramani.jpg" alt="Dr. R Balasubramaniam">
-              <div class="member-overlay">
-                <p>Dr. R Balasubramaniam (Balu) is a widely respected development expert, public policy analyst,
-                  leadership trainer and author. He has spent several decades working among forest-based tribal
-                  communities in southern India.</p>
-                <a href="pages/leadership.html" class="view-more">View More →</a>
-              </div>
-            </div>
-            <div class="member-info">
-              <h3>Dr. R Balasubramaniam (Balu)</h3>
-              <p>Member - Human Resource</p>
-            </div>
-          </div>
-
-          <!-- Bottom Right: Member - Administration -->
-          <div class="member-card">
-            <div class="member-image-wrapper">
-              <img src="{{ base_path }}themes/cbc/img/cbc Alka_Mittal.jpeg" alt="Dr. Alka Mittal">
-              <div class="member-overlay">
-                <p>Dr. Alka Mittal is former CMD and Director (HR) of ONGC. She was also the Chairperson of ONGC Group
-                  of Companies viz. ONGC Videsh, MRPL, OPAL, OTPC, etc.</p>
-                <a href="#" class="view-more">View More →</a>
-              </div>
-            </div>
-            <div class="member-info">
-              <h3>Dr. Alka Mittal</h3>
-              <p>Member - Administration</p>
-            </div>
-          </div>
+    <div class="members-column">
+     {{ page.our_team_second }}
         </div>
+		
       </div>
     </section>
 
