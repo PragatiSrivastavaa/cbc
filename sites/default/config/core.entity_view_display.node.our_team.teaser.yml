@@ -1,0 +1,45 @@
+uuid: 173463ee-909d-460c-a35f-a6a3eb9f7c5f
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.our_team.field_event_description
+    - field.field.node.our_team.field_image
+    - field.field.node.our_team.field_karmayogi_saarthis
+    - field.field.node.our_team.field_linkedin_link
+    - field.field.node.our_team.field_sequence_no
+    - field.field.node.our_team.field_team_members
+    - image.style.medium
+    - node.type.our_team
+  module:
+    - image
+    - user
+id: node.our_team.teaser
+targetEntityType: node
+bundle: our_team
+mode: teaser
+content:
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: content
+      image_style: medium
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: -1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_event_description: true
+  field_karmayogi_saarthis: true
+  field_linkedin_link: true
+  field_sequence_no: true
+  field_team_members: true
+  langcode: true

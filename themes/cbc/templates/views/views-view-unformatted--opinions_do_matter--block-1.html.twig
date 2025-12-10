@@ -1,0 +1,15 @@
+<div class="carousel-track" id="carouselTrack">
+
+ {% for row in rows %}
+              {% set entity = row.content['#row']._entity %}
+
+        <div class="blog-card">
+          {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}
+          <div class="blog-card-content">
+            <h3>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
+            <p>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}'] }}</p>
+          </div>
+          <a href="pages/newsletters/raknpa-accreditation-journey.html">Read More →</a>
+        </div>
+        {% endfor %}
+      </div>

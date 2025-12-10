@@ -1,0 +1,17 @@
+uuid: 7abfbf9f-c358-4da1-9282-7a0f19e3b98e
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Opinions Do Matter'
+type: opinions_do_matter
+description: null
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: false

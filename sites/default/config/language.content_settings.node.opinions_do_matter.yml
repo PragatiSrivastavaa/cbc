@@ -1,0 +1,11 @@
+uuid: 13680b99-7720-4a3e-b67f-0a3a859e381a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.opinions_do_matter
+id: node.opinions_do_matter
+target_entity_type_id: node
+target_bundle: opinions_do_matter
+default_langcode: site_default
+language_alterable: true

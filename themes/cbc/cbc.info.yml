@@ -52,10 +52,14 @@ regions:
   photo_gallery: Photo Gallery
   count_section: Count Section
   logo_carousel: Logo Carousel
+  option_do_matter: Option Do Matter
   footer_top: Footer Top
   footer_useful_links: Footer Useful links
   footer_quick_links: Footer Quick links
   contact_us: Contact Us
+  chairperson_desk: Chairperson Desk
+  our_team: Our Team
+  
 # Information added by Drupal.org packaging script on 2025-10-02
 version: '11.2.5'
 project: 'drupal'

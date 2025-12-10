@@ -1,0 +1,24 @@
+uuid: 01356e93-2d8c-446f-a0eb-ce8f3653362f
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.our_team
+  module:
+    - views
+  theme:
+    - cbc
+id: cbc_views_block__our_team_block_1
+theme: cbc
+region: our_team
+weight: 0
+provider: null
+plugin: 'views_block:our_team-block_1'
+settings:
+  id: 'views_block:our_team-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility: {  }

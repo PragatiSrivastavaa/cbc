@@ -1,0 +1,25 @@
+uuid: 644e24db-af5b-4730-959d-6c8a44fe613a
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:632f859c-9f59-41ef-b1d5-6c4113f5908d'
+  module:
+    - block_content
+  theme:
+    - cbc
+id: cbc_chairpersondesk
+theme: cbc
+region: chairperson_desk
+weight: 0
+provider: null
+plugin: 'block_content:632f859c-9f59-41ef-b1d5-6c4113f5908d'
+settings:
+  id: 'block_content:632f859c-9f59-41ef-b1d5-6c4113f5908d'
+  label: 'CHAIRPERSON DESK'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

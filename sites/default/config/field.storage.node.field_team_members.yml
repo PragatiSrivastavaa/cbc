@@ -1,0 +1,20 @@
+uuid: c8132a5c-0b39-4c7c-bd21-1fdc2b33aa9a
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_team_members
+field_name: field_team_members
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

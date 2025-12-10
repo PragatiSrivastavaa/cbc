@@ -1,0 +1,23 @@
+uuid: 47f62f4d-7d9a-4eda-8aaf-cd3250a99878
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sequence_no
+    - node.type.our_team
+id: node.our_team.field_sequence_no
+field_name: field_sequence_no
+entity_type: node
+bundle: our_team
+label: 'Sequence No'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

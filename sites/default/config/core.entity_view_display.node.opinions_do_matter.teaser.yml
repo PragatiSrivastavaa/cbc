@@ -1,0 +1,39 @@
+uuid: b2013c1b-ad0e-423d-b842-8a191a2ecff4
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.opinions_do_matter.field_designation
+    - field.field.node.opinions_do_matter.field_event_description
+    - field.field.node.opinions_do_matter.field_image
+    - image.style.medium
+    - node.type.opinions_do_matter
+  module:
+    - image
+    - user
+id: node.opinions_do_matter.teaser
+targetEntityType: node
+bundle: opinions_do_matter
+mode: teaser
+content:
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: content
+      image_style: medium
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: -1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_designation: true
+  field_event_description: true
+  langcode: true

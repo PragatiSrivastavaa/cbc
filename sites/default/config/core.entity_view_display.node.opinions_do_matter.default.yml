@@ -1,0 +1,51 @@
+uuid: 97f3a56c-1bfd-4859-a116-b6d0296d3b22
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.opinions_do_matter.field_designation
+    - field.field.node.opinions_do_matter.field_event_description
+    - field.field.node.opinions_do_matter.field_image
+    - image.style.wide
+    - node.type.opinions_do_matter
+  module:
+    - image
+    - text
+    - user
+id: node.opinions_do_matter.default
+targetEntityType: node
+bundle: opinions_do_matter
+mode: default
+content:
+  field_designation:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_event_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: wide
+      image_loading:
+        attribute: eager
+    third_party_settings: {  }
+    weight: -1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
