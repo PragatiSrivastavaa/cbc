@@ -22,7 +22,10 @@
         "drupal/core-recipe-unpack": "^11.2",
         "drupal/core-recommended": "^11.2",
         "drupal/core-vendor-hardening": "^11.2",
+        "drupal/easy_breadcrumb": "^2.0",
+        "drupal/menu_breadcrumb": "^2.0",
         "drupal/menu_item_extras": "^3.1",
+        "drupal/paragraphs": "^1.19",
         "drupal/pathauto": "^1.14",
         "drush/drush": "^13.6"
     },
