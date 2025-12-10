@@ -2139,7 +2139,7 @@
 
 .news-header h2 {
   font-size: 1.3rem !important; /* Reduced from 1.8rem */
-  font-weight: 700;
+  font-weight: 600;
   background: linear-gradient(135deg, #004d99 0%, #0073cf 50%, #0099ff 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -3524,7 +3524,7 @@ h2.infocus-heading {
 .cbc-blog-carousel .carousel-header h2 {
   color: #003b73;
   font-size: 1.8rem;
-  font-weight: 700;
+  font-weight: 600;
   margin: 0;
 }
 
@@ -3801,7 +3801,7 @@ h2.infocus-heading {
   .carousel-header h2 {
     color: #0063ae;
     font-size: 1.2rem !important; /* Reduced from 1.4rem */
-    font-weight: 700;
+    font-weight: 600;
   }
 
   .carousel-controls button {
@@ -5297,7 +5297,7 @@ h2.infocus-heading {
 
 .home-event-card-title {
   font-size: 0.9rem; /* Reduced from 1rem */
-  font-weight: 700;
+  font-weight: 600;
   color: #003b73;
   margin: 0 0 0.5rem 0;
   line-height: 1.3;
@@ -5613,7 +5613,7 @@ h2.infocus-heading {
   font-size: 1.3rem !important; /* Reduced from 2.25rem */
   margin: 0;
   color: #003b73;
-  font-weight: 800;
+  font-weight: 600;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -9905,7 +9905,7 @@ h2.infocus-heading {
 .carousel-header h2 {
   color: #003b73;
   font-size: 1.8rem;
-  font-weight: 700;
+  font-weight: 600;
   margin: 0;
 }
 
@@ -10063,7 +10063,7 @@ h2.infocus-heading {
   .carousel-header h2 {
     color: #0063ae;
     font-size: 1.2rem !important; /* Reduced from 1.4rem */
-    font-weight: 700;
+    font-weight: 600;
   }
 
   .carousel-controls button {

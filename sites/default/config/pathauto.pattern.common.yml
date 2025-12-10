@@ -1,0 +1,32 @@
+uuid: 709111aa-59f1-42c8-a9f3-c1aaf0fbbe3d
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: common
+label: Common
+type: 'canonical_entities:node'
+pattern: '/[node:title]'
+selection_criteria:
+  d8630927-bfed-4072-9bd6-a632a6f95c4c:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: d8630927-bfed-4072-9bd6-a632a6f95c4c
+    context_mapping:
+      node: node
+    bundles:
+      event: event
+      home_banner: home_banner
+      media_corner: media_corner
+      news: news
+      news_letters: news_letters
+      opinions_do_matter: opinions_do_matter
+      our_collaboration_matters: our_collaboration_matters
+      our_partners: our_partners
+      our_team: our_team
+      page: page
+      video_gallery: video_gallery
+selection_logic: and
+weight: -5
+relationships: {  }

@@ -50,74 +50,6 @@ function cbc_preprocess_page(&$variables) {
   $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
   $vars['language'] = $language;
 
-// for custom banner image per section
-// Define mapping between content type/view IDs and block titles.
-  $banner_map = [
-    // Content types
-  'board_of_directors' => 'Board of Directors',
-  'our_business' => 'Our Business',
-  'photo_gallery' => 'Photo Gallery',
-  'video_gallery' => 'Photo Gallery', 
-  'news_announcement' => 'News Announcement',
-  'investor_relations' => 'Investor Relations',
-  'career' => 'career',
-  'key_executive' => 'Key Executive',
-  'tariff_petition' => 'Tariff Petition',
-  'energy_bills' => 'Energy Bills',
-
-  // Views (their machine names)
-  'board_of_directors' => 'Board of Directors',
-  'our_project' => 'Our Business',         // ✅ view ID for Our Business
-  'photo_gallery' => 'Photo Gallery',            // ✅ if your photo gallery view ID is "gallery"
-  'video_gallery' => 'Photo Gallery', 
-  'announcements' => 'News Announcement',   // ✅ view ID for News
-  'investor_relations' => 'Investor Relations',
-  'current_job' => 'career',
-  'key_executive' => 'Key Executive',
-  'tariff_petition' => 'Tariff Petition',
-  'energy_bills' => 'Energy Bills',
-];
-  
-
-  $matched_key = NULL;
-
-  // 1️⃣ Detect content type page
-  if (!empty($variables['node'])) {
-    $bundle = $variables['node']->bundle();
-    if (isset($banner_map[$bundle])) {
-      $matched_key = $bundle;
-    }
-  }
-
-  // 2️⃣ Detect Views page (like /board-of-directors)
-  $route_name = \Drupal::routeMatch()->getRouteName();
-  if (preg_match('/^view\.(.*?)\.page_/', $route_name, $matches)) {
-    $view_id = $matches[1];
-    if (isset($banner_map[$view_id])) {
-      $matched_key = $view_id;
-    }
-  }
-
-  // 3️⃣ If a matching section found, load that block's image
-  if ($matched_key) {
-    $block_title = $banner_map[$matched_key];
-    $blocks = \Drupal::entityTypeManager()
-      ->getStorage('block_content')
-      ->loadByProperties(['info' => $block_title]);
-
-    if ($block = reset($blocks)) {
-      $image_field = $block->get('field_banner_image');
-      if (!$image_field->isEmpty()) {
-        $file = $image_field->entity;
-        if ($file) {
-          $variables['section_banner_image'] = \Drupal::service('file_url_generator')
-            ->generateAbsoluteString($file->getFileUri());
-          $variables['section_banner_alt'] = $image_field->alt;
-        }
-      }
-    }
-  }
-
 // for total visit count
   if (\Drupal::moduleHandler()->moduleExists('counter')) {
     /** @var \Drupal\counter\CounterUtility $counter_utility */
@@ -139,6 +71,11 @@ function cbc_preprocess_page(&$variables) {
     // Generate a unique ID based on node ID.
     $variables['unique_page_id'] = 'page-' . $node->id();
   }
+
+   if (!empty($variables['node']) && $variables['node']->hasField('field_hero_section')) {
+    $variables['content']['field_hero_section'] = $variables['node']->get('field_hero_section')->view();
+  }
+
 }
 	function random_string()
 	{
@@ -245,5 +182,4 @@ function cbc_preprocess_block(&$variables) {
     $variables['#create_placeholder'] = FALSE;
   }
 }
-
 

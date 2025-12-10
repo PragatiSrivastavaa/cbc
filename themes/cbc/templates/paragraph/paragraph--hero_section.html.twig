@@ -1,0 +1,30 @@
+{# paragraph--hero_section.html.twig #}
+<div class="page-hero-section">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        {# Dynamic Title (field_title) #}
+        {% if paragraph.field_title.value %}
+          <span class="hero-category-tag page-hero-cta">
+            {{ paragraph.field_title.value }}
+          </span>
+        {% endif %}
+
+        {# Dynamic Sub Title (field_sub_title) #}
+        {% if paragraph.field_sub_title.value %}
+          <h1 class="page-hero-title">
+            {{ paragraph.field_sub_title.value }}
+          </h1>
+        {% endif %}
+
+        {# Dynamic Description (formatted long text) #}
+        {% if paragraph.field_descriptions.value %}
+          <p class="page-hero-subtitle">
+            {{ content.field_descriptions }}
+          </p>
+        {% endif %}
+</div>
+    </div>
+  </div>
+</div>
