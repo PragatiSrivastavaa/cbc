@@ -39,73 +39,46 @@ function initializeCarousel() {
 
   if (!video || !buttons.length || !slides.length) return;
 
-  const videos = ['video01.mp4', 'slider0videi1.mp4', 'video3.mp4'];
-  let currentSlide = 1;
+  let currentSlide = 0;
 
-  // Function to change video source properly for cross-browser compatibility
-  function changeVideoSource(videoElement, newSrc) {
-    // Remove existing source elements
-    while (videoElement.firstChild) {
-      videoElement.removeChild(videoElement.firstChild);
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+
+    buttons.forEach((btn, i) => {
+      btn.classList.toggle('active', i === index);
+    });
+
+    // Change video source for the active slide
+    if (slideVideos[index]) {
+      // Remove existing <source>
+      while (video.firstChild) video.removeChild(video.firstChild);
+
+      // Add new <source>
+      const source = document.createElement('source');
+      source.src = slideVideos[index];
+      source.type = 'video/mp4';
+      video.appendChild(source);
+
+      video.load();
+      video.play().catch(err => console.log('Video play failed:', err));
     }
-    
-    // Create and add new source element
-    const source = document.createElement('source');
-    source.src = newSrc;
-    source.type = 'video/mp4';
-    videoElement.appendChild(source);
-    
-    // Load and play the new video
-    videoElement.load();
-    
-    // Use promise-based play for better browser compatibility
-    const playPromise = videoElement.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(error => {
-        console.log('Video play failed:', error);
-        setTimeout(() => {
-          videoElement.play().catch(err => console.log('Retry play failed:', err));
-        }, 100);
-      });
-    }
+
+    currentSlide = index;
   }
 
-  // Ensure initial video loads properly
-  video.addEventListener('loadeddata', () => {
-    video.style.opacity = 1;
-  });
-  
-  video.addEventListener('error', (e) => {
-    console.error('Video loading error:', e);
-    setTimeout(() => {
-      video.load();
-    }, 1000);
+  buttons.forEach((btn, i) => {
+    btn.addEventListener('click', () => showSlide(i));
   });
 
-  // Remove old event listeners by cloning buttons
-  buttons.forEach((btn, index) => {
-    const newBtn = btn.cloneNode(true);
-    btn.parentNode.replaceChild(newBtn, btn);
-    
-    newBtn.addEventListener('click', () => {
-      const slideNum = parseInt(newBtn.dataset.slide);
-      if (slideNum === currentSlide) return;
-      currentSlide = slideNum;
-
-      buttons.forEach(b => b.classList.remove('active'));
-      newBtn.classList.add('active');
-
-      slides.forEach(s => s.classList.remove('active'));
-      slides[slideNum - 1].classList.add('active');
-
-      video.style.opacity = 0;
-      setTimeout(() => {
-        changeVideoSource(video, videos[slideNum - 1]);
-        video.style.opacity = 1;
-      }, 400);
-    });
-  });
+  // Initialize first slide
+  showSlide(0);
 }
+
+document.addEventListener('DOMContentLoaded', initializeCarousel);
+
+
 
 // ----------------------- Alert Bar Section ---------------------------------//
 function initializeAlertBar() {
