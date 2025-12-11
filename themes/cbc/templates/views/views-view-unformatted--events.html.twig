@@ -15,12 +15,14 @@
  * @see template_preprocess_views_view_unformatted()
  */
 #}
-<div class="events-content-wrappe high-contrast-no-borderr">
+ <div class="events-content-wrappe high-contrast-no-borderr">
           <div class="events-cards-container high-contrast-no-border">
-            <div class="events-cards-list high-contrast-no-border" >
+            <div class="events-cards-list high-contrast-no-border" id="homeEventsCardsList">
  {% for row in rows %}
 {% set node = row.content['#row']._entity %}
-<div class="home-event-card high-contrast-border"  data-date="2025-10-31" data-venue="Capacity Building Commission">
+<a href="{{ path('entity.node.canonical', {'node': node.id}) }}">
+<div class="home-event-card high-contrast-border"
+                data-venue="Capacity Building Commission">
                 <div class="home-event-card-image">
                   {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_images }}'] }}
                 </div>
@@ -32,10 +34,11 @@
                   <p class="home-event-card-description">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}'] }}</p>
                   <div class="home-event-card-read-more">
                      <a href="{{ path('entity.node.canonical', {'node': node.id}) }}">
-                    Read More <i class="fas fa-arrow-right"></i></a>
+                    Read More <i class="fas fa-arrow-right"></i>
                   </div>
                 </div>
   </div>
+  </a>
 {% endfor %}
   </div>
   </div>

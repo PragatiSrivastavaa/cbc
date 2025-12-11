@@ -11,6 +11,8 @@ global-scripts:
     js/bootstrap.bundle.min.js: {}
     js/homePageInit.js: {}
     js/eventsPage.js: {}
+    js/events_data.js: {}
+    js/eventDetailsPage.js: {}
     js/accessibility.js: {}
   dependencies:
     - core/jquery

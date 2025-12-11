@@ -50,8 +50,19 @@
 
        {% if content.field_hero_section %}
        {{ content.field_hero_section }}
+       {% else %}
+  <div class="page-hero-section">
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h1 class="page-hero-title">{{ page.page_title }}</h1>
+        <p class="page-hero-subtitle">{{ page.page_body }}</p>
+      </div>
+    </div>
+  </div>
+</div>
        {% endif %}
-      
 
 <!-- Breadcrumb Section -->
 {{ page.breadcrumb }}

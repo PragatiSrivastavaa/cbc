@@ -80,7 +80,7 @@
       </div>
 
       <!-- event section -->
-      <section class="events-section">
+     <section class="events-section">
         <div class="events-header">
           <h2><span>Latest</span> Events</h2>
           <div class="events-header-controls">
@@ -340,92 +340,6 @@
 
   </main>
   <!-- End of Main Content Container -->
-
-
-  
-  <!-- Accessibility Drawer -->
-  <div class="accessibility-drawer" id="accessibilityDrawer" role="dialog" aria-label="Accessibility Options" aria-modal="true" data-state="closed">
-    <div class="accessibility-header">
-      <h2><i class="fas fa-universal-access"></i> Accessibility Options</h2>
-      <button class="accessibility-close-btn" id="closeAccessibilityBtn" aria-label="Close Accessibility Menu">
-        <i class="fas fa-times"></i>
-      </button>
-    </div>
-    <div class="accessibility-content">
-      <div class="accessibility-section">
-        <h3><i class="fas fa-text-height"></i> Text Size</h3>
-        <div class="text-size-controls">
-          <button class="text-size-btn high-contrast-border" data-size="small" aria-label="Small Text Size" aria-pressed="false"><span>A-</span></button>
-          <button class="text-size-btn high-contrast-border" data-size="normal" aria-label="Normal Text Size" aria-pressed="true"><span>A</span></button>
-          <button class="text-size-btn high-contrast-border" data-size="large" aria-label="Large Text Size" aria-pressed="false"><span>A+</span></button>
-          <button class="text-size-btn high-contrast-border" data-size="extra-large" aria-label="Extra Large Text Size" aria-pressed="false"><span>A++</span></button>
-        </div>
-      </div>
-
-      <div class="accessibility-section">
-        <h3><i class="fas fa-adjust"></i> Display Themes</h3>
-        <div class="contrast-themes">
-          <button class="contrast-btn high-contrast-border" data-theme="default" aria-label="Default Theme" aria-pressed="true">
-            <div class="contrast-preview high-contrast-border default">Aa</div>
-            <span class="contrast-name">Normal</span>
-          </button>
-          <button class="contrast-btn high-contrast-border" data-theme="high-contrast" aria-label="High Contrast Theme" aria-pressed="false">
-            <div class="contrast-preview high-contrast">Aa</div>
-            <span class="contrast-name">High Contrast</span>
-          </button>
-          <button class="contrast-btn high-contrast-border" data-theme="dark" aria-label="Dark Mode Theme" aria-pressed="false">
-            <div class="contrast-preview dark-mode">Aa</div>
-            <span class="contrast-name">Dark Mode</span>
-          </button>
-          <button class="contrast-btn high-contrast-border" data-theme="yellow-black" aria-label="Yellow Black Theme" aria-pressed="false">
-            <div class="contrast-preview yellow-black">Aa</div>
-            <span class="contrast-name">Yellow-Black</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="accessibility-section">
-        <h3><i class="fas fa-mouse-pointer"></i> Cursor Size</h3>
-        <div class="cursor-size-controls">
-          <div class="cursor-size-option high-contrast-border" data-cursor="normal" role="button" tabindex="0" aria-pressed="true">
-            <span class="cursor-label">Normal Cursor</span>
-            <div class="cursor-demo normal">●</div>
-          </div>
-          <div class="cursor-size-option high-contrast-border" data-cursor="large" role="button" tabindex="0" aria-pressed="false">
-            <span class="cursor-label">Large Cursor</span>
-            <div class="cursor-demo large">●</div>
-          </div>
-          <div class="cursor-size-option high-contrast-border" data-cursor="extra-large" role="button" tabindex="0" aria-pressed="false">
-            <span class="cursor-label">Extra Large Cursor</span>
-            <div class="cursor-demo extra-large">●</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="accessibility-section">
-        <h3><i class="fas fa-eye"></i> Visual Adjustments</h3>
-        <div class="accessibility-toggle-group">
-          <div class="accessibility-toggle high-contrast-border" data-feature="hide-images" role="button" tabindex="0" aria-pressed="false" data-state="off">
-            <span class="toggle-label"><i class="fas fa-image"></i> Hide Images</span>
-            <div class="toggle-switch high-contrast-border" role="switch" aria-checked="false" aria-label="Toggle Hide Images" data-state="off"></div>
-          </div>
-          <div class="accessibility-toggle high-contrast-border" data-feature="highlight-links" role="button" tabindex="0" aria-pressed="false" data-state="off">
-            <span class="toggle-label"><i class="fas fa-link"></i> Highlight Links</span>
-            <div class="toggle-switch high-contrast-border" role="switch" aria-checked="false" aria-label="Toggle Highlight Links" data-state="off"></div>
-          </div>
-          <div class="accessibility-toggle high-contrast-border" data-feature="increased-line-height" role="button" tabindex="0" aria-pressed="false" data-state="off">
-            <span class="toggle-label"><i class="fas fa-align-justify"></i> Increase Line Height</span>
-            <div class="toggle-switch high-contrast-border" role="switch" aria-checked="false" aria-label="Toggle Increased Line Height" data-state="off"></div>
-          </div>
-        </div>
-      </div>
-
-      <button class="accessibility-reset-btn high-contrast-border" id="resetAccessibilityBtn" aria-label="Reset All Accessibility Settings">
-        <i class="fas fa-redo-alt"></i> Reset All Settings
-      </button>
-    </div>
-  </div>
-  <div class="accessibility-overlay" id="accessibilityOverlay" data-state="hidden"></div>
 
     <!-- Footer -->
  {% include 'themes/cbc/templates/layout/footer.html.twig' %}

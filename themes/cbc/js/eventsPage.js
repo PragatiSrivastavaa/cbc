@@ -4,7 +4,7 @@
 let allEvents = [];
 let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
-let currentView = 'calendar';
+let currentView = 'list';
 let filteredEvents = [];
 let isModalOpening = false; // Prevent multiple simultaneous modal opens
 let dayEventClickHandler = null; // Store handler reference for cleanup
@@ -12,6 +12,8 @@ let modalOpeningLock = false; // Lock to prevent recursion
 let eventListenersSetup = false; // Track if listeners are already set up
 let escapeKeyHandler = null; // Store escape key handler reference
 let modalClickHandler = null; // Store click handler reference
+let currentPage = 1;
+const itemsPerPage = 9;
 
 // Initialize events page
 async function initializeEventsPage() {
@@ -22,7 +24,7 @@ async function initializeEventsPage() {
     setTimeout(initializeEventsPage, 100);
     return;
   }
-  
+
   // Verify modal exists - wait longer if needed
   let modal = document.getElementById('eventModal');
   let retries = 0;
@@ -31,16 +33,17 @@ async function initializeEventsPage() {
     modal = document.getElementById('eventModal');
     retries++;
   }
-  
+
   if (!modal) {
     console.error('Modal not found in DOM after retries!');
     return;
   }
   console.log('Modal found in DOM:', modal);
-  
+
   setupEventListeners();
   await fetchEvents();
   // fetchEvents already calls renderCalendar() and renderEventList()
+  switchView(currentView);
 }
 
 // Try to initialize when DOM is ready
@@ -54,7 +57,7 @@ if (document.readyState === 'loading') {
 // Also initialize when page is loaded via router
 if (window.router) {
   const originalInit = window.router.initializePageScripts;
-  window.router.initializePageScripts = function() {
+  window.router.initializePageScripts = function () {
     if (originalInit) originalInit.call(this);
     if (this.currentRoute === '/events') {
       setTimeout(initializeEventsPage, 200);
@@ -83,7 +86,7 @@ function setupEventListeners() {
   // View toggle buttons
   const calendarViewBtn = document.getElementById('calendarViewBtn');
   const listViewBtn = document.getElementById('listViewBtn');
-  
+
   if (calendarViewBtn) {
     const newCalendarViewBtn = calendarViewBtn.cloneNode(true);
     calendarViewBtn.parentNode.replaceChild(newCalendarViewBtn, calendarViewBtn);
@@ -98,7 +101,7 @@ function setupEventListeners() {
   // Calendar navigation
   const prevMonthBtn = document.getElementById('prevMonthBtn');
   const nextMonthBtn = document.getElementById('nextMonthBtn');
-  
+
   if (prevMonthBtn) {
     const newPrevMonthBtn = prevMonthBtn.cloneNode(true);
     prevMonthBtn.parentNode.replaceChild(newPrevMonthBtn, prevMonthBtn);
@@ -122,9 +125,9 @@ function setupModalCloseHandlers() {
   if (escapeKeyHandler) {
     document.removeEventListener('keydown', escapeKeyHandler);
   }
-  
+
   // Create new escape key handler
-  escapeKeyHandler = function(e) {
+  escapeKeyHandler = function (e) {
     if (e.key === 'Escape' && !modalOpeningLock) {
       const modal = document.getElementById('eventModal');
       if (modal && modal.classList.contains('active')) {
@@ -134,17 +137,17 @@ function setupModalCloseHandlers() {
       }
     }
   };
-  
+
   // Add escape key handler once
   document.addEventListener('keydown', escapeKeyHandler);
-  
+
   // Remove old click handler if exists
   if (modalClickHandler) {
     document.removeEventListener('click', modalClickHandler, true);
   }
-  
+
   // Create new click handler for modal close
-  modalClickHandler = function(e) {
+  modalClickHandler = function (e) {
     // Check if click is on backdrop
     if (e.target.id === 'eventModalBackdrop' || e.target.closest('#eventModalBackdrop')) {
       const modal = document.getElementById('eventModal');
@@ -155,7 +158,7 @@ function setupModalCloseHandlers() {
         return false;
       }
     }
-    
+
     // Check if click is on close button
     if (e.target.id === 'eventModalClose' || e.target.closest('#eventModalClose')) {
       const modal = document.getElementById('eventModal');
@@ -167,7 +170,7 @@ function setupModalCloseHandlers() {
       }
     }
   };
-  
+
   // Add click handler once with capture phase
   document.addEventListener('click', modalClickHandler, true);
 }
@@ -179,26 +182,40 @@ async function fetchEvents() {
   }
 
   try {
-    // Try to fetch from CBC website
-    // Note: Due to CORS, this might fail. In production, use a backend proxy.
-    const response = await fetch('https://cbc.gov.in/event', {
-      mode: 'cors',
-      headers: {
-        'Accept': 'text/html'
-      }
-    });
+    // Check if we have pre-loaded event data
+    if (typeof CBC_EVENTS_DATA !== 'undefined' && Array.isArray(CBC_EVENTS_DATA)) {
+      console.log('Loading events from static data file:', CBC_EVENTS_DATA.length);
 
-    if (response.ok) {
-      const html = await response.text();
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-      allEvents = parseEventsFromHTML(doc);
+      allEvents = CBC_EVENTS_DATA.map((evt, index) => {
+        return {
+          id: `event-${index}`,
+          title: evt.title,
+          description: evt.description,
+          date: parseEventDate(evt.date),
+          dateText: evt.date,
+          image: evt.image,
+          link: evt.link,
+          venue: 'Capacity Building Commission' // Default venue as it's not always in scraped data
+        };
+      });
     } else {
-      throw new Error('Failed to fetch events');
+      // Try to fetch from CBC website (will likely fail due to CORS)
+      const response = await fetch('https://cbc.gov.in/event', {
+        mode: 'cors',
+        headers: { 'Accept': 'text/html' }
+      });
+
+      if (response.ok) {
+        const html = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        allEvents = parseEventsFromHTML(doc);
+      } else {
+        throw new Error('Failed to fetch events');
+      }
     }
   } catch (error) {
-    console.warn('Could not fetch events from CBC website, using sample data:', error);
-    // Fallback to sample events based on the website content
+    console.warn('Could not fetch events, using sample data:', error);
     allEvents = getSampleEvents();
   }
 
@@ -213,26 +230,26 @@ async function fetchEvents() {
 
 function parseEventsFromHTML(doc) {
   const events = [];
-  
+
   // Try to find event items in the HTML
   // This is a simplified parser - adjust based on actual HTML structure
   const eventItems = doc.querySelectorAll('.event-item, .views-row, article, .event-card');
-  
+
   eventItems.forEach((item, index) => {
     const titleEl = item.querySelector('h3, h2, .title, .event-title');
     const dateEl = item.querySelector('.date, .event-date, time');
     const descEl = item.querySelector('p, .description, .event-description');
     const imgEl = item.querySelector('img');
-    
+
     if (titleEl) {
       const title = titleEl.textContent.trim();
       const description = descEl ? descEl.textContent.trim() : '';
       const dateText = dateEl ? dateEl.textContent.trim() : '';
       const image = imgEl ? imgEl.src : '';
-      
+
       // Parse date
       const eventDate = parseEventDate(dateText);
-      
+
       events.push({
         id: `event-${index}`,
         title: title,
@@ -262,7 +279,7 @@ function parseEventDate(dateText) {
     const monthName = dateMatch[2].toLowerCase();
     const year = parseInt(dateMatch[3]);
     const month = months[monthName];
-    
+
     if (month !== undefined) {
       return new Date(year, month, day);
     }
@@ -366,19 +383,19 @@ function getSampleEvents() {
       link: ''
     }
   ];
-  
+
   console.log('Sample events created:', events.length);
   events.forEach(event => {
     console.log('Event:', event.title, 'Date:', event.date, 'Parsed date:', new Date(event.date));
   });
-  
+
   return events;
 }
 
 function handleSearch(e) {
   const searchTerm = e.target.value.toLowerCase().trim();
   const clearBtn = document.getElementById('searchClearBtn');
-  
+
   if (clearBtn) {
     clearBtn.style.display = searchTerm ? 'block' : 'none';
   }
@@ -388,7 +405,7 @@ function handleSearch(e) {
   } else {
     filteredEvents = allEvents.filter(event => {
       return event.title.toLowerCase().includes(searchTerm) ||
-             event.description.toLowerCase().includes(searchTerm);
+        event.description.toLowerCase().includes(searchTerm);
     });
   }
 
@@ -399,14 +416,14 @@ function handleSearch(e) {
 function clearSearch() {
   const searchInput = document.getElementById('eventSearchInput');
   const clearBtn = document.getElementById('searchClearBtn');
-  
+
   if (searchInput) {
     searchInput.value = '';
   }
   if (clearBtn) {
     clearBtn.style.display = 'none';
   }
-  
+
   filteredEvents = [...allEvents];
   renderCalendar();
   renderEventList();
@@ -414,12 +431,12 @@ function clearSearch() {
 
 function switchView(view) {
   currentView = view;
-  
+
   const calendarView = document.getElementById('calendarView');
   const listView = document.getElementById('listView');
   const calendarViewBtn = document.getElementById('calendarViewBtn');
   const listViewBtn = document.getElementById('listViewBtn');
-  
+
   if (view === 'calendar') {
     if (calendarView) calendarView.style.display = 'block';
     if (listView) listView.style.display = 'none';
@@ -435,7 +452,7 @@ function switchView(view) {
 
 function navigateMonth(direction) {
   currentMonth += direction;
-  
+
   if (currentMonth < 0) {
     currentMonth = 11;
     currentYear--;
@@ -443,19 +460,19 @@ function navigateMonth(direction) {
     currentMonth = 0;
     currentYear++;
   }
-  
+
   renderCalendar();
 }
 
 function renderCalendar() {
   const calendarGrid = document.getElementById('calendarGrid');
   const monthYearEl = document.getElementById('calendarMonthYear');
-  
+
   if (!calendarGrid) {
     console.error('calendarGrid not found');
     return;
   }
-  
+
   console.log('Rendering calendar with', filteredEvents.length, 'events');
   console.log('Events data:', filteredEvents);
 
@@ -508,11 +525,11 @@ function renderCalendar() {
       if (!event || !event.date) return false;
       const eventDate = new Date(event.date);
       const matches = eventDate.getDate() === day &&
-             eventDate.getMonth() === currentMonth &&
-             eventDate.getFullYear() === currentYear;
+        eventDate.getMonth() === currentMonth &&
+        eventDate.getFullYear() === currentYear;
       return matches;
     });
-    
+
     if (dayEvents.length > 0) {
       console.log(`Day ${day}: Found ${dayEvents.length} event(s)`, dayEvents.map(e => e.title));
     }
@@ -520,8 +537,8 @@ function renderCalendar() {
     // Highlight today
     const today = new Date();
     if (day === today.getDate() &&
-        currentMonth === today.getMonth() &&
-        currentYear === today.getFullYear()) {
+      currentMonth === today.getMonth() &&
+      currentYear === today.getFullYear()) {
       dayCell.classList.add('today');
     }
 
@@ -537,22 +554,22 @@ function renderCalendar() {
       // Store events data on the element
       dayCell.dataset.hasEvents = 'true';
       dayCell.dataset.eventsCount = dayEvents.length;
-      
+
       // Store events in closure for click handler
       const eventsForDay = [...dayEvents]; // Copy array
       const dateForDay = new Date(dayDate);
-      
+
       // Add click handler to show events
-      const clickHandler = function(e) {
+      const clickHandler = function (e) {
         e.preventDefault();
         e.stopPropagation();
         e.stopImmediatePropagation();
-        
+
         console.log('Calendar day clicked:', day, 'Events:', eventsForDay.length);
-        
+
         if (eventsForDay && eventsForDay.length > 0) {
           console.log('Calling showDayEvents with', eventsForDay.length, 'events');
-          
+
           // Call async function
           showDayEvents(eventsForDay, dateForDay).catch(err => {
             console.error('Error in showDayEvents:', err);
@@ -563,28 +580,28 @@ function renderCalendar() {
         }
         return false;
       };
-      
+
       // Attach click handler only once
       dayCell.addEventListener('click', clickHandler);
-      
+
       // Also attach keyboard handler for accessibility
-      dayCell.addEventListener('keydown', function(e) {
+      dayCell.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           clickHandler(e);
         }
       });
-      
+
       // Make it clear this is clickable
       dayCell.setAttribute('role', 'button');
       dayCell.setAttribute('tabindex', '0');
       dayCell.setAttribute('aria-label', `${dayEvents.length} event(s) on this day`);
-      
+
       // Make sure the cell and all children are clickable
       dayCell.style.cursor = 'pointer';
       dayCell.style.pointerEvents = 'auto';
       dayCell.style.userSelect = 'none';
-      
+
       // Make sure child elements don't block clicks
       const dayNumberEl = dayCell.querySelector('.day-number');
       if (dayNumberEl) {
@@ -602,17 +619,17 @@ function renderCalendar() {
 
 async function showDayEvents(events, date) {
   console.log('showDayEvents called with:', events.length, 'events', 'date:', date);
-  
+
   if (!events || events.length === 0) {
     console.warn('No events provided to showDayEvents');
     alert('No events found for this date.');
     return;
   }
-  
+
   // Wait a bit to ensure modal is in DOM
   let modalBody = document.getElementById('eventModalBody');
   let modal = document.getElementById('eventModal');
-  
+
   // Retry if not found
   let retries = 0;
   while ((!modalBody || !modal) && retries < 10) {
@@ -622,47 +639,50 @@ async function showDayEvents(events, date) {
     modal = document.getElementById('eventModal');
     retries++;
   }
-  
+
   console.log('Modal elements after retry:', { modalBody: !!modalBody, modal: !!modal });
-  
+
   if (!modalBody) {
     console.error('eventModalBody not found in DOM after retries');
     alert('Error: Modal body not found. Please refresh the page.');
     return;
   }
-  
+
   if (!modal) {
     console.error('eventModal not found in DOM after retries');
     alert('Error: Modal not found. Please refresh the page.');
     return;
   }
 
-  const dateStr = date.toLocaleDateString('en-US', { 
-    weekday: 'long', 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
+  const dateStr = date.toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
   });
 
   if (events.length === 1) {
-    // Show single event with full details
-    showEventModal(events[0]);
+    // Navigate to event details page for single event
+    const event = events[0];
+    localStorage.setItem('currentEvent', JSON.stringify(event));
+    window.location.href = `pages/event-details.html?id=${encodeURIComponent(event.id)}`;
+    return;
   } else {
-      // Show list of events for the day with full information
-      modalBody.innerHTML = `
+    // Show list of events for the day with full information
+    modalBody.innerHTML = `
         <div class="day-events-header">
           <h2 class="event-modal-title">Events on ${dateStr}</h2>
           <p class="day-events-count">${events.length} event${events.length > 1 ? 's' : ''} on this day</p>
         </div>
         <div class="day-events-list">
           ${events.map((event, idx) => {
-            const eventDate = new Date(event.date);
-            const formattedDate = eventDate.toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            });
-            return `
+      const eventDate = new Date(event.date);
+      const formattedDate = eventDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      return `
               <div class="day-event-item" data-event-id="${event.id}" data-event-index="${idx}">
                 ${event.image ? `
                   <div class="day-event-image">
@@ -684,85 +704,98 @@ async function showDayEvents(events, date) {
                 </div>
               </div>
             `;
-          }).join('')}
+    }).join('')}
         </div>
       `;
-      
-      // Open modal after setting content
-      setTimeout(() => {
-        if (!modalOpeningLock) {
-          openEventModal();
+
+    // Open modal after setting content
+    setTimeout(() => {
+      if (!modalOpeningLock) {
+        openEventModal();
+      }
+    }, 50);
+
+    // Add click handlers to day event items - use event delegation instead
+    setTimeout(() => {
+      // Remove old handler if exists
+      if (dayEventClickHandler) {
+        modalBody.removeEventListener('click', dayEventClickHandler);
+      }
+
+      // Create new handler using event delegation
+      dayEventClickHandler = (e) => {
+        const dayEventItem = e.target.closest('.day-event-item');
+        if (!dayEventItem) return;
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        const idx = parseInt(dayEventItem.dataset.eventIndex);
+        if (isNaN(idx) || idx < 0 || idx >= events.length) {
+          console.error('Invalid event index:', idx);
+          return;
         }
-      }, 50);
-      
-      // Add click handlers to day event items - use event delegation instead
-      setTimeout(() => {
-        // Remove old handler if exists
-        if (dayEventClickHandler) {
-          modalBody.removeEventListener('click', dayEventClickHandler);
-        }
-        
-        // Create new handler using event delegation
-        dayEventClickHandler = (e) => {
-          const dayEventItem = e.target.closest('.day-event-item');
-          if (!dayEventItem) return;
-          
-          e.preventDefault();
-          e.stopPropagation();
-          
-          const idx = parseInt(dayEventItem.dataset.eventIndex);
-          if (isNaN(idx) || idx < 0 || idx >= events.length) {
-            console.error('Invalid event index:', idx);
-            return;
-          }
-          
-          console.log('Day event item clicked, showing event:', idx);
-          
-          // Close current modal first
-          closeEventModal();
-          
-          // Show the selected event after a short delay
-          setTimeout(() => {
-            showEventModal(events[idx]);
-          }, 300);
-        };
-        
-        // Add new handler
-        modalBody.addEventListener('click', dayEventClickHandler);
-      }, 100);
-    }
+
+        console.log('Day event item clicked, navigating to event:', idx);
+
+        // Navigate to event details page
+        const event = events[idx];
+        localStorage.setItem('currentEvent', JSON.stringify(event));
+        window.location.href = `pages/event-details.html?id=${encodeURIComponent(event.id)}`;
+      };
+
+      // Add new handler
+      modalBody.addEventListener('click', dayEventClickHandler);
+    }, 100);
+  }
 }
 
 function renderEventList() {
   const eventsList = document.getElementById('eventsList');
   const noEventsMessage = document.getElementById('noEventsMessage');
-  
+
   if (!eventsList) return;
 
   eventsList.innerHTML = '';
 
   if (filteredEvents.length === 0) {
     if (noEventsMessage) noEventsMessage.style.display = 'block';
+
+    // Clear pagination if no events
+    const existingPagination = document.querySelector('.pagination-container');
+    if (existingPagination) existingPagination.remove();
+
     return;
   }
 
   if (noEventsMessage) noEventsMessage.style.display = 'none';
 
-  // Sort events by date (newest first)
+  // Sort events by date (descending)
   const sortedEvents = [...filteredEvents].sort((a, b) => {
     return new Date(b.date) - new Date(a.date);
   });
 
-  sortedEvents.forEach(event => {
+  // Pagination logic
+  const totalPages = Math.ceil(sortedEvents.length / itemsPerPage);
+
+  // Ensure current page is valid
+  if (currentPage > totalPages) currentPage = totalPages;
+  if (currentPage < 1) currentPage = 1;
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, sortedEvents.length);
+  const eventsToShow = sortedEvents.slice(startIndex, endIndex);
+
+  eventsToShow.forEach(event => {
     const eventCard = document.createElement('div');
     eventCard.className = 'event-list-card';
-    
+
     const eventDate = new Date(event.date);
-    const formattedDate = eventDate.toLocaleDateString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
+    // Format: 09 December 2025
+    const formattedDate = eventDate.toLocaleDateString('en-GB', {
+      day: '2-digit',
       month: 'long',
-      day: 'numeric'
+      year: 'numeric'
     });
 
     eventCard.innerHTML = `
@@ -770,57 +803,155 @@ function renderEventList() {
         <img src="${event.image || 'img/event1.jpg'}" alt="${event.title}" onerror="this.src='img/event1.jpg'">
       </div>
       <div class="event-list-content">
-        <div class="event-list-date">
-          <i class="fas fa-calendar"></i> ${formattedDate}
-        </div>
         <h3 class="event-list-title">${event.title}</h3>
         <p class="event-list-description">${event.description}</p>
-        <button class="event-list-read-more">Read More <i class="fas fa-arrow-right"></i></button>
+        
+        <div class="event-card-footer">
+          <div class="event-list-date">
+            ${formattedDate}
+          </div>
+          <button class="event-list-read-more">
+            Know Details
+          </button>
+        </div>
       </div>
     `;
 
-    // Attach click handler after innerHTML is set
+    // Attach click handler to card (except when clicking links)
     eventCard.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      console.log('Event card clicked:', event.title);
-      setTimeout(() => {
-        showEventModal(event);
-      }, 10);
+      // Don't trigger if text selection
+      if (window.getSelection().toString().length > 0) return;
+
+      // Store event data in localStorage for the details page
+      localStorage.setItem('currentEvent', JSON.stringify(event));
+      // Navigate to event details page
+      window.location.href = `pages/event-details.html?id=${encodeURIComponent(event.id)}`;
     });
-    
-    // Also make the read more button work
-    const readMoreBtn = eventCard.querySelector('.event-list-read-more');
-    if (readMoreBtn) {
-      readMoreBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        showEventModal(event);
-      });
-    }
 
     eventsList.appendChild(eventCard);
   });
+
+  // Render pagination controls
+  renderPaginationControls(totalPages);
+}
+
+function renderPaginationControls(totalPages) {
+  // Remove existing pagination if any
+  const existingPagination = document.querySelector('.pagination-container');
+  if (existingPagination) existingPagination.remove();
+
+  if (totalPages <= 1) return;
+
+  const paginationContainer = document.createElement('div');
+  paginationContainer.className = 'pagination-container';
+
+  // Logic to show pages
+  // We want: 1 2 3 4 5 ... Last
+  // Simpler version for now: Just show all numbers if < 10, otherwise shortened
+
+  let pagesToDisplay = [];
+  if (totalPages <= 7) {
+    for (let i = 1; i <= totalPages; i++) pagesToDisplay.push(i);
+  } else {
+    // Always show 1
+    pagesToDisplay.push(1);
+
+    // Show current-1, current, current+1
+    let start = Math.max(2, currentPage - 1);
+    let end = Math.min(totalPages - 1, currentPage + 1);
+
+    // Adjust if near start
+    if (currentPage <= 4) {
+      end = 5;
+      start = 2;
+    }
+
+    // Adjust if near end
+    if (currentPage >= totalPages - 3) {
+      start = totalPages - 4;
+      end = totalPages - 1;
+    }
+
+    if (start > 2) pagesToDisplay.push('...');
+
+    for (let i = start; i <= end; i++) {
+      if (i > 1 && i < totalPages) pagesToDisplay.push(i);
+    }
+
+    if (end < totalPages - 1) pagesToDisplay.push('...');
+
+    // Always show last
+    if (totalPages > 1) pagesToDisplay.push(totalPages);
+  }
+
+  // Allow simple full list for now based on user request "1 2 3 ... >> Last"
+  // Let's implement a simpler "All pages" approach if count is small, or just max 10
+
+  // Re-implementing strictly based on user image perception: 1 2 3 4 5 6 7 8 9 ... >> Last >>
+
+  paginationContainer.innerHTML = '';
+
+  // Generate buttons
+  pagesToDisplay.forEach(p => {
+    if (p === '...') {
+      const span = document.createElement('span');
+      span.textContent = '...';
+      span.style.alignSelf = 'center';
+      paginationContainer.appendChild(span);
+    } else {
+      const btn = document.createElement('button');
+      btn.className = `pagination-btn ${p === currentPage ? 'active' : ''}`;
+      btn.textContent = p;
+      btn.onclick = () => {
+        currentPage = p;
+        renderEventList();
+        // Scroll to top of list
+        const listContainer = document.querySelector('.events-list-view');
+        if (listContainer) listContainer.scrollIntoView({ behavior: 'smooth' });
+      };
+      paginationContainer.appendChild(btn);
+    }
+  });
+
+  // Last button
+  if (currentPage < totalPages) {
+    const lastBtn = document.createElement('button');
+    lastBtn.className = 'pagination-btn wide-btn';
+    lastBtn.innerHTML = 'Last &raquo;';
+    lastBtn.onclick = () => {
+      currentPage = totalPages;
+      renderEventList();
+      const listContainer = document.querySelector('.events-list-view');
+      if (listContainer) listContainer.scrollIntoView({ behavior: 'smooth' });
+    };
+    paginationContainer.appendChild(lastBtn);
+  }
+
+  // Append after eventsList
+  const eventsListView = document.getElementById('listView');
+  if (eventsListView) {
+    eventsListView.appendChild(paginationContainer);
+  }
 }
 
 function showEventModal(event) {
   console.log('showEventModal called with event:', event);
-  
+
   // Prevent multiple simultaneous calls
   if (modalOpeningLock) {
     console.log('Modal opening lock active, ignoring showEventModal call');
     return;
   }
-  
+
   const modalBody = document.getElementById('eventModalBody');
   const modal = document.getElementById('eventModal');
-  
+
   if (!modalBody) {
     console.error('eventModalBody not found in showEventModal');
     alert('Error: Modal body not found');
     return;
   }
-  
+
   if (!modal) {
     console.error('eventModal not found in showEventModal');
     alert('Error: Modal not found');
@@ -836,7 +967,7 @@ function showEventModal(event) {
   });
 
   console.log('Setting modal content, formatted date:', formattedDate);
-  
+
   // Close modal first if it's open
   if (modal.classList.contains('active')) {
     closeEventModal();
@@ -855,7 +986,7 @@ function setModalContentAndOpen(modalBody, modal, event, formattedDate) {
     console.log('Modal opening lock active, skipping setModalContentAndOpen');
     return;
   }
-  
+
   modalBody.innerHTML = `
     <div class="event-modal-image">
       <img src="${event.image || 'img/event1.jpg'}" alt="${event.title}" onerror="this.src='img/event1.jpg'">
@@ -877,7 +1008,7 @@ function setModalContentAndOpen(modalBody, modal, event, formattedDate) {
   `;
 
   console.log('Modal content set, calling openEventModal');
-  
+
   // Open modal after setting content
   setTimeout(() => {
     if (!modalOpeningLock) {
@@ -892,13 +1023,13 @@ function openEventModal() {
     console.log('Modal opening lock active, ignoring call');
     return;
   }
-  
+
   const modal = document.getElementById('eventModal');
   if (!modal) {
     console.error('Modal element not found in openEventModal');
     return;
   }
-  
+
   // If already open and visible, just return
   const isActive = modal.classList.contains('active');
   const isVisible = modal.style.display === 'flex' || window.getComputedStyle(modal).display === 'flex';
@@ -906,10 +1037,10 @@ function openEventModal() {
     console.log('Modal already active and visible, skipping');
     return;
   }
-  
+
   // Set lock immediately to prevent recursion
   modalOpeningLock = true;
-  
+
   // Use requestAnimationFrame to ensure DOM is ready
   requestAnimationFrame(() => {
     try {
@@ -925,7 +1056,7 @@ function openEventModal() {
       modal.style.width = '100%';
       modal.style.height = '100%';
       document.body.style.overflow = 'hidden';
-      
+
       console.log('Modal opened successfully');
     } catch (error) {
       console.error('Error opening modal:', error);
@@ -944,7 +1075,7 @@ function closeEventModal() {
     console.log('Modal opening in progress, ignoring close');
     return;
   }
-  
+
   const modal = document.getElementById('eventModal');
   if (modal && modal.classList.contains('active')) {
     modal.classList.remove('active');
@@ -959,13 +1090,13 @@ function closeEventModal() {
     modal.style.width = '';
     modal.style.height = '';
     document.body.style.overflow = '';
-    
+
     console.log('Modal closed');
   }
 }
 
 // Make showEventModal available globally for inline onclick handlers
-window.showEventModal = function(event) {
+window.showEventModal = function (event) {
   if (typeof event === 'string') {
     try {
       event = JSON.parse(event.replace(/&quot;/g, '"'));
@@ -978,20 +1109,20 @@ window.showEventModal = function(event) {
 };
 
 // Test function to verify modal works - also available globally
-window.testModal = function() {
+window.testModal = function () {
   console.log('Test modal called (window.testModal)');
-  
+
   // Check if modal exists
   const modal = document.getElementById('eventModal');
   const modalBody = document.getElementById('eventModalBody');
-  
+
   console.log('Modal check:', { modal: !!modal, modalBody: !!modalBody });
-  
+
   if (!modal || !modalBody) {
     alert('Modal not found in DOM! Modal: ' + !!modal + ', ModalBody: ' + !!modalBody);
     return;
   }
-  
+
   const testEvent = {
     id: 'test-1',
     title: 'Test Event - Modal Working!',
@@ -1001,14 +1132,14 @@ window.testModal = function() {
     image: 'img/event1.jpg',
     venue: 'Test Venue'
   };
-  
+
   console.log('Calling showEventModal with:', testEvent);
   showEventModal(testEvent);
 };
 
 // Make sure testModal is available
 if (typeof window.testModal === 'undefined') {
-  window.testModal = window.testModal || function() {
+  window.testModal = window.testModal || function () {
     alert('testModal function not properly loaded');
   };
 }
