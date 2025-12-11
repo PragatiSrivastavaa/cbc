@@ -1,0 +1,75 @@
+uuid: a8faf58a-807f-4d6a-b0e0-bb1ebe0dd2e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.areas_of_collaboration.field_action
+    - field.field.node.areas_of_collaboration.field_areas_of_collaboration
+    - field.field.node.areas_of_collaboration.field_image
+    - field.field.node.areas_of_collaboration.field_organisation
+    - field.field.node.areas_of_collaboration.field_remarks
+    - image.style.wide
+    - node.type.areas_of_collaboration
+  module:
+    - image
+    - link
+    - user
+id: node.areas_of_collaboration.default
+targetEntityType: node
+bundle: areas_of_collaboration
+mode: default
+content:
+  field_action:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_areas_of_collaboration:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: wide
+      image_loading:
+        attribute: eager
+    third_party_settings: {  }
+    weight: -1
+    region: content
+  field_organisation:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_remarks:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

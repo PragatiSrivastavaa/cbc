@@ -1,0 +1,19 @@
+uuid: 8f3c0491-018e-4720-a0a6-9fb110e14866
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_organisation
+    - node.type.areas_of_collaboration
+id: node.areas_of_collaboration.field_organisation
+field_name: field_organisation
+entity_type: node
+bundle: areas_of_collaboration
+label: 'Type of Association'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

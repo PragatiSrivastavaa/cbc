@@ -60,6 +60,7 @@ regions:
   chairperson_desk: Chairperson Desk
   our_team: Our Team
   our_team_second: Our Team second
+  advisory_research: Advisory & Research
   
 # Information added by Drupal.org packaging script on 2025-10-02
 version: '11.2.5'

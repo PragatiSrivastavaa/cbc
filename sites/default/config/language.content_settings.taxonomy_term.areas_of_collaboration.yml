@@ -1,0 +1,11 @@
+uuid: aa60699f-ea5f-4d43-a4b8-439754a9d775
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.areas_of_collaboration
+id: taxonomy_term.areas_of_collaboration
+target_entity_type_id: taxonomy_term
+target_bundle: areas_of_collaboration
+default_langcode: site_default
+language_alterable: true

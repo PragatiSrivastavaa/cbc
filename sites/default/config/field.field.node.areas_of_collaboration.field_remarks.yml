@@ -1,0 +1,19 @@
+uuid: 8cd4be8c-e7df-4b94-889f-21aef54a6c14
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_remarks
+    - node.type.areas_of_collaboration
+id: node.areas_of_collaboration.field_remarks
+field_name: field_remarks
+entity_type: node
+bundle: areas_of_collaboration
+label: Remarks
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

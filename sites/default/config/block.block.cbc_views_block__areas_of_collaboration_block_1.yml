@@ -1,0 +1,29 @@
+uuid: acf8fac7-00aa-4b98-9250-d28edde2c05d
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.areas_of_collaboration
+  module:
+    - system
+    - views
+  theme:
+    - cbc
+id: cbc_views_block__areas_of_collaboration_block_1
+theme: cbc
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:areas_of_collaboration-block_1'
+settings:
+  id: 'views_block:areas_of_collaboration-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /advisory-research-1

@@ -1,0 +1,9 @@
+uuid: 3ebc5ea1-c878-4f9e-8bd0-ed8353079833
+langcode: en
+status: true
+dependencies: {  }
+name: 'Areas of Collaboration'
+vid: areas_of_collaboration
+description: null
+weight: 0
+new_revision: false

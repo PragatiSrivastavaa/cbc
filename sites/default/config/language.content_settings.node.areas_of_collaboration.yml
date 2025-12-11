@@ -1,0 +1,11 @@
+uuid: b462d389-b6c6-41e9-9a4a-5371e3d9a41d
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.areas_of_collaboration
+id: node.areas_of_collaboration
+target_entity_type_id: node
+target_bundle: areas_of_collaboration
+default_langcode: site_default
+language_alterable: true

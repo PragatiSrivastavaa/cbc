@@ -1,0 +1,20 @@
+uuid: c814b252-c272-4039-aef3-251d85683c19
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_areas_of_collaboration
+field_name: field_areas_of_collaboration
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

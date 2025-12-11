@@ -1,0 +1,17 @@
+uuid: 50375fe6-59fa-4afc-bf23-d0706a548789
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Areas of Collaboration'
+type: areas_of_collaboration
+description: null
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: false

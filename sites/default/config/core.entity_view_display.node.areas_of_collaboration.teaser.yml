@@ -1,0 +1,43 @@
+uuid: fb8dfeb8-4ea7-4fb6-b682-fd5747df5d26
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.areas_of_collaboration.field_action
+    - field.field.node.areas_of_collaboration.field_areas_of_collaboration
+    - field.field.node.areas_of_collaboration.field_image
+    - field.field.node.areas_of_collaboration.field_organisation
+    - field.field.node.areas_of_collaboration.field_remarks
+    - image.style.medium
+    - node.type.areas_of_collaboration
+  module:
+    - image
+    - user
+id: node.areas_of_collaboration.teaser
+targetEntityType: node
+bundle: areas_of_collaboration
+mode: teaser
+content:
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: content
+      image_style: medium
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: -1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_action: true
+  field_areas_of_collaboration: true
+  field_organisation: true
+  field_remarks: true
+  langcode: true

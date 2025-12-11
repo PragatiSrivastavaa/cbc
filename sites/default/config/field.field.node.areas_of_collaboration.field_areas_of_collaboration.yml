@@ -1,0 +1,29 @@
+uuid: de36a426-fff0-438d-b99a-d78667bb43b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_areas_of_collaboration
+    - node.type.areas_of_collaboration
+    - taxonomy.vocabulary.areas_of_collaboration
+id: node.areas_of_collaboration.field_areas_of_collaboration
+field_name: field_areas_of_collaboration
+entity_type: node
+bundle: areas_of_collaboration
+label: 'Areas of Collaboration'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      areas_of_collaboration: areas_of_collaboration
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
