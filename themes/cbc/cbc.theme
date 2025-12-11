@@ -32,6 +32,7 @@ function cbc_preprocess_image_widget(array &$variables) {
   }
 }
 
+// Implements hook_preprocess_page().
 
 function cbc_preprocess_page(&$variables) {
   $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
@@ -71,12 +72,44 @@ function cbc_preprocess_page(&$variables) {
     // Generate a unique ID based on node ID.
     $variables['unique_page_id'] = 'page-' . $node->id();
   }
-
+// for hero section
    if (!empty($variables['node']) && $variables['node']->hasField('field_hero_section')) {
     $variables['content']['field_hero_section'] = $variables['node']->get('field_hero_section')->view();
   }
 
+// for view header section
+  $route = \Drupal::routeMatch();
+  $route_name = $route->getRouteName();
+
+  // Check if the route is a view page.
+  if (strpos($route_name, 'view.') === 0) {
+
+    // Break route name: view.view_machine_name.display_id
+    $parts = explode('.', $route_name);
+    $view_id = $parts[1];
+    $display_id = $parts[2];
+
+    // Load the view.
+    $view = \Drupal\views\Views::getView($view_id);
+    if ($view) {
+      $view->setDisplay($display_id);
+      $render = $view->render();
+
+      // Get header value
+      if (isset($view->display_handler->display['display_options']['header'])) {
+        $header_items = $view->display_handler->display['display_options']['header'];
+        foreach ($header_items as $key => $header) {
+          if ($header['plugin_id'] == 'text') {
+            $variables['page']['view_header'] = $header['content']['value'];
+          }
+        }
+      }
+    }
+  }
+
 }
+
+// Generate a random string
 	function random_string()
 	{
 		$character_set_array = array();
@@ -174,12 +207,3 @@ function cbc_preprocess_links(&$variables) {
     }
   }
 }
-
-
-function cbc_preprocess_block(&$variables) {
-  if ($variables['plugin_id'] == 'views_block:home_banner-block_1') {
-    $variables['#lazy_builder'] = [];
-    $variables['#create_placeholder'] = FALSE;
-  }
-}
-
