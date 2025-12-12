@@ -1,21 +1,20 @@
-<div class="col-lg-12 col-md-12">
-  <div class="youtube-section p-3 rounded-4 socil-bg position-relative">
+<!-- Video Gallery Section - Right -->
+ 
+            <div class="youtube-section p-3 rounded-4 socil-bg position-relative h-100">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="social-heading d-flex align-items-center gap-2 mb-0">
+                  <i class="fa-regular fa-circle-play text-info"></i> Video Gallery
+                </h3>
+                <div class="d-flex align-items-center gap-3">
+                  <div class="carousel-controls d-flex gap-2">
+                    <button class="youtube-prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="youtube-next"><i class="fas fa-chevron-right"></i></button>
+                  </div>
+                </div>
+              </div>
 
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <h3 class="social-heading d-flex align-items-center gap-2 mb-0">
-        <i class="fa-regular fa-circle-play text-info"></i> Videos
-      </h3>
-
-      <div class="d-flex align-items-center gap-3">
-        <div class="carousel-controls d-flex gap-2">
-          <button class="youtube-prev"><i class="fas fa-chevron-left"></i></button>
-          <button class="youtube-next"><i class="fas fa-chevron-right"></i></button>
-        </div>
-      </div>
-    </div>
-
-    <div class="youtube-carousel-wrapper position-relative">
-      <div class="youtube-carousel d-flex" id="youtubeCarousel">
+              <div class="youtube-carousel-wrapper position-relative">
+                <div class="youtube-carousel d-flex" id="youtubeCarousel">
 
         {% for row in rows %}
           {% set node = row.content['#row']._entity %}
@@ -60,4 +59,5 @@
     </div>
 
   </div>
-</div>
+
+<!-- End of Video Gallery Section - Right -->

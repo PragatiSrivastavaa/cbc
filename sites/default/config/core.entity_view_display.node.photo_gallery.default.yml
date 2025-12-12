@@ -1,0 +1,42 @@
+uuid: edf1c0b5-ea51-4a95-ab54-6b5e3739263c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.photo_gallery.field_event_description
+    - field.field.node.photo_gallery.field_images
+    - node.type.photo_gallery
+  module:
+    - image
+    - text
+    - user
+id: node.photo_gallery.default
+targetEntityType: node
+bundle: photo_gallery
+mode: default
+content:
+  field_event_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_images:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

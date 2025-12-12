@@ -1,0 +1,24 @@
+uuid: bb251424-546f-46d5-945d-93f8f901036c
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.photo_gallery
+  module:
+    - views
+  theme:
+    - cbc
+id: cbc_views_block__photo_gallery_block_1
+theme: cbc
+region: photo_gallery
+weight: 0
+provider: null
+plugin: 'views_block:photo_gallery-block_1'
+settings:
+  id: 'views_block:photo_gallery-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility: {  }

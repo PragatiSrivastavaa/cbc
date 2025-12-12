@@ -80,7 +80,7 @@ display:
           click_sort_column: value
           type: string
           settings:
-            link_to_entity: true
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -318,6 +318,19 @@ display:
             field_identifier: ''
           exposed: false
           granularity: second
+        field_order_no_value:
+          id: field_order_no_value
+          table: node__field_order_no
+          field: field_order_no_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
       arguments: {  }
       filters:
         status:

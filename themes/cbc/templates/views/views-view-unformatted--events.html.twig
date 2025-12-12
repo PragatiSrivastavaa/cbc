@@ -15,31 +15,33 @@
  * @see template_preprocess_views_view_unformatted()
  */
 #}
- <div class="events-content-wrappe high-contrast-no-borderr">
+  <!-- Events Cards Only (Full Width) -->
+        <div class="events-content-wrappe high-contrast-no-borderr">
           <div class="events-cards-container high-contrast-no-border">
             <div class="events-cards-list high-contrast-no-border" id="homeEventsCardsList">
- {% for row in rows %}
-{% set node = row.content['#row']._entity %}
-<a href="{{ path('entity.node.canonical', {'node': node.id}) }}">
-<div class="home-event-card high-contrast-border"
+              <!-- Event Card 1 -->
+                {% for row in rows %}
+                 {% set node = row.content['#row']._entity %}
+                 <a href="{{ path('entity.node.canonical', {'node': node.id}) }}">
+              <div class="home-event-card high-contrast-border" data-event-id="home-event-1" data-date="2025-11-07"
                 data-venue="Capacity Building Commission">
                 <div class="home-event-card-image">
-                  {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_images }}'] }}
+                 {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_images }}'] }}
                 </div>
                 <div class="home-event-card-content">
                   <div class="home-event-card-date">
-                    <i class="fas fa-calendar"></i>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_start }}'] }}
+                    <i class="fas fa-calendar"></i> {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_start }}'] }}
                   </div>
                   <h3 class="home-event-card-title">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
                   <p class="home-event-card-description">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}'] }}</p>
                   <div class="home-event-card-read-more">
-                     <a href="{{ path('entity.node.canonical', {'node': node.id}) }}">
                     Read More <i class="fas fa-arrow-right"></i>
                   </div>
                 </div>
-  </div>
-  </a>
-{% endfor %}
-  </div>
-  </div>
-  </div>
+              </div>
+              </a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <!-- End of Events Cards Only (Full Width) -->

@@ -12,9 +12,10 @@ function initializeHomePage() {
     initializeCollaborationCarousel();
     initializeNewsBanner();
     initializeMediaCorner();
-    initializeReports();
+    initializeNewsletters();
     initializeYouTubeCarousel();
-    initializePhotoCarousel();
+     initializePhotoCarousel();
+    initializeSocialCarousel();
     initializeInfocusSection();
     initializeHomeEvents();
     initializePartnerSlider();
@@ -78,170 +79,21 @@ function initializeCarousel() {
 
 document.addEventListener('DOMContentLoaded', initializeCarousel);
 
+
+
 // ----------------------- Alert Bar Section ---------------------------------//
-function populateAlertBar() {
-  const alertTrack = document.getElementById('alertTrack');
-  if (!alertTrack) return;
-
-  // Clear existing content
-  alertTrack.innerHTML = '';
-
-  const alertItems = [];
-
-  // Get latest 2-3 events from CBC_EVENTS_DATA
-  if (typeof CBC_EVENTS_DATA !== 'undefined' && Array.isArray(CBC_EVENTS_DATA) && CBC_EVENTS_DATA.length > 0) {
-    // Parse event dates using the same function as eventsPage.js
-    function parseEventDate(dateText) {
-      const months = {
-        'january': 0, 'february': 1, 'march': 2, 'april': 3, 'may': 4, 'june': 5,
-        'july': 6, 'august': 7, 'september': 8, 'october': 9, 'november': 10, 'december': 11
-      };
-      
-      const parts = dateText.trim().split(' ');
-      if (parts.length === 3) {
-        const day = parseInt(parts[0], 10);
-        const monthName = parts[1].toLowerCase();
-        const year = parseInt(parts[2], 10);
-        
-        if (months[monthName] !== undefined) {
-          return new Date(year, months[monthName], day);
-        }
-      }
-      
-      // Fallback to standard Date parsing
-      return new Date(dateText);
-    }
-
-    // Sort events by date (most recent first)
-    const sortedEvents = [...CBC_EVENTS_DATA].map((evt, index) => {
-      const parsedDate = parseEventDate(evt.date);
-      return {
-        ...evt,
-        id: `event-${index}`,
-        originalIndex: index,
-        parsedDate: parsedDate
-      };
-    }).sort((a, b) => {
-      return b.parsedDate - a.parsedDate;
-    });
-
-    // Filter out events containing "daksh" or "national training conclave" (case-insensitive)
-    const filteredEvents = sortedEvents.filter(event => {
-      const titleLower = event.title.toLowerCase();
-      return !titleLower.includes('daksh') && !titleLower.includes('national training conclave');
-    });
-
-    // Get latest 3 events (after filtering)
-    const latestEvents = filteredEvents.slice(0, 3);
-    
-    latestEvents.forEach(event => {
-      // Link to event details page using the event ID
-      const eventLink = `pages/event-details.html?id=${encodeURIComponent(event.id)}`;
-      
-      // Prepare event data in the format expected by event details page
-      // Store date as Date object (will be serialized to ISO string when stored in localStorage)
-      // The event details page uses new Date(event.date) which can parse ISO strings
-      const eventData = {
-        id: event.id,
-        title: event.title,
-        description: event.description,
-        date: event.parsedDate, // Date object - will be serialized to ISO string in JSON
-        dateText: event.date, // Keep original date text for display
-        image: event.image,
-        link: event.link,
-        venue: 'Capacity Building Commission'
-      };
-      
-      alertItems.push({
-        text: event.title,
-        link: eventLink,
-        isEvent: true,
-        eventData: eventData
-      });
-    });
-  }
-
-  // Add flagship initiatives
-  const flagshipInitiatives = [
-    {
-      text: 'Rashtriya Karmayogi Large-Scale Jan Seva Programme',
-      link: 'pages/initiatives/rashtriya-karmayogi.html'
-    }
-  ];
-
-  flagshipInitiatives.forEach(initiative => {
-    alertItems.push(initiative);
-  });
-
-  // Create alert items
-  alertItems.forEach(item => {
-    const alertItem = document.createElement('a');
-    alertItem.href = item.link;
-    alertItem.className = 'alert-item';
-    
-    // For events, store data in localStorage before navigation
-    if (item.isEvent && item.eventData) {
-      // Store event data as data attributes so clones will have it too
-      alertItem.setAttribute('data-event-id', item.eventData.id);
-      alertItem.setAttribute('data-event-data', JSON.stringify(item.eventData));
-      
-      alertItem.addEventListener('click', function(e) {
-        // Get event data from data attribute
-        const eventDataStr = this.getAttribute('data-event-data');
-        if (eventDataStr) {
-          try {
-            const eventData = JSON.parse(eventDataStr);
-            // Store event data in localStorage for event details page
-            localStorage.setItem('currentEvent', JSON.stringify(eventData));
-            localStorage.setItem(`event_${eventData.id}`, JSON.stringify(eventData));
-          } catch (err) {
-            console.error('Error parsing event data:', err);
-          }
-        }
-      });
-    }
-    
-    const dot = document.createElement('span');
-    dot.className = 'alert-dot';
-    
-    const text = document.createElement('span');
-    text.textContent = item.text;
-    
-    alertItem.appendChild(dot);
-    alertItem.appendChild(text);
-    
-    alertTrack.appendChild(alertItem);
-  });
-
-  // Duplicate items for seamless scrolling
-  // Note: Event listeners are cloned with cloneNode(true), so they'll work on clones too
-  const items = alertTrack.querySelectorAll('.alert-item');
-  items.forEach(item => {
-    const clone = item.cloneNode(true);
-    alertTrack.appendChild(clone);
-  });
-}
-
 function initializeAlertBar() {
-  // First populate the alert bar
-  populateAlertBar();
-
   const alertTrack = document.getElementById('alertTrack');
   const pauseBtn = document.getElementById('alertPauseBtn');
   const prevBtn = document.getElementById('alertPrevBtn');
   const nextBtn = document.getElementById('alertNextBtn');
 
-  if (!alertTrack) return;
-
-  // Only initialize controls if buttons exist (they're commented out in HTML)
-  if (!pauseBtn || !prevBtn || !nextBtn) {
-    return;
-  }
+  if (!alertTrack || !pauseBtn || !prevBtn || !nextBtn) return;
 
   let isPaused = false;
   let animationOffset = 0;
   const alertItems = alertTrack.querySelectorAll('.alert-item');
-
+  
   // Calculate step size based on first item
   function getStepSize() {
     if (alertItems.length === 0) return 400;
@@ -310,22 +162,22 @@ function initializeAlertBar() {
   function scrollContent(direction) {
     const step = getStepSize();
     const scrollAmount = direction === 'left' ? step : -step;
-
+    
     // Get current animation position
     const currentPos = getCurrentTransform();
-
+    
     // Calculate new offset
     animationOffset = currentPos + scrollAmount;
-
+    
     // Temporarily pause to apply the scroll
     const wasPaused = isPaused;
     if (!wasPaused) {
       alertTrack.style.animationPlayState = 'paused';
     }
-
+    
     // Apply the scroll offset
     alertTrack.style.transform = `translateX(${animationOffset}px)`;
-
+    
     // If it wasn't paused, resume animation after a brief moment
     // The animation will continue from its current cycle
     if (!wasPaused) {
@@ -334,18 +186,18 @@ function initializeAlertBar() {
         // The animation will pick up from where it was
         alertTrack.style.transform = '';
         alertTrack.style.animationPlayState = 'running';
-
+        
         // To make the scroll stick, we need to adjust the animation timing
         // Get the track width to calculate the offset percentage
         const trackWidth = alertTrack.scrollWidth / 2; // Since we duplicate items
         const offsetPercent = (animationOffset / trackWidth) * 100;
-
+        
         // Adjust animation to start from the scrolled position
         // We'll use animation-delay to offset the start
         const animationDuration = 10; // seconds
         const delaySeconds = (offsetPercent / 100) * animationDuration;
         alertTrack.style.animationDelay = `-${delaySeconds}s`;
-
+        
         animationOffset = 0; // Reset for next time
       }, 100);
     }
@@ -394,7 +246,7 @@ function initializeCountSection() {
       // Reset to 0 before animating
       counter.innerText = '0';
       const target = +counter.getAttribute('data-target');
-
+      
       if (!target || isNaN(target)) {
         console.warn('Invalid data-target for counter:', counter, 'target:', target);
         return;
@@ -430,7 +282,7 @@ function initializeCountSection() {
     const isVisible = rect.top < windowHeight && rect.bottom > 0;
     return isVisible;
   };
-
+  
   // Try to animate immediately if section is visible
   if (checkVisibility()) {
     setTimeout(() => {
@@ -451,11 +303,11 @@ function initializeCountSection() {
         }
       }
     });
-  }, {
+  }, { 
     threshold: 0.1,
     rootMargin: '100px'
   });
-
+  
   countObserver.observe(statsSection);
 
   // Fallback: If observer doesn't trigger within 2 seconds and section is visible, animate anyway
@@ -547,7 +399,7 @@ function initializeBlogSection() {
 
   track.addEventListener("scroll", updateButtons);
   updateButtons();
-
+  
   // Start auto scroll
   startBlogAuto();
 }
@@ -631,213 +483,10 @@ function initializeCollaborationCarousel() {
   window.addEventListener('resize', () => {
     collabTrack.style.transform = `translateX(-${collabIndex * (collabBoxes[0].offsetWidth + 20)}px)`;
   });
-
-  // Add click handlers to collaboration boxes
-  collabBoxes.forEach((box) => {
-    // Make boxes clickable
-    box.style.cursor = 'pointer';
-    
-    box.addEventListener('click', (e) => {
-      // Don't handle clicks on links or buttons
-      if (e.target.closest('a') || e.target.tagName === 'A' || 
-          e.target.closest('button') || e.target.tagName === 'BUTTON' ||
-          e.target.closest('.collab-arrow') || e.target.classList.contains('collab-arrow')) {
-        return;
-      }
-      
-      // Extract data from the card
-      const imageElement = box.querySelector('.collab-image');
-      const titleElement = box.querySelector('h3');
-      const textElement = box.querySelector('p');
-      
-      const image = imageElement ? imageElement.getAttribute('src') : '';
-      const title = titleElement ? titleElement.textContent.trim() : '';
-      const text = textElement ? textElement.textContent.trim() : '';
-      
-      // Build URL with parameters
-      const baseUrl = 'pages/collaborations/collaboration-detail.html';
-      const params = new URLSearchParams();
-      if (image) params.append('image', encodeURIComponent(image));
-      if (title) params.append('title', encodeURIComponent(title));
-      if (text) params.append('text', encodeURIComponent(text));
-      
-      const fullUrl = baseUrl + '?' + params.toString();
-      window.location.href = fullUrl;
-    });
-  });
-
-  // Ensure View More link works properly
-  const viewMoreLink = document.querySelector('.collab-footer .view-more');
-  if (viewMoreLink) {
-    viewMoreLink.addEventListener('click', function(e) {
-      // Ensure the link navigation works
-      const href = this.getAttribute('href');
-      if (href) {
-        window.location.href = href;
-      }
-    });
-  }
 }
 
 // --------------------- What's New Section ---------------------------------------//
-function populateNewsBanner() {
-  const newsTrack = document.getElementById('newsTrack');
-  if (!newsTrack) return;
-
-  // Clear existing content
-  newsTrack.innerHTML = '';
-
-  const newsItems = [];
-
-  // Get latest 2-3 events from CBC_EVENTS_DATA
-  if (typeof CBC_EVENTS_DATA !== 'undefined' && Array.isArray(CBC_EVENTS_DATA) && CBC_EVENTS_DATA.length > 0) {
-    // Parse event dates using the same function as eventsPage.js
-    function parseEventDate(dateText) {
-      const months = {
-        'january': 0, 'february': 1, 'march': 2, 'april': 3, 'may': 4, 'june': 5,
-        'july': 6, 'august': 7, 'september': 8, 'october': 9, 'november': 10, 'december': 11
-      };
-      
-      const parts = dateText.trim().split(' ');
-      if (parts.length === 3) {
-        const day = parseInt(parts[0], 10);
-        const monthName = parts[1].toLowerCase();
-        const year = parseInt(parts[2], 10);
-        
-        if (months[monthName] !== undefined) {
-          return new Date(year, months[monthName], day);
-        }
-      }
-      
-      // Fallback to standard Date parsing
-      return new Date(dateText);
-    }
-
-    // Sort events by date (most recent first)
-    const sortedEvents = [...CBC_EVENTS_DATA].map((evt, index) => {
-      const parsedDate = parseEventDate(evt.date);
-      return {
-        ...evt,
-        id: `event-${index}`,
-        originalIndex: index,
-        parsedDate: parsedDate
-      };
-    }).sort((a, b) => {
-      return b.parsedDate - a.parsedDate;
-    });
-
-    // Get latest 3 events
-    const latestEvents = sortedEvents.slice(0, 3);
-    
-    latestEvents.forEach(event => {
-      const eventLink = `pages/event-details.html?id=${encodeURIComponent(event.id)}`;
-      const eventData = {
-        id: event.id,
-        title: event.title,
-        description: event.description,
-        date: event.parsedDate,
-        dateText: event.date,
-        image: event.image,
-        link: event.link,
-        venue: 'Capacity Building Commission'
-      };
-      
-      newsItems.push({
-        text: event.title,
-        link: eventLink,
-        isEvent: true,
-        eventData: eventData,
-        isNew: true
-      });
-    });
-  }
-
-  // Add the new "What's New" item about Phase 2
-  newsItems.push({
-    text: 'Under Phase 2 of the Rashtriya Karmayogi Large-Scale Jan Seva Program, 822 Lead Trainers, 15,304 Master Trainers, and 7,35,048 employees have been trained in one-day training sessions till date.',
-    link: 'pages/initiatives/rashtriya-karmayogi.html',
-    isEvent: false,
-    isNew: true
-  });
-
-  // Add some existing news items
-  newsItems.push({
-    text: 'The upgraded NSCSTI 2.0 framework launched — streamlining training institute standards across India.',
-    link: 'pages/initiatives/nscsti.html',
-    isEvent: false,
-    isNew: true
-  });
-
-  newsItems.push({
-    text: 'More than 1.26 crore learners across India benefitted from the iGOT Karmayogi platform.',
-    link: '#',
-    isEvent: false,
-    isNew: true
-  });
-
-  newsItems.push({
-    text: 'CBC introduces new AI-based feedback analytics tool for training institutes.',
-    link: '#',
-    isEvent: false,
-    isNew: false
-  });
-
-  // Create news banners
-  newsItems.forEach(item => {
-    const newsBanner = document.createElement('a');
-    newsBanner.href = item.link;
-    newsBanner.className = 'news-banner high-contrast-border';
-    newsBanner.style.textDecoration = 'none';
-    newsBanner.style.color = 'inherit';
-    newsBanner.style.display = 'flex';
-    newsBanner.style.cursor = 'pointer';
-
-    // Add NEW badge if needed
-    if (item.isNew) {
-      const newBadge = document.createElement('div');
-      newBadge.className = 'new-badge';
-      newBadge.innerHTML = `
-        <span class="badge-text">NEW</span>
-        <div class="badge-glow"></div>
-      `;
-      newsBanner.appendChild(newBadge);
-    }
-
-    // Add content
-    const content = document.createElement('div');
-    content.className = 'news-banner-content';
-    const paragraph = document.createElement('p');
-    paragraph.textContent = item.text;
-    content.appendChild(paragraph);
-    newsBanner.appendChild(content);
-
-    // For events, store data in localStorage before navigation
-    if (item.isEvent && item.eventData) {
-      newsBanner.setAttribute('data-event-id', item.eventData.id);
-      newsBanner.setAttribute('data-event-data', JSON.stringify(item.eventData));
-      
-      newsBanner.addEventListener('click', function(e) {
-        const eventDataStr = this.getAttribute('data-event-data');
-        if (eventDataStr) {
-          try {
-            const eventData = JSON.parse(eventDataStr);
-            localStorage.setItem('currentEvent', JSON.stringify(eventData));
-            localStorage.setItem(`event_${eventData.id}`, JSON.stringify(eventData));
-          } catch (err) {
-            console.error('Error parsing event data:', err);
-          }
-        }
-      });
-    }
-
-    newsTrack.appendChild(newsBanner);
-  });
-}
-
 function initializeNewsBanner() {
-  // First populate the news banner
-  populateNewsBanner();
-
   const newsTrack = document.getElementById('newsTrack');
   const toggleBtn = document.getElementById('toggleSlideBtn');
 
@@ -921,198 +570,43 @@ function initializeMediaCorner() {
 }
 
 // ============================= Newsletters Section ------------------------------------//
-function initializeReports() {
-  const reportsTrack = document.getElementById("reportsTrack");
-  const reportsBtn = document.getElementById("toggleReportsSlideBtn");
+function initializeNewsletters() {
+  const newslettersTrack = document.getElementById("newslettersTrack");
+  const newslettersBtn = document.getElementById("toggleNewslettersSlideBtn");
 
-  if (!reportsTrack || !reportsBtn) return;
+  if (!newslettersTrack || !newslettersBtn) return;
 
   // Duplicate items for seamless scrolling
-  const reportsItems = reportsTrack.querySelectorAll(".newsletters-item");
-  if (reportsItems.length > 0) {
-    reportsItems.forEach(item => {
+  const newslettersItems = newslettersTrack.querySelectorAll(".newsletters-item");
+  if (newslettersItems.length > 0) {
+    newslettersItems.forEach(item => {
       const clone = item.cloneNode(true);
-      reportsTrack.appendChild(clone);
+      newslettersTrack.appendChild(clone);
     });
   }
 
-  const reportsIcon = reportsBtn.querySelector("i");
-  let isReportsPaused = false;
+  const newslettersIcon = newslettersBtn.querySelector("i");
+  let isNewslettersPaused = false;
 
   // Remove old listener
-  const newReportsBtn = reportsBtn.cloneNode(true);
-  reportsBtn.parentNode.replaceChild(newReportsBtn, reportsBtn);
-  const newReportsIcon = newReportsBtn.querySelector("i");
+  const newNewslettersBtn = newslettersBtn.cloneNode(true);
+  newslettersBtn.parentNode.replaceChild(newNewslettersBtn, newslettersBtn);
+  const newNewslettersIcon = newNewslettersBtn.querySelector("i");
 
-  newReportsBtn.addEventListener("click", () => {
-    if (!isReportsPaused) {
-      reportsTrack.style.animationPlayState = "paused";
-      newReportsIcon.classList.remove("fa-pause");
-      newReportsIcon.classList.add("fa-play");
-      isReportsPaused = true;
+  newNewslettersBtn.addEventListener("click", () => {
+    if (!isNewslettersPaused) {
+      newslettersTrack.style.animationPlayState = "paused";
+      newNewslettersIcon.classList.remove("fa-pause");
+      newNewslettersIcon.classList.add("fa-play");
+      isNewslettersPaused = true;
     } else {
-      reportsTrack.style.animationPlayState = "running";
-      newReportsIcon.classList.remove("fa-play");
-      newReportsIcon.classList.add("fa-pause");
-      isReportsPaused = false;
+      newslettersTrack.style.animationPlayState = "running";
+      newNewslettersIcon.classList.remove("fa-play");
+      newNewslettersIcon.classList.add("fa-pause");
+      isNewslettersPaused = false;
     }
   });
 }
-
-// ---------------------------- Social Media Section ----------------------------------//
-function initializeYouTubeCarousel() {
-  const ytCarousel = document.getElementById('youtubeCarousel');
-  const ytNext = document.querySelector('.youtube-next');
-  const ytPrev = document.querySelector('.youtube-prev');
-
-  if (!ytCarousel || !ytNext || !ytPrev) {
-    console.log('YouTube carousel elements not found');
-    return;
-  }
-
-  const ytCards = ytCarousel.querySelectorAll('.youtube-card');
-  if (ytCards.length === 0) {
-    console.log('No video cards found');
-    return;
-  }
-
-  let ytIndex = 0;
-  let ytAutoSlide;
-  let isTransitioning = false;
-
-  // Initialize carousel position
-  ytCarousel.style.transform = 'translateX(0%)';
-
-  // Stop all videos and iframes
-  function stopAllMedia() {
-    ytCards.forEach(card => {
-      const video = card.querySelector('video');
-      const iframe = card.querySelector('iframe');
-
-      if (video) {
-        video.pause();
-        video.currentTime = 0;
-      }
-
-      if (iframe) {
-        const src = iframe.src;
-        iframe.src = src;
-      }
-    });
-  }
-
-  // Show slide
-  function showYouTubeSlide(index) {
-    if (isTransitioning) return;
-    if (index < 0 || index >= ytCards.length) return;
-
-    isTransitioning = true;
-    ytIndex = index;
-
-    // Ensure all cards are visible during transition
-    ytCards.forEach((card, i) => {
-      card.style.opacity = '1';
-      card.style.visibility = 'visible';
-      card.style.display = 'flex';
-      const video = card.querySelector('video');
-      if (video) {
-        video.style.opacity = '1';
-        video.style.visibility = 'visible';
-      }
-    });
-
-    // Apply transform
-    ytCarousel.style.transform = `translateX(-${index * 100}%)`;
-
-    // Stop media only for non-active slides after transition
-    setTimeout(() => {
-      ytCards.forEach((card, i) => {
-        if (i !== index) {
-          const video = card.querySelector('video');
-          if (video) {
-            video.pause();
-            video.currentTime = 0;
-          }
-        }
-      });
-      isTransitioning = false;
-    }, 600);
-  }
-
-  // Next slide
-  function slideNext() {
-    if (isTransitioning) return;
-    const nextIndex = (ytIndex + 1) % ytCards.length;
-    showYouTubeSlide(nextIndex);
-    restartAutoSlide();
-  }
-
-  // Previous slide
-  function slidePrev() {
-    if (isTransitioning) return;
-    const prevIndex = (ytIndex - 1 + ytCards.length) % ytCards.length;
-    showYouTubeSlide(prevIndex);
-    restartAutoSlide();
-  }
-
-  // Remove old listeners
-  const newYtNext = ytNext.cloneNode(true);
-  const newYtPrev = ytPrev.cloneNode(true);
-  ytNext.parentNode.replaceChild(newYtNext, ytNext);
-  ytPrev.parentNode.replaceChild(newYtPrev, ytPrev);
-
-  newYtNext.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    slideNext();
-  });
-
-  newYtPrev.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    slidePrev();
-  });
-
-  // Auto slide functionality
-  function startAutoSlide() {
-    if (ytAutoSlide) {
-      clearInterval(ytAutoSlide);
-    }
-    ytAutoSlide = setInterval(() => {
-      if (!isTransitioning) {
-        slideNext();
-      }
-    }, 5000);
-  }
-
-  function stopAutoSlide() {
-    if (ytAutoSlide) {
-      clearInterval(ytAutoSlide);
-      ytAutoSlide = null;
-    }
-  }
-
-  function restartAutoSlide() {
-    stopAutoSlide();
-    startAutoSlide();
-  }
-
-  // Pause auto slide on hover
-  const ytSection = ytCarousel.closest('.youtube-section');
-  if (ytSection) {
-    ytSection.addEventListener('mouseenter', stopAutoSlide);
-    ytSection.addEventListener('mouseleave', startAutoSlide);
-  }
-
-  // Initialize first slide
-  showYouTubeSlide(0);
-
-  // Start auto slide after a delay
-  setTimeout(() => {
-    startAutoSlide();
-  }, 1000);
-}
-
 // ---------------------------- Photo Carousel Section ----------------------------------//
 function initializePhotoCarousel() {
   const photoCarousel = document.getElementById('photoCarousel');
@@ -1239,7 +733,193 @@ function initializePhotoCarousel() {
   }, 1000);
 }
 
-// Social media carousel removed - now using grid layout
+
+// ---------------------------- Social Media Section ----------------------------------//
+function initializeYouTubeCarousel() {
+  const ytCarousel = document.getElementById('youtubeCarousel');
+  const ytNext = document.querySelector('.youtube-next');
+  const ytPrev = document.querySelector('.youtube-prev');
+
+  if (!ytCarousel || !ytNext || !ytPrev) {
+    console.log('YouTube carousel elements not found');
+    return;
+  }
+
+  const ytCards = ytCarousel.querySelectorAll('.youtube-card');
+  if (ytCards.length === 0) {
+    console.log('No video cards found');
+    return;
+  }
+
+  let ytIndex = 0;
+  let ytAutoSlide;
+  let isTransitioning = false;
+
+  // Initialize carousel position
+  ytCarousel.style.transform = 'translateX(0%)';
+
+  // Stop all videos and iframes
+  function stopAllMedia() {
+    ytCards.forEach(card => {
+      const video = card.querySelector('video');
+      const iframe = card.querySelector('iframe');
+
+      if (video) {
+        video.pause();
+        video.currentTime = 0;
+      }
+
+      if (iframe) {
+        const src = iframe.src;
+        iframe.src = src;
+      }
+    });
+  }
+
+  // Show slide
+  function showYouTubeSlide(index) {
+    if (isTransitioning) return;
+    if (index < 0 || index >= ytCards.length) return;
+
+    isTransitioning = true;
+    ytIndex = index;
+
+    // Ensure all cards are visible during transition
+    ytCards.forEach((card, i) => {
+      card.style.opacity = '1';
+      card.style.visibility = 'visible';
+      card.style.display = 'flex';
+      const video = card.querySelector('video');
+      if (video) {
+        video.style.opacity = '1';
+        video.style.visibility = 'visible';
+      }
+    });
+    
+    // Apply transform
+    ytCarousel.style.transform = `translateX(-${index * 100}%)`;
+    
+    // Stop media only for non-active slides after transition
+    setTimeout(() => {
+      ytCards.forEach((card, i) => {
+        if (i !== index) {
+          const video = card.querySelector('video');
+          if (video) {
+            video.pause();
+            video.currentTime = 0;
+          }
+        }
+      });
+      isTransitioning = false;
+    }, 600);
+  }
+
+  // Next slide
+  function slideNext() {
+    if (isTransitioning) return;
+    const nextIndex = (ytIndex + 1) % ytCards.length;
+    showYouTubeSlide(nextIndex);
+    restartAutoSlide();
+  }
+
+  // Previous slide
+  function slidePrev() {
+    if (isTransitioning) return;
+    const prevIndex = (ytIndex - 1 + ytCards.length) % ytCards.length;
+    showYouTubeSlide(prevIndex);
+    restartAutoSlide();
+  }
+
+  // Remove old listeners
+  const newYtNext = ytNext.cloneNode(true);
+  const newYtPrev = ytPrev.cloneNode(true);
+  ytNext.parentNode.replaceChild(newYtNext, ytNext);
+  ytPrev.parentNode.replaceChild(newYtPrev, ytPrev);
+
+  newYtNext.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    slideNext();
+  });
+  
+  newYtPrev.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    slidePrev();
+  });
+
+  // Auto slide functionality
+  function startAutoSlide() {
+    if (ytAutoSlide) {
+      clearInterval(ytAutoSlide);
+    }
+    ytAutoSlide = setInterval(() => {
+      if (!isTransitioning) {
+        slideNext();
+      }
+    }, 5000);
+  }
+
+  function stopAutoSlide() {
+    if (ytAutoSlide) {
+      clearInterval(ytAutoSlide);
+      ytAutoSlide = null;
+    }
+  }
+
+  function restartAutoSlide() {
+    stopAutoSlide();
+    startAutoSlide();
+  }
+
+  // Pause auto slide on hover
+  const ytSection = ytCarousel.closest('.youtube-section');
+  if (ytSection) {
+    ytSection.addEventListener('mouseenter', stopAutoSlide);
+    ytSection.addEventListener('mouseleave', startAutoSlide);
+  }
+
+  // Initialize first slide
+  showYouTubeSlide(0);
+  
+  // Start auto slide after a delay
+  setTimeout(() => {
+    startAutoSlide();
+  }, 1000);
+}
+
+function initializeSocialCarousel() {
+  const socialCarousel = document.getElementById('socialCarousel');
+  const socialNext = document.querySelector('.social-next');
+  const socialPrev = document.querySelector('.social-prev');
+
+  if (!socialCarousel || !socialNext || !socialPrev) return;
+
+  function setupCarousel() {
+    const slideStep = () => socialCarousel.querySelector('div')?.offsetWidth + 25 || 300;
+
+    function slide(dir) {
+      socialCarousel.scrollBy({ left: dir * slideStep(), behavior: 'smooth' });
+    }
+
+    // Remove old listeners
+    const newSocialNext = socialNext.cloneNode(true);
+    const newSocialPrev = socialPrev.cloneNode(true);
+    socialNext.parentNode.replaceChild(newSocialNext, socialNext);
+    socialPrev.parentNode.replaceChild(newSocialPrev, socialPrev);
+
+    newSocialNext.addEventListener('click', () => slide(1));
+    newSocialPrev.addEventListener('click', () => slide(-1));
+
+    let autoSlide = setInterval(() => slide(1), 6000);
+    socialCarousel.addEventListener('mouseenter', () => clearInterval(autoSlide));
+    socialCarousel.addEventListener('mouseleave', () => {
+      autoSlide = setInterval(() => slide(1), 6000);
+    });
+  }
+
+  setupCarousel();
+}
 
 // ----------------------------- Infocus Section --------------------------------------//
 function initializeInfocusSection() {
@@ -1271,59 +951,20 @@ function setupInfocusObserver(container) {
 // Events are now in static HTML, so we just need to attach click handlers and initialize carousel
 
 function initializeHomeEvents() {
-  // NEW: Populate events from static data if available
-  if (typeof CBC_EVENTS_DATA !== 'undefined' && Array.isArray(CBC_EVENTS_DATA)) {
-    const eventsList = document.getElementById('homeEventsCardsList');
-    if (eventsList) {
-      eventsList.innerHTML = ''; // Clear existing static cards
-
-      // Take top 10 events
-      const recentEvents = CBC_EVENTS_DATA.slice(0, 10);
-
-      recentEvents.forEach((evt, index) => {
-        const dateObj = new Date(evt.date);
-        const dateStr = dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-
-        const card = document.createElement('div');
-        card.className = 'home-event-card high-contrast-border';
-        card.setAttribute('data-event-id', `home-event-${index}`);
-        card.setAttribute('data-date', evt.date);
-        card.setAttribute('data-venue', 'Capacity Building Commission');
-
-        card.innerHTML = `
-          <div class="home-event-card-image">
-            <img src="${evt.image}" alt="${evt.title}" onerror="this.src='img/event1.jpg'">
-          </div>
-          <div class="home-event-card-content">
-            <div class="home-event-card-date">
-              <i class="fas fa-calendar"></i> ${dateStr}
-            </div>
-            <h3 class="home-event-card-title">${evt.title}</h3>
-            <p class="home-event-card-description">${evt.description}</p>
-            <div class="home-event-card-read-more">
-              Read More <i class="fas fa-arrow-right"></i>
-            </div>
-          </div>
-        `;
-        eventsList.appendChild(card);
-      });
-    }
-  }
-
   // Setup modal close listeners
   const modalBackdrop = document.getElementById('homeEventModalBackdrop');
   const modalClose = document.getElementById('homeEventModalClose');
-
+  
   if (modalBackdrop) {
     modalBackdrop.addEventListener('click', closeHomeEventModal);
   }
   if (modalClose) {
     modalClose.addEventListener('click', closeHomeEventModal);
   }
-
+  
   // Attach click handlers to existing HTML event cards
   attachEventCardHandlers();
-
+  
   // Initialize carousel with existing HTML cards
   initEventsCarousel();
 }
@@ -1361,22 +1002,19 @@ function attachEventCardHandlers() {
   if (!eventsCardsList) return;
 
   const eventCards = eventsCardsList.querySelectorAll('.home-event-card');
-
+  
   eventCards.forEach(card => {
     const eventId = card.getAttribute('data-event-id');
     if (eventId) {
       // Remove any existing listeners by cloning
       const newCard = card.cloneNode(true);
       card.parentNode.replaceChild(newCard, card);
-
+      
       // Attach click handler
       newCard.addEventListener('click', () => {
         const eventDetails = buildEventDataFromCard(newCard);
         if (eventDetails) {
-          // Store event data in localStorage for the details page
-          localStorage.setItem('currentEvent', JSON.stringify(eventDetails));
-          // Navigate to event details page
-          window.location.href = `pages/event-details.html?id=${encodeURIComponent(eventDetails.id)}`;
+          showHomeEventModal(eventDetails);
         }
       });
     }
@@ -1441,23 +1079,23 @@ function attachCarouselHandlers(cardsList) {
 
   // Manual navigation - Previous button
   if (prevBtn) {
-    prevBtn.onclick = function (e) {
+    prevBtn.onclick = function(e) {
       e.preventDefault();
       e.stopPropagation();
       isEventsCarouselPaused = true;
-
+      
       const firstCard = cardsList.querySelector('.home-event-card');
       if (!firstCard) return;
-
+      
       const cardWidth = firstCard.offsetWidth;
       const gap = 28;
       const scrollAmount = cardWidth + gap;
-
+      
       cardsList.scrollBy({
         left: -scrollAmount,
         behavior: 'smooth'
       });
-
+      
       setTimeout(() => {
         isEventsCarouselPaused = false;
       }, 1000);
@@ -1466,23 +1104,23 @@ function attachCarouselHandlers(cardsList) {
 
   // Manual navigation - Next button
   if (nextBtn) {
-    nextBtn.onclick = function (e) {
+    nextBtn.onclick = function(e) {
       e.preventDefault();
       e.stopPropagation();
       isEventsCarouselPaused = true;
-
+      
       const firstCard = cardsList.querySelector('.home-event-card');
       if (!firstCard) return;
-
+      
       const cardWidth = firstCard.offsetWidth;
       const gap = 28;
       const scrollAmount = cardWidth + gap;
-
+      
       cardsList.scrollBy({
         left: scrollAmount,
         behavior: 'smooth'
       });
-
+      
       setTimeout(() => {
         isEventsCarouselPaused = false;
       }, 1000);
@@ -1499,7 +1137,7 @@ function startAutoScroll(cardsList) {
     const cardWidth = firstCard.offsetWidth;
     const gap = 28;
     const totalWidth = (cardWidth + gap) * cards.length;
-
+    
     if (cardsList.scrollWidth < totalWidth * 1.5) {
       cards.forEach(card => {
         const clone = card.cloneNode(true);
@@ -1523,7 +1161,7 @@ function startAutoScroll(cardsList) {
     const maxScroll = cardsList.scrollWidth - cardsList.clientWidth;
     const halfPoint = maxScroll / 2;
     const scrollSpeed = 1; // pixels per frame for smooth movement
-
+    
     // Check if we've reached the end (accounting for duplicated cards)
     if (cardsList.scrollLeft >= halfPoint - 10) {
       // Seamlessly reset to beginning for infinite loop
@@ -1532,7 +1170,7 @@ function startAutoScroll(cardsList) {
       // Smooth continuous scroll
       cardsList.scrollLeft += scrollSpeed;
     }
-
+    
     // Continue the animation loop
     eventsCarouselInterval = requestAnimationFrame(autoScroll);
   }
@@ -1545,7 +1183,7 @@ function startAutoScroll(cardsList) {
       clearInterval(eventsCarouselInterval);
     }
   }
-
+  
   // Start the animation loop after a small delay to ensure DOM is ready
   setTimeout(() => {
     eventsCarouselInterval = requestAnimationFrame(autoScroll);
@@ -1556,17 +1194,17 @@ function startAutoScroll(cardsList) {
 
 function showHomeDayEvents(events, date) {
   if (!events || events.length === 0) return;
-
+  
   const modalBody = document.getElementById('homeEventModalBody');
   const modal = document.getElementById('homeEventModal');
-
+  
   if (!modalBody || !modal) return;
 
-  const dateStr = date.toLocaleDateString('en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
+  const dateStr = date.toLocaleDateString('en-US', { 
+    weekday: 'long', 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
   });
 
   if (events.length === 1) {
@@ -1579,13 +1217,13 @@ function showHomeDayEvents(events, date) {
       </div>
       <div class="day-events-list">
         ${events.map((event, idx) => {
-      const eventDate = new Date(event.date);
-      const formattedDate = eventDate.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      });
-      return `
+          const eventDate = new Date(event.date);
+          const formattedDate = eventDate.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+          return `
             <div class="day-event-item" data-event-id="${event.id}" data-event-index="${idx}">
               ${event.image ? `
                 <div class="day-event-image">
@@ -1607,11 +1245,11 @@ function showHomeDayEvents(events, date) {
               </div>
             </div>
           `;
-    }).join('')}
+        }).join('')}
       </div>
     `;
     openHomeEventModal();
-
+    
     setTimeout(() => {
       const dayEventItems = modalBody.querySelectorAll('.day-event-item');
       dayEventItems.forEach((item) => {
@@ -1633,7 +1271,7 @@ function showHomeDayEvents(events, date) {
 function showHomeEventModal(event) {
   const modalBody = document.getElementById('homeEventModalBody');
   const modal = document.getElementById('homeEventModal');
-
+  
   if (!modalBody || !modal) return;
 
   const eventDate = new Date(event.date);
@@ -1670,7 +1308,7 @@ function showHomeEventModal(event) {
 function openHomeEventModal() {
   const modal = document.getElementById('homeEventModal');
   if (!modal) return;
-
+  
   modal.classList.add('active');
   modal.style.display = 'flex';
   modal.style.visibility = 'visible';
@@ -1756,13 +1394,13 @@ function initializeChairpersonModal() {
   function openModal() {
     document.body.style.overflow = 'hidden';
     modal.classList.add('active');
-
+    
     // Reset scroll position to top
     const letterPaper = document.querySelector('.letter-paper');
     if (letterPaper) {
       letterPaper.scrollTop = 0;
     }
-
+    
     // Trigger animation after a small delay to ensure display is set
     setTimeout(() => {
       modalWrapper.style.transform = 'translateY(0)';
@@ -1774,7 +1412,7 @@ function initializeChairpersonModal() {
   function closeModal() {
     modalWrapper.style.transform = 'translateY(-100%)';
     modalWrapper.style.opacity = '0';
-
+    
     setTimeout(() => {
       modal.classList.remove('active');
       document.body.style.overflow = '';
@@ -1783,7 +1421,7 @@ function initializeChairpersonModal() {
 
   // Event listeners - make title clickable
   messageImageContainer.addEventListener('click', openModal);
-
+  
   // Also make the title specifically clickable
   const previewTitleWrapper = document.querySelector('.preview-letter-title-wrapper');
   if (previewTitleWrapper) {
@@ -1793,7 +1431,7 @@ function initializeChairpersonModal() {
       openModal();
     });
   }
-
+  
   closeBtn.addEventListener('click', closeModal);
   backdrop.addEventListener('click', closeModal);
 
@@ -1924,7 +1562,7 @@ function initializeDocumentCarousel() {
 
   updateButtons();
   updatePageIndicator();
-
+  
   // Start auto scroll
   startDocumentAuto();
 }

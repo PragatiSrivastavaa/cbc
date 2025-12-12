@@ -18,11 +18,14 @@
         {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}
       </h2>
 
-      <p class="infocus-desc">
-        {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_body }}']|striptags|trim }}
-      </p>
+      <!-- <p class="infocus-desc"> -->
+        <div class="infocus-map-container">
+                  <div class="map-image-container">
+        {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_body }}'] }}
+       </div>
+                </div>
 
     {% endif %}
   {% endfor %}
-   <a target="_blank" class="infocus-btn">Learn More</a>
+   <a href="pages/services/states-ut.html" class="infocus-btn">Learn More</a>
 </div>
