@@ -1,0 +1,42 @@
+  <section class="container py-5">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="content-section">
+            <h2 class="mt-5 mb-3">Partner Organizations</h2>
+
+            <!-- Advisory & Research -->
+            <div class="mou-status-table-wrapper">
+              <div class="table-responsive">
+                <table class="table mou-status-table collaboration-table">
+                  <thead>
+                    <tr>
+                      <th>Logo</th>
+                      <th>Name</th>
+                      <th>Type of Association</th>
+                      <th>Remarks</th>
+                      <th>Website</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+				    {% for row in rows %}
+              {% set entity = row.content['#row']._entity %}
+                    <tr>
+                      <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}</td>
+                      <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</td>
+                      <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_organisation }}'] }}</td>
+                      <td>Advisory & Research</td>
+                      <td><a href="" class="action-link" target="_blank">Visit Site</a>
+                      </td>
+                    </tr>
+                   
+                     {% endfor %}
+                   
+                  
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

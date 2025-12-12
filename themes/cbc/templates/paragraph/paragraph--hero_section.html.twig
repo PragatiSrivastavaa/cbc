@@ -17,6 +17,10 @@
             {{ paragraph.field_sub_title.value }}
           </h1>
         {% endif %}
+		 {# Dynamic Sub Title two (field_subtitle_two) #}
+        {% if paragraph.field_subtitle_two.value %}
+		<span style="font-size: 1.8rem; font-weight: 400; color: #ffa500;">{{ paragraph.field_subtitle_two.value }}</span>
+		 {% endif %}
 
         {# Dynamic Description (formatted long text) #}
         {% if paragraph.field_descriptions.value %}
@@ -28,3 +32,5 @@
     </div>
   </div>
 </div>
+
+

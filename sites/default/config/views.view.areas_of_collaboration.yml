@@ -11,8 +11,15 @@ dependencies:
     - node.type.areas_of_collaboration
     - taxonomy.vocabulary.areas_of_collaboration
   content:
+    - 'taxonomy_term:areas_of_collaboration:156c3d21-ff71-4ecc-a703-8635b5e50f40'
+    - 'taxonomy_term:areas_of_collaboration:45e7f8f3-6c1b-4aff-96c7-c9f54deb8522'
+    - 'taxonomy_term:areas_of_collaboration:7bcc2f09-02e2-4e04-8132-189fa8187b3e'
     - 'taxonomy_term:areas_of_collaboration:9e8a91fc-c5c4-4e06-aed5-6ecc0411c7dd'
+    - 'taxonomy_term:areas_of_collaboration:a7548657-e61a-4e9e-8b85-fab55282a61a'
+    - 'taxonomy_term:areas_of_collaboration:aa7f94fd-38aa-4477-8266-fea1eec6a65c'
     - 'taxonomy_term:areas_of_collaboration:cca3533d-bb22-4b40-a658-3d969c94a6a6'
+    - 'taxonomy_term:areas_of_collaboration:dbad43bd-761f-490c-9a39-f72db350b78a'
+    - 'taxonomy_term:areas_of_collaboration:e5f10708-a49a-47d9-bc03-5042e8d8c0af'
   module:
     - image
     - link
@@ -46,7 +53,7 @@ display:
           entity_field: title
           plugin_id: field
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -89,7 +96,7 @@ display:
           click_sort_column: value
           type: string
           settings:
-            link_to_entity: true
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -508,7 +515,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 52
+            - 58
           group: 1
           exposed: false
           expose:
@@ -600,12 +607,34 @@ display:
         - 'config:field.storage.node.field_image'
         - 'config:field.storage.node.field_organisation'
         - 'config:field.storage.node.field_remarks'
+  block_2:
+    id: block_2
+    display_title: 'Block 2'
+    display_plugin: block
+    position: 4
+    display_options:
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_action'
+        - 'config:field.storage.node.field_areas_of_collaboration'
+        - 'config:field.storage.node.field_image'
+        - 'config:field.storage.node.field_organisation'
+        - 'config:field.storage.node.field_remarks'
   page_1:
     id: page_1
     display_title: 'Advisory & Research'
     display_plugin: page
     position: 1
     display_options:
+      title: 'Advisory & Research'
       fields:
         title:
           id: title
@@ -994,9 +1023,98 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            areas_of_collaboration: areas_of_collaboration
+        tid:
+          id: tid
+          table: taxonomy_index
+          field: tid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            - 52
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: areas_of_collaboration
+          type: textfield
+          hierarchy: false
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
       defaults:
+        title: false
         fields: false
+        filters: false
+        filter_groups: false
+        header: false
       display_description: ''
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: "Expert advisory services and research collaboration for evidence-based governance.\r\n\r\n"
+            format: basic_html
+          tokenize: false
       display_extenders: {  }
       path: advisory-research
     cache_metadata:
@@ -1019,6 +1137,7 @@ display:
     display_plugin: page
     position: 2
     display_options:
+      title: 'Knowledge Support'
       filters:
         status:
           id: status
@@ -1091,11 +1210,825 @@ display:
         groups:
           1: AND
       defaults:
+        title: false
         filters: false
         filter_groups: false
+        header: false
       display_description: ''
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: false
+          content:
+            value: 'Comprehensive knowledge resources and support for capacity building.'
+            format: basic_html
+          tokenize: false
       display_extenders: {  }
       path: knowledge-support
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_action'
+        - 'config:field.storage.node.field_areas_of_collaboration'
+        - 'config:field.storage.node.field_image'
+        - 'config:field.storage.node.field_organisation'
+        - 'config:field.storage.node.field_remarks'
+  page_3:
+    id: page_3
+    display_title: 'Impact Evaluation'
+    display_plugin: page
+    position: 5
+    display_options:
+      title: 'Impact Evaluation'
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            areas_of_collaboration: areas_of_collaboration
+        tid:
+          id: tid
+          table: taxonomy_index
+          field: tid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            - 54
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: areas_of_collaboration
+          type: textfield
+          hierarchy: false
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        filters: false
+        filter_groups: false
+        header: false
+      display_description: ''
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: 'Measuring and evaluating the impact of capacity building initiatives.'
+            format: basic_html
+          tokenize: false
+      display_extenders: {  }
+      path: impact-evaluation
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_action'
+        - 'config:field.storage.node.field_areas_of_collaboration'
+        - 'config:field.storage.node.field_image'
+        - 'config:field.storage.node.field_organisation'
+        - 'config:field.storage.node.field_remarks'
+  page_4:
+    id: page_4
+    display_title: 'Content Support'
+    display_plugin: page
+    position: 6
+    display_options:
+      title: 'Content Support'
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            areas_of_collaboration: areas_of_collaboration
+        tid:
+          id: tid
+          table: taxonomy_index
+          field: tid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            - 55
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: areas_of_collaboration
+          type: textfield
+          hierarchy: false
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        filters: false
+        filter_groups: false
+        header: false
+      display_description: ''
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: 'Development and curation of training content and learning materials.'
+            format: basic_html
+          tokenize: false
+      display_extenders: {  }
+      path: content-support
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_action'
+        - 'config:field.storage.node.field_areas_of_collaboration'
+        - 'config:field.storage.node.field_image'
+        - 'config:field.storage.node.field_organisation'
+        - 'config:field.storage.node.field_remarks'
+  page_5:
+    id: page_5
+    display_title: 'Case Studies'
+    display_plugin: page
+    position: 7
+    display_options:
+      title: 'Case Studies'
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            areas_of_collaboration: areas_of_collaboration
+        tid:
+          id: tid
+          table: taxonomy_index
+          field: tid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            - 56
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: areas_of_collaboration
+          type: textfield
+          hierarchy: false
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        filters: false
+        filter_groups: false
+        header: false
+      display_description: ''
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: 'Development and documentation of real-world governance case studies.'
+            format: basic_html
+          tokenize: false
+      display_extenders: {  }
+      path: case-studies
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_action'
+        - 'config:field.storage.node.field_areas_of_collaboration'
+        - 'config:field.storage.node.field_image'
+        - 'config:field.storage.node.field_organisation'
+        - 'config:field.storage.node.field_remarks'
+  page_6:
+    id: page_6
+    display_title: 'Executive Education'
+    display_plugin: page
+    position: 8
+    display_options:
+      title: 'Executive Education'
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            areas_of_collaboration: areas_of_collaboration
+        tid:
+          id: tid
+          table: taxonomy_index
+          field: tid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            - 57
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: areas_of_collaboration
+          type: textfield
+          hierarchy: false
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        filters: false
+        filter_groups: false
+        header: false
+      display_description: ''
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: 'Advanced executive education programs for senior civil servants.'
+            format: basic_html
+          tokenize: false
+      display_extenders: {  }
+      path: executive-education
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_action'
+        - 'config:field.storage.node.field_areas_of_collaboration'
+        - 'config:field.storage.node.field_image'
+        - 'config:field.storage.node.field_organisation'
+        - 'config:field.storage.node.field_remarks'
+  page_7:
+    id: page_7
+    display_title: Consultancy
+    display_plugin: page
+    position: 9
+    display_options:
+      title: Consultancy
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            areas_of_collaboration: areas_of_collaboration
+        tid:
+          id: tid
+          table: taxonomy_index
+          field: tid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            - 58
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: areas_of_collaboration
+          type: textfield
+          hierarchy: false
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        filters: false
+        filter_groups: false
+        header: false
+      display_description: ''
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: false
+          content:
+            value: 'Expert consultancy services for capacity building and governance improvement.'
+            format: basic_html
+          tokenize: false
+      display_extenders: {  }
+      path: consultancy
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_action'
+        - 'config:field.storage.node.field_areas_of_collaboration'
+        - 'config:field.storage.node.field_image'
+        - 'config:field.storage.node.field_organisation'
+        - 'config:field.storage.node.field_remarks'
+  page_8:
+    id: page_8
+    display_title: 'Indian Knowledge System'
+    display_plugin: page
+    position: 10
+    display_options:
+      title: 'Indian Knowledge System'
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            areas_of_collaboration: areas_of_collaboration
+        tid:
+          id: tid
+          table: taxonomy_index
+          field: tid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            - 59
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: areas_of_collaboration
+          type: textfield
+          hierarchy: false
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        filters: false
+        filter_groups: false
+        header: false
+      display_description: ''
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: 'Integration of traditional Indian knowledge systems in modern governance.'
+            format: basic_html
+          tokenize: false
+      display_extenders: {  }
+      path: indian-knowledge-system
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_action'
+        - 'config:field.storage.node.field_areas_of_collaboration'
+        - 'config:field.storage.node.field_image'
+        - 'config:field.storage.node.field_organisation'
+        - 'config:field.storage.node.field_remarks'
+  page_9:
+    id: page_9
+    display_title: 'Faculty Development'
+    display_plugin: page
+    position: 11
+    display_options:
+      title: 'Faculty Development'
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            areas_of_collaboration: areas_of_collaboration
+        tid:
+          id: tid
+          table: taxonomy_index
+          field: tid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            - 60
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: areas_of_collaboration
+          type: textfield
+          hierarchy: false
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        filters: false
+        filter_groups: false
+        header: false
+      display_description: ''
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: 'Enhancing faculty capabilities for effective capacity building delivery.'
+            format: basic_html
+          tokenize: false
+      display_extenders: {  }
+      path: faculty-development
     cache_metadata:
       max-age: -1
       contexts:
