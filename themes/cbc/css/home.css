@@ -288,6 +288,14 @@
   padding: 0 15px; /* Reduced from 20px */
   white-space: nowrap;
   height: 100%;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.alert-item:hover {
+  opacity: 0.9;
+  text-decoration: none;
+  color: #ffffff;
 }
 
 .alert-dot {
@@ -1184,6 +1192,28 @@
   .social-section {
     padding: 1.5rem 0;
   }
+
+  .gallery-link-card {
+    padding: 20px;
+  }
+
+  .gallery-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+  }
+
+  .gallery-icon i {
+    font-size: 1.5rem;
+  }
+
+  .gallery-card-content h3 {
+    font-size: 1.25rem;
+  }
+
+  .gallery-card-content p {
+    font-size: 1rem; /* Increased from 0.9rem for better readability */
+  }
   
   .partners-section {
     padding: 35px 5%;
@@ -1408,6 +1438,30 @@
   
   .social-section {
     padding: 30px 0;
+  }
+
+  .gallery-link-card {
+    padding: 20px 15px;
+  }
+
+  .gallery-icon {
+    width: 55px;
+    height: 55px;
+    margin-bottom: 12px;
+  }
+
+  .gallery-icon i {
+    font-size: 1.4rem;
+  }
+
+  .gallery-card-content h3 {
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+  }
+
+  .gallery-card-content p {
+    font-size: 0.95rem; /* Increased from 0.85rem for better readability */
+    margin-bottom: 15px;
   }
   
   .partners-section {
@@ -1883,6 +1937,7 @@
   background: #005ea6;
   padding: 20px 0;
   margin: 0;
+  margin-bottom: 2rem;
 }
 
 .information-corner-title h2{
@@ -2238,6 +2293,9 @@
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   flex-shrink: 0;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 
 .news-banner::before {
@@ -2351,7 +2409,7 @@
 
 .news-banner-content p {
   color: #333333;
-  font-size: 1.05rem;
+  font-size: 1.15rem; /* Increased from 1.05rem for better readability */
   font-weight: 500;
   line-height: 1.6;
   margin: 0;
@@ -2440,7 +2498,7 @@
   }
 
   .news-banner-content p {
-    font-size: 1rem;
+    font-size: 1.1rem; /* Increased from 1rem for better readability */
   }
 
   .new-badge {
@@ -2486,7 +2544,7 @@
   }
 
   .news-banner-content p {
-    font-size: 0.95rem;
+    font-size: 1.05rem; /* Increased from 0.95rem for better readability */
     line-height: 1.5;
   }
 
@@ -2533,7 +2591,7 @@
   }
 
   .news-banner-content p {
-    font-size: 0.9rem;
+    font-size: 1rem; /* Increased from 0.9rem for better readability */
     line-height: 1.4;
   }
 
@@ -3618,7 +3676,7 @@ h2.infocus-heading {
 }
 
 .cbc-blog-carousel .blog-card h3 {
-  font-size: 0.95rem; /* Reduced from 1.1rem */
+  font-size: 1.1rem; /* Increased from 0.95rem for better readability */
   color: #003b73;
   margin: 0;
   padding: 0 1.25rem 0.25rem;
@@ -3633,7 +3691,7 @@ h2.infocus-heading {
 }
 
 .cbc-blog-carousel .blog-card p {
-  font-size: 0.95rem;
+  font-size: 1.05rem; /* Increased from 0.95rem for better readability */
   color: #555;
   margin: 0;
   padding: 0 1.25rem 1.25rem;
@@ -5306,7 +5364,7 @@ h2.infocus-heading {
 }
 
 .home-event-card-title {
-  font-size: 0.9rem; /* Reduced from 1rem */
+  font-size: 1.05rem; /* Increased from 0.9rem for better readability */
   font-weight: 600;
   color: #003b73;
   margin: 0 0 0.5rem 0;
@@ -5325,7 +5383,7 @@ h2.infocus-heading {
 }
 
 .home-event-card-description {
-  font-size: 0.9rem;
+  font-size: 1rem; /* Increased from 0.9rem for better readability */
   color: #4b5563;
   line-height: 1.4;
   margin: 0 0 0.625rem 0;
@@ -5517,11 +5575,11 @@ h2.infocus-heading {
   }
   
   .home-event-card-title {
-    font-size: 0.85rem;
+    font-size: 1rem; /* Increased from 0.85rem for better readability */
   }
   
   .home-event-card-description {
-    font-size: 0.75rem;
+    font-size: 0.95rem; /* Increased from 0.75rem for better readability */
   }
   
   .events-header {
@@ -5939,7 +5997,7 @@ h2.infocus-heading {
   position: relative;
   width: 100%;
   max-width: 100vw;
-  min-height: 550px;
+  min-height: 380px;
   box-sizing: border-box;
 }
 
@@ -5981,9 +6039,10 @@ h2.infocus-heading {
 }
 
 .youtube-card video,
-.youtube-card iframe {
+.youtube-card iframe,
+.youtube-card img {
   width: 100%;
-  height: 450px;
+  height: 300px;
   border: none;
   display: block;
   object-fit: cover;
@@ -5994,8 +6053,139 @@ h2.infocus-heading {
   z-index: 2;
 }
 
+.media-type-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0, 99, 174, 0.9);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.media-type-badge i {
+  font-size: 0.7rem;
+}
+
+.youtube-card[data-type="photo"] .media-type-badge {
+  background: rgba(255, 165, 0, 0.9);
+}
+
+.youtube-card[data-type="video"] .media-type-badge {
+  background: rgba(0, 99, 174, 0.9);
+}
+
+/* Two-column gallery layout */
+.social-section .row.g-4 {
+  align-items: stretch;
+}
+
+.social-section .container {
+  margin-top: 3rem;
+}
+
+.social-section .youtube-section.h-100 {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 500px;
+}
+
+.social-section .youtube-section .youtube-carousel-wrapper {
+  flex: 1 1 auto;
+  min-height: 380px;
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+}
+
+.social-section .youtube-carousel {
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+.social-section .youtube-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 100%;
+}
+
+.social-section .video-container {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  height: 300px;
+  margin-bottom: 20px;
+}
+
+.social-section .youtube-card video,
+.social-section .youtube-card img {
+  width: 100%;
+  height: 300px !important;
+  min-height: 300px !important;
+  max-height: 300px !important;
+  object-fit: cover;
+  border: none;
+  display: block;
+  background: #000;
+}
+
+/* Tablet and medium screens */
+@media (max-width: 992px) and (min-width: 769px) {
+  .social-section .youtube-section.h-100 {
+    min-height: 450px;
+  }
+
+  .social-section .youtube-section .youtube-carousel-wrapper {
+    min-height: 320px;
+  }
+
+  .social-section .video-container {
+    height: 280px;
+    min-height: 280px;
+  }
+
+  .social-section .youtube-card video,
+  .social-section .youtube-card img {
+    height: 280px !important;
+    min-height: 280px !important;
+    max-height: 280px !important;
+  }
+}
+
 /* Ensure videos take full width on mobile */
 @media (max-width: 768px) {
+  .social-section .container {
+    margin-top: 30px;
+  }
+
+  .social-section .youtube-section.h-100 {
+    min-height: 400px;
+    height: auto;
+  }
+
+  .social-section .youtube-section .youtube-carousel-wrapper {
+    min-height: 280px;
+    height: auto;
+  }
+
+  .social-section .col-lg-6,
+  .social-section .col-md-6 {
+    margin-bottom: 20px;
+  }
+
   .youtube-section {
     padding: 15px !important;
     margin: 0;
@@ -6019,15 +6209,45 @@ h2.infocus-heading {
     flex: 0 0 100% !important;
   }
 
-  .youtube-card video,
-  .youtube-card iframe {
+  .youtube-carousel-wrapper {
+    min-height: 280px !important;
+  }
+
+  .social-section .video-container {
+    height: 200px !important;
+    min-height: 200px !important;
+    margin-bottom: 15px;
+  }
+
+  .social-section .youtube-card video,
+  .social-section .youtube-card img {
     width: 100% !important;
     max-width: 100% !important;
-    height: auto;
-    min-height: 250px;
+    height: 200px !important;
+    min-height: 200px !important;
+    max-height: 200px !important;
     margin: 0;
     padding: 0;
     border-radius: 0 !important;
+  }
+
+  .youtube-card video,
+  .youtube-card iframe,
+  .youtube-card img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 200px !important;
+    margin: 0;
+    padding: 0;
+    border-radius: 0 !important;
+  }
+
+  .social-section .youtube-section.h-100 {
+    min-height: 350px;
+  }
+
+  .social-section .youtube-section .youtube-carousel-wrapper {
+    min-height: 250px;
   }
 
   .video-container {
@@ -6172,6 +6392,11 @@ h2.infocus-heading {
 }
 
 .video-gallery-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
   padding-top: 15px;
   border-top: 1px solid #e9ecef;
 }
@@ -6348,7 +6573,7 @@ h2.infocus-heading {
 
 .youtube-card iframe,
 .youtube-card video {
-  height: 450px;
+  height: 300px;
   border: none;
   display: block;
   visibility: visible !important;
@@ -6358,7 +6583,7 @@ h2.infocus-heading {
 /* Social Cards */
 .social-card {
   position: relative;
-  min-width: 300px;
+  /* min-width: 300px; */
   overflow: hidden;
 }
 
@@ -6397,6 +6622,111 @@ h2.infocus-heading {
   border: 1px solid #e9ecef;
 }
 
+/* Gallery Link Cards */
+.gallery-link-card {
+  display: block;
+  text-decoration: none;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-link-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #0063ae, #ffa500);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.gallery-link-card:hover::before {
+  transform: scaleX(1);
+}
+
+.gallery-link-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 99, 174, 0.15);
+  border-color: #0063ae;
+}
+
+.gallery-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.gallery-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0063ae, #ffa500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.gallery-link-card:hover .gallery-icon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 4px 15px rgba(0, 99, 174, 0.3);
+}
+
+.gallery-icon i {
+  font-size: 2rem;
+  color: #ffffff;
+}
+
+.gallery-card-content h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0063ae;
+  margin-bottom: 12px;
+  transition: color 0.3s ease;
+}
+
+.gallery-link-card:hover .gallery-card-content h3 {
+  color: #ffa500;
+}
+
+.gallery-card-content p {
+  font-size: 1.05rem; /* Increased from 0.95rem for better readability */
+  color: #6c757d;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.gallery-link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #0063ae;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.gallery-link-card:hover .gallery-link-arrow {
+  color: #ffa500;
+  transform: translateX(5px);
+}
+
+.gallery-link-card:hover .gallery-link-arrow i {
+  transform: translateX(5px);
+}
+
 .social-section-right {
   border-radius: 0 0 12px 12px;
   overflow: hidden;
@@ -6405,33 +6735,51 @@ h2.infocus-heading {
   flex-direction: column;
 }
 
-.social-carousel {
+.social-section-right .section-body {
+  flex: 1;
   display: flex;
-  gap: 15px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding-bottom: 6px;
+  flex-direction: column;
+  min-height: 0;
+  padding: 8px;
+  overflow: hidden;
 }
 
-.social-carousel::-webkit-scrollbar {
-  display: none;
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 8px;
+  padding: 8px;
+  height: 100%;
+  min-height: 300px;
+  max-height: 320px;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .social-card {
   position: relative;
-  flex-shrink: 0;
-  width: 300px;
-  max-height: 320px;
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
   background: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.social-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .social-card iframe,
 .social-card .social-iframe {
   width: 100%;
-  height: 320px;
+  height: 100%;
   border: none;
   display: block;
   background: #fff;
@@ -6439,10 +6787,14 @@ h2.infocus-heading {
 
 .social-card .social-embed-container {
   width: 100%;
-  height: 320px;
+  height: 100%;
   overflow: hidden;
   position: relative;
-  min-height: 320px;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .social-card .social-embed-container iframe {
@@ -6453,25 +6805,44 @@ h2.infocus-heading {
 /* Twitter timeline specific styles */
 .social-card .social-embed-container .twitter-timeline {
   width: 100% !important;
-  height: 320px !important;
+  height: 100% !important;
   display: block !important;
 }
 
 .social-card .social-embed-container iframe[id*="twitter"] {
   width: 100% !important;
-  height: 400px !important;
-  min-height: 400px !important;
+  height: 100% !important;
+  min-height: 0 !important;
 }
 
 .social-card .linkedin-company-feed {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 400px;
+  height: 100%;
 }
 
 .social-card .social-placeholder {
   display: none;
+}
+
+/* Responsive styles for social grid */
+@media (max-width: 768px) {
+  .social-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+    gap: 6px;
+    padding: 6px;
+    max-height: 600px;
+  }
+}
+
+@media (max-width: 992px) and (min-width: 769px) {
+  .social-grid {
+    gap: 6px;
+    padding: 6px;
+    max-height: 350px;
+  }
 }
 
 /* Overlay at bottom */
@@ -6481,9 +6852,9 @@ h2.infocus-heading {
   left: 0;
   width: 100%;
   background: linear-gradient(135deg, rgba(0, 99, 174, 0.85), rgba(255, 165, 0, 0.85));
-  padding: 6px 0;
+  padding: 4px 0;
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.65rem;
   font-weight: 500;
 }
 
@@ -8739,7 +9110,7 @@ h2.infocus-heading {
 
 .news-banner-content p {
   color: #333333;
-  font-size: 0.95rem;
+  font-size: 1.15rem; /* Increased from 0.95rem for better readability */
   font-weight: 500;
   line-height: 1.6;
   margin: 0;
@@ -8821,7 +9192,7 @@ h2.infocus-heading {
   }
 
   .news-banner-content p {
-    font-size: 1rem;
+    font-size: 1.1rem; /* Increased from 1rem for better readability */
   }
 
   .new-badge {
@@ -8867,7 +9238,7 @@ h2.infocus-heading {
   }
 
   .news-banner-content p {
-    font-size: 0.95rem;
+    font-size: 1.05rem; /* Increased from 0.95rem for better readability */
     line-height: 1.5;
   }
 
@@ -8915,7 +9286,7 @@ h2.infocus-heading {
   }
 
   .news-banner-content p {
-    font-size: 0.9rem;
+    font-size: 1rem; /* Increased from 0.9rem for better readability */
     line-height: 1.4;
   }
 

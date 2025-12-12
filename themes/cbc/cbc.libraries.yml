@@ -9,11 +9,12 @@ global-styling:
 global-scripts:
   js:
     js/bootstrap.bundle.min.js: {}
+    js/jquery-3.3.1.min.js: {}
     js/homePageInit.js: {}
     js/eventsPage.js: {}
     js/events_data.js: {}
     js/eventDetailsPage.js: {}
-    js/accessibility.js: {}
+    js/accessibility.js: {} 
   dependencies:
     - core/jquery
     - core/drupal
