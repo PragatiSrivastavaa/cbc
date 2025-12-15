@@ -20,6 +20,7 @@ display:
           label: 'में प्रकाशित किया गया था'
           separator: ', '
         changed:
+          label: अद्यतित
           separator: ', '
         operations:
           label: कार्यवाही
@@ -76,6 +77,7 @@ display:
           label: 'में प्रकाशित किया गया था'
           separator: ', '
         changed:
+          label: अद्यतित
           separator: ', '
         operations:
           label: कार्यवाही

@@ -1,0 +1,22 @@
+uuid: 581829c1-c2ab-4ba3-9d83-ea4d26511ad1
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.know_your_cbc
+id: node.know_your_cbc.promote
+field_name: promote
+entity_type: node
+bundle: know_your_cbc
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

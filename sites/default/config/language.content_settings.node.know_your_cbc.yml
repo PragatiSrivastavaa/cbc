@@ -1,0 +1,11 @@
+uuid: 1c60e183-8ca8-478a-89c8-2cdf82ec4f4b
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.know_your_cbc
+id: node.know_your_cbc
+target_entity_type_id: node
+target_bundle: know_your_cbc
+default_langcode: site_default
+language_alterable: true

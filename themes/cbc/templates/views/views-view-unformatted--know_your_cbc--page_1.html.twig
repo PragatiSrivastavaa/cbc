@@ -1,0 +1,41 @@
+
+          <div class="document-carousel-wrapper position-relative">
+            <div class="carousel-controls">
+              <button id="documentPrevBtn" aria-label="Previous page">‹</button>
+              <button id="documentNextBtn" aria-label="Next page">›</button>
+            </div>
+            <div class="document-carousel-track" id="documentCarouselTrack">
+              <!-- Presentation pages - Drupal compatible -->
+              <!-- 
+                For Drupal integration:
+                1. Replace '../../img/about_cbc_presentation/' with:
+                   {{ base_path }}{{ directory }}/img/about_cbc_presentation/
+                   OR use file_url() function if images are in files directory
+                2. All 28 pages are pre-rendered as static HTML (no JS required to load)
+                3. Navigation uses minimal JS with scrollIntoView (Drupal-safe)
+              -->
+			      {% for row in rows %}
+              {% set entity = row.content['#row']._entity %}
+              <div class="document-page" id="kyc-page-1" data-page-number="1">
+                <div class="document-page-content">
+                  <div class="pdf-page-container">
+                   {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_images }}'] }}
+                  </div>
+                </div>
+				   {% endfor %}
+              </div>
+           
+          
+			
+         
+              
+            </div>
+            <div class="carousel-indicators">
+              <span id="currentPage">1</span> / <span id="totalPages">28</span>
+            </div>
+          </div>
+       
+
+    
+        
+ 

@@ -1,0 +1,33 @@
+uuid: 07512ec9-de08-4e8b-bc0d-cb32ea35670a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.know_your_cbc.field_images
+    - node.type.know_your_cbc
+  module:
+    - image
+    - user
+id: node.know_your_cbc.default
+targetEntityType: node
+bundle: know_your_cbc
+mode: default
+content:
+  field_images:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

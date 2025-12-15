@@ -17,6 +17,8 @@ display:
           settings:
             format_custom_false: अप्रकाशित
             format_custom_true: प्रकाशित
+        changed:
+          label: अद्यतित
         langcode:
           label: भाषा
           separator: ', '

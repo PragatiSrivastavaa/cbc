@@ -24,6 +24,7 @@ display:
             format_custom_true: प्रकाशित
           separator: ', '
         changed:
+          label: अद्यतित
           separator: ', '
         operations:
           label: कार्यवाही

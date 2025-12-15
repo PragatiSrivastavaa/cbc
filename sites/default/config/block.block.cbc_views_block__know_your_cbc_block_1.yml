@@ -1,0 +1,24 @@
+uuid: 18770679-b917-4562-ab72-60bc63d433c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.know_your_cbc
+  module:
+    - views
+  theme:
+    - cbc
+id: cbc_views_block__know_your_cbc_block_1
+theme: cbc
+region: know_your_cbc
+weight: 0
+provider: null
+plugin: 'views_block:know_your_cbc-block_1'
+settings:
+  id: 'views_block:know_your_cbc-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility: {  }

@@ -75,6 +75,8 @@ display:
           label: नाम
         uid:
           label: लेखक
+        changed:
+          label: अद्यतित
       arguments:
         bundle:
           exception:
