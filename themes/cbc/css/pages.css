@@ -71,9 +71,11 @@ header {
 /* Header consists of: top-bar (~40px) + navbar (~140px) = ~180px total */
 #app-content {
   margin-top: 0;
-  padding-top: 100px;
+  padding-top: 24px;
   min-height: calc(100vh - 180px);
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Ensure all page content sections have proper spacing and are visible */
@@ -81,7 +83,68 @@ header {
 #app-content>.container {
   position: relative;
   z-index: 1;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
   /* padding-top: 20px;  */
+}
+
+/* Ensure sections inside containers also expand */
+#app-content section.container,
+#app-content > section {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* Ensure content sections fill available space */
+#app-content .content-section,
+#app-content section .content-section {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  max-width: 100vw;
+}
+
+/* Ensure rows and columns inside sections expand */
+#app-content section .row,
+#app-content section.container .row {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 0;
+  flex: 1 1 auto;
+}
+
+#app-content section .col,
+#app-content section [class*="col-"] {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* Ensure inner page sections expand to fill available space */
+#app-content > section:not(.page-hero-section):not(.contact-hero-section) {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  max-width: 100vw;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+/* Vision and mission sections should expand */
+.karmayogi-vision-section,
+.mission-karmayogi-section,
+.mission-karmayogi-section-alt {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 /* === CENTRALIZED CONTAINER SPACING === */
@@ -191,7 +254,7 @@ header {
 
 /* Content section with reasonable padding */
 section.container .content-section {
-  max-width: 1400px;
+  /* max-width: 1400px; */
   margin-left: auto;
   margin-right: auto;
   padding-left: 20px;
@@ -514,6 +577,145 @@ tbody tr:nth-child(even) {
   height: 26px;
   margin-right: 10px;
   flex-shrink: 0;
+}
+
+/* === LANGUAGE TOGGLE === */
+.language-toggle {
+  display: inline-block;
+  margin-left: 8px;
+  padding-left: 10px;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.language-toggle ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.language-toggle .lang-select {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+/* Drupal language switcher block structure */
+.language-toggle .block-language,
+.language-toggle .language-switcher-locale-url,
+.language-toggle nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.language-toggle nav ul,
+.language-toggle .block-language ul,
+.language-toggle .language-switcher-locale-url ul {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Style for language links/options */
+.language-toggle a,
+.language-toggle .language-link,
+.language-toggle li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+}
+
+/* Radio button style for language options */
+.language-toggle input[type="radio"] {
+  margin: 0;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  accent-color: #ffffff;
+  flex-shrink: 0;
+}
+
+/* Ensure all language items are visible */
+.language-toggle li {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* Active language style - HIDE the active language */
+.language-toggle .lang-active,
+.language-toggle a.is-active,
+.language-toggle .language-link.is-active,
+.language-toggle li.is-active,
+.language-toggle li.is-active a,
+.language-toggle li.active,
+.language-toggle li.active a {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Inactive language style - SHOW only the inactive language */
+.language-toggle .lang-inactive,
+.language-toggle a:not(.is-active),
+.language-toggle .language-link:not(.is-active),
+.language-toggle li:not(.is-active):not(.active),
+.language-toggle li:not(.is-active):not(.active) a {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.language-toggle a:hover,
+.language-toggle .language-link:hover,
+.language-toggle li a:hover {
+  opacity: 1;
+  color: #ffa500;
+  text-decoration: none;
+}
+
+/* Ensure inactive language items are visible */
+.language-toggle .lang-select,
+.language-toggle .lang-select > *:not(.is-active):not(.active),
+.language-toggle li:not(.is-active):not(.active) {
+  display: inline-flex !important;
+  visibility: visible !important;
+}
+
+/* Hide language separator if it exists, or style it */
+.language-toggle .language-switcher-separator {
+  display: none;
+}
+
+/* Make sure language block content is visible */
+.language-toggle > * {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 /* === MAIN NAVBAR (SECTION 2) === */
@@ -996,8 +1198,8 @@ ul.navbar-nav.nav-rounded {
   position: absolute;
   z-index: 1000;
   margin-top: 6px;
-  min-width: 180px;
-  max-width: 350px;
+  min-width: 260px;
+  max-width: 400px;
   max-height: 80vh;
   overflow-y: auto;
   overflow-x: visible;
@@ -1045,23 +1247,23 @@ ul.navbar-nav.nav-rounded {
 }
 
 .navbar-nav .dropdown-menu[aria-labelledby="frameworksDropdown"] {
-  min-width: 320px;
-  max-width: 380px;
+  min-width: 430px;
+  max-width: 500px;
 }
 
 .navbar-nav .dropdown-menu[aria-labelledby="initiativesDropdown"] {
-  min-width: 350px;
-  max-width: 450px;
+  min-width: 460px;
+  max-width: 550px;
 }
 
 .navbar-nav .dropdown-menu[aria-labelledby="servicesDropdown"] {
-  min-width: 380px;
-  max-width: 450px;
+  min-width: 490px;
+  max-width: 550px;
 }
 
 .navbar-nav .dropdown-menu[aria-labelledby="collaborationsDropdown"] {
-  min-width: 300px;
-  max-width: 380px;
+  min-width: 410px;
+  max-width: 500px;
 }
 
   /* Show dropdown on hover */
@@ -1134,8 +1336,8 @@ ul.navbar-nav.nav-rounded {
 }
 
 .navbar-nav .sub-items-container {
-  min-width: 200px;
-  max-width: 300px;
+  min-width: 250px;
+  max-width: 350px;
   background: rgb(253, 233, 147);
   border: 1px solid rgba(0, 99, 174, 0.2);
   border-radius: 0;
@@ -1210,8 +1412,8 @@ ul.navbar-nav.nav-rounded {
 
 /* Knowledge Repository dropdown with descriptions */
 .navbar-nav .knowledge-dropdown {
-  min-width: 350px;
-  max-width: 450px;
+  min-width: 450px;
+  max-width: 550px;
   max-height: 80vh;
   overflow-y: auto;
   overflow-x: hidden;
@@ -1367,6 +1569,87 @@ ul.navbar-nav.nav-rounded {
   font-size: 1rem;
   cursor: pointer;
   pointer-events: none;
+}
+
+/* Search button - replace text with icon using CSS background */
+.search-wrapper input[type="submit"],
+.search-wrapper button[type="submit"],
+.search-wrapper .form-submit,
+.search-wrapper button.form-submit,
+.search-wrapper input.form-submit,
+.search-wrapper .form-actions input[type="submit"],
+.search-wrapper .form-actions button[type="submit"] {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: #0063ae url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Ccircle cx='6' cy='6' r='4' stroke='%23ffffff' stroke-width='1.5' fill='none'/%3E%3Cline x1='9' y1='9' x2='12' y2='12' stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center center;
+  background-size: 20px 20px;
+  cursor: pointer;
+  font-size: 0;
+  text-indent: -9999px;
+  overflow: hidden;
+  color: transparent;
+  border-radius: 14px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Hover effect */
+.search-wrapper input[type="submit"]:hover,
+.search-wrapper button[type="submit"]:hover,
+.search-wrapper .form-submit:hover,
+.search-wrapper button.form-submit:hover,
+.search-wrapper input.form-submit:hover,
+.search-wrapper .form-actions input[type="submit"]:hover,
+.search-wrapper .form-actions button[type="submit"]:hover {
+  background-color: #004b88;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Ccircle cx='6' cy='6' r='4' stroke='%23ffffff' stroke-width='1.5' fill='none'/%3E%3Cline x1='9' y1='9' x2='12' y2='12' stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 14px 14px;
+}
+
+/* Adjust input padding if button is inside wrapper */
+.search-wrapper input[type="text"],
+.search-wrapper input[type="search"] {
+  padding-right: 12px !important;
+}
+
+/* Style for search form container */
+.search-wrapper form {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+}
+
+/* Ensure button is properly aligned and visible */
+.search-wrapper .form-actions {
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+/* Ensure search button is visible */
+.search-wrapper input[type="submit"],
+.search-wrapper button[type="submit"] {
+  visibility: visible !important;
+  display: inline-flex !important;
+  opacity: 1 !important;
+}
+
+/* Make sure button appears next to input */
+.search-wrapper .container-inline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
 }
 
 /* Responsive */
@@ -10006,8 +10289,7 @@ h1.page-hero-title {
 
 /* Statistics Section */
 .stats-section {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  border-radius: 15px;
+  background: linear-gradient(135deg, #003b73 0%, #0063ae 100%);
   border-top: 2px solid #e9ecef;
 }
 

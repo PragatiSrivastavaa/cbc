@@ -14,7 +14,9 @@ global-scripts:
     js/eventsPage.js: {}
     js/events_data.js: {}
     js/eventDetailsPage.js: {}
-    js/accessibility.js: {} 
+    js/accessibility.js: {}
+    js/languageSwitcher.js: {}
+    js/searchButtonIcon.js: {}
   dependencies:
     - core/jquery
     - core/drupal

@@ -207,3 +207,16 @@ function cbc_preprocess_links(&$variables) {
     }
   }
 }
+
+/**
+ * Implements hook_form_alter().
+ * Add placeholder to search form input.
+ */
+function cbc_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Add placeholder to search form block
+  if ($form_id == 'search_block_form' || isset($form['keys'])) {
+    if (isset($form['keys'])) {
+      $form['keys']['#attributes']['placeholder'] = 'Search';
+    }
+  }
+}

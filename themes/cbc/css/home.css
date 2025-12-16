@@ -542,6 +542,41 @@
   /* height: 450px; */
 }
 
+/* Ensure all columns have equal height */
+.combined-info-row .row {
+  display: flex;
+  align-items: stretch;
+  min-height: 100%;
+}
+
+.combined-info-row .col-lg-4,
+.combined-info-row .col-lg-5,
+.combined-info-row .col-lg-3 {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100%;
+}
+
+/* Ensure all cards/containers take full height of their column */
+.combined-info-row .jitender-card,
+.combined-info-row .whts-box,
+.combined-info-row .infocus-container {
+  height: 100% !important;
+  min-height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 1 100%;
+  align-self: stretch;
+}
+
+/* Specifically ensure whts-box stretches to match other blocks */
+.combined-info-row .whts-box {
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: auto;
+}
+
 .about-cbc-column {
   flex: 1 1 45%;
   display: flex;
@@ -612,15 +647,16 @@
 .modi-message-section .modi-message-text {
   color: #004b88 !important;
   line-height: 1.5;
+  font-weight: 500;
 }
 
 .modi-message-attribution {
-  font-weight: bold;
+  font-weight: bold !important;
   margin-top: 8px;
-  color: #004b88;
+  color: #004b88 !important;
   font-size: 1.2rem;
   line-height: 1.2;
-  text-align: right;
+  text-align: right !important;
 }
 
 /* Override for mission-karmayogi-section-alt to fit in the new layout */
@@ -694,24 +730,25 @@
   font-size: 1.5rem; /* Reduced from 1.8rem */
   font-weight: 700;
   margin-bottom: 15px;
-  color: #343a40;
+  color: #004b88;
   display: flex;
   align-items: center;
   position: relative;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
   gap:5px;
   justify-content: center;
 }
 
+/* Blue underline line (longer) */
 .mission-title::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: 4px;
   left: 0;
-  width: 50px;
-  height: 4px;
-  background-color: #007bff;
-  border-radius: 2px;
+  width: 60px;
+  height: 3px;
+  background-color: #004b88;
+  border-radius: 0;
 }
 
 .mission-title i {
@@ -720,20 +757,8 @@
 }
 
 .mission-title .accent-text {
-  color: #005ea6;
+  color: #004b88;
   white-space: nowrap;
-}
-
-.mission-title::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 70px;
-  height: 3px;
-  background: linear-gradient(90deg, #004b88, #ffb705);
-  border-radius: 2px;
 }
 
 .mission-message-bubble {
@@ -1130,6 +1155,7 @@
 
   .combined-info-row .row {
     flex-direction: column;
+    align-items: stretch;
   }
 
   .combined-info-row .col-lg-4,
@@ -1137,6 +1163,9 @@
   .combined-info-row .col-lg-3 {
     width: 100%;
     margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    height: auto;
   }
 
   .mission-modi-section {
@@ -2176,6 +2205,7 @@
   border: 1px solid #004489;
   border-radius: 20px;
   height: 100%;
+  min-height: 410px;
 }
 
 .news-header {
@@ -3630,6 +3660,7 @@ h2.infocus-heading {
   padding-top: 0.25rem;
   position: relative;
   z-index: 1;
+  padding: 1.2rem 5rem;
 }
 
 .blog-card {
@@ -3779,8 +3810,8 @@ h2.infocus-heading {
 .blog-footer {
   text-align: right;
   margin-top: 2rem;
-  padding-top: 1rem;
   position: relative;
+  margin: 2rem;
 }
 
 .blog-see-more-btn {
@@ -6769,6 +6800,57 @@ h2.infocus-heading {
   min-height: 0;
   display: flex;
   flex-direction: column;
+  border: none;
+}
+
+/* Twitter/X Card - Dark background */
+#twitter-widget-container,
+.social-card #twitter-widget-container,
+.social-card:has(#twitter-widget-container),
+.social-card:has(#twitter-widget-container) .social-embed-container {
+  background: #1a1a1a !important;
+  background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%) !important;
+}
+
+.social-card:has(#twitter-widget-container) {
+  background: #1a1a1a !important;
+}
+
+/* LinkedIn Card - Light gray background */
+#linkedin-widget-container,
+.social-card #linkedin-widget-container,
+.social-card .linkedin-company-feed,
+.social-card:has(#linkedin-widget-container),
+.social-card:has(#linkedin-widget-container) .social-embed-container {
+  background: #e8e6e1 !important;
+}
+
+.social-card:has(#linkedin-widget-container) {
+  background: #e8e6e1 !important;
+}
+
+/* Instagram Card - Gradient background */
+#instagram-widget-container,
+.social-card #instagram-widget-container,
+.social-card:has(#instagram-widget-container),
+.social-card:has(#instagram-widget-container) .social-embed-container {
+  background: linear-gradient(180deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
+}
+
+.social-card:has(#instagram-widget-container) {
+  background: linear-gradient(180deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
+}
+
+/* Facebook Card - Light blue background */
+#facebook-widget-container,
+.social-card #facebook-widget-container,
+.social-card:has(#facebook-widget-container),
+.social-card:has(#facebook-widget-container) .social-embed-container {
+  background: #cce7ff !important;
+}
+
+.social-card:has(#facebook-widget-container) {
+  background: #cce7ff !important;
 }
 
 .social-card:hover {
@@ -6795,6 +6877,118 @@ h2.infocus-heading {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  padding: 0px 8px 40px;
+  border-radius: 10px 10px 0 0;
+}
+
+/* Ensure container backgrounds fill the card */
+.social-card .social-embed-container > * {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Text colors for different platforms */
+#twitter-widget-container a,
+#twitter-widget-container p,
+#twitter-widget-container strong {
+  color: #ffffff !important;
+}
+
+#linkedin-widget-container a,
+#linkedin-widget-container p,
+#linkedin-widget-container {
+  color: #0077b5 !important;
+}
+
+#linkedin-widget-container p:last-of-type,
+#linkedin-widget-container p[style*="color:#666"] {
+  color: #666 !important;
+}
+
+#instagram-widget-container a,
+#instagram-widget-container p,
+#instagram-widget-container strong {
+  color: #ffffff !important;
+}
+
+#facebook-widget-container a[style*="color:#1877f2"],
+#facebook-widget-container p[style*="color:#1877f2"],
+#facebook-widget-container strong[style*="color:#1877f2"] {
+  color: #1877f2 !important;
+}
+
+#facebook-widget-container p[style*="color:#666"] {
+  color: #666 !important;
+}
+
+/* Follow Us button styling */
+.social-embed-container div[style*="border-radius:12px"] {
+  border-radius: 12px !important;
+  margin-top: 5px !important;
+  padding: 5px 12px !important;
+  font-size: 0.6rem !important;
+  text-align: center !important;
+  display: inline-block !important;
+  width: auto !important;
+  min-width: 80px !important;
+  max-height: 22px !important;
+}
+
+/* Twitter Follow Us button - white background */
+#twitter-widget-container div[style*="background-color:white"],
+#twitter-widget-container div[style*="border-radius:12px"] {
+  background-color:  #ffa500 !important;
+  color: #000000 !important;
+}
+
+#twitter-widget-container div[style*="background-color:white"] a,
+#twitter-widget-container div[style*="border-radius:12px"] a {
+  color: #000000 !important;
+  text-decoration: none !important;
+}
+
+/* LinkedIn Follow Us button - blue background */
+#linkedin-widget-container div[style*="background-color:#0077b5"],
+#linkedin-widget-container div[style*="border-radius:12px"] {
+  background-color: #0077b5 !important;
+  color: #ffffff !important;
+}
+
+#linkedin-widget-container div[style*="background-color:#0077b5"] a,
+#linkedin-widget-container div[style*="border-radius:12px"] a {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+/* Instagram Follow Us button - white background */
+#instagram-widget-container div[style*="background-color:white"],
+#instagram-widget-container div[style*="border-radius:12px"] {
+  /* background-color: #ffffff !important; */
+  color: #E4405F !important;
+}
+
+#instagram-widget-container div[style*="background-color:white"] a,
+#instagram-widget-container div[style*="border-radius:12px"] a {
+  color: #E4405F !important;
+  text-decoration: none !important;
+}
+
+/* Facebook Follow Us button - blue background */
+#facebook-widget-container div[style*="background-color:#1877f2"],
+#facebook-widget-container div[style*="border-radius:12px"] {
+  background-color: #1877f2 !important;
+  color: #ffffff !important;
+}
+
+#facebook-widget-container div[style*="background-color:#1877f2"] a,
+#facebook-widget-container div[style*="border-radius:12px"] a {
+  color: #ffffff !important;
+  text-decoration: none !important;
 }
 
 .social-card .social-embed-container iframe {
@@ -6819,6 +7013,7 @@ h2.infocus-heading {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   height: 100%;
 }
 
@@ -6845,17 +7040,36 @@ h2.infocus-heading {
   }
 }
 
-/* Overlay at bottom */
+/* Overlay at bottom - Dark blue background */
 .social-overlay {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(135deg, rgba(0, 99, 174, 0.85), rgba(255, 165, 0, 0.85));
-  padding: 4px 0;
+  background: #004b88 !important;
+  padding: 10px 0;
   text-align: center;
-  font-size: 0.65rem;
-  font-weight: 500;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #ffffff !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  z-index: 10;
+  border-radius: 0 0 5px 5px;
+}
+
+.social-overlay i {
+  color: #ffffff !important;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.social-overlay .fab,
+.social-overlay .fa {
+  color: #ffffff !important;
+  font-size: 1rem;
 }
 
 /* Carousel control buttons */
@@ -7445,7 +7659,7 @@ h2.infocus-heading {
 
 .jitender-message-section {
   background: #ffd684;
-  padding: 20px;
+  padding: 18px 20px;
   border-radius: 0;
   box-shadow: none;
   margin-top: 0;
@@ -8103,7 +8317,7 @@ h2.infocus-heading {
   }
 
   .jitender-message-section {
-    padding: 16px;
+    padding: 18px 20px;
   }
 
   .jitender-message-text {
@@ -10484,6 +10698,7 @@ h2.infocus-heading {
   text-align: center;
   margin-bottom: 40px;
   color: #f8a501;
+  margin-top: 4rem;
 }
 
 .leadership-grid-new {
@@ -10655,6 +10870,7 @@ h2.infocus-heading {
   margin: 0 auto;
   padding: 0 40px;
   align-items: stretch;
+  margin-bottom: 40px;
 }
 
 /* Left: Chairperson Image Card */
