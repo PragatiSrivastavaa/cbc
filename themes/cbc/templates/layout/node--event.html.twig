@@ -3,15 +3,26 @@
     <div class="row">
       <div class="col-lg-10 offset-lg-1">
 
-        {# Event Header Image #}
-        {% if node.field_event_images.entity %}
-          <div class="event-header-image">
-            <img
-              src="{{ file_url(node.field_event_images.entity.fileuri) }}"
-              alt="{{ node.label }}"
-            >
+        {# Event Images Gallery - Using Flexbox #}
+        {% if node.field_event_images %}
+          <div class="event-images-gallery">
+            {% for image_item in node.field_event_images %}
+              {% if image_item.entity %}
+                <div class="event-image-item">
+                  <img
+                    src="{{ file_url(image_item.entity.fileuri) }}"
+                    alt="{{ node.label }} - Image {{ loop.index }}"
+                    loading="lazy"
+                  >
+                </div>
+              {% endif %}
+            {% endfor %}
           </div>
-        {% endif %}
+        {% elseif content.field_event_images %}
+          {# Fallback: Use rendered content with flexbox styling #}
+          <div class="event-images-gallery event-images-gallery-rendered">
+            {{ content.field_event_images }}
+          </div>
         {% endif %}
 
         {# Event Meta Information #}
