@@ -5,12 +5,11 @@
 
         {# Event Header Image #}
         {% if node.field_event_images.entity %}
-          <div class="event-header-image">
-            <img
-              src="{{ file_url(node.field_event_images.entity.fileuri) }}"
-              alt="{{ node.label }}"
-            >
-          </div>
+          {% if content.field_event_images %}
+        <div class="event-header-image">
+        {{ content.field_event_images }}
+         </div>
+        {% endif %}
         {% endif %}
 
         {# Event Meta Information #}
@@ -47,4 +46,3 @@
       </div>
     </div>
   </div>
-</section>
