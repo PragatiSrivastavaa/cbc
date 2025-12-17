@@ -10,11 +10,13 @@ dependencies:
     - field.field.node.event.field_event_start
     - field.field.node.event.field_event_type
     - field.field.node.event.field_event_venue
+    - field.field.node.event.field_hero_section
     - field.field.node.event.field_ministry
     - field.field.node.event.field_state
     - node.type.event
   module:
     - datetime
+    - entity_reference_revisions
     - file
     - image
     - text
@@ -83,6 +85,15 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 109
+    region: content
+  field_hero_section:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 110
     region: content
   field_ministry:
     type: entity_reference_label
