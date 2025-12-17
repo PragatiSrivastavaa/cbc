@@ -320,3 +320,21 @@ display:
       tags:
         - 'config:field.storage.node.field_event_description'
         - 'config:field.storage.node.field_image'
+  page_1:
+    id: page_1
+    display_title: Page
+    display_plugin: page
+    position: 2
+    display_options:
+      display_extenders: {  }
+      path: collaboration-matters
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_event_description'
+        - 'config:field.storage.node.field_image'
