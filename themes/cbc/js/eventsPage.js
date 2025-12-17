@@ -43,6 +43,18 @@ async function initializeEventsPage() {
   setupEventListeners();
   await fetchEvents();
   // fetchEvents already calls renderCalendar() and renderEventList()
+  
+  // Set initial view state based on which view is displayed
+  const listView = document.getElementById('listView');
+  const calendarView = document.getElementById('calendarView');
+  if (listView && listView.style.display !== 'none') {
+    document.body.classList.add('list-view-active');
+    document.body.classList.remove('calendar-view-active');
+  } else if (calendarView && calendarView.style.display !== 'none') {
+    document.body.classList.add('calendar-view-active');
+    document.body.classList.remove('list-view-active');
+  }
+  
   switchView(currentView);
 }
 
@@ -442,11 +454,15 @@ function switchView(view) {
     if (listView) listView.style.display = 'none';
     if (calendarViewBtn) calendarViewBtn.classList.add('active');
     if (listViewBtn) listViewBtn.classList.remove('active');
+    document.body.classList.remove('list-view-active');
+    document.body.classList.add('calendar-view-active');
   } else {
     if (calendarView) calendarView.style.display = 'none';
     if (listView) listView.style.display = 'block';
     if (calendarViewBtn) calendarViewBtn.classList.remove('active');
     if (listViewBtn) listViewBtn.classList.add('active');
+    document.body.classList.add('list-view-active');
+    document.body.classList.remove('calendar-view-active');
   }
 }
 

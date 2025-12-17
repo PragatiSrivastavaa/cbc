@@ -1,15 +1,28 @@
-
+<section class="event-details-section">
   <div class="container">
     <div class="row">
       <div class="col-lg-10 offset-lg-1">
 
-        {# Event Header Image #}
-        {% if node.field_event_images.entity %}
-          {% if content.field_event_images %}
-        <div class="event-header-image">
-        {{ content.field_event_images }}
-         </div>
-        {% endif %}
+        {# Event Images Gallery - Using Flexbox #}
+        {% if node.field_event_images %}
+          <div class="event-images-gallery">
+            {% for image_item in node.field_event_images %}
+              {% if image_item.entity %}
+                <div class="event-image-item">
+                  <img
+                    src="{{ file_url(image_item.entity.fileuri) }}"
+                    alt="{{ node.label }} - Image {{ loop.index }}"
+                    loading="lazy"
+                  >
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% elseif content.field_event_images %}
+          {# Fallback: Use rendered content with flexbox styling #}
+          <div class="event-images-gallery event-images-gallery-rendered">
+            {{ content.field_event_images }}
+          </div>
         {% endif %}
 
         {# Event Meta Information #}
@@ -18,14 +31,14 @@
           {% if node.field_event_start.value %}
             <div class="event-meta-item">
               <i class="fas fa-calendar"></i>
-              {{ node.field_event_start.value|date('l, F j, Y') }}
+              <span>{{ node.field_event_start.value|date('l, F j, Y') }}</span>
             </div>
           {% endif %}
 
           {% if node.field_event_venue.value %}
             <div class="event-meta-item">
               <i class="fas fa-map-marker-alt"></i>
-              {{ node.field_event_venue.value }}
+              <span>{{ node.field_event_venue.value }}</span>
             </div>
           {% endif %}
 
