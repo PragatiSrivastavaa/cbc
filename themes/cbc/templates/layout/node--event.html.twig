@@ -1,0 +1,50 @@
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+
+        {# Event Header Image #}
+        {% if node.field_event_images.entity %}
+          <div class="event-header-image">
+            <img
+              src="{{ file_url(node.field_event_images.entity.fileuri) }}"
+              alt="{{ node.label }}"
+            >
+          </div>
+        {% endif %}
+
+        {# Event Meta Information #}
+        <div class="event-article-meta">
+
+          {% if node.field_event_start.value %}
+            <div class="event-meta-item">
+              <i class="fas fa-calendar"></i>
+              {{ node.field_event_start.value|date('l, F j, Y') }}
+            </div>
+          {% endif %}
+
+          {% if node.field_event_venue.value %}
+            <div class="event-meta-item">
+              <i class="fas fa-map-marker-alt"></i>
+              {{ node.field_event_venue.value }}
+            </div>
+          {% endif %}
+
+        </div>
+
+        {# Event Title #}
+        <h1 class="event-article-title">
+          {{ node.label }}
+        </h1>
+
+        {# Event Description #}
+        {% if node.field_event_description.value %}
+          <div class="event-article-content">
+            {{ content.field_event_description }}
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</section>
