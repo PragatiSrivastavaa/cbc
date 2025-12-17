@@ -11,7 +11,7 @@ _core:
 id: cbc_content
 theme: cbc
 region: content
-weight: 0
+weight: -22
 provider: null
 plugin: system_main_block
 settings:

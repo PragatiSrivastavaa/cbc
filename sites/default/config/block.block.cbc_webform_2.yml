@@ -1,0 +1,31 @@
+uuid: 5ec77ea5-ed78-4ecb-b3f5-bb4839ffabbc
+langcode: en
+status: true
+dependencies:
+  config:
+    - webform.webform.feedback
+  module:
+    - system
+    - webform
+  theme:
+    - cbc
+id: cbc_webform_2
+theme: cbc
+region: content
+weight: -21
+provider: null
+plugin: webform_block
+settings:
+  id: webform_block
+  label: Webform
+  label_display: '0'
+  provider: webform
+  webform_id: feedback
+  default_data: ''
+  redirect: false
+  lazy: false
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /contact-us
