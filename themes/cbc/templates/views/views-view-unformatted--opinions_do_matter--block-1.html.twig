@@ -9,7 +9,7 @@
             <h3>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
             <p>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}'] }}</p>
           </div>
-          <a href="pages/newsletters/raknpa-accreditation-journey.html">Read More →</a>
+          <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}" class="opinion-card-link">Read More →</a>
         </div>
         {% endfor %}
       </div>
