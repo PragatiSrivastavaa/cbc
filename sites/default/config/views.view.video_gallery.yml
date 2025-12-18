@@ -398,3 +398,38 @@ display:
         - 'config:field.storage.node.field_event_description'
         - 'config:field.storage.node.field_order_no'
         - 'config:field.storage.node.field_video'
+  page_1:
+    id: page_1
+    display_title: Page
+    display_plugin: page
+    position: 2
+    display_options:
+      defaults:
+        header: false
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: false
+          content:
+            value: "Watch videos from Capacity Building Commission leadership and learn about our initiatives\r\n\r\n"
+            format: basic_html
+          tokenize: false
+      display_extenders: {  }
+      path: video-gallery
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_event_description'
+        - 'config:field.storage.node.field_order_no'
+        - 'config:field.storage.node.field_video'
