@@ -9,55 +9,34 @@ dependencies:
     - field.field.node.photo_gallery.field_thumbnail_image
     - node.type.photo_gallery
   module:
-    - image
-    - text
+    - colorbox
     - user
 id: node.photo_gallery.default
 targetEntityType: node
 bundle: photo_gallery
 mode: default
 content:
-  field_event_description:
-    type: text_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 102
-    region: content
-  field_gallery_category:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 106
-    region: content
   field_images:
-    type: image
-    label: above
+    type: colorbox
+    label: hidden
     settings:
-      image_link: ''
-      image_style: ''
-      image_loading:
-        attribute: lazy
+      colorbox_image_style: ''
+      colorbox_gallery: post
+      colorbox_gallery_custom: ''
+      colorbox_caption: auto
+      colorbox_caption_custom: ''
+      colorbox_node_style: ''
+      colorbox_node_style_first: ''
     third_party_settings: {  }
-    weight: 104
-    region: content
-  field_thumbnail_image:
-    type: image
-    label: above
-    settings:
-      image_link: ''
-      image_style: ''
-      image_loading:
-        attribute: lazy
-    third_party_settings: {  }
-    weight: 105
+    weight: 1
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 0
     region: content
 hidden:
+  field_event_description: true
+  field_gallery_category: true
+  field_thumbnail_image: true
   langcode: true
