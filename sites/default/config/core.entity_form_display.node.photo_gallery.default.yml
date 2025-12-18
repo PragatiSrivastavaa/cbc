@@ -4,7 +4,9 @@ status: true
 dependencies:
   config:
     - field.field.node.photo_gallery.field_event_description
+    - field.field.node.photo_gallery.field_gallery_category
     - field.field.node.photo_gallery.field_images
+    - field.field.node.photo_gallery.field_thumbnail_image
     - image.style.thumbnail
     - node.type.photo_gallery
   module:
@@ -32,9 +34,27 @@ content:
       placeholder: ''
       show_summary: false
     third_party_settings: {  }
+  field_gallery_category:
+    type: entity_reference_autocomplete
+    weight: 124
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_images:
     type: image_image
     weight: 122
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_thumbnail_image:
+    type: image_image
+    weight: 123
     region: content
     settings:
       progress_indicator: throbber

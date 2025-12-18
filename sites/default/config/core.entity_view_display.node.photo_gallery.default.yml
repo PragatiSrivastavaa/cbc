@@ -4,7 +4,9 @@ status: true
 dependencies:
   config:
     - field.field.node.photo_gallery.field_event_description
+    - field.field.node.photo_gallery.field_gallery_category
     - field.field.node.photo_gallery.field_images
+    - field.field.node.photo_gallery.field_thumbnail_image
     - node.type.photo_gallery
   module:
     - image
@@ -22,6 +24,14 @@ content:
     third_party_settings: {  }
     weight: 102
     region: content
+  field_gallery_category:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 106
+    region: content
   field_images:
     type: image
     label: above
@@ -32,6 +42,17 @@ content:
         attribute: lazy
     third_party_settings: {  }
     weight: 104
+    region: content
+  field_thumbnail_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 105
     region: content
   links:
     settings: {  }
