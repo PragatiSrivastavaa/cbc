@@ -7311,6 +7311,8 @@ body.calendar-view-active .events-search-section .search-input-wrapper {
   display: flex;
   flex-direction: column;
   padding: 20px;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .event-list-title {
@@ -7341,20 +7343,42 @@ body.calendar-view-active .events-search-section .search-input-wrapper {
   font-size: 0.95rem;
   line-height: 1.6;
   margin-bottom: 20px;
-  flex: 1;
+  flex: 0 1 auto;
+  min-height: 0;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: calc(1.6em * 4);
+  word-wrap: break-word;
+  position: relative;
+  height: auto;
+}
+
+.event-list-description *,
+.event-list-description p,
+.event-list-description div,
+.event-list-description span {
+  margin: 0;
+  display: inline;
+  max-width: 100%;
+  line-height: inherit;
 }
 
 .event-list-description p {
   margin-bottom: 0;
   color: #555;
+  display: inline;
 }
 
-.event-list-description p:last-child {
-  margin-bottom: 0;
+.event-list-description p:not(:last-child)::after {
+  content: ' ';
+  white-space: normal;
+}
+
+.event-list-description br {
+  display: none;
 }
 
 .event-card-footer {
