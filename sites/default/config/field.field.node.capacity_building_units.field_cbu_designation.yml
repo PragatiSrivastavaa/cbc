@@ -1,0 +1,19 @@
+uuid: e53852d1-ea57-4dad-a44d-9c5c54f42c61
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cbu_designation
+    - node.type.capacity_building_units
+id: node.capacity_building_units.field_cbu_designation
+field_name: field_cbu_designation
+entity_type: node
+bundle: capacity_building_units
+label: 'CBU Designation'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

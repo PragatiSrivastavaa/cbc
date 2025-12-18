@@ -1,0 +1,17 @@
+uuid: 7c7e29dc-6be2-4a9f-ae62-e887d47cdf77
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Capacity Building Units'
+type: capacity_building_units
+description: null
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: false

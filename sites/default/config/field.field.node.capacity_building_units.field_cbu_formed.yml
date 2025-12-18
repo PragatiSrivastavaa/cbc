@@ -1,0 +1,19 @@
+uuid: bce036a5-8939-40a3-ae9c-f0586ab8043c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cbu_formed
+    - node.type.capacity_building_units
+id: node.capacity_building_units.field_cbu_formed
+field_name: field_cbu_formed
+entity_type: node
+bundle: capacity_building_units
+label: 'CBU Formed'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

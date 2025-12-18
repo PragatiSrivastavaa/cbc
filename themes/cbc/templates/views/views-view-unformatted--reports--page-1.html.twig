@@ -19,7 +19,7 @@
                <td style="text-align:center;">{{ loop.index }}</td>
       
                 <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</td>
-                <td><a href="{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_link}}'] }}" target="_blank" class="text-primary">View</a></td>
+                <td><a href="{{ link }}" target="_blank" class="text-primary">View</a></td>
               </tr>
              
              {% endfor %}

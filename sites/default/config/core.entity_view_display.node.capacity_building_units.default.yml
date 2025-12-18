@@ -1,0 +1,83 @@
+uuid: c3ac48f0-1c4a-4bef-9058-9bb638fe06fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.capacity_building_units.field_cbu_designation
+    - field.field.node.capacity_building_units.field_cbu_formed
+    - field.field.node.capacity_building_units.field_contact_no
+    - field.field.node.capacity_building_units.field_department
+    - field.field.node.capacity_building_units.field_designationn
+    - field.field.node.capacity_building_units.field_email
+    - field.field.node.capacity_building_units.field_name
+    - node.type.capacity_building_units
+  module:
+    - user
+id: node.capacity_building_units.default
+targetEntityType: node
+bundle: capacity_building_units
+mode: default
+content:
+  field_cbu_designation:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_cbu_formed:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_contact_no:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_department:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_designationn:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_email:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

@@ -1,0 +1,19 @@
+uuid: 0f2c2c1d-41c4-4e17-b40f-51cc0314f40f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_department
+    - node.type.capacity_building_units
+id: node.capacity_building_units.field_department
+field_name: field_department
+entity_type: node
+bundle: capacity_building_units
+label: Department
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
