@@ -1,0 +1,21 @@
+<div class="collab-content-wrapper">
+            <div class="collab-track" id="collabTrack">
+              {% for row in rows %}
+              {% set entity = row.content['#row']._entity %}
+              {% set tokens = row.content['#view'].style_plugin.render_tokens[loop.index0] %}
+              <div class="collab-box high-contrast-border">
+                {% if entity.field_image is not empty and entity.field_image.0.entity %}
+        {% set file = entity.field_image.0.entity %}
+        {% set img_url = file_url(file.fileuri) %}
+
+        <img src="{{ img_url }}" class="collab-image" alt="{{ tokens['{{ title }}'] }}">
+      {% endif %}
+               
+                <h3>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
+                <p>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ body }}'] }}{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ field_event_description }}'] }}</p>
+              </div>
+              {% endfor %}
+            </div>
+
+
+          </div>
