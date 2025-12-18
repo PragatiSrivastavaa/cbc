@@ -1,0 +1,53 @@
+uuid: b741d0ff-4df5-4cb5-8bc3-e8765cc9f9a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.reports.field_document
+    - field.field.node.reports.field_link
+    - field.field.node.reports.field_report
+    - node.type.reports
+  module:
+    - file
+    - link
+    - user
+id: node.reports.default
+targetEntityType: node
+bundle: reports
+mode: default
+content:
+  field_document:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_report:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

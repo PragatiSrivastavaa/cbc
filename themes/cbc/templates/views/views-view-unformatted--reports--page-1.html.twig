@@ -1,0 +1,32 @@
+  
+  <section class="container py-5">
+  <div class="row">
+    <div class="col-lg-11 mx-auto">
+      <div class="content-section">
+        <div class="table-responsive mt-4">
+          <table class="table table-bordered">
+            <thead style="background-color: #0066b3; color: white;">
+              <tr>
+                <th scope="col" style="width: 80px; text-align: center; font-weight: 600; text-transform: uppercase; background-color: #0066b3; color: white;">S.No</th>
+                <th scope="col" style="font-weight: 600; text-transform: uppercase; background-color: #0066b3; color: white;">Title</th>
+                <th scope="col" style="width: 180px; text-align: center; font-weight: 600; text-transform: uppercase; background-color: #0066b3; color: white;">Document/Link</th>
+              </tr>
+            </thead>
+            <tbody>
+			  {% for row in rows %}
+              {% set entity = row.content['#row']._entity %}
+              <tr>
+               <td style="text-align:center;">{{ loop.index }}</td>
+      
+                <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</td>
+                <td><a href="{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_link}}'] }}" target="_blank" class="text-primary">View</a></td>
+              </tr>
+             
+             {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

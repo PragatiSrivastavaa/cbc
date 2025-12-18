@@ -1,0 +1,29 @@
+uuid: e12105de-6978-4006-b14a-1741fa426718
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_report
+    - node.type.reports
+    - taxonomy.vocabulary.reports
+id: node.reports.field_report
+field_name: field_report
+entity_type: node
+bundle: reports
+label: Reports
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      reports: reports
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

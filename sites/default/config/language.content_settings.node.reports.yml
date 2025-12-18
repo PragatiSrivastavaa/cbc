@@ -1,0 +1,11 @@
+uuid: 1c88f1f0-4a9a-4415-bb01-6bc0921014e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.reports
+id: node.reports
+target_entity_type_id: node
+target_bundle: reports
+default_langcode: site_default
+language_alterable: true
