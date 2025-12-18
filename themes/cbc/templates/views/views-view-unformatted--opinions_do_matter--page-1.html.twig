@@ -14,7 +14,7 @@
             </div>
             <div class="opinion-card-content">
               <h3 class="opinion-card-title">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
-              <p class="opinion-card-author">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ author }}'] }}</p>
+              <p class="opinion-card-author">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_author }}'] }}</p>
               <p class="opinion-card-designation">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_designation }}'] }}</p>
               <p class="opinion-card-description">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}'] }}</p>
               <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}" class="opinion-card-link">

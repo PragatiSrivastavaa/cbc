@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.opinions_do_matter.field_author
     - field.field.node.opinions_do_matter.field_designation
     - field.field.node.opinions_do_matter.field_event_description
     - field.field.node.opinions_do_matter.field_image
@@ -34,6 +35,7 @@ content:
     weight: 100
     region: content
 hidden:
+  field_author: true
   field_designation: true
   field_event_description: true
   langcode: true

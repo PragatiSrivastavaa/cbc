@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.opinions_do_matter.field_author
     - field.field.node.opinions_do_matter.field_designation
     - field.field.node.opinions_do_matter.field_event_description
     - field.field.node.opinions_do_matter.field_image
@@ -17,6 +18,14 @@ targetEntityType: node
 bundle: opinions_do_matter
 mode: default
 content:
+  field_author:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 104
+    region: content
   field_designation:
     type: basic_string
     label: above
