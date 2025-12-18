@@ -33,7 +33,9 @@
                     <i class="fas fa-calendar"></i> {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_start }}'] }}
                   </div>
                   <h3 class="home-event-card-title">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
-                  <p class="home-event-card-description">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}'] }}</p>
+                  {% set description = row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}']|striptags|trim %}
+                  {% set truncated_description = description|length > 100 ? description|slice(0, 100) ~ '...' : description %}
+                  <p class="home-event-card-description">{{ truncated_description }}</p>
                   <div class="home-event-card-read-more">
                     Read More <i class="fas fa-arrow-right"></i>
                   </div>
