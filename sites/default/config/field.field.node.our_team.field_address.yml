@@ -1,0 +1,22 @@
+uuid: 7e98477c-7da2-43de-b640-88133979a4d8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_address
+    - node.type.our_team
+  module:
+    - text
+id: node.our_team.field_address
+field_name: field_address
+entity_type: node
+bundle: our_team
+label: Address
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

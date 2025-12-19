@@ -3,10 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.our_team.field_address
+    - field.field.node.our_team.field_email
     - field.field.node.our_team.field_event_description
     - field.field.node.our_team.field_image
-    - field.field.node.our_team.field_karmayogi_saarthis
     - field.field.node.our_team.field_linkedin_link
+    - field.field.node.our_team.field_phone
     - field.field.node.our_team.field_sequence_no
     - field.field.node.our_team.field_team_members
     - image.style.thumbnail
@@ -27,6 +29,22 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_address:
+    type: text_textarea
+    weight: 129
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_email:
+    type: string_textfield
+    weight: 127
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_event_description:
     type: text_textarea_with_summary
     weight: 11
@@ -45,14 +63,6 @@ content:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
-  field_karmayogi_saarthis:
-    type: text_textarea
-    weight: 122
-    region: content
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
   field_linkedin_link:
     type: link_default
     weight: 123
@@ -60,6 +70,14 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+    third_party_settings: {  }
+  field_phone:
+    type: string_textfield
+    weight: 128
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_sequence_no:
     type: number

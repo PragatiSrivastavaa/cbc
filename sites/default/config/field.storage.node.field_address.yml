@@ -1,12 +1,12 @@
-uuid: 9c274312-47c8-4946-a13c-b5b3f5ef529f
+uuid: 7088cb8b-6a5e-4a44-82f6-ba9bb30fe489
 langcode: en
 status: true
 dependencies:
   module:
     - node
     - text
-id: node.field_karmayogi_saarthis
-field_name: field_karmayogi_saarthis
+id: node.field_address
+field_name: field_address
 entity_type: node
 type: text_long
 settings: {  }
