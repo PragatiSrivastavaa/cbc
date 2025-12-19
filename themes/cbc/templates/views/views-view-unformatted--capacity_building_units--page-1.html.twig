@@ -1,0 +1,54 @@
+  
+  
+      <section class="karmayogi-section-fullwidth" style="background-color: #f8f9fa; padding: 40px 0;">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="content-section">
+                <div class="karmayogi-content-wrapper">
+                  <p class="mb-4" style="font-size: 1.1rem; color: #333; margin-bottom: 30px;">The Capacity Building
+                    Commission has been actively engaging with ministries and departments to establish Capacity Building
+                    Units (CBUs). Below are the details of CBUs formed across various ministries and departments.</p>
+
+                <div class="mou-status-table-wrapper">
+                  <div class="table-responsive">
+                    <table class="table mou-status-table" id="cbuTable">
+                      <thead>
+                        <tr>
+                          <th>S.No</th>
+                          <th>Ministry</th>
+                          <th>Department</th>
+                          <th>CBU Formed</th>
+                          <th>Name</th>
+                          <th>Designation</th>
+                          <th>CBU Designation</th>
+                          <th>Email</th>
+                          <th>Contact No.</th>
+                        </tr>
+                      </thead>
+                      <tbody id="cbuTableBody">
+					   {% for row in rows %}
+              {% set entity = row.content['#row']._entity %}
+                        <tr data-row-index="0">
+                          <td>{{ loop.index }}</td>
+                          <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</td>
+                          <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_department }}'] }}</td>
+                          <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_cbu_formed }}'] }}</td>
+                          <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_name }}'] }}</td>
+      <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_designationn }}'] }}</td>
+                          <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_cbu_designation }}'] }}</td>
+                          <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_email }}'] }}</td>
+                          <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_contact_no }}'] }}</td>
+                        </tr>
+                       {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>

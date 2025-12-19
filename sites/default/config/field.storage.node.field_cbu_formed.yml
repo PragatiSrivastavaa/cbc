@@ -1,0 +1,21 @@
+uuid: 64211195-c330-4df7-b77c-70b3c48817f2
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_cbu_formed
+field_name: field_cbu_formed
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,11 @@
+uuid: f60ac566-a1c6-4c72-93a3-40e6d99ddbdd
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.photo_gallery_category
+id: taxonomy_term.photo_gallery_category
+target_entity_type_id: taxonomy_term
+target_bundle: photo_gallery_category
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,29 @@
+uuid: de1190d2-204a-4560-9e48-3cda7248adf8
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.photo_gallery
+  module:
+    - system
+    - views
+  theme:
+    - cbc
+id: cbc_views_block__photo_gallery_block_2
+theme: cbc
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:photo_gallery-block_2'
+settings:
+  id: 'views_block:photo_gallery-block_2'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /advanced-case-writing-workshop

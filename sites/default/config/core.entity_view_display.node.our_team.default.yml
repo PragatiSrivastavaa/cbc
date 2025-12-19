@@ -3,10 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.our_team.field_address
+    - field.field.node.our_team.field_email
     - field.field.node.our_team.field_event_description
     - field.field.node.our_team.field_image
-    - field.field.node.our_team.field_karmayogi_saarthis
     - field.field.node.our_team.field_linkedin_link
+    - field.field.node.our_team.field_phone
     - field.field.node.our_team.field_sequence_no
     - field.field.node.our_team.field_team_members
     - image.style.wide
@@ -21,6 +23,21 @@ targetEntityType: node
 bundle: our_team
 mode: default
 content:
+  field_address:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 109
+    region: content
+  field_email:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 107
+    region: content
   field_event_description:
     type: text_default
     label: above
@@ -39,13 +56,6 @@ content:
     third_party_settings: {  }
     weight: -1
     region: content
-  field_karmayogi_saarthis:
-    type: text_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 102
-    region: content
   field_linkedin_link:
     type: link
     label: above
@@ -57,6 +67,14 @@ content:
       target: ''
     third_party_settings: {  }
     weight: 103
+    region: content
+  field_phone:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 108
     region: content
   field_sequence_no:
     type: number_integer

@@ -1,0 +1,9 @@
+uuid: 3a6a20ad-5259-43ce-8a5c-2ace8a3b4bb2
+langcode: en
+status: true
+dependencies: {  }
+name: 'Photo Gallery Category'
+vid: photo_gallery_category
+description: null
+weight: 0
+new_revision: false

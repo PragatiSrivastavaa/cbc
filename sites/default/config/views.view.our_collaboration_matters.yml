@@ -326,8 +326,24 @@ display:
     display_plugin: page
     position: 2
     display_options:
+      defaults:
+        header: false
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: false
+          content:
+            value: "Celebrating partnerships and achievements in capacity building.\r\n\r\n"
+            format: basic_html
+          tokenize: false
       display_extenders: {  }
-      path: collaboration-matters
+      path: collaborations
     cache_metadata:
       max-age: -1
       contexts:

@@ -4,10 +4,12 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.our_team.field_address
+    - field.field.node.our_team.field_email
     - field.field.node.our_team.field_event_description
     - field.field.node.our_team.field_image
-    - field.field.node.our_team.field_karmayogi_saarthis
     - field.field.node.our_team.field_linkedin_link
+    - field.field.node.our_team.field_phone
     - field.field.node.our_team.field_sequence_no
     - field.field.node.our_team.field_team_members
     - image.style.medium
@@ -37,9 +39,11 @@ content:
     weight: 100
     region: content
 hidden:
+  field_address: true
+  field_email: true
   field_event_description: true
-  field_karmayogi_saarthis: true
   field_linkedin_link: true
+  field_phone: true
   field_sequence_no: true
   field_team_members: true
   langcode: true

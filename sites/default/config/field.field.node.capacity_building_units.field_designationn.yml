@@ -1,0 +1,19 @@
+uuid: dd845255-9d9a-40c2-bbc5-584486323192
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_designationn
+    - node.type.capacity_building_units
+id: node.capacity_building_units.field_designationn
+field_name: field_designationn
+entity_type: node
+bundle: capacity_building_units
+label: Designationn
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

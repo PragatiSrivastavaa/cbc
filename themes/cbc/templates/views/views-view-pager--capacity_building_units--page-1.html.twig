@@ -1,0 +1,48 @@
+{% if items %}
+<div class="table-pagination">
+  <div class="pagination-info">
+    <span>
+      Showing {{ items.from }} to {{ items.to }} of {{ items.total }} entries
+    </span>
+  </div>
+
+  <div class="pagination-controls">
+
+    {# Previous #}
+    {% if items.previous %}
+      <a href="{{ items.previous.href }}" class="pagination-btn">
+        <i class="fas fa-chevron-left"></i> Previous
+      </a>
+    {% else %}
+      <span class="pagination-btn disabled">
+        <i class="fas fa-chevron-left"></i> Previous
+      </span>
+    {% endif %}
+
+    {# Page numbers #}
+    <div class="pagination-numbers">
+      {% for key, page in items.pages %}
+        {% if page.current %}
+          <span class="pagination-number active">{{ page.text }}</span>
+        {% else %}
+          <a href="{{ page.href }}" class="pagination-number">
+            {{ page.text }}
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {# Next #}
+    {% if items.next %}
+      <a href="{{ items.next.href }}" class="pagination-btn">
+        Next <i class="fas fa-chevron-right"></i>
+      </a>
+    {% else %}
+      <span class="pagination-btn disabled">
+        Next <i class="fas fa-chevron-right"></i>
+      </span>
+    {% endif %}
+
+  </div>
+</div>
+{% endif %}

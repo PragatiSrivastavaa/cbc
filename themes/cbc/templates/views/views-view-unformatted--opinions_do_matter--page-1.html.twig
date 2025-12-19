@@ -1,0 +1,28 @@
+<!-- Opinions Do Matter Section -->
+  <section class="karmayogi-section-fullwidth opinions-grid-section">
+    <div class="container">
+      <div class="row g-3">
+        <!-- RAKNPA Accreditation Journey -->
+
+{% for row in rows %}
+              {% set entity = row.content['#row']._entity %}
+
+        <div class="col-lg-4 col-md-6">
+          <div class="opinion-card">
+            <div class="opinion-card-image">
+              {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}
+            </div>
+            <div class="opinion-card-content">
+              <h3 class="opinion-card-title">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
+              <p class="opinion-card-author">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_author }}'] }}</p>
+              <p class="opinion-card-designation">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_designation }}'] }}</p>
+              <p class="opinion-card-description">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}'] }}</p>
+              <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}" class="opinion-card-link">
+Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        {% endfor  %}
+      </div>
+    </div>
+  </section>

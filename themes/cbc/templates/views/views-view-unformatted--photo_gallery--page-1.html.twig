@@ -1,0 +1,55 @@
+{% for row in rows %}
+
+  {% set entity = row.content['#row']._entity %}
+  {% set category = row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_gallery_category }}'] %}
+
+  {# Start new category #}
+  {% if category != current_category %}
+
+    {# Close previous category #}
+    {% if current_category != '' %}
+        </div></div>
+    {% endif %}
+
+    <div class="gallery-section mt-5 mb-5">
+      <h3 class="gallery-section-title mb-4">
+        <i class="fas fa-graduation-cap text-info"></i>
+        {{ category ?: 'No Category' }}
+      </h3>
+
+      <div class="row">
+
+    {% set current_category = category %}
+  {% endif %}
+
+  {# Gallery card #}
+  <div class="col-md-4 mb-4">
+    <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}">
+    <div class="card gallery-card">
+
+      {% if entity.field_thumbnail_image.entity %}
+        <img
+          src="{{ file_url(entity.field_thumbnail_image.entity.fileuri) }}"
+          class="card-img-top"
+          alt="{{ entity.label }}"
+        >
+      {% endif %}
+
+      <div class="card-body">
+        <h5 class="card-title">{{ entity.label }}</h5>
+        <p class="card-text">
+          {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}'] }}
+        </p>
+      </div>
+
+    </div>
+    </a>
+
+  </div>
+
+  {# Close last category #}
+  {% if loop.last %}
+      </div></div>
+  {% endif %}
+
+{% endfor %}
