@@ -1,0 +1,34 @@
+ <section class="karmayogi-section-fullwidth newsletter-content-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+          <!-- Author Info -->
+          <div class="newsletter-author-card">
+            <div class="author-info">
+
+              <h3 class="author-name">{{ node.label }}</h3>
+              {% if node.field_author.value %}
+              <p class="author-designation">{{ node.field_author.value }}</p>
+              {% endif %}
+              {% if node.field_designation.value %}
+              <p class="author-designation">{{ node.field_designation.value }}</p>
+              {% endif %}
+            </div>
+            
+          {% if node.field_image.value %}
+          <div class="author-image-wrapper">
+          {{ content.field_image }}
+          </div>
+          {% endif %}
+          </div>
+
+          <!-- Main Content -->
+            {% if node.field_event_description.value %}
+          <div class="newsletter-article">
+            {{ content.field_event_description }}
+          </div>
+        {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,25 @@
+
+  <section class="container py-5">
+  <div class="row">
+    <div class="col-lg-10 mx-auto">
+      <div class="content-section collab-detail-content">
+        <div class="text-center mb-4">
+          
+         {% if node.field_image.value %}
+          <div class="event-article-content">
+            {{ content.field_image }}
+          </div>
+        {% endif %}
+
+        </div>
+        <h1 class="collab-detail-title">{{ node.label }}</h1>
+        <p class="collab-detail-text">
+          {% if node.field_event_description.value %}
+          <div class="event-article-content">
+            {{ content.field_event_description }}
+          </div>
+        {% endif %}</p>
+      </div>
+    </div>
+  </div>
+</section>
