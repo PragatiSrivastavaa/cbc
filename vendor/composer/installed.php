@@ -3,7 +3,7 @@
         'name' => 'drupal/legacy-project',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'abf674b4caeb313020c5872be1728446570f9d4d',
+        'reference' => '0dbe3c4e8665641a89204442cce944a3a00571c5',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -409,7 +409,7 @@
         'drupal/legacy-project' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'abf674b4caeb313020c5872be1728446570f9d4d',
+            'reference' => '0dbe3c4e8665641a89204442cce944a3a00571c5',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
