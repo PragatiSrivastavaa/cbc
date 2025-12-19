@@ -1,0 +1,48 @@
+<section class="container py-5">
+  <div class="row">
+    <div class="col-lg-10 mx-auto">
+      <div class="content-section collab-detail-content">
+        <div class="text-center mb-4">
+          
+         {% if node.field_image.value %}
+          <div class="team-member-image">
+            {{ content.field_image }}
+          </div>
+        {% endif %}
+
+        </div>
+        <h1 class="collab-detail-title">{{ node.label }}</h1>
+        {% if node.field_team_members.value %}
+          <div class="team-member-name">
+           {{ node.field_team_members.entity.name.value }}
+
+          </div>
+        {% endif %}
+        
+          {% if node.field_email.value %}
+          <div class="team-member-email">
+            {{ content.field_email }}
+          </div>
+        {% endif %}
+
+        {% if node.field_phone.value %}
+          <div class="team-member-phone">
+            {{ content.field_phone }}
+          </div>
+        {% endif %}
+
+        {% if node.field_address.value %}
+          <div class="team-member-address">
+            {{ content.field_address }}
+          </div>
+        {% endif %}
+        {% if node.field_event_description.value %}
+          <div class="team-member-description">
+            {{ content.field_event_description }}
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</section>
