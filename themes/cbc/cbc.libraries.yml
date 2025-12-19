@@ -9,7 +9,6 @@ global-styling:
 global-scripts:
   js:
     js/bootstrap.bundle.min.js: {}
-    js/jquery-3.3.1.min.js: {}
     js/homePageInit.js: {}
     js/eventsPage.js: {}
     js/events_data.js: {}
@@ -19,9 +18,8 @@ global-scripts:
     js/searchButtonIcon.js: {}
   dependencies:
     - core/jquery
+    - core/jquery.form
     - core/drupal
     - core/drupalSettings
     - core/once
-    - core/drupal.dialog
-    - core/internal.jquery.form
     - core/drupal.ajax
