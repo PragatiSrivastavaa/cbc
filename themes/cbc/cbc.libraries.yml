@@ -21,5 +21,7 @@ global-scripts:
     - core/jquery
     - core/drupal
     - core/drupalSettings
-    - core/
+    - core/once
     - core/drupal.dialog
+    - core/internal.jquery.form
+    - core/drupal.ajax
