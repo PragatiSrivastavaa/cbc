@@ -9,17 +9,15 @@ label: Common
 type: 'canonical_entities:node'
 pattern: '/[node:title]'
 selection_criteria:
-  8b0ab6b7-0401-4933-96a2-1e8c42dd7c7d:
+  d8630927-bfed-4072-9bd6-a632a6f95c4c:
     id: 'entity_bundle:node'
     negate: false
-    uuid: 8b0ab6b7-0401-4933-96a2-1e8c42dd7c7d
+    uuid: d8630927-bfed-4072-9bd6-a632a6f95c4c
     context_mapping:
       node: node
     bundles:
-      capacity_building_units: capacity_building_units
       event: event
       home_banner: home_banner
-      know_your_cbc: know_your_cbc
       media_corner: media_corner
       news: news
       news_letters: news_letters
@@ -28,10 +26,7 @@ selection_criteria:
       our_partners: our_partners
       our_team: our_team
       page: page
-      photo_gallery: photo_gallery
-      reports: reports
       video_gallery: video_gallery
-      webform: webform
 selection_logic: and
 weight: -5
 relationships: {  }
