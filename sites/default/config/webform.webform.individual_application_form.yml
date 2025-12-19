@@ -54,10 +54,9 @@ elements: |-
     '#label_attributes':
       class:
         - form-label
-  cv:
-    '#type': webform_document_file
-    '#title': CV
-    '#required': true
+  cv_testing:
+    '#type': managed_file
+    '#title': Cv
     '#wrapper_attributes':
       class:
         - mb-3
@@ -68,6 +67,8 @@ elements: |-
       class:
         - form-label
     '#uri_scheme': public
+    '#max_filesize': '50'
+    '#file_extensions': 'pdf doc docx '
   contact_details:
     '#type': textfield
     '#title': 'Contact Details'
