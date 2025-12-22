@@ -4,14 +4,16 @@ status: true
 dependencies:
   config:
     - field.field.node.training_institute.field_application_no
-    - field.field.node.training_institute.field_event_description
+    - field.field.node.training_institute.field_district
+    - field.field.node.training_institute.field_institute
     - field.field.node.training_institute.field_latitude
     - field.field.node.training_institute.field_longitude
+    - field.field.node.training_institute.field_stage
+    - field.field.node.training_institute.field_state_of_map
     - field.field.node.training_institute.field_website
     - node.type.training_institute
   module:
     - link
-    - text
     - user
 id: node.training_institute.default
 targetEntityType: node
@@ -26,12 +28,21 @@ content:
     third_party_settings: {  }
     weight: 103
     region: content
-  field_event_description:
-    type: text_default
+  field_district:
+    type: string
     label: above
-    settings: {  }
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
-    weight: 102
+    weight: 108
+    region: content
+  field_institute:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 105
     region: content
   field_latitude:
     type: number_decimal
@@ -54,6 +65,22 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     weight: 102
+    region: content
+  field_stage:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_state_of_map:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 107
     region: content
   field_website:
     type: link

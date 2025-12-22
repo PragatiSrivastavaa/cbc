@@ -1,0 +1,19 @@
+uuid: c6180c03-c0c2-4b9d-b248-91fa1649d002
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_stage
+    - node.type.training_institute
+id: node.training_institute.field_stage
+field_name: field_stage
+entity_type: node
+bundle: training_institute
+label: Stage
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
