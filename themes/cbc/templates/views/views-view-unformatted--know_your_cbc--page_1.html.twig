@@ -1,10 +1,19 @@
-
+<section class="container py-5">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="content-section">
+        <p class="lead">Learn about the Capacity Building Commission, its structure, leadership, and how we work to transform civil service capacity building in India.</p>
+        
+        <!-- Document Pages Carousel Section -->
+        <div class="document-carousel-section mt-5 mb-5">
+          <h2 class="mb-4">Know Your CBC</h2>
           <div class="document-carousel-wrapper position-relative">
             <div class="carousel-controls">
               <button id="documentPrevBtn" aria-label="Previous page">‹</button>
               <button id="documentNextBtn" aria-label="Next page">›</button>
             </div>
-            <div class="document-carousel-track" id="documentCarouselTrack">
+            
+
               <!-- Presentation pages - Drupal compatible -->
               <!-- 
                 For Drupal integration:
@@ -14,28 +23,122 @@
                 2. All 28 pages are pre-rendered as static HTML (no JS required to load)
                 3. Navigation uses minimal JS with scrollIntoView (Drupal-safe)
               -->
-			      {% for row in rows %}
-              {% set entity = row.content['#row']._entity %}
-              <div class="document-page" id="kyc-page-1" data-page-number="1">
-                <div class="document-page-content">
-                  <div class="pdf-page-container">
-                   {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_images }}'] }}
-                  </div>
-                </div>
-				   {% endfor %}
-              </div>
-           
           
-			
-         
-              
-            </div>
-            <div class="carousel-indicators">
-              <span id="currentPage">1</span> / <span id="totalPages">28</span>
+      <div class="document-carousel-track" id="documentCarouselTrack">
+  {% for row in rows %}
+    <div class="document-page"
+         id="kyc-page-{{ loop.index }}"
+         data-page-number="{{ loop.index }}">
+      <div class="document-page-content">
+        <div class="pdf-page-container">
+          {{ row.content }}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+          
+           <div class="carousel-indicators">
+  <span id="currentPage">1</span> /
+  <span id="totalPages">{{ rows|length }}</span>
+</div>
+          </div>
+        </div>
+
+        <!-- Video Section -->
+        <!--
+        <div class="video-section mt-5 mb-5">
+          <h2 class="mb-4">Course Glimpse</h2>
+          <div class="video-wrapper">
+            <div class="ratio ratio-16x9">
+              <video class="w-100" controls preload="metadata">
+                <source src="video01.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
-       
-
-    
+        </div>
+        -->
         
- 
+  </div>
+</section>
+ <script>
+    // Minimal JavaScript for Know Your CBC page navigation - Drupal compatible
+    // Uses CSS scroll-snap for smooth scrolling, minimal JS for button controls
+    (function() {
+      const track = document.getElementById('documentCarouselTrack');
+      const nextBtn = document.getElementById('documentNextBtn');
+      const prevBtn = document.getElementById('documentPrevBtn');
+      const currentPageEl = document.getElementById('currentPage');
+      const totalPages = 28;
+      let currentPageIndex = 0;
+
+      if (!track || !nextBtn || !prevBtn) return;
+
+      // Get all page elements
+      const pages = track.querySelectorAll('.document-page');
+      if (pages.length === 0) return;
+
+      // Update page indicator
+      function updatePageIndicator() {
+        if (currentPageEl) {
+          currentPageEl.textContent = currentPageIndex + 1;
+        }
+      }
+
+      // Scroll to page using native scrollIntoView (no complex logic)
+      function scrollToPage(index) {
+        if (index < 0) index = totalPages - 1;
+        if (index >= totalPages) index = 0;
+        
+        currentPageIndex = index;
+        const targetPage = document.getElementById('kyc-page-' + (index + 1));
+        if (targetPage) {
+          targetPage.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        }
+        updatePageIndicator();
+      }
+
+      // Next button
+      nextBtn.addEventListener('click', function() {
+        scrollToPage(currentPageIndex + 1);
+      });
+
+      // Previous button
+      prevBtn.addEventListener('click', function() {
+        scrollToPage(currentPageIndex - 1);
+      });
+
+      // Update indicator on scroll (debounced for performance)
+      let scrollTimeout;
+      track.addEventListener('scroll', function() {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(function() {
+          const scrollLeft = track.scrollLeft;
+          const pageWidth = track.clientWidth;
+          const newIndex = Math.round(scrollLeft / pageWidth);
+          if (newIndex >= 0 && newIndex < totalPages && newIndex !== currentPageIndex) {
+            currentPageIndex = newIndex;
+            updatePageIndicator();
+          }
+        }, 100);
+      });
+
+      // Keyboard navigation
+      document.addEventListener('keydown', function(e) {
+        if (track.getBoundingClientRect().top < window.innerHeight && track.getBoundingClientRect().bottom > 0) {
+          if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            scrollToPage(currentPageIndex - 1);
+          } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            scrollToPage(currentPageIndex + 1);
+          }
+        }
+      });
+
+      // Initialize
+      updatePageIndicator();
+    })();
+  </script>

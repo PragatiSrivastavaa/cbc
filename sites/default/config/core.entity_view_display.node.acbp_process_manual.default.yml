@@ -1,0 +1,44 @@
+uuid: 83f9ea5f-d422-48db-b1fc-b7e758a64301
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.acbp_process_manual.field_download_document
+    - field.field.node.acbp_process_manual.field_link
+    - node.type.acbp_process_manual
+  module:
+    - file
+    - link
+    - user
+id: node.acbp_process_manual.default
+targetEntityType: node
+bundle: acbp_process_manual
+mode: default
+content:
+  field_download_document:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
