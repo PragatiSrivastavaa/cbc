@@ -1,0 +1,23 @@
+uuid: ca6cf9a6-b738-432a-9b7d-d25a87214302
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_longitude
+    - node.type.training_institute
+id: node.training_institute.field_longitude
+field_name: field_longitude
+entity_type: node
+bundle: training_institute
+label: Longitude
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

@@ -1,0 +1,76 @@
+uuid: 98e69289-24b9-4440-b020-01f5fd0b3845
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.training_institute.field_application_no
+    - field.field.node.training_institute.field_event_description
+    - field.field.node.training_institute.field_latitude
+    - field.field.node.training_institute.field_longitude
+    - field.field.node.training_institute.field_website
+    - node.type.training_institute
+  module:
+    - link
+    - text
+    - user
+id: node.training_institute.default
+targetEntityType: node
+bundle: training_institute
+mode: default
+content:
+  field_application_no:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_event_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_latitude:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 6
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_longitude:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_website:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
