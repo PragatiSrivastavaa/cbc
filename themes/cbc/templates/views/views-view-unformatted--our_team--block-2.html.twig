@@ -30,7 +30,6 @@
                           <p class="team-member-role">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_team_members }}'] }}</p>
                           <p class="team-member-contact"><i class="fas fa-phone"></i>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_phone }}'] }}</p>
                           <p class="team-member-contact"><i class="fas fa-envelope"></i> {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_email }}'] }}</p>
-                          <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}" class="view-more">View More →</a>
                         </div>
                       </div>
                     </div>

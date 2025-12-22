@@ -21,7 +21,7 @@
 				    {% for row in rows %}
               {% set entity = row.content['#row']._entity %}
                     <tr>
-                      <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}</td>
+                      <td><div class="collab-logo">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}</div></td>
                       <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</td>
                       <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_organisation }}'] }}</td>
                       <td>Advisory & Research</td>

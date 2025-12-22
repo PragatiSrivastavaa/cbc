@@ -8950,6 +8950,97 @@ h1.page-hero-title {
   background: #f8f9fa;
 }
 
+/* Leadership specific refinements */
+.meet-team-section-enhanced .team-member-card {
+  border-radius: 28px;
+  box-shadow: 0 20px 45px rgba(0, 43, 91, 0.08);
+  border: 1px solid rgba(0, 99, 174, 0.12);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 65%, #ffffff 100%);
+  gap: 0;
+}
+
+.meet-team-section-enhanced .team-member-card:hover {
+  box-shadow: 0 30px 65px rgba(0, 43, 91, 0.18);
+}
+
+.meet-team-section-enhanced .team-member-image {
+  padding-top: 0;
+  height: clamp(240px, 35vw, 320px);
+  border-radius: 24px 24px 0 0;
+  background: #f4f6fb;
+}
+
+.meet-team-section-enhanced .team-member-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.meet-team-section-enhanced .team-member-card:hover .team-member-image img {
+  transform: scale(1.05);
+}
+
+.meet-team-section-enhanced .team-member-info {
+  padding: 20px;
+  text-align: left;
+  /* gap: 10px; */
+}
+
+.meet-team-section-enhanced .team-member-name {
+  font-size: 1.18rem;
+  margin-bottom: 6px;
+}
+
+.meet-team-section-enhanced .team-member-role {
+  color: #0063ae;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.meet-team-section-enhanced .team-member-contact {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #4b5b75;
+  margin-bottom: 8px;
+}
+
+.meet-team-section-enhanced .team-member-contact:last-child {
+  margin-bottom: 0;
+}
+
+.meet-team-section-enhanced .team-member-contact i {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: rgba(0, 99, 174, 0.1);
+  color: #0063ae;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 767px) {
+  .meet-team-section-enhanced .team-member-card {
+    border-radius: 20px;
+  }
+
+  .meet-team-section-enhanced .team-member-image {
+    height: 220px;
+  }
+
+  .meet-team-section-enhanced .team-member-info {
+    padding: 18px;
+  }
+}
+
 .team-member-placeholder {
   position: absolute;
   top: 0;
@@ -9143,7 +9234,7 @@ h1.page-hero-title {
 }
 
 .contact-info-card .team-member-info {
-  padding: 20px 15px;
+  padding: 5px 20px;
   text-align: left;
   align-items: flex-start;
 }
@@ -9877,6 +9968,21 @@ h1.page-hero-title {
 .mou-status-table.collaboration-table tbody td:nth-child(4) {
   width: 15%;
   text-align: center;
+}
+
+.mou-status-table.collaboration-table .collab-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 25px;
+}
+
+.mou-status-table.collaboration-table .collab-logo img {
+  width: 25px;
+  height: 25px;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .table-logo {
@@ -10918,18 +11024,18 @@ h1.page-hero-title {
 }
 
 .opportunity-card-footer {
-  padding: 20px 25px 25px;
+  padding: 15px;
   border-top: 1px solid #e9ecef;
   background: #fafbfc;
 }
 
-.opportunity-btn {
+.opportunity-card-footer .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   width: 100%;
-  padding: 16px 30px;
+  padding: 12px 30px;
   background: linear-gradient(135deg, #0063ae 0%, #004b88 100%);
   color: #ffffff;
   font-size: 1.1rem;
@@ -10941,18 +11047,18 @@ h1.page-hero-title {
   border: none;
 }
 
-.opportunity-btn:hover {
+.opportunity-card-footer .button :hover {
   background: linear-gradient(135deg, #0084d4 0%, #0063ae 100%);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 99, 174, 0.4);
   color: #ffffff;
 }
 
-.opportunity-btn i {
+.opportunity-card-footer .button  i {
   transition: transform 0.3s ease;
 }
 
-.opportunity-btn:hover i {
+.opportunity-card-footer .button :hover i {
   transform: translateX(5px);
 }
 
@@ -11013,12 +11119,12 @@ h1.page-hero-title {
   border-top-color: #ffe4cc;
 }
 
-.career-opportunity-card .opportunity-btn {
+.career-opportunity-card .button {
   background: linear-gradient(135deg, #ff8c00 0%, #cc7000 100%);
   box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
 }
 
-.career-opportunity-card .opportunity-btn:hover {
+.career-opportunity-card .button:hover {
   background: linear-gradient(135deg, #ffa500 0%, #ff8c00 100%);
   box-shadow: 0 6px 20px rgba(255, 140, 0, 0.5);
 }
@@ -13649,4 +13755,8 @@ ul, ol, li {
   .event-meta-item {
     font-size: 0.9rem;
   }
+}
+
+.page-hero-section .text-formatted{
+  color: #ffffff;
 }
