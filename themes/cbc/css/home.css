@@ -1994,7 +1994,7 @@
 }
 
 .collab-content-wrapper {
-  padding: 2.5rem 5% 0;
+  padding: 2.5rem 5%;
   position: relative;
   background: #ffe7b3;
 }
@@ -2085,16 +2085,15 @@
   font-size: 1rem !important; /* Reduced from 16px */
   font-weight: 600;
   color: #0063ae;
-  margin-bottom: 1px;
+  margin-bottom: 4px;
   margin-top: 0;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  line-clamp: 2;
-  -webkit-line-clamp: 2;
-  text-overflow: ellipsis;
-  padding: 12px 12px 0;
-  line-height: 1.3;
+  padding: 12px 16px 0;
+  line-height: 1.35;
+  display: block;
+  overflow: visible;
+  text-overflow: initial;
+  white-space: normal;
+  min-height: auto;
 }
 
 .collab-box p {
@@ -4120,15 +4119,19 @@ h2.infocus-heading {
 
 /* Left: Chairperson Image Card */
 .chairperson-image-card {
-  grid-column: 1;
-  grid-row: 1;
-  background: #fff;
-  border-radius: 18px 0 0 18px;
+  background: #ffffff;
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
-  height: 480px;
+  min-height: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chairperson-image-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
 }
 
 .chairperson-image-card .chairperson-content {
@@ -4235,16 +4238,14 @@ h2.infocus-heading {
 
 /* Middle: Chairperson Message Card */
 .chairperson-message-card {
-  grid-column: 3;
-  grid-row: 1;
   background: #fff;
-  border-radius: 0 18px 18px 0;
-  padding: 15px;
+  border-radius: 24px;
+  padding: 20px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  height: 480px;
+  height: 100%;
 }
 
 .message-title {
@@ -8967,16 +8968,15 @@ h2.infocus-heading {
   font-size: 1rem !important; /* Reduced from 16px */
   font-weight: 600;
   color: #0063ae;
-  margin-bottom: 1px;
+  margin-bottom: 4px;
   margin-top: 0;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  line-clamp: 2;
-  -webkit-line-clamp: 2;
-  text-overflow: ellipsis;
-  padding: 12px 12px 0;
-  line-height: 1.3;
+  padding: 12px 16px 0;
+  line-height: 1.35;
+  display: block;
+  overflow: visible;
+  text-overflow: initial;
+  white-space: normal;
+  min-height: auto;
 }
 .collab-box p {
   font-size: 13px;
@@ -10703,10 +10703,12 @@ h2.infocus-heading {
 
 .leadership-grid-new {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
   gap: 30px;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
+  padding: 0 40px;
+  align-items: stretch;
 }
 
 /* === Card === */
@@ -10863,9 +10865,8 @@ h2.infocus-heading {
 /* === New Leadership Grid Layout === */
 .leadership-grid-new {
   display: grid;
-  grid-template-columns: 1fr 0px 1fr 30px 1fr;
-  grid-template-rows: auto;
-  gap: 15px 0;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 30px;
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 40px;
@@ -10873,17 +10874,44 @@ h2.infocus-heading {
   margin-bottom: 40px;
 }
 
+.leadership-team-column {
+  display: block;
+  background: #ffffff;
+  border-radius: 32px;
+  padding: 28px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.08);
+}
+
+.leadership-members-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.leadership-message-column {
+  display: flex;
+  align-items: stretch;
+}
+
+.leadership-message-column .chairperson-message-card {
+  flex: 1;
+}
+
+@media (max-width: 1200px) {
+  .leadership-members-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 /* Left: Chairperson Image Card */
 .chairperson-image-card {
-  grid-column: 1;
-  grid-row: 1;
   background: #fff;
-  border-radius: 18px 0 0 18px;
+  border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
-  height: 480px;
+  min-height: 420px;
 }
 
 .chairperson-image-card .chairperson-content {
@@ -10892,24 +10920,20 @@ h2.infocus-heading {
 
 .chairperson-image-wrapper {
   width: 100%;
-  height: 400px;
-  overflow: visible;
+  height: 320px;
+  overflow: hidden;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .chairperson-image-wrapper img {
-  width: 85%;
-  height: 85%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: top center;
-  transition: transform 0.5s ease;
-  border: 4px solid #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  margin: 7.5% auto;
+  transition: transform 0.4s ease;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
   display: block;
 }
 
@@ -10990,7 +11014,7 @@ h2.infocus-heading {
   grid-column: 3;
   grid-row: 1;
   background: #fff;
-  border-radius: 0 18px 18px 0;
+  border-radius: 18px;
   padding: 15px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
   display: flex;
@@ -11658,31 +11682,33 @@ h2.infocus-heading {
 @media (max-width: 992px) {
   .leadership-grid-new {
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
     gap: 25px;
     padding: 0 20px;
     align-items: stretch;
   }
 
-  .chairperson-image-card {
-    border-radius: 18px;
+  .leadership-team-column {
+    padding: 18px;
+    border-radius: 24px;
   }
 
-  .chairperson-image-card,
-  .chairperson-message-card,
-  .members-column {
-    grid-column: 1;
-    grid-row: auto;
-    height: auto;
+  .leadership-members-row {
+    grid-template-columns: 1fr;
   }
 
   .chairperson-image-wrapper {
     height: 450px;
   }
 
+  .chairperson-image-card {
+    min-height: auto;
+    border-radius: 18px;
+  }
+
   .chairperson-message-card {
     height: auto;
     border-radius: 18px;
+    padding: 18px;
   }
 
   .members-column {
@@ -11871,4 +11897,8 @@ h2.infocus-heading {
     max-height: 200px;
   }
 
+}
+
+.view-header{
+  display: none;
 }

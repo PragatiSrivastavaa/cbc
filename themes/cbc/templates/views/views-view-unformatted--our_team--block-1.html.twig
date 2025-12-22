@@ -1,20 +1,22 @@
    
   
   
-   {% for row in rows %}
-   <div class="chairperson-image-card high-contrast-border">
-              {% set entity = row.content['#row']._entity %}
-          <div class="chairperson-image-wrapper">
-            {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}
-            <div class="chairperson-overlay">
-              <p>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}'] }}</p>
-              <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}" class="view-more">View More →</a>
-              
-            </div>
-          </div>
-          <div class="chairperson-content">
-            <h3>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
-            <p class="chairperson-designation">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_team_members }}'] }}</p>
-          </div>
-          </div>
+<div class="leadership-members-row">
+{% for row in rows %}
+  <div class="chairperson-image-card high-contrast-border">
+             {% set entity = row.content['#row']._entity %}
+         <div class="chairperson-image-wrapper">
+           {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}
+           <div class="chairperson-overlay">
+             <p>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}'] }}</p>
+             <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}" class="view-more">View More →</a>
+             
+           </div>
+         </div>
+         <div class="chairperson-content">
+           <h3>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
+           <p class="chairperson-designation">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_team_members }}'] }}</p>
+         </div>
+         </div>
 		    {% endfor %}
+</div>

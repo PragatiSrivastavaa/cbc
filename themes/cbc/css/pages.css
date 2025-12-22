@@ -25,6 +25,10 @@ h1:not(.contact-hero-title):not(.page-hero-title) {
   font-size: 1.6rem !important; /* Reduced from default 2rem */
 }
 
+.collab-detail-title{
+  color: #004b88;
+}
+
 h2 {
   font-size: 1.4rem !important; /* Reduced from default 1.75rem */
 }

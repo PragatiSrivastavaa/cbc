@@ -167,20 +167,19 @@
       <h2 class="leadership-title">Commission Leadership</h2>
 
       <div class="leadership-grid-new">
-        <!-- Left: Chairperson Image and Content -->
-     
-		{{ page.our_team }}
-    </div>
-        <!-- Middle: Chairperson Message -->
-		<div class="chairperson-message-card high-contrast-border">
-          <div class="message-preview-container" id="chairpersonMessageImage">
-            <div class="message-preview-letter">
-      {{ page.chairperson_desk }}
-	  
-	  </div>
-	  </div>
-	  </div>
-      
+        <div class="leadership-team-column">
+          {{ page.our_team }}
+        </div>
+        <div class="leadership-message-column">
+          <div class="chairperson-message-card high-contrast-border">
+            <div class="message-preview-container" id="chairpersonMessageImage">
+              <div class="message-preview-letter">
+                {{ page.chairperson_desk }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Chairperson Message Modal -->
