@@ -1,0 +1,19 @@
+uuid: 3d53e9ef-a35c-451e-a18a-73746818a4d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_district
+    - node.type.training_institute
+id: node.training_institute.field_district
+field_name: field_district
+entity_type: node
+bundle: training_institute
+label: District
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,19 @@
+uuid: 44d3f5c2-05a6-4b96-9ec9-747aacc9dd60
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_institute
+    - node.type.training_institute
+id: node.training_institute.field_institute
+field_name: field_institute
+entity_type: node
+bundle: training_institute
+label: Institute
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
