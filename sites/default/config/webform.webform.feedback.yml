@@ -68,10 +68,10 @@ elements: |-
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'
-    '#attributes':
+    '#submit__label': 'Send Message'
+    '#submit__attributes':
       class:
         - btn-submit-enhanced
-    '#submit__label': 'Send Message'
 css: ''
 javascript: ''
 settings:
