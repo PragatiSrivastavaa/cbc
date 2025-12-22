@@ -1,0 +1,11 @@
+uuid: c6289ffa-e191-475d-9a49-305b85e4a2f9
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.acbp_process_manual
+id: node.acbp_process_manual
+target_entity_type_id: node
+target_bundle: acbp_process_manual
+default_langcode: site_default
+language_alterable: true
