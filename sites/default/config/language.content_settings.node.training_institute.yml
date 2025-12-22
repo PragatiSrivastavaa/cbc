@@ -1,0 +1,11 @@
+uuid: 69334632-d0fc-4c77-8d8b-cc806f504fe9
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.training_institute
+id: node.training_institute
+target_entity_type_id: node
+target_bundle: training_institute
+default_langcode: site_default
+language_alterable: false

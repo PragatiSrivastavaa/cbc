@@ -1,0 +1,23 @@
+uuid: a74dca8a-bbd5-41d6-8ca0-07526528870c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_latitude
+    - node.type.training_institute
+id: node.training_institute.field_latitude
+field_name: field_latitude
+entity_type: node
+bundle: training_institute
+label: Latitude
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

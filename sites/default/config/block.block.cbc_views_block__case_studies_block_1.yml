@@ -1,0 +1,38 @@
+uuid: 0f81b1ba-ed19-430b-a4a3-f55e612258f4
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.case_studies
+  module:
+    - language
+    - system
+    - views
+  theme:
+    - cbc
+id: cbc_views_block__case_studies_block_1
+theme: cbc
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:case_studies-block_1'
+settings:
+  id: 'views_block:case_studies-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      en: en
+      hi: hi
+  request_path:
+    id: request_path
+    negate: false
+    pages: /amrit-gyaan-kosh

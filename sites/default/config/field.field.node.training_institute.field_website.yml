@@ -1,0 +1,23 @@
+uuid: dc741a78-fd72-4b86-86bc-54b220db28e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_website
+    - node.type.training_institute
+  module:
+    - link
+id: node.training_institute.field_website
+field_name: field_website
+entity_type: node
+bundle: training_institute
+label: website
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

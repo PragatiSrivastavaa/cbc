@@ -1,0 +1,22 @@
+uuid: cadee382-508d-434b-8c98-9dfffa73710c
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.training_institute
+id: node.training_institute.promote
+field_name: promote
+entity_type: node
+bundle: training_institute
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

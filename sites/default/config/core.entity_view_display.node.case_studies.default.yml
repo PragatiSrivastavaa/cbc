@@ -1,0 +1,30 @@
+uuid: 9440892a-3154-45f2-9de5-c4f8ccce11fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.case_studies.field_document
+    - node.type.case_studies
+  module:
+    - file
+    - user
+id: node.case_studies.default
+targetEntityType: node
+bundle: case_studies
+mode: default
+content:
+  field_document:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
