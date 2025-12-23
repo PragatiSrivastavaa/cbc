@@ -1,0 +1,17 @@
+uuid: b80f560b-685b-40dd-a480-18108a40b9cf
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Important Documents'
+type: important_documents
+description: null
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: false

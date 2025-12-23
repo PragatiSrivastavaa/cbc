@@ -1,0 +1,30 @@
+uuid: 79dbac4e-9362-4d3f-8172-906ec0942346
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.registration_guidelines_for_igot.field_document
+    - node.type.registration_guidelines_for_igot
+  module:
+    - file
+    - user
+id: node.registration_guidelines_for_igot.default
+targetEntityType: node
+bundle: registration_guidelines_for_igot
+mode: default
+content:
+  field_document:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

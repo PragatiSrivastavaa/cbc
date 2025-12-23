@@ -1,0 +1,18 @@
+uuid: 513444b7-57e0-40fa-a701-d4e3f702cfb9
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.important_documents
+id: node.important_documents.title
+field_name: title
+entity_type: node
+bundle: important_documents
+label: 'Document Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
