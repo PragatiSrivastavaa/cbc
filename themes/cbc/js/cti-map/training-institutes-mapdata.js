@@ -324,218 +324,7 @@ var simplemaps_countrymap_mapdata={
       url: "default"
     }
   },
-  locations: {
-    "1": {
-      name: "Administrative Training Institute, Mizoram",
-      lat: "23.7367",
-      lng: "92.7146",
-      description: "<b>Application No:</b> APP/22/N00020<br><b>Institute:</b> Administrative Training Institute, Mizoram<br><b>Stage:</b> Certificate Generated<br><b>State:</b> Mizoram<br><b>District:</b> Aizawl",
-      url: "http://ati.mizoram.gov.in/"
-    },
-    "2": {
-      name: "Gopabandhu Academy of Administration",
-      lat: "20.2961",
-      lng: "85.8245",
-      description: "<b>Application No:</b> APP/24/N00341<br><b>Institute:</b> Gopabandhu Academy of Administration<br><b>Stage:</b> Part A Submitted<br><b>State:</b> Odisha<br><b>District:</b> Khordha",
-      url: "http://gaa.odisha.gov.in/"
-    },
-    "3": {
-      name: "Bihar Institute of Public Administration & Rural Development",
-      lat: "24.7955",
-      lng: "85.0077",
-      description: "<b>Application No:</b> APP/23/N00197<br><b>Institute:</b> Bihar Institute of Public Administration & Rural Development<br><b>Stage:</b> Certificate Generated<br><b>State:</b> Bihar<br><b>District:</b> Gaya",
-      url: "http://bipard.bihar.gov.in/"
-    },
-    "4": {
-      name: "Dr. MCR HRD Institute of Telangana",
-      lat: "17.3850",
-      lng: "78.4867",
-      description: "<b>Application No:</b> APP/23/N00156<br><b>Institute:</b> Dr. MCR HRD Institute of Telangana<br><b>Stage:</b> Certificate Generated<br><b>State:</b> Telangana<br><b>District:</b> Hyderabad",
-      url: "http://www.mcrhrdi.gov.in/"
-    },
-    "5": {
-      name: "Sri Krishna Institute of Public Administration",
-      lat: "23.3441",
-      lng: "85.3096",
-      description: "<b>Application No:</b> APP/22/N00017<br><b>Institute:</b> Sri Krishna Institute of Public Administration<br><b>Stage:</b> Certificate Generated<br><b>State:</b> Jharkhand<br><b>District:</b> Ranchi",
-      url: "http://www.sipa.nic.in/"
-    },
-    "6": {
-      name: "Anna Administrative Staff College",
-      lat: "13.0827",
-      lng: "80.2707",
-      description: "<b>Application No:</b> APP/23/N00144<br><b>Institute:</b> Anna Administrative Staff College<br><b>Stage:</b> Application in Progress<br><b>State:</b> Tamil Nadu<br><b>District:</b> Chennai",
-      url: "http://www.annaasc.edu.in/"
-    },
-    "7": {
-      name: "State Academy of Training, Manipur",
-      lat: "24.8170",
-      lng: "93.9368",
-      description: "<b>Application No:</b> APP/24/N00385<br><b>Institute:</b> State Academy of Training, Manipur<br><b>Stage:</b> Application in Progress<br><b>State:</b> Manipur<br><b>District:</b> Imphal West",
-      url: "http://satmanipur.nic.in/"
-    },
-    "8": {
-      name: "Goa Institute of Public Administration and Rural Development",
-      lat: "15.2993",
-      lng: "74.1240",
-      description: "<b>Application No:</b> APP/22/N00018<br><b>Institute:</b> Goa Institute of Public Administration and Rural Development<br><b>Stage:</b> Part A Submitted<br><b>State:</b> Goa<br><b>District:</b> North Goa",
-      url: "http://gipard.gov.in/"
-    },
-    "9": {
-      name: "Administrative Training Institute Sikkim",
-      lat: "27.3314",
-      lng: "88.6138",
-      description: "<b>Application No:</b> APP/25/N00431<br><b>Institute:</b> ADMINISTRATIVE TRAINING INSTITUTE SIKKIM<br><b>Stage:</b> Application in Progress<br><b>State:</b> Sikkim<br><b>District:</b> East Sikkim",
-      url: "http://ati.sikkim.gov.in/"
-    },
-    "10": {
-      name: "Meghalaya Administrative Training Institute",
-      lat: "25.5788",
-      lng: "91.8933",
-      description: "<b>Application No:</b> APP/23/N00209<br><b>Institute:</b> Meghalaya Administrative Training Institute<br><b>Stage:</b> Certificate Generated<br><b>State:</b> Meghalaya<br><b>District:</b> East Khasi Hills",
-      url: "http://mati.gov.in/"
-    },
-    "11": {
-      name: "Himachal Pradesh Institute of Public Administration (HPIPA)",
-      lat: "31.1048",
-      lng: "77.1734",
-      description: "<b>Application No:</b> APP/22/N00015<br><b>Institute:</b> Himachal Pradesh Institute of Public Administration (HPIPA)<br><b>Stage:</b> Certificate Generated<br><b>State:</b> Himachal Pradesh<br><b>District:</b> Shimla",
-      url: ""
-    },
-    "12": {
-      name: "Administrative Training Institute, Nagaland",
-      lat: "25.6667",
-      lng: "94.1167",
-      description: "<b>Application No:</b> APP/25/N00444<br><b>Institute:</b> Administrative Training Institute, Nagaland<br><b>Stage:</b> DA Allocated<br><b>State:</b> Nagaland",
-      url: ""
-    },
-    "13": {
-      name: "Dr R.S. Tolia Uttarakhand Academy of Administration",
-      lat: "29.3913",
-      lng: "79.4542",
-      description: "<b>Application No:</b> APP/25/N00415<br><b>Institute:</b> Dr R.S. Tolia Uttarakhand Academy of Administration<br><b>Stage:</b> Application in Progress<br><b>State:</b> Uttarakhand<br><b>District:</b> Nainital",
-      url: ""
-    },
-    "14": {
-      name: "U P Academy of Administration and Management",
-      lat: "26.8467",
-      lng: "80.9462",
-      description: "<b>Application No:</b> APP/22/N00013<br><b>Institute:</b> U P Academy of Administration and Management<br><b>Stage:</b> Part A Submitted<br><b>State:</b> Uttar Pradesh<br><b>District:</b> Lucknow",
-      url: ""
-    },
-    "15": {
-      name: "Netaji Subhas Administrative Training Institute",
-      lat: "22.5726",
-      lng: "88.3639",
-      description: "<b>Application No:</b> APP/23/N00131<br><b>Institute:</b> Netaji Subhas Administrative Training Institute<br><b>Stage:</b> Application in Progress<br><b>State:</b> West Bengal<br><b>District:</b> Kolkata",
-      url: ""
-    },
-    "16": {
-      name: "Sardar Patel Institute of Public Administration",
-      lat: "23.0225",
-      lng: "72.5714",
-      description: "<b>Application No:</b> APP/23/N00271<br><b>Institute:</b> Sardar Patel Institute of Public Administration<br><b>Stage:</b> Part A Submitted<br><b>State:</b> Gujarat<br><b>District:</b> Ahmedabad",
-      url: ""
-    },
-    "17": {
-      name: "Jammu and Kashmir Institute of Management, Public Administration",
-      lat: "34.0837",
-      lng: "74.7973",
-      description: "<b>Application No:</b> APP/24/N00334<br><b>Institute:</b> Jammu and Kashmir Institute of Management, Public Administration<br><b>Stage:</b> DA Allocated<br><b>State:</b> J&K",
-      url: ""
-    },
-    "18": {
-      name: "Institute of Management in Government",
-      lat: "8.5241",
-      lng: "76.9366",
-      description: "<b>Application No:</b> APP/22/N00031<br><b>Institute:</b> Institute of Management in Government<br><b>Stage:</b> Certificate Generated<br><b>State:</b> Kerala<br><b>District:</b> Thiruvananthapuram",
-      url: ""
-    },
-    "19": {
-      name: "Assam Administrative Staff College, Guwahati",
-      lat: "26.1445",
-      lng: "91.7362",
-      description: "<b>Application No:</b> APP/22/N00037<br><b>Institute:</b> Assam Administrative Staff College, Guwahati<br><b>Stage:</b> Certificate Generated<br><b>State:</b> Assam<br><b>District:</b> Kamrup Metropolitan",
-      url: ""
-    },
-    "20": {
-      name: "HCM Rajasthan State Institute of Public Administration",
-      lat: "26.9124",
-      lng: "75.7873",
-      description: "<b>Application No:</b> APP/23/N00086<br><b>Institute:</b> HCM Rajasthan State Institute of Public Administration<br><b>Stage:</b> Certificate Generated<br><b>State:</b> Rajasthan<br><b>District:</b> Jaipur",
-      url: ""
-    },
-    "21": {
-      name: "Chhattisgarh Academy of Administration, Nimora, Raipur",
-      lat: "21.2514",
-      lng: "81.6296",
-      description: "<b>Application No:</b> APP/25/N00428<br><b>Institute:</b> Chhattisgarh Academy of Administration, Nimora, Raipur<br><b>Stage:</b> Application in Progress<br><b>State:</b> Chhattisgarh<br><b>District:</b> Raipur",
-      url: ""
-    },
-    "22": {
-      name: "Administrative Training Institute, Arunachal Pradesh",
-      lat: "27.1000",
-      lng: "93.6167",
-      description: "<b>Application No:</b> APP/25/N00445<br><b>Institute:</b> Administrative Training Institute, Arunachal Pradesh<br><b>Stage:</b> DA Allocated<br><b>State:</b> Arunachal Pradesh<br><b>District:</b> Papum Pare",
-      url: ""
-    },
-    "23": {
-      name: "Directorate of Training (Union Territories Civil Services), Govt. of NCT of Delhi",
-      lat: "28.6714",
-      lng: "77.2915",
-      description: "<b>Application No:</b> APP/23/N00090<br><b>Institute:</b> Directorate of Training (Union Territories Civil Services), Govt. of NCT of Delhi<br><b>Stage:</b> Application in Progress<br><b>State:</b> Delhi<br><b>District:</b> Shahadara",
-      url: ""
-    },
-    "24": {
-      name: "Haryana Institute of Public Administration",
-      lat: "28.4089",
-      lng: "77.0378",
-      description: "<b>Application No:</b> APP/22/N00016<br><b>Institute:</b> Haryana Institute of Public Administration<br><b>Stage:</b> Certificate Generated<br><b>State:</b> Haryana<br><b>District:</b> Gurgaon",
-      url: ""
-    },
-    "25": {
-      name: "Andhra Pradesh Human Resource Development Institute",
-      lat: "16.3067",
-      lng: "80.4365",
-      description: "<b>Application No:</b> APP/25/N00430<br><b>Institute:</b> Andhra Pradesh Human Resource Development Institute<br><b>Stage:</b> DA NC Reply-3<br><b>State:</b> Andhra Pradesh<br><b>District:</b> Guntur",
-      url: ""
-    },
-    "26": {
-      name: "Yashwantrao Chavan Academy of Development Administration",
-      lat: "18.5204",
-      lng: "73.8567",
-      description: "<b>Application No:</b> APP/23/N00252<br><b>Institute:</b> Yashwantrao Chavan Academy of Development Administration<br><b>Stage:</b> Certificate Generated<br><b>State:</b> Maharashtra<br><b>District:</b> Pune",
-      url: ""
-    },
-    "27": {
-      name: "RCVP Noronha Academy of Administration and Management",
-      lat: "23.2599",
-      lng: "77.4126",
-      description: "<b>Application No:</b> APP/22/N00060<br><b>Institute:</b> RCVP Noronha Academy of Administration and Management<br><b>Stage:</b> Certificate Generated<br><b>State:</b> Madhya Pradesh<br><b>District:</b> Bhopal",
-      url: ""
-    },
-    "28": {
-      name: "Mahatma Gandhi State Institute of Public Administration",
-      lat: "30.7333",
-      lng: "76.7794",
-      description: "<b>Application No:</b> APP/22/N00014<br><b>Institute:</b> Mahatma Gandhi State Institute of Public Administration<br><b>Stage:</b> Certificate Generated<br><b>State:</b> Chandigarh<br><b>District:</b> Chandigarh",
-      url: ""
-    },
-    "29": {
-      name: "Administrative Training Institute, Mysore",
-      lat: "12.2958",
-      lng: "76.6394",
-      description: "<b>Application No:</b> APP/25/N00429<br><b>Institute:</b> Administrative Training Institute, Mysore<br><b>Stage:</b> Part A Submitted<br><b>State:</b> Karnataka<br><b>District:</b> Mysore",
-      url: ""
-    },
-    "30": {
-      name: "State Institute of Public Administration and Rural Development",
-      lat: "23.9408",
-      lng: "91.9882",
-      description: "<b>Application No:</b> APP/22/N00009<br><b>Institute:</b> State Institute of Public Administration and Rural Development<br><b>Stage:</b> Part A Submitted<br><b>State:</b> Tripura<br><b>District:</b> West Tripura",
-      url: ""
-    }
-  },
+  locations: {},
   labels: {
     INAN: {
       name: "Andaman and Nicobar",
@@ -683,4 +472,127 @@ var simplemaps_countrymap_mapdata={
     }
   }
 };
+
+(function (win) {
+  'use strict';
+
+  var Drupal = win.Drupal || {};
+  var drupalSettings = win.drupalSettings || {};
+  var hasFetch = typeof win.fetch === 'function';
+  var hasPromise = typeof win.Promise === 'function';
+
+  function sanitize(value) {
+    if (value === undefined || value === null) {
+      return '';
+    }
+    return String(value).replace(/\s+/g, ' ').trim();
+  }
+
+  function safeField(value) {
+    var text = sanitize(value);
+    return text || 'N/A';
+  }
+
+  function extractUrl(html) {
+    var raw = sanitize(html);
+    if (!raw) {
+      return '';
+    }
+
+    var match = raw.match(/href="([^"]+)"/i);
+    if (match && match[1]) {
+      return match[1];
+    }
+    return raw;
+  }
+
+  function buildDescription(entry) {
+    var instituteName = sanitize(entry.field_institute) || sanitize(entry.title);
+    return [
+      '<b>Application No:</b> ' + safeField(entry.field_application_no),
+      '<b>Institute:</b> ' + safeField(instituteName),
+      '<b>Stage:</b> ' + safeField(entry.field_stage),
+      '<b>State:</b> ' + safeField(entry.field_state_of_map),
+      '<b>District:</b> ' + safeField(entry.field_district)
+    ].join('<br>');
+  }
+
+  function formatLocations(data) {
+    var locations = {};
+    data.forEach(function (item, index) {
+      if (!item) {
+        return;
+      }
+      var lat = sanitize(item.field_latitude);
+      var lng = sanitize(item.field_longitude);
+      if (!lat || !lng) {
+        return;
+      }
+
+      locations[String(index + 1)] = {
+        name: sanitize(item.title) || 'Training Institute',
+        lat: lat,
+        lng: lng,
+        description: buildDescription(item),
+        url: extractUrl(item.field_website)
+      };
+    });
+    return locations;
+  }
+
+  function getApiUrl() {
+    if (Drupal && typeof Drupal.url === 'function') {
+      return Drupal.url('training-institute');
+    }
+    var baseUrl = (drupalSettings.path && drupalSettings.path.baseUrl) || '/';
+    if (baseUrl.charAt(baseUrl.length - 1) === '/') {
+      baseUrl = baseUrl.slice(0, -1);
+    }
+    return baseUrl + '/training-institute';
+  }
+
+  function hydrateLocations() {
+    if (!hasFetch || !hasPromise) {
+      console.warn('CBC training map: fetch API unavailable, map will remain empty.');
+      return null;
+    }
+
+    return win.fetch(getApiUrl(), {
+      headers: {
+        'Accept': 'application/json'
+      },
+      credentials: 'same-origin'
+    })
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error('Request failed with status ' + response.status);
+        }
+        return response.json();
+      })
+      .then(function (data) {
+        if (!Array.isArray(data)) {
+          return {};
+        }
+        return formatLocations(data);
+      })
+      .then(function (locations) {
+        simplemaps_countrymap_mapdata.locations = locations;
+        if (win.simplemaps_countrymap && typeof win.simplemaps_countrymap.load === 'function') {
+          win.simplemaps_countrymap.load();
+        }
+        return locations;
+      })
+      .catch(function (error) {
+        console.error('CBC training map: unable to fetch training institute locations.', error);
+        return {};
+      });
+  }
+
+  var hydrationPromise = hydrateLocations();
+  if (hydrationPromise && typeof hydrationPromise.then === 'function') {
+    win.trainingInstitutesMapDataPromise = hydrationPromise;
+  } else {
+    win.trainingInstitutesMapDataPromise = null;
+  }
+})(window);
 
