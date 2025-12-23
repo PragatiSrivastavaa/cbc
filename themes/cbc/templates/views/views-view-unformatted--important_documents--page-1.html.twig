@@ -1,0 +1,172 @@
+ <section class="karmayogi-section-fullwidth karmayogi-vision-section">
+    <div class="container">
+      <div class="karmayogi-content-wrapper">
+        <!-- Lead Trainers Section -->
+        <div>
+          <h2 class="karmayogi-section-title">
+           Relevant Documents For Lead Trainers (5-day)
+          </h2>
+          <div class="karmayogi-metrics-table-wrapper">
+            <table class="table karmayogi-metrics-table">
+              <thead>
+                <tr>
+                  <th>Document Name</th>
+                  <th>Link</th>
+                </tr>
+              </thead>
+              <tbody>
+			   {% for row in rows %}
+              {% set node = row.content['#row']._entity %}
+              {% set file = node.field_document.entity %}
+
+              {% if file %}
+                <tr>
+                  <td>{{ node.label }}</td>
+                  <td>
+                    <a href="{{ file_url(file.uri.value) }}">Download</a>
+                  </td>
+                </tr>
+              
+               {% endif %}
+            {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Master Trainers Section -->
+        <div>
+          <h2 class="karmayogi-section-title">
+            Relevant Documents For Master Trainers (3-day)
+          </h2>
+          <div class="karmayogi-metrics-table-wrapper">
+            <table class="table karmayogi-metrics-table">
+              <thead>
+                <tr>
+                  <th>Document Name</th>
+                  <th>Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Criteria for Nomination of Master Trainers</td>
+                  <td>
+                    <a href="#">Download</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>3-Day Master Trainer Training Schedule</td>
+                  <td>
+                    <a href="#">Download</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>3-Day Training Infrastructure & Logistical Requirements</td>
+                  <td>
+                    <a href="#">Download</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Important Instructions for Master Trainer Training Participants</td>
+                  <td>
+                    <a href="#">Download</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- End-participants Section -->
+        <div>
+          <h2 class="karmayogi-section-title">
+            Relevant Documents For End-participants (1-day)
+          </h2>
+          <div class="karmayogi-metrics-table-wrapper">
+            <table class="table karmayogi-metrics-table">
+              <thead>
+                <tr>
+                  <th>Document Name</th>
+                  <th>Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>End-Participants Training Schedule</td>
+                  <td>
+                    <a href="#">Download</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>1-Day Training Infrastructure & Logistical Requirements</td>
+                  <td>
+                    <a href="#">Download</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Important Instructions for End-Participants</td>
+                  <td>
+                    <a href="#">Download</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- All Stakeholders Section -->
+        <div>
+          <h2 class="karmayogi-section-title">
+            Relevant Documents For All Stakeholders
+          </h2>
+          <div class="karmayogi-metrics-table-wrapper">
+            <table class="table karmayogi-metrics-table">
+              <thead>
+                <tr>
+                  <th>Document Name</th>
+                  <th>Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Frequently Asked Questions (FAQs)</td>
+                  <td>
+                    <a href="#">Download</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Lead Trainer Grading Framework</td>
+                  <td>
+                    <a href="#">Download</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Baseline and Endline Assessments as a Monitoring and Evaluation Tool</td>
+                  <td>
+                    <a href="#">Download</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
