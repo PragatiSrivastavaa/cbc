@@ -23,3 +23,17 @@ global-scripts:
     - core/drupalSettings
     - core/once
     - core/drupal.ajax
+
+training-institutes-map:
+  css:
+    theme:
+      css/training-institutes-map.css: {}
+  js:
+    js/cti-map/training-institutes-mapdata.js: { weight: -3 }
+    js/cti-map/countrymap.js: { weight: -2 }
+    js/cti-map/mapinfo.js: { weight: -1 }
+    js/cti-map/training-institutes-map-init.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/once
