@@ -1,28 +1,38 @@
 <!-- Opinions Do Matter Section -->
-  <section class="karmayogi-section-fullwidth opinions-grid-section">
-    <div class="container">
-      <div class="row g-3">
-        <!-- RAKNPA Accreditation Journey -->
-
-{% for row in rows %}
-              {% set entity = row.content['#row']._entity %}
+<section class="karmayogi-section-fullwidth opinions-grid-section">
+  <div class="container">
+    <div class="row g-3">
+      {% for row in rows %}
+        {% set entity = row.content['#row']._entity %}
+        {% set tokens = row.content['#view'].style_plugin.render_tokens[loop.index0] %}
 
         <div class="col-lg-4 col-md-6">
           <div class="opinion-card">
-            <div class="opinion-card-image">
-              {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}
-            </div>
+            {% if tokens['{{ field_image }}'] %}
+              <div class="opinion-card-image">
+                {{ tokens['{{ field_image }}'] }}
+              </div>
+            {% endif %}
             <div class="opinion-card-content">
-              <h3 class="opinion-card-title">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
-              <p class="opinion-card-author">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_author }}'] }}</p>
-              <p class="opinion-card-designation">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_designation }}'] }}</p>
-              <p class="opinion-card-description">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}'] }}</p>
+              <h3 class="opinion-card-title">{{ tokens['{{ title }}'] }}</h3>
+              {% if tokens['{{ field_author }}'] %}
+                <p class="opinion-card-author">{{ tokens['{{ field_author }}'] }}</p>
+              {% endif %}
+              {% if tokens['{{ field_designation }}'] %}
+                <p class="opinion-card-designation">{{ tokens['{{ field_designation }}'] }}</p>
+              {% endif %}
+              {% if tokens['{{ field_event_description }}'] %}
+                <div class="opinion-card-description">
+                  {{ tokens['{{ field_event_description }}'] }}
+                </div>
+              {% endif %}
               <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}" class="opinion-card-link">
-Read More <i class="fas fa-arrow-right"></i></a>
+                Read More <i class="fas fa-arrow-right"></i>
+              </a>
             </div>
           </div>
         </div>
-        {% endfor  %}
-      </div>
+      {% endfor %}
     </div>
-  </section>
+  </div>
+</section>
