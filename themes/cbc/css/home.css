@@ -3740,7 +3740,7 @@ h2.infocus-heading {
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
-  padding: 0 1.25rem 1.5625rem;
+  padding: 10px 0px;
   margin-top: auto;
   display: inline-block;
   transition: all 0.3s ease;
