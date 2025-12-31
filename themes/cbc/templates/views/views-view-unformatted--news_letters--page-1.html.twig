@@ -1,36 +1,33 @@
-<div class="karmayogi-page-container">
 <section class="karmayogi-section-fullwidth">
-    <div class="container py-5">
-      <div class="row">
-        <div class="col-lg-10 offset-lg-1">
-          <div class="newsletters-list">
-           {% for row in rows %}
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <div class="newsletters-list" id="newslettersList">
+          {% for row in rows %}
             {% set entity = row.content['#row']._entity %}
             {% set tokens = row.content['#view'].style_plugin.render_tokens[loop.index0] %}
 
-            {# Default: open node if no document file #}
             {% set link_url = path('entity.node.canonical', {'node': entity.id}) %}
 
-            {# If document file exists, replace link_url with file URL #}
             {% if entity.field_document|length > 0 %}
-            {% set file_entity = entity.field_document.0.entity %}
-            {% set link_url = file_url(file_entity.fileuri) %}
+              {% set file_entity = entity.field_document.0.entity %}
+              {% set link_url = file_url(file_entity.fileuri) %}
             {% endif %}
-                            
-            <div class="newsletter-list-item">
-              <div class="newsletter-list-icon">
-                <i class="fas fa-file-pdf"></i>
+
+            <article class="newsletter-item">
+              <div class="newsletter-content">
+                <h3 class="newsletter-title">
+                  <a href="{{ link_url }}" target="_blank" rel="noopener noreferrer">
+                    {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}
+                  </a>
+                </h3>
+                <p class="newsletter-date">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_start_date }}'] }}</p>
               </div>
-              <div class="newsletter-list-content">
-                <h3><a href="{{ link_url }}" target="_blank" rel="noopener noreferrer">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</a></h3>
-                <p class="newsletter-list-date">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_start_date }}'] }}</p>
-              </div>
-            </div>
-            {% endfor  %}
-          </div>
+            </article>
+          {% endfor %}
         </div>
       </div>
     </div>
-  </section>
   </div>
+</section>
   

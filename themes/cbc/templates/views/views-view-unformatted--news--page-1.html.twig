@@ -1,34 +1,33 @@
- <section class="karmayogi-section-fullwidth">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-10 offset-lg-1">
-          <div class="whats-new-list" id="whatsNewList">
+<section class="karmayogi-section-fullwidth">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <div class="whats-new-list" id="whatsNewList">
+          {% for row in rows %}
+            {% set node = row.content['#row']._entity %}
+            {% set tokens = row.content['#view'].style_plugin.render_tokens[loop.index0] %}
+            {% set category = node.field_category.entity.label() %}
 
-      {% for row in rows %}
-        {% set node = row.content['#row']._entity %}
-        {% set tokens = row.content['#view'].style_plugin.render_tokens[loop.index0] %}
-        {% set category = node.field_category.entity.label() %}
-
-        {% if category == "What's New" %}
-{# NEW badge only for today's or upcoming items #}
-            {% set start_date = node.field_start_date.value|date("Y-m-d") %}
-            {% set today = "now"|date("Y-m-d") %}
-            {% if start_date >= today %}
-              <div class="new-badge"><span class="badge-text">NEW</span></div>
+            {% if category == "What's New" %}
+              <article class="whats-new-item">
+                {% set start_date = node.field_start_date.value|date("Y-m-d") %}
+                {% set today = "now"|date("Y-m-d") %}
+                {% if start_date >= today %}
+                  <div class="new-badge">
+                    <span class="badge-text">NEW</span>
+                  </div>
+                {% endif %}
+                <div class="whats-new-content">
+                  <h3 class="whats-new-title">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
+                  <p class="whats-new-date">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_start_date }}'] }}</p>
+                </div>
+              </article>
             {% endif %}
-              <div class="whats-new-content"><h3>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
-              <p class="whats-new-date"> {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_start_date }}'] }} </p>
-            </div>
-
-         
-
-        {% endif %}
-      {% endfor %}
- </div>
+          {% endfor %}
+        </div>
+      </div>
     </div>
   </div>
-
-</div>
 </section>
 
 

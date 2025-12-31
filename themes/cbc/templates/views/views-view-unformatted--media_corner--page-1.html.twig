@@ -1,46 +1,35 @@
-<section class="container py-5">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="content-section">
+<section class="media-corner-page-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="media-corner-content">
+          <p class="media-corner-intro">Stay updated with the latest press releases, announcements, and media coverage from the Capacity Building Commission.</p>
+          <div class="media-releases-list">
+            {% for row in rows %}
+              {% set entity = row.content['#row']._entity %}
+              {% set link_item = entity.field_link.0 %}
 
-        <p class="lead">
-          Stay updated with the latest press releases, announcements, and media coverage from the Capacity Building Commission.
-        </p>
-
-        <div class="media-releases-list mt-5">
-
-          {% for row in rows %}
-            {% set entity = row.content['#row']._entity %}
-            {% set link_item = entity.field_link.0 %}
-
-            {# Default values #}
-            {% set link = path('entity.node.canonical', {'node': entity.id()}) %}
-            {% set link_label = entity.label %}
-
-            {# If link field exists, use it #}
-            {% if link_item %}
-              {% set link = link_item.url.toString %}
-              {% if link_item.title %}
-                {% set link_label = link_item.title %}
+              {% if link_item %}
+                {% set link_url = link_item.url %}
+                {% set link_label = link_item.title ?: 'Read more on PIB' %}
+              {% else %}
+                {% set link_url = path('entity.node.canonical', {'node': entity.id()}) %}
+                {% set link_label = 'Read more on PIB' %}
               {% endif %}
-            {% endif %}
 
-            <div class="media-release-item mb-4 p-4 border rounded shadow-sm">
-              <h5 class="mb-3">
-                <a href="{{ link }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">
+              <article class="media-release-item">
+                <h3 class="media-release-title">
                   {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}
-                </a>
-              </h5>
-
-              <p class="text-muted mb-0">
-                <a href="{{ link }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">
-                  {{ link_label }}
-                </a>
-              </p>
-            </div>
-
-          {% endfor %}
-
+                </h3>
+                <p class="media-release-link">
+                  <a href="{{ link_url }}" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-external-link-alt"></i>
+                    {{ link_label }}
+                  </a>
+                </p>
+              </article>
+            {% endfor %}
+          </div>
         </div>
       </div>
     </div>
