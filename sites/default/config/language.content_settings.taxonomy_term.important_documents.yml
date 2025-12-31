@@ -1,0 +1,11 @@
+uuid: d5a3720b-20c5-4ab3-8271-5c2ce9eddfe5
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.important_documents
+id: taxonomy_term.important_documents
+target_entity_type_id: taxonomy_term
+target_bundle: important_documents
+default_langcode: site_default
+language_alterable: true

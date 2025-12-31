@@ -1,0 +1,17 @@
+uuid: e0da69a6-0e8c-4898-8340-8b62892b52d2
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Registration Guidelines For IGoT'
+type: registration_guidelines_for_igot
+description: null
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: false

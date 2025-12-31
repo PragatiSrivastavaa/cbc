@@ -1,0 +1,11 @@
+uuid: c5cc3c70-a583-4e45-b668-bc4d1ab8245b
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.registration_guidelines_for_igot
+id: node.registration_guidelines_for_igot
+target_entity_type_id: node
+target_bundle: registration_guidelines_for_igot
+default_langcode: site_default
+language_alterable: true

@@ -1,0 +1,39 @@
+uuid: c8da5a3a-e7c6-4433-8726-f845e673e935
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.important_documents.field_category
+    - field.field.node.important_documents.field_document
+    - node.type.important_documents
+  module:
+    - file
+    - user
+id: node.important_documents.default
+targetEntityType: node
+bundle: important_documents
+mode: default
+content:
+  field_category:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_document:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true

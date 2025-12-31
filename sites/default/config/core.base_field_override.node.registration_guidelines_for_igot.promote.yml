@@ -1,0 +1,22 @@
+uuid: c612452a-53f5-4a23-9906-8cf4c1ebce98
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.registration_guidelines_for_igot
+id: node.registration_guidelines_for_igot.promote
+field_name: promote
+entity_type: node
+bundle: registration_guidelines_for_igot
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

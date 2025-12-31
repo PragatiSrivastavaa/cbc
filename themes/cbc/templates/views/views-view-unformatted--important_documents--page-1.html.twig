@@ -1,0 +1,62 @@
+<section class="karmayogi-section-fullwidth karmayogi-vision-section">
+  <div class="container">
+    <div class="karmayogi-content-wrapper">
+
+      {# ---------------- Collect unique categories ---------------- #}
+      {% set categories = [] %}
+
+      {% for row in rows %}
+        {% set node = row.content['#row']._entity %}
+        {% if node.field_category.entity is not empty %}
+          {% set category = node.field_category.entity.name.value %}
+          {% if category not in categories %}
+            {% set categories = categories|merge([category]) %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+      {# ---------------- Render section per category ---------------- #}
+      {% for category in categories %}
+        <div>
+
+          <h2 class="karmayogi-section-title">
+            Relevant Documents For {{ category }}
+          </h2>
+
+          <div class="karmayogi-metrics-table-wrapper">
+            <table class="table karmayogi-metrics-table">
+              <thead>
+                <tr>
+                  <th>Document Name</th>
+                  <th>Link</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                {% for row in rows %}
+                  {% set node = row.content['#row']._entity %}
+                  {% set file = node.field_document.entity %}
+                  {% set row_category = node.field_category.entity.name.value %}
+
+                  {% if file and row_category == category %}
+                    <tr>
+                      <td>{{ node.label }}</td>
+                      <td>
+                        <a href="{{ file_url(file.uri.value) }}" target="_blank">
+                          Download
+                        </a>
+                      </td>
+                    </tr>
+                  {% endif %}
+                {% endfor %}
+
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>

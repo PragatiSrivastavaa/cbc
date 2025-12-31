@@ -1,0 +1,11 @@
+uuid: 26a8d90f-db82-469c-9007-c9c1f4ec9dc0
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.important_documents
+id: node.important_documents
+target_entity_type_id: node
+target_bundle: important_documents
+default_langcode: site_default
+language_alterable: true
