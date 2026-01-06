@@ -16,9 +16,14 @@
               </p>
             {% endif %}
           </div>
-          {% if node.field_image.value %}
+          {% if node.field_image.entity %}
             <div class="opinion-author-photo">
-              {{ content.field_image }}
+              <img
+                src="{{ file_url(node.field_image.entity.fileuri) }}"
+                alt="{{ node.field_image.alt }}"
+                loading="eager"
+                class="img-fluid"
+              >
             </div>
           {% endif %}
         </div>
