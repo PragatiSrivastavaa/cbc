@@ -13,10 +13,10 @@
               <article class="whats-new-item">
 
                 {# SAFE date handling #}
-                {% if node.field_start_date is not empty
-                  and node.field_start_date.0.value is not empty %}
+                {% if node.field_end_date is not empty
+                  and node.field_end_date.0.value is not empty %}
 
-                  {% set start_date = node.field_start_date.0.value|date('Y-m-d') %}
+                  {% set start_date = node.field_end_date.0.value|date('Y-m-d') %}
                   {% set today = 'now'|date('Y-m-d') %}
 
                   {% if start_date >= today %}
@@ -32,9 +32,9 @@
                   </a>
 
                   {# Display date safely #}
-                  {% if node.field_start_date is not empty %}
+                  {% if node.field_end_date is not empty %}
                     <p class="whats-new-date">
-                      {{ node.field_start_date.0.value|date('d M Y') }}
+                      {{ node.field_end_date.0.value|date('d M Y') }}
                     </p>
                   {% endif %}
                 </div>
