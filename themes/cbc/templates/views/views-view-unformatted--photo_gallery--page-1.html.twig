@@ -1,28 +1,38 @@
+<div class="container">
 {% for row in rows %}
 
   {% set entity = row.content['#row']._entity %}
-  {% set category = row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_gallery_category }}'] %}
+  {% set current_index = loop.index0 %}
+  {% set prev_index = current_index - 1 %}
+  
+  {# Get current category token #}
+  {% set category = row.content['#view'].style_plugin.render_tokens[current_index]['{{ field_gallery_category }}'] %}
+  
+  {# Get previous category token (null if first item) #}
+  {% set prev_category = null %}
+  {% if not loop.first %}
+    {% set prev_category = row.content['#view'].style_plugin.render_tokens[prev_index]['{{ field_gallery_category }}'] %}
+  {% endif %}
 
-  {# Start new category #}
-  {% if category != current_category %}
+  {# Determine if we need to start a new group #}
+  {% set is_new_group = loop.first or (category != prev_category) %}
 
-    {# Close previous category #}
-    {% if current_category != '' %}
-        </div></div>
-    {% endif %}
+  {# Close previous group if this is a new group (and not the very first one) #}
+  {% if is_new_group and not loop.first %}
+      </div></div>
+  {% endif %}
 
+  {# Open new group header #}
+  {% if is_new_group %}
     <div class="gallery-section mt-5 mb-5">
       <h3 class="gallery-section-title mb-4">
         <i class="fas fa-graduation-cap text-info"></i>
         {{ category ?: 'No Category' }}
       </h3>
-
       <div class="row">
-
-    {% set current_category = category %}
   {% endif %}
 
-  {# Gallery card #}
+  {# Gallery card item #}
   <div class="col-md-4 mb-4">
     <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}">
     <div class="card gallery-card">
@@ -34,22 +44,22 @@
           alt="{{ entity.label }}"
         >
       {% endif %}
-
+      
       <div class="card-body">
         <h5 class="card-title">{{ entity.label }}</h5>
-        <p class="card-text">
-          {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}'] }}
-        </p>
+        <div class="card-text">
+          {{ row.content['#view'].style_plugin.render_tokens[current_index]['{{ field_event_description }}'] }}
+        </div>
       </div>
 
     </div>
     </a>
-
   </div>
 
-  {# Close last category #}
+  {# Close the last group at the end of the loop #}
   {% if loop.last %}
       </div></div>
   {% endif %}
 
 {% endfor %}
+</div>

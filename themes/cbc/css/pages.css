@@ -15242,3 +15242,108 @@ li {
     font-size: 0.75rem;
   }
 }
+
+/* ===========================================
+   PHOTO GALLERY PAGE STYLES
+   =========================================== */
+
+/* Gallery Section Wrapper */
+.gallery-section {
+  position: relative;
+  width: 100%;
+}
+
+.gallery-section-title {
+  color: #002b5b;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #eaeaea;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gallery-section-title i {
+  color: #0063ae;
+}
+
+/* Gallery Card */
+.gallery-card {
+  border: none;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 99, 174, 0.15);
+}
+
+/* Card Image */
+.gallery-card .card-img-top {
+  height: 220px;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.gallery-card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+/* Card Body */
+.gallery-card .card-body {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-card .card-title {
+  color: #002b5b;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.gallery-card .card-text {
+  color: #555555;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.gallery-card .card-text p {
+  margin-bottom: 0.5rem;
+}
+
+/* Ensure links wrapping cards behave correctly */
+.gallery-section a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+.view-photo-gallery .col-md-4 {
+  margin-bottom: 30px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .gallery-card .card-img-top {
+    height: 200px;
+  }
+
+  .gallery-section-title {
+    font-size: 1.5rem;
+  }
+}
