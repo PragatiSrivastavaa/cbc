@@ -4,6 +4,7 @@
       <div class="col-lg-10 offset-lg-1">
         <div class="whats-new-list" id="whatsNewList">
           {% for row in rows %}
+          {% set entity = row.content['#row']._entity %}
             {% set node = row.content['#row']._entity %}
             {% set tokens = row.content['#view'].style_plugin.render_tokens[loop.index0] %}
             {% set category = node.field_category.entity.label() %}
@@ -17,9 +18,12 @@
                     <span class="badge-text">NEW</span>
                   </div>
                 {% endif %}
+                
                 <div class="whats-new-content">
-                  <h3 class="whats-new-title">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
+                  <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}" >
+                  <h3 class="whats-new-title">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3></a>
                   <p class="whats-new-date">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_start_date }}'] }}</p>
+                  
                 </div>
               </article>
             {% endif %}
