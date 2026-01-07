@@ -1,171 +1,76 @@
-(function (window) {
-  'use strict';
-
-  function escapeHtml(value) {
-    return String(value || '')
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;')
-      .trim();
-  }
-
-  function resolveValue(value) {
-    if (value && typeof value === 'object') {
-      if (Object.prototype.hasOwnProperty.call(value, 'value')) {
-        return resolveValue(value.value);
-      }
-      if (Object.prototype.hasOwnProperty.call(value, 'target_id')) {
-        if (Object.prototype.hasOwnProperty.call(value, 'title')) {
-          return resolveValue(value.title);
-        }
-        if (Object.prototype.hasOwnProperty.call(value, 'name')) {
-          return resolveValue(value.name);
-        }
-      }
-    }
-    return value;
-  }
-
-  function sanitizeUrl(value) {
-    var raw = String(resolveValue(value) || '').trim();
-    if (!raw) {
-      return '';
-    }
-    try {
-      var parsed = new URL(raw, window.location.origin);
-      if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
-        return parsed.href;
-      }
-    } catch (e) {
-      // Ignore invalid URLs.
-    }
-    return '';
-  }
-
-  function buildDescription(item) {
-    var segments = [];
-    function add(label, fieldValue) {
-      var text = escapeHtml(resolveValue(fieldValue));
-      if (text) {
-        segments.push('<b>' + label + ':</b> ' + text);
-      }
-    }
-    add('Application No', item.field_application_no);
-    add('Institute', item.field_institute || item.title);
-    add('Stage', item.field_stage);
-    add('State', item.field_state_of_map);
-    add('District', item.field_district);
-    return segments.join('<br>');
-  }
-
-  function mapInstitutesToLocations(items) {
-    var locations = {};
-    var counter = 0;
-    (items || []).forEach(function (rawItem) {
-      var normalized = rawItem && rawItem.node ? rawItem.node : rawItem;
-      if (!normalized) {
-        return;
-      }
-      var lat = parseFloat(resolveValue(normalized.field_latitude));
-      var lng = parseFloat(resolveValue(normalized.field_longitude));
-      if (!isFinite(lat) || !isFinite(lng)) {
-        return;
-      }
-      counter += 1;
-      var key = String(counter);
-      var title = resolveValue(normalized.title) || resolveValue(normalized.field_institute) || 'Training Institute';
-      locations[key] = {
-        name: escapeHtml(title),
-        lat: lat.toString(),
-        lng: lng.toString(),
-        description: buildDescription(normalized),
-        url: sanitizeUrl(normalized.field_website)
-      };
-    });
-    return locations;
-  }
-
-  function applyInstituteData(items) {
-    baseConfig.locations = mapInstitutesToLocations(items);
-    window.simplemaps_countrymap_mapdata = JSON.parse(JSON.stringify(baseConfig));
-    return baseConfig.locations;
-  }
-
-  var baseConfig = {
-    main_settings: {
-      //General settings
-      width: "responsive",
-      background_color: "#FFFFFF",
-      background_transparent: "yes",
-      border_color: "#ffffff",
-      pop_ups: "detect",
-
-      //State defaults
-      state_description: "State description",
-      state_color: "#0063ae",
-      state_hover_color: "#004b88",
-      state_url: "",
-      border_size: 1.5,
-      all_states_inactive: "no",
-      all_states_zoomable: "yes",
-
-      //Location defaults
-      location_description: "Location description",
-      location_url: "",
-      location_color: "#ff9800",
-      location_opacity: 0.8,
-      location_hover_opacity: 1,
-      location_size: 25,
-      location_type: "circle",
-      location_image_source: "location-pin.png",
-      location_border_color: "#FFFFFF",
-      location_border: 2,
-      location_hover_border: 2.5,
-      all_locations_inactive: "no",
-      all_locations_hidden: "no",
-
-      //Label defaults
-      label_color: "#ffffff",
-      label_hover_color: "#ffffff",
-      label_size: 16,
-      label_font: "Arial",
-      label_display: "auto",
-      label_scale: "yes",
-      hide_labels: "no",
-      hide_eastern_labels: "no",
-
-      //Zoom settings
-      zoom: "yes",
-      manual_zoom: "yes",
-      back_image: "no",
-      initial_back: "no",
-      initial_zoom: "0",
-      initial_zoom_solo: "no",
-      region_opacity: 1,
-      region_hover_opacity: 0.6,
-      zoom_out_incrementally: "yes",
-      zoom_percentage: 0.99,
-      zoom_time: 0.5,
-
-      //Popup settings
-      popup_color: "white",
-      popup_opacity: 0.9,
-      popup_shadow: 1,
-      popup_corners: 5,
-      popup_font: "12px/1.5 Verdana, Arial, Helvetica, sans-serif",
-      popup_nocss: "no",
-
-      //Advanced settings
-      div: "training-institutes-map",
-      auto_load: "no",
-      url_new_tab: "yes",
-      images_directory: "",
-      fade_time: 0.1,
-      link_text: "Visit Website"
-    },
-    state_specific: {
+var simplemaps_countrymap_mapdata={
+  main_settings: {
+    //General settings
+		width: "responsive",
+    background_color: "#FFFFFF",
+    background_transparent: "yes",
+    border_color: "#ffffff",
+    pop_ups: "detect",
+    
+		//State defaults
+		state_description: "State description",
+    state_color: "#0063ae",
+    state_hover_color: "#004b88",
+    state_url: "",
+    border_size: 1.5,
+    all_states_inactive: "no",
+    all_states_zoomable: "yes",
+    
+		//Location defaults
+		location_description: "Location description",
+    location_url: "",
+    location_color: "#ff9800",
+    location_opacity: 0.8,
+    location_hover_opacity: 1,
+    location_size: 25,
+    location_type: "circle",
+    location_image_source: "location-pin.png",
+    location_border_color: "#FFFFFF",
+    location_border: 2,
+    location_hover_border: 2.5,
+    all_locations_inactive: "no",
+    all_locations_hidden: "no",
+    
+		//Label defaults
+		label_color: "#ffffff",
+    label_hover_color: "#ffffff",
+    label_size: 16,
+    label_font: "Arial",
+    label_display: "auto",
+    label_scale: "yes",
+    hide_labels: "no",
+    hide_eastern_labels: "no",
+   
+		//Zoom settings
+		zoom: "yes",
+    manual_zoom: "yes",
+    back_image: "no",
+    initial_back: "no",
+    initial_zoom: "0",
+    initial_zoom_solo: "no",
+    region_opacity: 1,
+    region_hover_opacity: 0.6,
+    zoom_out_incrementally: "yes",
+    zoom_percentage: 0.99,
+    zoom_time: 0.5,
+    
+		//Popup settings
+		popup_color: "white",
+    popup_opacity: 0.9,
+    popup_shadow: 1,
+    popup_corners: 5,
+    popup_font: "12px/1.5 Verdana, Arial, Helvetica, sans-serif",
+    popup_nocss: "no",
+    
+		//Advanced settings
+		div: "training-institutes-map",
+    auto_load: "yes",
+    url_new_tab: "yes",
+    images_directory: "",
+    fade_time: 0.1,
+    link_text: "Visit Website"
+  },
+  state_specific: {
     INAN: {
       name: "Andaman and Nicobar",
       description: "default",
@@ -691,9 +596,3 @@
   }
 })(window);
 
-  window.CBCTrainingMapBaseConfig = baseConfig;
-  window.CBCTrainingMapApplyData = applyInstituteData;
-
-  // Provide the legacy global expected by SimpleMaps on load.
-  window.simplemaps_countrymap_mapdata = JSON.parse(JSON.stringify(baseConfig));
-})(window);

@@ -1,55 +1,9 @@
-(function (Drupal, once, window, document) {
+(function (Drupal, once) {
   'use strict';
 
   var PIN_POINT_FACTOR = 0.3;
   var MAX_ATTEMPTS = 20;
   var ATTEMPT_DELAY = 300;
-
-  function normalizeCollection(data) {
-    if (!data) {
-      return [];
-    }
-    if (Array.isArray(data)) {
-      return data;
-    }
-    if (Array.isArray(data.data)) {
-      return data.data;
-    }
-    if (Array.isArray(data.records)) {
-      return data.records;
-    }
-    if (Array.isArray(data.nodes)) {
-      return data.nodes;
-    }
-    return [];
-  }
-
-  function fetchInstitutes(endpoint) {
-    return window.fetch(endpoint, {
-      headers: {
-        'Accept': 'application/json'
-      },
-      credentials: 'same-origin'
-    }).then(function (response) {
-      if (!response.ok) {
-        throw new Error('HTTP ' + response.status);
-      }
-      return response.json();
-    }).then(function (payload) {
-      return normalizeCollection(payload);
-    });
-  }
-
-  function getJsonEndpoint() {
-    try {
-      var url = new URL(window.location.href);
-      url.searchParams.set('_format', 'json');
-      return url.toString();
-    } catch (error) {
-      var separator = window.location.search ? '&' : '?';
-      return window.location.href + separator + '_format=json';
-    }
-  }
 
   function isTargetLocationElement(element, allowedClasses) {
     if (!allowedClasses || !allowedClasses.length) {
@@ -185,13 +139,16 @@
     observer.observe(container, { childList: true, subtree: true });
   }
 
-  function renderSimpleMap(container, config) {
-    window.simplemaps_countrymap_mapdata = config;
-    window.simplemaps_countrymap.mapinfo = window.simplemaps_countrymap_mapinfo;
-    if (container) {
-      container.innerHTML = '';
+  function initializeMap(container) {
+    if (typeof simplemaps_countrymap === 'undefined' ||
+      typeof simplemaps_countrymap_mapdata === 'undefined' ||
+      typeof simplemaps_countrymap_mapinfo === 'undefined') {
+      console.error('CBC training map: required SimpleMaps assets are missing.');
+      return;
     }
-    window.simplemaps_countrymap.create();
+
+    simplemaps_countrymap.mapinfo = simplemaps_countrymap_mapinfo;
+    simplemaps_countrymap.create();
 
     var allowedClasses = [];
     waitForSVG(container, function (svg) {
@@ -199,33 +156,6 @@
       removeWatermark(container);
     });
     observeMarkerMutations(container, allowedClasses);
-  }
-
-  function initializeMap(container) {
-    if (typeof window.simplemaps_countrymap === 'undefined' ||
-      typeof window.simplemaps_countrymap_mapinfo === 'undefined') {
-      console.error('CBC training map: required SimpleMaps assets are missing.');
-      return;
-    }
-    if (typeof window.CBCTrainingMapBaseConfig === 'undefined') {
-      console.error('CBC training map: base configuration is missing.');
-      return;
-    }
-
-    var endpoint = getJsonEndpoint();
-    fetchInstitutes(endpoint).catch(function (error) {
-      console.warn('CBC training map: unable to fetch institute data, rendering empty map.', error);
-      return [];
-    }).then(function (items) {
-      if (typeof window.CBCTrainingMapApplyData === 'function') {
-        window.CBCTrainingMapApplyData(items);
-      } else {
-        console.warn('CBC training map: apply hook missing, using base config only.');
-      }
-      var mapData = window.simplemaps_countrymap_mapdata ||
-        JSON.parse(JSON.stringify(window.CBCTrainingMapBaseConfig));
-      renderSimpleMap(container, mapData);
-    });
   }
 
   Drupal.behaviors.trainingInstitutesMap = {
@@ -236,5 +166,5 @@
       });
     }
   };
-})(Drupal, once, window, document);
+})(Drupal, once);
 
