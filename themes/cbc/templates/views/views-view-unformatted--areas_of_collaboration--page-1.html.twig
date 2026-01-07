@@ -23,6 +23,15 @@
                   <tbody>
 				    {% for row in rows %}
               {% set entity = row.content['#row']._entity %}
+                   {% set link_item = entity.field_action.0 %}
+
+                {% if link_item %}
+                  {# Convert internal/external link to usable URL #}
+                  {% set link = link_item.url %}
+                {% else %}
+                  {# If linked field is empty, link to node page #}
+                  {% set link = path('entity.node.canonical', {'node': entity.id()}) %}
+                {% endif %}
                     <tr>
                       <td><div class="collab-logo">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}</div></td>
                       <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</td>
@@ -30,7 +39,7 @@
 					  <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_remarks }}'] }}</td>
                       
                      <td>
-  <a href="{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['field_action'] }}" 
+  <a href="{{ link }}" 
      class="action-link" 
      target="_blank">
     Visit Site
