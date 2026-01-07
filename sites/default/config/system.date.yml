@@ -6,6 +6,6 @@ country:
 timezone:
   default: Asia/Kolkata
   user:
-    configurable: true
+    configurable: false
     default: 0
     warn: false
