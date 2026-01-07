@@ -15347,3 +15347,96 @@ li {
     font-size: 1.5rem;
   }
 }
+
+/* ===========================================
+   PHOTO GALLERY DETAIL PAGE STYLES (Node)
+   =========================================== */
+
+.node--type-photo-gallery {
+  padding: 30px 20px 60px;
+  max-width: 1400px;
+  /* Or use a standard container width like 1320px */
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Images Grid Container */
+.node--type-photo-gallery .field--name-field-images.field__items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.node--type-photo-gallery .field--name-field-images .field__item {
+  margin: 0;
+  display: flex;
+}
+
+/* Image Styles */
+.node--type-photo-gallery .field--name-field-images img {
+  width: 100%;
+  height: 220px;
+  /* Consistent height for grid alignment */
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+  display: block;
+  background-color: #f0f0f0;
+}
+
+.node--type-photo-gallery .field--name-field-images img:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0, 99, 174, 0.2);
+}
+
+/* Colorbox Link Wrapper */
+/* Colorbox Link Wrapper */
+.node--type-photo-gallery .cboxElement {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  cursor: zoom-in;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Hover Title Overlay */
+.node--type-photo-gallery .cboxElement::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.node--type-photo-gallery .cboxElement:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .node--type-photo-gallery .field--name-field-images .field__items {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    gap: 16px;
+  }
+
+  .node--type-photo-gallery .field--name-field-images img {
+    height: auto;
+    max-height: 400px;
+  }
+}
