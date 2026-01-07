@@ -20,6 +20,7 @@
     <div class="news-banner-track" id="newsTrack">
 
       {% for row in rows %}
+      {% set entity = row.content['#row']._entity %}
         {% set node = row.content['#row']._entity %}
         {% set tokens = row.content['#view'].style_plugin.render_tokens[loop.index0] %}
         {% set category = node.field_category.entity.label() %}
@@ -40,7 +41,7 @@
             {% endif %}
 
             <div class="news-banner-content">
-              <p>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</p>
+              <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}"><p>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</p></a>
             </div>
 
           </div>
