@@ -14,7 +14,7 @@ function initializeHomePage() {
     initializeMediaCorner();
     initializeNewsletters();
     initializeYouTubeCarousel();
-     initializePhotoCarousel();
+    initializePhotoCarousel();
     initializeSocialCarousel();
     initializeInfocusSection();
     initializeHomeEvents();
@@ -93,7 +93,7 @@ function initializeAlertBar() {
   let isPaused = false;
   let animationOffset = 0;
   const alertItems = alertTrack.querySelectorAll('.alert-item');
-  
+
   // Calculate step size based on first item
   function getStepSize() {
     if (alertItems.length === 0) return 400;
@@ -162,22 +162,22 @@ function initializeAlertBar() {
   function scrollContent(direction) {
     const step = getStepSize();
     const scrollAmount = direction === 'left' ? step : -step;
-    
+
     // Get current animation position
     const currentPos = getCurrentTransform();
-    
+
     // Calculate new offset
     animationOffset = currentPos + scrollAmount;
-    
+
     // Temporarily pause to apply the scroll
     const wasPaused = isPaused;
     if (!wasPaused) {
       alertTrack.style.animationPlayState = 'paused';
     }
-    
+
     // Apply the scroll offset
     alertTrack.style.transform = `translateX(${animationOffset}px)`;
-    
+
     // If it wasn't paused, resume animation after a brief moment
     // The animation will continue from its current cycle
     if (!wasPaused) {
@@ -186,18 +186,18 @@ function initializeAlertBar() {
         // The animation will pick up from where it was
         alertTrack.style.transform = '';
         alertTrack.style.animationPlayState = 'running';
-        
+
         // To make the scroll stick, we need to adjust the animation timing
         // Get the track width to calculate the offset percentage
         const trackWidth = alertTrack.scrollWidth / 2; // Since we duplicate items
         const offsetPercent = (animationOffset / trackWidth) * 100;
-        
+
         // Adjust animation to start from the scrolled position
         // We'll use animation-delay to offset the start
         const animationDuration = 10; // seconds
         const delaySeconds = (offsetPercent / 100) * animationDuration;
         alertTrack.style.animationDelay = `-${delaySeconds}s`;
-        
+
         animationOffset = 0; // Reset for next time
       }, 100);
     }
@@ -246,7 +246,7 @@ function initializeCountSection() {
       // Reset to 0 before animating
       counter.innerText = '0';
       const target = +counter.getAttribute('data-target');
-      
+
       if (!target || isNaN(target)) {
         console.warn('Invalid data-target for counter:', counter, 'target:', target);
         return;
@@ -282,7 +282,7 @@ function initializeCountSection() {
     const isVisible = rect.top < windowHeight && rect.bottom > 0;
     return isVisible;
   };
-  
+
   // Try to animate immediately if section is visible
   if (checkVisibility()) {
     setTimeout(() => {
@@ -303,11 +303,11 @@ function initializeCountSection() {
         }
       }
     });
-  }, { 
+  }, {
     threshold: 0.1,
     rootMargin: '100px'
   });
-  
+
   countObserver.observe(statsSection);
 
   // Fallback: If observer doesn't trigger within 2 seconds and section is visible, animate anyway
@@ -399,7 +399,7 @@ function initializeBlogSection() {
 
   track.addEventListener("scroll", updateButtons);
   updateButtons();
-  
+
   // Start auto scroll
   startBlogAuto();
 }
@@ -408,26 +408,55 @@ function initializeBlogSection() {
 function initializeCollaborationCarousel() {
   const collabTrack = document.getElementById('collabTrack');
   const collabBoxes = document.querySelectorAll('.collab-box');
-  const nextBtn = document.getElementById('nextBtn');
-  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('collabNextBtn');
+  const prevBtn = document.getElementById('collabPrevBtn');
 
   if (!collabTrack || !collabBoxes.length || !nextBtn || !prevBtn) return;
 
-  let collabIndex = 0;
+  const cardWidth = 365; // 350px width + 15px gap
+
+  // Clone items for infinite scroll
+  // We double the content. When we reach the start of the cloned set, we snap back to 0.
+  const originalCards = Array.from(collabBoxes);
+  const singleSetWidth = cardWidth * originalCards.length;
+
+  // Check if we already cloned (in case of re-init)
+  // We assume this runs once, or strict idempotency:
+  if (collabTrack.children.length === originalCards.length) {
+    originalCards.forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      collabTrack.appendChild(clone);
+    });
+  }
+
   let collabAutoSlide;
+  let isCollabPaused = false;
+
+  // Scroll Listener for Infinite Loop (Forward)
+  collabTrack.addEventListener('scroll', () => {
+    // If we have scrolled past the original set, snap back to start
+    if (collabTrack.scrollLeft >= singleSetWidth) {
+      collabTrack.style.scrollBehavior = 'auto'; // Disable smooth for instant snap
+      collabTrack.scrollLeft -= singleSetWidth;
+      collabTrack.style.scrollBehavior = 'smooth'; // Re-enable
+    }
+  });
 
   // Next Slide
   function slideCollabNext() {
-    collabIndex++;
-    if (collabIndex > collabBoxes.length - 3) collabIndex = 0;
-    collabTrack.style.transform = `translateX(-${collabIndex * (collabBoxes[0].offsetWidth + 20)}px)`;
+    collabTrack.scrollBy({ left: cardWidth, behavior: 'smooth' });
   }
 
   // Prev Slide
   function slideCollabPrev() {
-    collabIndex--;
-    if (collabIndex < 0) collabIndex = collabBoxes.length - 3;
-    collabTrack.style.transform = `translateX(-${collabIndex * (collabBoxes[0].offsetWidth + 20)}px)`;
+    // If at start (or close to it), snap to end of original set to allow scrolling left into it
+    if (collabTrack.scrollLeft <= 5) {
+      collabTrack.style.scrollBehavior = 'auto';
+      collabTrack.scrollLeft += singleSetWidth;
+      collabTrack.style.scrollBehavior = 'smooth';
+    }
+    collabTrack.scrollBy({ left: -cardWidth, behavior: 'smooth' });
   }
 
   // Remove old listeners
@@ -449,13 +478,12 @@ function initializeCollaborationCarousel() {
 
   // Auto Slide
   function startCollabAuto() {
-    // Clear any existing interval
-    if (collabAutoSlide) {
-      clearInterval(collabAutoSlide);
-    }
+    if (collabAutoSlide) clearInterval(collabAutoSlide);
     collabAutoSlide = setInterval(() => {
-      slideCollabNext();
-    }, 4000);
+      if (!isCollabPaused) {
+        slideCollabNext();
+      }
+    }, 4000); // 4 seconds
   }
 
   function stopCollabAuto() {
@@ -470,19 +498,17 @@ function initializeCollaborationCarousel() {
     startCollabAuto();
   }
 
-  // Start auto slide after a small delay to ensure DOM is ready
-  setTimeout(() => {
-    startCollabAuto();
-  }, 200);
+  // Start auto slide
+  startCollabAuto();
 
   // Pause on hover
-  collabTrack.addEventListener('mouseenter', stopCollabAuto);
-  collabTrack.addEventListener('mouseleave', startCollabAuto);
+  collabTrack.addEventListener('mouseenter', () => { isCollabPaused = true; });
+  collabTrack.addEventListener('mouseleave', () => { isCollabPaused = false; });
 
-  // Responsive fix
-  window.addEventListener('resize', () => {
-    collabTrack.style.transform = `translateX(-${collabIndex * (collabBoxes[0].offsetWidth + 20)}px)`;
-  });
+  newNextBtn.addEventListener('mouseenter', () => { isCollabPaused = true; });
+  newNextBtn.addEventListener('mouseleave', () => { isCollabPaused = false; });
+  newPrevBtn.addEventListener('mouseenter', () => { isCollabPaused = true; });
+  newPrevBtn.addEventListener('mouseleave', () => { isCollabPaused = false; });
 }
 
 // --------------------- What's New Section ---------------------------------------//
@@ -795,10 +821,10 @@ function initializeYouTubeCarousel() {
         video.style.visibility = 'visible';
       }
     });
-    
+
     // Apply transform
     ytCarousel.style.transform = `translateX(-${index * 100}%)`;
-    
+
     // Stop media only for non-active slides after transition
     setTimeout(() => {
       ytCards.forEach((card, i) => {
@@ -841,7 +867,7 @@ function initializeYouTubeCarousel() {
     e.stopPropagation();
     slideNext();
   });
-  
+
   newYtPrev.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -881,7 +907,7 @@ function initializeYouTubeCarousel() {
 
   // Initialize first slide
   showYouTubeSlide(0);
-  
+
   // Start auto slide after a delay
   setTimeout(() => {
     startAutoSlide();
@@ -954,17 +980,17 @@ function initializeHomeEvents() {
   // Setup modal close listeners
   const modalBackdrop = document.getElementById('homeEventModalBackdrop');
   const modalClose = document.getElementById('homeEventModalClose');
-  
+
   if (modalBackdrop) {
     modalBackdrop.addEventListener('click', closeHomeEventModal);
   }
   if (modalClose) {
     modalClose.addEventListener('click', closeHomeEventModal);
   }
-  
+
   // Attach click handlers to existing HTML event cards
   attachEventCardHandlers();
-  
+
   // Initialize carousel with existing HTML cards
   initEventsCarousel();
 }
@@ -1002,14 +1028,14 @@ function attachEventCardHandlers() {
   if (!eventsCardsList) return;
 
   const eventCards = eventsCardsList.querySelectorAll('.home-event-card');
-  
+
   eventCards.forEach(card => {
     const eventId = card.getAttribute('data-event-id');
     if (eventId) {
       // Remove any existing listeners by cloning
       const newCard = card.cloneNode(true);
       card.parentNode.replaceChild(newCard, card);
-      
+
       // Attach click handler
       newCard.addEventListener('click', () => {
         const eventDetails = buildEventDataFromCard(newCard);
@@ -1079,23 +1105,23 @@ function attachCarouselHandlers(cardsList) {
 
   // Manual navigation - Previous button
   if (prevBtn) {
-    prevBtn.onclick = function(e) {
+    prevBtn.onclick = function (e) {
       e.preventDefault();
       e.stopPropagation();
       isEventsCarouselPaused = true;
-      
+
       const firstCard = cardsList.querySelector('.home-event-card');
       if (!firstCard) return;
-      
+
       const cardWidth = firstCard.offsetWidth;
       const gap = 28;
       const scrollAmount = cardWidth + gap;
-      
+
       cardsList.scrollBy({
         left: -scrollAmount,
         behavior: 'smooth'
       });
-      
+
       setTimeout(() => {
         isEventsCarouselPaused = false;
       }, 1000);
@@ -1104,23 +1130,23 @@ function attachCarouselHandlers(cardsList) {
 
   // Manual navigation - Next button
   if (nextBtn) {
-    nextBtn.onclick = function(e) {
+    nextBtn.onclick = function (e) {
       e.preventDefault();
       e.stopPropagation();
       isEventsCarouselPaused = true;
-      
+
       const firstCard = cardsList.querySelector('.home-event-card');
       if (!firstCard) return;
-      
+
       const cardWidth = firstCard.offsetWidth;
       const gap = 28;
       const scrollAmount = cardWidth + gap;
-      
+
       cardsList.scrollBy({
         left: scrollAmount,
         behavior: 'smooth'
       });
-      
+
       setTimeout(() => {
         isEventsCarouselPaused = false;
       }, 1000);
@@ -1137,7 +1163,7 @@ function startAutoScroll(cardsList) {
     const cardWidth = firstCard.offsetWidth;
     const gap = 28;
     const totalWidth = (cardWidth + gap) * cards.length;
-    
+
     if (cardsList.scrollWidth < totalWidth * 1.5) {
       cards.forEach(card => {
         const clone = card.cloneNode(true);
@@ -1161,7 +1187,7 @@ function startAutoScroll(cardsList) {
     const maxScroll = cardsList.scrollWidth - cardsList.clientWidth;
     const halfPoint = maxScroll / 2;
     const scrollSpeed = 1; // pixels per frame for smooth movement
-    
+
     // Check if we've reached the end (accounting for duplicated cards)
     if (cardsList.scrollLeft >= halfPoint - 10) {
       // Seamlessly reset to beginning for infinite loop
@@ -1170,7 +1196,7 @@ function startAutoScroll(cardsList) {
       // Smooth continuous scroll
       cardsList.scrollLeft += scrollSpeed;
     }
-    
+
     // Continue the animation loop
     eventsCarouselInterval = requestAnimationFrame(autoScroll);
   }
@@ -1183,7 +1209,7 @@ function startAutoScroll(cardsList) {
       clearInterval(eventsCarouselInterval);
     }
   }
-  
+
   // Start the animation loop after a small delay to ensure DOM is ready
   setTimeout(() => {
     eventsCarouselInterval = requestAnimationFrame(autoScroll);
@@ -1194,17 +1220,17 @@ function startAutoScroll(cardsList) {
 
 function showHomeDayEvents(events, date) {
   if (!events || events.length === 0) return;
-  
+
   const modalBody = document.getElementById('homeEventModalBody');
   const modal = document.getElementById('homeEventModal');
-  
+
   if (!modalBody || !modal) return;
 
-  const dateStr = date.toLocaleDateString('en-US', { 
-    weekday: 'long', 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
+  const dateStr = date.toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
   });
 
   if (events.length === 1) {
@@ -1217,13 +1243,13 @@ function showHomeDayEvents(events, date) {
       </div>
       <div class="day-events-list">
         ${events.map((event, idx) => {
-          const eventDate = new Date(event.date);
-          const formattedDate = eventDate.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-          });
-          return `
+      const eventDate = new Date(event.date);
+      const formattedDate = eventDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      return `
             <div class="day-event-item" data-event-id="${event.id}" data-event-index="${idx}">
               ${event.image ? `
                 <div class="day-event-image">
@@ -1245,11 +1271,11 @@ function showHomeDayEvents(events, date) {
               </div>
             </div>
           `;
-        }).join('')}
+    }).join('')}
       </div>
     `;
     openHomeEventModal();
-    
+
     setTimeout(() => {
       const dayEventItems = modalBody.querySelectorAll('.day-event-item');
       dayEventItems.forEach((item) => {
@@ -1271,7 +1297,7 @@ function showHomeDayEvents(events, date) {
 function showHomeEventModal(event) {
   const modalBody = document.getElementById('homeEventModalBody');
   const modal = document.getElementById('homeEventModal');
-  
+
   if (!modalBody || !modal) return;
 
   const eventDate = new Date(event.date);
@@ -1308,7 +1334,7 @@ function showHomeEventModal(event) {
 function openHomeEventModal() {
   const modal = document.getElementById('homeEventModal');
   if (!modal) return;
-  
+
   modal.classList.add('active');
   modal.style.display = 'flex';
   modal.style.visibility = 'visible';
@@ -1394,13 +1420,13 @@ function initializeChairpersonModal() {
   function openModal() {
     document.body.style.overflow = 'hidden';
     modal.classList.add('active');
-    
+
     // Reset scroll position to top
     const letterPaper = document.querySelector('.letter-paper');
     if (letterPaper) {
       letterPaper.scrollTop = 0;
     }
-    
+
     // Trigger animation after a small delay to ensure display is set
     setTimeout(() => {
       modalWrapper.style.transform = 'translateY(0)';
@@ -1412,7 +1438,7 @@ function initializeChairpersonModal() {
   function closeModal() {
     modalWrapper.style.transform = 'translateY(-100%)';
     modalWrapper.style.opacity = '0';
-    
+
     setTimeout(() => {
       modal.classList.remove('active');
       document.body.style.overflow = '';
@@ -1421,7 +1447,7 @@ function initializeChairpersonModal() {
 
   // Event listeners - make title clickable
   messageImageContainer.addEventListener('click', openModal);
-  
+
   // Also make the title specifically clickable
   const previewTitleWrapper = document.querySelector('.preview-letter-title-wrapper');
   if (previewTitleWrapper) {
@@ -1431,7 +1457,7 @@ function initializeChairpersonModal() {
       openModal();
     });
   }
-  
+
   closeBtn.addEventListener('click', closeModal);
   backdrop.addEventListener('click', closeModal);
 
@@ -1562,7 +1588,7 @@ function initializeDocumentCarousel() {
 
   updateButtons();
   updatePageIndicator();
-  
+
   // Start auto scroll
   startDocumentAuto();
 }
