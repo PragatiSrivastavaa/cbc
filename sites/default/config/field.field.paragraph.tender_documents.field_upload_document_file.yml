@@ -1,0 +1,27 @@
+uuid: dfb2f9c5-45f5-433f-a6ce-be47954bd92a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_upload_document_file
+    - paragraphs.paragraphs_type.tender_documents
+  module:
+    - file
+id: paragraph.tender_documents.field_upload_document_file
+field_name: field_upload_document_file
+entity_type: paragraph
+bundle: tender_documents
+label: 'Upload document/file'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt pdf mp3 html xls xlsx'
+  max_filesize: ''
+  description_field: true
+field_type: file

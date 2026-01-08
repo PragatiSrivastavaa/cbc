@@ -1,0 +1,10 @@
+uuid: a9dfe4f3-28a9-4fd8-a797-da2dfb7925d7
+langcode: en
+status: true
+dependencies: {  }
+id: tender_documents
+label: 'Tender Documents'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

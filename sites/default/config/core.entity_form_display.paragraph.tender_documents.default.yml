@@ -1,0 +1,38 @@
+uuid: f946b2e4-ce86-4ad6-84d1-efcaea8008c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.tender_documents.field_document_language
+    - field.field.paragraph.tender_documents.field_document_type
+    - field.field.paragraph.tender_documents.field_upload_document_file
+    - paragraphs.paragraphs_type.tender_documents
+  module:
+    - file
+id: paragraph.tender_documents.default
+targetEntityType: paragraph
+bundle: tender_documents
+mode: default
+content:
+  field_document_language:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_document_type:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_upload_document_file:
+    type: file_generic
+    weight: 2
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

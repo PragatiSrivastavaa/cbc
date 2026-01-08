@@ -1,0 +1,21 @@
+uuid: 4c022fd9-d1ce-46e1-89d7-d4e5936fbb3f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_new
+    - node.type.tender
+id: node.tender.field_new
+field_name: field_new
+entity_type: node
+bundle: tender
+label: New
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

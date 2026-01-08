@@ -1,0 +1,24 @@
+uuid: f443c62e-e24c-47e9-8e24-2e613f81b822
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tender_title
+    - node.type.tender
+  module:
+    - text
+id: node.tender.field_tender_title
+field_name: field_tender_title
+entity_type: node
+bundle: tender
+label: 'Tender Title'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

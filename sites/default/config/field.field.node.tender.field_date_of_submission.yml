@@ -1,0 +1,21 @@
+uuid: 5e80c8e6-b791-4c62-a5ef-35d83e5c99ee
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date_of_submission
+    - node.type.tender
+  module:
+    - datetime
+id: node.tender.field_date_of_submission
+field_name: field_date_of_submission
+entity_type: node
+bundle: tender
+label: 'Date of submission'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

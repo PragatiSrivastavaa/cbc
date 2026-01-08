@@ -1,0 +1,254 @@
+uuid: dc8f640f-3cf9-4e63-96bd-fb0690734ebb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date_of_nit
+    - field.storage.node.field_date_of_submission
+    - field.storage.node.field_tender_related_files
+    - field.storage.node.field_tender_title
+    - node.type.tender
+  module:
+    - datetime
+    - entity_reference_revisions
+    - node
+    - text
+id: tender
+label: Tender
+module: views
+description: ''
+tag: ''
+base_table: node_field_data
+base_field: nid
+display:
+  default:
+    id: default
+    display_title: Default
+    display_plugin: default
+    position: 0
+    display_options:
+      title: Tender
+      fields:
+        counter:
+          id: counter
+          table: views
+          field: counter
+          plugin_id: counter
+          label: S.NO
+          counter_start: 1
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          plugin_id: field
+          label: 'Tender Ref. No.'
+          type: string
+          settings:
+            link_to_entity: false
+        field_tender_title:
+          id: field_tender_title
+          table: node__field_tender_title
+          field: field_tender_title
+          plugin_id: field
+          label: 'Tender Title'
+          type: text_default
+        field_date_of_nit:
+          id: field_date_of_nit
+          table: node__field_date_of_nit
+          field: field_date_of_nit
+          plugin_id: field
+          label: 'Date of NIT'
+          type: datetime_custom
+          settings:
+            timezone_override: Asia/Kolkata
+            date_format: d-m-Y
+        field_date_of_submission:
+          id: field_date_of_submission
+          table: node__field_date_of_submission
+          field: field_date_of_submission
+          plugin_id: field
+          label: 'Last Date of submission'
+          type: datetime_custom
+          settings:
+            timezone_override: Asia/Kolkata
+            date_format: d-m-Y
+        field_tender_related_files:
+          id: field_tender_related_files
+          table: node__field_tender_related_files
+          field: field_tender_related_files
+          plugin_id: field
+          label: 'Tender related files'
+          type: entity_reference_revisions_entity_view
+          settings:
+            view_mode: default
+      pager:
+        type: full
+        options:
+          items_per_page: 10
+          tags:
+            next: ››
+            previous: ‹‹
+            first: '« First'
+            last: 'Last »'
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          plugin_id: text
+          content:
+            value: '<p align="center"> Currently No Tender Active</p>'
+            format: basic_html
+      sorts:
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          plugin_id: date
+          order: DESC
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          plugin_id: boolean
+          value: '1'
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          plugin_id: bundle
+          value:
+            tender: tender
+      style:
+        type: table
+        options:
+          columns:
+            counter: counter
+            title: title
+            field_tender_title: field_tender_title
+            field_date_of_nit: field_date_of_nit
+            field_date_of_submission: field_date_of_submission
+            field_upload_document_file: field_upload_document_file
+          override: true
+      row:
+        type: fields
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          plugin_id: text_custom
+          content: '<div class="btn btn-theam"><a href="/tender-archive">Archives</a></div>'
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+      tags:
+        - 'config:field.storage.node.field_date_of_nit'
+        - 'config:field.storage.node.field_date_of_submission'
+        - 'config:field.storage.node.field_tender_related_files'
+        - 'config:field.storage.node.field_tender_title'
+  page_1:
+    id: page_1
+    display_title: Page
+    display_plugin: page
+    position: 1
+    display_options:
+      fields:
+        counter:
+          id: counter
+          table: views
+          field: counter
+          plugin_id: counter
+          label: S.NO
+          counter_start: 1
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          plugin_id: field
+          label: 'Tender Ref. No.'
+          type: string
+          settings:
+            link_to_entity: false
+        field_tender_title:
+          id: field_tender_title
+          table: node__field_tender_title
+          field: field_tender_title
+          plugin_id: field
+          label: 'Tender Title'
+          type: text_default
+        field_date_of_nit:
+          id: field_date_of_nit
+          table: node__field_date_of_nit
+          field: field_date_of_nit
+          plugin_id: field
+          label: 'Date of NIT'
+          type: datetime_custom
+          settings:
+            timezone_override: Asia/Kolkata
+            date_format: d-m-Y
+        field_date_of_submission:
+          id: field_date_of_submission
+          table: node__field_date_of_submission
+          field: field_date_of_submission
+          plugin_id: field
+          label: 'Last Date of submission'
+          type: datetime_custom
+          settings:
+            timezone_override: Asia/Kolkata
+            date_format: d-m-Y
+        field_tender_related_files:
+          id: field_tender_related_files
+          table: node__field_tender_related_files
+          field: field_tender_related_files
+          plugin_id: field
+          label: 'Tender related files'
+          type: entity_reference_revisions_entity_view
+          settings:
+            view_mode: default
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+      row:
+        type: fields
+        options: {  }
+      defaults:
+        style: false
+        row: false
+      relationships:
+        field_tender_related_files:
+          id: field_tender_related_files
+          table: node__field_tender_related_files
+          field: field_tender_related_files
+          plugin_id: standard
+          required: false
+        reverse__node__field_tender_related_files:
+          id: reverse__node__field_tender_related_files
+          table: paragraphs_item_field_data
+          field: reverse__node__field_tender_related_files
+          relationship: field_tender_related_files
+          plugin_id: entity_reverse
+          required: false
+      display_extenders: {  }
+      path: tender
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+      tags:
+        - 'config:field.storage.node.field_date_of_nit'
+        - 'config:field.storage.node.field_date_of_submission'
+        - 'config:field.storage.node.field_tender_related_files'
+        - 'config:field.storage.node.field_tender_title'

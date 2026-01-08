@@ -1,0 +1,11 @@
+uuid: 154f8613-d155-47b2-94b7-db193b937e8d
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.tender_document_type
+id: taxonomy_term.tender_document_type
+target_entity_type_id: taxonomy_term
+target_bundle: tender_document_type
+default_langcode: site_default
+language_alterable: false

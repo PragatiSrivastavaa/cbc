@@ -23,6 +23,15 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 3
+    region: content
+  field_end_date:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: Asia/Kolkata
+      format_type: medium
+    third_party_settings: {  }
     weight: 2
     region: content
   field_start_date:
@@ -42,5 +51,4 @@ content:
 hidden:
   field_alert: true
   field_category: true
-  field_end_date: true
   langcode: true

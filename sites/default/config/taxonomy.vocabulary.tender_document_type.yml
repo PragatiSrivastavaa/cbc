@@ -1,0 +1,9 @@
+uuid: 368355d7-26e2-4935-9a55-647784dfca0a
+langcode: en
+status: true
+dependencies: {  }
+name: 'Tender document type'
+vid: tender_document_type
+description: null
+weight: 0
+new_revision: false

@@ -1,0 +1,21 @@
+uuid: 374fd4e7-181c-4e66-845c-d29e44c1ddd1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date_of_nit
+    - node.type.tender
+  module:
+    - datetime
+id: node.tender.field_date_of_nit
+field_name: field_date_of_nit
+entity_type: node
+bundle: tender
+label: 'Date of NIT'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

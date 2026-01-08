@@ -1,0 +1,21 @@
+uuid: 52185afc-373b-4958-ae61-d07c1e49662a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tender_opening_date
+    - node.type.tender
+  module:
+    - datetime
+id: node.tender.field_tender_opening_date
+field_name: field_tender_opening_date
+entity_type: node
+bundle: tender
+label: 'Tender opening date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

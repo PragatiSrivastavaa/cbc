@@ -1,0 +1,31 @@
+uuid: bec73f8c-2300-4f41-a28a-d3a412b7ea9b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_document_type
+    - paragraphs.paragraphs_type.tender_documents
+    - taxonomy.vocabulary.tender_document_type
+  module:
+    - entity_reference_revisions
+id: paragraph.tender_documents.field_document_type
+field_name: field_document_type
+entity_type: paragraph
+bundle: tender_documents
+label: 'Document type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tender_document_type: tender_document_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference_revisions
