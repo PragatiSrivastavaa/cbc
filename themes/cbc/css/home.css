@@ -7349,9 +7349,8 @@ h2.infocus-heading {
 }
 
 .partner-card img {
-  max-width: 80%;
-  max-height: 80%;
   object-fit: contain;
+  padding: 10px;
 }
 
 .partner-card:hover {
@@ -12180,4 +12179,25 @@ h2.infocus-heading {
 
 .view-header {
   display: none;
+}
+
+.collab-description {
+  font-size: 13px;
+  color: #555;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: left;
+  line-clamp: 4;
+  -webkit-line-clamp: 4;
+  text-overflow: ellipsis;
+  line-height: 1.5;
+  padding: 0 14px 14px;
+  margin-top: 0;
+  flex: 1;
+}
+
+.collab-description p {
+  margin: 0;
+  padding: 0;
 }
