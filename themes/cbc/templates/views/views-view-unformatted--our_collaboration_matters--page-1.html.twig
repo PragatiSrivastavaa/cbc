@@ -1,5 +1,4 @@
-<div class="collab-content-wrapper">
-            <div class="collab-track" id="collabTrack">
+<div class="collab-content-wrapper collab-grid-row">
               {% for row in rows %}
               {% set entity = row.content['#row']._entity %}
               {% set tokens = row.content['#view'].style_plugin.render_tokens[loop.index0] %}
@@ -12,11 +11,8 @@
       {% endif %}
                
                 <h3>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
-                <p>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ body }}'] }}{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ field_event_description }}'] }}</p>
+                <div class="collab-description">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ body }}'] }}{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ field_event_description }}'] }}</div>
               </div>
               </a>
               {% endfor %}
-            </div>
-
-
           </div>
