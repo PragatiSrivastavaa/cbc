@@ -1142,6 +1142,35 @@
   font-style: italic;
 }
 
+/* Map Dots Animation */
+.map-dot {
+  position: absolute;
+  background-color: #ff9933;
+  /* Theme Orange */
+  border-radius: 50%;
+  opacity: 0.9;
+  box-shadow: 0 0 4px rgba(255, 153, 51, 0.8);
+  animation: islandPulse 2s infinite ease-in-out;
+}
+
+@keyframes islandPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(255, 153, 51, 1);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+}
+
 .modi-message-bubble p::first-letter {
   font-size: 1.25em;
   font-weight: 700;
@@ -7351,6 +7380,7 @@ h2.infocus-heading {
 .partner-card img {
   object-fit: contain;
   padding: 10px;
+  max-width: 100px;
 }
 
 .partner-card:hover {

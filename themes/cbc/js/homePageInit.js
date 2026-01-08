@@ -984,6 +984,7 @@ function initializeInfocusSection() {
   }
 
   setupInfocusObserver(infocusContainer);
+  addMapIslands(infocusContainer);
 }
 
 function setupInfocusObserver(container) {
@@ -993,6 +994,148 @@ function setupInfocusObserver(container) {
   if (content) {
     content.classList.add('animate-in');
   }
+}
+
+function addMapIslands(container) {
+  if (!container) return;
+
+  // Find the map image to ensure we overlay correctly
+  const img = container.querySelector('img');
+  if (!img) return;
+
+  // Use the image's parent for positioning to ensure dots stay with the map
+  const parent = img.parentElement;
+
+  // Check if islands already added
+  if (parent.querySelector('.map-islands-container')) return;
+
+  if (window.getComputedStyle(parent).position === 'static') {
+    parent.style.position = 'relative';
+  }
+
+  const islandContainer = document.createElement('div');
+  islandContainer.className = 'map-islands-container';
+  islandContainer.style.position = 'absolute';
+  islandContainer.style.top = '0';
+  islandContainer.style.left = '0';
+  islandContainer.style.width = '100%';
+  islandContainer.style.height = '100%';
+  islandContainer.style.pointerEvents = 'none';
+  islandContainer.style.zIndex = '1';
+
+  // DEBUG: Click to get coordinates
+  // Remove this in production or leave enabled for admin/dev
+  islandContainer.style.pointerEvents = 'auto'; // Enable events key for debugging
+  islandContainer.addEventListener('click', (e) => {
+    const rect = islandContainer.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const leftPercent = (x / rect.width) * 100;
+    const topPercent = (y / rect.height) * 100;
+    console.log(`{ top: ${topPercent.toFixed(1)}, left: ${leftPercent.toFixed(1)}, size: 3, delay: '0s' },`);
+    alert(`Coordinates copied to console:\nTop: ${topPercent.toFixed(1)}%\nLeft: ${leftPercent.toFixed(1)}%`);
+  });
+
+  // Alignment Adjustments (Modify these to shift the entire set)
+  const xOffset = 0;
+  const yOffset = 0;
+  const scale = 1.0;
+
+  // Coordinate percentages (Approximate for standard India map)
+  const stateDots = [
+    // North
+    { top: 18, left: 32, size: 3, delay: '0s' },    // J&K
+    { top: 15, left: 40, size: 3, delay: '0.2s' },  // Ladakh
+    { top: 24, left: 35, size: 3, delay: '0.1s' },  // Himachal
+    { top: 26, left: 29, size: 3, delay: '0.3s' },  // Punjab
+    { top: 27, left: 40, size: 3, delay: '0.2s' },  // Uttarakhand
+    { top: 31, left: 33, size: 2.5, delay: '0.4s' },// Haryana
+    { top: 33, left: 36, size: 2.5, delay: '0.1s' },// Delhi
+
+    // West
+    { top: 40, left: 25, size: 4, delay: '0s' },    // Rajasthan
+    { top: 50, left: 15, size: 4, delay: '0.3s' },  // Gujarat
+    { top: 62, left: 28, size: 4, delay: '0.1s' },  // Maharashtra
+    { top: 75, left: 25, size: 2, delay: '0.2s' },  // Goa
+
+    // Central
+    { top: 50, left: 42, size: 4, delay: '0.4s' },  // MP
+    { top: 38, left: 50, size: 4, delay: '0.2s' },  // UP
+    { top: 52, left: 55, size: 3.5, delay: '0.1s' },// Chhattisgarh
+
+    // East
+    { top: 40, left: 65, size: 3.5, delay: '0.3s' },// Bihar
+    { top: 48, left: 62, size: 3.5, delay: '0s' },  // Jharkhand
+    { top: 48, left: 70, size: 3.5, delay: '0.2s' },// West Bengal
+    { top: 58, left: 65, size: 3.5, delay: '0.1s' },// Odisha
+    { top: 32, left: 72, size: 2, delay: '0.4s' },  // Sikkim
+
+    // North East
+    { top: 38, left: 85, size: 3, delay: '0.2s' },  // Assam
+    { top: 30, left: 90, size: 3, delay: '0.1s' },  // Arunachal
+    { top: 36, left: 94, size: 3, delay: '0.3s' },  // Nagaland
+    { top: 42, left: 93, size: 3, delay: '0s' },    // Manipur
+    { top: 48, left: 91, size: 3, delay: '0.4s' },  // Mizoram
+    { top: 48, left: 86, size: 3, delay: '0.2s' },  // Tripura
+    { top: 40, left: 85, size: 3, delay: '0.1s' },  // Meghalaya
+
+    // South
+    { top: 78, left: 32, size: 4, delay: '0.3s' },  // Karnataka
+    { top: 65, left: 45, size: 3.5, delay: '0s' },  // Telangana
+    { top: 75, left: 48, size: 4, delay: '0.2s' },  // Andhra
+    { top: 88, left: 35, size: 3, delay: '0.1s' },  // Kerala
+    { top: 85, left: 42, size: 3.5, delay: '0.4s' },// Tamil Nadu
+
+    // Islands (Lakshadweep)
+    { top: 82, left: 18, size: 3, delay: '0s' },
+    { top: 84, left: 19, size: 2.5, delay: '0.2s' },
+    { top: 83, left: 17, size: 3, delay: '0.4s' },
+    { top: 85, left: 18, size: 2, delay: '0.1s' },
+    { top: 86, left: 17, size: 2, delay: '0.3s' },
+    { top: 81, left: 18, size: 2, delay: '0.5s' },
+    { top: 79, left: 17, size: 1.5, delay: '0.2s' },
+
+    // Islands (Andaman & Nicobar)
+    { top: 65, left: 88, size: 3, delay: '0s' },
+    { top: 66, left: 88, size: 3, delay: '0.3s' },
+    { top: 67, left: 88, size: 3.5, delay: '0.1s' },
+    { top: 69, left: 88, size: 3, delay: '0.4s' },
+    { top: 70, left: 88, size: 3, delay: '0.2s' },
+    { top: 72, left: 88, size: 3.5, delay: '0.5s' },
+    { top: 76, left: 89, size: 3, delay: '0.1s' },
+    { top: 78, left: 90, size: 2.5, delay: '0.3s' },
+    { top: 79, left: 90, size: 3, delay: '0.2s' },
+    { top: 81, left: 90, size: 4, delay: '0.4s' },
+  ];
+
+  const mapColor = '#ff9933'; // Theme Orange
+
+  const createDot = (dot) => {
+    const el = document.createElement('div');
+    el.className = 'map-dot';
+    el.style.position = 'absolute';
+
+    // Apply scaling relative to center (50, 50) roughly, or just simple offset
+    // Simple offset logic:
+    const finalTop = (dot.top * scale) + yOffset;
+    const finalLeft = (dot.left * scale) + xOffset;
+
+    el.style.top = finalTop + '%';
+    el.style.left = finalLeft + '%';
+    el.style.width = (dot.size * scale) + 'px';
+    el.style.height = (dot.size * scale) + 'px';
+
+    // Fallback color
+    if (!el.classList.contains('map-dot') || window.getComputedStyle(el).backgroundColor === 'rgba(0, 0, 0, 0)') {
+      el.style.backgroundColor = mapColor;
+    }
+    el.style.animationDelay = dot.delay;
+    return el;
+  };
+
+  stateDots.forEach(dot => islandContainer.appendChild(createDot(dot)));
+
+  parent.appendChild(islandContainer);
 }
 
 // --------------------------- Home Events Section (No Calendar) -------------------------------------//
