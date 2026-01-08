@@ -1,15 +1,19 @@
-<div class="carousel-track" id="carouselTrack">
-
- {% for row in rows %}
-              {% set entity = row.content['#row']._entity %}
-
-        <div class="blog-card">
-          {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}
-          <div class="blog-card-content">
-            <h3>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
-            <p>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}'] }}</p>
-          </div>
-          <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}" class="opinion-card-link">Read More →</a>
+<div class="blog-carousel-wrapper">
+  <button class="collab-arrow" id="blogPrevBtn" style="position: static; transform: none; margin: 0;">❮</button>
+  
+  <div class="carousel-track" id="opinionCarouselTrack" style="flex: 1; min-width: 0;">
+    {% for row in rows %}
+      {% set entity = row.content['#row']._entity %}
+      <div class="blog-card">
+        {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}
+        <div class="blog-card-content">
+          <h3>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
+          <p>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}'] }}</p>
         </div>
-        {% endfor %}
+        <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}" class="opinion-card-link">Read More →</a>
       </div>
+    {% endfor %}
+  </div>
+
+  <button class="collab-arrow" id="blogNextBtn" style="position: static; transform: none; margin: 0;">❯</button>
+</div>
