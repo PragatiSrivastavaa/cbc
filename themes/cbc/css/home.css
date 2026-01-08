@@ -1142,6 +1142,35 @@
   font-style: italic;
 }
 
+/* Map Dots Animation */
+.map-dot {
+  position: absolute;
+  background-color: #ff9933;
+  /* Theme Orange */
+  border-radius: 50%;
+  opacity: 0.9;
+  box-shadow: 0 0 4px rgba(255, 153, 51, 0.8);
+  animation: islandPulse 2s infinite ease-in-out;
+}
+
+@keyframes islandPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(255, 153, 51, 1);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+}
+
 .modi-message-bubble p::first-letter {
   font-size: 1.25em;
   font-weight: 700;
@@ -1481,6 +1510,15 @@
 
   .leadership-section {
     padding: 2rem 4%;
+  }
+
+  .leadership-members-row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .leadership-members-row>div:nth-child(2) {
+    order: -1;
   }
 
   .cbc-blog-carousel {
@@ -3709,7 +3747,15 @@ h2.infocus-heading {
   padding-top: 0.25rem;
   position: relative;
   z-index: 1;
-  padding: 2.5rem 5rem;
+  padding: 2.5rem 0rem;
+}
+
+.blog-carousel-wrapper {
+  padding: 0rem 1rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .blog-card {
@@ -3806,7 +3852,7 @@ h2.infocus-heading {
 
 .cbc-blog-carousel .carousel-controls {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 0;
   right: 0;
   transform: translateY(-50%);
@@ -7290,6 +7336,20 @@ h2.infocus-heading {
   background: #f48020;
 }
 
+.partners-s.collab-track {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  align-items: stretch;
+  width: 100%;
+  /* Force full width to enable overflow */
+  padding-bottom: 10px;
+  /* Space for shadow */
+}
+
 .partners-slider {
   display: flex;
   gap: 15px;
@@ -7318,9 +7378,9 @@ h2.infocus-heading {
 }
 
 .partner-card img {
-  max-width: 80%;
-  max-height: 80%;
   object-fit: contain;
+  padding: 10px;
+  max-width: 100px;
 }
 
 .partner-card:hover {
@@ -9029,7 +9089,7 @@ h2.infocus-heading {
 
 
 .collab-footer {
-  padding: 1.5rem 5% 4rem;
+  padding: 0 rem 5% 4rem;
   text-align: right;
   /* border-top: 1px solid #e9ecef; */
   background: #ffe7b3;
@@ -9162,12 +9222,30 @@ h2.infocus-heading {
 .collab-track {
   display: flex;
   gap: 15px;
-  transition: transform 0.8s ease-in-out;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   align-items: stretch;
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+.collab-track::-webkit-scrollbar {
+  display: none;
+}
+
+.collab-track>a {
+  flex: 0 0 350px;
+  /* Fixed width for consistent carousel items */
+  text-decoration: none;
+  /* Remove underline from anchor */
+  color: inherit;
+  display: block;
+  /* Ensure anchor behaves like a block */
 }
 
 .collab-box {
-  flex: 0 0 calc(33.333% - 20px);
   background: linear-gradient(135deg, #ffffff, #ffffff);
   border-radius: 12px;
   padding: 0;
@@ -9176,8 +9254,18 @@ h2.infocus-heading {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-self: stretch;
+  height: 100%;
+  /* Ensure card fills the anchor height */
   cursor: pointer;
+}
+
+.collab-image {
+  width: 100%;
+  height: 220px;
+  /* Fixed height for images */
+  object-fit: cover;
+  /* Maintain aspect ratio without stretching */
+  display: block;
 }
 
 .collab-box:hover {
@@ -10705,11 +10793,17 @@ h2.infocus-heading {
 .carousel-track {
   display: flex;
   gap: 15px;
-  overflow: hidden;
+  overflow-x: auto;
   scroll-behavior: smooth;
+  scrollbar-width: none;
   transition: transform 0.6s ease;
   align-items: stretch;
   padding-top: 4px;
+  width: 100%;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
 }
 
 .blog-card {
@@ -12115,4 +12209,25 @@ h2.infocus-heading {
 
 .view-header {
   display: none;
+}
+
+.collab-description {
+  font-size: 13px;
+  color: #555;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: left;
+  line-clamp: 4;
+  -webkit-line-clamp: 4;
+  text-overflow: ellipsis;
+  line-height: 1.5;
+  padding: 0 14px 14px;
+  margin-top: 0;
+  flex: 1;
+}
+
+.collab-description p {
+  margin: 0;
+  padding: 0;
 }

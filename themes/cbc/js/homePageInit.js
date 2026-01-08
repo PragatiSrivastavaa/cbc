@@ -14,7 +14,7 @@ function initializeHomePage() {
     initializeMediaCorner();
     initializeNewsletters();
     initializeYouTubeCarousel();
-     initializePhotoCarousel();
+    initializePhotoCarousel();
     initializeSocialCarousel();
     initializeInfocusSection();
     initializeHomeEvents();
@@ -93,7 +93,7 @@ function initializeAlertBar() {
   let isPaused = false;
   let animationOffset = 0;
   const alertItems = alertTrack.querySelectorAll('.alert-item');
-  
+
   // Calculate step size based on first item
   function getStepSize() {
     if (alertItems.length === 0) return 400;
@@ -162,22 +162,22 @@ function initializeAlertBar() {
   function scrollContent(direction) {
     const step = getStepSize();
     const scrollAmount = direction === 'left' ? step : -step;
-    
+
     // Get current animation position
     const currentPos = getCurrentTransform();
-    
+
     // Calculate new offset
     animationOffset = currentPos + scrollAmount;
-    
+
     // Temporarily pause to apply the scroll
     const wasPaused = isPaused;
     if (!wasPaused) {
       alertTrack.style.animationPlayState = 'paused';
     }
-    
+
     // Apply the scroll offset
     alertTrack.style.transform = `translateX(${animationOffset}px)`;
-    
+
     // If it wasn't paused, resume animation after a brief moment
     // The animation will continue from its current cycle
     if (!wasPaused) {
@@ -186,18 +186,18 @@ function initializeAlertBar() {
         // The animation will pick up from where it was
         alertTrack.style.transform = '';
         alertTrack.style.animationPlayState = 'running';
-        
+
         // To make the scroll stick, we need to adjust the animation timing
         // Get the track width to calculate the offset percentage
         const trackWidth = alertTrack.scrollWidth / 2; // Since we duplicate items
         const offsetPercent = (animationOffset / trackWidth) * 100;
-        
+
         // Adjust animation to start from the scrolled position
         // We'll use animation-delay to offset the start
         const animationDuration = 10; // seconds
         const delaySeconds = (offsetPercent / 100) * animationDuration;
         alertTrack.style.animationDelay = `-${delaySeconds}s`;
-        
+
         animationOffset = 0; // Reset for next time
       }, 100);
     }
@@ -246,7 +246,7 @@ function initializeCountSection() {
       // Reset to 0 before animating
       counter.innerText = '0';
       const target = +counter.getAttribute('data-target');
-      
+
       if (!target || isNaN(target)) {
         console.warn('Invalid data-target for counter:', counter, 'target:', target);
         return;
@@ -282,7 +282,7 @@ function initializeCountSection() {
     const isVisible = rect.top < windowHeight && rect.bottom > 0;
     return isVisible;
   };
-  
+
   // Try to animate immediately if section is visible
   if (checkVisibility()) {
     setTimeout(() => {
@@ -303,11 +303,11 @@ function initializeCountSection() {
         }
       }
     });
-  }, { 
+  }, {
     threshold: 0.1,
     rootMargin: '100px'
   });
-  
+
   countObserver.observe(statsSection);
 
   // Fallback: If observer doesn't trigger within 2 seconds and section is visible, animate anyway
@@ -324,36 +324,62 @@ function initializeCountSection() {
 
 // ----------------------------- Blog Section ---------------------------------//
 function initializeBlogSection() {
-  const track = document.getElementById("carouselTrack");
+  const track = document.getElementById("opinionCarouselTrack");
   const nextBtn = document.getElementById("blogNextBtn");
   const prevBtn = document.getElementById("blogPrevBtn");
 
   if (!track || !nextBtn || !prevBtn) return;
 
-  const cardWidth = track.querySelector(".blog-card")?.offsetWidth + 20 || 320;
-  let scrollPosition = 0;
+  const cards = track.querySelectorAll(".blog-card");
+  if (!cards.length) return;
+
+  const cardWidth = cards[0].offsetWidth + 15 || 320;
+
+  // Clone items for infinite scroll
+  const originalCards = Array.from(cards);
+  const singleSetWidth = cardWidth * originalCards.length;
+
+  // Clone logic: duplicate content if not already done
+  if (track.children.length === originalCards.length) {
+    originalCards.forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    });
+  }
+
   let blogAutoScroll;
   let isBlogPaused = false;
+
+  // Scroll Listener for Infinite Loop
+  track.addEventListener('scroll', () => {
+    // If we have scrolled past the original set, snap back to start
+    if (track.scrollLeft >= singleSetWidth) {
+      track.style.scrollBehavior = 'auto'; // Disable smooth for instant snap
+      track.scrollLeft -= singleSetWidth;
+      track.style.scrollBehavior = 'smooth'; // Re-enable
+    }
+  });
+
+  function slideBlogNext() {
+    track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+  }
+
+  function slideBlogPrev() {
+    // If at start (or close to it), snap to end of original set first
+    if (track.scrollLeft <= 5) {
+      track.style.scrollBehavior = 'auto';
+      track.scrollLeft += singleSetWidth;
+      track.style.scrollBehavior = 'smooth';
+    }
+    track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+  }
 
   // Remove old listeners
   const newNextBtn = nextBtn.cloneNode(true);
   const newPrevBtn = prevBtn.cloneNode(true);
   nextBtn.parentNode.replaceChild(newNextBtn, nextBtn);
   prevBtn.parentNode.replaceChild(newPrevBtn, prevBtn);
-
-  function slideBlogNext() {
-    const maxScroll = track.scrollWidth - track.clientWidth;
-    scrollPosition = Math.min(scrollPosition + cardWidth, maxScroll);
-    if (scrollPosition >= maxScroll - 5) {
-      scrollPosition = 0; // Reset for infinite loop
-    }
-    track.scrollTo({ left: scrollPosition, behavior: "smooth" });
-  }
-
-  function slideBlogPrev() {
-    scrollPosition = Math.max(scrollPosition - cardWidth, 0);
-    track.scrollTo({ left: scrollPosition, behavior: "smooth" });
-  }
 
   newNextBtn.addEventListener("click", () => {
     slideBlogNext();
@@ -365,10 +391,9 @@ function initializeBlogSection() {
     restartBlogAuto();
   });
 
-  function updateButtons() {
-    newPrevBtn.style.opacity = track.scrollLeft <= 0 ? "0.5" : "1";
-    newNextBtn.style.opacity = track.scrollLeft + track.clientWidth >= track.scrollWidth ? "0.5" : "1";
-  }
+  // Remove the old opacity logic since we have infinite scroll now
+  newPrevBtn.style.opacity = "1";
+  newNextBtn.style.opacity = "1";
 
   // Auto Scroll Functions
   function startBlogAuto() {
@@ -380,7 +405,7 @@ function initializeBlogSection() {
   }
 
   function stopBlogAuto() {
-    clearInterval(blogAutoScroll);
+    if (blogAutoScroll) clearInterval(blogAutoScroll);
   }
 
   function restartBlogAuto() {
@@ -389,17 +414,14 @@ function initializeBlogSection() {
   }
 
   // Pause on hover
-  track.addEventListener('mouseenter', () => {
-    isBlogPaused = true;
-  });
+  track.addEventListener('mouseenter', () => { isBlogPaused = true; });
+  track.addEventListener('mouseleave', () => { isBlogPaused = false; });
 
-  track.addEventListener('mouseleave', () => {
-    isBlogPaused = false;
-  });
+  newNextBtn.addEventListener('mouseenter', () => { isBlogPaused = true; });
+  newNextBtn.addEventListener('mouseleave', () => { isBlogPaused = false; });
+  newPrevBtn.addEventListener('mouseenter', () => { isBlogPaused = true; });
+  newPrevBtn.addEventListener('mouseleave', () => { isBlogPaused = false; });
 
-  track.addEventListener("scroll", updateButtons);
-  updateButtons();
-  
   // Start auto scroll
   startBlogAuto();
 }
@@ -408,26 +430,55 @@ function initializeBlogSection() {
 function initializeCollaborationCarousel() {
   const collabTrack = document.getElementById('collabTrack');
   const collabBoxes = document.querySelectorAll('.collab-box');
-  const nextBtn = document.getElementById('nextBtn');
-  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('collabNextBtn');
+  const prevBtn = document.getElementById('collabPrevBtn');
 
   if (!collabTrack || !collabBoxes.length || !nextBtn || !prevBtn) return;
 
-  let collabIndex = 0;
+  const cardWidth = 365; // 350px width + 15px gap
+
+  // Clone items for infinite scroll
+  // We double the content. When we reach the start of the cloned set, we snap back to 0.
+  const originalCards = Array.from(collabBoxes);
+  const singleSetWidth = cardWidth * originalCards.length;
+
+  // Check if we already cloned (in case of re-init)
+  // We assume this runs once, or strict idempotency:
+  if (collabTrack.children.length === originalCards.length) {
+    originalCards.forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      collabTrack.appendChild(clone);
+    });
+  }
+
   let collabAutoSlide;
+  let isCollabPaused = false;
+
+  // Scroll Listener for Infinite Loop (Forward)
+  collabTrack.addEventListener('scroll', () => {
+    // If we have scrolled past the original set, snap back to start
+    if (collabTrack.scrollLeft >= singleSetWidth) {
+      collabTrack.style.scrollBehavior = 'auto'; // Disable smooth for instant snap
+      collabTrack.scrollLeft -= singleSetWidth;
+      collabTrack.style.scrollBehavior = 'smooth'; // Re-enable
+    }
+  });
 
   // Next Slide
   function slideCollabNext() {
-    collabIndex++;
-    if (collabIndex > collabBoxes.length - 3) collabIndex = 0;
-    collabTrack.style.transform = `translateX(-${collabIndex * (collabBoxes[0].offsetWidth + 20)}px)`;
+    collabTrack.scrollBy({ left: cardWidth, behavior: 'smooth' });
   }
 
   // Prev Slide
   function slideCollabPrev() {
-    collabIndex--;
-    if (collabIndex < 0) collabIndex = collabBoxes.length - 3;
-    collabTrack.style.transform = `translateX(-${collabIndex * (collabBoxes[0].offsetWidth + 20)}px)`;
+    // If at start (or close to it), snap to end of original set to allow scrolling left into it
+    if (collabTrack.scrollLeft <= 5) {
+      collabTrack.style.scrollBehavior = 'auto';
+      collabTrack.scrollLeft += singleSetWidth;
+      collabTrack.style.scrollBehavior = 'smooth';
+    }
+    collabTrack.scrollBy({ left: -cardWidth, behavior: 'smooth' });
   }
 
   // Remove old listeners
@@ -449,13 +500,12 @@ function initializeCollaborationCarousel() {
 
   // Auto Slide
   function startCollabAuto() {
-    // Clear any existing interval
-    if (collabAutoSlide) {
-      clearInterval(collabAutoSlide);
-    }
+    if (collabAutoSlide) clearInterval(collabAutoSlide);
     collabAutoSlide = setInterval(() => {
-      slideCollabNext();
-    }, 4000);
+      if (!isCollabPaused) {
+        slideCollabNext();
+      }
+    }, 4000); // 4 seconds
   }
 
   function stopCollabAuto() {
@@ -470,19 +520,17 @@ function initializeCollaborationCarousel() {
     startCollabAuto();
   }
 
-  // Start auto slide after a small delay to ensure DOM is ready
-  setTimeout(() => {
-    startCollabAuto();
-  }, 200);
+  // Start auto slide
+  startCollabAuto();
 
   // Pause on hover
-  collabTrack.addEventListener('mouseenter', stopCollabAuto);
-  collabTrack.addEventListener('mouseleave', startCollabAuto);
+  collabTrack.addEventListener('mouseenter', () => { isCollabPaused = true; });
+  collabTrack.addEventListener('mouseleave', () => { isCollabPaused = false; });
 
-  // Responsive fix
-  window.addEventListener('resize', () => {
-    collabTrack.style.transform = `translateX(-${collabIndex * (collabBoxes[0].offsetWidth + 20)}px)`;
-  });
+  newNextBtn.addEventListener('mouseenter', () => { isCollabPaused = true; });
+  newNextBtn.addEventListener('mouseleave', () => { isCollabPaused = false; });
+  newPrevBtn.addEventListener('mouseenter', () => { isCollabPaused = true; });
+  newPrevBtn.addEventListener('mouseleave', () => { isCollabPaused = false; });
 }
 
 // --------------------- What's New Section ---------------------------------------//
@@ -795,10 +843,10 @@ function initializeYouTubeCarousel() {
         video.style.visibility = 'visible';
       }
     });
-    
+
     // Apply transform
     ytCarousel.style.transform = `translateX(-${index * 100}%)`;
-    
+
     // Stop media only for non-active slides after transition
     setTimeout(() => {
       ytCards.forEach((card, i) => {
@@ -841,7 +889,7 @@ function initializeYouTubeCarousel() {
     e.stopPropagation();
     slideNext();
   });
-  
+
   newYtPrev.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -881,7 +929,7 @@ function initializeYouTubeCarousel() {
 
   // Initialize first slide
   showYouTubeSlide(0);
-  
+
   // Start auto slide after a delay
   setTimeout(() => {
     startAutoSlide();
@@ -936,6 +984,7 @@ function initializeInfocusSection() {
   }
 
   setupInfocusObserver(infocusContainer);
+  addMapIslands(infocusContainer);
 }
 
 function setupInfocusObserver(container) {
@@ -947,6 +996,148 @@ function setupInfocusObserver(container) {
   }
 }
 
+function addMapIslands(container) {
+  if (!container) return;
+
+  // Find the map image to ensure we overlay correctly
+  const img = container.querySelector('img');
+  if (!img) return;
+
+  // Use the image's parent for positioning to ensure dots stay with the map
+  const parent = img.parentElement;
+
+  // Check if islands already added
+  if (parent.querySelector('.map-islands-container')) return;
+
+  if (window.getComputedStyle(parent).position === 'static') {
+    parent.style.position = 'relative';
+  }
+
+  const islandContainer = document.createElement('div');
+  islandContainer.className = 'map-islands-container';
+  islandContainer.style.position = 'absolute';
+  islandContainer.style.top = '0';
+  islandContainer.style.left = '0';
+  islandContainer.style.width = '100%';
+  islandContainer.style.height = '100%';
+  islandContainer.style.pointerEvents = 'none';
+  islandContainer.style.zIndex = '1';
+
+  // DEBUG: Click to get coordinates
+  // Remove this in production or leave enabled for admin/dev
+  islandContainer.style.pointerEvents = 'auto'; // Enable events key for debugging
+  islandContainer.addEventListener('click', (e) => {
+    const rect = islandContainer.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const leftPercent = (x / rect.width) * 100;
+    const topPercent = (y / rect.height) * 100;
+    console.log(`{ top: ${topPercent.toFixed(1)}, left: ${leftPercent.toFixed(1)}, size: 3, delay: '0s' },`);
+    alert(`Coordinates copied to console:\nTop: ${topPercent.toFixed(1)}%\nLeft: ${leftPercent.toFixed(1)}%`);
+  });
+
+  // Alignment Adjustments (Modify these to shift the entire set)
+  const xOffset = 0;
+  const yOffset = 0;
+  const scale = 1.0;
+
+  // Coordinate percentages (Approximate for standard India map)
+  const stateDots = [
+    // North
+    { top: 18, left: 32, size: 3, delay: '0s' },    // J&K
+    { top: 15, left: 40, size: 3, delay: '0.2s' },  // Ladakh
+    { top: 24, left: 35, size: 3, delay: '0.1s' },  // Himachal
+    { top: 26, left: 29, size: 3, delay: '0.3s' },  // Punjab
+    { top: 27, left: 40, size: 3, delay: '0.2s' },  // Uttarakhand
+    { top: 31, left: 33, size: 2.5, delay: '0.4s' },// Haryana
+    { top: 33, left: 36, size: 2.5, delay: '0.1s' },// Delhi
+
+    // West
+    { top: 40, left: 25, size: 4, delay: '0s' },    // Rajasthan
+    { top: 50, left: 15, size: 4, delay: '0.3s' },  // Gujarat
+    { top: 62, left: 28, size: 4, delay: '0.1s' },  // Maharashtra
+    { top: 75, left: 25, size: 2, delay: '0.2s' },  // Goa
+
+    // Central
+    { top: 50, left: 42, size: 4, delay: '0.4s' },  // MP
+    { top: 38, left: 50, size: 4, delay: '0.2s' },  // UP
+    { top: 52, left: 55, size: 3.5, delay: '0.1s' },// Chhattisgarh
+
+    // East
+    { top: 40, left: 65, size: 3.5, delay: '0.3s' },// Bihar
+    { top: 48, left: 62, size: 3.5, delay: '0s' },  // Jharkhand
+    { top: 48, left: 70, size: 3.5, delay: '0.2s' },// West Bengal
+    { top: 58, left: 65, size: 3.5, delay: '0.1s' },// Odisha
+    { top: 32, left: 72, size: 2, delay: '0.4s' },  // Sikkim
+
+    // North East
+    { top: 38, left: 85, size: 3, delay: '0.2s' },  // Assam
+    { top: 30, left: 90, size: 3, delay: '0.1s' },  // Arunachal
+    { top: 36, left: 94, size: 3, delay: '0.3s' },  // Nagaland
+    { top: 42, left: 93, size: 3, delay: '0s' },    // Manipur
+    { top: 48, left: 91, size: 3, delay: '0.4s' },  // Mizoram
+    { top: 48, left: 86, size: 3, delay: '0.2s' },  // Tripura
+    { top: 40, left: 85, size: 3, delay: '0.1s' },  // Meghalaya
+
+    // South
+    { top: 78, left: 32, size: 4, delay: '0.3s' },  // Karnataka
+    { top: 65, left: 45, size: 3.5, delay: '0s' },  // Telangana
+    { top: 75, left: 48, size: 4, delay: '0.2s' },  // Andhra
+    { top: 88, left: 35, size: 3, delay: '0.1s' },  // Kerala
+    { top: 85, left: 42, size: 3.5, delay: '0.4s' },// Tamil Nadu
+
+    // Islands (Lakshadweep)
+    { top: 82, left: 18, size: 3, delay: '0s' },
+    { top: 84, left: 19, size: 2.5, delay: '0.2s' },
+    { top: 83, left: 17, size: 3, delay: '0.4s' },
+    { top: 85, left: 18, size: 2, delay: '0.1s' },
+    { top: 86, left: 17, size: 2, delay: '0.3s' },
+    { top: 81, left: 18, size: 2, delay: '0.5s' },
+    { top: 79, left: 17, size: 1.5, delay: '0.2s' },
+
+    // Islands (Andaman & Nicobar)
+    { top: 65, left: 88, size: 3, delay: '0s' },
+    { top: 66, left: 88, size: 3, delay: '0.3s' },
+    { top: 67, left: 88, size: 3.5, delay: '0.1s' },
+    { top: 69, left: 88, size: 3, delay: '0.4s' },
+    { top: 70, left: 88, size: 3, delay: '0.2s' },
+    { top: 72, left: 88, size: 3.5, delay: '0.5s' },
+    { top: 76, left: 89, size: 3, delay: '0.1s' },
+    { top: 78, left: 90, size: 2.5, delay: '0.3s' },
+    { top: 79, left: 90, size: 3, delay: '0.2s' },
+    { top: 81, left: 90, size: 4, delay: '0.4s' },
+  ];
+
+  const mapColor = '#ff9933'; // Theme Orange
+
+  const createDot = (dot) => {
+    const el = document.createElement('div');
+    el.className = 'map-dot';
+    el.style.position = 'absolute';
+
+    // Apply scaling relative to center (50, 50) roughly, or just simple offset
+    // Simple offset logic:
+    const finalTop = (dot.top * scale) + yOffset;
+    const finalLeft = (dot.left * scale) + xOffset;
+
+    el.style.top = finalTop + '%';
+    el.style.left = finalLeft + '%';
+    el.style.width = (dot.size * scale) + 'px';
+    el.style.height = (dot.size * scale) + 'px';
+
+    // Fallback color
+    if (!el.classList.contains('map-dot') || window.getComputedStyle(el).backgroundColor === 'rgba(0, 0, 0, 0)') {
+      el.style.backgroundColor = mapColor;
+    }
+    el.style.animationDelay = dot.delay;
+    return el;
+  };
+
+  stateDots.forEach(dot => islandContainer.appendChild(createDot(dot)));
+
+  parent.appendChild(islandContainer);
+}
+
 // --------------------------- Home Events Section (No Calendar) -------------------------------------//
 // Events are now in static HTML, so we just need to attach click handlers and initialize carousel
 
@@ -954,17 +1145,17 @@ function initializeHomeEvents() {
   // Setup modal close listeners
   const modalBackdrop = document.getElementById('homeEventModalBackdrop');
   const modalClose = document.getElementById('homeEventModalClose');
-  
+
   if (modalBackdrop) {
     modalBackdrop.addEventListener('click', closeHomeEventModal);
   }
   if (modalClose) {
     modalClose.addEventListener('click', closeHomeEventModal);
   }
-  
+
   // Attach click handlers to existing HTML event cards
   attachEventCardHandlers();
-  
+
   // Initialize carousel with existing HTML cards
   initEventsCarousel();
 }
@@ -1002,14 +1193,14 @@ function attachEventCardHandlers() {
   if (!eventsCardsList) return;
 
   const eventCards = eventsCardsList.querySelectorAll('.home-event-card');
-  
+
   eventCards.forEach(card => {
     const eventId = card.getAttribute('data-event-id');
     if (eventId) {
       // Remove any existing listeners by cloning
       const newCard = card.cloneNode(true);
       card.parentNode.replaceChild(newCard, card);
-      
+
       // Attach click handler
       newCard.addEventListener('click', () => {
         const eventDetails = buildEventDataFromCard(newCard);
@@ -1079,23 +1270,23 @@ function attachCarouselHandlers(cardsList) {
 
   // Manual navigation - Previous button
   if (prevBtn) {
-    prevBtn.onclick = function(e) {
+    prevBtn.onclick = function (e) {
       e.preventDefault();
       e.stopPropagation();
       isEventsCarouselPaused = true;
-      
+
       const firstCard = cardsList.querySelector('.home-event-card');
       if (!firstCard) return;
-      
+
       const cardWidth = firstCard.offsetWidth;
       const gap = 28;
       const scrollAmount = cardWidth + gap;
-      
+
       cardsList.scrollBy({
         left: -scrollAmount,
         behavior: 'smooth'
       });
-      
+
       setTimeout(() => {
         isEventsCarouselPaused = false;
       }, 1000);
@@ -1104,23 +1295,23 @@ function attachCarouselHandlers(cardsList) {
 
   // Manual navigation - Next button
   if (nextBtn) {
-    nextBtn.onclick = function(e) {
+    nextBtn.onclick = function (e) {
       e.preventDefault();
       e.stopPropagation();
       isEventsCarouselPaused = true;
-      
+
       const firstCard = cardsList.querySelector('.home-event-card');
       if (!firstCard) return;
-      
+
       const cardWidth = firstCard.offsetWidth;
       const gap = 28;
       const scrollAmount = cardWidth + gap;
-      
+
       cardsList.scrollBy({
         left: scrollAmount,
         behavior: 'smooth'
       });
-      
+
       setTimeout(() => {
         isEventsCarouselPaused = false;
       }, 1000);
@@ -1137,7 +1328,7 @@ function startAutoScroll(cardsList) {
     const cardWidth = firstCard.offsetWidth;
     const gap = 28;
     const totalWidth = (cardWidth + gap) * cards.length;
-    
+
     if (cardsList.scrollWidth < totalWidth * 1.5) {
       cards.forEach(card => {
         const clone = card.cloneNode(true);
@@ -1161,7 +1352,7 @@ function startAutoScroll(cardsList) {
     const maxScroll = cardsList.scrollWidth - cardsList.clientWidth;
     const halfPoint = maxScroll / 2;
     const scrollSpeed = 1; // pixels per frame for smooth movement
-    
+
     // Check if we've reached the end (accounting for duplicated cards)
     if (cardsList.scrollLeft >= halfPoint - 10) {
       // Seamlessly reset to beginning for infinite loop
@@ -1170,7 +1361,7 @@ function startAutoScroll(cardsList) {
       // Smooth continuous scroll
       cardsList.scrollLeft += scrollSpeed;
     }
-    
+
     // Continue the animation loop
     eventsCarouselInterval = requestAnimationFrame(autoScroll);
   }
@@ -1183,7 +1374,7 @@ function startAutoScroll(cardsList) {
       clearInterval(eventsCarouselInterval);
     }
   }
-  
+
   // Start the animation loop after a small delay to ensure DOM is ready
   setTimeout(() => {
     eventsCarouselInterval = requestAnimationFrame(autoScroll);
@@ -1194,17 +1385,17 @@ function startAutoScroll(cardsList) {
 
 function showHomeDayEvents(events, date) {
   if (!events || events.length === 0) return;
-  
+
   const modalBody = document.getElementById('homeEventModalBody');
   const modal = document.getElementById('homeEventModal');
-  
+
   if (!modalBody || !modal) return;
 
-  const dateStr = date.toLocaleDateString('en-US', { 
-    weekday: 'long', 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
+  const dateStr = date.toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
   });
 
   if (events.length === 1) {
@@ -1217,13 +1408,13 @@ function showHomeDayEvents(events, date) {
       </div>
       <div class="day-events-list">
         ${events.map((event, idx) => {
-          const eventDate = new Date(event.date);
-          const formattedDate = eventDate.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-          });
-          return `
+      const eventDate = new Date(event.date);
+      const formattedDate = eventDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      return `
             <div class="day-event-item" data-event-id="${event.id}" data-event-index="${idx}">
               ${event.image ? `
                 <div class="day-event-image">
@@ -1245,11 +1436,11 @@ function showHomeDayEvents(events, date) {
               </div>
             </div>
           `;
-        }).join('')}
+    }).join('')}
       </div>
     `;
     openHomeEventModal();
-    
+
     setTimeout(() => {
       const dayEventItems = modalBody.querySelectorAll('.day-event-item');
       dayEventItems.forEach((item) => {
@@ -1271,7 +1462,7 @@ function showHomeDayEvents(events, date) {
 function showHomeEventModal(event) {
   const modalBody = document.getElementById('homeEventModalBody');
   const modal = document.getElementById('homeEventModal');
-  
+
   if (!modalBody || !modal) return;
 
   const eventDate = new Date(event.date);
@@ -1308,7 +1499,7 @@ function showHomeEventModal(event) {
 function openHomeEventModal() {
   const modal = document.getElementById('homeEventModal');
   if (!modal) return;
-  
+
   modal.classList.add('active');
   modal.style.display = 'flex';
   modal.style.visibility = 'visible';
@@ -1338,7 +1529,55 @@ function initializePartnerSlider() {
 
   if (!partnerSlider || !partnerNext || !partnerPrev) return;
 
-  const scrollDistance = 300;
+  const partnerCards = partnerSlider.querySelectorAll('.partner-card');
+  if (!partnerCards.length) return;
+
+  // Calculate card width dynamically. 
+  // We assume a card width around 280-300px plus gap.
+  // Using offsetWidth accounts for padding/border. We add an estimated gap of 20px.
+  // If no gap is actually set in CSS, this might overscroll slightly, but it's usually safer.
+  const firstCard = partnerCards[0];
+  const cardWidth = (firstCard.offsetWidth || 280) + 24; // 24px gap adjustment
+
+  // Clone items for infinite scroll
+  const originalCards = Array.from(partnerCards);
+  const singleSetWidth = cardWidth * originalCards.length;
+
+  // Check if already cloned
+  if (partnerSlider.children.length === originalCards.length) {
+    originalCards.forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      partnerSlider.appendChild(clone);
+    });
+  }
+
+  let partnerAutoSlide;
+  let isPartnerPaused = false;
+
+  // Scroll Listener for Infinite Loop
+  partnerSlider.addEventListener('scroll', () => {
+    // If we have scrolled past the original set, snap back to start
+    if (partnerSlider.scrollLeft >= singleSetWidth) {
+      partnerSlider.style.scrollBehavior = 'auto'; // Disable smooth for instant snap
+      partnerSlider.scrollLeft -= singleSetWidth;
+      partnerSlider.style.scrollBehavior = 'smooth'; // Re-enable
+    }
+  });
+
+  function slidePartnerNext() {
+    partnerSlider.scrollBy({ left: cardWidth, behavior: 'smooth' });
+  }
+
+  function slidePartnerPrev() {
+    // If at start (or close to it), snap to end of original set
+    if (partnerSlider.scrollLeft <= 5) {
+      partnerSlider.style.scrollBehavior = 'auto';
+      partnerSlider.scrollLeft += singleSetWidth;
+      partnerSlider.style.scrollBehavior = 'smooth';
+    }
+    partnerSlider.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+  }
 
   // Remove old listeners
   const newPartnerNext = partnerNext.cloneNode(true);
@@ -1348,20 +1587,43 @@ function initializePartnerSlider() {
 
   // Manual buttons
   newPartnerNext.addEventListener('click', () => {
-    partnerSlider.scrollBy({ left: scrollDistance, behavior: 'smooth' });
+    slidePartnerNext();
+    restartPartnerAuto();
   });
 
   newPartnerPrev.addEventListener('click', () => {
-    partnerSlider.scrollBy({ left: -scrollDistance, behavior: 'smooth' });
+    slidePartnerPrev();
+    restartPartnerAuto();
   });
 
-  // Auto slide every 3 seconds
-  setInterval(() => {
-    partnerSlider.scrollBy({ left: scrollDistance, behavior: 'smooth' });
-    if (partnerSlider.scrollLeft + partnerSlider.clientWidth >= partnerSlider.scrollWidth - 10) {
-      partnerSlider.scrollTo({ left: 0, behavior: 'smooth' });
-    }
-  }, 3000);
+  // Auto slide
+  function startPartnerAuto() {
+    if (partnerAutoSlide) clearInterval(partnerAutoSlide);
+    partnerAutoSlide = setInterval(() => {
+      if (!isPartnerPaused) {
+        slidePartnerNext();
+      }
+    }, 3000);
+  }
+
+  function stopPartnerAuto() {
+    if (partnerAutoSlide) clearInterval(partnerAutoSlide);
+  }
+
+  function restartPartnerAuto() {
+    stopPartnerAuto();
+    startPartnerAuto();
+  }
+
+  startPartnerAuto();
+
+  // Pause on hover
+  partnerSlider.addEventListener('mouseenter', () => { isPartnerPaused = true; });
+  partnerSlider.addEventListener('mouseleave', () => { isPartnerPaused = false; });
+  newPartnerNext.addEventListener('mouseenter', () => { isPartnerPaused = true; });
+  newPartnerNext.addEventListener('mouseleave', () => { isPartnerPaused = false; });
+  newPartnerPrev.addEventListener('mouseenter', () => { isPartnerPaused = true; });
+  newPartnerPrev.addEventListener('mouseleave', () => { isPartnerPaused = false; });
 }
 
 //----------------------------------- Chairperson Modal -------------------------------//
@@ -1394,13 +1656,13 @@ function initializeChairpersonModal() {
   function openModal() {
     document.body.style.overflow = 'hidden';
     modal.classList.add('active');
-    
+
     // Reset scroll position to top
     const letterPaper = document.querySelector('.letter-paper');
     if (letterPaper) {
       letterPaper.scrollTop = 0;
     }
-    
+
     // Trigger animation after a small delay to ensure display is set
     setTimeout(() => {
       modalWrapper.style.transform = 'translateY(0)';
@@ -1412,7 +1674,7 @@ function initializeChairpersonModal() {
   function closeModal() {
     modalWrapper.style.transform = 'translateY(-100%)';
     modalWrapper.style.opacity = '0';
-    
+
     setTimeout(() => {
       modal.classList.remove('active');
       document.body.style.overflow = '';
@@ -1421,7 +1683,7 @@ function initializeChairpersonModal() {
 
   // Event listeners - make title clickable
   messageImageContainer.addEventListener('click', openModal);
-  
+
   // Also make the title specifically clickable
   const previewTitleWrapper = document.querySelector('.preview-letter-title-wrapper');
   if (previewTitleWrapper) {
@@ -1431,7 +1693,7 @@ function initializeChairpersonModal() {
       openModal();
     });
   }
-  
+
   closeBtn.addEventListener('click', closeModal);
   backdrop.addEventListener('click', closeModal);
 
@@ -1562,7 +1824,7 @@ function initializeDocumentCarousel() {
 
   updateButtons();
   updatePageIndicator();
-  
+
   // Start auto scroll
   startDocumentAuto();
 }

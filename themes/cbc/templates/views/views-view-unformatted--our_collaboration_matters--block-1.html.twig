@@ -1,5 +1,5 @@
 <div class="collab-content-wrapper">
-          <button class="collab-arrow left" id="prevBtn">❮</button>
+          <button class="collab-arrow left" id="collabPrevBtn">❮</button>
           <div class="collab-carousel">
 
 
@@ -17,7 +17,7 @@
       {% endif %}
                
                 <h3>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
-                <p>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ body }}'] }}{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ field_event_description }}'] }}</p>
+                <div class="collab-description">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ body }}'] }}{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ field_event_description }}'] }}</div>
               </div>
               </a>
               {% endfor %}
@@ -25,7 +25,7 @@
 
 
           </div>
-          <button class="collab-arrow right" id="nextBtn">❯</button>
+          <button class="collab-arrow right" id="collabNextBtn">❯</button>
         </div>
         <div class="collab-footer">
           <a href="/collaborations" class="view-more">View More <i class="fas fa-arrow-right"></i></a>
