@@ -1483,6 +1483,15 @@
     padding: 2rem 4%;
   }
 
+  .leadership-members-row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .leadership-members-row>div:nth-child(2) {
+    order: -1;
+  }
+
   .cbc-blog-carousel {
     padding: 2rem 4%;
   }
