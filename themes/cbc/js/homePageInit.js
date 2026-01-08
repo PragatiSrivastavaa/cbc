@@ -324,36 +324,62 @@ function initializeCountSection() {
 
 // ----------------------------- Blog Section ---------------------------------//
 function initializeBlogSection() {
-  const track = document.getElementById("carouselTrack");
+  const track = document.getElementById("opinionCarouselTrack");
   const nextBtn = document.getElementById("blogNextBtn");
   const prevBtn = document.getElementById("blogPrevBtn");
 
   if (!track || !nextBtn || !prevBtn) return;
 
-  const cardWidth = track.querySelector(".blog-card")?.offsetWidth + 20 || 320;
-  let scrollPosition = 0;
+  const cards = track.querySelectorAll(".blog-card");
+  if (!cards.length) return;
+
+  const cardWidth = cards[0].offsetWidth + 15 || 320;
+
+  // Clone items for infinite scroll
+  const originalCards = Array.from(cards);
+  const singleSetWidth = cardWidth * originalCards.length;
+
+  // Clone logic: duplicate content if not already done
+  if (track.children.length === originalCards.length) {
+    originalCards.forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    });
+  }
+
   let blogAutoScroll;
   let isBlogPaused = false;
+
+  // Scroll Listener for Infinite Loop
+  track.addEventListener('scroll', () => {
+    // If we have scrolled past the original set, snap back to start
+    if (track.scrollLeft >= singleSetWidth) {
+      track.style.scrollBehavior = 'auto'; // Disable smooth for instant snap
+      track.scrollLeft -= singleSetWidth;
+      track.style.scrollBehavior = 'smooth'; // Re-enable
+    }
+  });
+
+  function slideBlogNext() {
+    track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+  }
+
+  function slideBlogPrev() {
+    // If at start (or close to it), snap to end of original set first
+    if (track.scrollLeft <= 5) {
+      track.style.scrollBehavior = 'auto';
+      track.scrollLeft += singleSetWidth;
+      track.style.scrollBehavior = 'smooth';
+    }
+    track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+  }
 
   // Remove old listeners
   const newNextBtn = nextBtn.cloneNode(true);
   const newPrevBtn = prevBtn.cloneNode(true);
   nextBtn.parentNode.replaceChild(newNextBtn, nextBtn);
   prevBtn.parentNode.replaceChild(newPrevBtn, prevBtn);
-
-  function slideBlogNext() {
-    const maxScroll = track.scrollWidth - track.clientWidth;
-    scrollPosition = Math.min(scrollPosition + cardWidth, maxScroll);
-    if (scrollPosition >= maxScroll - 5) {
-      scrollPosition = 0; // Reset for infinite loop
-    }
-    track.scrollTo({ left: scrollPosition, behavior: "smooth" });
-  }
-
-  function slideBlogPrev() {
-    scrollPosition = Math.max(scrollPosition - cardWidth, 0);
-    track.scrollTo({ left: scrollPosition, behavior: "smooth" });
-  }
 
   newNextBtn.addEventListener("click", () => {
     slideBlogNext();
@@ -365,10 +391,9 @@ function initializeBlogSection() {
     restartBlogAuto();
   });
 
-  function updateButtons() {
-    newPrevBtn.style.opacity = track.scrollLeft <= 0 ? "0.5" : "1";
-    newNextBtn.style.opacity = track.scrollLeft + track.clientWidth >= track.scrollWidth ? "0.5" : "1";
-  }
+  // Remove the old opacity logic since we have infinite scroll now
+  newPrevBtn.style.opacity = "1";
+  newNextBtn.style.opacity = "1";
 
   // Auto Scroll Functions
   function startBlogAuto() {
@@ -380,7 +405,7 @@ function initializeBlogSection() {
   }
 
   function stopBlogAuto() {
-    clearInterval(blogAutoScroll);
+    if (blogAutoScroll) clearInterval(blogAutoScroll);
   }
 
   function restartBlogAuto() {
@@ -389,16 +414,13 @@ function initializeBlogSection() {
   }
 
   // Pause on hover
-  track.addEventListener('mouseenter', () => {
-    isBlogPaused = true;
-  });
+  track.addEventListener('mouseenter', () => { isBlogPaused = true; });
+  track.addEventListener('mouseleave', () => { isBlogPaused = false; });
 
-  track.addEventListener('mouseleave', () => {
-    isBlogPaused = false;
-  });
-
-  track.addEventListener("scroll", updateButtons);
-  updateButtons();
+  newNextBtn.addEventListener('mouseenter', () => { isBlogPaused = true; });
+  newNextBtn.addEventListener('mouseleave', () => { isBlogPaused = false; });
+  newPrevBtn.addEventListener('mouseenter', () => { isBlogPaused = true; });
+  newPrevBtn.addEventListener('mouseleave', () => { isBlogPaused = false; });
 
   // Start auto scroll
   startBlogAuto();

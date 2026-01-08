@@ -3709,7 +3709,15 @@ h2.infocus-heading {
   padding-top: 0.25rem;
   position: relative;
   z-index: 1;
-  padding: 2.5rem 5rem;
+  padding: 2.5rem 0rem;
+}
+
+.blog-carousel-wrapper {
+  padding: 0rem 1rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .blog-card {
@@ -3806,7 +3814,7 @@ h2.infocus-heading {
 
 .cbc-blog-carousel .carousel-controls {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 0;
   right: 0;
   transform: translateY(-50%);
@@ -9043,7 +9051,7 @@ h2.infocus-heading {
 
 
 .collab-footer {
-  padding: 1.5rem 5% 4rem;
+  padding: 0 rem 5% 4rem;
   text-align: right;
   /* border-top: 1px solid #e9ecef; */
   background: #ffe7b3;
@@ -10747,11 +10755,17 @@ h2.infocus-heading {
 .carousel-track {
   display: flex;
   gap: 15px;
-  overflow: hidden;
+  overflow-x: auto;
   scroll-behavior: smooth;
+  scrollbar-width: none;
   transition: transform 0.6s ease;
   align-items: stretch;
   padding-top: 4px;
+  width: 100%;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
 }
 
 .blog-card {
