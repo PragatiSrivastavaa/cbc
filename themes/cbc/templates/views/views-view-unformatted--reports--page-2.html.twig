@@ -15,6 +15,15 @@
             <tbody>
 			  {% for row in rows %}
               {% set entity = row.content['#row']._entity %}
+                   {% set link_item = entity.field_link.0 %}
+
+                {% if link_item %}
+                  {# Convert internal/external link to usable URL #}
+                  {% set link = link_item.url %}
+                {% else %}
+                  {# If linked field is empty, link to node page #}
+                  {% set link = path('entity.node.canonical', {'node': entity.id()}) %}
+                {% endif %}
               <tr>
                <td style="text-align:center;">{{ loop.index }}</td>
       

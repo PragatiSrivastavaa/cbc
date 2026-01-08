@@ -4,7 +4,9 @@
   <div class="news-header">
     <div class="news-title-wrapper">
       <h2 class="wave-text">
-        <img src="{{ base_path ~ directory }}/img/whats_new.gif" alt="What's New" class="whats-new-gif" />
+        <img src="{{ base_path ~ directory }}/img/whats_new.gif"
+             alt="What's New"
+             class="whats-new-gif" />
         <span class="blink-dot"></span>What's New
       </h2>
       <div class="title-underline"></div>
@@ -21,26 +23,29 @@
 
       {% for row in rows %}
         {% set node = row.content['#row']._entity %}
-        {% set tokens = row.content['#view'].style_plugin.render_tokens[loop.index0] %}
-        {% set category = node.field_category.entity.label() %}
 
-        {% if category == "What's New" %}
+        {% if node.field_category is not empty
+          and node.field_category.entity.label() == "What's New" %}
 
           <div class="news-banner high-contrast-border">
 
-            {# NEW badge only for today's or upcoming items #}
-            {% set start_date = node.field_start_date.value|date("Y-m-d") %}
-            {% set today = "now"|date("Y-m-d") %}
+            {# NEW badge only for today or future dates #}
+            {% if node.field_end_date is not empty %}
+              {% set start_date = node.field_end_date.0.value|date('Y-m-d') %}
+              {% set today = 'now'|date('Y-m-d') %}
 
-            {% if start_date >= today %}
-              <div class="new-badge">
-                <span class="badge-text">NEW</span>
-                <div class="badge-glow"></div>
-              </div>
+              {% if start_date >= today %}
+                <div class="new-badge">
+                  <span class="badge-text">NEW</span>
+                  <div class="badge-glow"></div>
+                </div>
+              {% endif %}
             {% endif %}
 
             <div class="news-banner-content">
-              <p>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</p>
+              <a href="{{ path('entity.node.canonical', {'node': node.id()}) }}">
+                <p>{{ node.label }}</p>
+              </a>
             </div>
 
           </div>
@@ -53,7 +58,7 @@
 
   <!-- Footer -->
   <div class="news-footer">
-    <a href="/cbc/whats-new" class="view-all">
+    <a href="/whats-new" class="view-all">
       View All <i class="fas fa-arrow-right"></i>
     </a>
   </div>

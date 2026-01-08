@@ -1,24 +1,32 @@
-
-  <section class="container py-5">
+<section class="container py-5">
   <div class="row">
     <div class="col-lg-10 mx-auto">
       <div class="content-section collab-detail-content">
-        <div class="text-center mb-4">
-          
-         {% if node.field_image.value %}
-          <div class="event-article-content">
-            {{ content.field_image }}
+
+        {# Original image (no image style) #}
+        {% if node.field_image.entity %}
+          <div class="text-center mb-4">
+            <div class="event-article-content">
+              <img
+                src="{{ file_url(node.field_image.entity.fileuri) }}"
+                alt="{{ node.field_image.alt }}"
+                loading="eager"
+                class="img-fluid"
+              >
+            </div>
           </div>
         {% endif %}
 
-        </div>
         <h1 class="collab-detail-title">{{ node.label }}</h1>
-        <p class="collab-detail-text">
-          {% if node.field_event_description.value %}
-          <div class="event-article-content">
-            {{ content.field_event_description }}
+
+        {% if node.field_event_description.value %}
+          <div class="collab-detail-text">
+            <div class="event-article-content">
+              {{ content.field_event_description }}
+            </div>
           </div>
-        {% endif %}</p>
+        {% endif %}
+
       </div>
     </div>
   </div>

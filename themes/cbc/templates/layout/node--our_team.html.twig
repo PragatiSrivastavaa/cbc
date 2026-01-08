@@ -1,47 +1,57 @@
-<section class="container py-5">
-  <div class="row">
-    <div class="col-lg-10 mx-auto">
-      <div class="content-section collab-detail-content">
-        <div class="text-center mb-4">
-          
-         {% if node.field_image.value %}
-          <div class="team-member-image">
-            {{ content.field_image }}
-          </div>
-        {% endif %}
+<section class="team-detail-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <div class="team-detail-wrapper">
+          <div class="team-detail-header">
+            {% if node.field_image.entity %}
+              <div class="team-detail-photo">
+                <img
+                src="{{ file_url(node.field_image.entity.fileuri) }}"
+                alt="{{ node.field_image.alt }}"
+                loading="eager"
+                class="img-fluid"
+              >
+              </div>
+            {% endif %}
 
+            <div class="team-detail-info">
+              <h1 class="team-detail-name">{{ node.label }}</h1>
+
+              {% if node.field_team_members.value %}
+                <p class="team-detail-role">
+                  {{ node.field_team_members.entity.name.value }}
+                </p>
+              {% endif %}
+
+              <div class="team-detail-contact">
+                {% if node.field_email.value %}
+                  <div class="contact-item contact-email">
+                    {{ content.field_email }}
+                  </div>
+                {% endif %}
+
+                {% if node.field_phone.value %}
+                  <div class="contact-item contact-phone">
+                    {{ content.field_phone }}
+                  </div>
+                {% endif %}
+
+                {% if node.field_address.value %}
+                  <div class="contact-item contact-address">
+                    {{ content.field_address }}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          {% if node.field_event_description.value %}
+            <div class="team-detail-bio">
+              {{ content.field_event_description }}
+            </div>
+          {% endif %}
         </div>
-        <h1 class="collab-detail-title">{{ node.label }}</h1>
-        {% if node.field_team_members.value %}
-          <div class="team-member-name">
-           {{ node.field_team_members.entity.name.value }}
-
-          </div>
-        {% endif %}
-        
-          {% if node.field_email.value %}
-          <div class="team-member-email">
-            {{ content.field_email }}
-          </div>
-        {% endif %}
-
-        {% if node.field_phone.value %}
-          <div class="team-member-phone">
-            {{ content.field_phone }}
-          </div>
-        {% endif %}
-
-        {% if node.field_address.value %}
-          <div class="team-member-address">
-            {{ content.field_address }}
-          </div>
-        {% endif %}
-        {% if node.field_event_description.value %}
-          <div class="team-member-description">
-            {{ content.field_event_description }}
-          </div>
-        {% endif %}
-
       </div>
     </div>
   </div>

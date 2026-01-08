@@ -1,34 +1,44 @@
- <section class="karmayogi-section-fullwidth newsletter-content-section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-10 offset-lg-1">
-          <!-- Author Info -->
-          <div class="newsletter-author-card">
-            <div class="author-info">
-
-              <h3 class="author-name">{{ node.label }}</h3>
-              {% if node.field_author.value %}
-              <p class="author-designation">{{ node.field_author.value }}</p>
-              {% endif %}
-              {% if node.field_designation.value %}
-              <p class="author-designation">{{ node.field_designation.value }}</p>
-              {% endif %}
+<section class="opinion-detail-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <!-- Blue Header Card -->
+        <div class="opinion-header-card">
+          <div class="opinion-author-info">
+            {% if node.field_author.value %}
+              <p class="opinion-author-name">
+                {{ node.field_author.value }}
+              </p>
+            {% endif %}
+            {% if node.field_designation.value %}
+              <p class="opinion-author-designation">
+                {{ node.field_designation.value }}
+              </p>
+            {% endif %}
+          </div>
+          {% if node.field_image.entity %}
+            <div class="opinion-author-photo">
+              <img
+                src="{{ file_url(node.field_image.entity.fileuri) }}"
+                alt="{{ node.field_image.alt }}"
+                loading="eager"
+                class="img-fluid"
+              >
             </div>
-            
-          {% if node.field_image.value %}
-          <div class="author-image-wrapper">
-          {{ content.field_image }}
-          </div>
           {% endif %}
-          </div>
+        </div>
 
-          <!-- Main Content -->
-            {% if node.field_event_description.value %}
-          <div class="newsletter-article">
-            {{ content.field_event_description }}
+        <!-- White Content Card -->
+        {% if node.field_event_description.value %}
+          <div class="opinion-content-card">
+            <h1 class="opinion-article-title">{{ node.label }}</h1>
+            <hr class="opinion-title-separator">
+            <div class="opinion-article-content">
+              {{ content.field_event_description }}
+            </div>
           </div>
         {% endif %}
-        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
