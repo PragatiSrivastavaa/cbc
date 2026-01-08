@@ -1386,7 +1386,55 @@ function initializePartnerSlider() {
 
   if (!partnerSlider || !partnerNext || !partnerPrev) return;
 
-  const scrollDistance = 300;
+  const partnerCards = partnerSlider.querySelectorAll('.partner-card');
+  if (!partnerCards.length) return;
+
+  // Calculate card width dynamically. 
+  // We assume a card width around 280-300px plus gap.
+  // Using offsetWidth accounts for padding/border. We add an estimated gap of 20px.
+  // If no gap is actually set in CSS, this might overscroll slightly, but it's usually safer.
+  const firstCard = partnerCards[0];
+  const cardWidth = (firstCard.offsetWidth || 280) + 24; // 24px gap adjustment
+
+  // Clone items for infinite scroll
+  const originalCards = Array.from(partnerCards);
+  const singleSetWidth = cardWidth * originalCards.length;
+
+  // Check if already cloned
+  if (partnerSlider.children.length === originalCards.length) {
+    originalCards.forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      partnerSlider.appendChild(clone);
+    });
+  }
+
+  let partnerAutoSlide;
+  let isPartnerPaused = false;
+
+  // Scroll Listener for Infinite Loop
+  partnerSlider.addEventListener('scroll', () => {
+    // If we have scrolled past the original set, snap back to start
+    if (partnerSlider.scrollLeft >= singleSetWidth) {
+      partnerSlider.style.scrollBehavior = 'auto'; // Disable smooth for instant snap
+      partnerSlider.scrollLeft -= singleSetWidth;
+      partnerSlider.style.scrollBehavior = 'smooth'; // Re-enable
+    }
+  });
+
+  function slidePartnerNext() {
+    partnerSlider.scrollBy({ left: cardWidth, behavior: 'smooth' });
+  }
+
+  function slidePartnerPrev() {
+    // If at start (or close to it), snap to end of original set
+    if (partnerSlider.scrollLeft <= 5) {
+      partnerSlider.style.scrollBehavior = 'auto';
+      partnerSlider.scrollLeft += singleSetWidth;
+      partnerSlider.style.scrollBehavior = 'smooth';
+    }
+    partnerSlider.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+  }
 
   // Remove old listeners
   const newPartnerNext = partnerNext.cloneNode(true);
@@ -1396,20 +1444,43 @@ function initializePartnerSlider() {
 
   // Manual buttons
   newPartnerNext.addEventListener('click', () => {
-    partnerSlider.scrollBy({ left: scrollDistance, behavior: 'smooth' });
+    slidePartnerNext();
+    restartPartnerAuto();
   });
 
   newPartnerPrev.addEventListener('click', () => {
-    partnerSlider.scrollBy({ left: -scrollDistance, behavior: 'smooth' });
+    slidePartnerPrev();
+    restartPartnerAuto();
   });
 
-  // Auto slide every 3 seconds
-  setInterval(() => {
-    partnerSlider.scrollBy({ left: scrollDistance, behavior: 'smooth' });
-    if (partnerSlider.scrollLeft + partnerSlider.clientWidth >= partnerSlider.scrollWidth - 10) {
-      partnerSlider.scrollTo({ left: 0, behavior: 'smooth' });
-    }
-  }, 3000);
+  // Auto slide
+  function startPartnerAuto() {
+    if (partnerAutoSlide) clearInterval(partnerAutoSlide);
+    partnerAutoSlide = setInterval(() => {
+      if (!isPartnerPaused) {
+        slidePartnerNext();
+      }
+    }, 3000);
+  }
+
+  function stopPartnerAuto() {
+    if (partnerAutoSlide) clearInterval(partnerAutoSlide);
+  }
+
+  function restartPartnerAuto() {
+    stopPartnerAuto();
+    startPartnerAuto();
+  }
+
+  startPartnerAuto();
+
+  // Pause on hover
+  partnerSlider.addEventListener('mouseenter', () => { isPartnerPaused = true; });
+  partnerSlider.addEventListener('mouseleave', () => { isPartnerPaused = false; });
+  newPartnerNext.addEventListener('mouseenter', () => { isPartnerPaused = true; });
+  newPartnerNext.addEventListener('mouseleave', () => { isPartnerPaused = false; });
+  newPartnerPrev.addEventListener('mouseenter', () => { isPartnerPaused = true; });
+  newPartnerPrev.addEventListener('mouseleave', () => { isPartnerPaused = false; });
 }
 
 //----------------------------------- Chairperson Modal -------------------------------//
