@@ -19,7 +19,7 @@
                     {% set file = entity.field_thumbnail_image.0.entity %}
                      {% set img_url = file_url(file.fileuri) %}
 
-                    <img src="{{ img_url }}" class="w-100 rounded-3" alt="{{ tokens['{{ title }}'] }}">
+                    <img src="{{ img_url }}" class="w-100 card-img-top" alt="{{ tokens['{{ title }}'] }}">
                     {% endif %}
 
                 <div class="card-body" >

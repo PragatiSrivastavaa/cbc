@@ -12227,6 +12227,7 @@ tbody tr:nth-child(even),
   height: 250px;
   object-fit: cover;
   transition: transform 0.3s ease;
+  border-radius: 10px 10px 0 0;
 }
 
 .gallery-carousel-item .card:hover .card-img-top {
@@ -12242,6 +12243,10 @@ tbody tr:nth-child(even),
   font-weight: 600;
   color: #002b5b;
   margin: 0 0 8px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .gallery-carousel-item .card-text {
@@ -12249,6 +12254,10 @@ tbody tr:nth-child(even),
   /* Increased from 0.9rem for better readability */
   color: #6c757d;
   margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* Gallery Carousel Responsive */
