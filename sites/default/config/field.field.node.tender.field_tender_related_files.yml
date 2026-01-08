@@ -1,0 +1,34 @@
+uuid: c65a3a64-8876-43b9-9fab-e0f10f0f62e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tender_related_files
+    - node.type.tender
+    - paragraphs.paragraphs_type.tender_documents
+  module:
+    - entity_reference_revisions
+id: node.tender.field_tender_related_files
+field_name: field_tender_related_files
+entity_type: node
+bundle: tender
+label: 'Tender related files'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      tender_documents: tender_documents
+    negate: 0
+    target_bundles_drag_drop:
+      hero_section:
+        weight: 3
+        enabled: false
+      tender_documents:
+        weight: 4
+        enabled: true
+field_type: entity_reference_revisions

@@ -1,0 +1,21 @@
+uuid: 517cc85f-dcf6-4ee3-9bda-def20fa10303
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tender_awarded
+    - node.type.tender
+id: node.tender.field_tender_awarded
+field_name: field_tender_awarded
+entity_type: node
+bundle: tender
+label: 'Tender awarded'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

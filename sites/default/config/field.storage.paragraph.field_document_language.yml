@@ -1,0 +1,39 @@
+uuid: 38056d0b-c416-4023-a7ff-3cce6c9bab77
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_document_language
+field_name: field_document_language
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: english
+      label: English
+    -
+      value: hindi
+      label: Hindi
+    -
+      value: urdu
+      label: Urdu
+    -
+      value: tamil
+      label: Tamil
+    -
+      value: marathi
+      label: marathi
+    -
+      value: odia
+      label: Odia
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

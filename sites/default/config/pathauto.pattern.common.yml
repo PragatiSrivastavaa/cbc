@@ -9,15 +9,21 @@ label: Common
 type: 'canonical_entities:node'
 pattern: '/[node:title]'
 selection_criteria:
-  d8630927-bfed-4072-9bd6-a632a6f95c4c:
+  80c0eede-2f86-475f-9d29-c3e02da6d788:
     id: 'entity_bundle:node'
     negate: false
-    uuid: d8630927-bfed-4072-9bd6-a632a6f95c4c
+    uuid: 80c0eede-2f86-475f-9d29-c3e02da6d788
     context_mapping:
       node: node
     bundles:
+      acbp_process_manual: acbp_process_manual
+      areas_of_collaboration: areas_of_collaboration
+      capacity_building_units: capacity_building_units
+      case_studies: case_studies
       event: event
       home_banner: home_banner
+      important_documents: important_documents
+      know_your_cbc: know_your_cbc
       media_corner: media_corner
       news: news
       news_letters: news_letters
@@ -26,7 +32,13 @@ selection_criteria:
       our_partners: our_partners
       our_team: our_team
       page: page
+      photo_gallery: photo_gallery
+      registration_guidelines_for_igot: registration_guidelines_for_igot
+      reports: reports
+      tender: tender
+      training_institute: training_institute
       video_gallery: video_gallery
+      webform: webform
 selection_logic: and
 weight: -5
 relationships: {  }

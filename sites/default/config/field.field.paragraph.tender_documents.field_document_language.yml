@@ -1,0 +1,21 @@
+uuid: e63f23ad-a220-45b1-b5e9-ea0d21536807
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_document_language
+    - paragraphs.paragraphs_type.tender_documents
+  module:
+    - options
+id: paragraph.tender_documents.field_document_language
+field_name: field_document_language
+entity_type: paragraph
+bundle: tender_documents
+label: 'Document Language'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
