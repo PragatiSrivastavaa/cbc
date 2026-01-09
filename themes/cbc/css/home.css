@@ -10276,7 +10276,7 @@ h2.infocus-heading {
 
 .infocus-content {
   flex: 1 1 auto;
-  padding: 12px 15px;
+  padding: 10px 10px;
   opacity: 1;
   transform: none;
   display: flex;
@@ -12175,7 +12175,7 @@ h2.infocus-heading {
 .infocus-map-container .india-map-image {
   width: 100%;
   height: auto;
-  max-height: 220px;
+  /* max-height: 220px; */
   object-fit: contain;
   display: block;
 }
