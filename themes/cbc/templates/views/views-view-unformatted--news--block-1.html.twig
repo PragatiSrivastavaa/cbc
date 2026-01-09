@@ -3,22 +3,21 @@
 
     {% for row in rows %}
       {% set entity = row.content['#row']._entity %}
-                   {% set link_item = entity.field_action.0 %}
+      {% set link_item = entity.field_action.0 %}
+      {% set title_text = row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] %}
 
-                {% if link_item %}
-                  {# Convert internal/external link to usable URL #}
-                  {% set link = link_item.url %}
-                {% else %}
-                  {# If linked field is empty, link to node page #}
-                  {% set link = path('entity.node.canonical', {'node': entity.id()}) %}
-                {% endif %}
-      
-        <div class="alert-item">
-          <span class="alert-dot"></span>
-          <a href="{{ link }}" target="_blank">
-          <span>{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ title }}'] }}</span>
+      <div class="alert-item">
+        <span class="alert-dot"></span>
+
+        {% if link_item and link_item.url %}
+          <a href="{{ link_item.url }}" target="_blank" rel="noopener">
+            <span>{{ title_text }}</span>
           </a>
-        </div>
+        {% else %}
+          <span>{{ title_text }}</span>
+        {% endif %}
+
+      </div>
 
     {% endfor %}
 
