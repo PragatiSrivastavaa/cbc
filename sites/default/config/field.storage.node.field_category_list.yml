@@ -1,0 +1,27 @@
+uuid: c4aad0d9-5d35-47e3-b498-49a355e93b16
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_category_list
+field_name: field_category_list
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: registration_guidelines_for_igot
+      label: 'Registration Guidelines For IGoT'
+    -
+      value: circulars_notices
+      label: circulars_notices
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

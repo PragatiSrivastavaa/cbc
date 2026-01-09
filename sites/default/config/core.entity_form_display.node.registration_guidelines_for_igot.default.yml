@@ -3,9 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.registration_guidelines_for_igot.field_category_list
+    - field.field.node.registration_guidelines_for_igot.field_circular_date
     - field.field.node.registration_guidelines_for_igot.field_document
+    - field.field.node.registration_guidelines_for_igot.field_upload_date
     - node.type.registration_guidelines_for_igot
   module:
+    - datetime
     - file
     - path
 id: node.registration_guidelines_for_igot.default
@@ -19,12 +23,30 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_category_list:
+    type: options_select
+    weight: 123
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_circular_date:
+    type: datetime_default
+    weight: 121
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_document:
     type: file_generic
     weight: 16
     region: content
     settings:
       progress_indicator: throbber
+    third_party_settings: {  }
+  field_upload_date:
+    type: datetime_default
+    weight: 122
+    region: content
+    settings: {  }
     third_party_settings: {  }
   langcode:
     type: language_select

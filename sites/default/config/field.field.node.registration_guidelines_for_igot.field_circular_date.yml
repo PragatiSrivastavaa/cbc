@@ -1,0 +1,21 @@
+uuid: 740e461d-35d2-46db-9605-a40fa7fc6ddd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_circular_date
+    - node.type.registration_guidelines_for_igot
+  module:
+    - datetime
+id: node.registration_guidelines_for_igot.field_circular_date
+field_name: field_circular_date
+entity_type: node
+bundle: registration_guidelines_for_igot
+label: 'Circular Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime
