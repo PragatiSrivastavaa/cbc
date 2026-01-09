@@ -1,20 +1,19 @@
-uuid: ba0d6453-7889-48c7-89dc-6ed0ab4535ee
+uuid: 18786956-c95f-405c-b668-86d44fc594d3
 langcode: en
 status: true
 dependencies:
   module:
-    - entity_reference_revisions
     - paragraphs
     - taxonomy
 id: paragraph.field_document_type
 field_name: field_document_type
 entity_type: paragraph
-type: entity_reference_revisions
+type: entity_reference
 settings:
   target_type: taxonomy_term
-module: entity_reference_revisions
+module: core
 locked: false
-cardinality: -1
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

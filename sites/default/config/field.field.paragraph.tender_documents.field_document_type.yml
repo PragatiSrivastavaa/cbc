@@ -1,4 +1,4 @@
-uuid: bec73f8c-2300-4f41-a28a-d3a412b7ea9b
+uuid: 35c57d38-d676-4599-94e8-b51faa0deeef
 langcode: en
 status: true
 dependencies:
@@ -6,8 +6,6 @@ dependencies:
     - field.storage.paragraph.field_document_type
     - paragraphs.paragraphs_type.tender_documents
     - taxonomy.vocabulary.tender_document_type
-  module:
-    - entity_reference_revisions
 id: paragraph.tender_documents.field_document_type
 field_name: field_document_type
 entity_type: paragraph
@@ -28,4 +26,4 @@ settings:
       direction: asc
     auto_create: false
     auto_create_bundle: ''
-field_type: entity_reference_revisions
+field_type: entity_reference
