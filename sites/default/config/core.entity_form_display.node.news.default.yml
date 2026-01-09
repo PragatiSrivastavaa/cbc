@@ -3,14 +3,17 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.news.field_action
     - field.field.node.news.field_alert
     - field.field.node.news.field_body
     - field.field.node.news.field_category
     - field.field.node.news.field_end_date
+    - field.field.node.news.field_link
     - field.field.node.news.field_start_date
     - node.type.news
   module:
     - datetime
+    - link
     - path
     - text
 id: node.news.default
@@ -23,6 +26,14 @@ content:
     weight: 10
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_action:
+    type: link_default
+    weight: 123
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
     third_party_settings: {  }
   field_alert:
     type: boolean_checkbox
@@ -52,6 +63,14 @@ content:
     weight: 122
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_link:
+    type: link_default
+    weight: 121
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
     third_party_settings: {  }
   field_start_date:
     type: datetime_default

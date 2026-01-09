@@ -3,14 +3,17 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.news.field_action
     - field.field.node.news.field_alert
     - field.field.node.news.field_body
     - field.field.node.news.field_category
     - field.field.node.news.field_end_date
+    - field.field.node.news.field_link
     - field.field.node.news.field_start_date
     - node.type.news
   module:
     - datetime
+    - link
     - text
     - user
 id: node.news.default
@@ -18,6 +21,18 @@ targetEntityType: node
 bundle: news
 mode: default
 content:
+  field_action:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 103
+    region: content
   field_body:
     type: text_default
     label: hidden
@@ -33,6 +48,18 @@ content:
       format_type: medium
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 101
     region: content
   field_start_date:
     type: datetime_default
