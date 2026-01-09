@@ -511,6 +511,7 @@ var simplemaps_countrymap_mapdata={
     return [
       '<b>Application No:</b> ' + safeField(entry.field_application_no),
       '<b>Institute:</b> ' + safeField(instituteName),
+      '<b>Ministry/Department:</b> ' + safeField(entry.field_ministry_department),
       '<b>Stage:</b> ' + safeField(entry.field_stage),
       '<b>State:</b> ' + safeField(entry.field_state_of_map),
       '<b>District:</b> ' + safeField(entry.field_district)
