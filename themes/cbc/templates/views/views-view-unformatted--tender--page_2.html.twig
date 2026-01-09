@@ -1,0 +1,84 @@
+<section class="container py-5">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="content-section">
+        <div class="mb-4">
+          <div class="btn archives-btn active" id="archivesBtn" ><a href="/tender">Back to Active Tenders</a></div>
+        </div>
+        <div class="" id="">          
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover tenders-table">
+              <thead>
+                <tr>
+                  <th>S.NO</th>
+                  <th>Tender Ref. No.</th>
+                  <th>Tender Title</th>
+                  <th>Date of Publish</th>
+                  <th>Last Date of submission</th>
+                  <th>Documents</th>
+                </tr>
+              </thead>
+             <tbody>
+
+              {% for row in rows %}
+                {% set node = row.content['#row']._entity %}
+
+                <tr>
+                  <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_sequence_no }}'] }}</td>
+                  <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</td>
+                  <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_tender_title }}'] }}</td>
+                  <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_date_of_nit }}'] }}</td>
+                  <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_date_of_submission }}'] }}</td>
+              <td>
+                {% if node.field_tender_related_files is not empty %}
+                  <div class="view view-tender view-id-tender view-display-id-block_2">
+                    <div class="view-content">
+
+                      {% for item in node.field_tender_related_files %}
+                        {% set paragraph = item.entity %}
+
+                        {% if paragraph and paragraph.field_upload_document_file.entity %}
+                          {% set file = paragraph.field_upload_document_file.entity %}
+
+                          {# Document type (taxonomy term name) #}
+                          {% set label = 'View ' ~ (paragraph.field_document_type.entity.name.value|default('Document')) %}
+
+                          {# Language #}
+                          {% set language = paragraph.field_document_language.value|default('') %}
+
+                          {# Extension #}
+                          {% set extension = file.filename.value|split('.')|last|upper %}
+
+                          {# Size #}
+                          {% set size = file.filesize.value ? file.filesize.value|format_size : 'Unknown' %}
+
+                          
+                                <a href="{{ file_url(file.uri.value) }}" target="_blank" rel="noopener" class="document-link d-block mb-1">
+                                  {{ label }}
+                                </a>
+                                <small class="text-muted">(<strong>Format</strong>: {{ extension }} ,
+                                <strong>Size</strong>: {{ size }} ,
+                                <strong>Language</strong>: {{ language }})
+                              </small>
+
+                        {% endif %}
+                      {% endfor %}
+
+                    </div>
+                  </div>
+                {% else %}
+                  No Documents Available
+                {% endif %}
+              </td>
+                </tr>
+
+              {% endfor %}
+
+            </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

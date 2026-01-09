@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.training_institute.field_institute
     - field.field.node.training_institute.field_latitude
     - field.field.node.training_institute.field_longitude
+    - field.field.node.training_institute.field_ministry_department
     - field.field.node.training_institute.field_stage
     - field.field.node.training_institute.field_state_of_map
     - field.field.node.training_institute.field_website
@@ -65,6 +66,14 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     weight: 102
+    region: content
+  field_ministry_department:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 109
     region: content
   field_stage:
     type: string

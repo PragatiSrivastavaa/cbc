@@ -2,19 +2,23 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="content-section">
-        <div class="table-responsive">
-          <table class="table table-bordered table-hover tenders-table">
-            <thead>
-              <tr>
-                <th>S. No</th>
-                <th>Tender Ref. No.</th>
-                <th>Tender Title</th>
-                <th>Date of Publish</th>
-                <th>Last Date of Submission</th>
-                <th>Documents</th>
-              </tr>
-            </thead>
-            <tbody>
+       <div class="mb-4">
+          <div class="btn archives-btn active" id="archivesBtn" ><a href="/archive-tenders">Archives</a></div>
+        </div>
+        <div class="" id="">          
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover tenders-table">
+              <thead>
+                <tr>
+                  <th>S.NO</th>
+                  <th>Tender Ref. No.</th>
+                  <th>Tender Title</th>
+                  <th>Date of Publish</th>
+                  <th>Last Date of submission</th>
+                  <th>Documents</th>
+                </tr>
+              </thead>
+             <tbody>
 
               {% for row in rows %}
                 {% set node = row.content['#row']._entity %}
@@ -48,18 +52,14 @@
                           {# Size #}
                           {% set size = file.filesize.value ? file.filesize.value|format_size : 'Unknown' %}
 
-                          <div class="views-row">
-                            <div class="views-field views-field-field-upload-document-file">
-                              <div class="field-content">
-                                <a href="{{ file_url(file.uri.value) }}" target="_blank" rel="noopener">
+                          
+                                <a href="{{ file_url(file.uri.value) }}" target="_blank" rel="noopener" class="document-link d-block mb-1">
                                   {{ label }}
                                 </a>
-                                (<strong>Format</strong>: {{ extension }} ,
+                                <small class="text-muted">(<strong>Format</strong>: {{ extension }} ,
                                 <strong>Size</strong>: {{ size }} ,
                                 <strong>Language</strong>: {{ language }})
-                              </div>
-                            </div>
-                          </div>
+                              </small>
 
                         {% endif %}
                       {% endfor %}
@@ -75,7 +75,8 @@
               {% endfor %}
 
             </tbody>
-          </table>
+            </table>
+          </div>
         </div>
       </div>
     </div>
