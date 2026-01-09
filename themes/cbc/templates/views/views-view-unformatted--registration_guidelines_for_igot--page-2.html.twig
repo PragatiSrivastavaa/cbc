@@ -1,6 +1,4 @@
-
-
- <section class="karmayogi-section-fullwidth karmayogi-vision-section">
+<section class="karmayogi-section-fullwidth karmayogi-vision-section">
   <div class="container">
     <div class="karmayogi-content-wrapper">
       <div class="karmayogi-metrics-table-wrapper" style="margin-top: 40px;">
@@ -19,7 +17,7 @@
           <tbody>
             {% for row in rows %}
               {% set node = row.content['#row']._entity %}
-              {% set file = node.field_document.entity %}
+              {% set file = node.field_document.entity ?? null %}
 
               {% if file %}
                 <tr>
@@ -29,9 +27,12 @@
                   <td style="color:#002b5b;">
                     {{ node.label }}
                   </td>
+
+                  <!-- DATES -->
                   <td>{{ node.field_circular_date.value|date("d-m-Y") }}</td>
                   <td>{{ node.field_upload_date.value|date("d-m-Y") }}</td>
-                  <!-- DOCUMENT INFO -->
+
+                  <!-- DOCUMENT -->
                   <td>
                     <a href="{{ file_url(file.uri.value) }}"
                        target="_blank"
@@ -43,7 +44,13 @@
                     <span style="display:block; font-size:0.9rem; color:#6c757d; margin-top:5px;">
                       (Format: {{ file.filename.value|split('.')|last|upper }},
                       Language: {{ node.langcode.value|upper }},
-                      Size: {{ file.filesize.value|format_size }})
+                      Size:
+                      {% if file.filesize.value is not empty %}
+                        {{ file.filesize.value|format_size }}
+                      {% else %}
+                        -
+                      {% endif %}
+                      )
                     </span>
                   </td>
                 </tr>
@@ -57,10 +64,3 @@
     </div>
   </div>
 </section>
-
-
-
-
-    
-
-
