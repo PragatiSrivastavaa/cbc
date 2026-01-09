@@ -308,8 +308,8 @@ display:
           plugin_id: text
           empty: false
           content:
-            value: sefewsf
-            format: basic_html
+            value: "Learn about the Capacity Building Commission, its structure, leadership, and how we work to transform civil service capacity building in India.\r\n\r\n"
+            format: full_html
           tokenize: false
       display_extenders: {  }
       path: know-your-cbc
