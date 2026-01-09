@@ -68,7 +68,7 @@
 
 .slide-content h1 {
   font-family: "Playfair Display", serif;
-  font-size: 2.4rem;
+  font-size: clamp(1.8rem, 5vw + 1rem, 5rem);
   /* Reduced from 2.8rem */
   font-weight: 900;
   margin-bottom: 2rem;
@@ -80,7 +80,7 @@
 }
 
 .slide-content h3 {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2vw + 0.5rem, 2.5rem);
   /* Reduced from 1.4rem */
   font-weight: 500;
   margin-bottom: 1.2rem;
@@ -91,7 +91,7 @@
 }
 
 .slide-content p {
-  font-size: 1.6rem;
+  font-size: clamp(1rem, 1.5vw + 0.8rem, 2.2rem);
   /* Increased from 0.95rem */
   line-height: 1.7;
   opacity: 0;
@@ -211,7 +211,7 @@
   align-items: center;
   gap: 8px;
   color: #ffffff;
-  font-size: 2.3rem;
+  font-size: clamp(1rem, 2.5vw + 0.8rem, 3rem);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -510,7 +510,7 @@
 }
 
 .stat h2 {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 4vw + 1rem, 5rem);
   font-weight: 700;
   background: linear-gradient(45deg, #ffffff, #d4e8ff);
   background-clip: text;
@@ -703,7 +703,7 @@
 }
 
 .mission-intro-text {
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 1.5vw + 0.8rem, 1.8rem);
   color: #6c757d;
   margin-bottom: 30px;
   line-height: 1.7;
@@ -739,14 +739,14 @@
 }
 
 .feature-title {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 1.5vw + 0.8rem, 1.6rem);
   font-weight: 600;
   color: #343a40;
   margin-bottom: 10px;
 }
 
 .feature-text {
-  font-size: 1.1rem;
+  font-size: clamp(0.95rem, 1vw + 0.7rem, 1.15rem);
   color: #6c757d;
   line-height: 1.6;
 }
@@ -831,7 +831,7 @@
 }
 
 .mission-title {
-  font-size: 1.8rem;
+  font-size: clamp(1.5rem, 2.5vw + 1rem, 3rem);
   font-weight: 700;
   margin-bottom: 15px;
   color: #343a40;
@@ -875,7 +875,7 @@
 }
 
 .mission-message-bubble .mission-text {
-  font-size: 1.25rem;
+  font-size: 1.5rem !important;
   line-height: 1.8;
   margin: 0;
   color: rgba(255, 255, 255, 0.95);
@@ -2045,7 +2045,7 @@
 }
 
 .information-corner-title h2 {
-  font-size: 1.2rem !important;
+  font-size: clamp(1.2rem, 1.5vw + 0.8rem, 1.8rem) !important;
   /* Reduced from 1.5rem */
   font-weight: 700;
   color: #ffffff;
@@ -2062,7 +2062,7 @@
 }
 
 .collab-header-content h2 {
-  font-size: 1.2rem !important;
+  font-size: clamp(1.4rem, 2vw + 0.8rem, 2.5rem) !important;
   /* Reduced from 1.5rem */
   font-weight: 700;
   color: #004b88;
@@ -2302,7 +2302,7 @@
 }
 
 .news-header h2 {
-  font-size: 1.3rem !important;
+  font-size: clamp(1.5rem, 2.5vw + 1rem, 3rem) !important;
   /* Reduced from 1.8rem */
   font-weight: 600;
   background: linear-gradient(135deg, #004d99 0%, #0073cf 50%, #0099ff 100%);
@@ -2517,7 +2517,7 @@
 
 .news-banner-content p {
   color: #333333;
-  font-size: 1.15rem;
+  font-size: clamp(1rem, 1vw + 0.7rem, 1.25rem);
   /* Increased from 1.05rem for better readability */
   font-weight: 500;
   line-height: 1.6;
@@ -2760,9 +2760,7 @@
   animation: blink 1.2s infinite;
 }
 
-.news-title-wrapper {
-  /* margin-bottom: 20px; */
-}
+
 
 .title-underline {
   display: none;
@@ -3233,7 +3231,7 @@ h2.infocus-heading {
 }
 
 .infocus-title-wrapper .infocus-title {
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 3.5vw + 1rem, 3.5rem);
   font-family: 'Arial Black', 'Arial Bold', 'Helvetica Bold', 'Impact', 'Franklin Gothic Bold', 'Trebuchet MS', Arial, sans-serif;
   color: #ffffff;
   letter-spacing: 1.5px;
@@ -3270,7 +3268,7 @@ h2.infocus-heading {
   overflow: visible;
   white-space: nowrap;
   width: auto;
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 5vw + 1rem, 5rem);
   position: relative;
   z-index: 16;
   vertical-align: middle;
@@ -3280,7 +3278,7 @@ h2.infocus-heading {
 
 .in-text {
   font-family: 'Momo Trust Display', sans-serif;
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 5vw + 1rem, 5rem);
   font-weight: 900;
   text-transform: uppercase;
   display: inline-block;
@@ -3317,7 +3315,7 @@ h2.infocus-heading {
 
 .focus-text {
   font-family: 'Momo Trust Display', sans-serif;
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 5vw + 1rem, 5rem);
   font-weight: 900;
   text-transform: uppercase;
   display: inline-block;
@@ -3713,7 +3711,7 @@ h2.infocus-heading {
 
 .cbc-blog-carousel .carousel-header h2 {
   color: #003b73;
-  font-size: 1.8rem;
+  font-size: clamp(1.4rem, 2vw + 1rem, 2rem);
   font-weight: 600;
   margin: 0;
 }
@@ -3807,7 +3805,7 @@ h2.infocus-heading {
 }
 
 .cbc-blog-carousel .blog-card h3 {
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 1vw + 0.8rem, 1.25rem);
   /* Increased from 0.95rem for better readability */
   color: #003b73;
   margin: 0;
@@ -3817,6 +3815,7 @@ h2.infocus-heading {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: center;
@@ -3832,6 +3831,7 @@ h2.infocus-heading {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   overflow: hidden;
   text-overflow: ellipsis;
   flex: 1;
@@ -4026,7 +4026,7 @@ h2.infocus-heading {
 }
 
 .leadership-title {
-  font-size: 2.4rem;
+  font-size: clamp(2rem, 3.5vw + 1rem, 4rem);
   font-weight: 700;
   color: #002b5b;
   margin-bottom: 12px;
@@ -4191,7 +4191,7 @@ h2.infocus-heading {
 }
 
 .leader-info h3 {
-  font-size: 0.9rem;
+  font-size: clamp(0.9rem, 0.5vw + 0.8rem, 1.1rem);
   font-weight: 600;
   color: #002b5b;
   margin-bottom: 1px;
@@ -4313,7 +4313,7 @@ h2.infocus-heading {
 }
 
 .chairperson-content h3 {
-  font-size: 1.05rem;
+  font-size: clamp(0.95rem, 0.5vw + 0.8rem, 1.2rem);
   font-weight: 800;
   color: #002b5b;
   margin: 0 0 6px 0;
@@ -4353,7 +4353,7 @@ h2.infocus-heading {
 }
 
 .message-title {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 1.5vw + 0.8rem, 1.4rem);
   font-weight: 700;
   color: #002b5b;
   margin-bottom: 1px;
@@ -4617,7 +4617,7 @@ h2.infocus-heading {
 }
 
 .member-info h3 {
-  font-size: 1.05rem;
+  font-size: clamp(0.95rem, 0.5vw + 0.8rem, 1.2rem);
   font-weight: 800;
   color: #002b5b;
   margin: 0 0 6px 0;
@@ -4632,7 +4632,7 @@ h2.infocus-heading {
 }
 
 .member-info p {
-  font-size: 1.05rem;
+  font-size: clamp(0.9rem, 1vw + 0.7rem, 1.1rem);
   color: #0063ae;
   margin: 0;
   word-wrap: break-word;
@@ -5001,7 +5001,7 @@ h2.infocus-heading {
 }
 
 .signature-name {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 0.5vw + 0.9rem, 1.4rem);
   font-weight: 700;
   color: #002b5b;
   margin-bottom: 1px;
@@ -5009,7 +5009,7 @@ h2.infocus-heading {
 }
 
 .signature-title {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 0.5vw + 0.8rem, 1.1rem);
   color: #2c3e50;
   margin-bottom: 1px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -5547,7 +5547,7 @@ h2.infocus-heading {
 }
 
 .home-event-card-title {
-  font-size: 1.05rem;
+  font-size: clamp(1rem, 0.5vw + 0.9rem, 1.25rem);
   /* Increased from 0.9rem for better readability */
   font-weight: 600;
   color: #003b73;
@@ -5557,6 +5557,7 @@ h2.infocus-heading {
   -webkit-box-orient: vertical;
   overflow: hidden;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   text-overflow: ellipsis;
   min-height: 2.34em;
   transition: color 0.3s ease;
@@ -5567,7 +5568,7 @@ h2.infocus-heading {
 }
 
 .home-event-card-description {
-  font-size: 1rem;
+  font-size: clamp(0.95rem, 0.5vw + 0.8rem, 1.1rem);
   /* Increased from 0.9rem for better readability */
   color: #4b5563;
   line-height: 1.4;
@@ -5577,6 +5578,7 @@ h2.infocus-heading {
   -webkit-box-orient: vertical;
   overflow: hidden;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   text-overflow: ellipsis;
   min-height: 3.36em;
 }
@@ -6093,7 +6095,7 @@ h2.infocus-heading {
   text-decoration: none;
   border-radius: 12px;
   font-weight: 600;
-  font-size: 1.0625rem;
+  font-size: clamp(1rem, 0.5vw + 0.8rem, 1.1rem);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 6px 20px rgba(0, 99, 174, 0.25);
   border: none;
@@ -6511,7 +6513,7 @@ h2.infocus-heading {
 }
 
 .video-title {
-  font-size: 1.25rem;
+  font-size: clamp(1.1rem, 1vw + 0.8rem, 1.4rem);
   font-weight: 600;
   color: #2c53a2;
   margin-bottom: 10px;
@@ -6519,7 +6521,7 @@ h2.infocus-heading {
 }
 
 .video-description {
-  font-size: 0.95rem;
+  font-size: clamp(0.9rem, 1vw + 0.6rem, 1rem);
   color: #666;
   line-height: 1.6;
   margin-bottom: 0;
@@ -7755,7 +7757,7 @@ h2.infocus-heading {
 }
 
 .mission-text {
-  font-size: 1.3rem;
+  font-size: 1rem !important;
   line-height: 1.7;
   color: #333333;
   margin-bottom: 0;
@@ -10498,7 +10500,7 @@ h2.infocus-heading {
 
 
 .infocus-heading {
-  font-size: 0.8rem;
+  font-size: clamp(0.8rem, 0.5vw + 0.7rem, 1rem);
   color: #002b5b;
   margin: 5px 0;
   line-height: 1.2;
@@ -10766,7 +10768,7 @@ h2.infocus-heading {
 
 .carousel-header h2 {
   color: #003b73;
-  font-size: 1.8rem;
+  font-size: clamp(1.4rem, 2vw + 1rem, 2rem);
   font-weight: 600;
   margin: 0;
 }
@@ -10855,7 +10857,7 @@ h2.infocus-heading {
 }
 
 .blog-card h3 {
-  font-size: 0.95rem;
+  font-size: clamp(1rem, 1vw + 0.8rem, 1.25rem);
   /* Reduced from 1.1rem */
   color: #003b73;
   margin: 0;
@@ -10865,13 +10867,14 @@ h2.infocus-heading {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: center;
 }
 
 .blog-card p {
-  font-size: 0.9rem;
+  font-size: clamp(0.9rem, 1vw + 0.7rem, 1.1rem);
   color: #555;
   margin: 0;
   padding: 0 20px 20px;
@@ -10879,6 +10882,7 @@ h2.infocus-heading {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   overflow: hidden;
   text-overflow: ellipsis;
   flex: 1;
@@ -10959,7 +10963,7 @@ h2.infocus-heading {
 }
 
 .leadership-title {
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 3vw + 1rem, 3rem);
   font-weight: 700;
   text-align: center;
   margin-bottom: 40px;
@@ -12239,13 +12243,13 @@ h2.infocus-heading {
 
 /* Increased font sizes for What's New and other sections */
 .news-banner-content p {
-  font-size: 1.15rem !important;
+  font-size: clamp(1.15rem, 1vw + 0.8rem, 1.1rem) !important;
   line-height: 1.5;
   color: #333;
 }
 
 .whts-box p {
-  font-size: 1.15rem;
+  font-size: clamp(1.15rem, 1vw + 0.8rem, 1.5rem);
 }
 
 .collab-description {
