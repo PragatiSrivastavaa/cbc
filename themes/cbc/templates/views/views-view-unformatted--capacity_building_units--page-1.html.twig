@@ -26,22 +26,28 @@
                           <th>Contact No.</th>
                         </tr>
                       </thead>
-                      <tbody id="cbuTableBody">
-					   {% for row in rows %}
-              {% set entity = row.content['#row']._entity %}
-                        <tr data-row-index="0">
-                          <td>{{ loop.index }}</td>
-                          <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</td>
-                          <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_department }}'] }}</td>
-                          <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_cbu_formed }}'] }}</td>
-                          <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_name }}'] }}</td>
+                      <tbody>
+  {% set items_per_page = view.pager.options.items_per_page %}
+  {% set current_page = view.pager.current_page %}
+  {% set offset = current_page * items_per_page %}
+
+  {% for row in rows %}
+    <tr>
+      <!-- ✅ GLOBAL SERIAL NUMBER -->
+      <td>{{ offset + loop.index }}</td>
+
+      <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</td>
+      <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_department }}'] }}</td>
+      <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_cbu_formed }}'] }}</td>
+      <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_name }}'] }}</td>
       <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_designationn }}'] }}</td>
-                          <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_cbu_designation }}'] }}</td>
-                          <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_email }}'] }}</td>
-                          <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_contact_no }}'] }}</td>
-                        </tr>
-                       {% endfor %}
-                      </tbody>
+      <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_cbu_designation }}'] }}</td>
+      <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_email }}'] }}</td>
+      <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_contact_no }}'] }}</td>
+    </tr>
+  {% endfor %}
+</tbody>
+
                     </table>
                   </div>
 
