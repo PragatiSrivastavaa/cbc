@@ -2,11 +2,22 @@
   <div class="alert-bar-track" id="alertTrack">
 
     {% for row in rows %}
-      {% set node = row.content['#row']._entity %}
+      {% set entity = row.content['#row']._entity %}
+                   {% set link_item = entity.field_action.0 %}
+
+                {% if link_item %}
+                  {# Convert internal/external link to usable URL #}
+                  {% set link = link_item.url %}
+                {% else %}
+                  {# If linked field is empty, link to node page #}
+                  {% set link = path('entity.node.canonical', {'node': entity.id()}) %}
+                {% endif %}
       
         <div class="alert-item">
           <span class="alert-dot"></span>
+          <a href="{{ link }}" target="_blank">
           <span>{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ title }}'] }}</span>
+          </a>
         </div>
 
     {% endfor %}
