@@ -1,0 +1,21 @@
+uuid: b4145a53-0c10-468a-9636-3aa6208ddd13
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_category_list
+    - node.type.registration_guidelines_for_igot
+  module:
+    - options
+id: node.registration_guidelines_for_igot.field_category_list
+field_name: field_category_list
+entity_type: node
+bundle: registration_guidelines_for_igot
+label: Category
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,21 @@
+uuid: 39c0f8dd-bfb4-4b82-aaea-ca6ecd607ca2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_upload_date
+    - node.type.registration_guidelines_for_igot
+  module:
+    - datetime
+id: node.registration_guidelines_for_igot.field_upload_date
+field_name: field_upload_date
+entity_type: node
+bundle: registration_guidelines_for_igot
+label: 'Upload Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

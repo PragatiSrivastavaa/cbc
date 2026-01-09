@@ -8,7 +8,7 @@ third_party_settings:
   menu_ui:
     available_menus: {  }
     parent: ''
-name: 'Registration Guidelines For IGoT'
+name: 'Registration Guidelines For IGoT And Circulars/Notices'
 type: registration_guidelines_for_igot
 description: null
 help: null
