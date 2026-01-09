@@ -91,8 +91,8 @@
 }
 
 .slide-content p {
-  font-size: 0.95rem;
-  /* Reduced from 1.1rem */
+  font-size: 1.6rem;
+  /* Increased from 0.95rem */
   line-height: 1.7;
   opacity: 0;
   color: #e9f4ff;
@@ -182,8 +182,8 @@
   }
 
   .slide-content p {
-    font-size: 0.9rem;
-    /* Reduced from 1rem */
+    font-size: 1.05rem;
+    /* Increased from 0.9rem */
   }
 }
 
@@ -218,6 +218,11 @@
   flex-shrink: 0;
   white-space: nowrap;
   margin-right: 6px;
+}
+
+
+#alertTrack .alert-item a {
+  color: #ffffff;
 }
 
 .alert-label i {
@@ -291,8 +296,8 @@
   gap: 10px;
   flex-shrink: 0;
   color: #ffffff;
-  font-size: 0.95rem;
-  /* Reduced from 1.2rem */
+  font-size: 1.1rem;
+  /* Increased from 0.95rem */
   font-weight: 500;
   padding: 0 15px;
   /* Reduced from 20px */
@@ -387,7 +392,7 @@
   }
 
   .alert-item {
-    font-size: 0.85rem;
+    font-size: 1rem;
     gap: 10px;
     padding: 0 15px;
   }
@@ -433,7 +438,7 @@
   }
 
   .alert-item {
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     gap: 8px;
     padding: 0 12px;
   }
@@ -657,9 +662,9 @@
 
 .modi-message-text {
   font-style: italic;
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   color: #ffffff !important;
-  line-height: 1.3;
+  line-height: 1.4;
   margin: 0;
   padding: 0;
 }
@@ -698,7 +703,7 @@
 }
 
 .mission-intro-text {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   color: #6c757d;
   margin-bottom: 30px;
   line-height: 1.7;
@@ -741,7 +746,7 @@
 }
 
 .feature-text {
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   color: #6c757d;
   line-height: 1.6;
 }
@@ -870,7 +875,7 @@
 }
 
 .mission-message-bubble .mission-text {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   line-height: 1.8;
   margin: 0;
   color: rgba(255, 255, 255, 0.95);
@@ -1096,7 +1101,7 @@
 }
 
 .modi-message-bubble p {
-  font-size: 0.92rem;
+  font-size: 1.15rem;
   line-height: 1.6;
   margin: 0;
   color: rgba(255, 255, 255, 0.95);
@@ -1391,7 +1396,7 @@
   }
 
   .jitender-message-text {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     line-height: 1.4;
   }
 
@@ -1414,7 +1419,7 @@
   }
 
   .modi-message-bubble p {
-    font-size: 0.9rem;
+    font-size: 1.05rem;
     line-height: 1.55;
     padding: 0 30px;
   }
@@ -1553,8 +1558,8 @@
   }
 
   .gallery-card-content p {
-    font-size: 0.95rem;
-    /* Increased from 0.85rem for better readability */
+    font-size: 1.05rem;
+    /* Increased for better readability */
     margin-bottom: 15px;
   }
 
@@ -1584,7 +1589,7 @@
   }
 
   .mission-message-bubble .mission-text {
-    font-size: 0.88rem;
+    font-size: 1rem;
     line-height: 1.5;
     padding: 0 28px;
   }
@@ -4196,7 +4201,7 @@ h2.infocus-heading {
 }
 
 .leader-info p {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: #555;
   margin: 0;
   overflow: hidden;
@@ -4627,7 +4632,7 @@ h2.infocus-heading {
 }
 
 .member-info p {
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   color: #0063ae;
   margin: 0;
   word-wrap: break-word;
@@ -7493,7 +7498,7 @@ h2.infocus-heading {
   left: 0;
   width: 100%;
   padding: 12px 10px;
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   font-weight: 500;
   color: #fff;
   text-align: center;
@@ -7563,7 +7568,7 @@ h2.infocus-heading {
 }
 
 .karmayogi-video-title {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: #fff;
   margin-bottom: 4px;
@@ -7750,7 +7755,7 @@ h2.infocus-heading {
 }
 
 .mission-text {
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   line-height: 1.7;
   color: #333333;
   margin-bottom: 0;
@@ -12230,4 +12235,20 @@ h2.infocus-heading {
 .collab-description p {
   margin: 0;
   padding: 0;
+}
+
+/* Increased font sizes for What's New and other sections */
+.news-banner-content p {
+  font-size: 1.15rem !important;
+  line-height: 1.5;
+  color: #333;
+}
+
+.whts-box p {
+  font-size: 1.15rem;
+}
+
+.collab-description {
+  font-size: 0.95rem;
+  /* Increased from 13px */
 }
