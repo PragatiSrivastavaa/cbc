@@ -1,0 +1,19 @@
+uuid: 17da4cfe-c818-48d9-85cd-c7f6f81bf958
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ministry_department
+    - node.type.training_institute
+id: node.training_institute.field_ministry_department
+field_name: field_ministry_department
+entity_type: node
+bundle: training_institute
+label: 'Ministry & Department'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
