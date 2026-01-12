@@ -4371,6 +4371,13 @@ ul.navbar-nav.nav-rounded {
   border: 1px solid #e0e0e0;
 }
 
+.Karmayogi-section .mou-status-table {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #dee2e6;
+}
+
 .Karmayogi-section .table.impact-metrics-table-enhanced thead {
   background: linear-gradient(135deg, #00569A 0%, #0063ae 100%) !important;
 }
@@ -10014,7 +10021,7 @@ h1.page-hero-title {
 .mou-status-table.collaboration-table tbody td:nth-child(1) {
   width: 8%;
   text-align: center;
-  border-right: none;
+  /* border-right: none; */
   padding: 8px 5px;
 }
 
@@ -15502,4 +15509,81 @@ li {
     flex: 0 0 100%;
     max-width: 100%;
   }
+}
+
+/* === VERTICAL SEPARATORS FOR TABLE BODY === */
+.mou-status-table td {
+  border-right: 1px solid #dee2e6;
+}
+
+.mou-status-table td:last-child {
+  border-right: none;
+}
+
+/* Remove vertical line from first column only for Partner/Collaboration tables */
+.partner-org-table td:first-child {
+  border-right: none !important;
+}
+
+/* === ACTION LINK === */
+.action-link {
+  color: #0063ae;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.action-link:hover,
+.action-link:focus {
+  text-decoration: underline;
+  color: #004b88;
+}
+
+/* Maintain original alignment for action cells */
+td.text-center .action-link,
+th.text-center {
+  text-align: center;
+}
+
+/* === TABLE STYLING === */
+/* Preserve specific text colors from inline styles */
+.mou-status-table td:first-child,
+.karmayogi-metrics-table td:first-child {
+  /* color: #002b5b; */
+  /* font-weight: 500; */
+}
+
+/* Ensure table headers are styled correctly */
+.mou-status-table thead th {
+  background-color: #0063ae;
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-right: 1px solid rgba(255, 255, 255, 0.4) !important;
+  border-bottom: none;
+  vertical-align: middle;
+  padding: 15px;
+  font-size: 0.95rem;
+}
+
+.mou-status-table thead th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.mou-status-table thead th:last-child {
+  border-top-right-radius: 8px;
+  border-right: none;
+}
+
+/* Remove vertical line from first column only for Partner/Collaboration tables (Header) */
+.partner-org-table thead th:first-child {
+  border-right: none !important;
+}
+
+/* Styling for title cells that were previously inline */
+.mou-status-table td.title-cell,
+.mou-status-table td:nth-child(2) {
+  color: #002b5b;
+  /* font-weight: 500; */
 }

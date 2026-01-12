@@ -91,7 +91,7 @@ display:
           admin_label: ''
           plugin_id: field
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -165,6 +165,19 @@ display:
             value: '<p align="center"> Currently No Tender Active</p>'
             format: basic_html
       sorts:
+        field_sequence_no_value:
+          id: field_sequence_no_value
+          table: node__field_sequence_no
+          field: field_sequence_no_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
         created:
           id: created
           table: node_field_data
