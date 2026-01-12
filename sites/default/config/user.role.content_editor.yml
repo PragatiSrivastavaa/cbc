@@ -3,8 +3,30 @@ langcode: en
 status: true
 dependencies:
   config:
+    - node.type.acbp_process_manual
+    - node.type.areas_of_collaboration
     - node.type.article
+    - node.type.capacity_building_units
+    - node.type.case_studies
+    - node.type.event
+    - node.type.home_banner
+    - node.type.important_documents
+    - node.type.know_your_cbc
+    - node.type.media_corner
+    - node.type.news
+    - node.type.news_letters
+    - node.type.opinions_do_matter
+    - node.type.our_collaboration_matters
+    - node.type.our_partners
+    - node.type.our_team
     - node.type.page
+    - node.type.photo_gallery
+    - node.type.registration_guidelines_for_igot
+    - node.type.reports
+    - node.type.tender
+    - node.type.training_institute
+    - node.type.video_gallery
+    - node.type.webform
     - taxonomy.vocabulary.tags
   module:
     - comment
@@ -15,6 +37,8 @@ dependencies:
     - system
     - taxonomy
     - toolbar
+    - webform
+    - webform_node
 _core:
   default_config_hash: e_wG1u7SrGaJbY2-Szgbgl-c8T3kdirU3uTNq2c_QJQ
 id: content_editor
@@ -23,25 +47,105 @@ weight: 2
 is_admin: false
 permissions:
   - 'access administration pages'
+  - 'access any webform configuration'
   - 'access content overview'
   - 'access contextual links'
   - 'access files overview'
+  - 'access own webform configuration'
   - 'access toolbar'
+  - 'access webform submission user'
+  - 'administer content types'
+  - 'administer nodes'
   - 'administer url aliases'
+  - 'administer webform'
+  - 'administer webform overview'
+  - 'administer webform submission'
+  - 'create acbp_process_manual content'
+  - 'create areas_of_collaboration content'
   - 'create article content'
+  - 'create capacity_building_units content'
+  - 'create case_studies content'
+  - 'create event content'
+  - 'create home_banner content'
+  - 'create important_documents content'
+  - 'create know_your_cbc content'
+  - 'create media_corner content'
+  - 'create news content'
+  - 'create news_letters content'
+  - 'create opinions_do_matter content'
+  - 'create our_collaboration_matters content'
+  - 'create our_partners content'
+  - 'create our_team content'
   - 'create page content'
+  - 'create photo_gallery content'
+  - 'create registration_guidelines_for_igot content'
+  - 'create reports content'
+  - 'create tender content'
   - 'create terms in tags'
+  - 'create training_institute content'
   - 'create url aliases'
+  - 'create video_gallery content'
+  - 'create webform content'
   - 'delete article revisions'
   - 'delete own article content'
   - 'delete own files'
   - 'delete own page content'
   - 'delete page revisions'
+  - 'edit any acbp_process_manual content'
+  - 'edit any areas_of_collaboration content'
+  - 'edit any article content'
+  - 'edit any capacity_building_units content'
+  - 'edit any case_studies content'
+  - 'edit any event content'
+  - 'edit any home_banner content'
+  - 'edit any important_documents content'
+  - 'edit any know_your_cbc content'
+  - 'edit any media_corner content'
+  - 'edit any news content'
+  - 'edit any news_letters content'
+  - 'edit any opinions_do_matter content'
+  - 'edit any our_collaboration_matters content'
+  - 'edit any our_partners content'
+  - 'edit any our_team content'
+  - 'edit any page content'
+  - 'edit any photo_gallery content'
+  - 'edit any registration_guidelines_for_igot content'
+  - 'edit any reports content'
+  - 'edit any tender content'
+  - 'edit any training_institute content'
+  - 'edit any video_gallery content'
+  - 'edit any webform content'
+  - 'edit own acbp_process_manual content'
+  - 'edit own areas_of_collaboration content'
   - 'edit own article content'
+  - 'edit own capacity_building_units content'
+  - 'edit own case_studies content'
   - 'edit own comments'
+  - 'edit own event content'
+  - 'edit own home_banner content'
+  - 'edit own important_documents content'
+  - 'edit own know_your_cbc content'
+  - 'edit own media_corner content'
+  - 'edit own news content'
+  - 'edit own news_letters content'
+  - 'edit own opinions_do_matter content'
+  - 'edit own our_collaboration_matters content'
+  - 'edit own our_partners content'
+  - 'edit own our_team content'
   - 'edit own page content'
+  - 'edit own photo_gallery content'
+  - 'edit own registration_guidelines_for_igot content'
+  - 'edit own reports content'
+  - 'edit own tender content'
+  - 'edit own training_institute content'
+  - 'edit own video_gallery content'
+  - 'edit own webform content'
   - 'edit terms in tags'
+  - 'edit webform submissions any node'
+  - 'edit webform submissions own node'
   - 'revert all revisions'
   - 'view all revisions'
   - 'view own unpublished content'
   - 'view the administration theme'
+  - 'view webform submissions any node'
+  - 'view webform submissions own node'
