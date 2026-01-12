@@ -996,7 +996,7 @@ function setupInfocusObserver(container) {
   }
 }
 
-function addMapIslands(container) {
+function addMapIslands(container) { return;
   if (!container) return;
 
   // Find the map image to ensure we overlay correctly
