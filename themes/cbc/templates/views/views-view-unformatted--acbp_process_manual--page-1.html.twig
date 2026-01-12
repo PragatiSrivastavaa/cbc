@@ -4,31 +4,33 @@
         <h2 class="karmayogi-section-title">
           <i class="bi bi-file-earmark-text-fill me-3" style="color: #0063ae;"></i>ACBP Process Manual
         </h2>
-        <div class="karmayogi-metrics-table-wrapper">
-          <table class="table karmayogi-metrics-table">
+        <div class="mou-status-table-wrapper">
+          <div class="table-responsive">
+            <table class="table mou-status-table collaboration-table">
             <thead>
               <tr>
                 <th>Title</th>
-                <th style="text-align: center;">View Document</th>
-                <th style="text-align: center;">Download Document</th>
+                <th class="text-center">View Document</th>
+                <th class="text-center">Download Document</th>
               </tr>
             </thead>
             <tbody>
    {% for row in rows %}
               {% set entity = row.content['#row']._entity %}
               <tr>
-                <td style="color: #002b5b; font-weight: 500;">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</td>
-                <td style="text-align: center;">
-                  <a href="{{ link }}" target="_blank" style="color: #0063ae; text-decoration: none; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.textDecoration='underline'; this.style.color='#004b88';" onmouseout="this.style.textDecoration='none'; this.style.color='#0063ae';">View</a>
+                <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</td>
+                <td class="text-center">
+                  <a href="{{ link }}" target="_blank" class="action-link">View</a>
                 </td>
-                <td style="text-align: center;">
-                  <a href="{{ link }}" download style="color: #0063ae; text-decoration: none; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.textDecoration='underline'; this.style.color='#004b88';" onmouseout="this.style.textDecoration='none'; this.style.color='#0063ae';">Download</a>
+                <td class="text-center">
+                  <a href="{{ link }}" download class="action-link">Download</a>
                 </td>
               </tr>
                
              {% endfor %}
             </tbody>
           </table>
+        </div>
         </div>
       </div>
     </div>

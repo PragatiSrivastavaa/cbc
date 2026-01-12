@@ -23,8 +23,9 @@
             Relevant Documents For {{ category }}
           </h2>
 
-          <div class="karmayogi-metrics-table-wrapper">
-            <table class="table karmayogi-metrics-table">
+          <div class="mou-status-table-wrapper">
+            <div class="table-responsive">
+              <table class="table mou-status-table collaboration-table">
               <thead>
                 <tr>
                   <th>Document Name</th>
@@ -42,7 +43,7 @@
                     <tr>
                       <td>{{ node.label }}</td>
                       <td>
-                        <a href="{{ file_url(file.uri.value) }}" target="_blank">
+                        <a href="{{ file_url(file.uri.value) }}" target="_blank" class="action-link">
                           Download
                         </a>
                       </td>
@@ -52,6 +53,7 @@
 
               </tbody>
             </table>
+          </div>
           </div>
 
         </div>

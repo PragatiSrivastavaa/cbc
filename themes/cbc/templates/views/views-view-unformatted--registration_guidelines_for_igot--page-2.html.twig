@@ -1,9 +1,9 @@
 <section class="karmayogi-section-fullwidth karmayogi-vision-section">
   <div class="container">
     <div class="karmayogi-content-wrapper">
-      <div class="karmayogi-metrics-table-wrapper" style="margin-top: 40px;">
-
-        <table class="table karmayogi-metrics-table">
+      <div class="mou-status-table-wrapper" style="margin-top: 40px;">
+        <div class="table-responsive">
+        <table class="table mou-status-table collaboration-table">
           <thead>
             <tr>
               <th style="width: 80px;">S.NO</th>
@@ -24,7 +24,7 @@
                   <td>{{ loop.index }}</td>
 
                   <!-- TITLE -->
-                  <td style="color:#002b5b;">
+                  <td>
                     {{ node.label }}
                   </td>
 
@@ -37,7 +37,7 @@
                     <a href="{{ file_url(file.uri.value) }}"
                        target="_blank"
                        rel="noopener"
-                       style="color:#0063ae; font-weight:600;">
+                       class="action-link">
                       View Document
                     </a>
 
@@ -59,6 +59,7 @@
           </tbody>
 
         </table>
+        </div>
 
       </div>
     </div>

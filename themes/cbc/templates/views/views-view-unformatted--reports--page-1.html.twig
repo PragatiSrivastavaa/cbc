@@ -3,13 +3,14 @@
   <div class="row">
     <div class="col-lg-11 mx-auto">
       <div class="content-section">
-        <div class="table-responsive mt-4">
-          <table class="table table-bordered">
+        <div class="mou-status-table-wrapper mt-4">
+          <div class="table-responsive">
+            <table class="table mou-status-table collaboration-table">
             <thead>
               <tr>
-                <th scope="col" >S.No</th>
-                <th scope="col" >Title</th>
-                <th scope="col" >Document/Link</th>
+                <th scope="col" class="text-center" style="width: 60px;">S.No</th>
+                <th scope="col" style="width: 50%;">Title</th>
+                <th scope="col" class="text-center" style="width: 120px;">Document/Link</th>
               </tr>
             </thead>
             <tbody>
@@ -25,15 +26,16 @@
                   {% set link = path('entity.node.canonical', {'node': entity.id()}) %}
                 {% endif %}
               <tr>
-               <td style="text-align:center;">{{ loop.index }}</td>
+               <td class="text-center">{{ loop.index }}</td>
       
                 <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</td>
-                <td><a href="{{ link }}" target="_blank" class="text-primary">View</a></td>
+                <td class="text-center"><a href="{{ link }}" target="_blank" class="action-link">View</a></td>
               </tr>
              
              {% endfor %}
             </tbody>
           </table>
+          </div>
         </div>
       </div>
     </div>
