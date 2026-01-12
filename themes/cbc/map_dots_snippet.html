@@ -1,34 +1,62 @@
+<!-- Copy this ENTIRE block into your Drupal View/Block -->
+
 <style>
-  .map-islands-container {
-    position: absolute;
-    top: 0;
-    left: 0;
+  /* SVG Wrapper */
+  .map-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Height constraint to prevent clipping */
+    height: 190px;
     width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
+    position: relative;
+    overflow: visible !important;
+    margin-bottom: 15px;
+    margin-top: 10px;
   }
 
-  .map-dot {
-    position: absolute;
-    background-color: #ff9933;
+  /* Force Map Colors - Darkish Theme Blue */
+  .map-wrapper svg path {
+    fill: #1a3c5e !important;
+    stroke: #ffffff;
+    stroke-width: 0.5px;
+    transition: fill 0.3s ease;
+  }
+
+  .map-wrapper svg path:hover {
+    fill: #2daae1 !important;
+  }
+
+  /* SVG Constraints */
+  .map-wrapper svg {
+    height: 100% !important;
+    width: auto !important;
+    max-width: 100%;
+    overflow: visible !important;
+    display: block;
+  }
+
+  /* SVG Dot Styles */
+  .map-dot-svg {
+    fill: #ff9933;
     /* Theme Orange */
-    border-radius: 50%;
+    cursor: pointer;
+    /* Center transform origin on the dot itself for pulse */
+    transform-box: fill-box;
+    transform-origin: center;
     opacity: 0.9;
-    box-shadow: 0 0 4px rgba(255, 153, 51, 0.8);
-    animation: islandPulse 2s infinite ease-in-out;
+    animation: svgPulse 2s infinite ease-in-out;
   }
 
-  @keyframes islandPulse {
+  @keyframes svgPulse {
     0% {
       transform: scale(1);
       opacity: 0.9;
     }
 
     50% {
-      transform: scale(1.5);
+      transform: scale(1.4);
       opacity: 1;
-      box-shadow: 0 0 8px rgba(255, 153, 51, 1);
     }
 
     100% {
@@ -38,120 +66,176 @@
   }
 </style>
 
+<!-- IMAGE TAG -->
+<img class="india-map-image map-fade-blink" src="/cbc/sites/default/files/inline-images/indian_map_infocus.svg"
+  alt="India Map showing States and Union Territories" width="100%" height="100%" id="infocus-india-map"
+  style="display: block; width: 100%; height: auto;">
+
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const checkContainer = setInterval(function () {
-      // Target the specific In Focus map container
-      // You might need to adjust this selector based on your specific View structure
-      const container = document.querySelector('.infocus-container');
+    console.log("CBC Map Script Loaded - Dots Enabled (Single Unique) v15");
 
-      if (container) {
+    const checkContainer = setInterval(function () {
+      let img = document.getElementById('infocus-india-map');
+      if (img && img.complete) {
         clearInterval(checkContainer);
-        addMapIslands(container);
+        initDynamicMap(img);
       }
     }, 500);
 
-    function addMapIslands(container) {
-      if (!container) return;
+    function initDynamicMap(img) {
+      const svgUrl = img.getAttribute('src');
+      if (!svgUrl) return;
 
-      // Find the map image to ensure we overlay correctly
-      const img = container.querySelector('img');
-      if (!img) return;
+      fetch(svgUrl)
+        .then(response => {
+          if (!response.ok) throw new Error('Network response was not ok');
+          return response.text();
+        })
+        .then(svgText => {
+          if (!svgText.trim().startsWith('<svg') && !svgText.includes('<svg')) {
+            console.warn('Fetched image is not an SVG');
+            return;
+          }
 
-      // Use the image's parent for positioning to ensure dots stay with the map
-      const parent = img.parentElement;
+          const wrapper = document.createElement('div');
+          wrapper.className = 'map-wrapper ' + (img.className || '');
 
-      // Check if islands already added
-      if (parent.querySelector('.map-islands-container')) return;
+          wrapper.innerHTML = svgText;
+          const svg = wrapper.querySelector('svg');
 
-      if (window.getComputedStyle(parent).position === 'static') {
-        parent.style.position = 'relative';
-      }
+          if (svg) {
+            if (!svg.hasAttribute('viewBox')) {
+              const w = svg.getAttribute('width') || 611;
+              const h = svg.getAttribute('height') || 695;
+              svg.setAttribute('viewBox', `0 0 ${parseFloat(w)} ${parseFloat(h)}`);
+            }
 
-      const islandContainer = document.createElement('div');
-      islandContainer.className = 'map-islands-container';
+            svg.style.width = 'auto';
+            svg.style.height = '100%';
+            svg.style.display = 'block';
+            svg.style.overflow = 'visible';
 
-      // Coordinate percentages (Approximate for standard India map)
-      const stateDots = [
-        // North
-        { top: 18, left: 32, size: 3, delay: '0s' },    // J&K
-        { top: 15, left: 40, size: 3, delay: '0.2s' },  // Ladakh
-        { top: 24, left: 35, size: 3, delay: '0.1s' },  // Himachal
-        { top: 26, left: 29, size: 3, delay: '0.3s' },  // Punjab
-        { top: 27, left: 40, size: 3, delay: '0.2s' },  // Uttarakhand
-        { top: 31, left: 33, size: 2.5, delay: '0.4s' },// Haryana
-        { top: 33, left: 36, size: 2.5, delay: '0.1s' },// Delhi
+            img.parentNode.insertBefore(wrapper, img);
+            img.style.display = 'none';
 
-        // West
-        { top: 40, left: 25, size: 4, delay: '0s' },    // Rajasthan
-        { top: 50, left: 15, size: 4, delay: '0.3s' },  // Gujarat
-        { top: 62, left: 28, size: 4, delay: '0.1s' },  // Maharashtra
-        { top: 75, left: 25, size: 2, delay: '0.2s' },  // Goa
+            requestAnimationFrame(() => addDotsNative(svg));
+          }
+        })
+        .catch(error => console.error('Error loading map SVG:', error));
+    }
 
-        // Central
-        { top: 50, left: 42, size: 4, delay: '0.4s' },  // MP
-        { top: 38, left: 50, size: 4, delay: '0.2s' },  // UP
-        { top: 52, left: 55, size: 3.5, delay: '0.1s' },// Chhattisgarh
-
-        // East
-        { top: 40, left: 65, size: 3.5, delay: '0.3s' },// Bihar
-        { top: 48, left: 62, size: 3.5, delay: '0s' },  // Jharkhand
-        { top: 48, left: 70, size: 3.5, delay: '0.2s' },// West Bengal
-        { top: 58, left: 65, size: 3.5, delay: '0.1s' },// Odisha
-        { top: 32, left: 72, size: 2, delay: '0.4s' },  // Sikkim
-
-        // North East
-        { top: 38, left: 85, size: 3, delay: '0.2s' },  // Assam
-        { top: 30, left: 90, size: 3, delay: '0.1s' },  // Arunachal
-        { top: 36, left: 94, size: 3, delay: '0.3s' },  // Nagaland
-        { top: 42, left: 93, size: 3, delay: '0s' },    // Manipur
-        { top: 48, left: 91, size: 3, delay: '0.4s' },  // Mizoram
-        { top: 48, left: 86, size: 3, delay: '0.2s' },  // Tripura
-        { top: 40, left: 85, size: 3, delay: '0.1s' },  // Meghalaya
-
-        // South
-        { top: 78, left: 32, size: 4, delay: '0.3s' },  // Karnataka
-        { top: 65, left: 45, size: 3.5, delay: '0s' },  // Telangana
-        { top: 75, left: 48, size: 4, delay: '0.2s' },  // Andhra
-        { top: 88, left: 35, size: 3, delay: '0.1s' },  // Kerala
-        { top: 85, left: 42, size: 3.5, delay: '0.4s' },// Tamil Nadu
-
-        // Islands (Lakshadweep)
-        { top: 82, left: 18, size: 3, delay: '0s' },
-        { top: 84, left: 19, size: 2.5, delay: '0.2s' },
-        { top: 83, left: 17, size: 3, delay: '0.4s' },
-        { top: 85, left: 18, size: 2, delay: '0.1s' },
-        { top: 86, left: 17, size: 2, delay: '0.3s' },
-        { top: 81, left: 18, size: 2, delay: '0.5s' },
-        { top: 79, left: 17, size: 1.5, delay: '0.2s' },
-
-        // Islands (Andaman & Nicobar)
-        { top: 65, left: 88, size: 3, delay: '0s' },
-        { top: 66, left: 88, size: 3, delay: '0.3s' },
-        { top: 67, left: 88, size: 3.5, delay: '0.1s' },
-        { top: 69, left: 88, size: 3, delay: '0.4s' },
-        { top: 70, left: 88, size: 3, delay: '0.2s' },
-        { top: 72, left: 88, size: 3.5, delay: '0.5s' },
-        { top: 76, left: 89, size: 3, delay: '0.1s' },
-        { top: 78, left: 90, size: 2.5, delay: '0.3s' },
-        { top: 79, left: 90, size: 3, delay: '0.2s' },
-        { top: 81, left: 90, size: 4, delay: '0.4s' },
+    function addDotsNative(svg) {
+      // User Provided List
+      const allowedStates = [
+        "andaman and nicobar",
+        "andhra pradesh",
+        "arunachal pradesh",
+        "assam",
+        "bihar",
+        "chandigarh",
+        "chhattisgarh", "chattisgarh",
+        "delhi",
+        "goa",
+        "gujarat",
+        "haryana",
+        "jammu and kashmir",
+        "jharkhand",
+        "karnataka",
+        "ladakh",
+        "madhya pradesh",
+        "maharashtra",
+        "manipur",
+        "meghalaya",
+        "mizoram",
+        "nagaland",
+        "odisha",
+        "puducherry",
+        "punjab",
+        "rajasthan",
+        "tripura",
+        "uttar pradesh",
+        "uttarakhand"
       ];
 
-      const createDot = (dot) => {
-        const el = document.createElement('div');
-        el.className = 'map-dot';
-        el.style.top = dot.top + '%';
-        el.style.left = dot.left + '%';
-        el.style.width = dot.size + 'px';
-        el.style.height = dot.size + 'px';
-        el.style.animationDelay = dot.delay;
-        return el;
+      const normalizeName = (name) => {
+        if (!name) return '';
+        return name.toLowerCase()
+          .replace('&', 'and')
+          .replace('islands', '')
+          .replace('island', '')
+          .trim();
       };
 
-      stateDots.forEach(dot => islandContainer.appendChild(createDot(dot)));
+      const stateLargestPath = new Map();
+      const paths = svg.querySelectorAll('path');
 
-      parent.appendChild(islandContainer);
+      // 1. DEDUPLICATION: Find ONLY the largest path for each state
+      paths.forEach(path => {
+        if (path.closest('defs')) return;
+
+        const id = path.id || '';
+        const rawTitle = path.getAttribute('title') || '';
+        const normalizedTitle = normalizeName(rawTitle);
+
+        if (id.startsWith('IN-')) {
+          const matchedState = allowedStates.find(state => normalizedTitle.includes(state));
+
+          if (matchedState) {
+            try {
+              const bbox = path.getBBox();
+              const area = bbox.width * bbox.height;
+
+              if (bbox.width <= 0 || bbox.height <= 0) return;
+
+              if (!stateLargestPath.has(matchedState) || area > stateLargestPath.get(matchedState).area) {
+                stateLargestPath.set(matchedState, {
+                  path: path,
+                  bbox: bbox,
+                  title: rawTitle
+                });
+              }
+            } catch (e) { }
+          }
+        }
+      });
+
+      // 2. RENDER: Add One Circle per State
+      stateLargestPath.forEach((data, stateName) => {
+        try {
+          const path = data.path;
+          const bbox = data.bbox;
+
+          const cx = bbox.x + bbox.width / 2;
+          const cy = bbox.y + bbox.height / 2;
+
+          const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          circle.setAttribute("cx", cx);
+          circle.setAttribute("cy", cy);
+
+          // Radius 4 for clean, visible dot
+          circle.setAttribute("r", "4");
+          circle.setAttribute("class", "map-dot-svg");
+
+          if (data.title) {
+            const titleEl = document.createElementNS("http://www.w3.org/2000/svg", "title");
+            titleEl.textContent = data.title;
+            circle.appendChild(titleEl);
+          }
+
+          // Staggered animation
+          const safeH = svg.viewBox.baseVal.height || 700;
+          const normalizedY = cy / safeH;
+          const delay = (normalizedY * 1.5).toFixed(2) + 's';
+          circle.style.animationDelay = delay;
+
+          // Inject into path's parent to inherit transforms
+          path.parentNode.appendChild(circle);
+
+        } catch (e) {
+          console.error("Error creating SVG dot for " + stateName, e);
+        }
+      });
     }
   });
 </script>
