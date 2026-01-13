@@ -12292,8 +12292,27 @@ tbody tr:nth-child(even),
 }
 
 /* Tender Table Styles */
-.tenders-table th:first-child {
+.tenders-table thead th {
+  background-color: #0063ae;
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-right: 1px solid rgba(255, 255, 255, 0.4) !important;
+  border-bottom: none;
+  vertical-align: middle;
+  padding: 15px;
+  font-size: 0.95rem;
+}
+
+.tenders-table thead th:first-child {
   width: 80px;
+  border-top-left-radius: 8px;
+}
+
+.tenders-table thead th:last-child {
+  width: 200px;
+  border-top-right-radius: 8px;
+  border-right: none !important;
 }
 
 .tenders-table th:nth-child(2) {
@@ -12305,8 +12324,12 @@ tbody tr:nth-child(even),
   width: 120px;
 }
 
-.tenders-table th:last-child {
-  width: 200px;
+.tenders-table td {
+  border-right: 1px solid #dee2e6;
+}
+
+.tenders-table td:last-child {
+  border-right: none;
 }
 
 .archived-tenders-section {
@@ -15795,6 +15818,16 @@ th.text-center {
   background: rgba(255, 255, 255, 0.25);
 }
 
+.lsi-program-icon.kcm-icon {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.lsi-program-icon.kcm-icon::before {
+  content: "\f455";
+  /* Bootstrap Icons 'laptop-fill' */
+  font-family: "bootstrap-icons";
+}
+
 .lsi-program-title {
   font-size: 1.5rem;
   font-weight: 700;
@@ -15961,4 +15994,138 @@ th.text-center {
     padding: 10px 18px;
     font-size: 0.85rem;
   }
+}
+
+/* ===========================================
+   NEWSLETTER LIST STYLES
+   =========================================== */
+.newsletters-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.newsletter-item {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid #e9ecef;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.newsletter-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  border-color: #0063ae;
+}
+
+.newsletter-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.newsletter-title {
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.newsletter-title a {
+  color: #002b5b;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: block;
+  /* Make the whole title clickable area beneficial */
+}
+
+.newsletter-title a:hover {
+  color: #0063ae;
+}
+
+.newsletter-date {
+  margin-top: auto;
+  font-size: 0.9rem;
+  color: #6c757d;
+  padding-top: 1rem;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Add an icon before the date for better visual */
+.newsletter-date::before {
+  content: "\F1E6";
+  /* Bootstrap Icons 'calendar-event' */
+  font-family: "bootstrap-icons";
+  color: #0063ae;
+  margin-right: 8px;
+  font-size: 1.1rem;
+  line-height: 1;
+  position: relative;
+  top: -1px;
+}
+
+/* ===========================================
+   ARCHIVES BUTTON STYLES
+   =========================================== */
+.archives-btn {
+  background: linear-gradient(135deg, #0063ae 0%, #00569a 100%) !important;
+  color: #ffffff !important;
+  padding: 12px 28px !important;
+  border-radius: 50px !important;
+  /* Pill shape for modern look */
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(0, 99, 174, 0.25);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.archives-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 99, 174, 0.35);
+  background: linear-gradient(135deg, #00569a 0%, #004b88 100%) !important;
+}
+
+.archives-btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 99, 174, 0.25);
+}
+
+.archives-btn a {
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Add a back arrow icon */
+.archives-btn a::before {
+  content: "\F12F";
+  /* Bootstrap Icons 'arrow-left' */
+  font-family: "bootstrap-icons";
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.archives-btn:hover a::before {
+  transform: translateX(-4px);
 }
