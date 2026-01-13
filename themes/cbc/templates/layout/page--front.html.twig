@@ -96,7 +96,7 @@
         {{ page.events_section }}
          <!-- See More Button -->
         <div class="events-footer high-contrast-no-border">
-          <a href="/events" class="events-see-more-btn">
+          <a href="/cbc/events" class="events-see-more-btn">
             See More Events
             <i class="fas fa-arrow-right"></i>
           </a>
@@ -201,7 +201,7 @@
             <div class="letter-content" id="letterContent">
               <div class="letter-text">
                 <p class="letter-intro">
-                  Let us join hands for continuously empowering our learning eco-system.
+                  Let us join hands for continuously empowering our capacity building eco-system.
                 </p>
                 <p class="letter-paragraph">
                   Mission Karmayogi is a path-breaking and a first of its kind initiative envisioned by Hon'ble Prime
@@ -269,7 +269,10 @@
     <!-- opinion section -->
     <section class="cbc-blog-carousel">
 
-      <!-- Controls removed, handled in view template -->
+      <div class="carousel-controls">
+        <button id="blogPrevBtn">‹</button>
+        <button id="blogNextBtn">›</button>
+      </div>
 
       
        {{ page.option_do_matter }}
@@ -277,7 +280,7 @@
     
       <!-- See More Button -->
       <div class="blog-footer">
-        <a href="/opinions-do-matter" class="blog-see-more-btn">
+        <a href="/cbc/opinions-do-matter" class="blog-see-more-btn">
           See More
           <i class="fas fa-arrow-right"></i>
         </a>
@@ -291,7 +294,7 @@
           <h2>Glimpses</h2>
         </div>
       </div>
-      <div class="container pb-5">
+      <div class="container py-5 pt-0">
         <div class="row g-4 align-items-stretch">
           <!-- Photo Gallery Section - Left -->
           <div class="col-lg-6 col-md-6">
@@ -326,8 +329,10 @@
    
 
     <!-- partner section -->
-    <section class="partners-section pt-5">
+    <section class="partners-section">
+      <div class="container py-5">
         {{page.logo_carousel}}
+      </div>
     </section>
 
   </main>
