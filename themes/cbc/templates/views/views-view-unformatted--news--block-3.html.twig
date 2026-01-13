@@ -1,14 +1,13 @@
-
-<div class="infocus-title-wrapper">
-  <div class="focus-circle-frame">
-    <div class="circle-animation"></div>
-    <div class="circle-glow"></div>
-    <div class="inner-white-circle"></div>
-    <h2 class="infocus-title">
-      <span class="blink-dot"></span>In Focus
-    </h2>
-  </div>
-</div>
+ <div class="infocus-title-wrapper">
+                <div class="focus-circle-frame">
+                  <div class="circle-animation"></div>
+                  <div class="circle-glow"></div>
+                  <div class="inner-white-circle"></div>
+                  <h2 class="infocus-title">
+                    <span class="blink-dot"></span>In Focus
+                  </h2>
+                </div>
+ </div>
 <div class="infocus-content">
   {% for row in rows %}
     {% set node = row.content['#row']._entity %}
@@ -19,165 +18,12 @@
         {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}
       </h2>
 
-      <div class="infocus-map-container">
-        <div class="map-image-container">
-          
-          <style>
-            /* Map Wrapper */
-            .map-wrapper {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              height: 100%; /* Changed from fixed px to full height of container */
-              min-height: 400px; /* Ensure visible size */
-              width: 100%;
-              position: relative;
-              overflow: visible !important;
-              margin-bottom: 15px;
-              margin-top: 10px;
-            }
-
-            /* Map Paths */
-            .map-wrapper svg path {
-              fill: #1a3c5e !important;
-              stroke: #ffffff;
-              stroke-width: 0.5px;
-              transition: fill 0.3s ease;
-            }
-
-            .map-wrapper svg path:hover {
-              fill: #2daae1 !important;
-            }
-
-            /* SVG Responsiveness */
-            .map-wrapper svg {
-              height: 100% !important;
-              width: auto !important;
-              max-width: 100%;
-              overflow: visible !important;
-              display: block;
-            }
-
-            /* Blinking Dots */
-            .map-dot-svg {
-              fill: #ff9933; /* Theme Orange */
-              cursor: pointer;
-              transform-box: fill-box;
-              transform-origin: center;
-              opacity: 0.9;
-              animation: svgPulse 2s infinite ease-in-out;
-              pointer-events: none; /* Let clicks pass to state if needed */
-            }
-
-            @keyframes svgPulse {
-              0% { transform: scale(1); opacity: 0.9; }
-              50% { transform: scale(1.6); opacity: 1; }
-              100% { transform: scale(1); opacity: 0.9; }
-            }
-          </style>
-
-          <div id="cbc-india-map-wrapper" class="map-wrapper india-map-image map-fade-blink">
-             <!-- Placeholder Image - JS will replace with SVG -->
-             <img src="/cbc/sites/default/files/inline-images/indian_map_infocus.svg" 
-                  alt="India Map" 
-                  id="india-map-img-placeholder"
-                  style="opacity: 0;">
-          </div>
-
-          <script>
-            (function() {
-              const svgUrl = "/cbc/sites/default/files/inline-images/indian_map_infocus.svg";
-              const wrapperId = "cbc-india-map-wrapper";
-              
-              // Load SVG
-              fetch(svgUrl)
-                .then(response => response.text())
-                .then(svgText => {
-                  const wrapper = document.getElementById(wrapperId);
-                  if (!wrapper) return;
-
-                  // Parse SVG
-                  const parser = new DOMParser();
-                  const doc = parser.parseFromString(svgText, "image/svg+xml");
-                  const svg = doc.querySelector('svg');
-
-                  if (svg) {
-                    // Set ViewBox if missing (Default to map dimensions)
-                    if (!svg.hasAttribute('viewBox')) {
-                       svg.setAttribute('viewBox', '0 0 611 695'); 
-                    }
-                    
-                    // Replace Image
-                    wrapper.innerHTML = '';
-                    wrapper.appendChild(svg);
-                    
-                    // Add Dots
-                    addBlinkingDots(svg);
-                  }
-                })
-                .catch(err => console.error("Map Load Error:", err));
-
-              function addBlinkingDots(svg) {
-                const allowedStates = [
-                  "andaman and nicobar", "andhra pradesh", "arunachal pradesh", "assam", "bihar", 
-                  "chandigarh", "chhattisgarh", "chattisgarh", "delhi", "dadra and nagar haveli",
-                  "daman and diu", "goa", "gujarat", "haryana", "jammu and kashmir", "jharkhand", 
-                  "karnataka", "ladakh", "lakshadweep", "madhya pradesh", "maharashtra", "manipur", 
-                  "meghalaya", "mizoram", "nagaland", "odisha", "puducherry", "punjab", "rajasthan", 
-                  "sikkim", "tamil nadu", "telangana", "tripura", "uttar pradesh", "uttarakhand", "west bengal"
-                ];
-
-                const normalize = str => (str || '').toLowerCase().replace(/&/g, 'and').replace(/islands?/g, '').trim();
-                const paths = svg.querySelectorAll('path');
-                const statePaths = new Map();
-
-                // 1. Identify Logic
-                paths.forEach(path => {
-                  const title = normalize(path.getAttribute('title'));
-                  const id = path.id;
-                  
-                  // Filter valid states
-                  const matchedState = allowedStates.find(s => title.includes(s));
-                  if (!matchedState) return;
-
-                  // Get BBox for sizing
-                  try {
-                    const bbox = path.getBBox();
-                    const area = bbox.width * bbox.height;
-                    
-                    // Keep largest path for this state (avoids tiny islands getting the dot)
-                    if (!statePaths.has(matchedState) || area > statePaths.get(matchedState).area) {
-                      statePaths.set(matchedState, { path, bbox, area });
-                    }
-                  } catch(e) { console.warn("BBox Error", e); }
-                });
-
-                // 2. Render Dots
-                statePaths.forEach((data, state) => {
-                  const { bbox, path } = data;
-                  if (bbox.width === 0) return;
-
-                  const cx = bbox.x + bbox.width / 2;
-                  const cy = bbox.y + bbox.height / 2;
-
-                  const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-                  circle.setAttribute("cx", cx);
-                  circle.setAttribute("cy", cy);
-                  circle.setAttribute("r", "4.5");
-                  circle.setAttribute("class", "map-dot-svg");
-                  
-                  // Animation Delay for wave effect
-                  const delay = (cy / 700 * 2).toFixed(2) + 's'; // 700 is approx height
-                  circle.style.animationDelay = delay;
-
-                  svg.appendChild(circle);
-                });
-              }
-            })();
-          </script>
-
-        </div>
-      </div>
+      <!-- <p class="infocus-desc"> -->
+        <div class="infocus-map-container">
+                  <div class="map-image-container">
+        {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_body }}'] }}
+       </div>
+                </div>
 
     {% endif %}
   {% endfor %}
