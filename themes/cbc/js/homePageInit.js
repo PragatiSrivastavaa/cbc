@@ -996,7 +996,8 @@ function setupInfocusObserver(container) {
   }
 }
 
-function addMapIslands(container) { return;
+function addMapIslands(container) {
+  return;
   if (!container) return;
 
   // Find the map image to ensure we overlay correctly
@@ -1862,3 +1863,183 @@ if (document.readyState === 'loading') {
 }
 
 
+
+
+/* ===========================================
+   DYNAMIC INDIA MAP SCRIPT
+   =========================================== */
+(function ($) {
+  $(document).ready(function () {
+    console.log('CBC Map Script Loaded - jQuery Safe Mode v17');
+
+    // Max wait time 30 seconds
+    const maxWait = 30000;
+    const interval = 200;
+    let elapsed = 0;
+
+    const checkContainer = setInterval(function () {
+      let img = document.getElementById('infocus-india-map');
+
+      // Fallback: Try finding by class if ID is missing (user might have missed the ID copy)
+      if (!img) {
+        img = document.querySelector('.india-map-image');
+      }
+
+      if (img && (img.complete || img.naturalWidth > 0)) {
+        clearInterval(checkContainer);
+        console.log('Map Image Found. Initializing SVG fetch...');
+        initDynamicMap(img);
+      }
+
+      elapsed += interval;
+      if (elapsed > maxWait) {
+        clearInterval(checkContainer);
+        console.warn('CBC Map Script: Timed out waiting for map image (#infocus-india-map).');
+      }
+    }, interval);
+
+    function initDynamicMap(img) {
+      const svgUrl = img.getAttribute('src');
+      if (!svgUrl) {
+        console.error('CBC Map Script: Image has no src attribute.');
+        return;
+      }
+
+      // Prevent double init
+      if (img.classList.contains('map-processed')) return;
+      img.classList.add('map-processed');
+
+      fetch(svgUrl)
+        .then(response => {
+          if (!response.ok) throw new Error('Network response was not ok');
+          return response.text();
+        })
+        .then(svgText => {
+          if (!svgText.trim().startsWith('<svg') && !svgText.includes('<svg')) {
+            console.warn('Fetched image is not an SVG');
+            return;
+          }
+          const wrapper = document.createElement('div');
+          wrapper.className = 'map-wrapper ' + (img.className || '');
+          wrapper.innerHTML = svgText;
+          const svg = wrapper.querySelector('svg');
+          if (svg) {
+            if (!svg.hasAttribute('viewBox')) {
+              const w = svg.getAttribute('width') || 611;
+              const h = svg.getAttribute('height') || 695;
+              svg.setAttribute('viewBox', `0 0 ${parseFloat(w)} ${parseFloat(h)}`);
+            }
+            svg.style.width = 'auto';
+            svg.style.height = '100%';
+            svg.style.display = 'block';
+            svg.style.overflow = 'visible';
+
+            // Insert wrapper before image
+            img.parentNode.insertBefore(wrapper, img);
+            // Hide original image
+            img.style.display = 'none';
+
+            requestAnimationFrame(() => addDotsNative(svg));
+          }
+        })
+        .catch(error => console.error('Error loading map SVG:', error));
+    }
+
+    function addDotsNative(svg) {
+      // User Provided List
+      const allowedStates = [
+        'andaman and nicobar',
+        'andhra pradesh',
+        'arunachal pradesh',
+        'assam',
+        'bihar',
+        'chandigarh',
+        'chhattisgarh', 'chattisgarh',
+        'delhi',
+        'goa',
+        'gujarat',
+        'haryana',
+        'jammu and kashmir',
+        'jharkhand',
+        'karnataka',
+        'ladakh',
+        'madhya pradesh',
+        'maharashtra',
+        'manipur',
+        'meghalaya',
+        'mizoram',
+        'nagaland',
+        'odisha',
+        'puducherry',
+        'punjab',
+        'rajasthan',
+        'tripura',
+        'uttar pradesh',
+        'uttarakhand'
+      ];
+      const normalizeName = (name) => {
+        if (!name) return '';
+        return name.toLowerCase()
+          .replace('&', 'and')
+          .replace('islands', '')
+          .replace('island', '')
+          .trim();
+      };
+      const stateLargestPath = new Map();
+      const paths = svg.querySelectorAll('path');
+      // 1. DEDUPLICATION: Find ONLY the largest path for each state
+      paths.forEach(path => {
+        if (path.closest('defs')) return;
+        const id = path.id || '';
+        const rawTitle = path.getAttribute('title') || '';
+        const normalizedTitle = normalizeName(rawTitle);
+        if (id.startsWith('IN-')) {
+          const matchedState = allowedStates.find(state => normalizedTitle.includes(state));
+          if (matchedState) {
+            try {
+              const bbox = path.getBBox();
+              const area = bbox.width * bbox.height;
+              if (bbox.width <= 0 || bbox.height <= 0) return;
+              if (!stateLargestPath.has(matchedState) || area > stateLargestPath.get(matchedState).area) {
+                stateLargestPath.set(matchedState, {
+                  path: path,
+                  bbox: bbox,
+                  title: rawTitle
+                });
+              }
+            } catch (e) { }
+          }
+        }
+      });
+      // 2. RENDER: Add One Circle per State
+      stateLargestPath.forEach((data, stateName) => {
+        try {
+          const path = data.path;
+          const bbox = data.bbox;
+          const cx = bbox.x + bbox.width / 2;
+          const cy = bbox.y + bbox.height / 2;
+          const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          circle.setAttribute('cx', cx);
+          circle.setAttribute('cy', cy);
+          // Radius 4 for clean, visible dot
+          circle.setAttribute('r', '4');
+          circle.setAttribute('class', 'map-dot-svg');
+          if (data.title) {
+            const titleEl = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+            titleEl.textContent = data.title;
+            circle.appendChild(titleEl);
+          }
+          // Staggered animation
+          const safeH = svg.viewBox.baseVal.height || 700;
+          const normalizedY = cy / safeH;
+          const delay = (normalizedY * 1.5).toFixed(2) + 's';
+          circle.style.animationDelay = delay;
+          // Inject into path's parent to inherit transforms
+          path.parentNode.appendChild(circle);
+        } catch (e) {
+          console.error('Error creating SVG dot for ' + stateName, e);
+        }
+      });
+    }
+  });
+})(jQuery);
