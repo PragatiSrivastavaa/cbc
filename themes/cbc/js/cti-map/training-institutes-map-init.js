@@ -115,7 +115,7 @@
       }
     }
 
-    setTimeout(tryInit, ATTEMPT_DELAY);
+    tryInit();
   }
 
   function removeWatermark(container) {
@@ -140,12 +140,17 @@
   }
 
   function initializeMap(container) {
+    if (container.hasAttribute('data-simplemaps-initialized')) return;
+
     if (typeof simplemaps_countrymap === 'undefined' ||
       typeof simplemaps_countrymap_mapdata === 'undefined' ||
       typeof simplemaps_countrymap_mapinfo === 'undefined') {
-      console.error('CBC training map: required SimpleMaps assets are missing.');
+      // If scripts aren't loaded yet, retry shortly
+      setTimeout(function () { initializeMap(container); }, 100);
       return;
     }
+
+    container.setAttribute('data-simplemaps-initialized', 'true');
 
     simplemaps_countrymap.mapinfo = simplemaps_countrymap_mapinfo;
     simplemaps_countrymap.create();
@@ -154,8 +159,23 @@
     waitForSVG(container, function (svg) {
       replaceMarkersWithPins(svg, allowedClasses);
       removeWatermark(container);
+      // Force repaint to fix any render lag
+      svg.style.display = 'none';
+      svg.offsetHeight; // trigger reflow
+      svg.style.display = 'block';
     });
     observeMarkerMutations(container, allowedClasses);
+  }
+
+  // Fast Init on DOM Ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () {
+      var container = document.getElementById('training-institutes-map');
+      if (container) initializeMap(container);
+    });
+  } else {
+    var container = document.getElementById('training-institutes-map');
+    if (container) initializeMap(container);
   }
 
   Drupal.behaviors.trainingInstitutesMap = {
