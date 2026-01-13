@@ -5627,7 +5627,7 @@ ul.navbar-nav.nav-rounded {
 /* Full Width Sections */
 .karmayogi-section-fullwidth {
   width: 100%;
-  padding: 50px 0px 0px;
+  padding: 50px;
   position: relative;
 }
 
@@ -5793,7 +5793,7 @@ ul.navbar-nav.nav-rounded {
   background: #ffffff;
   border-radius: 15px;
   padding: 30px;
-  margin: 5px 0;
+  /* margin: 5px 0; */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
 }
@@ -12113,11 +12113,11 @@ tbody tr:nth-child(even),
 /* Karmayogi Document Sections */
 .karmayogi-content-wrapper>div {
   margin-top: 40px;
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
 }
 
 .karmayogi-content-wrapper>div:last-child {
-  margin-bottom: 40px;
+  padding-bottom: 40px;
 }
 
 .karmayogi-content-wrapper>div .karmayogi-section-title {
