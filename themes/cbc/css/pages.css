@@ -5627,7 +5627,7 @@ ul.navbar-nav.nav-rounded {
 /* Full Width Sections */
 .karmayogi-section-fullwidth {
   width: 100%;
-  padding: 50px 0px 0px;
+  padding: 50px;
   position: relative;
 }
 
@@ -5793,7 +5793,7 @@ ul.navbar-nav.nav-rounded {
   background: #ffffff;
   border-radius: 15px;
   padding: 30px;
-  margin: 5px 0;
+  /* margin: 5px 0; */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
 }
@@ -12113,11 +12113,11 @@ tbody tr:nth-child(even),
 /* Karmayogi Document Sections */
 .karmayogi-content-wrapper>div {
   margin-top: 40px;
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
 }
 
 .karmayogi-content-wrapper>div:last-child {
-  margin-bottom: 40px;
+  padding-bottom: 40px;
 }
 
 .karmayogi-content-wrapper>div .karmayogi-section-title {
@@ -15586,4 +15586,379 @@ th.text-center {
 .mou-status-table td:nth-child(2) {
   color: #002b5b;
   /* font-weight: 500; */
+}
+
+
+/* -------------------------------------------------------------------- */
+/* PDF Link Styling                                                     */
+/* -------------------------------------------------------------------- */
+.pdf-link-sop {
+  border: 2px solid #ff8c00;
+  border-style: solid;
+  padding: 20px 30px;
+  background: linear-gradient(135deg, #ff8c00 0%, #ff7700 100%);
+  min-width: 100%;
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.pdf-link-title {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+  padding: 15px 25px;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  width: 100%;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.2);
+}
+
+.pdf-link-sop:hover {
+  background: linear-gradient(135deg, #fff5e6 0%, #ffffff 100%);
+  border-color: #ff8c00;
+  color: #ff8c00;
+}
+
+.pdf-link-title:hover {
+  color: #ff8c00;
+  background-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
+}
+
+.pdf-links-section {
+  padding: 30px 0;
+  border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 40px;
+}
+
+.contact-details-heading {
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 700;
+  display: block;
+  text-align: center;
+  background-color: #0063ae;
+  padding: 25px 30px;
+  margin-bottom: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 99, 174, 0.2);
+}
+
+.section-title {
+  color: #002b5b;
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: left;
+  position: relative;
+  padding: 0;
+  margin-bottom: 50px;
+  padding-bottom: 20px;
+  border: none;
+}
+
+.section-title {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  /* margin-bottom: 14px; */
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #0063ae;
+  border-radius: 0;
+}
+
+/* ============================================
+   LARGE SCALE INTERVENTIONS (LSI) PAGE STYLES
+   ============================================ */
+
+/* LSI Programs Section */
+.karmayogi-programs-section {
+  background: #f8f9fa;
+  padding: 60px 0;
+}
+
+/* LSI Objective Cards */
+.lsi-objective-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
+  border-radius: 15px;
+  padding: 30px;
+  height: 100%;
+  box-shadow: 0 4px 20px rgba(0, 99, 174, 0.1);
+  transition: all 0.3s ease;
+  border-left: 4px solid #0063ae;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.lsi-objective-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 99, 174, 0.2);
+  border-left-color: #0099ff;
+}
+
+.lsi-objective-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #0063ae 0%, #0099ff 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: #ffffff;
+  font-size: 1.8rem;
+}
+
+.lsi-objective-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #002b5b;
+  margin-bottom: 15px;
+}
+
+.lsi-objective-text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #495057;
+  margin: 0;
+}
+
+/* LSI Program Cards */
+.lsi-program-card {
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e9ecef;
+}
+
+.lsi-program-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 99, 174, 0.15);
+  border-color: #0063ae;
+}
+
+.lsi-program-header {
+  background: linear-gradient(135deg, #0063ae 0%, #0099ff 100%);
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #ffffff;
+}
+
+.lsi-program-icon {
+  width: 70px;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  flex-shrink: 0;
+  backdrop-filter: blur(10px);
+}
+
+.lsi-program-icon.rail-icon {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.lsi-program-icon.police-icon {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.lsi-program-icon.dakshata-icon {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.lsi-program-icon.dak-icon {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.lsi-program-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.lsi-program-body {
+  padding: 30px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.lsi-program-description {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #495057;
+  margin-bottom: 25px;
+  flex-grow: 1;
+}
+
+.lsi-program-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: auto;
+}
+
+/* LSI Action Buttons */
+.lsi-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.lsi-action-btn i {
+  font-size: 1.2rem;
+}
+
+.lsi-video-btn {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.lsi-video-btn:hover {
+  background: linear-gradient(135deg, #ee5a6f 0%, #ff6b6b 100%);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+  text-decoration: none;
+}
+
+.lsi-report-btn {
+  background: linear-gradient(135deg, #0063ae 0%, #0099ff 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 99, 174, 0.3);
+}
+
+.lsi-report-btn:hover {
+  background: linear-gradient(135deg, #0099ff 0%, #0063ae 100%);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 99, 174, 0.4);
+  text-decoration: none;
+}
+
+/* Responsive Design for LSI Page */
+@media (max-width: 992px) {
+  .lsi-program-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 25px;
+  }
+
+  .lsi-program-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.8rem;
+  }
+
+  .lsi-program-title {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .karmayogi-programs-section {
+    padding: 40px 0;
+  }
+
+  .lsi-objective-card {
+    padding: 25px;
+  }
+
+  .lsi-objective-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+
+  .lsi-objective-title {
+    font-size: 1.2rem;
+  }
+
+  .lsi-program-header {
+    padding: 20px;
+  }
+
+  .lsi-program-body {
+    padding: 20px;
+  }
+
+  .lsi-program-title {
+    font-size: 1.2rem;
+  }
+
+  .lsi-program-description {
+    font-size: 1rem;
+  }
+
+  .lsi-action-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    flex: 1;
+    justify-content: center;
+    min-width: 140px;
+  }
+
+  .lsi-program-actions {
+    flex-direction: column;
+  }
+
+  .lsi-action-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .lsi-objective-card {
+    padding: 20px;
+  }
+
+  .lsi-program-header {
+    padding: 18px;
+  }
+
+  .lsi-program-body {
+    padding: 18px;
+  }
+
+  .lsi-action-btn {
+    padding: 10px 18px;
+    font-size: 0.85rem;
+  }
 }
