@@ -43,17 +43,11 @@
         $form.data('password-encrypt-attached', true);
 
         $form.submit(function (event) {
-          // Check validity
-          if (this.checkValidity && !this.checkValidity()) {
-            return;
-          }
-
           // Double submit protection
           if ($form.data('is_submitting')) {
             event.preventDefault();
             return false;
           }
-          $form.data('is_submitting', true);
 
           // Find field
           var $input = $form.find('input[name="pass"]');
@@ -64,6 +58,9 @@
             var cipher = encrypt(pass);
             $input.val(cipher);
           }
+
+          // Set flag AFTER logic to allow submit to proceed
+          $form.data('is_submitting', true);
         });
       });
 
@@ -76,6 +73,11 @@
         $form.data('password-encrypt-attached', true);
 
         $form.submit(function (event) {
+          if ($form.data('is_submitting')) {
+            event.preventDefault();
+            return false;
+          }
+
           var $currentPass = $form.find('input[name="current_pass"]');
           var $pass1 = $form.find('input[name="pass[pass1]"]');
           var $pass2 = $form.find('input[name="pass[pass2]"]');
@@ -86,8 +88,6 @@
 
           // Simple mismatch check
           if (p1Val && p2Val && p1Val !== p2Val) {
-            // If mismatch, we let browser/drupal show error (or custom)
-            // But we verify here just to be safe to not lock the form
             if ($form.find('.password-encrypt-error').length === 0) {
               $pass2.after('<span class="password-encrypt-error error" style="color:red; display:block; margin-top:5px;">Passwords confirm field does not match.</span>');
             }
@@ -97,18 +97,6 @@
           } else {
             $form.find('.password-encrypt-error').remove();
           }
-
-          // Check validity
-          if (this.checkValidity && !this.checkValidity()) {
-            return;
-          }
-
-          // Double submit protection
-          if ($form.data('is_submitting')) {
-            event.preventDefault();
-            return false;
-          }
-          $form.data('is_submitting', true);
 
           // Encrypt Current Password
           if (currentVal && !isEncrypted(currentVal)) {
@@ -132,6 +120,9 @@
               $pass2.val(passCipher);
             }
           }
+
+          // Set flag to block subsequent clicks
+          $form.data('is_submitting', true);
         });
       });
     }
