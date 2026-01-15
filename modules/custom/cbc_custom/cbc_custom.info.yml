@@ -1,0 +1,5 @@
+name: CBC Custom
+type: module
+description: Custom module for Cache-Control no-cache no-store must-revalidate.
+core_version_requirement: ^11
+package: Custom
