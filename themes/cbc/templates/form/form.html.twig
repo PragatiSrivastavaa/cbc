@@ -10,6 +10,6 @@
  * @see template_preprocess_form()
  */
 #}
-<form{{ attributes }}>
+<form{{ attributes.addClass(classes).setAttribute('autocomplete', 'off') }}>
   {{ children }}
 </form>

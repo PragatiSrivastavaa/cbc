@@ -17,6 +17,9 @@ elements: |-
     '#type': textfield
     '#title': Name
     '#required': true
+    '#required_error': 'Please Enter Valid Name'
+    '#pattern': "^([a-zA-Z' ]+)$"
+    '#pattern_error': 'Please Enter Valid Name only Characters Allowed'
     '#wrapper_attributes':
       class:
         - mb-3
@@ -31,6 +34,9 @@ elements: |-
     '#title': 'Area of Expertise/Interest'
     '#placeholder': 'e.g., Public Policy, Digital Governance, Training & Development'
     '#required': true
+    '#required_error': 'Please Enter Valid Area of Expertise/Interest'
+    '#pattern': "^([a-zA-Z' ]+)$"
+    '#pattern_error': 'Please Enter Valid Area of Expertise/Interest only Characters Allowed'
     '#wrapper_attributes':
       class:
         - mb-3
@@ -45,6 +51,9 @@ elements: |-
     '#title': 'Brief Description'
     '#placeholder': 'Please provide a brief description about yourself and your interest in joining the mission'
     '#required': true
+    '#required_error': 'Please Enter Description'
+    '#pattern': 'Please Enter Description'
+    '#pattern_error': '^(?!.*<[^>]+>)(?=.*[A-Za-z0-9])[A-Za-z0-9 .,_()\-:!?]{3,255}$'
     '#wrapper_attributes':
       class:
         - mb-3
@@ -88,6 +97,8 @@ elements: |-
     '#title': Address
     '#placeholder': 'Your complete address'
     '#required': true
+    '#pattern': '^(?!.*<[^>]+>)(?=.*[A-Za-z0-9])[A-Za-z0-9 .,_()\-:!?]{3,255}$'
+    '#pattern_error': 'Please Enter Valid Address'
     '#wrapper_attributes':
       class:
         - mb-3
@@ -102,6 +113,8 @@ elements: |-
     '#title': 'LinkedIn URL'
     '#placeholder': 'https://www.linkedin.com/in/yourprofile'
     '#required': true
+    '#pattern': '^(https?:\/\/)?(www\.)?linkedin\.com\/(in|company|school|pub)\/[A-Za-z0-9\-_%]+\/?$'
+    '#pattern_error': 'Please enter a valid LinkedIn profile or company URL.'
     '#wrapper_attributes':
       class:
         - mb-4

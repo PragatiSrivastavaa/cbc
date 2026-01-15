@@ -16,6 +16,10 @@ elements: |-
   name:
     '#type': textfield
     '#title': Name
+    '#required': true
+    '#required_error': 'Please Enter Valid Name'
+    '#pattern': "^([a-zA-Z' ]+)$"
+    '#pattern_error': 'Please Enter Valid Name only Characters Allowed'
     '#wrapper_attributes':
       class:
         - col-md-6
@@ -25,10 +29,13 @@ elements: |-
     '#label_attributes':
       class:
         - form-label
-    '#required': true
   email:
     '#type': email
     '#title': Email
+    '#required': true
+    '#required_error': 'Please enter valid email id'
+    '#pattern': '^([a-z0-9\+\-]+)(\.[a-z0-9\+\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$'
+    '#pattern_error': 'Please enter vaild E-mail'
     '#wrapper_attributes':
       class:
         - col-md-6
@@ -38,10 +45,13 @@ elements: |-
     '#label_attributes':
       class:
         - form-label
-    '#required': true
   subject:
     '#type': textarea
     '#title': Subject
+    '#required': true
+    '#required_error': 'Please Enter Valid Subject'
+    '#pattern': '^(?!.*<[^>]+>)(?=.*[A-Za-z0-9])[A-Za-z0-9 .,_()\-:!?]{3,255}$'
+    '#pattern_error': 'Please Enter Valid Subject'
     '#wrapper_attributes':
       class:
         - mb-3
@@ -51,10 +61,13 @@ elements: |-
     '#label_attributes':
       class:
         - form-label
-    '#required': true
   message:
     '#type': textarea
     '#title': Message
+    '#required': true
+    '#required_error': 'Please Enter Valid Message'
+    '#pattern': 'Please Enter Valid Message'
+    '#pattern_error': '^(?!.*<[^>]+>)(?=.*[A-Za-z0-9])[A-Za-z0-9 .,_()\-:!?]{3,255}$'
     '#wrapper_attributes':
       class:
         - mb-4
@@ -64,7 +77,6 @@ elements: |-
     '#label_attributes':
       class:
         - form-label
-    '#required': true
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'

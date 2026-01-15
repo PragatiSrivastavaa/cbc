@@ -10,4 +10,5 @@
  * @see template_preprocess_input()
  */
 #}
-<input{{ attributes }} />{{ children }}
+<input{{ attributes.setAttribute('autocomplete', 'off') }} />
+{{ children }}
