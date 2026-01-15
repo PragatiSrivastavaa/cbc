@@ -211,6 +211,10 @@ AddType image/webp .webp
     Header unset Surrogate-Control
     Header always unset X-Powered-By
     Header unset X-Powered-By
+    Header always unset X-Generator
+    Header unset X-Generator
+    Header always unset Server
+    Header unset Server
 
 </IfModule>
 
