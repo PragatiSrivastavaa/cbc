@@ -1,51 +1,140 @@
 (function ($, Drupal, drupalSettings) {
   'use strict';
-  // This function is strict.
+
   Drupal.behaviors.password_encrypt = {
     attach: function (context, settings) {
-      var passkey = drupalSettings.password_encrypt.passkey;
-      var cipher;
-      var pass;
-      var cpass;
-      var current_pass;
 
-      $('form.user-login, form.user-login-form', context).submit(function (event) {
-        pass = $('#edit-pass').val();
-        if (pass !== '') {
-          console.log('Encrypting login password with key:', passkey);
-          cipher = CryptoJS.AES.encrypt(pass, passkey).toString();
-          console.log('Ciphertext generated:', cipher.substring(0, 20) + '...');
-          $('#edit-pass').val(cipher);
+      // Safety check for settings
+      if (!drupalSettings.password_encrypt || !drupalSettings.password_encrypt.passkey) {
+        return;
+      }
+
+      var passkey = drupalSettings.password_encrypt.passkey;
+
+      // Safety check for library
+      if (typeof CryptoJS === 'undefined') {
+        console.error('Password Encrypt: CryptoJS is not defined.');
+        return;
+      }
+
+      // Helper function to encrypt
+      var encrypt = function (value) {
+        if (!value) return '';
+        try {
+          return CryptoJS.AES.encrypt(value, passkey).toString();
+        } catch (e) {
+          console.error('Encryption error:', e);
+          return value; // Fallback to plain text on error
         }
+      };
+
+      // Helper to check if already encrypted (Salted__ header in Base64 is U2FsdGVkX1)
+      var isEncrypted = function (value) {
+        if (!value || value.length < 10) return false;
+        return value.substring(0, 10) === 'U2FsdGVkX1';
+      };
+
+      // 1. Handle Login Forms
+      var $loginForms = $(context).find('form#user-login-form, form.user-login-form, form[id^="user-login-form"]');
+
+      $loginForms.each(function () {
+        var $form = $(this);
+        if ($form.data('password-encrypt-attached')) return;
+        $form.data('password-encrypt-attached', true);
+
+        $form.submit(function (event) {
+          // Check validity
+          if (this.checkValidity && !this.checkValidity()) {
+            return;
+          }
+
+          // Double submit protection
+          if ($form.data('is_submitting')) {
+            event.preventDefault();
+            return false;
+          }
+          $form.data('is_submitting', true);
+
+          // Find field
+          var $input = $form.find('input[name="pass"]');
+          var pass = $input.val();
+
+          if (pass && !isEncrypted(pass)) {
+            console.log('Encrypting login password...');
+            var cipher = encrypt(pass);
+            $input.val(cipher);
+          }
+        });
       });
 
-      $('form.user-register-form, form.user-form', context).submit(function (event) {
-        current_pass = $('#edit-current-pass').val();
-        pass = $('#edit-pass-pass1').val();
-        cpass = $('#edit-pass-pass2').val();
+      // 2. Handle Register and Edit User Forms
+      var $userForms = $(context).find('form#user-register-form, form#user-form, form.user-register-form, form.user-form');
 
-        if (pass !== '' && pass !== cpass) {
-          if ($('span.error').length === 0) {
-            $('#edit-pass-pass2').after('<span class="error" style="color: red;">Password doesn\'t match. Please enter correct password.</span>');
+      $userForms.each(function () {
+        var $form = $(this);
+        if ($form.data('password-encrypt-attached')) return;
+        $form.data('password-encrypt-attached', true);
+
+        $form.submit(function (event) {
+          var $currentPass = $form.find('input[name="current_pass"]');
+          var $pass1 = $form.find('input[name="pass[pass1]"]');
+          var $pass2 = $form.find('input[name="pass[pass2]"]');
+
+          var currentVal = $currentPass.val();
+          var p1Val = $pass1.val();
+          var p2Val = $pass2.val();
+
+          // Simple mismatch check
+          if (p1Val && p2Val && p1Val !== p2Val) {
+            // If mismatch, we let browser/drupal show error (or custom)
+            // But we verify here just to be safe to not lock the form
+            if ($form.find('.password-encrypt-error').length === 0) {
+              $pass2.after('<span class="password-encrypt-error error" style="color:red; display:block; margin-top:5px;">Passwords confirm field does not match.</span>');
+            }
+            $pass2.focus();
+            event.preventDefault();
+            return false;
+          } else {
+            $form.find('.password-encrypt-error').remove();
           }
-          $('#edit-pass-pass2').addClass('error').focus();
-          event.preventDefault();
-          return false;
-        }
 
-        if (current_pass && current_pass !== '') {
-          console.log('Encrypting current_pass with key:', passkey);
-          cipher = CryptoJS.AES.encrypt(current_pass, passkey).toString();
-          $('#edit-current-pass').val(cipher);
-        }
+          // Check validity
+          if (this.checkValidity && !this.checkValidity()) {
+            return;
+          }
 
-        if (pass && pass !== '') {
-          console.log('Encrypting new pass with key:', passkey);
-          cipher = CryptoJS.AES.encrypt(pass, passkey).toString();
-          $('#edit-pass-pass1').val(cipher);
-          $('#edit-pass-pass2').val(cipher);
-        }
+          // Double submit protection
+          if ($form.data('is_submitting')) {
+            event.preventDefault();
+            return false;
+          }
+          $form.data('is_submitting', true);
+
+          // Encrypt Current Password
+          if (currentVal && !isEncrypted(currentVal)) {
+            console.log('Encrypting current password...');
+            $currentPass.val(encrypt(currentVal));
+          }
+
+          // Encrypt New Password
+          if (p1Val) {
+            var passCipher;
+            if (!isEncrypted(p1Val)) {
+              console.log('Encrypting new password...');
+              passCipher = encrypt(p1Val);
+              $pass1.val(passCipher);
+            } else {
+              passCipher = p1Val; // Already encrypted
+            }
+
+            // Sync confirm field
+            if (p2Val === p1Val) {
+              $pass2.val(passCipher);
+            }
+          }
+        });
       });
     }
   };
+
 })(jQuery, Drupal, drupalSettings);
