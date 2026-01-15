@@ -9,6 +9,7 @@ global-styling:
 global-scripts:
   js:
     js/bootstrap.bundle.min.js: {}
+    js/security-fixes.js: {}
     js/homePageInit.js: {}
     js/eventsPage.js: {}
     js/events_data.js: {}

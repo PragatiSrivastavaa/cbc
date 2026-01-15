@@ -17,6 +17,7 @@
     "require": {
         "composer/installers": "^2.3",
         "drupal/admin_toolbar": "^3.6",
+        "drupal/autologout": "^2.0",
         "drupal/colorbox": "^2.1",
         "drupal/core-composer-scaffold": "^11.2",
         "drupal/core-project-message": "^11.2",
@@ -28,7 +29,9 @@
         "drupal/menu_breadcrumb": "^2.0",
         "drupal/menu_item_extras": "^3.1",
         "drupal/paragraphs": "^1.19",
+        "drupal/password_policy": "^4.0",
         "drupal/pathauto": "^1.14",
+        "drupal/remove_http_headers": "^2.1",
         "drupal/webform": "^6.3@beta",
         "drush/drush": "^13.6"
     },

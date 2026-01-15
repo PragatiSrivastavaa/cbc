@@ -17,6 +17,8 @@ elements: |-
     '#type': textfield
     '#title': 'Name of Organization'
     '#required': true
+    '#pattern': "^([a-zA-Z' ]+)$"
+    '#pattern_error': 'Please Enter Valid Name only Characters Allowed'
     '#wrapper_attributes':
       class:
         - mb-3
@@ -31,6 +33,9 @@ elements: |-
     '#title': 'Area of Collaboration'
     '#placeholder': 'e.g., Knowledge Partnerships, Technology Solutions, Training Support'
     '#required': true
+    '#required_error': 'Please Enter Area of Collaboration'
+    '#pattern': "^([a-zA-Z' ]+)$"
+    '#pattern_error': 'Please Enter Valid Name only Characters Allowed'
     '#wrapper_attributes':
       class:
         - mb-3
@@ -45,6 +50,9 @@ elements: |-
     '#title': 'Brief Description'
     '#placeholder': 'Please provide a brief description of your organization and how you would like to collaborate'
     '#required': true
+    '#required_error': 'Please Enter Description'
+    '#pattern': '^(?!.*<[^>]+>)(?=.*[A-Za-z0-9])[A-Za-z0-9 .,_()\-:;''"!?\/\n]{10,500}$'
+    '#pattern_error': 'Please Enter Valid Description'
     '#wrapper_attributes':
       class:
         - mb-3
@@ -59,6 +67,9 @@ elements: |-
     '#title': 'Contact Details'
     '#placeholder': 'Phone number, Email, or other contact information'
     '#required': true
+    '#required_error': 'Please Enter Valid Number'
+    '#pattern': '^\+?[0-9]{10,15}$'
+    '#pattern_error': 'Please Enter Valid Number'
     '#wrapper_attributes':
       class:
         - mb-3
@@ -73,6 +84,9 @@ elements: |-
     '#title': Address
     '#placeholder': 'Complete address of your organization'
     '#required': true
+    '#required_error': 'Please Enter Address'
+    '#pattern': '^(?!.*<[^>]+>)(?=.*[A-Za-z0-9])[A-Za-z0-9 .,_()\-:;''"!?\/\n]{10,500}$'
+    '#pattern_error': 'Please Enter Valid Address'
     '#wrapper_attributes':
       class:
         - mb-3
@@ -87,6 +101,9 @@ elements: |-
     '#title': 'Website Link'
     '#placeholder': 'https://www.example.com'
     '#required': true
+    '#required_error': 'Please Enter URL'
+    '#pattern': '^(https?:\/\/)?(www\.)?[a-zA-Z0-9][a-zA-Z0-9\-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}([\/?#][^\s<>"]*)?$'
+    '#pattern_error': 'Please Enter Valid URL'
     '#wrapper_attributes':
       class:
         - mb-4
