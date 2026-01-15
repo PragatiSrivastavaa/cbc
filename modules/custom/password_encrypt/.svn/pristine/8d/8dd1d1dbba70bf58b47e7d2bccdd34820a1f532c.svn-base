@@ -1,0 +1,222 @@
+<?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_help().
+ */
+function password_encrypt_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.password_encrypt':
+      $output = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module encrypts the user password on user form submission.
+        It prevents the propagation of plain password over internet on user form submission.') . '</p>';
+      $output .= '<h3>' . t('Dependencies:') . '</h3>';
+      $output .= '<ol><li>' . t('OpenSSL extension.') . '</li>';
+      $output .= '<li>' . t('CryptoJS library.') . '</li></ol>';
+      $output .= '<h3>' . t('Installation:') . '</h3>';
+      $output .= '<ol><li>' . t('Download CryptoJS library from %crypto and extract it. Move rollups/aes.js to %path.', [
+        '%crypto' => Url::fromRoute('https://code.google.com/archive/p/crypto-js/downloads'),
+        '%path' => 'sites/all/libraries/CryptoJS',
+      ]) . '</li>';
+      $output .= '<li>' . t('Install and Enable Password Encrypt module.') . '</li>';
+      $output .= '<li>Clear cache.</li></ol>';
+
+      return $output;
+  }
+}
+
+/**
+ * Get or generate a passkey and keep it in the user's session for this form flow.
+ *
+ * We store the passkey in the current user's session so the passkey used to
+ * encrypt in the browser (render-time) matches the passkey used on submit.
+ */
+function encryptSaltKey() {
+  $request = \Drupal::request();
+  $session = $request->getSession();
+
+  // Key name used in session.
+  $session_key = 'password_encrypt.passkey';
+
+  // If not set in session, generate and set it.
+  if (!$session->has($session_key)) {
+    // 8 bytes -> 16 hex chars. Good enough for this use.
+    $random = openssl_random_pseudo_bytes(8);
+    if ($random === FALSE) {
+      // fallback to less ideal but available random_bytes if openssl fails.
+      $random = random_bytes(8);
+    }
+    $salt = bin2hex($random);
+    $session->set($session_key, $salt);
+    // Optional: set a TTL-like notice — session will persist until browser closed.
+    \Drupal::logger('password_encrypt')->debug('Generated new passkey and stored in session: @salt', ['@salt' => $salt]);
+  }
+  else {
+    $salt = $session->get($session_key);
+    \Drupal::logger('password_encrypt')->debug('Re-using passkey from session: @salt', ['@salt' => $salt]);
+  }
+
+  return $salt;
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function password_encrypt_page_attachments_alter(&$page) {
+  // Get/generate passkey and attach it to drupalSettings for browser JS.
+  $password_encrypt_passkey = encryptSaltKey();
+  $page['#attached']['drupalSettings']['password_encrypt']['passkey'] = $password_encrypt_passkey;
+  $page['#attached']['library'][] = 'password_encrypt/password_encrypt';
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function password_encrypt_form_alter(&$form, FormStateInterface &$form_state, $form_id) {
+  if ($form_id == 'user_login_form' || $form_id == 'user_login_block' || $form_id == 'user_register_form' || $form_id == 'user_form') {
+    array_unshift($form['#validate'], 'password_encrypt_user_decrypt_password');
+  }
+}
+
+/**
+ * Callback: called to decrypt user password.
+ *
+ * Adds debug logging and messages when decryption fails.
+ */
+function password_encrypt_user_decrypt_password(&$form, FormStateInterface $form_state) {
+  $request = \Drupal::request();
+  $session = $request->getSession();
+  $session_key = 'password_encrypt.passkey';
+
+  // Read passkey from session. If missing, log and attempt to continue.
+  if ($session->has($session_key)) {
+    $password_encrypt_passkey = $session->get($session_key);
+    \Drupal::logger('password_encrypt')->debug('Using session passkey to decrypt: @salt', ['@salt' => $password_encrypt_passkey]);
+  }
+  else {
+    // No passkey in session — log and try to fallback to state (legacy).
+    $password_encrypt_passkey = \Drupal::state()->get('password_encrypt.passkey');
+    \Drupal::logger('password_encrypt')->warning('Session passkey missing; falling back to state(). Value: @v', ['@v' => $password_encrypt_passkey ? $password_encrypt_passkey : 'NULL']);
+  }
+
+  // Decrypt 'pass' if present.
+  if ($form_state->hasValue('pass')) {
+    $encrypted = $form_state->getValue('pass');
+    $decrypted_pass = password_encrypt_crypto_js_aes_decrypt($password_encrypt_passkey, $encrypted);
+
+    if ($decrypted_pass === FALSE || $decrypted_pass === NULL) {
+      // Decryption failed — log and add a message for debugging (remove in prod).
+      \Drupal::logger('password_encrypt')->error('Password decryption failed for form. Encrypted value length: @len', ['@len' => strlen((string) $encrypted)]);
+      \Drupal::messenger()->addError(t('Password decryption failed. Please ensure JavaScript encryption is working and the passkey is consistent.'));
+
+      // Optionally: leave submitted encrypted value (so normal login will fail),
+      // or clear it to prevent accidental use.
+      $form_state->setValue('pass', '');
+    }
+    else {
+      \Drupal::logger('password_encrypt')->debug('Password decrypted successfully, length: @len', ['@len' => strlen($decrypted_pass)]);
+      $form_state->setValue('pass', $decrypted_pass);
+    }
+  }
+
+  // Decrypt 'current_pass' if present (e.g. password change form).
+  if ($form_state->hasValue('current_pass')) {
+    $encrypted = $form_state->getValue('current_pass');
+    $decrypted_pass = password_encrypt_crypto_js_aes_decrypt($password_encrypt_passkey, $encrypted);
+
+    if ($decrypted_pass === FALSE || $decrypted_pass === NULL) {
+      \Drupal::logger('password_encrypt')->error('Current password decryption failed for form. Encrypted value length: @len', ['@len' => strlen((string) $encrypted)]);
+      \Drupal::messenger()->addError(t('Current password decryption failed.'));
+      $form_state->setValue('current_pass', '');
+    }
+    else {
+      $form_state->setValue('current_pass', $decrypted_pass);
+      \Drupal::logger('password_encrypt')->debug('Current password decrypted successfully.');
+    }
+  }
+
+  // Clear the session passkey after use so it can't be reused (optional).
+  if ($session->has($session_key)) {
+    $session->remove($session_key);
+    \Drupal::logger('password_encrypt')->debug('Session passkey cleared after use.');
+  }
+}
+
+/**
+ * Helper function for CryptoJS AES encryption/decryption.
+ *
+ * @param string $passphrase
+ *   Passkey for encryption/decryption.
+ * @param string $jsonstring
+ *   Encoded string (base64).
+ *
+ * @return string|false
+ *   Decoded string or FALSE on failure.
+ */
+function password_encrypt_crypto_js_aes_decrypt($passphrase, $jsonstring) {
+  if (empty($passphrase) || empty($jsonstring)) {
+    \Drupal::logger('password_encrypt')->error('Decrypt called with empty passphrase or jsonstring.');
+    return FALSE;
+  }
+
+  $cipher_text = base64_decode($jsonstring, TRUE);
+  if ($cipher_text === FALSE) {
+    \Drupal::logger('password_encrypt')->error('base64_decode failed; invalid input.');
+    return FALSE;
+  }
+
+  if (substr($cipher_text, 0, 8) !== "Salted__") {
+    \Drupal::logger('password_encrypt')->error('Cipher text missing Salted__ prefix.');
+    return FALSE;
+  }
+
+  $salt = substr($cipher_text, 8, 8);
+  $key_and_iv = password_encrypt_generate_iv($passphrase, $salt);
+  $decrypt = openssl_decrypt(substr($cipher_text, 16), "aes-256-cbc", $key_and_iv["key"], OPENSSL_RAW_DATA, $key_and_iv["iv"]);
+  if ($decrypt === FALSE || $decrypt === NULL) {
+    \Drupal::logger('password_encrypt')->error('openssl_decrypt failed (returned false/null).');
+    return FALSE;
+  }
+
+  return $decrypt;
+}
+
+/**
+ * Generate key and iv used for decryption.
+ */
+function password_encrypt_generate_iv($password, $salt, $key_size = 8, $iv_length = 4, $iterations = 1, $algorithm = "md5") {
+  $target_key_size = $key_size + $iv_length;
+  $derived_bytes = "";
+  $number_derived_words = 0;
+  $block = NULL;
+  $hasher = hash_init($algorithm);
+
+  while ($number_derived_words < $target_key_size) {
+    if ($block != NULL) {
+      hash_update($hasher, $block);
+    }
+
+    hash_update($hasher, $password);
+    hash_update($hasher, $salt);
+    $block = hash_final($hasher, TRUE);
+    $hasher = hash_init($algorithm);
+
+    // Iterations.
+    for ($i = 1; $i < $iterations; $i++) {
+      hash_update($hasher, $block);
+      $block = hash_final($hasher, TRUE);
+      $hasher = hash_init($algorithm);
+    }
+
+    $derived_bytes .= substr($block, 0, min(strlen($block), ($target_key_size - $number_derived_words) * 4));
+    $number_derived_words += strlen($block) / 4;
+  }
+
+  return [
+    "key" => substr($derived_bytes, 0, $key_size * 4),
+    "iv"  => substr($derived_bytes, $key_size * 4, $iv_length * 4),
+  ];
+}
