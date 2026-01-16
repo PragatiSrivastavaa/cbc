@@ -50,6 +50,8 @@ elements: |-
     '#title': Subject
     '#required': true
     '#required_error': 'Please Enter Valid Subject'
+    '#pattern': '^[A-Za-z0-9._\- ]+$'
+    '#pattern_error': 'Please Enter Valid Name only Characters Allowed'
     '#wrapper_attributes':
       class:
         - mb-3
