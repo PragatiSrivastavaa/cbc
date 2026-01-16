@@ -39,3 +39,18 @@ training-institutes-map:
     - core/drupal
     - core/drupalSettings
     - core/once
+
+case-studies-gallery:
+  css:
+    theme:
+      css/case-studies-gallery.css: {}
+  js:
+    js/case-studies-gallery.js: {}
+  dependencies:
+    - core/drupal
+
+know-your-cbc:
+  js:
+    js/know-your-cbc.js: {}
+  dependencies:
+    - core/drupal

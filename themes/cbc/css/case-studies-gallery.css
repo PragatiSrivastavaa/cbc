@@ -1,0 +1,247 @@
+/* Case Studies Carousel Styles */
+.case-studies-carousel-wrapper {
+  margin: 30px 0;
+  padding: 0 50px;
+}
+
+.case-studies-carousel-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.case-studies-carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+  gap: 20px;
+  will-change: transform;
+}
+
+.case-studies-carousel-item {
+  flex: 0 0 calc(33.333% - 14px);
+  min-width: 0;
+  width: calc(33.333% - 14px);
+  padding-top: 10px;
+}
+
+.case-study-card {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  cursor: pointer;
+  border: 1px solid #e0e0e0;
+  background: #ffffff;
+}
+
+.case-study-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  border-color: #0063ae;
+}
+
+.case-study-icon {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, #0063ae 0%, #0099ff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.case-study-icon i {
+  font-size: 4rem;
+}
+
+.case-study-card .card-body {
+  padding: 20px;
+  text-align: center;
+}
+
+.case-study-card .card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #002b5b;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.case-study-card .card-text {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+}
+
+.case-studies-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #00569A;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.case-studies-nav-btn:hover {
+  background: #0063ae;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.case-studies-nav-prev {
+  left: 0;
+}
+
+.case-studies-nav-next {
+  right: 0;
+}
+
+@media (max-width: 992px) {
+  .case-studies-carousel-item {
+    flex: 0 0 calc(50% - 10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .case-studies-carousel-wrapper {
+    padding: 0 40px;
+  }
+  
+  .case-studies-carousel-item {
+    flex: 0 0 100%;
+  }
+  
+  .case-studies-nav-btn {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* Gallery Carousel Styles */
+.gallery-carousel-wrapper {
+  margin: 30px 0;
+  padding: 0 50px;
+}
+
+.gallery-carousel-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.gallery-carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+  gap: 20px;
+  will-change: transform;
+}
+
+.gallery-carousel-item {
+  flex: 0 0 calc(33.333% - 14px);
+  min-width: 0;
+  width: calc(33.333% - 14px);
+  padding-top: 10px;
+}
+
+.gallery-card {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+}
+
+.gallery-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-card .card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.gallery-card .card-body {
+  padding: 15px;
+}
+
+.gallery-card .card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #002b5b;
+  margin-bottom: 8px;
+}
+
+.gallery-card .card-text {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+}
+
+.gallery-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #00569A;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-nav-btn:hover {
+  background: #0063ae;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-nav-prev {
+  left: 0;
+}
+
+.gallery-nav-next {
+  right: 0;
+}
+
+@media (max-width: 992px) {
+  .gallery-carousel-item {
+    flex: 0 0 calc(50% - 10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-carousel-wrapper {
+    padding: 0 40px;
+  }
+  
+  .gallery-carousel-item {
+    flex: 0 0 100%;
+  }
+  
+  .gallery-nav-btn {
+    width: 35px;
+    height: 35px;
+  }
+}
