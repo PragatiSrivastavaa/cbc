@@ -40,6 +40,6 @@
 
 </div>
 
-<script>
-  const slideVideos = {{ video_urls|json_encode|raw }};
+<script type="application/json" id="carousel-video-data">
+  {{ video_urls|json_encode|raw }}
 </script>

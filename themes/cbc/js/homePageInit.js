@@ -38,6 +38,17 @@ function initializeCarousel() {
   const slides = document.querySelectorAll('.slide-content');
   const video = document.getElementById('bg-video');
 
+  // CSP Fix: Read video data from JSON script tag to avoid inline scripts
+  let slideVideos = [];
+  const videoDataScript = document.getElementById('carousel-video-data');
+  if (videoDataScript) {
+    try {
+      slideVideos = JSON.parse(videoDataScript.textContent);
+    } catch (e) {
+      console.error('Error parsing slideVideos:', e);
+    }
+  }
+
   if (!video || !buttons.length || !slides.length) return;
 
   let currentSlide = 0;
@@ -77,7 +88,8 @@ function initializeCarousel() {
   showSlide(0);
 }
 
-document.addEventListener('DOMContentLoaded', initializeCarousel);
+// Initialize everything
+initializeHomePage();
 
 
 
