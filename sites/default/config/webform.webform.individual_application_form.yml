@@ -17,9 +17,9 @@ elements: |-
     '#type': textfield
     '#title': Name
     '#required': true
-    '#required_error': 'Please Enter Valid Name'
+    '#required_error': 'Name is required'
     '#pattern': "^([a-zA-Z' ]+)$"
-    '#pattern_error': 'Please Enter Valid Name only Characters Allowed'
+    '#pattern_error': 'Please enter only characters A-Z & a-z'
     '#wrapper_attributes':
       class:
         - mb-3
@@ -34,9 +34,9 @@ elements: |-
     '#title': 'Area of Expertise/Interest'
     '#placeholder': 'e.g., Public Policy, Digital Governance, Training & Development'
     '#required': true
-    '#required_error': 'Please Enter Valid Area of Expertise/Interest'
+    '#required_error': ' Area of Expertise/Interest is required'
     '#pattern': "^([a-zA-Z' ]+)$"
-    '#pattern_error': 'Please Enter Valid Area of Expertise/Interest only Characters Allowed'
+    '#pattern_error': 'Please enter only characters A-Z & a-z'
     '#wrapper_attributes':
       class:
         - mb-3
@@ -51,9 +51,9 @@ elements: |-
     '#title': 'Brief Description'
     '#placeholder': 'Please provide a brief description about yourself and your interest in joining the mission'
     '#required': true
-    '#required_error': 'Please Enter Description'
-    '#pattern': 'Please Enter Description'
-    '#pattern_error': '^(?!.*<[^>]+>)(?=.*[A-Za-z0-9])[A-Za-z0-9 .,_()\-:!?]{3,255}$'
+    '#required_error': 'Description is required'
+    '#pattern': '^[A-Za-z0-9._\- ]+$'
+    '#pattern_error': 'Please enter your inputs using the following characters: A-Z, a-z, 0-9, and the symbols . _ -'
     '#wrapper_attributes':
       class:
         - mb-3
@@ -82,7 +82,8 @@ elements: |-
     '#type': textfield
     '#title': 'Contact Details'
     '#placeholder': 'Phone number, Email, or other contact information'
-    '#required': true
+    '#pattern': '^[A-Za-z0-9@._+\-()\/,\s]{5,100}$'
+    '#pattern_error': 'Please enter valid contact information (phone number, email address, or other contact details)'
     '#wrapper_attributes':
       class:
         - mb-3
@@ -97,8 +98,9 @@ elements: |-
     '#title': Address
     '#placeholder': 'Your complete address'
     '#required': true
-    '#pattern': '^(?!.*<[^>]+>)(?=.*[A-Za-z0-9])[A-Za-z0-9 .,_()\-:!?]{3,255}$'
-    '#pattern_error': 'Please Enter Valid Address'
+    '#required_error': 'Address is required'
+    '#pattern': '^[A-Za-z0-9._\- ]+$'
+    '#pattern_error': 'Please enter your inputs using the following characters: A-Z, a-z, 0-9, and the symbols . _ -'
     '#wrapper_attributes':
       class:
         - mb-3
@@ -113,8 +115,9 @@ elements: |-
     '#title': 'LinkedIn URL'
     '#placeholder': 'https://www.linkedin.com/in/yourprofile'
     '#required': true
-    '#pattern': '^(https?:\/\/)?(www\.)?linkedin\.com\/(in|company|school|pub)\/[A-Za-z0-9\-_%]+\/?$'
-    '#pattern_error': 'Please enter a valid LinkedIn profile or company URL.'
+    '#required_error': 'URL is required'
+    '#pattern': '^https?:\/\/(www\.)?linkedin\.com\/(in|company|school|jobs)\/[A-Za-z0-9\-_%]+\/?$'
+    '#pattern_error': 'Please enter a valid LinkedIn URL (e.g., https://www.linkedin.com/in/username).'
     '#wrapper_attributes':
       class:
         - mb-4
