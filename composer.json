@@ -24,6 +24,7 @@
         "drupal/core-recipe-unpack": "^11.2",
         "drupal/core-recommended": "^11.2",
         "drupal/core-vendor-hardening": "^11.2",
+        "drupal/csp": "^2.2",
         "drupal/easy_breadcrumb": "^2.0",
         "drupal/fullcalendar_view": "^5.2",
         "drupal/menu_breadcrumb": "^2.0",
