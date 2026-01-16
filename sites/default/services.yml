@@ -1,5 +1,27 @@
 parameters:
   twig.config:
-    debug: true
+    debug: false
     auto_reload: true
-    cache: false
+    cache: true
+
+  cors.config:
+    enabled: true
+    allowedHeaders:
+      - 'Content-Type'
+      - 'Authorization'
+      - 'X-Requested-With'
+      - 'Accept'
+      - 'Origin'
+    allowedMethods:
+      - 'GET'
+      - 'POST'
+      - 'PUT'
+      - 'PATCH'
+      - 'DELETE'
+      - 'OPTIONS'
+    allowedOrigins:
+      - 'http://164.52.202.77:8081'
+    allowedOriginsPatterns: []
+    exposedHeaders: false
+    maxAge: 1000
+    supportsCredentials: true
