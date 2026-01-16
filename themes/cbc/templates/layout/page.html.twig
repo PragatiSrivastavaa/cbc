@@ -67,9 +67,19 @@
 <!-- Breadcrumb Section -->
 {{ page.breadcrumb }}
 <!-- Main Content Section -->
-
 <section>
-        {{ page.content }}
+  <div class="container">
+    {% if page.highlighted %}
+      <div class="highlighted">{{ page.highlighted }}</div>
+    {% endif %}
+    {% if page.help %}
+      <div class="help">{{ page.help }}</div>
+    {% endif %}
+    {% if page.messages %}
+      <div class="messages-area">{{ page.messages }}</div>
+    {% endif %}
+  </div>
+  {{ page.content }}
 </section>
 </main>
 

@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Theme override for a webform submission form.
+ *
+ * Available variables:
+ * - form: The webform submission form.
+ */
+#}
+{# Remove form.messages to prevent displaying validation errors at the top #}
+{% set form = form|without('messages') %}
+{{ form }}

@@ -219,4 +219,124 @@ function cbc_form_alter(&$form, FormStateInterface $form_state, $form_id) {
       $form['keys']['#attributes']['placeholder'] = 'Search';
     }
   }
+
+  // Rate Limiting for Webforms (e.g., feedback, contact)
+  // Check if this is a webform submission.
+  if (strpos($form_id, 'webform_submission_') === 0) {
+    // Add custom validation handler.
+    $form['#validate'][] = 'cbc_form_validate_rate_limit';
+    
+    // Add custom validation handler.
+    $form['#validate'][] = 'cbc_form_validate_rate_limit';
+    
+    // Add #after_build callback to suppress top errors
+    $form['#after_build'][] = 'cbc_form_after_build_suppress_errors';
+  }
+}
+
+/**
+ * #after_build callback to suppress top-level error messages.
+ */
+function cbc_form_after_build_suppress_errors(array $form, FormStateInterface $form_state) {
+  cbc_suppress_top_errors($form);
+  return $form;
+}
+
+/**
+ * Helper function to recursively suppress top-level error messages for form elements.
+ */
+function cbc_suppress_top_errors(array &$elements) {
+  // Use Element::children to iterate only over renderable children (skipping properties like #)
+  foreach (\Drupal\Core\Render\Element::children($elements) as $key) {
+    // If it is an element with a type, suppressing the message at the top level
+    // ensures it only renders in the inline template.
+    if (isset($elements[$key]['#type'])) {
+      $elements[$key]['#error_no_message'] = TRUE;
+    }
+    // Recurse into containers/groups
+    cbc_suppress_top_errors($elements[$key]);
+  }
+}
+
+/**
+ * Custom validation handler for rate limiting.
+ */
+/**
+ * Custom validation handler for rate limiting.
+ */
+function cbc_form_validate_rate_limit(&$form, FormStateInterface $form_state) {
+  // Use Drupal's Flood service.
+  $flood = \Drupal::flood();
+  $limit = 5; // 5 submissions
+  $window = 600; // 10 minutes (600 seconds)
+  $identifier = \Drupal::request()->getClientIp(); // Track by IP address
+  
+  // Default event name
+  $name = 'cbc.webform_submission';
+
+  // Get specific Webform ID from the form array
+  if (isset($form['#webform_id'])) {
+    $webform_id = $form['#webform_id'];
+    $name .= '.' . $webform_id; // e.g. cbc.webform_submission.feedback
+  }
+  // Fallback: try to get from form attributes
+  elseif (isset($form['#attributes']['data-webform-id'])) {
+    $webform_id = $form['#attributes']['data-webform-id'];
+    $name .= '.' . $webform_id;
+  }
+  // Last resort: try form_id
+  elseif (isset($form['#form_id']) && preg_match('/webform_submission_(.+)_add_form/', $form['#form_id'], $matches)) {
+    $webform_id = $matches[1];
+    $name .= '.' . $webform_id;
+  }
+
+  // Check if the user is allowed to proceed.
+  if (!$flood->isAllowed($name, $limit, $window, $identifier)) {
+    // Rate limit exceeded.
+    $message = t('Too many submissions. Please wait 10 minutes before trying again.');
+    
+    // Set form error (global validation error)
+    $form_state->setErrorByName('', $message);
+    
+    // Also set a standard Drupal message to ensure visibility
+    \Drupal::messenger()->addError($message);
+  }
+  else {
+    // Register the event.
+    $flood->register($name, $window, $identifier);
+  }
+}
+
+/**
+ * Implements hook_preprocess_form_element().
+ * Passes errors to the form element template explicitly.
+ */
+function cbc_preprocess_form_element(&$variables) {
+  $element = $variables['element'];
+  // If the element has errors but variables['errors'] is empty (due to suppression), restore it.
+  if (isset($element['#errors']) && empty($variables['errors'])) {
+    $variables['errors'] = $element['#errors'];
+  }
+}
+
+/**
+ * Implements hook_preprocess_textarea().
+ * Passes errors to the textarea template.
+ */
+function cbc_preprocess_textarea(&$variables) {
+  $element = $variables['element'];
+  if (isset($element['#errors'])) {
+    $variables['errors'] = $element['#errors'];
+  }
+}
+
+/**
+ * Implements hook_preprocess_text_format_wrapper().
+ * Passes errors to the text format wrapper template.
+ */
+function cbc_preprocess_text_format_wrapper(&$variables) {
+  $element = $variables['element'];
+  if (isset($element['#errors'])) {
+    $variables['errors'] = $element['#errors'];
+  }
 }

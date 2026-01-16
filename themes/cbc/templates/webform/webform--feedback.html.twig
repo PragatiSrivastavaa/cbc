@@ -4,8 +4,9 @@
             <div class="row">
         <div class="col-lg-8 mx-auto">
           <h2 class="form-section-title mb-4">Your Feedback Matters</h2>
-<form{{ attributes.addClass('contact-form') }}>
+<form{{ attributes.addClass('contact-form').setAttribute('novalidate', 'novalidate') }}>
 
+  <div class="row lg-3 mb-3">
   <div class="row lg-3 mb-3">
     {{ children }}
   </div>

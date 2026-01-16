@@ -18,7 +18,7 @@ elements: |-
     '#title': 'Name of Organization'
     '#required': true
     '#pattern': "^([a-zA-Z' ]+)$"
-    '#pattern_error': 'Please Enter Valid Name only Characters Allowed'
+    '#pattern_error': 'Please enter only characters A-Z & a-z'
     '#wrapper_attributes':
       class:
         - mb-3
@@ -35,7 +35,7 @@ elements: |-
     '#required': true
     '#required_error': 'Please Enter Area of Collaboration'
     '#pattern': "^([a-zA-Z' ]+)$"
-    '#pattern_error': 'Please Enter Valid Name only Characters Allowed'
+    '#pattern_error': 'Please enter only characters A-Z & a-z'
     '#wrapper_attributes':
       class:
         - mb-3
@@ -51,8 +51,8 @@ elements: |-
     '#placeholder': 'Please provide a brief description of your organization and how you would like to collaborate'
     '#required': true
     '#required_error': 'Please Enter Description'
-    '#pattern': '^(?!.*<[^>]+>)(?=.*[A-Za-z0-9])[A-Za-z0-9 .,_()\-:;''"!?\/\n]{10,500}$'
-    '#pattern_error': 'Please Enter Valid Description'
+    '#pattern': '^[A-Za-z0-9._\- ]+$'
+    '#pattern_error': 'Please enter your inputs using the following characters: A-Z, a-z, 0-9, and the symbols . _ -'
     '#wrapper_attributes':
       class:
         - mb-3
@@ -68,8 +68,8 @@ elements: |-
     '#placeholder': 'Phone number, Email, or other contact information'
     '#required': true
     '#required_error': 'Please Enter Valid Number'
-    '#pattern': '^\+?[0-9]{10,15}$'
-    '#pattern_error': 'Please Enter Valid Number'
+    '#pattern': '^[A-Za-z0-9@._+\-()\/,\s]{5,100}$'
+    '#pattern_error': 'Please enter valid contact information (phone number, email address, or other contact details)'
     '#wrapper_attributes':
       class:
         - mb-3
@@ -85,8 +85,8 @@ elements: |-
     '#placeholder': 'Complete address of your organization'
     '#required': true
     '#required_error': 'Please Enter Address'
-    '#pattern': '^(?!.*<[^>]+>)(?=.*[A-Za-z0-9])[A-Za-z0-9 .,_()\-:;''"!?\/\n]{10,500}$'
-    '#pattern_error': 'Please Enter Valid Address'
+    '#pattern': '^[A-Za-z0-9._\- ]+$'
+    '#pattern_error': 'Please enter your inputs using the following characters: A-Z, a-z, 0-9, and the symbols . _ -'
     '#wrapper_attributes':
       class:
         - mb-3
@@ -102,8 +102,8 @@ elements: |-
     '#placeholder': 'https://www.example.com'
     '#required': true
     '#required_error': 'Please Enter URL'
-    '#pattern': '^(https?:\/\/)?(www\.)?[a-zA-Z0-9][a-zA-Z0-9\-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}([\/?#][^\s<>"]*)?$'
-    '#pattern_error': 'Please Enter Valid URL'
+    '#pattern': '^(https?:\/\/)?([A-Za-z0-9-]+\.)+[A-Za-z]{2,}(\/[^\s]*)?$'
+    '#pattern_error': 'Please enter a valid website URL (e.g., https://www.example.com).'
     '#wrapper_attributes':
       class:
         - mb-4

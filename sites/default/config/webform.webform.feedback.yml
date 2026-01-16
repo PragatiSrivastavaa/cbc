@@ -16,6 +16,10 @@ elements: |-
   name:
     '#type': textfield
     '#title': Name
+    '#required': true
+    '#required_error': 'Name is required'
+    '#pattern': "^([a-zA-Z' ]+)$"
+    '#pattern_error': 'Please enter only characters A-Z & a-z'
     '#wrapper_attributes':
       class:
         - col-md-6
@@ -28,6 +32,10 @@ elements: |-
   email:
     '#type': email
     '#title': Email
+    '#required': true
+    '#required_error': 'Email address is required'
+    '#pattern': '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    '#pattern_error': 'Please enter a valid email address (example: user@examplecom).'
     '#wrapper_attributes':
       class:
         - col-md-6
@@ -40,6 +48,10 @@ elements: |-
   subject:
     '#type': textarea
     '#title': Subject
+    '#required': true
+    '#required_error': 'Subject is required'
+    '#pattern': "^([a-zA-Z' ]+)$"
+    '#pattern_error': 'Please enter only characters A-Z & a-z'
     '#wrapper_attributes':
       class:
         - mb-3
@@ -52,6 +64,10 @@ elements: |-
   message:
     '#type': textarea
     '#title': Message
+    '#required': true
+    '#required_error': 'Message is required'
+    '#pattern': '^[A-Za-z0-9._\- ]+$'
+    '#pattern_error': 'Please enter your inputs using the following characters: A-Z, a-z, 0-9, and the symbols . _ -'
     '#wrapper_attributes':
       class:
         - mb-4
@@ -184,7 +200,7 @@ settings:
   confirmation_exclude_query: false
   confirmation_exclude_token: false
   confirmation_update: false
-  limit_total: 5
+  limit_total: null
   limit_total_interval: null
   limit_total_message: ''
   limit_total_unique: false
