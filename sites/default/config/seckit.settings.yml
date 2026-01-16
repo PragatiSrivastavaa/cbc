@@ -6,15 +6,15 @@ seckit_xss:
     vendor-prefix:
       x: false
       webkit: false
-    report-only: true
+    report-only: false
     default-src: ''
-    script-src: "'self';"
+    script-src: "'self' "
     object-src: "'none';"
     style-src: ''
     img-src: ''
     media-src: ''
     frame-src: "'self';"
-    frame-ancestors: ''
+    frame-ancestors: "'self';"
     child-src: "'self';"
     font-src: ''
     connect-src: ''

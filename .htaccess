@@ -3,6 +3,10 @@
 #
 
 # Protect files and directories from prying eyes.
+
+<FilesMatch "\.md$">
+  Require all denied
+</FilesMatch>
 <FilesMatch "\.(engine|inc|install|make|module|profile|po|sh|.*sql|theme|twig|tpl(\.php)?|xtmpl|yml)(~|\.sw[op]|\.bak|\.orig|\.save)?$|^(\.(?!well-known).*|Entries.*|Repository|Root|Tag|Template|composer\.(json|lock)|web\.config|yarn\.lock|package\.json)$|^#.*#$|\.php(~|\.sw[op]|\.bak|\.orig|\.save)$">
   <IfModule mod_authz_core.c>
     Require all denied
@@ -21,9 +25,6 @@ DirectoryIndex index.php index.html index.htm
 # Add correct encoding for SVGZ.
 AddType image/svg+xml svg svgz
 AddEncoding gzip svgz
-
-# Add correct encoding for webp.
-AddType image/webp .webp
 
 # Most of the following PHP settings cannot be changed at runtime. See
 # sites/default/default.settings.php and
@@ -61,7 +62,22 @@ AddType image/webp .webp
 
 # Various rewrite rules.
 <IfModule mod_rewrite.c>
-  RewriteEngine on
+ RewriteEngine On
+
+
+  # Block registration pages for all languages (including default)
+  RewriteCond %{REQUEST_URI} ^/cbc(/(en|hi))?/user/register/?$ [NC]
+  RewriteRule ^ - [R=404,L]
+
+  # Block password reset pages for all languages
+  RewriteCond %{REQUEST_URI} ^/cbc(/(en|hi))?/user/password/?$ [NC]
+  RewriteRule ^ - [R=404,L]
+
+  # Pass all other requests to index.php (Drupal front controller)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.php [L]
+
 
   # Set "protossl" to "s" if we were accessed via https://.  This is used later
   # if you enable "www." stripping or enforcement, in order to ensure that
@@ -140,6 +156,10 @@ AddType image/webp .webp
   RewriteCond %{REQUEST_URI} !/core/[^/]*\.php$
   # Allow access to test-specific PHP files:
   RewriteCond %{REQUEST_URI} !/core/modules/system/tests/https?\.php
+  # Allow access to Statistics module's custom front controller.
+  # Copy and adapt this rule to directly execute PHP files in contributed or
+  # custom modules or to run another PHP application in the same directory.
+  RewriteCond %{REQUEST_URI} !/core/modules/statistics/statistics\.php$
   # Deny access to any other PHP files that do not match the rules above.
   # Specifically, disallow autoload.php from being served directly.
   RewriteRule "^(.+/.*|autoload)\.php($|/)" - [F]
@@ -183,3 +203,67 @@ AddType image/webp .webp
   # Disable Proxy header, since it's an attack vector.
   RequestHeader unset Proxy
 </IfModule>
+
+
+# ===============================
+# Security Headers
+# ===============================
+
+<IfModule mod_headers.c>
+
+    # Prevent MIME-type sniffing
+    Header always set X-Content-Type-Options "nosniff"
+
+    # Prevent clickjacking
+    Header always set X-Frame-Options "SAMEORIGIN"
+
+    # Enable XSS protection (legacy browsers)
+    Header always set X-XSS-Protection "1; mode=block"
+
+    # Control referrer information
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Permissions policy (formerly Feature-Policy)
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+
+
+    # Enforce HTTPS (only if SSL is enabled)
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    Header always unset Surrogate-Control
+    Header unset Surrogate-Control
+    Header always unset X-Powered-By
+    Header unset X-Powered-By
+
+</IfModule>
+
+# ===============================
+# Hide PHP Version
+# ===============================
+
+# Disable PHP version exposure
+<IfModule mod_php.c>
+    php_flag expose_php Off
+    php_flag display_errors Off
+</IfModule>
+
+# ===============================
+# Hide Apache Version
+# ===============================
+
+ServerSignature Off
+
+# ===============================
+# Disable Directory Listing
+# ===============================
+
+Options -Indexes
+
+# ===============================
+# Protect Sensitive Files
+# ===============================
+
+<FilesMatch "^(\.env|\.htaccess|\.htpasswd|composer\.json|composer\.lock)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+

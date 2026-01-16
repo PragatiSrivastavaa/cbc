@@ -33,9 +33,15 @@ elements: |-
     '#type': email
     '#title': Email
     '#required': true
+<<<<<<< HEAD
     '#required_error': 'Email address is required'
     '#pattern': '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
     '#pattern_error': 'Please enter a valid email address (example: user@examplecom).'
+=======
+    '#required_error': 'Please enter valid email id'
+    '#unique': true
+    '#unique_error': 'Please enter valid Unique email id'
+>>>>>>> ab3a757e69e1904d5b5ee7ca9f1e859af36ef1f2
     '#wrapper_attributes':
       class:
         - col-md-6
@@ -49,9 +55,13 @@ elements: |-
     '#type': textarea
     '#title': Subject
     '#required': true
+<<<<<<< HEAD
     '#required_error': 'Subject is required'
     '#pattern': "^([a-zA-Z' ]+)$"
     '#pattern_error': 'Please enter only characters A-Z & a-z'
+=======
+    '#required_error': 'Please Enter Valid Subject'
+>>>>>>> ab3a757e69e1904d5b5ee7ca9f1e859af36ef1f2
     '#wrapper_attributes':
       class:
         - mb-3
@@ -65,9 +75,13 @@ elements: |-
     '#type': textarea
     '#title': Message
     '#required': true
+<<<<<<< HEAD
     '#required_error': 'Message is required'
     '#pattern': '^[A-Za-z0-9._\- ]+$'
     '#pattern_error': 'Please enter your inputs using the following characters: A-Z, a-z, 0-9, and the symbols . _ -'
+=======
+    '#required_error': 'Please Enter Valid Message'
+>>>>>>> ab3a757e69e1904d5b5ee7ca9f1e859af36ef1f2
     '#wrapper_attributes':
       class:
         - mb-4
