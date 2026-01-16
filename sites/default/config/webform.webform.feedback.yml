@@ -16,10 +16,6 @@ elements: |-
   name:
     '#type': textfield
     '#title': Name
-    '#required': true
-    '#required_error': 'Please Enter Valid Name'
-    '#pattern': "^([a-zA-Z' ]+)$"
-    '#pattern_error': 'Please Enter Valid Name only Characters Allowed'
     '#wrapper_attributes':
       class:
         - col-md-6
@@ -32,10 +28,6 @@ elements: |-
   email:
     '#type': email
     '#title': Email
-    '#required': true
-    '#required_error': 'Please enter valid email id'
-    '#pattern': '^([a-z0-9\+\-]+)(\.[a-z0-9\+\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$'
-    '#pattern_error': 'Please enter vaild E-mail'
     '#wrapper_attributes':
       class:
         - col-md-6
@@ -48,10 +40,6 @@ elements: |-
   subject:
     '#type': textarea
     '#title': Subject
-    '#required': true
-    '#required_error': 'Please Enter Valid Subject'
-    '#pattern': '^(?!.*<[^>]+>)(?=.*[A-Za-z0-9])[A-Za-z0-9 .,_()\-:!?]{3,255}$'
-    '#pattern_error': 'Please Enter Valid Subject'
     '#wrapper_attributes':
       class:
         - mb-3
@@ -64,10 +52,6 @@ elements: |-
   message:
     '#type': textarea
     '#title': Message
-    '#required': true
-    '#required_error': 'Please Enter Valid Message'
-    '#pattern': 'Please Enter Valid Message'
-    '#pattern_error': '^(?!.*<[^>]+>)(?=.*[A-Za-z0-9])[A-Za-z0-9 .,_()\-:!?]{3,255}$'
     '#wrapper_attributes':
       class:
         - mb-4
@@ -200,7 +184,7 @@ settings:
   confirmation_exclude_query: false
   confirmation_exclude_token: false
   confirmation_update: false
-  limit_total: null
+  limit_total: 5
   limit_total_interval: null
   limit_total_message: ''
   limit_total_unique: false
