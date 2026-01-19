@@ -12630,3 +12630,8 @@ div.infocus-map-container {
     opacity: 0.9;
   }
 }
+
+
+a[href*="/user/password"] {
+  display: none !important;
+}
