@@ -1,0 +1,7 @@
+uuid: 5c1a8575-f444-46b2-97d2-d5bf1ce05330
+langcode: en
+status: false
+dependencies: {  }
+formId: node_home_banner_form
+captchaType: default
+label: node_home_banner_form

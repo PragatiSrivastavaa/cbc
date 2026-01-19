@@ -1,0 +1,7 @@
+uuid: f37dcb1a-b10d-423f-896e-2b9e152f255e
+langcode: en
+status: false
+dependencies: {  }
+formId: node_tender_form
+captchaType: default
+label: node_tender_form

@@ -77,6 +77,9 @@ elements: |-
     '#label_attributes':
       class:
         - form-label
+  captcha:
+    '#type': captcha
+    '#captcha_type': image_captcha/Image
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'
