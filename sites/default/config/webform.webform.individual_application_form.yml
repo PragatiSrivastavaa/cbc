@@ -75,6 +75,7 @@ elements: |-
     '#label_attributes':
       class:
         - form-label
+    '#access': false
     '#uri_scheme': public
     '#max_filesize': '50'
     '#file_extensions': 'pdf doc docx '
