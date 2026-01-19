@@ -1,0 +1,7 @@
+uuid: ebf25052-3707-4fbb-bf57-d41ddfe18aba
+langcode: en
+status: false
+dependencies: {  }
+formId: node_media_corner_form
+captchaType: default
+label: node_media_corner_form

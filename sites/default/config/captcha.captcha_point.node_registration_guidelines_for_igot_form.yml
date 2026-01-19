@@ -1,0 +1,7 @@
+uuid: bd0349d8-9bce-4188-919c-7061b0f46ccd
+langcode: en
+status: false
+dependencies: {  }
+formId: node_registration_guidelines_for_igot_form
+captchaType: default
+label: node_registration_guidelines_for_igot_form
