@@ -16,6 +16,7 @@
     ],
     "require": {
         "composer/installers": "^2.3",
+        "cweagans/composer-patches": "1.7",
         "drupal/admin_toolbar": "^3.6",
         "drupal/autologout": "^2.0",
         "drupal/colorbox": "^2.1",
@@ -34,6 +35,7 @@
         "drupal/pathauto": "^1.14",
         "drupal/remove_http_headers": "^2.1",
         "drupal/seckit": "^2.0",
+        "drupal/session_limit": "^2.0",
         "drupal/webform": "^6.3@beta",
         "drush/drush": "^13.6"
     },
@@ -52,7 +54,8 @@
             "phpstan/extension-installer": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "php-http/discovery": true,
-            "php-tuf/composer-integration": true
+            "php-tuf/composer-integration": true,
+            "cweagans/composer-patches": true
         },
         "sort-packages": true
     },
@@ -116,7 +119,11 @@
                 "  * Remove the plugin that prints this message:",
                 "      composer remove drupal/core-project-message"
             ]
+        },
+        "patches": {
+            "drupal/session_limit": {
+                "Fix Constructor ArgumentCountError in Drupal 10": "patches/session_limit-drupal10-ctor-fix.patch"
+            }
         }
     }
 }
-
