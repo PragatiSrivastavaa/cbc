@@ -1,0 +1,7 @@
+uuid: 721e27f3-b415-49e9-9ef5-3918eb1b4bbb
+langcode: en
+status: false
+dependencies: {  }
+formId: node_acbp_process_manual_form
+captchaType: default
+label: node_acbp_process_manual_form

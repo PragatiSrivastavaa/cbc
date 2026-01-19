@@ -1,0 +1,7 @@
+uuid: fa49b3c3-9d72-483c-b9ab-e4b73b734e8c
+langcode: en
+status: false
+dependencies: {  }
+formId: node_know_your_cbc_form
+captchaType: default
+label: node_know_your_cbc_form

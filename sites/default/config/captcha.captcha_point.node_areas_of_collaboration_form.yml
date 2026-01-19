@@ -1,0 +1,7 @@
+uuid: b44d3ee6-501b-44a0-9560-52b0b58f35f7
+langcode: en
+status: false
+dependencies: {  }
+formId: node_areas_of_collaboration_form
+captchaType: default
+label: node_areas_of_collaboration_form
