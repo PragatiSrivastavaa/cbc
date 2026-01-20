@@ -5,11 +5,11 @@
     attach: function (context, settings) {
 
       // Safety check for settings
-      if (!drupalSettings.password_encrypt || !drupalSettings.password_encrypt.passkey) {
+      if (!drupalSettings.password_encrypt || !drupalSettings.password_encrypt.token) {
         return;
       }
 
-      var passkey = drupalSettings.password_encrypt.passkey;
+      var passkey = drupalSettings.password_encrypt.token;
 
       // Safety check for library
       if (typeof CryptoJS === 'undefined') {
