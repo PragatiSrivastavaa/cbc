@@ -4,24 +4,12 @@
   Drupal.behaviors.password_encrypt = {
     attach: function (context, settings) {
 
-      // Safety check for settings
-      if (!drupalSettings.password_encrypt || !drupalSettings.password_encrypt.passkey) {
-        return;
-      }
-
-      var passkey = drupalSettings.password_encrypt.passkey;
-
-      // Safety check for library
-      if (typeof CryptoJS === 'undefined') {
-        console.error('Password Encrypt: CryptoJS is not defined.');
-        return;
-      }
-
       // Helper function to encrypt
-      var encrypt = function (value) {
+      var encrypt = function (value, key) {
         if (!value) return '';
+        if (!key) return value;
         try {
-          return CryptoJS.AES.encrypt(value, passkey).toString();
+          return CryptoJS.AES.encrypt(value, key).toString();
         } catch (e) {
           console.error('Encryption error:', e);
           return value; // Fallback to plain text on error
@@ -34,32 +22,37 @@
         return value.substring(0, 10) === 'U2FsdGVkX1';
       };
 
+      // Safety check for library
+      if (typeof CryptoJS === 'undefined') {
+        console.warn('Password Encrypt: CryptoJS is not defined.');
+        return;
+      }
+
       // 1. Handle Login Forms
       var $loginForms = $(context).find('form#user-login-form, form.user-login-form, form[id^="user-login-form"]');
 
       $loginForms.each(function () {
         var $form = $(this);
+        var token = $form.attr('data-pe-t');
+        if (!token) return;
+
         if ($form.data('password-encrypt-attached')) return;
         $form.data('password-encrypt-attached', true);
 
         $form.submit(function (event) {
-          // Double submit protection
           if ($form.data('is_submitting')) {
             event.preventDefault();
             return false;
           }
 
-          // Find field
           var $input = $form.find('input[name="pass"]');
           var pass = $input.val();
 
           if (pass && !isEncrypted(pass)) {
-            console.log('Encrypting login password...');
-            var cipher = encrypt(pass);
+            var cipher = encrypt(pass, token);
             $input.val(cipher);
           }
 
-          // Set flag AFTER logic to allow submit to proceed
           $form.data('is_submitting', true);
         });
       });
@@ -69,6 +62,9 @@
 
       $userForms.each(function () {
         var $form = $(this);
+        var token = $form.attr('data-pe-t');
+        if (!token) return;
+
         if ($form.data('password-encrypt-attached')) return;
         $form.data('password-encrypt-attached', true);
 
@@ -100,16 +96,14 @@
 
           // Encrypt Current Password
           if (currentVal && !isEncrypted(currentVal)) {
-            console.log('Encrypting current password...');
-            $currentPass.val(encrypt(currentVal));
+            $currentPass.val(encrypt(currentVal, token));
           }
 
           // Encrypt New Password
           if (p1Val) {
             var passCipher;
             if (!isEncrypted(p1Val)) {
-              console.log('Encrypting new password...');
-              passCipher = encrypt(p1Val);
+              passCipher = encrypt(p1Val, token);
               $pass1.val(passCipher);
             } else {
               passCipher = p1Val; // Already encrypted
@@ -121,7 +115,6 @@
             }
           }
 
-          // Set flag to block subsequent clicks
           $form.data('is_submitting', true);
         });
       });
