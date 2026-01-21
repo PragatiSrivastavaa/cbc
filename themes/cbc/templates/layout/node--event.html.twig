@@ -30,14 +30,14 @@
 
           {% if node.field_event_start.value %}
             <div class="event-meta-item">
-              <i class="fas fa-calendar"></i>
+              <i class="fas fa-calendar" aria-hidden="true"></i>
               <span>{{ node.field_event_start.value|date('l, F j, Y') }}</span>
             </div>
           {% endif %}
 
           {% if node.field_event_venue.value %}
             <div class="event-meta-item">
-              <i class="fas fa-map-marker-alt"></i>
+              <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
               <span>{{ node.field_event_venue.value }}</span>
             </div>
           {% endif %}
