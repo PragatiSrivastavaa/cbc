@@ -1,0 +1,116 @@
+<?php
+
+/**
+ * @file
+ * Custom functions for CBC.
+ */
+
+use Drupal\file\FileInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_file_validate().
+ *
+ * Performs strict validation on uploaded files to prevent malicious uploads.
+ */
+function cbc_custom_file_validate(FileInterface $file) {
+  $errors = [];
+  
+  // LOGGING FOR VERIFICATION
+  $log_path = \Drupal::service('file_system')->realpath('public://') . '/cbc_validation_log.txt';
+  file_put_contents($log_path, date('Y-m-d H:i:s') . ' - Validating File: ' . $file->getFilename() . ' (' . $file->getMimeType() . ")\n", FILE_APPEND);
+
+  $file_path = $file->getFileUri();
+  $real_path = \Drupal::service('file_system')->realpath($file_path);
+  
+  if (!$real_path || !file_exists($real_path)) {
+    return $errors;
+  }
+
+  $filename = $file->getFilename();
+  $extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+  // 1. Detect actual MIME type using binary content analysis.
+  $finfo = new \finfo(FILEINFO_MIME_TYPE);
+  $actual_mime_type = $finfo->file($real_path);
+
+  // 2. Strict whitelist of allowed MIME types and their corresponding extensions.
+  $allowed_map = [
+    'image/png' => ['png'],
+    'image/x-png' => ['png'],
+    'image/gif' => ['gif'],
+    'image/jpeg' => ['jpg', 'jpeg'],
+    'image/pjpeg' => ['jpg', 'jpeg'],
+    'image/webp' => ['webp'],
+    'application/pdf' => ['pdf'],
+    'application/msword' => ['doc'],
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => ['docx'],
+    'application/vnd.ms-excel' => ['xls'],
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => ['xlsx'],
+    'text/plain' => ['txt'],
+  ];
+
+  // 3. Reject files with no extension to prevent MIME-sniffing exploits.
+  if (empty($extension)) {
+    $errors[] = t('Security Alert: Files without extensions are not allowed.');
+    return $errors;
+  }
+
+  // 4. Check if the detected MIME type is in our whitelist.
+  if (!isset($allowed_map[$actual_mime_type])) {
+    $errors[] = t('Security Alert: The file type (@mime) is not allowed.', ['@mime' => $actual_mime_type]);
+    return $errors;
+  }
+
+  // 5. Detect tampering: Ensure the MIME type provided in the request matches content.
+  $request_mime_type = $file->getMimeType();
+  if ($request_mime_type != $actual_mime_type && !($request_mime_type == 'image/png' && $actual_mime_type == 'image/x-png')) {
+     $errors[] = t('Security Alert: Request tampering detected. Content-Type header (@header) does not match actual content (@content).', [
+       '@header' => $request_mime_type,
+       '@content' => $actual_mime_type,
+     ]);
+  }
+
+  // 6. Ensure the extension matches the detected MIME type.
+  if (!in_array($extension, $allowed_map[$actual_mime_type])) {
+    $errors[] = t('Security Alert: File extension (.@ext) does not match detected content type (@mime).', [
+      '@ext' => $extension,
+      '@mime' => $actual_mime_type,
+    ]);
+  }
+
+  // 7. Scan file content for malicious strings/tags (XSS prevention).
+  $content = file_get_contents($real_path);
+  $malicious_patterns = [
+    '/<script/i', '/javascript:/i', '/onerror/i', '/onload/i', '/onclick/i',
+    '/onmouseover/i', '/alert\(/i', '/eval\(/i', '/<iframe/i', '/<object/i',
+    '/<embed/i', '/<form/i', '/<html/i', '/<body/i', '/<head/i', '/SVG/i', '/xmlns/i'
+  ];
+
+  foreach ($malicious_patterns as $pattern) {
+    if (preg_match($pattern, $content)) {
+      $errors[] = t('Security Alert: Potentially malicious content (script/HTML) detected in file.');
+      break;
+    }
+  }
+
+  return $errors;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function cbc_custom_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Add a general log for ANY form submission with files.
+  if (\Drupal::request()->files->count() > 0) {
+      $log_path = \Drupal::service('file_system')->realpath('public://') . '/cbc_form_log.txt';
+      file_put_contents($log_path, date('Y-m-d H:i:s') . ' - Form ID: ' . $form_id . ' - Files detected' . "\n", FILE_APPEND);
+  }
+
+  // Target User Profile form and other forms with picture uploads.
+  if ($form_id == 'user_form' || $form_id == 'user_register_form') {
+    if (isset($form['user_picture'])) {
+      $form['user_picture']['widget'][0]['#upload_validators']['cbc_custom_file_validate'] = [];
+    }
+  }
+}
