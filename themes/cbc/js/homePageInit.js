@@ -441,27 +441,33 @@ function initializeBlogSection() {
 // ----------------------- Collaboration Carousel ----------------------- //
 function initializeCollaborationCarousel() {
   const collabTrack = document.getElementById('collabTrack');
-  const collabBoxes = document.querySelectorAll('.collab-box');
   const nextBtn = document.getElementById('collabNextBtn');
   const prevBtn = document.getElementById('collabPrevBtn');
 
-  if (!collabTrack || !collabBoxes.length || !nextBtn || !prevBtn) return;
+  if (!collabTrack || !nextBtn || !prevBtn) return;
+
+  // Use direct children (should be <a> tags wrapping the boxes) to preserve layout styles
+  const originalItems = Array.from(collabTrack.children);
+
+  if (originalItems.length === 0) return;
 
   const cardWidth = 365; // 350px width + 15px gap
 
   // Clone items for infinite scroll
   // We double the content. When we reach the start of the cloned set, we snap back to 0.
-  const originalCards = Array.from(collabBoxes);
-  const singleSetWidth = cardWidth * originalCards.length;
+  const singleSetWidth = cardWidth * originalItems.length;
 
   // Check if we already cloned (in case of re-init)
-  // We assume this runs once, or strict idempotency:
-  if (collabTrack.children.length === originalCards.length) {
-    originalCards.forEach(card => {
-      const clone = card.cloneNode(true);
+  // We check if the number of children is equal to the original set size
+  // Note: This simple check assumes no other dynamic additions. 
+  // For better idempotency, we could use a specialized class or attribute.
+  if (!collabTrack.hasAttribute('data-cloned')) {
+    originalItems.forEach(item => {
+      const clone = item.cloneNode(true);
       clone.setAttribute('aria-hidden', 'true');
       collabTrack.appendChild(clone);
     });
+    collabTrack.setAttribute('data-cloned', 'true');
   }
 
   let collabAutoSlide;

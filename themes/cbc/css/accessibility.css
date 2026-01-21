@@ -425,10 +425,13 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.7;
     transform: scale(1.2);
@@ -498,7 +501,7 @@ body[data-theme="high-contrast"] .whts-box:not(.accessibility-drawer *) {
 }
 
 body[data-theme="high-contrast"] .member-card,
-body[data-theme="high-contrast"] .leadership-section .col-lg-4 > div,
+body[data-theme="high-contrast"] .leadership-section .col-lg-4>div,
 body[data-theme="high-contrast"] .chairperson-card,
 body[data-theme="high-contrast"] .jitender-card,
 body[data-theme="high-contrast"] .modi-card {
@@ -507,7 +510,7 @@ body[data-theme="high-contrast"] .modi-card {
 }
 
 body[data-theme="high-contrast"] .mission-card,
-body[data-theme="high-contrast"] .join-mission-section .col-lg-4 > div,
+body[data-theme="high-contrast"] .join-mission-section .col-lg-4>div,
 body[data-theme="high-contrast"] .mission-section [class*="card"] {
   border: 2px solid #000 !important;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3) !important;
@@ -870,6 +873,7 @@ body[data-cursor-size="extra-large"] * {
 
 /* === PRINT STYLES === */
 @media print {
+
   .accessibility-drawer,
   .accessibility-overlay {
     display: none !important;
@@ -878,6 +882,7 @@ body[data-cursor-size="extra-large"] * {
 
 /* === ANIMATION REDUCE (ACCESSIBILITY) === */
 @media (prefers-reduced-motion: reduce) {
+
   .accessibility-drawer,
   .accessibility-overlay,
   .toggle-switch,
@@ -888,3 +893,51 @@ body[data-cursor-size="extra-large"] * {
   }
 }
 
+/* === KEYBOARD ONLY MODE === */
+/* Enforce strong focus outlines */
+body[data-keyboard-only="true"] *:focus {
+  outline: 4px solid #ffeb3b !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 6px #000000 !important;
+  z-index: 100000;
+}
+
+/* Hide cursor to encourage keyboard use */
+body[data-keyboard-only="true"] {
+  cursor: none !important;
+}
+
+body[data-keyboard-only="true"] * {
+  cursor: none !important;
+  /* Disable mouse interaction on everything by default */
+  pointer-events: none !important;
+}
+
+/* Re-enable pointer events for focusable elements to ensure they technically work 
+   and to allow interaction if the user cheats/uses a mouse blindly, 
+   but mainly to ensuring they remain in the accessibility tree correctly 
+   (though pointer-events: none doesn't remove from a11y tree usually). 
+   However, strictly speaking, GIGW "Keyboard Only Access" just means visual focus and keyboard navigability.
+   Disabling pointer events forces the user to use the keyboard. 
+*/
+body[data-keyboard-only="true"] a,
+body[data-keyboard-only="true"] button,
+body[data-keyboard-only="true"] input,
+body[data-keyboard-only="true"] textarea,
+body[data-keyboard-only="true"] select,
+body[data-keyboard-only="true"] [role="button"],
+body[data-keyboard-only="true"] [tabindex]:not([tabindex="-1"]),
+body[data-keyboard-only="true"] .accessibility-drawer,
+body[data-keyboard-only="true"] .accessibility-drawer *,
+body[data-keyboard-only="true"] .accessibility-toggle-group,
+body[data-keyboard-only="true"] .accessibility-toggle-group * {
+  pointer-events: auto !important;
+}
+
+/* Ensure the drawer itself remains usable with mouse in case user gets stuck? 
+   No, if they toggle it on, they should use keyboard to toggle it off. */
+
+/* === SCROLLBAR STYLING FOR DRAWER === */
+.accessibility-drawer::-webkit-scrollbar {
+  width: 8px;
+}

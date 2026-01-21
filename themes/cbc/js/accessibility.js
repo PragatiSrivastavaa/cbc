@@ -158,6 +158,36 @@ class AccessibilityManager {
         this.closeDrawer();
       }
     });
+
+    // Setup arrow key navigation for control groups
+    this.setupGroupNavigation('.text-size-controls', '.text-size-btn');
+    this.setupGroupNavigation('.contrast-themes', '.contrast-btn');
+    this.setupGroupNavigation('.cursor-size-controls', '.cursor-size-option');
+    this.setupGroupNavigation('.accessibility-toggle-group', '.accessibility-toggle');
+  }
+
+  setupGroupNavigation(containerSelector, itemSelector) {
+    const containers = document.querySelectorAll(containerSelector);
+    containers.forEach(container => {
+      const items = Array.from(container.querySelectorAll(itemSelector));
+      items.forEach((item, index) => {
+        item.addEventListener('keydown', (e) => {
+          let nextIndex = null;
+
+          if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            e.preventDefault();
+            nextIndex = (index + 1) % items.length;
+          } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            nextIndex = (index - 1 + items.length) % items.length;
+          }
+
+          if (nextIndex !== null) {
+            items[nextIndex].focus();
+          }
+        });
+      });
+    });
   }
 
   openDrawer() {
@@ -165,14 +195,14 @@ class AccessibilityManager {
 
     this.drawer.setAttribute('data-state', 'open');
     this.overlay.setAttribute('data-state', 'active');
-    
+
     // Prevent body scroll - store current scroll position
     this.scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
     document.body.style.overflow = 'hidden';
     document.body.style.position = 'fixed';
     document.body.style.top = `-${this.scrollPosition}px`;
     document.body.style.width = '100%';
-    
+
     // Focus management for accessibility
     const closeBtn = document.getElementById('closeAccessibilityBtn');
     if (closeBtn) {
@@ -185,13 +215,13 @@ class AccessibilityManager {
 
     this.drawer.setAttribute('data-state', 'closed');
     this.overlay.setAttribute('data-state', 'hidden');
-    
+
     // Restore body scroll
     document.body.style.overflow = '';
     document.body.style.position = '';
     document.body.style.top = '';
     document.body.style.width = '';
-    
+
     // Restore scroll position
     if (this.scrollPosition !== undefined) {
       window.scrollTo(0, this.scrollPosition);
@@ -274,7 +304,7 @@ class AccessibilityManager {
     this.setTextSize('normal', true);
     this.setTheme('default', true);
     this.setCursorSize('normal', true);
-    ['hide-images', 'highlight-links', 'increased-line-height'].forEach(feature => {
+    ['hide-images', 'highlight-links', 'increased-line-height', 'keyboard-only'].forEach(feature => {
       const toggle = document.querySelector(`[data-feature="${feature}"]`);
       this.setToggleState(toggle, false);
       this.setBodyDataAttr(`data-${feature}`, null);
@@ -343,7 +373,7 @@ class AccessibilityManager {
           this.openDrawer();
         }
       }
-      
+
       // Alt + 1: Decrease text size
       if (e.altKey && e.key === '1') {
         e.preventDefault();
@@ -353,7 +383,7 @@ class AccessibilityManager {
           this.setTextSize(sizes[currentIndex - 1]);
         }
       }
-      
+
       // Alt + 2: Increase text size
       if (e.altKey && e.key === '2') {
         e.preventDefault();
@@ -363,13 +393,13 @@ class AccessibilityManager {
           this.setTextSize(sizes[currentIndex + 1]);
         }
       }
-      
+
       // Alt + R: Reset all settings
       if (e.altKey && e.key === 'r') {
         e.preventDefault();
         this.resetAllSettings();
       }
-      
+
       // Alt + C: Toggle high contrast
       if (e.altKey && e.key === 'c') {
         e.preventDefault();
@@ -396,7 +426,7 @@ function initAccessibilityManager() {
         e.preventDefault();
         accessibilityManager.openDrawer();
       });
-      
+
       // Keyboard support for accessibility icon
       accessIcon.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
