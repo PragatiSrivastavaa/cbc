@@ -1,0 +1,56 @@
+{#
+/**
+ * @file
+ * Theme override for In Focus block view template.
+ * Ensures the container frame and header render even if no content is present.
+ */
+#}
+{%
+  set classes = [
+    'view',
+    'view-' ~ id|clean_class,
+    'view-id-' ~ id,
+    'view-display-id-' ~ display_id,
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+    'infocus-content', 
+  ]
+%}
+
+<!-- Header: Always Visible -->
+<div class="infocus-title-wrapper">
+  <div class="focus-circle-frame">
+    <div class="circle-animation"></div>
+    <div class="circle-glow"></div>
+    <div class="inner-white-circle"></div>
+    <h2 class="infocus-title">
+      <span class="blink-dot"></span>In Focus
+    </h2>
+  </div>
+</div>
+
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if title %}
+    {{ title }}
+  {% endif %}
+  {{ title_suffix }}
+
+  {% if rows %}
+    <div class="view-content">
+      {{ rows }}
+    </div>
+  {% elseif empty %}
+    <div class="view-empty">
+      {{ empty }}
+    </div>
+  {% else %}
+   <!-- Fallback if no rows and no empty/fallback text configured -->
+    <div class="view-content empty-placeholder" style="min-height: 200px; display: flex; align-items: center; justify-content: center;">
+       <p style="color: #666; font-size: 0.9rem;">Content coming soon...</p>
+    </div>
+  {% endif %}
+
+</div>
+
+<!-- Footer: Always Visible -->
+<a href="/states-and-union-territories-uts" class="infocus-btn">Learn More</a>

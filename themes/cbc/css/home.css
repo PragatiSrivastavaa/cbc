@@ -12802,3 +12802,45 @@ a[href*="/user/password"] {
     left: 100%;
   }
 }
+/* -------------------------------------------------------------------- */
+/* FINAL OVERRIDE: TARGET IN FOCUS CARD FLEX STACK (ADDED FIX)          */
+/* -------------------------------------------------------------------- */
+
+/* Force the OUTERMOST In Focus Card to be a flex container */
+.col-lg-3 > .infocus-container {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 0 !important;
+}
+
+/* Force the Region to grow */
+.infocus-container .region-in-focus {
+  flex-grow: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  min-height: 0 !important;
+}
+
+/* Force intermediate Drupal wrappers to grow */
+.infocus-container .region-in-focus .block,
+.infocus-container .region-in-focus .views-element-container,
+.infocus-container .region-in-focus .views-element-container > div,
+.infocus-container .region-in-focus .view,
+.infocus-container .region-in-focus .view-content {
+  flex-grow: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  min-height: 0 !important;
+}
+
+/* Force the inner Content to grow */
+.infocus-container .infocus-content {
+  flex-grow: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  min-height: 0 !important;
+}

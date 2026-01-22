@@ -1,14 +1,3 @@
- <div class="infocus-title-wrapper">
-                <div class="focus-circle-frame">
-                  <div class="circle-animation"></div>
-                  <div class="circle-glow"></div>
-                  <div class="inner-white-circle"></div>
-                  <h2 class="infocus-title">
-                    <span class="blink-dot"></span>In Focus
-                  </h2>
-                </div>
- </div>
-<div class="infocus-content">
   {% for row in rows %}
     {% set node = row.content['#row']._entity %}
     {% set category = node.field_category.entity.label() %}
@@ -20,12 +9,11 @@
 
       <!-- <p class="infocus-desc"> -->
         <div class="infocus-map-container">
-                  <div class="map-image-container">
-        {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_body }}'] }}
-       </div>
-                </div>
+          <div class="map-image-container">
+            {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_body }}'] }}
+          </div>
+        </div>
 
     {% endif %}
   {% endfor %}
-   <a href="/states-and-union-territories-uts" class="infocus-btn">Learn More</a>
-</div>
+
