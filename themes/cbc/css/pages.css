@@ -1,6 +1,6 @@
 /* === GLOBAL FONT SIZE REDUCTION === */
 html {
-  font-size: 14px;
+  font-size: 16px;
   /* Reduced from default 16px */
   overflow-x: hidden;
   width: 100%;
@@ -1100,7 +1100,7 @@ ul.navbar-nav.nav-rounded {
   color: #ffffff;
   font-weight: 600;
   white-space: nowrap;
-  font-size: clamp(12px, 1.2vw, 14px);
+  font-size: clamp(14px, 1.3vw, 16px);
   /* Responsive font size */
   margin: 0;
   border-radius: 0;
@@ -1112,7 +1112,7 @@ ul.navbar-nav.nav-rounded {
   align-items: center;
   position: relative;
   z-index: 3;
-  font-size: clamp(12px, 1.2vw, 14px);
+  font-size: clamp(14px, 1.3vw, 16px);
   padding: 6px clamp(12px, 1.5vw, 18px);
   flex-shrink: 0;
   text-decoration: none;
@@ -8410,7 +8410,7 @@ h1.page-hero-title {
   content: '';
   position: absolute;
   top: 50%;
-  right: -6.5rem;
+  right: -5.5rem;
   width: 14px;
   height: 14px;
   background: #0063ae;
@@ -8452,7 +8452,7 @@ h1.page-hero-title {
   content: '';
   position: absolute;
   top: 50%;
-  right: -8rem;
+  right: -7.2rem;
   width: 16px;
   height: 16px;
   background: #0063ae;
@@ -8466,7 +8466,7 @@ h1.page-hero-title {
   content: '';
   position: absolute;
   top: 50%;
-  left: -8rem;
+  left: -7.2rem;
   width: 16px;
   height: 16px;
   background: #0063ae;
@@ -8489,13 +8489,13 @@ h1.page-hero-title {
   content: '';
   position: absolute;
   top: -12px;
-  left: 19.3%;
+  left: 18.5%;
   right: 0;
   height: 2px;
   background: #0063ae;
   border-radius: 2px;
   z-index: 0;
-  width: 58.5%;
+  width: 60%;
 }
 
 .org-level-3-container {
@@ -16132,3 +16132,10 @@ th.text-center {
 
 
 
+
+/* === GENERIC TAB STYLES === */
+.nav-tabs .nav-link,
+.nav-pills .nav-link {
+  font-size: 1.1rem !important;
+  font-weight: 500;
+}
