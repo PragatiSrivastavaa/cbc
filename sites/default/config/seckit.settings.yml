@@ -8,7 +8,7 @@ seckit_xss:
       webkit: false
     report-only: false
     default-src: ''
-    script-src: "'self' https://cdn.jsdelivr.net"
+    script-src: "'self'"
     object-src: "'none';"
     style-src: ''
     img-src: ''

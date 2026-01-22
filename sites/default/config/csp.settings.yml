@@ -29,11 +29,10 @@ enforce:
       base: self
     img-src:
       base: self
-    script-src:
-      base: self
-      sources:
-        - https://cdn.jsdelivr.net
     default-src:
       base: self
+    script-src:
+      base: self
+      sources: ' '
   reporting:
     plugin: none

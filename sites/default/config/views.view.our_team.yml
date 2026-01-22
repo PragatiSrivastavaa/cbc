@@ -519,6 +519,11 @@ display:
             field_identifier: ''
           exposed: false
           granularity: second
+        field_sequence_no_value:
+          id: field_sequence_no_value
+          table: node__field_sequence_no
+          field: field_sequence_no_value
+          plugin_id: standard
       arguments: {  }
       filters:
         status:
@@ -707,6 +712,20 @@ display:
     display_plugin: block
     position: 2
     display_options:
+      sorts:
+        field_sequence_no_value:
+          id: field_sequence_no_value
+          table: node__field_sequence_no
+          field: field_sequence_no_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
       filters:
         status:
           id: status
@@ -781,6 +800,7 @@ display:
         groups:
           1: AND
       defaults:
+        sorts: false
         filters: false
         filter_groups: false
       display_extenders: {  }
