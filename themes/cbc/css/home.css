@@ -603,6 +603,104 @@
   flex-basis: auto;
 }
 
+/* Vibrant In Focus Container */
+.combined-info-row .infocus-container {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%) !important;
+  border-radius: 0;
+  box-shadow: 0 8px 25px rgba(0, 99, 174, 0.12) !important;
+  border: 1px solid rgba(0, 99, 174, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.combined-info-row .infocus-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 99, 174, 0.2) !important;
+}
+
+/* .combined-info-row .infocus-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #0063ae 0%, #00c6ff 100%);
+  z-index: 10;
+} */
+
+
+/* "In Focus" Label Specific Animation */
+.combined-info-row .infocus-container .infocus-title {
+  position: relative;
+  display: inline-block;
+  padding: 10px 24px;
+  background-color: #ff9933;
+  /* Theme Orange */
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  z-index: 1;
+  box-shadow: 0 4px 12px rgba(230, 126, 0, 0.4);
+  border-radius: 0;
+  margin-top: 0;
+}
+
+/* Moving border effect for In Focus label only */
+.combined-info-row .infocus-container .infocus-title::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  pointer-events: none;
+  /* 4 Gradients for the 4 sides */
+  background-image:
+    linear-gradient(90deg, #ffffff 50%, transparent 50%),
+    linear-gradient(90deg, #ffffff 50%, transparent 50%),
+    linear-gradient(0deg, #ffffff 50%, transparent 50%),
+    linear-gradient(0deg, #ffffff 50%, transparent 50%);
+
+  background-repeat: no-repeat;
+
+  /* Top, Bottom, Left, Right sizes */
+  background-size:
+    200% 3px,
+    200% 3px,
+    3px 200%,
+    3px 200%;
+
+  /* Initial positions */
+  background-position:
+    0 0,
+    0 100%,
+    0 0,
+    100% 0;
+
+  animation: snakeBorder 3s linear infinite;
+}
+
+@keyframes snakeBorder {
+  0% {
+    background-position:
+      100% 0,
+      -100% 100%,
+      0 100%,
+      100% -100%;
+  }
+
+  100% {
+    background-position:
+      -100% 0,
+      100% 100%,
+      0 -100%,
+      100% 100%;
+  }
+}
+
 .about-cbc-column {
   flex: 1 1 45%;
   display: flex;
@@ -1379,6 +1477,9 @@
     right: 18px;
     left: 18px;
   }
+
+
+
 
   .jitender-name-badge {
     padding: 12px 16px;
@@ -12635,4 +12736,69 @@ div.infocus-map-container {
 
 a[href*="/user/password"] {
   display: none !important;
+}
+
+/* New Ticker Badge - Premium Style */
+.header-new-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #ffb700 0%, #ff8800 100%);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  margin-right: 12px;
+  box-shadow: 0 0 15px rgba(255, 136, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+  animation: badgeFade 2s infinite ease-in-out;
+}
+
+.header-new-badge i {
+  font-size: 0.75rem;
+  color: #fff;
+}
+
+/* Shine effect */
+.header-new-badge::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: badgeShine 3s infinite;
+}
+
+@keyframes badgeFade {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes badgeShine {
+  0% {
+    left: -100%;
+  }
+
+  20% {
+    left: 100%;
+  }
+
+  100% {
+    left: 100%;
+  }
 }

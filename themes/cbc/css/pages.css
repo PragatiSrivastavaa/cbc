@@ -14109,28 +14109,22 @@ li {
 
 .karmayogi-section-fullwidth .badge-text {
   display: inline-block;
-  background: linear-gradient(135deg, #ff6600 0%, #ff8800 100%);
+  background: linear-gradient(135deg, #0063ae 0%, #004b88 100%);
   color: #ffffff;
   font-size: 0.7rem;
   font-weight: 700;
-  padding: 6px 12px;
+  padding: 6px 14px;
   border-radius: 20px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 2px 8px rgba(255, 102, 0, 0.3);
-  animation: pulse 2s infinite;
+  letter-spacing: 0.8px;
+  box-shadow: 0 4px 12px rgba(0, 99, 174, 0.25);
+  animation: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-@keyframes pulse {
-
-  0%,
-  100% {
-    box-shadow: 0 2px 8px rgba(255, 102, 0, 0.3);
-  }
-
-  50% {
-    box-shadow: 0 2px 12px rgba(255, 102, 0, 0.5);
-  }
+.karmayogi-section-fullwidth .badge-text:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(0, 99, 174, 0.35);
 }
 
 @media (max-width: 768px) {
