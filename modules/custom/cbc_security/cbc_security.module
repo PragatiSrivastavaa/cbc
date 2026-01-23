@@ -121,15 +121,26 @@ function _cbc_security_apply_global_validation(&$elements) {
 /**
  * Validator: Letters, spaces, slashes, hyphens, dots, commas, and underscores.
  */
+/**
+ * Validator: Letters, spaces, slashes, hyphens, dots, commas, underscores, and brackets.
+ */
 function cbc_security_validate_alpha_only(&$element, FormStateInterface $form_state) {
   $value = $element['#value'];
+
   if (!empty($value) && is_string($value)) {
-    // Allow letters, spaces, forward slashes, hyphens, dots, commas, and underscores.
-    if (preg_match('/[^a-zA-Z\s\/\-\,\.\_]/', $value)) {
-      $form_state->setError($element, t('The %field field can only contain letters (a-z), spaces, slashes (/), hyphens (-), commas (,), dots (.), and underscores (_).', ['%field' => $element['#title'] ?? $element['#name']]));
+    // Allow letters, spaces, / - ( ) [ ] , . _
+    if (preg_match('/[^a-zA-Z\s\/\-\(\)\[\]\,\.\_]/', $value)) {
+      $form_state->setError(
+        $element,
+        t(
+          'The %field field can only contain letters, spaces, slashes (/), hyphens (-), brackets (), square brackets [], commas (,), dots (.), and underscores (_).',
+          ['%field' => $element['#title'] ?? $element['#name']]
+        )
+      );
     }
   }
 }
+
 
 /**
  * Validator: No HTML tags.
