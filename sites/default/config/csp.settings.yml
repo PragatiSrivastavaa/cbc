@@ -33,6 +33,6 @@ enforce:
       base: self
     script-src:
       base: self
-      sources: ' '
+      sources: {  }
   reporting:
     plugin: none

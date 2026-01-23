@@ -110,7 +110,7 @@ function cbc_preprocess_page(&$variables) {
         $header_items = $view->display_handler->display['display_options']['header'];
         foreach ($header_items as $key => $header) {
           if ($header['plugin_id'] == 'text') {
-            $variables['page']['view_header'] = $header['content']['value'];
+            $variables['page']['view_header'] = \Drupal\Component\Utility\Xss::filter($header['content']['value']);
           }
         }
       }

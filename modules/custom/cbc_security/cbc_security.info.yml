@@ -1,0 +1,7 @@
+name: 'CBC Security'
+type: module
+description: 'Security validations for titles, forms, and file uploads.'
+core_version_requirement: ^8 || ^9 || ^10 || ^11
+package: Custom
+dependencies:
+  - drupal:file

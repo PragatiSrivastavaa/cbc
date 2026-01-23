@@ -25,20 +25,8 @@ class SecurityHeadersSubscriber implements EventSubscriberInterface {
    * Validate uploaded files (Drupal/Symfony-safe).
    */
   public function onKernelRequest(RequestEvent $event): void {
-    $request = $event->getRequest();
-
-    if ($request->files->count() === 0) {
-      return;
-    }
-
-    foreach ($request->files->all() as $file) {
-      if (is_array($file)) {
-        $this->validateUploadedFiles($file, $event);
-      }
-      else {
-        $this->validateUploadedFile($file, $event);
-      }
-    }
+    // Redundant file validation removed to allow non-image uploads (PDF, Video).
+    // Logic moved to CBC Security module.
   }
 
   protected function validateUploadedFiles(array $files, RequestEvent $event): void {

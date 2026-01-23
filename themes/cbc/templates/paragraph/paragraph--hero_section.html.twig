@@ -7,19 +7,19 @@
         {# Dynamic Title (field_title) #}
         {% if paragraph.field_title.value %}
           <span class="hero-category-tag page-hero-cta">
-            {{ paragraph.field_title.value }}
+            {{ paragraph.field_title.value|e }}
           </span>
         {% endif %}
 
         {# Dynamic Sub Title (field_sub_title) #}
         {% if paragraph.field_sub_title.value %}
           <h1 class="page-hero-title">
-            {{ paragraph.field_sub_title.value }}
+            {{ paragraph.field_sub_title.value|e }}
           </h1>
         {% endif %}
 		 {# Dynamic Sub Title two (field_subtitle_two) #}
         {% if paragraph.field_subtitle_two.value %}
-		<span style="font-size: 1.8rem; font-weight: 400; color: #ffa500;">{{ paragraph.field_subtitle_two.value }}</span>
+		<span style="font-size: 1.8rem; font-weight: 400; color: #ffa500;">{{ paragraph.field_subtitle_two.value|e }}</span>
 		 {% endif %}
 
         {# Dynamic Description (formatted long text) #}
