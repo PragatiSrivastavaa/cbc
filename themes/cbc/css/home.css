@@ -605,101 +605,87 @@
 
 /* Vibrant In Focus Container */
 .combined-info-row .infocus-container {
-  background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%) !important;
-  border-radius: 0;
-  box-shadow: 0 8px 25px rgba(0, 99, 174, 0.12) !important;
-  border: 1px solid rgba(0, 99, 174, 0.1);
+  background: #ffffff !important;
+  border-radius: 4px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid #e1e1e1;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  /* Allow badge to overlap */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* padding-bottom: 50px; */
+  /* Space for button */
+  /* padding-top: 25px; */
 }
 
 .combined-info-row .infocus-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 99, 174, 0.2) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
 }
 
-/* .combined-info-row .infocus-container::before {
-  content: '';
+/* Badge Style */
+.infocus-badge {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  background: linear-gradient(90deg, #0063ae 0%, #00c6ff 100%);
-  z-index: 10;
-} */
-
-
-/* "In Focus" Label Specific Animation */
-.combined-info-row .infocus-container .infocus-title {
-  position: relative;
-  display: inline-block;
-  padding: 10px 24px;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: #ff9933;
   /* Theme Orange */
   color: #fff;
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 1.1rem;
   text-transform: uppercase;
-  z-index: 1;
-  box-shadow: 0 4px 12px rgba(230, 126, 0, 0.4);
-  border-radius: 0;
-  margin-top: 0;
+  padding: 8px 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  border-bottom: 2px solid #e68a00;
+  white-space: nowrap;
 }
 
-/* Moving border effect for In Focus label only */
-.combined-info-row .infocus-container .infocus-title::after {
-  content: '';
+/* Section Title */
+.infocus-section-title {
+  color: #003366;
+  /* Dark Navy Blue */
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 0 10px;
+}
+
+/* Map Wrapper */
+.infocus-map-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+/* Learn More Button */
+.infocus-btn {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
-  pointer-events: none;
-  /* 4 Gradients for the 4 sides */
-  background-image:
-    linear-gradient(90deg, #ffffff 50%, transparent 50%),
-    linear-gradient(90deg, #ffffff 50%, transparent 50%),
-    linear-gradient(0deg, #ffffff 50%, transparent 50%),
-    linear-gradient(0deg, #ffffff 50%, transparent 50%);
-
-  background-repeat: no-repeat;
-
-  /* Top, Bottom, Left, Right sizes */
-  background-size:
-    200% 3px,
-    200% 3px,
-    3px 200%,
-    3px 200%;
-
-  /* Initial positions */
-  background-position:
-    0 0,
-    0 100%,
-    0 0,
-    100% 0;
-
-  animation: snakeBorder 3s linear infinite;
+  bottom: 15px;
+  right: 20px;
+  background-color: #0088cc;
+  color: #fff;
+  text-decoration: none;
+  padding: 6px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: background 0.3s ease;
 }
 
-@keyframes snakeBorder {
-  0% {
-    background-position:
-      100% 0,
-      -100% 100%,
-      0 100%,
-      100% -100%;
-  }
-
-  100% {
-    background-position:
-      -100% 0,
-      100% 100%,
-      0 -100%,
-      100% 100%;
-  }
+.infocus-btn:hover {
+  background-color: #006699;
+  color: #fff;
+  text-decoration: none;
 }
+
+/* Moving border effect for In Focus label - REMOVED as requested for clean UI */
+/* .combined-info-row .infocus-container .infocus-title::after { ... } */
+
 
 .about-cbc-column {
   flex: 1 1 45%;
@@ -12802,12 +12788,13 @@ a[href*="/user/password"] {
     left: 100%;
   }
 }
+
 /* -------------------------------------------------------------------- */
 /* FINAL OVERRIDE: TARGET IN FOCUS CARD FLEX STACK (ADDED FIX)          */
 /* -------------------------------------------------------------------- */
 
 /* Force the OUTERMOST In Focus Card to be a flex container */
-.col-lg-3 > .infocus-container {
+.col-lg-3>.infocus-container {
   height: 100% !important;
   display: flex !important;
   flex-direction: column !important;
@@ -12826,7 +12813,7 @@ a[href*="/user/password"] {
 /* Force intermediate Drupal wrappers to grow */
 .infocus-container .region-in-focus .block,
 .infocus-container .region-in-focus .views-element-container,
-.infocus-container .region-in-focus .views-element-container > div,
+.infocus-container .region-in-focus .views-element-container>div,
 .infocus-container .region-in-focus .view,
 .infocus-container .region-in-focus .view-content {
   flex-grow: 1 !important;
