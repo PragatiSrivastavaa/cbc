@@ -102,7 +102,7 @@ function _cbc_security_apply_global_validation(&$elements) {
   foreach (\Drupal\Core\Render\Element::children($elements) as $key) {
     if (isset($elements[$key]['#type'])) {
       $element_title = isset($elements[$key]['#title']) ? (string) $elements[$key]['#title'] : '';
-      $exclude_patterns = '/url|path|alias|link|href|mail|contact|phone|mobile|number|token|file|media|captcha|src/i';
+      $exclude_patterns = '/url|path|alias|link|href|mail|contact|phone|mobile|number|token|file|media|captcha|weight/i';
       $is_excluded = preg_match($exclude_patterns, (string)$key) || preg_match($exclude_patterns, $element_title);
       
       if (in_array($elements[$key]['#type'], ['textfield', 'textarea', 'email', 'tel'])) {
