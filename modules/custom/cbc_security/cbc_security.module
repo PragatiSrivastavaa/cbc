@@ -119,13 +119,14 @@ function _cbc_security_apply_global_validation(&$elements) {
 }
 
 /**
- * Validator: Only A-Z and spaces.
+ * Validator: Only A-Z, spaces, and slashes.
  */
 function cbc_security_validate_alpha_only(&$element, FormStateInterface $form_state) {
   $value = $element['#value'];
   if (!empty($value) && is_string($value)) {
-    if (preg_match('/[^a-zA-Z\s]/', $value)) {
-      $form_state->setError($element, t('The %field field can only contain letters (a-z) and spaces.', ['%field' => $element['#title'] ?? $element['#name']]));
+    // Allow letters, spaces, and forward slashes.
+    if (preg_match('/[^a-zA-Z\s\/]/', $value)) {
+      $form_state->setError($element, t('The %field field can only contain letters (a-z), spaces, and slashes (/).', ['%field' => $element['#title'] ?? $element['#name']]));
     }
   }
 }
