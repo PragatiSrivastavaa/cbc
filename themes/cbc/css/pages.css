@@ -15821,6 +15821,15 @@ th.text-center {
   color: #ffffff;
 }
 
+.lsi-program-header-orange {
+  background: linear-gradient(135deg, #FF9800 0%, #e6c666 100%);
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #ffffff;
+}
+
 .lsi-program-icon {
   width: 70px;
   height: 70px;
@@ -15930,8 +15939,22 @@ th.text-center {
   box-shadow: 0 4px 15px rgba(0, 99, 174, 0.3);
 }
 
+.lsi-report-btn-orange {
+  background: linear-gradient(135deg, #FF9800 0%, #e6c666 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 99, 174, 0.3);
+}
+
 .lsi-report-btn:hover {
   background: linear-gradient(135deg, #0099ff 0%, #0063ae 100%);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 99, 174, 0.4);
+  text-decoration: none;
+}
+
+.lsi-report-btn-orange:hover {
+  background: linear-gradient(135deg, #e6c666 0%, #FF9800 100%);
   color: #ffffff;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 99, 174, 0.4);
@@ -16170,4 +16193,571 @@ th.text-center {
 .nav-pills .nav-link {
   font-size: 1.1rem !important;
   font-weight: 500;
+}
+
+/* ========================================
+   Faculty Development Programme Styles
+   ======================================== */
+
+/* Full-width Section with Multi-Gradient Background */
+.karmayogi-section-fullwidth {
+  width: 100%;
+  padding: 60px 0;
+  position: relative;
+  overflow: visible;
+}
+
+/* Section Background Themes - Alternating Pattern */
+.karmayogi-fdp-vision-section {
+  background: linear-gradient(180deg, #ffe3ab 0%, rgba(255, 227, 171, 0.95) 15%, rgba(255, 235, 200, 0.85) 30%, rgba(255, 240, 210, 0.7) 45%, rgba(255, 245, 230, 0.5) 60%, rgba(255, 248, 240, 0.3) 75%, rgba(255, 250, 245, 0.15) 85%, #ffffff 100%);
+  position: relative;
+}
+
+.karmayogi-fdp-ideation-section {
+  background: #ffffff;
+}
+
+.karmayogi-fdp-intervention-section {
+  background: linear-gradient(180deg, #ffe3ab 0%, rgba(255, 227, 171, 0.95) 15%, rgba(255, 235, 200, 0.85) 30%, rgba(255, 240, 210, 0.7) 45%, rgba(255, 245, 230, 0.5) 60%, rgba(255, 248, 240, 0.3) 75%, rgba(255, 250, 245, 0.15) 85%, #ffffff 100%);
+  position: relative;
+}
+
+.karmayogi-fdp-learnings-section {
+  background: #ffffff;
+}
+
+.karmayogi-fdp-elements-section {
+  background: linear-gradient(180deg, #ffe3ab 0%, rgba(255, 227, 171, 0.95) 15%, rgba(255, 235, 200, 0.85) 30%, rgba(255, 240, 210, 0.7) 45%, rgba(255, 245, 230, 0.5) 60%, rgba(255, 248, 240, 0.3) 75%, rgba(255, 250, 245, 0.15) 85%, #ffffff 100%);
+  position: relative;
+}
+
+.karmayogi-section-fullwidth .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Section Titles */
+.karmayogi-section-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #003b73;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+.karmayogi-section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #0063ae 0%, #ff9933 100%);
+  border-radius: 2px;
+}
+
+.karmayogi-section-title i {
+  color: #ff9933;
+  font-size: 2rem;
+  margin-right: 15px;
+  animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Large Text Paragraphs */
+.karmayogi-text-large {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+/* Feature Block */
+.karmayogi-feature-block {
+  background: #ffffff;
+  border-left: 5px solid #0063ae;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  margin-top: 25px;
+}
+
+.karmayogi-feature-block:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.karmayogi-feature-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #003b73;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.karmayogi-feature-title i {
+  color: #28a745;
+  margin-right: 10px;
+  font-size: 1.4rem;
+}
+
+.karmayogi-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.karmayogi-feature-list li {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #34495e;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: flex-start;
+  transition: all 0.3s ease;
+}
+
+.karmayogi-feature-list li:hover {
+  transform: translateX(8px);
+  color: #0063ae;
+}
+
+.karmayogi-feature-list li i {
+  color: #ff9933;
+  margin-right: 12px;
+  margin-top: 4px;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+/* Phase Cards */
+.karmayogi-phase-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 35px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  height: 100%;
+  border: 2px solid transparent;
+}
+
+.karmayogi-phase-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #0063ae 0%, #00a8e8 100%);
+  transition: height 0.3s ease;
+}
+
+.karmayogi-phase-card-primary::before {
+  background: linear-gradient(90deg, #0063ae 0%, #00a8e8 100%);
+}
+
+.karmayogi-phase-card-success::before {
+  background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+}
+
+.karmayogi-phase-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  border-color: #0063ae;
+}
+
+.karmayogi-phase-card-success:hover {
+  border-color: #28a745;
+}
+
+.karmayogi-phase-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #0063ae 0%, #004b88 100%);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  box-shadow: 0 3px 10px rgba(0, 99, 174, 0.3);
+}
+
+.karmayogi-phase-badge-success {
+  background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+  box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3);
+}
+
+.karmayogi-phase-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #003b73;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.karmayogi-phase-title i {
+  color: #ff9933;
+  margin-right: 10px;
+  font-size: 1.5rem;
+}
+
+.karmayogi-phase-duration {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0063ae;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.karmayogi-phase-duration i {
+  color: #ff9933;
+  margin-right: 8px;
+}
+
+.karmayogi-phase-description {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #495057;
+}
+
+/* Learning Cards */
+.karmayogi-learning-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 35px 25px;
+  text-align: center;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.karmayogi-learning-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 99, 174, 0.03) 0%, rgba(255, 153, 51, 0.03) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.karmayogi-learning-card:hover::before {
+  opacity: 1;
+}
+
+.karmayogi-learning-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.karmayogi-learning-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, #0063ae 0%, #00a8e8 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 15px rgba(0, 99, 174, 0.3);
+  transition: all 0.3s ease;
+}
+
+.karmayogi-learning-card:hover .karmayogi-learning-icon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 8px 25px rgba(0, 99, 174, 0.4);
+}
+
+.karmayogi-learning-icon i {
+  font-size: 2.2rem;
+  color: #ffffff;
+}
+
+.karmayogi-learning-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #003b73;
+  margin-bottom: 15px;
+}
+
+.karmayogi-learning-text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #495057;
+}
+
+/* Requirements Card */
+.karmayogi-requirements-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 2px solid #0063ae;
+  border-radius: 12px;
+  padding: 35px;
+  box-shadow: 0 6px 20px rgba(0, 99, 174, 0.1);
+  transition: all 0.3s ease;
+}
+
+.karmayogi-requirements-card:hover {
+  box-shadow: 0 10px 30px rgba(0, 99, 174, 0.2);
+  transform: translateY(-3px);
+}
+
+.karmayogi-requirements-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #003b73;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.karmayogi-requirements-title i {
+  color: #ffc107;
+  margin-right: 10px;
+  font-size: 1.5rem;
+}
+
+.karmayogi-requirements-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #2c3e50;
+  text-align: justify;
+}
+
+/* Topics Card */
+.karmayogi-topics-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border: 2px solid #28a745;
+  border-radius: 12px;
+  padding: 35px;
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.1);
+  transition: all 0.3s ease;
+}
+
+.karmayogi-topics-card:hover {
+  box-shadow: 0 10px 30px rgba(40, 167, 69, 0.2);
+  transform: translateY(-3px);
+}
+
+.karmayogi-topics-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #003b73;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.karmayogi-topics-title i {
+  color: #28a745;
+  margin-right: 10px;
+  font-size: 1.5rem;
+}
+
+.karmayogi-topic-item {
+  background: #ffffff;
+  border-left: 4px solid #ff9933;
+  border-radius: 8px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.karmayogi-topic-item:hover {
+  transform: translateX(8px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-left-color: #0063ae;
+}
+
+.karmayogi-topic-item i {
+  color: #0063ae;
+  font-size: 1.8rem;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.karmayogi-topic-item span {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+/* Responsive Styles for Faculty Development */
+@media (max-width: 1200px) {
+  .karmayogi-section-title {
+    font-size: 2rem;
+  }
+
+  .karmayogi-phase-title,
+  .karmayogi-requirements-title,
+  .karmayogi-topics-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .karmayogi-section-fullwidth {
+    padding: 60px 0;
+  }
+
+  .karmayogi-section-fullwidth .container {
+    padding: 0 30px;
+  }
+
+  .karmayogi-section-title {
+    font-size: 1.8rem;
+  }
+
+  .karmayogi-text-large {
+    font-size: 1.1rem;
+  }
+
+  .karmayogi-phase-card,
+  .karmayogi-learning-card {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .karmayogi-section-fullwidth {
+    padding: 40px 0;
+  }
+
+  .karmayogi-section-fullwidth .container {
+    padding: 0 20px;
+  }
+
+  .karmayogi-section-title {
+    font-size: 1.6rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .karmayogi-section-title i {
+    margin-bottom: 10px;
+  }
+
+  .karmayogi-text-large {
+    font-size: 1.05rem;
+    text-align: left;
+  }
+
+  .karmayogi-feature-block,
+  .karmayogi-phase-card,
+  .karmayogi-requirements-card,
+  .karmayogi-topics-card {
+    padding: 25px;
+  }
+
+  .karmayogi-phase-title,
+  .karmayogi-learning-title,
+  .karmayogi-requirements-title,
+  .karmayogi-topics-title {
+    font-size: 1.3rem;
+  }
+
+  .karmayogi-topic-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .karmayogi-topic-item i {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .karmayogi-section-fullwidth .container {
+    padding: 0 15px;
+  }
+
+  .karmayogi-section-title {
+    font-size: 1.4rem;
+  }
+
+  .karmayogi-text-large {
+    font-size: 1rem;
+  }
+
+  .karmayogi-feature-list li,
+  .karmayogi-phase-description,
+  .karmayogi-learning-text,
+  .karmayogi-requirements-text,
+  .karmayogi-topic-item span {
+    font-size: 0.95rem;
+  }
+
+  .karmayogi-learning-icon {
+    width: 65px;
+    height: 65px;
+  }
+
+  .karmayogi-learning-icon i {
+    font-size: 1.8rem;
+  }
+}
+
+/* Large Desktop Enhancements (1920px and above) */
+@media (min-width: 1920px) {
+  .karmayogi-section-title {
+    font-size: 2.6rem;
+  }
+
+  .karmayogi-text-large {
+    font-size: 1.3rem;
+  }
+
+  .karmayogi-phase-title,
+  .karmayogi-requirements-title,
+  .karmayogi-topics-title {
+    font-size: 1.8rem;
+  }
+
+  .karmayogi-feature-list li,
+  .karmayogi-phase-description,
+  .karmayogi-learning-text,
+  .karmayogi-requirements-text,
+  .karmayogi-topic-item span {
+    font-size: 1.2rem;
+  }
 }
