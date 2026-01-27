@@ -454,6 +454,82 @@
   }
 }
 
+/* Enhanced font sizes for large desktop screens (1920px and above) */
+@media (min-width: 1920px) {
+  .alert-label {
+    font-size: clamp(1.4rem, 2vw + 1rem, 2.8rem);
+    gap: 12px;
+  }
+
+  .alert-label i {
+    font-size: 1.5rem;
+  }
+
+  .alert-item {
+    font-size: 1.4rem;
+    gap: 14px;
+    padding: 0 20px;
+  }
+
+  .alert-control-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+
+  .alert-control-btn i {
+    font-size: 1rem;
+  }
+
+  .alert-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .alert-bar-content {
+    padding: 14px 20px;
+  }
+}
+
+/* Ultra-wide screens (2560px and above) */
+@media (min-width: 2560px) {
+  .alert-label {
+    font-size: clamp(1.6rem, 2vw + 1.2rem, 3rem);
+    gap: 14px;
+  }
+
+  .alert-label i {
+    font-size: 1.7rem;
+  }
+
+  .alert-item {
+    font-size: 1.6rem;
+    gap: 16px;
+    padding: 0 24px;
+  }
+
+  .alert-control-btn {
+    width: 42px;
+    height: 42px;
+    font-size: 1.1rem;
+  }
+
+  .alert-control-btn i {
+    font-size: 1.1rem;
+  }
+
+  .alert-dot {
+    width: 12px;
+    height: 12px;
+  }
+
+  .alert-bar-content {
+    padding: 16px 24px;
+  }
+}
+
+
+
 
 
 /* --------------------------------------counting section ---------------------------------------*/
@@ -640,6 +716,42 @@
   z-index: 10;
   border-bottom: 2px solid #e68a00;
   white-space: nowrap;
+  overflow: visible;
+}
+
+/* Animated loader border effect - ONLY around the orange badge */
+.infocus-badge::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: conic-gradient(from 0deg,
+      transparent 0%,
+      transparent 70%,
+      rgba(255, 255, 255, 0.9) 80%,
+      rgba(255, 255, 255, 1) 85%,
+      rgba(255, 255, 255, 0.9) 90%,
+      transparent 100%);
+  z-index: -1;
+  animation: rotateBorder 2s linear infinite;
+  border-radius: 2px;
+}
+
+/* Keyframes for rotating the white border */
+@keyframes rotateBorder {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.infocus-badge:hover::before {
+  animation-duration: 1.5s;
 }
 
 /* Section Title */
@@ -3244,8 +3356,93 @@
   width: 100%;
   justify-content: center;
   padding: 5px 16px;
-  background: #ff6600;
+  background: transparent;
   border-radius: 0;
+  position: relative;
+  overflow: visible;
+}
+
+
+
+/* Keyframes for each border animation */
+@keyframes borderTop {
+
+  0%,
+  100% {
+    left: 0;
+    width: 0;
+  }
+
+  25% {
+    left: 0;
+    width: 100%;
+  }
+
+  26%,
+  100% {
+    left: 100%;
+    width: 0;
+  }
+}
+
+@keyframes borderRight {
+
+  0%,
+  100% {
+    top: 0;
+    height: 0;
+  }
+
+  25% {
+    top: 0;
+    height: 100%;
+  }
+
+  26%,
+  100% {
+    top: 100%;
+    height: 0;
+  }
+}
+
+@keyframes borderBottom {
+
+  0%,
+  100% {
+    right: 0;
+    width: 0;
+  }
+
+  25% {
+    right: 0;
+    width: 100%;
+  }
+
+  26%,
+  100% {
+    right: 100%;
+    width: 0;
+  }
+}
+
+@keyframes borderLeft {
+
+  0%,
+  100% {
+    bottom: 0;
+    height: 0;
+  }
+
+  25% {
+    bottom: 0;
+    height: 100%;
+  }
+
+  26%,
+  100% {
+    bottom: 100%;
+    height: 0;
+  }
 }
 
 .infocus-container.animate-in .infocus-title-wrapper {
@@ -3341,16 +3538,56 @@ h2.infocus-heading {
   transform: scale(1);
   mix-blend-mode: normal;
   max-width: 350px;
-  overflow: hidden;
+  overflow: visible;
   box-sizing: border-box;
-  background: transparent;
+  background: #ff6600;
   gap: 12px;
   animation: none;
 }
 
-/* Blinking red dot for IN FOCUS title */
-.infocus-title .blink-dot {
+.infocus-title::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  border: 4px solid #ffffff;
+  animation: dramaticBorder 2s ease-in-out infinite;
+  z-index: 25;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+@keyframes dramaticBorder {
+
+  0%,
+  100% {
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow:
+      inset 0 0 5px rgba(255, 255, 255, 0.3),
+      0 0 5px rgba(255, 255, 255, 0.3);
+    transform: scale(1);
+  }
+
+  50% {
+    border-width: 4px;
+    border-color: rgba(255, 255, 255, 1);
+    box-shadow:
+      inset 0 0 15px rgba(255, 255, 255, 0.8),
+      0 0 15px rgba(255, 255, 255, 0.8);
+    transform: scale(0.98);
+  }
+}
+
+/* Hide unused pseudo-elements */
+.infocus-title::after {
   display: none;
+}
+
+.infocus-title .blink-dot {
+  display: none !important;
 }
 
 .typing-text {
