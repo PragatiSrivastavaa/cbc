@@ -1054,6 +1054,21 @@ display:
     display_plugin: block
     position: 2
     display_options:
+      sorts:
+        field_end_date_value:
+          id: field_end_date_value
+          table: node__field_end_date
+          field: field_end_date_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: datetime
+          order: DESC
+          expose:
+            label: 'End date (field_end_date)'
+            field_identifier: field_end_date_value
+          exposed: false
+          granularity: second
       filters:
         status:
           id: status
@@ -1126,6 +1141,7 @@ display:
         groups:
           1: AND
       defaults:
+        sorts: false
         filters: false
         filter_groups: false
       display_extenders: {  }
