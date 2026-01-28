@@ -12,9 +12,12 @@ dependencies:
     - node.type.our_team
     - taxonomy.vocabulary.designation
   content:
+    - 'taxonomy_term:designation:27b2dc7f-c109-4733-aa34-09837b30fa85'
     - 'taxonomy_term:designation:b3e91a42-f8e6-4871-9bcd-4c66297e558a'
     - 'taxonomy_term:designation:c008965c-fa3c-4fe1-b488-4ddf1d1c206c'
     - 'taxonomy_term:designation:d19b3c2e-cb3f-484e-99e0-e78d4d56bfd5'
+    - 'taxonomy_term:designation:dd55c706-b193-48df-8246-222bf522c1a5'
+    - 'taxonomy_term:designation:f2038636-a01a-421a-ab09-ce79896d1f41'
   module:
     - image
     - node
@@ -712,6 +715,10 @@ display:
     display_plugin: block
     position: 2
     display_options:
+      pager:
+        type: none
+        options:
+          offset: 0
       sorts:
         field_sequence_no_value:
           id: field_sequence_no_value
@@ -757,9 +764,12 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
+            44: 44
             37: 37
             42: 42
-            44: 44
+            45: 45
+            41: 41
+            43: 43
           group: 1
           exposed: false
           expose:
@@ -800,6 +810,7 @@ display:
         groups:
           1: AND
       defaults:
+        pager: false
         sorts: false
         filters: false
         filter_groups: false
@@ -859,9 +870,12 @@ display:
           plugin_id: taxonomy_index_tid
           operator: not
           value:
+            44: 44
             37: 37
             42: 42
-            44: 44
+            45: 45
+            41: 41
+            43: 43
           group: 1
           exposed: false
           expose:
