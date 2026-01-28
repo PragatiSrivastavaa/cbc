@@ -1,0 +1,63 @@
+<!-- Video Gallery Section - Right -->
+ 
+            <div class="youtube-section p-3 rounded-4 socil-bg position-relative h-100">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="social-heading d-flex align-items-center gap-2 mb-0">
+                  <i class="fa-regular fa-circle-play text-info"></i> Video Gallery
+                </h3>
+                <div class="d-flex align-items-center gap-3">
+                  <div class="carousel-controls d-flex gap-2">
+                    <button class="youtube-prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="youtube-next"><i class="fas fa-chevron-right"></i></button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="youtube-carousel-wrapper position-relative">
+                <div class="youtube-carousel d-flex" id="youtubeCarousel">
+
+        {% for row in rows %}
+          {% set node = row.content['#row']._entity %}
+          {% set tokens = row.content['#view'].style_plugin.render_tokens[loop.index0] %}
+          {% set video_url = '' %}
+
+          {# Get video file #}
+          {% if node.field_video.entity is not empty %}
+            {% set media = node.field_video.entity %}
+            {% if media.field_media_video_file.entity is not empty %}
+              {% set file = media.field_media_video_file.entity %}
+              {% set video_url = file_url(file.uri.value) %}
+            {% endif %}
+          {% endif %}
+
+          <div class="youtube-card high-contrast-border flex-shrink-0 w-100">
+
+            <div class="video-container">
+              {% if video_url %}
+                <video class="w-100 rounded-3" controls muted preload="metadata">
+                  <source src="{{ video_url }}" type="video/mp4">
+                </video>
+              {% endif %}
+            </div>
+
+            <div class="video-caption">
+              <h4 class="video-title">{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ title }}'] }}</h4>
+              <p class="video-description">{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ field_event_description }}'] }}</p>
+            </div>
+
+          </div>
+
+        {% endfor %}
+
+      </div>
+    </div>
+
+    <div class="video-gallery-footer text-end">
+      <a href="/video-gallery" class="view-all-videos-btn">
+        View All Videos <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+
+  </div>
+
+<!-- End of Video Gallery Section - Right -->
