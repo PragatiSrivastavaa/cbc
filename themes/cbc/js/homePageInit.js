@@ -342,7 +342,7 @@ function initializeBlogSection() {
 
   if (!track || !nextBtn || !prevBtn) return;
 
-  const cards = track.querySelectorAll(".blog-card");
+  const cards = track.querySelectorAll(".home-opinion-card");
   if (!cards.length) return;
 
   const cardWidth = cards[0].offsetWidth + 15 || 320;
