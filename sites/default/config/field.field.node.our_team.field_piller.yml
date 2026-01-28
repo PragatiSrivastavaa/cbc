@@ -1,0 +1,21 @@
+uuid: f6661e49-71cb-4365-ac8c-f03121d23949
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_piller
+    - node.type.our_team
+id: node.our_team.field_piller
+field_name: field_piller
+entity_type: node
+bundle: our_team
+label: Piller
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

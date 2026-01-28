@@ -1,6 +1,6 @@
 uuid: bb23dee2-211c-483d-a3be-bbc337dd4625
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - views.view.testimonials
@@ -10,7 +10,7 @@ dependencies:
     - cbc
 id: cbc_views_block__testimonials_block_1
 theme: cbc
-region: testimonials_section
+region: header
 weight: 0
 provider: null
 plugin: 'views_block:testimonials-block_1'

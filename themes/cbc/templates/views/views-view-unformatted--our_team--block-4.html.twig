@@ -1,0 +1,29 @@
+<div class="container">  
+ <!-- Contact Information Section -->
+            <div class="row mb-5">
+              <div class="col-12">
+                 <div class="team-category">
+                  <h3 class="team-category-title mb-4">Other Officers of CBC</h3>
+                  <div class="row g-4">
+                    {% for row in rows %}
+              {% set entity = row.content['#row']._entity %}
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                      <div class="team-member-card no-overlay-card contact-info-card">
+                        <div class="team-member-info">
+						<h6 class="team-member-name">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_piller_content }}'] }}</h6>
+                          <h4 class="team-member-name">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h4>
+						   
+                          <p class="team-member-role">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_team_members }}'] }}</p>
+                          <div class="contact-details">
+                            <p class="contact-item"><i class="fas fa-phone"></i>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_phone }}'] }}</p>
+                            <p class="contact-item"><i class="fas fa-envelope"></i> {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_email }}'] }}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div> 

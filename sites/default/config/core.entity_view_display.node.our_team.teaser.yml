@@ -9,7 +9,10 @@ dependencies:
     - field.field.node.our_team.field_event_description
     - field.field.node.our_team.field_image
     - field.field.node.our_team.field_linkedin_link
+    - field.field.node.our_team.field_others
     - field.field.node.our_team.field_phone
+    - field.field.node.our_team.field_piller
+    - field.field.node.our_team.field_piller_content
     - field.field.node.our_team.field_sequence_no
     - field.field.node.our_team.field_team_members
     - image.style.medium
@@ -43,7 +46,10 @@ hidden:
   field_email: true
   field_event_description: true
   field_linkedin_link: true
+  field_others: true
   field_phone: true
+  field_piller: true
+  field_piller_content: true
   field_sequence_no: true
   field_team_members: true
   langcode: true

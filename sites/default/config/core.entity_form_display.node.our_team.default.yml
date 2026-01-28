@@ -8,7 +8,10 @@ dependencies:
     - field.field.node.our_team.field_event_description
     - field.field.node.our_team.field_image
     - field.field.node.our_team.field_linkedin_link
+    - field.field.node.our_team.field_others
     - field.field.node.our_team.field_phone
+    - field.field.node.our_team.field_piller
+    - field.field.node.our_team.field_piller_content
     - field.field.node.our_team.field_sequence_no
     - field.field.node.our_team.field_team_members
     - image.style.thumbnail
@@ -71,9 +74,31 @@ content:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
+  field_others:
+    type: boolean_checkbox
+    weight: 132
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_phone:
     type: string_textfield
     weight: 128
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_piller:
+    type: boolean_checkbox
+    weight: 130
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_piller_content:
+    type: string_textfield
+    weight: 131
     region: content
     settings:
       size: 60

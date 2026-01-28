@@ -1,0 +1,29 @@
+uuid: 530c3961-0bd4-4073-bd29-19708e0e3bd8
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.our_team
+  module:
+    - system
+    - views
+  theme:
+    - cbc
+id: cbc_views_block__our_team_block_4
+theme: cbc
+region: content
+weight: -19
+provider: null
+plugin: 'views_block:our_team-block_4'
+settings:
+  id: 'views_block:our_team-block_4'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /team-cbc

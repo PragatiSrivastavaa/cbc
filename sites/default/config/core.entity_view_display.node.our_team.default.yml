@@ -8,7 +8,10 @@ dependencies:
     - field.field.node.our_team.field_event_description
     - field.field.node.our_team.field_image
     - field.field.node.our_team.field_linkedin_link
+    - field.field.node.our_team.field_others
     - field.field.node.our_team.field_phone
+    - field.field.node.our_team.field_piller
+    - field.field.node.our_team.field_piller_content
     - field.field.node.our_team.field_sequence_no
     - field.field.node.our_team.field_team_members
     - image.style.wide
@@ -68,6 +71,16 @@ content:
     third_party_settings: {  }
     weight: 103
     region: content
+  field_others:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 112
+    region: content
   field_phone:
     type: string
     label: above
@@ -75,6 +88,24 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 108
+    region: content
+  field_piller:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 110
+    region: content
+  field_piller_content:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 111
     region: content
   field_sequence_no:
     type: number_integer

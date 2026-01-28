@@ -12,7 +12,7 @@ dependencies:
 id: cbc_views_block__our_team_block_3
 theme: cbc
 region: content
-weight: 0
+weight: -21
 provider: null
 plugin: 'views_block:our_team-block_3'
 settings:

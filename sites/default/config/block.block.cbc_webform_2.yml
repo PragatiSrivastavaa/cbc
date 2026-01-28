@@ -12,7 +12,7 @@ dependencies:
 id: cbc_webform_2
 theme: cbc
 region: content
-weight: -21
+weight: -25
 provider: null
 plugin: webform_block
 settings:

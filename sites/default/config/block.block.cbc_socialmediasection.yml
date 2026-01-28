@@ -13,7 +13,7 @@ dependencies:
 id: cbc_socialmediasection
 theme: cbc
 region: content
-weight: -20
+weight: -24
 provider: null
 plugin: 'block_content:b484d3ea-bc9c-4033-ba40-a3981dac6cd0'
 settings:

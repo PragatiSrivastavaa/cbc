@@ -12,7 +12,7 @@ dependencies:
 id: cbc_views_block__photo_gallery_block_2
 theme: cbc
 region: content
-weight: 0
+weight: -18
 provider: null
 plugin: 'views_block:photo_gallery-block_2'
 settings:
