@@ -22,9 +22,13 @@
               {% set entity = row.content['#row']._entity %}
                     <div class="col-lg-4 col-md-4 col-sm-6">
                       <div class="team-member-card no-overlay-card">
+					  {% if entity.field_image is not empty %}
+
                         <div class="team-member-image">
+						
                           {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}
                         </div>
+						{% endif %}
                         <div class="team-member-info">
                           <h4 class="team-member-name">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h4>
                           <p class="team-member-role">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_team_members }}'] }}</p>
