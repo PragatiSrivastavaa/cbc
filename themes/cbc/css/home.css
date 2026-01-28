@@ -13425,3 +13425,106 @@ a[href*="/user/password"] {
   height: 100% !important;
   min-height: 0 !important;
 }
+
+/* Circular Opinion Cards for Home Page - Isolated Styles (Ignore Equal Height Fixes) */
+.home-opinion-card {
+  flex: 0 0 calc(25% - 15px) !important;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e0e0e0;
+  padding: 0;
+  transition: all 0.3s ease;
+  text-align: center;
+  overflow: hidden;
+  display: flex !important;
+  flex-direction: column !important;
+  height: auto !important;
+  /* Explicitly ignore equal height force */
+  min-height: 0 !important;
+  min-width: 300px;
+}
+
+.home-opinion-card-content {
+  flex-grow: 0 !important;
+  /* Prevent stretching */
+  flex-shrink: 0 !important;
+  margin: 5px 15px !important;
+  height: auto !important;
+}
+
+.home-opinion-card-content p:empty {
+  display: none !important;
+}
+
+.home-opinion-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  border-color: #0063ae;
+}
+
+.home-opinion-card img {
+  width: 120px !important;
+  height: 120px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  object-position: top center !important;
+  display: block !important;
+  margin: 20px auto 12px !important;
+  border: 3px solid #e0e0e0 !important;
+  background: #f5f5f5 !important;
+  transition: all 0.3s ease !important;
+}
+
+.home-opinion-card:hover img {
+  border-color: #0063ae !important;
+  transform: scale(1.05) !important;
+}
+
+.home-opinion-card h3 {
+  font-size: 1.1rem !important;
+  color: #003b73 !important;
+  margin: 0 !important;
+  padding: 0 1.25rem 0.25rem !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 2 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  text-align: center !important;
+}
+
+.home-opinion-card p {
+  font-size: 1.05rem !important;
+  color: #555 !important;
+  margin: 0px 0.7rem 0.7rem !important;
+  padding: 0 1.25rem 1.25rem !important;
+  line-height: 1.5 !important;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 3 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  flex: none !important;
+  /* Explicit ignore flex-grow */
+  text-align: center !important;
+}
+
+.home-opinion-card-link {
+  color: #0063ae !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  padding: 15px 0px !important;
+  margin-top: auto !important;
+  display: inline-block !important;
+  transition: all 0.3s ease !important;
+  text-align: center !important;
+  border-top: 1px solid #e9ecef !important;
+}
+
+.home-opinion-card-link:hover {
+  color: #004d99 !important;
+}

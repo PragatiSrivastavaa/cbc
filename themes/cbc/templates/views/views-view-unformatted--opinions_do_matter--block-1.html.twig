@@ -4,13 +4,13 @@
   <div class="carousel-track" id="opinionCarouselTrack" style="flex: 1; min-width: 0;">
     {% for row in rows %}
       {% set entity = row.content['#row']._entity %}
-      <div class="blog-card">
+      <div class="home-opinion-card">
         {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}
-        <div class="blog-card-content">
+        <div class="home-opinion-card-content">
           <h3>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
-          <p>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}'] }}</p>
+          {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}'] }}
         </div>
-        <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}" class="opinion-card-link">Read More →</a>
+        <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}" class="home-opinion-card-link">Read More →</a>
       </div>
     {% endfor %}
   </div>
