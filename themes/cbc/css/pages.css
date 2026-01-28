@@ -5741,15 +5741,15 @@ ul.navbar-nav.nav-rounded {
 }
 
 .karmayogi-content-wrapper p {
-  font-size: 1.1rem;
+  font-size: 1rem;
   /* Increased for better readability */
-  line-height: 1.8;
+  line-height: 1.5;
   color: #333;
   margin-bottom: 1.25rem;
 }
 
 .karmayogi-text-large {
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.8;
   color: #2d3748;
   margin-bottom: 20px;
@@ -8314,6 +8314,40 @@ h1.page-hero-title {
 .contact-link:hover {
   color: #ffa500;
   text-decoration: underline;
+}
+
+/* New Team Button Styling */
+.contact-btn-wrapper {
+  margin-top: 25px;
+}
+
+.contact-team-btn {
+  display: inline-block;
+  padding: 12px 32px;
+  background: linear-gradient(135deg, #0063ae, #ffa500);
+  color: #fff !important;
+  font-weight: 700;
+  border-radius: 50px;
+  text-decoration: none !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 15px rgba(0, 99, 174, 0.2);
+  border: none;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.contact-team-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 99, 174, 0.3);
+  background: linear-gradient(135deg, #ffa500, #0063ae);
+}
+
+.contact-team-btn i {
+  transition: transform 0.3s ease;
+}
+
+.contact-team-btn:hover i {
+  transform: translateX(8px);
 }
 
 /* Document Section Header */
@@ -15000,7 +15034,8 @@ li {
 
 .opinion-card-image {
   width: 100%;
-  height: 280px;
+  aspect-ratio: 16/16;
+  height: auto;
   overflow: hidden;
   background: #f8f9fa;
   flex-shrink: 0;
@@ -16285,7 +16320,7 @@ th.text-center {
 
 /* Large Text Paragraphs */
 .karmayogi-text-large {
-  font-size: 1.15rem;
+  font-size: 1rem;
   line-height: 1.8;
   color: #2c3e50;
   margin-bottom: 20px;
@@ -16445,7 +16480,7 @@ th.text-center {
 }
 
 .karmayogi-phase-description {
-  font-size: 1.05rem;
+  font-size: 1rem;
   line-height: 1.7;
   color: #495057;
 }
@@ -16553,8 +16588,8 @@ th.text-center {
 }
 
 .karmayogi-requirements-text {
-  font-size: 1.1rem;
-  line-height: 1.8;
+  font-size: 1rem;
+  line-height: 1.5;
   color: #2c3e50;
   text-align: justify;
 }
@@ -16649,7 +16684,7 @@ th.text-center {
   }
 
   .karmayogi-text-large {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .karmayogi-phase-card,
@@ -16678,7 +16713,7 @@ th.text-center {
   }
 
   .karmayogi-text-large {
-    font-size: 1.05rem;
+    font-size: 1rem;
     text-align: left;
   }
 
@@ -16744,7 +16779,7 @@ th.text-center {
   }
 
   .karmayogi-text-large {
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
 
   .karmayogi-phase-title,
@@ -16758,6 +16793,6 @@ th.text-center {
   .karmayogi-learning-text,
   .karmayogi-requirements-text,
   .karmayogi-topic-item span {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 }
