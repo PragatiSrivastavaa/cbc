@@ -268,10 +268,33 @@
     </div>
     <!-- opinion section -->
     <section class="cbc-blog-carousel">
-
-      
-       {{ page.option_do_matter }}
-    
+      <div class="opinions-layout-wrapper">
+        <!-- 75% Carousel Section -->
+        <div class="opinions-carousel-section">
+          {{ page.option_do_matter }}
+        </div>
+        
+        <!-- 25% Vertical Testimonials Box -->
+        <div class="opinions-vertical-box">
+          <div class="vertical-testimonials-scroll" id="videoTestimonials">
+            <video class="testimonial-video active" muted playsinline>
+              <source src="/cbc/sites/default/files/testimonial.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <video class="testimonial-video" muted playsinline>
+              <source src="/cbc/sites/default/files/testimonial.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <video class="testimonial-video" muted playsinline>
+              <source src="/cbc/sites/default/files/testimonial.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <button class="video-unmute-btn" id="videoUnmuteBtn" title="Click to unmute">
+            <i class="fas fa-volume-mute"></i>
+          </button>
+        </div>
+      </div>
     
       <!-- See More Button -->
       <div class="blog-footer">
@@ -341,6 +364,9 @@
 
   <!-- LinkedIn Widget Script -->
   <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+
+  <!-- Video Testimonials Auto-Carousel Library -->
+  {{ attach_library('cbc/video-carousel') }}
 
   <!-- Initialize Twitter Widget -->
   <script>

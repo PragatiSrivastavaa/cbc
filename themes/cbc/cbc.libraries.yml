@@ -54,3 +54,9 @@ know-your-cbc:
     js/know-your-cbc.js: {}
   dependencies:
     - core/drupal
+
+video-carousel:
+  js:
+    js/video-carousel.js: {}
+  dependencies:
+    - core/drupal
