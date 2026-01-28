@@ -22,6 +22,16 @@
 
       {% for row in rows %}
         {% set node = row.content['#row']._entity %}
+        {% set entity = row.content['#row']._entity %}
+                   {% set link_item = entity.field_link.0 %}
+
+                {% if link_item %}
+                  {# Convert internal/external link to usable URL #}
+                  {% set link = link_item.url %}
+                {% else %}
+                  {# If linked field is empty, link to node page #}
+                  {% set link = path('entity.node.canonical', {'node': entity.id()}) %}
+                {% endif %}
 
         {% if node.field_category is not empty
           and node.field_category.entity.label() == "What's New" %}
@@ -42,7 +52,7 @@
             {% endif %}
 
             <div class="news-banner-content">
-              <a href="{{ path('entity.node.canonical', {'node': node.id()}) }}">
+              <a href="{{ link }}" target="_blank" rel="noopener noreferrer">
                 <p>{{ node.label }}</p>
               </a>
             </div>
