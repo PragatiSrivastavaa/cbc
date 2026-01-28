@@ -14,9 +14,11 @@ dependencies:
     - taxonomy.vocabulary.designation
   content:
     - 'taxonomy_term:designation:27b2dc7f-c109-4733-aa34-09837b30fa85'
+    - 'taxonomy_term:designation:6ebecb04-b4d1-484e-94fa-899585a9cf9a'
     - 'taxonomy_term:designation:b3e91a42-f8e6-4871-9bcd-4c66297e558a'
     - 'taxonomy_term:designation:c008965c-fa3c-4fe1-b488-4ddf1d1c206c'
     - 'taxonomy_term:designation:d19b3c2e-cb3f-484e-99e0-e78d4d56bfd5'
+    - 'taxonomy_term:designation:d484a9a3-c72f-4de9-83f3-72db630f9fb1'
     - 'taxonomy_term:designation:dd55c706-b193-48df-8246-222bf522c1a5'
     - 'taxonomy_term:designation:f2038636-a01a-421a-ab09-ce79896d1f41'
   module:
@@ -1313,14 +1315,10 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: taxonomy_index_tid
-          operator: not
+          operator: or
           value:
-            44: 44
-            37: 37
-            42: 42
-            45: 45
-            41: 41
-            43: 43
+            47: 47
+            46: 46
           group: 1
           exposed: false
           expose:
