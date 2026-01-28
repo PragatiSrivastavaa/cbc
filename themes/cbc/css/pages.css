@@ -5741,15 +5741,15 @@ ul.navbar-nav.nav-rounded {
 }
 
 .karmayogi-content-wrapper p {
-  font-size: 1.1rem;
+  font-size: 1rem;
   /* Increased for better readability */
-  line-height: 1.8;
+  line-height: 1.5;
   color: #333;
   margin-bottom: 1.25rem;
 }
 
 .karmayogi-text-large {
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.8;
   color: #2d3748;
   margin-bottom: 20px;
@@ -16285,7 +16285,7 @@ th.text-center {
 
 /* Large Text Paragraphs */
 .karmayogi-text-large {
-  font-size: 1.15rem;
+  font-size: 1rem;
   line-height: 1.8;
   color: #2c3e50;
   margin-bottom: 20px;
@@ -16445,7 +16445,7 @@ th.text-center {
 }
 
 .karmayogi-phase-description {
-  font-size: 1.05rem;
+  font-size: 1rem;
   line-height: 1.7;
   color: #495057;
 }
@@ -16553,8 +16553,8 @@ th.text-center {
 }
 
 .karmayogi-requirements-text {
-  font-size: 1.1rem;
-  line-height: 1.8;
+  font-size: 1rem;
+  line-height: 1.5;
   color: #2c3e50;
   text-align: justify;
 }
@@ -16649,7 +16649,7 @@ th.text-center {
   }
 
   .karmayogi-text-large {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .karmayogi-phase-card,
@@ -16678,7 +16678,7 @@ th.text-center {
   }
 
   .karmayogi-text-large {
-    font-size: 1.05rem;
+    font-size: 1rem;
     text-align: left;
   }
 
@@ -16744,7 +16744,7 @@ th.text-center {
   }
 
   .karmayogi-text-large {
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
 
   .karmayogi-phase-title,
@@ -16758,6 +16758,6 @@ th.text-center {
   .karmayogi-learning-text,
   .karmayogi-requirements-text,
   .karmayogi-topic-item span {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 }
