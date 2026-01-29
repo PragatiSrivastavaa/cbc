@@ -17,12 +17,13 @@
             {% endif %}
 
             <div class="team-detail-info">
-              <h1 class="team-detail-name">{{ node.label }}</h1>
-			  {% if node.field_piller_content is defined and not node.field_piller_content.isEmpty() %}
-  <div class="team-detail-piller">
+				  {% if node.field_piller_content is defined and not node.field_piller_content.isEmpty() %}
+  <div class="team-member-name">
     {{ content.field_piller_content }}
   </div>
 {% endif %}
+              <h1 class="team-detail-name">{{ node.label }}</h1>
+		
 
               {% if node.field_team_members.value %}
                 <p class="team-detail-role">
@@ -31,11 +32,14 @@
               {% endif %}
 
               <div class="team-detail-contact">
-                {% if node.field_email.value %}
-                  <div class="contact-item contact-email">
-                    {{ content.field_email }}
-                  </div>
-                {% endif %}
+       {% if node.field_email.value %}
+  <div class="contact-item contact-email">
+    {{ node.field_email.value
+      |replace({'@': '[at]', '.': '[dot]'})
+    }}
+  </div>
+{% endif %}
+
 
                 {% if node.field_phone.value %}
                   <div class="contact-item contact-phone">
