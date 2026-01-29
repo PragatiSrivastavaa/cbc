@@ -8,7 +8,8 @@
          <div class="chairperson-image-wrapper">
            {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}
            <div class="chairperson-overlay">
-             <p>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}'] }}</p>
+             <p>
+             {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}']|striptags|trim }}</p>
              <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}" class="view-more">View More →</a>
              
            </div>
