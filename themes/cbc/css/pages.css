@@ -16833,3 +16833,53 @@ th.text-center {
     font-size: 1rem;
   }
 }
+
+/* PS/PPS Specific Styling */
+.team-member-card.is-ps-pps,
+.chairperson-image-card.is-ps-pps {
+  background: linear-gradient(135deg, #e0f2fe 0%, #7dd3fc 100%) !important;
+  border: 1px solid #0063ae !important;
+  border-left: 6px solid #002b5b !important;
+  box-shadow: 0 4px 15px rgba(0, 99, 174, 0.15) !important;
+}
+
+.team-member-card.is-ps-pps .team-member-info {
+  padding: 10px 15px !important;
+}
+
+.team-member-card.is-ps-pps .team-member-name {
+  font-size: 1.05rem !important;
+  margin-bottom: 2px !important;
+}
+
+.team-member-card.is-ps-pps .team-member-role {
+  font-size: 0.85rem !important;
+  margin-bottom: 8px !important;
+}
+
+.team-member-card.is-ps-pps .contact-details,
+.team-member-card.is-ps-pps .team-member-contact {
+  margin-top: 5px !important;
+}
+
+.team-member-card.is-ps-pps .contact-item,
+.team-member-card.is-ps-pps .team-member-contact {
+  font-size: 0.82rem !important;
+  margin-bottom: 2px !important;
+  gap: 8px !important;
+}
+
+.team-member-card.is-ps-pps .contact-item i,
+.team-member-card.is-ps-pps .team-member-contact i {
+  width: 18px !important;
+  height: 18px !important;
+  font-size: 0.7rem !important;
+}
+
+/* Remove hover top border for PS/PPS cards */
+.team-member-card.is-ps-pps:hover::before,
+.team-contact-card.is-ps-pps:hover::after,
+.chairperson-image-card.is-ps-pps:hover::before {
+  opacity: 0 !important;
+  display: none !important;
+}

@@ -4,23 +4,47 @@
               <div class="col-12">
                  <div class="team-category">
                   <h3 class="team-category-title mb-4">Our Pillars</h3>
-                  <div class="row g-4">
+                  {# Regular Members Row #}
+                  <div class="row g-4 mb-4">
                     {% for row in rows %}
-              {% set entity = row.content['#row']._entity %}
-                    <div class="col-lg-4 col-md-4 col-sm-6">
-                      <div class="team-member-card no-overlay-card contact-info-card">
-                        <div class="team-member-info">
-						 <h3 class="team-member-name">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_piller_content }}'] }}</h3>
-                          <h4 class="team-member-name">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h4>
-						  
-                          <p class="team-member-role">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_team_members }}'] }}</p>
-                          <div class="contact-details">
-                            <p class="contact-item"><i class="fas fa-phone"></i>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_phone }}'] }}</p>
-                            <p class="contact-item"><i class="fas fa-envelope"></i> {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_email }}'] }}</p>
+                      {% set role_text = row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_team_members }}']|striptags|trim|upper %}
+                      {% if 'PS' not in role_text %}
+                        <div class="col-lg-4 col-md-4 col-sm-6">
+                          <div class="team-member-card no-overlay-card contact-info-card">
+                            <div class="team-member-info">
+                              <h3 class="team-member-name">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_piller_content }}'] }}</h3>
+                              <h4 class="team-member-name">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h4>
+                              <p class="team-member-role">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_team_members }}'] }}</p>
+                              <div class="contact-details">
+                                <p class="contact-item"><i class="fas fa-phone"></i>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_phone }}'] }}</p>
+                                <p class="contact-item"><i class="fas fa-envelope"></i> {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_email }}'] }}</p>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+
+                  {# PS/PPS Members Row #}
+                  <div class="row g-4">
+                    {% for row in rows %}
+                      {% set role_text = row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_team_members }}']|striptags|trim|upper %}
+                      {% if 'PS' in role_text %}
+                        <div class="col-lg-4 col-md-4 col-sm-6">
+                          <div class="team-member-card no-overlay-card contact-info-card is-ps-pps">
+                            <div class="team-member-info">
+                              <h3 class="team-member-name">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_piller_content }}'] }}</h3>
+                              <h4 class="team-member-name">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h4>
+                              <p class="team-member-role">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_team_members }}'] }}</p>
+                              <div class="contact-details">
+                                <p class="contact-item"><i class="fas fa-phone"></i>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_phone }}'] }}</p>
+                                <p class="contact-item"><i class="fas fa-envelope"></i> {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_email }}'] }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      {% endif %}
                     {% endfor %}
                   </div>
                 </div>
