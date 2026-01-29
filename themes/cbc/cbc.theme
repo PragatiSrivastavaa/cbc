@@ -207,13 +207,51 @@ function cbc_preprocess_links(&$variables) {
         $url = $link['link']['#url'];
         // Get language from the URL or link options.
         if (method_exists($url, 'getOption') && $language = $url->getOption('language')) {
-          // Add hreflang attribute to the list item.
-          if (!isset($link['attributes'])) {
-            $link['attributes'] = new Attribute();
-          }
-          $link['attributes']['hreflang'] = $language->getId();
+          // FIX: Add hreflang attribute to the URL (anchor tag), NOT the list item (LI).
+          // W3C Validator Error: Attribute hreflang not allowed on element li.
+          $options = $url->getOptions();
+          $options['attributes']['hreflang'] = $language->getId();
+          $url->setOptions($options);
         }
       }
+      
+      // Explicitly remove hreflang from the list item attributes.
+      if (isset($link['attributes'])) {
+        if ($link['attributes'] instanceof \Drupal\Core\Template\Attribute) {
+          $link['attributes']->removeAttribute('hreflang');
+        }
+        elseif (is_array($link['attributes']) && isset($link['attributes']['hreflang'])) {
+          unset($link['attributes']['hreflang']);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_input().
+ * Fixes W3C validation error: Attribute autocomplete not allowed on type="submit".
+ */
+function cbc_preprocess_input(&$variables) {
+  $element = $variables['element'];
+  $type = $element['#type'] ?? 'text';
+
+  // List of types allowed to have autocomplete attribute.
+  $allowed_autocomplete_types = [
+    'color', 'date', 'datetime-local', 'email', 'hidden', 'month', 
+    'number', 'password', 'range', 'search', 'tel', 'text', 'time', 'url', 'week'
+  ];
+
+  // Logic to handle 'autocomplete' attribute.
+  if (isset($variables['attributes']) && $variables['attributes'] instanceof \Drupal\Core\Template\Attribute) {
+    if (in_array($type, $allowed_autocomplete_types)) {
+      if (!$variables['attributes']->offsetExists('autocomplete')) {
+        $variables['attributes']->setAttribute('autocomplete', 'off');
+      }
+    }
+    else {
+      // Remove autocomplete if present on invalid types (submit, button).
+      $variables['attributes']->removeAttribute('autocomplete');
     }
   }
 }
@@ -314,39 +352,5 @@ function cbc_form_validate_rate_limit(&$form, FormStateInterface $form_state) {
   else {
     // Register the event.
     $flood->register($name, $window, $identifier);
-  }
-}
-
-/**
- * Implements hook_preprocess_form_element().
- * Passes errors to the form element template explicitly.
- */
-function cbc_preprocess_form_element(&$variables) {
-  $element = $variables['element'];
-  // If the element has errors but variables['errors'] is empty (due to suppression), restore it.
-  if (isset($element['#errors']) && empty($variables['errors'])) {
-    $variables['errors'] = $element['#errors'];
-  }
-}
-
-/**
- * Implements hook_preprocess_textarea().
- * Passes errors to the textarea template.
- */
-function cbc_preprocess_textarea(&$variables) {
-  $element = $variables['element'];
-  if (isset($element['#errors'])) {
-    $variables['errors'] = $element['#errors'];
-  }
-}
-
-/**
- * Implements hook_preprocess_text_format_wrapper().
- * Passes errors to the text format wrapper template.
- */
-function cbc_preprocess_text_format_wrapper(&$variables) {
-  $element = $variables['element'];
-  if (isset($element['#errors'])) {
-    $variables['errors'] = $element['#errors'];
   }
 }
