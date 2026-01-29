@@ -42,7 +42,7 @@
 
             <div class="video-caption">
               <h4 class="video-title">{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ title }}'] }}</h4>
-              <p class="video-description">{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ field_event_description }}'] }}</p>
+              <p class="video-description">{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ field_event_description }}']|striptags|trim }}</p>
             </div>
 
           </div>
