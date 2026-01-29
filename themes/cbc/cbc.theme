@@ -204,16 +204,30 @@ function cbc_preprocess_links(&$variables) {
     foreach ($variables['links'] as $key => &$link) {
       // Check if link has language information.
       if (isset($link['link']['#url'])) {
+        /** @var \Drupal\Core\Url $url */
         $url = $link['link']['#url'];
         // Get language from the URL or link options.
         if (method_exists($url, 'getOption') && $language = $url->getOption('language')) {
-          // Add hreflang attribute to the list item.
-          if (!isset($link['attributes'])) {
-            $link['attributes'] = new Attribute();
-          }
-          $link['attributes']['hreflang'] = $language->getId();
+          // FIX: Add hreflang attribute to the URL (anchor tag), NOT the list item (LI).
+          // W3C Validator Error: Attribute hreflang not allowed on element li.
+          $options = $url->getOptions();
+          $options['attributes']['hreflang'] = $language->getId();
+          $url->setOptions($options);
         }
       }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_input().
+ * Fixes W3C validation error: Attribute autocomplete not allowed on type="submit".
+ */
+function cbc_preprocess_input(&$variables) {
+  if (isset($variables['element']['#type']) && $variables['element']['#type'] == 'submit') {
+    // Remove autocomplete attribute if present on submit buttons.
+    if (isset($variables['attributes']['autocomplete'])) {
+      unset($variables['attributes']['autocomplete']);
     }
   }
 }
