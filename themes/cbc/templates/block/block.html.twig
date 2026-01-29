@@ -40,6 +40,23 @@
   {% endif %}
   {{ title_suffix }}
   {% block content %}
-    {{ content }}
+    {# Define W3C HTML cleanup replacements #}
+    {% set w3c_replacements = {
+      'frameborder="0"': '', 'frameborder=\'0\'': '',
+      'frameborder="1"': '', 'frameborder=\'1\'': '',
+      'scrolling="no"': '', 'scrolling=\'no\'': '',
+      'scrolling="yes"': '', 'scrolling=\'yes\'': '',
+      'scrolling="auto"': '', 'scrolling=\'auto\'': '',
+      'align="center"': '', 'align=\'center\'': '',
+      'align="left"': '', 'align=\'left\'': '',
+      'align="right"': '', 'align=\'right\'': '',
+      'align="middle"': '', 'align=\'middle\'': '',
+      'align="justify"': '', 'align=\'justify\'': '',
+      'border="0"': '', 'border=\'0\'': '',
+      'cellpadding="0"': '', 'cellpadding=\'0\'': '',
+      'cellspacing="0"': '', 'cellspacing=\'0\'': '',
+      'allowtransparency="true"': '', 'allowtransparency=\'true\'': ''
+    } %}
+    {{ content|render|replace(w3c_replacements)|raw }}
   {% endblock %}
 </div>
