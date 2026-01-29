@@ -41,7 +41,7 @@
   {%- endif -%}
   <ul{{ attributes }}>
     {%- for item in links -%}
-      <li{{ item.attributes|without('hreflang') }}>
+      <li{{ item.attributes }}>
         {%- if item.link -%}
           {{ item.link }}
         {%- elseif item.text_attributes -%}

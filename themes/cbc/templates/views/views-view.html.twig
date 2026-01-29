@@ -39,24 +39,6 @@
     dom_id ? 'js-view-dom-id-' ~ dom_id,
   ]
 %}
-{# Define W3C HTML cleanup replacements #}
-{% set w3c_replacements = {
-  'frameborder="0"': '', 'frameborder=\'0\'': '',
-  'frameborder="1"': '', 'frameborder=\'1\'': '',
-  'scrolling="no"': '', 'scrolling=\'no\'': '',
-  'scrolling="yes"': '', 'scrolling=\'yes\'': '',
-  'scrolling="auto"': '', 'scrolling=\'auto\'': '',
-  'align="center"': '', 'align=\'center\'': '',
-  'align="left"': '', 'align=\'left\'': '',
-  'align="right"': '', 'align=\'right\'': '',
-  'align="middle"': '', 'align=\'middle\'': '',
-  'align="justify"': '', 'align=\'justify\'': '',
-  'border="0"': '', 'border=\'0\'': '',
-  'cellpadding="0"': '', 'cellpadding=\'0\'': '',
-  'cellspacing="0"': '', 'cellspacing=\'0\'': '',
-  'allowtransparency="true"': '', 'allowtransparency=\'true\'': ''
-} %}
-
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {% if title %}
@@ -65,7 +47,7 @@
   {{ title_suffix }}
   {% if header %}
     <div class="view-header">
-      {{ header|render|replace(w3c_replacements)|raw }}
+      {{ header }}
     </div>
   {% endif %}
   {% if exposed %}
@@ -81,11 +63,11 @@
 
   {% if rows %}
     <div class="view-content">
-      {{ rows|render|replace(w3c_replacements)|raw }}
+      {{ rows }}
     </div>
   {% elseif empty %}
     <div class="view-empty">
-      {{ empty|render|replace(w3c_replacements)|raw }}
+      {{ empty }}
     </div>
   {% endif %}
 
@@ -102,7 +84,7 @@
   {% endif %}
   {% if footer %}
     <div class="view-footer">
-      {{ footer|render|replace(w3c_replacements)|raw }}
+      {{ footer }}
     </div>
   {% endif %}
   {% if feed_icons %}

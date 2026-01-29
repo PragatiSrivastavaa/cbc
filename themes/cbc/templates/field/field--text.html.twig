@@ -1,67 +1,28 @@
+{% extends "field.html.twig" %}
 {#
 /**
  * @file
- * Theme override for a text field.
+ * Default theme implementation for a text field.
+ *
+ * A 'clearfix' class is added, because 'text' fields have a 'format' property
+ * that allows a Text Format to be associated with the entered text, which then
+ * applies filtering on output. A common use case is to align images to the left
+ * or right, and without this 'clearfix' class, such aligned images may be
+ * rendered outside of the 'text' field formatter's boundaries, and hence
+ * overlap with other fields. By setting the 'clearfix' class on all 'text'
+ * fields, we prevent that.
+ *
+ * @see https://www.drupal.org/node/2358529
+ *
+ * A 'text-formatted' class is added to assist with default styling of base
+ * elements such as paragraphs and lists that may not have classes assigned to
+ * them. This allows user entered content to have default styling without
+ * interfering with the styles of other UI components such as system generated
+ * lists or other dynamic content.
+ *
+ * @see https://www.drupal.org/node/2539860
+ *
+ * @ingroup themeable
  */
 #}
-{%
-  set classes = [
-    'field',
-    'field--name-' ~ field_name|clean_class,
-    'field--type-' ~ field_type|clean_class,
-    'field--label-' ~ label_display,
-    'clearfix',
-    'text-formatted',
-    label_display == 'inline' ? 'clearfix',
-  ]
-%}
-{%
-  set title_classes = [
-    'field__label',
-    label_display == 'visually_hidden' ? 'visually-hidden',
-  ]
-%}
-{# Define W3C HTML cleanup replacements #}
-{% set w3c_replacements = {
-  'frameborder="0"': '', 'frameborder=\'0\'': '',
-  'frameborder="1"': '', 'frameborder=\'1\'': '',
-  'scrolling="no"': '', 'scrolling=\'no\'': '',
-  'scrolling="yes"': '', 'scrolling=\'yes\'': '',
-  'scrolling="auto"': '', 'scrolling=\'auto\'': '',
-  'align="center"': '', 'align=\'center\'': '',
-  'align="left"': '', 'align=\'left\'': '',
-  'align="right"': '', 'align=\'right\'': '',
-  'align="middle"': '', 'align=\'middle\'': '',
-  'align="justify"': '', 'align=\'justify\'': '',
-  'border="0"': '', 'border=\'0\'': '',
-  'cellpadding="0"': '', 'cellpadding=\'0\'': '',
-  'cellspacing="0"': '', 'cellspacing=\'0\'': '',
-  'allowtransparency="true"': '', 'allowtransparency=\'true\'': ''
-} %}
-
-{% if label_hidden %}
-  {% if multiple %}
-    <div{{ attributes.addClass(classes, 'field__items') }}>
-      {% for item in items %}
-        <div{{ item.attributes.addClass('field__item') }}>{{ item.content|render|replace(w3c_replacements)|raw }}</div>
-      {% endfor %}
-    </div>
-  {% else %}
-    {% for item in items %}
-      <div{{ attributes.addClass(classes, 'field__item') }}>{{ item.content|render|replace(w3c_replacements)|raw }}</div>
-    {% endfor %}
-  {% endif %}
-{% else %}
-  <div{{ attributes.addClass(classes) }}>
-    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
-    {% if multiple %}
-      <div class="field__items">
-    {% endif %}
-    {% for item in items %}
-      <div{{ item.attributes.addClass('field__item') }}>{{ item.content|render|replace(w3c_replacements)|raw }}</div>
-    {% endfor %}
-    {% if multiple %}
-      </div>
-    {% endif %}
-  </div>
-{% endif %}
+{% set attributes = attributes.addClass('clearfix', 'text-formatted') %}
