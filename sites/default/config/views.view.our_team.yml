@@ -14,6 +14,7 @@ dependencies:
     - taxonomy.vocabulary.designation
   content:
     - 'taxonomy_term:designation:27b2dc7f-c109-4733-aa34-09837b30fa85'
+    - 'taxonomy_term:designation:64af9c5e-07c4-47bb-8518-12821d3bc8f9'
     - 'taxonomy_term:designation:6ebecb04-b4d1-484e-94fa-899585a9cf9a'
     - 'taxonomy_term:designation:b3e91a42-f8e6-4871-9bcd-4c66297e558a'
     - 'taxonomy_term:designation:c008965c-fa3c-4fe1-b488-4ddf1d1c206c'
@@ -1317,6 +1318,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
+            70: 70
             47: 47
             46: 46
           group: 1

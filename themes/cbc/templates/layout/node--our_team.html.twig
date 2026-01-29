@@ -4,7 +4,8 @@
       <div class="col-lg-10 offset-lg-1">
         <div class="team-detail-wrapper">
           <div class="team-detail-header">
-            {% if node.field_image.entity %}
+            {% if node.field_image is defined and not node.field_image.isEmpty() %}
+			
               <div class="team-detail-photo">
                 <img
                 src="{{ file_url(node.field_image.entity.fileuri) }}"
@@ -17,6 +18,11 @@
 
             <div class="team-detail-info">
               <h1 class="team-detail-name">{{ node.label }}</h1>
+			  {% if node.field_piller_content is defined and not node.field_piller_content.isEmpty() %}
+  <div class="team-detail-piller">
+    {{ content.field_piller_content }}
+  </div>
+{% endif %}
 
               {% if node.field_team_members.value %}
                 <p class="team-detail-role">
