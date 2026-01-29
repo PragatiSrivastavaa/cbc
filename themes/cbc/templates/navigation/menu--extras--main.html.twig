@@ -10,79 +10,91 @@
       <ul class="navbar-nav mb-2 mb-lg-0 nav-rounded">
 
         {% for item in items %}
-        {% set dropdown_id = item.title|clean_class ~ '-dropdown' %}
-        {% set active = item.in_active_trail ? 'active' : '' %}
-        {% set icon = item.original_link.entity.field_icon.value ?? '' %}
-        {% set desc = item.original_link.entity.field_descriptions.value ?? '' %}
+          {% set dropdown_id = item.title|clean_class ~ '-dropdown' %}
+          {% set active = item.in_active_trail ? 'active' : '' %}
+          {% set icon = item.original_link.entity.field_icon.value ?? '' %}
+          {% set desc = item.original_link.entity.field_descriptions.value ?? '' %}
 
-        <li class="nav-item {% if item.below %}dropdown{% endif %}">
+          <li class="nav-item {% if item.below %}dropdown{% endif %}">
 
-          <a class="nav-link {{ active }} {% if item.below %}dropdown-toggle{% endif %}" href="{{ item.url }}" {% if
-            item.below %} id="{{ dropdown_id }}" role="button" data-bs-toggle="dropdown" aria-expanded="false" {% endif
-            %}>
+            <a class="nav-link {{ active }} {% if item.below %}dropdown-toggle{% endif %}"
+               href="{{ item.url }}"
+               {% if item.below %}
+                 id="{{ dropdown_id }}"
+                 role="button"
+                 data-bs-toggle="dropdown"
+                 aria-expanded="false"
+               {% endif %}>
 
-            {% if icon %}
-            <i class="{{ icon }} me-1"></i>
-            {% endif %}
-
-            {{ item.title }}
-          </a>
-
-          {% if item.below %}
-          <ul class="dropdown-menu" aria-labelledby="{{ dropdown_id }}">
-
-            {% for child in item.below %}
-            {% set child_icon = child.original_link.entity.field_icon.value ?? '' %}
-            {% set child_desc = child.original_link.entity.field_descriptions.value ?? '' %}
-
-            <li class="{% if child.below %}has-submenu{% endif %}">
-
-              <a class="dropdown-item knowledge-item {% if child.below %}has-sub-items{% endif %}"
-                href="{{ child.url }}">
-
-                {% if child_icon %}
-                <div class="knowledge-icon">
-                  <i class="{{ child_icon }}"></i>
-                </div>
-                {% endif %}
-
-                <div class="knowledge-content">
-                  <div class="knowledge-title">{{ child.title }}</div>
-
-                  {% if child_desc %}
-                  <div class="knowledge-desc">{{ child_desc }}</div>
-                  {% endif %}
-                </div>
-              </a>
-
-              {# ----- LEVEL 3 ----- #}
-              {% if child.below %}
-              <div class="sub-items-container" id="sub-{{ loop.index }}">
-                {% for sub in child.below %}
-                {% set sub_icon = sub.original_link.entity.field_icon.value ?? '' %}
-                {% set sub_desc = sub.original_link.entity.field_descriptions.value ?? '' %}
-
-                <a class="dropdown-item sub-item" href="{{ sub.url }}" style="padding-left:32px;">
-
-                  {% if sub_icon %}
-                  <i class="{{ sub_icon }} me-1"></i>
-                  {% endif %}
-
-                  {{ sub.title }}
-
-                  {% if sub_desc %}
-                  <div class="knowledge-desc small">{{ sub_desc }}</div>
-                  {% endif %}
-                </a>
-                {% endfor %}
-              </div>
+              {% if icon %}
+                <i class="{{ icon }} me-1"></i>
               {% endif %}
-            </li>
 
-            {% endfor %}
-          </ul>
-          {% endif %}
-        </li>
+              {{ item.title }}
+            </a>
+
+            {% if item.below %}
+              <ul class="dropdown-menu" aria-labelledby="{{ dropdown_id }}">
+
+                {% for child in item.below %}
+                  {% set child_icon = child.original_link.entity.field_icon.value ?? '' %}
+                  {% set child_desc = child.original_link.entity.field_descriptions.value ?? '' %}
+
+                  <li class="{% if child.below %}has-submenu{% endif %}">
+
+                    <a class="dropdown-item knowledge-item {% if child.below %}has-sub-items{% endif %}"
+                       href="{{ child.url }}">
+
+                      {% if child_icon %}
+                        <div class="knowledge-icon">
+                          <i class="{{ child_icon }}"></i>
+                        </div>
+                      {% endif %}
+
+                      <div class="knowledge-content">
+                        <div class="knowledge-title">{{ child.title }}</div>
+
+                        {% if child_desc %}
+                          <div class="knowledge-desc">{{ child_desc }}</div>
+                        {% endif %}
+                      </div>
+                    </a>
+
+                    {# ---------- LEVEL 3 ---------- #}
+                    {% if child.below %}
+                      {% set parent_index = loop.parent.loop.index %}
+
+                      <div class="sub-items-container"
+                           id="sub-{{ parent_index }}-{{ loop.index }}">
+
+                        {% for sub in child.below %}
+                          {% set sub_icon = sub.original_link.entity.field_icon.value ?? '' %}
+                          {% set sub_desc = sub.original_link.entity.field_descriptions.value ?? '' %}
+
+                          <a class="dropdown-item sub-item"
+                             href="{{ sub.url }}"
+                             style="padding-left:32px;">
+
+                            {% if sub_icon %}
+                              <i class="{{ sub_icon }} me-1"></i>
+                            {% endif %}
+
+                            {{ sub.title }}
+
+                            {% if sub_desc %}
+                              <div class="knowledge-desc small">
+                                {{ sub_desc }}
+                              </div>
+                            {% endif %}
+                          </a>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </li>
         {% endfor %}
       </ul>
     </div>
@@ -90,8 +102,8 @@
     <div class="d-flex align-items-center">
       <a class="navbar-brand d-flex align-items-center" href="{{ path('<front>') }}">
         <img src="{{ base_path ~ directory }}/img/logo.png" alt="Emblem" />
-
       </a>
     </div>
+
   </div>
 </nav>
