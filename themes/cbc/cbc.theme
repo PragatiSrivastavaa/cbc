@@ -204,16 +204,71 @@ function cbc_preprocess_links(&$variables) {
     foreach ($variables['links'] as $key => &$link) {
       // Check if link has language information.
       if (isset($link['link']['#url'])) {
+        /** @var \Drupal\Core\Url $url */
         $url = $link['link']['#url'];
         // Get language from the URL or link options.
         if (method_exists($url, 'getOption') && $language = $url->getOption('language')) {
-          // Add hreflang attribute to the list item.
-          if (!isset($link['attributes'])) {
-            $link['attributes'] = new Attribute();
-          }
-          $link['attributes']['hreflang'] = $language->getId();
+          // FIX: Add hreflang attribute to the URL (anchor tag), NOT the list item (LI).
+          // W3C Validator Error: Attribute hreflang not allowed on element li.
+          $options = $url->getOptions();
+          $options['attributes']['hreflang'] = $language->getId();
+          $url->setOptions($options);
         }
       }
+
+      // Explicitly remove hreflang from the list item attributes.
+      if (isset($link['attributes'])) {
+        if ($link['attributes'] instanceof \Drupal\Core\Template\Attribute) {
+          $link['attributes']->removeAttribute('hreflang');
+        }
+        elseif (is_array($link['attributes']) && isset($link['attributes']['hreflang'])) {
+          unset($link['attributes']['hreflang']);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_input().
+ * Fixes W3C validation error: Attribute autocomplete not allowed on type="submit".
+ */
+function cbc_preprocess_input(&$variables) {
+  $element = $variables['element'];
+  $type = $element['#type'] ?? 'text'; // Default to text if not set?
+
+  // List of types allowed to have autocomplete attribute.
+  // Source: W3C / HTML5 spec.
+  $allowed_autocomplete_types = [
+    'color', 'date', 'datetime-local', 'email', 'hidden', 'month', 
+    'number', 'password', 'range', 'search', 'tel', 'text', 'time', 'url', 'week'
+  ];
+
+  // Logic to handle 'autocomplete' attribute.
+  if (isset($variables['attributes']) && $variables['attributes'] instanceof \Drupal\Core\Template\Attribute) {
+    if (in_array($type, $allowed_autocomplete_types)) {
+      // Original theme intent: Default to autocomplete="off" if not explicitly set.
+      if (!$variables['attributes']->offsetExists('autocomplete')) {
+        $variables['attributes']->setAttribute('autocomplete', 'off');
+      }
+    }
+    else {
+      // Remove autocomplete if present on invalid types (submit, button, etc).
+      // This fixes the W3C validation error.
+      $variables['attributes']->removeAttribute('autocomplete');
+    }
+  }
+  elseif (isset($variables['attributes']) && is_array($variables['attributes'])) {
+    // Array fallback.
+    if (in_array($type, $allowed_autocomplete_types)) {
+       if (!isset($variables['attributes']['autocomplete'])) {
+         $variables['attributes']['autocomplete'] = 'off';
+       }
+    }
+    else {
+       if (isset($variables['attributes']['autocomplete'])) {
+         unset($variables['attributes']['autocomplete']);
+       }
     }
   }
 }
