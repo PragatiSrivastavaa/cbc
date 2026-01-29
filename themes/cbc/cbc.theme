@@ -405,3 +405,113 @@ function cbc_preprocess_text_format_wrapper(&$variables) {
     $variables['errors'] = $element['#errors'];
   }
 }
+
+/**
+ * Implements hook_preprocess_field().
+ * cleans up obsolete HTML attributes from text fields for W3C validation.
+ */
+function cbc_preprocess_field(&$variables) {
+  $field_type = $variables['element']['#field_type'] ?? '';
+  // Field types that may contain raw HTML.
+  $html_field_types = ['text_with_summary', 'text_long', 'text_formatted', 'string_long'];
+
+  if (in_array($field_type, $html_field_types)) {
+    foreach ($variables['items'] as &$item) {
+      // Handle Processed Text (standard body fields).
+      if (isset($item['content']['#text'])) {
+        $item['content']['#text'] = _cbc_fix_w3c_html($item['content']['#text']);
+      }
+      // Handle simple Markup.
+      elseif (isset($item['content']['#markup'])) {
+         $item['content']['#markup'] = _cbc_fix_w3c_html($item['content']['#markup']);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_block().
+ * Cleans up block content.
+ */
+function cbc_preprocess_block(&$variables) {
+  if (isset($variables['content']['body'][0]['#text'])) {
+    $variables['content']['body'][0]['#text'] = _cbc_fix_w3c_html($variables['content']['body'][0]['#text']);
+  }
+}
+
+/**
+ * Implements hook_preprocess_views_view_field().
+ * Cleans up Views fields.
+ */
+function cbc_preprocess_views_view_field(&$variables) {
+  if (isset($variables['output']) && $variables['output'] instanceof \Drupal\Component\Render\MarkupInterface) {
+    $clean_html = _cbc_fix_w3c_html((string) $variables['output']);
+    $variables['output'] = \Drupal\views\Render\ViewsRenderPipelineMarkup::create($clean_html);
+  }
+}
+
+/**
+ * Helper function to clean HTML markup for W3C compliance.
+ *
+ * @param string $markup
+ *   The HTML string to clean.
+ *
+ * @return string
+ *   The cleaned HTML string.
+ */
+function _cbc_fix_w3c_html($markup) {
+  if (empty($markup)) {
+    return $markup;
+  }
+  
+  // Ensure we are working with a string.
+  $markup = (string) $markup;
+
+  // 1. Remove obsolete iframe attributes.
+  $iframe_attributes = ['frameborder', 'scrolling', 'allowtransparency', 'marginheight', 'marginwidth', 'align'];
+  foreach ($iframe_attributes as $attr) {
+    // Regex: find <iframe ... attr="val" ... > and remove attr="val"
+    $markup = preg_replace('/(<iframe\b[^>]*?)\s+' . $attr . '="[^"]*"/i', '$1', $markup);
+    // Handle single quotes too
+    $markup = preg_replace('/(<iframe\b[^>]*?)\s+' . $attr . "='[^']*'/i", '$1', $markup);
+  }
+
+  // 2. Remove obsolete table/div/p attributes.
+  // align, border, cellpadding, cellspacing, width, height (sometimes)
+  // We'll focus on the most strict W3C errors: align, border, cellpadding, cellspacing.
+  $general_attributes = ['align'];
+  $table_attributes = ['border', 'cellpadding', 'cellspacing', 'width', 'bgcolor'];
+
+  // Remove 'align' from div, p, table, td, th, img, h1-h6.
+  $align_elements = 'div|p|table|td|th|img|h[1-6]|tbody|thead|tfoot|tr';
+  $markup = preg_replace('/(<(' . $align_elements . ')\b[^>]*?)\s+align="[^"]*"/i', '$1', $markup);
+  $markup = preg_replace('/(<(' . $align_elements . ')\b[^>]*?)\s+align=\'[^\']*\'/i', '$1', $markup);
+
+  // Remove table specific attributes.
+  foreach ($table_attributes as $attr) {
+    $markup = preg_replace('/(<table\b[^>]*?)\s+' . $attr . '="[^"]*"/i', '$1', $markup);
+    $markup = preg_replace('/(<table\b[^>]*?)\s+' . $attr . "='[^']*'/i", '$1', $markup);
+  }
+  
+  // Clean 'td' and 'th' attributes like width, height, bgcolor, valign
+  $cell_attrs = ['width', 'height', 'bgcolor', 'valign', 'nowrap'];
+  foreach ($cell_attrs as $attr) {
+     $markup = preg_replace('/(<(td|th)\b[^>]*?)\s+' . $attr . '="[^"]*"/i', '$1', $markup);
+     $markup = preg_replace('/(<(td|th)\b[^>]*?)\s+' . $attr . "='[^']*'/i", '$1', $markup);
+  }
+
+  // 3. Ensure images have alt attributes.
+  if (stripos($markup, '<img') !== false) {
+    $markup = preg_replace_callback('/<img([^>]+)>/i', function($matches) {
+      $attributes = $matches[1];
+      // Check if alt attribute exists (even if empty).
+      if (stripos($attributes, 'alt=') === false) {
+        // Append alt="" to the attributes.
+        return '<img' . $attributes . ' alt="">';
+      }
+      return $matches[0];
+    }, $markup);
+  }
+  
+  return $markup;
+}
