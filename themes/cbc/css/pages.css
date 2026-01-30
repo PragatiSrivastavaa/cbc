@@ -899,7 +899,7 @@ tbody tr:nth-child(even) {
   }
 
   .navbar-nav .nav-link {
-    font-size: clamp(11px, 1.1vw, 13px);
+    font-size: clamp(10px, 1vw, 12px);
     padding: 6px clamp(10px, 1.2vw, 15px);
   }
 }
@@ -933,7 +933,7 @@ tbody tr:nth-child(even) {
   }
 
   .navbar-nav .nav-link {
-    font-size: 12px;
+    font-size: 11px;
     padding: 6px 12px;
   }
 
@@ -1100,8 +1100,8 @@ ul.navbar-nav.nav-rounded {
   color: #ffffff;
   font-weight: 600;
   white-space: nowrap;
-  font-size: clamp(13px, 1.1vw, 15px);
-  /* Responsive font size reduced */
+  font-size: clamp(12px, 1vw, 14px);
+  /* Responsive font size reduced further */
   margin: 0;
   border-radius: 0;
   padding: 6px clamp(10px, 1.2vw, 15px);
@@ -1112,8 +1112,6 @@ ul.navbar-nav.nav-rounded {
   align-items: center;
   position: relative;
   z-index: 3;
-  font-size: clamp(13px, 1.1vw, 15px);
-  padding: 6px clamp(10px, 1.2vw, 15px);
   flex-shrink: 0;
   text-decoration: none;
   box-sizing: border-box;
@@ -1126,7 +1124,7 @@ ul.navbar-nav.nav-rounded {
 
 @media (min-width: 1400px) {
   .navbar-nav .nav-link {
-    font-size: 15px;
+    font-size: 13px;
     padding: 7px 15px;
   }
 
@@ -1146,7 +1144,7 @@ ul.navbar-nav.nav-rounded {
 
 @media (min-width: 1600px) {
   .navbar-nav .nav-link {
-    font-size: 16px;
+    font-size: 14px;
     padding: 7px 15px;
   }
 
@@ -1165,7 +1163,7 @@ ul.navbar-nav.nav-rounded {
 
 @media (min-width: 1920px) {
   .navbar-nav .nav-link {
-    font-size: 17px;
+    font-size: 15px;
     padding: 8px 16px;
   }
 
@@ -1190,7 +1188,7 @@ ul.navbar-nav.nav-rounded {
 /* Ultra-wide screens (2560px and above) */
 @media (min-width: 2560px) {
   .navbar-nav .nav-link {
-    font-size: 18px;
+    font-size: 16px;
     padding: 10px 20px;
   }
 
