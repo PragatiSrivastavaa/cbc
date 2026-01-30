@@ -9083,7 +9083,8 @@ h1.page-hero-title {
 
 /* Team Member Card */
 .team-member-card {
-  background: #ffffff;
+  background: #fff9f0;
+  /* Light orangish shade */
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(0, 99, 174, 0.1);
@@ -9131,7 +9132,7 @@ h1.page-hero-title {
   border-radius: 28px;
   box-shadow: 0 20px 45px rgba(0, 43, 91, 0.08);
   border: 1px solid rgba(0, 99, 174, 0.12);
-  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 65%, #ffffff 100%);
+  background: linear-gradient(180deg, #fffcf5 0%, #fff9f0 65%, #fffcf5 100%);
   gap: 0;
 }
 
@@ -16837,7 +16838,7 @@ th.text-center {
 /* PS/PPS Specific Styling */
 .team-member-card.is-ps-pps,
 .chairperson-image-card.is-ps-pps {
-  background: linear-gradient(135deg, #e0f2fe 0%, #7dd3fc 100%) !important;
+  background: linear-gradient(135deg, #f8fcff 0%, #dcf0ff 100%) !important;
   border: 1px solid #0063ae !important;
   border-left: 6px solid #002b5b !important;
   box-shadow: 0 4px 15px rgba(0, 99, 174, 0.15) !important;
