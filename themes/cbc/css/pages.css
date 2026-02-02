@@ -16836,7 +16836,7 @@ th.text-center {
 /* PS/PPS Specific Styling */
 .team-member-card.is-ps-pps,
 .chairperson-image-card.is-ps-pps {
-  background: linear-gradient(135deg, #fffcf5 0%, #fff9f0 100%) !important;
+  background: #ffffff !important;
   border: 1px solid #0063ae !important;
   border-left: 6px solid #002b5b !important;
   box-shadow: 0 4px 15px rgba(0, 99, 174, 0.15) !important;
@@ -16847,14 +16847,16 @@ th.text-center {
 }
 
 .team-member-card.is-ps-pps .team-member-name {
-  font-size: 1.05rem !important;
+  font-size: 0.95rem !important;
   margin-bottom: 2px !important;
 }
 
+
 .team-member-card.is-ps-pps .team-member-role {
-  font-size: 0.85rem !important;
+  font-size: 0.75rem !important;
   margin-bottom: 8px !important;
 }
+
 
 .team-member-card.is-ps-pps .contact-details,
 .team-member-card.is-ps-pps .team-member-contact {
@@ -17024,6 +17026,19 @@ th.text-center {
 
 
 .pillar-cards-row .team-member-card.is-ps-pps {
-  background: linear-gradient(135deg, #fffcf5 0%, #fff9f0 100%) !important;
+  background: #ffffff !important;
   border-left: 4px solid #002b5b !important;
+}
+
+/* Increased font size for Leadership and Secretariat names as requested */
+.meet-team-section-enhanced .team-member-name {
+  font-size: 1.35rem !important;
+}
+
+.chairperson-content h3 {
+  font-size: 1.55rem !important;
+}
+
+.leadership-members-row h3 {
+  font-size: 1.55rem !important;
 }
