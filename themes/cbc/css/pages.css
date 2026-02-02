@@ -16837,7 +16837,7 @@ th.text-center {
 .team-member-card.is-ps-pps,
 .chairperson-image-card.is-ps-pps {
   background: #ffffff !important;
-  border: 1px solid #0063ae !important;
+  /* border: 1px solid #0063ae !important; */
   border-left: 6px solid #002b5b !important;
   box-shadow: 0 4px 15px rgba(0, 99, 174, 0.15) !important;
 }
