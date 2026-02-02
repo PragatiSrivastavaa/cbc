@@ -22,7 +22,7 @@ body {
 }
 
 /* Reduce heading sizes proportionally - Applied globally */
-h1:not(.contact-hero-title):not(.page-hero-title) {
+h1:not(.contact-hero-title):not(.page-hero-title):not(.page-title) {
   font-size: 1.6rem !important;
   /* Reduced from default 2rem */
 }
