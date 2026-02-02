@@ -25,7 +25,7 @@
         {# Dynamic Description (formatted long text) #}
         {% if paragraph.field_descriptions.value %}
           <p class="page-hero-subtitle">
-            {{ content.field_descriptions }}
+            {{ paragraph.field_descriptions.value|striptags|trim }}
           </p>
         {% endif %}
 </div>
