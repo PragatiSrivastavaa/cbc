@@ -87,26 +87,74 @@
       </div>
 
       <div class="accessibility-section">
-        <h3><i class="fas fa-eye"></i> Visual Adjustments</h3>
-        <div class="accessibility-toggle-group">
-          <div class="accessibility-toggle high-contrast-border" data-feature="hide-images" role="button" tabindex="0" aria-pressed="false" data-state="off">
-            <span class="toggle-label"><i class="fas fa-image"></i> Hide Images</span>
-            <div class="toggle-switch high-contrast-border" role="switch" aria-checked="false" aria-label="Toggle Hide Images" data-state="off"></div>
-          </div>
-          <div class="accessibility-toggle high-contrast-border" data-feature="highlight-links" role="button" tabindex="0" aria-pressed="false" data-state="off">
-            <span class="toggle-label"><i class="fas fa-link"></i> Highlight Links</span>
-            <div class="toggle-switch high-contrast-border" role="switch" aria-checked="false" aria-label="Toggle Highlight Links" data-state="off"></div>
-          </div>
-          <div class="accessibility-toggle high-contrast-border" data-feature="increased-line-height" role="button" tabindex="0" aria-pressed="false" data-state="off">
-            <span class="toggle-label"><i class="fas fa-align-justify"></i> Increase Line Height</span>
-            <div class="toggle-switch high-contrast-border" role="switch" aria-checked="false" aria-label="Toggle Increased Line Height" data-state="off"></div>
-          </div>
-          <div class="accessibility-toggle high-contrast-border" data-feature="keyboard-only" role="button" tabindex="0" aria-pressed="false" data-state="off">
-            <span class="toggle-label"><i class="fas fa-keyboard"></i> Keyboard Only Mode</span>
-            <div class="toggle-switch high-contrast-border" role="switch" aria-checked="false" aria-label="Toggle Keyboard Only Mode" data-state="off"></div>
-          </div>
-        </div>
-      </div>
+  <h3><i class="fas fa-eye"></i> Visual Adjustments</h3>
+
+  <div class="accessibility-toggle-group">
+
+    <div class="accessibility-toggle high-contrast-border"
+         role="switch"
+         tabindex="0"
+         aria-checked="false"
+         aria-label="Hide Images"
+         data-feature="hide-images"
+         data-state="off">
+
+      <span class="toggle-label">
+        <i class="fas fa-image"></i> Hide Images
+      </span>
+
+      <!-- visual only -->
+      <span class="toggle-switch high-contrast-border" aria-hidden="true"></span>
+    </div>
+
+    <div class="accessibility-toggle high-contrast-border"
+         role="switch"
+         tabindex="0"
+         aria-checked="false"
+         aria-label="Highlight Links"
+         data-feature="highlight-links"
+         data-state="off">
+
+      <span class="toggle-label">
+        <i class="fas fa-link"></i> Highlight Links
+      </span>
+
+      <span class="toggle-switch high-contrast-border" aria-hidden="true"></span>
+    </div>
+
+    <div class="accessibility-toggle high-contrast-border"
+         role="switch"
+         tabindex="0"
+         aria-checked="false"
+         aria-label="Increase Line Height"
+         data-feature="increased-line-height"
+         data-state="off">
+
+      <span class="toggle-label">
+        <i class="fas fa-align-justify"></i> Increase Line Height
+      </span>
+
+      <span class="toggle-switch high-contrast-border" aria-hidden="true"></span>
+    </div>
+
+    <div class="accessibility-toggle high-contrast-border"
+         role="switch"
+         tabindex="0"
+         aria-checked="false"
+         aria-label="Keyboard Only Mode"
+         data-feature="keyboard-only"
+         data-state="off">
+
+      <span class="toggle-label">
+        <i class="fas fa-keyboard"></i> Keyboard Only Mode
+      </span>
+
+      <span class="toggle-switch high-contrast-border" aria-hidden="true"></span>
+    </div>
+
+  </div>
+</div>
+
 
       <button class="accessibility-reset-btn high-contrast-border" id="resetAccessibilityBtn" aria-label="Reset All Accessibility Settings">
         <i class="fas fa-redo-alt"></i> Reset All Settings
