@@ -8646,7 +8646,7 @@ h1.page-hero-title {
 
 
 .org-node-secretary {
-  background: #ffa500;
+  background: #fff0d4;
   border: 2px solid #0063ae;
 }
 
@@ -8739,7 +8739,7 @@ h1.page-hero-title {
 }
 
 .org-node-secretary h4 {
-  color: #ffffff;
+  color: #0063ae;
   font-weight: 700;
   font-size: 1.3rem;
   margin: 0;
@@ -16847,15 +16847,17 @@ th.text-center {
 }
 
 .team-member-card.is-ps-pps .team-member-name {
-  font-size: 0.95rem !important;
+  font-size: 0.85rem !important;
   margin-bottom: 2px !important;
 }
 
 
+
 .team-member-card.is-ps-pps .team-member-role {
-  font-size: 0.75rem !important;
+  font-size: 0.72rem !important;
   margin-bottom: 8px !important;
 }
+
 
 
 .team-member-card.is-ps-pps .contact-details,
@@ -16943,11 +16945,12 @@ th.text-center {
 
 
 .pillar-cards-row h4.team-member-name {
-  font-size: 0.72rem !important;
-  font-weight: 600 !important;
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
   color: #0063ae !important;
   margin-bottom: 4px !important;
 }
+
 
 .pillar-cards-row .team-member-role {
   font-size: 0.68rem !important;
@@ -17033,12 +17036,17 @@ th.text-center {
 /* Increased font size for Leadership and Secretariat names as requested */
 .meet-team-section-enhanced .team-member-name {
   font-size: 1.35rem !important;
+  font-weight: 700 !important;
 }
+
 
 .chairperson-content h3 {
   font-size: 1.55rem !important;
+  font-weight: 700 !important;
 }
+
 
 .leadership-members-row h3 {
   font-size: 1.55rem !important;
+  font-weight: 700 !important;
 }
