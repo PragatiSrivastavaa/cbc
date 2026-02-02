@@ -23,8 +23,8 @@
                     {% endif %}
 
                 <div class="card-body" >
-                  <h5 class="card-title">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h5>
-                  <p class="card-text">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}'] }}</p>
+                  <h3 class="card-title">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
+                  <p class="card-text">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}']|striptags|trim }}</p>
                 </div>
               </div>
             </div>

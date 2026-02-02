@@ -46,9 +46,9 @@
       {% endif %}
       
       <div class="card-body">
-        <h5 class="card-title">{{ entity.label }}</h5>
+        <h3 class="card-title">{{ entity.label }}</h3>
         <div class="card-text">
-          {{ row.content['#view'].style_plugin.render_tokens[current_index]['{{ field_event_description }}'] }}
+          {{ row.content['#view'].style_plugin.render_tokens[current_index]['{{ field_event_description }}']|striptags|trim }}
         </div>
       </div>
 
