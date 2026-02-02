@@ -16917,25 +16917,28 @@ th.text-center {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   .col-pillar {
     flex: 0 0 14.285714%;
     max-width: 14.285714%;
   }
 }
 
+
 /* Typography refinements for 7-column Pillar layout */
 .pillar-cards-row .team-member-name {
   line-height: 1.1 !important;
 }
 
-.pillar-cards-row h3.team-member-name {
+.pillar-cards-row h3.team-member-name,
+.pillar-cards-row h6.team-member-name {
   font-size: 0.82rem !important;
   color: #004b88 !important;
   margin-bottom: 8px !important;
   font-weight: 700 !important;
   letter-spacing: -0.2px;
 }
+
 
 .pillar-cards-row h4.team-member-name {
   font-size: 0.72rem !important;
@@ -16986,12 +16989,14 @@ th.text-center {
 
 
 .pillar-cards-row .team-member-info {
-  padding: 12px 8px !important;
+  padding: 10px 8px !important;
   text-align: left !important;
   display: flex !important;
   flex-direction: column !important;
   height: 100% !important;
 }
+
+
 
 .pillar-cards-row .contact-details {
   margin-top: auto !important;
@@ -16999,8 +17004,11 @@ th.text-center {
   border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
 }
 
+
+
 .pillar-cards-row .team-member-card {
-  flex: 1 !important;
+  width: 100% !important;
+  height: 100% !important;
   display: flex !important;
   flex-direction: column !important;
   background: #f0f7ff !important;
@@ -17008,6 +17016,8 @@ th.text-center {
   border: 1px solid rgba(0, 99, 174, 0.1) !important;
   border-radius: 12px !important;
 }
+
+
 
 
 
