@@ -16882,3 +16882,138 @@ th.text-center {
   opacity: 0 !important;
   display: none !important;
 }
+
+/* Pillar Cards 7-Column Layout */
+.pillar-cards-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.col-pillar {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 10px;
+  display: flex;
+}
+
+.col-pillar .team-member-card {
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  .col-pillar {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (min-width: 768px) {
+  .col-pillar {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .col-pillar {
+    flex: 0 0 14.285714%;
+    max-width: 14.285714%;
+  }
+}
+
+/* Typography refinements for 7-column Pillar layout */
+.pillar-cards-row .team-member-name {
+  line-height: 1.1 !important;
+}
+
+.pillar-cards-row h3.team-member-name {
+  font-size: 0.82rem !important;
+  color: #004b88 !important;
+  margin-bottom: 8px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.2px;
+}
+
+.pillar-cards-row h4.team-member-name {
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  color: #0063ae !important;
+  margin-bottom: 4px !important;
+}
+
+.pillar-cards-row .team-member-role {
+  font-size: 0.68rem !important;
+  line-height: 1.2 !important;
+  color: #666 !important;
+  margin-bottom: 8px !important;
+}
+
+.pillar-cards-row .contact-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  font-size: 0.65rem !important;
+  margin-bottom: 2px !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #444 !important;
+  transition: all 0.2s ease;
+  cursor: help;
+}
+
+.pillar-cards-row .contact-item:hover {
+  white-space: normal !important;
+  overflow: visible !important;
+  word-break: break-all !important;
+  background: rgba(0, 99, 174, 0.05) !important;
+  border-radius: 4px !important;
+  padding: 2px !important;
+}
+
+
+
+.pillar-cards-row .contact-item i {
+  width: 12px !important;
+  height: 12px !important;
+  font-size: 0.6rem !important;
+  margin-right: 0 !important;
+  color: #0063ae !important;
+}
+
+
+.pillar-cards-row .team-member-info {
+  padding: 12px 8px !important;
+  text-align: left !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+.pillar-cards-row .contact-details {
+  margin-top: auto !important;
+  padding-top: 8px !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+.pillar-cards-row .team-member-card {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background: #f0f7ff !important;
+  box-shadow: 0 4px 12px rgba(0, 99, 174, 0.08) !important;
+  border: 1px solid rgba(0, 99, 174, 0.1) !important;
+  border-radius: 12px !important;
+}
+
+
+
+
+
+.pillar-cards-row .team-member-card.is-ps-pps {
+  background: linear-gradient(135deg, #fffcf5 0%, #fff9f0 100%) !important;
+  border-left: 4px solid #002b5b !important;
+}
