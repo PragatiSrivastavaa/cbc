@@ -415,24 +415,10 @@ function cbc_preprocess_text_format_wrapper(&$variables) {
 
 /**
  * Implements hook_preprocess_container().
-<<<<<<< HEAD
- */
-function cbc_preprocess_container(&$variables) {
-  // Fix duplicate ID 'edit-actions'
-  if (isset($variables['attributes']['id']) && $variables['attributes']['id'] === 'edit-actions') {
-    $variables['attributes']['id'] = \Drupal\Component\Utility\Html::getUniqueId('edit-actions');
-=======
  * Fixes duplicate ID 'edit-actions' error by ensuring unique IDs.
  */
-
 function cbc_preprocess_container(&$variables) {
-<<<<<<< HEAD
-  if (isset($variables['attributes']['id']) && (string) $variables['attributes']['id'] === 'edit-actions') {
-    $variables['attributes']['id'] = Html::getUniqueId('edit-actions');
->>>>>>> 39fed4a6c1ec5f8c197eb1a807d63c56e23c3d77
-=======
   if (isset($variables['attributes']['id']) && strpos((string) $variables['attributes']['id'], 'edit-actions') === 0) {
     $variables['attributes']['id'] = Html::getUniqueId($variables['attributes']['id']);
->>>>>>> ed20c9b2604ab7687c8326cbefcf8747f2950c96
   }
 }
