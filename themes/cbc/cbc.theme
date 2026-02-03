@@ -405,3 +405,13 @@ function cbc_preprocess_text_format_wrapper(&$variables) {
     $variables['errors'] = $element['#errors'];
   }
 }
+
+/**
+ * Implements hook_preprocess_container().
+ * Fixes duplicate ID 'edit-actions' error by ensuring unique IDs.
+ */
+function cbc_preprocess_container(&$variables) {
+  if (isset($variables['attributes']['id']) && (string) $variables['attributes']['id'] === 'edit-actions') {
+    $variables['attributes']['id'] = Html::getUniqueId('edit-actions');
+  }
+}
