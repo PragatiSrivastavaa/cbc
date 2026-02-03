@@ -871,7 +871,7 @@ display:
               authenticated: authenticated
             min_placeholder: ''
             max_placeholder: ''
-            placeholder: 'Event Start'
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -916,7 +916,7 @@ display:
               authenticated: authenticated
             min_placeholder: ''
             max_placeholder: ''
-            placeholder: 'Event End'
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
