@@ -419,6 +419,7 @@ function cbc_preprocess_text_format_wrapper(&$variables) {
  */
 function cbc_preprocess_container(&$variables) {
   if (isset($variables['attributes']['id']) && strpos((string) $variables['attributes']['id'], 'edit-actions') === 0) {
-    $variables['attributes']['id'] = Html::getUniqueId($variables['attributes']['id']);
+    // Use a custom prefix to ensure uniqueness and avoid collision with default ids like 'edit-actions--2'
+    $variables['attributes']['id'] = Html::getUniqueId('cbc-form-actions');
   }
 }
