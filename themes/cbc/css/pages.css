@@ -12628,15 +12628,15 @@ tbody tr:nth-child(even),
 
 /* Icon Color Utilities */
 .icon-blue {
-  color: #0063ae;
+  color: #ffffff;
 }
 
 .icon-dark-blue {
-  color: #002b5b;
+  color: #ffffff;
 }
 
 .icon-red {
-  color: #dc3545;
+  color: #ffffff;
 }
 
 .icon-white {
@@ -17063,6 +17063,7 @@ th.text-center {
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 86, 154, 0.3);
 }
+
 .knowledge-partnership-box::before {
   content: '';
   position: absolute;
@@ -17073,6 +17074,7 @@ th.text-center {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 0 0 0 100%;
 }
+
 .knowledge-partnership-header {
   display: flex;
   justify-content: space-between;
@@ -17081,12 +17083,14 @@ th.text-center {
   position: relative;
   z-index: 1;
 }
+
 .knowledge-partnership-header h3 {
   color: #ffffff;
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0;
 }
+
 .knowledge-partnership-logo {
   display: flex;
   flex-direction: column;
@@ -17094,6 +17098,7 @@ th.text-center {
   position: relative;
   z-index: 1;
 }
+
 .cbc-logo-img {
   width: 80px;
   height: 80px;
@@ -17103,6 +17108,7 @@ th.text-center {
   padding: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
+
 .logo-text {
   font-size: 0.75rem;
   color: #ffffff;
@@ -17111,6 +17117,7 @@ th.text-center {
   text-align: center;
   letter-spacing: 0.5px;
 }
+
 .knowledge-partnership-item {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 10px;
@@ -17119,10 +17126,12 @@ th.text-center {
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .knowledge-partnership-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
+
 .knowledge-icon-box {
   width: 70px;
   height: 70px;
@@ -17134,27 +17143,33 @@ th.text-center {
   font-size: 2rem;
   color: #ffffff;
 }
+
 .knowledge-icon-what {
   background: #FFC107;
 }
+
 .knowledge-icon-why {
   background: #28A745;
 }
+
 .knowledge-icon-who {
   background: #FF9800;
 }
+
 .knowledge-label {
   color: #00569A;
   font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 15px;
 }
+
 .knowledge-description {
   color: #333;
   font-size: 0.95rem;
   line-height: 1.6;
   margin: 0;
 }
+
 .partner-logo-card {
   background: #fff;
   border: 1px solid #e0e0e0;
@@ -17167,6 +17182,7 @@ th.text-center {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
+
 .partner-logo-card a {
   display: flex;
   align-items: center;
@@ -17176,6 +17192,7 @@ th.text-center {
   text-decoration: none;
   color: inherit;
 }
+
 .partner-logo-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -17183,6 +17200,7 @@ th.text-center {
   z-index: 10;
   position: relative;
 }
+
 .partner-logo-img {
   max-width: 100%;
   max-height: 100px;
@@ -17190,20 +17208,23 @@ th.text-center {
   filter: grayscale(20%);
   transition: filter 0.3s ease;
 }
+
 .partner-logo-card:hover .partner-logo-img {
   filter: grayscale(0%);
 }
+
 @media (max-width: 768px) {
   .knowledge-partnership-header {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .knowledge-partnership-header h3 {
     font-size: 1.2rem;
     margin-bottom: 15px;
   }
 }
+
 /* Gallery Styles */
 .gallery-card {
   border: 1px solid #e0e0e0;
@@ -17213,6 +17234,7 @@ th.text-center {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   height: 100%;
 }
+
 .gallery-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -17220,29 +17242,35 @@ th.text-center {
   z-index: 10;
   position: relative;
 }
+
 .gallery-card .card-img-top {
   width: 100%;
   height: 200px;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
+
 .gallery-card:hover .card-img-top {
   transform: scale(1.05);
 }
+
 .gallery-card .card-body {
   padding: 15px;
 }
+
 .gallery-card .card-title {
   color: #00569A;
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 8px;
 }
+
 .gallery-card .card-text {
   color: #666;
   font-size: 0.9rem;
   margin: 0;
 }
+
 .section-title {
   color: #002b5b;
   font-weight: 700;
@@ -17254,6 +17282,7 @@ th.text-center {
   padding-bottom: 20px;
   border: none;
 }
+
 .section-title::after {
   content: '';
   position: absolute;
@@ -17264,6 +17293,7 @@ th.text-center {
   background: #0063ae;
   border-radius: 0;
 }
+
 /* Section Main Heading Styles */
 .section-main-heading {
   color: #002b5b;
@@ -17279,6 +17309,7 @@ th.text-center {
   border: none;
   box-shadow: none;
 }
+
 .section-main-heading::after {
   content: '';
   position: absolute;
@@ -17289,34 +17320,40 @@ th.text-center {
   background: #0063ae;
   border-radius: 0;
 }
+
 @media (max-width: 768px) {
   .section-main-heading {
     font-size: 1.6rem;
   }
 }
+
 /* Gallery Carousel Styles */
 .gallery-carousel-wrapper {
   margin: 30px 0;
   padding: 0 50px;
 }
+
 .gallery-carousel-container {
   overflow: hidden;
   position: relative;
   width: 100%;
   padding: 10px 0;
 }
+
 .gallery-carousel-track {
   display: flex;
   transition: transform 0.5s ease;
   gap: 20px;
   will-change: transform;
 }
+
 .gallery-carousel-item {
   flex: 0 0 calc(33.333% - 14px);
   min-width: 0;
   width: calc(33.333% - 14px);
   padding-top: 10px;
 }
+
 .gallery-nav-btn {
   position: absolute;
   top: 50%;
@@ -17335,40 +17372,48 @@ th.text-center {
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
+
 .gallery-nav-btn:hover {
   background: #0063ae;
   transform: translateY(-50%) scale(1.1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
+
 .gallery-nav-prev {
   left: 0;
 }
+
 .gallery-nav-next {
   right: 0;
 }
+
 /* Partner Logo Carousel Styles */
 .partner-logo-carousel-wrapper {
   margin: 30px 0;
   padding: 0 50px;
 }
+
 .partner-logo-carousel-container {
   overflow: hidden;
   position: relative;
   width: 100%;
   padding: 10px 0;
 }
+
 .partner-logo-carousel-track {
   display: flex;
   transition: transform 0.5s ease;
   gap: 20px;
   will-change: transform;
 }
+
 .partner-logo-carousel-item {
   flex: 0 0 calc(20% - 16px);
   min-width: 0;
   width: calc(20% - 16px);
   padding-top: 10px;
 }
+
 .partner-logo-nav-btn {
   position: absolute;
   top: 50%;
@@ -17387,43 +17432,1831 @@ th.text-center {
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
+
 .partner-logo-nav-btn:hover {
   background: #0063ae;
   transform: translateY(-50%) scale(1.1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
+
 .partner-logo-nav-prev {
   left: 0;
 }
+
 .partner-logo-nav-next {
   right: 0;
 }
+
 @media (max-width: 992px) {
   .gallery-carousel-item {
     flex: 0 0 calc(50% - 10px);
   }
-  
+
   .partner-logo-carousel-item {
     flex: 0 0 calc(33.333% - 14px);
   }
 }
+
 @media (max-width: 768px) {
+
   .gallery-carousel-wrapper,
   .partner-logo-carousel-wrapper {
     padding: 0 40px;
   }
-  
+
   .gallery-carousel-item {
     flex: 0 0 100%;
   }
-  
+
   .partner-logo-carousel-item {
     flex: 0 0 calc(50% - 10px);
   }
-  
+
   .gallery-nav-btn,
   .partner-logo-nav-btn {
     width: 35px;
     height: 35px;
   }
+}
+
+/* Karmyogi Css start */
+
+.karmayogi-section-title-icon {
+  color: #0063ae;
+}
+
+/* Text Colors */
+.text-primary-blue {
+  color: #0063ae !important;
+}
+
+.text-dark-blue {
+  color: #002b5b !important;
+}
+
+.text-green {
+  color: #28a745 !important;
+}
+
+.text-orange {
+  color: #ffa500 !important;
+}
+
+/* Vision Section */
+.karmayogi-quote-block {
+  background-color: rgba(248, 250, 252, 0.9);
+  border-left: 5px solid #0063ae;
+}
+
+.karmayogi-quote-text {
+  color: #002b5b;
+  font-style: normal;
+  line-height: 1.8;
+}
+
+.karmayogi-highlight {
+  color: #0063ae;
+}
+
+.karmayogi-list {
+  list-style: none;
+  margin-top: 20px;
+  padding-left: 0;
+}
+
+.karmayogi-list-item {
+  margin-bottom: 12px;
+  padding-left: 25px;
+  position: relative;
+}
+
+.karmayogi-list-icon {
+  color: #0063ae;
+  left: 0;
+  position: absolute;
+}
+
+/* Objectives Section */
+.karmayogi-feature-block.bg-alice-blue {
+  background-color: rgba(240, 248, 255, 0.95);
+}
+
+.karmayogi-feature-desc {
+  line-height: 1.8;
+}
+
+.karmayogi-feature-desc p {
+  color: #002b5b;
+  margin-bottom: 15px;
+}
+
+.karmayogi-feature-desc p:last-child {
+  margin-bottom: 0;
+}
+
+/* Chronology / Timeline */
+.karmayogi-timeline-wrapper {
+  padding-left: 40px;
+  position: relative;
+}
+
+.karmayogi-timeline-line {
+  background-color: #28a745;
+  border-radius: 2px;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 3px;
+}
+
+.karmayogi-timeline-item {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.karmayogi-timeline-dot {
+  border-radius: 50%;
+  border: 3px solid #fff;
+  height: 20px;
+  left: -32px;
+  position: absolute;
+  top: 5px;
+  width: 20px;
+}
+
+.karmayogi-timeline-dot.dot-blue {
+  background-color: #0063ae;
+  box-shadow: 0 0 0 3px rgba(0, 99, 174, 0.2);
+}
+
+.karmayogi-timeline-dot.dot-green {
+  background-color: #28a745;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2);
+}
+
+.karmayogi-timeline-dot.dot-orange {
+  background-color: #ffa500;
+  box-shadow: 0 0 0 3px rgba(255, 165, 0, 0.2);
+}
+
+.karmayogi-timeline-date {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.karmayogi-timeline-content {
+  color: #002b5b;
+  line-height: 1.7;
+}
+
+/* Milestone Icons */
+.karmayogi-milestone-icon.icon-blue {
+  background-color: #0099ff !important;
+}
+
+.karmayogi-milestone-icon.icon-teal {
+  background-color: #20c997 !important;
+}
+
+.karmayogi-milestone-icon.icon-yellow {
+  background-color: #ffc107 !important;
+}
+
+
+/* NSCSTI Section Styles */
+
+/* Utility Colors */
+.text-red {
+  color: #dc3545 !important;
+}
+
+.text-teal {
+  color: #20c997 !important;
+}
+
+.text-yellow {
+  color: #ffc107 !important;
+}
+
+.text-cyan {
+  color: #17a2b8 !important;
+}
+
+.text-purple {
+  color: #6610f2 !important;
+}
+
+.text-pink {
+  color: #e83e8c !important;
+}
+
+.text-gray {
+  color: #6c757d !important;
+}
+
+/* Backgrounds */
+.bg-light-blue {
+  background-color: rgba(0, 153, 255, 0.05) !important;
+}
+
+.bg-white {
+  background-color: #ffffff !important;
+}
+
+/* Border Utilities */
+.border-left-blue {
+  border-left: 5px solid #0063ae !important;
+}
+
+.border-left-green {
+  border-left: 5px solid #28a745 !important;
+}
+
+.border-left-orange {
+  border-left: 5px solid #ffa500 !important;
+}
+
+.border-top-blue {
+  border-top: 4px solid #0063ae !important;
+}
+
+.border-top-green {
+  border-top: 4px solid #28a745 !important;
+}
+
+.border-top-orange {
+  border-top: 4px solid #ffa500 !important;
+}
+
+.border-top-red {
+  border-top: 4px solid #dc3545 !important;
+}
+
+.border-top-gray {
+  border-top: 4px solid #6c757d !important;
+}
+
+.border-top-cyan {
+  border-top: 4px solid #17a2b8 !important;
+}
+
+.border-top-purple {
+  border-top: 4px solid #6610f2 !important;
+}
+
+.border-top-pink {
+  border-top: 4px solid #e83e8c !important;
+}
+
+/* Components */
+.nscsti-highlight-box {
+  background-color: #ff9e0f;
+  border-radius: 8px;
+  color: white;
+  margin-bottom: 0px;
+  padding: 15px 20px;
+  text-align: center;
+}
+
+.nscsti-highlight-box a {
+  color: #ffffff !important;
+}
+
+.nscsti-table-container {
+  overflow-x: auto;
+}
+
+.nscsti-table {
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.nscsti-table th {
+  padding: 15px;
+}
+
+.nscsti-table td {
+  border-bottom: 1px solid #dee2e6;
+  padding: 12px 15px;
+}
+
+.nscsti-table-header-blue {
+  background-color: #0099ff !important;
+  color: #ffffff !important;
+}
+
+.nscsti-table-header-teal {
+  background-color: #20c997 !important;
+  color: #ffffff !important;
+}
+
+.nscsti-table-row-highlight {
+  background-color: rgba(0, 99, 174, 0.1) !important;
+}
+
+.nscsti-table-row-highlight-green {
+  background-color: rgba(40, 167, 69, 0.1) !important;
+}
+
+.nscsti-stat-big {
+  font-size: 2rem !important;
+}
+
+
+/* IKS Section Styles */
+
+.font-095 {
+  font-size: 0.95rem !important;
+}
+
+.h-100 {
+  height: 100% !important;
+}
+
+.iks-overview-card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  border: 3px solid #0063ae;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.iks-overview-header {
+  background-color: #0063ae;
+  flex-shrink: 0;
+  padding: 15px 20px;
+}
+
+.iks-overview-header h3 {
+  align-items: center;
+  color: #ffffff;
+  display: flex;
+  font-size: 1.1rem;
+  gap: 10px;
+  margin: 0;
+}
+
+.iks-overview-body {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+  padding: 18px 20px;
+}
+
+.iks-info-row {
+  margin-bottom: 16px;
+}
+
+.iks-info-row:last-child {
+  margin-bottom: 0;
+}
+
+.iks-info-flex {
+  align-items: flex-start;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.iks-info-flex-last {
+  align-items: flex-start;
+  display: flex;
+  gap: 8px;
+}
+
+.iks-info-icon {
+  color: #0063ae;
+  flex-shrink: 0;
+  font-size: 1rem;
+  margin-top: 3px;
+}
+
+.iks-info-label {
+  color: #002b5b;
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.iks-info-value {
+  color: #6c757d;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.karmayogi-milestone-icon.icon-gray {
+  background-color: #495057 !important;
+}
+
+.karmayogi-milestone-icon.icon-dark-green {
+  background-color: #20c997 !important;
+}
+
+
+/* States and UTs Section Styles */
+
+.states-header-orange {
+  background-color: #ff9e0f;
+  border-radius: 8px;
+  color: white;
+  margin-bottom: 20px;
+  padding: 15px 20px;
+  text-align: center;
+}
+
+.states-header-blue {
+  background-color: #0063ae;
+  border-radius: 8px;
+  color: white;
+  margin-bottom: 20px;
+  padding: 15px 20px;
+  text-align: center;
+}
+
+.states-overview-box {
+  background-color: #003b73;
+  border-radius: 8px;
+  color: white;
+  padding: 30px;
+  margin-bottom: 3rem;
+}
+
+.states-table-summary {
+  border: 2px solid #FF9800;
+  margin-bottom: 0;
+}
+
+.states-table-summary thead {
+  background-color: #ffe3ab;
+}
+
+.states-table-summary tbody tr {
+  background-color: #fff9f0;
+}
+
+.states-table-summary th {
+  border-color: #ddd;
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.states-table-summary td {
+  border-color: #ddd;
+  padding: 15px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.states-summary-val-blue {
+  color: #0063ae;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.states-summary-val-orange {
+  color: #FF9800;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.states-summary-val-gray {
+  color: #666;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.states-updated-text {
+  background-color: #ffeb3b;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+/* Table Column Width Utilities */
+.col-w-3 {
+  width: 3% !important;
+}
+
+.col-w-5 {
+  width: 5% !important;
+}
+
+.col-w-12 {
+  width: 12% !important;
+}
+
+.col-w-15 {
+  width: 15% !important;
+}
+
+.col-w-20 {
+  width: 20% !important;
+}
+
+.col-w-25 {
+  width: 25% !important;
+}
+
+.col-w-30 {
+  width: 30% !important;
+}
+
+.col-w-40 {
+  width: 40% !important;
+}
+
+.col-w-45 {
+  width: 45% !important;
+}
+
+.col-w-50 {
+  width: 50% !important;
+}
+
+.col-w-70 {
+  width: 70% !important;
+}
+
+/* States/UT Table specific styles */
+.states-ut-table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.states-ut-table.important-docs-table th:nth-child(1),
+.states-ut-table.important-docs-table td:nth-child(1) {
+  width: 12%;
+}
+
+.states-ut-table.important-docs-table th:nth-child(2),
+.states-ut-table.important-docs-table td:nth-child(2) {
+  width: 63%;
+}
+
+.states-ut-table.important-docs-table th:nth-child(3),
+.states-ut-table.important-docs-table td:nth-child(3) {
+  width: 25%;
+}
+
+.states-ut-table.roles-table th:nth-child(1),
+.states-ut-table.roles-table td:nth-child(1) {
+  width: 12%;
+}
+
+.states-ut-table.roles-table th:nth-child(2),
+.states-ut-table.roles-table td:nth-child(2) {
+  width: 38%;
+}
+
+.states-ut-table.roles-table th:nth-child(3),
+.states-ut-table.roles-table td:nth-child(3) {
+  width: 50%;
+}
+
+.states-ut-table.central-team-table th:nth-child(1),
+.states-ut-table.central-team-table td:nth-child(1) {
+  width: 12%;
+}
+
+.states-ut-table.central-team-table th:nth-child(2),
+.states-ut-table.central-team-table td:nth-child(2) {
+  width: 18%;
+}
+
+.states-ut-table.central-team-table th:nth-child(3),
+.states-ut-table.central-team-table td:nth-child(3) {
+  width: 30%;
+}
+
+.states-ut-table.central-team-table th:nth-child(4),
+.states-ut-table.central-team-table td:nth-child(4) {
+  width: 20%;
+}
+
+.states-ut-table.central-team-table th:nth-child(5),
+.states-ut-table.central-team-table td:nth-child(5) {
+  width: 20%;
+}
+
+.states-ut-table.team-table th:nth-child(1),
+.states-ut-table.team-table td:nth-child(1) {
+  width: 10%;
+}
+
+.states-ut-table.team-table th:nth-child(2),
+.states-ut-table.team-table td:nth-child(2) {
+  width: 12%;
+}
+
+.states-ut-table.team-table th:nth-child(3),
+.states-ut-table.team-table td:nth-child(3) {
+  width: 20%;
+}
+
+.states-ut-table.team-table th:nth-child(4),
+.states-ut-table.team-table td:nth-child(4) {
+  width: 25%;
+}
+
+.states-ut-table.team-table th:nth-child(5),
+.states-ut-table.team-table td:nth-child(5) {
+  width: 25%;
+}
+
+/* Case Writing Page Utilities */
+.text-orange {
+  color: #ffa500 !important;
+}
+
+.text-dark-blue {
+  color: #002b5b !important;
+}
+
+.karmayogi-stat-big {
+  font-size: 2rem;
+}
+
+.border-left-green {
+  border-left: 5px solid #28a745 !important;
+}
+
+.border-left-blue {
+  border-left: 5px solid #0063ae !important;
+}
+
+.bg-light-blue {
+  background-color: rgba(0, 153, 255, 0.05) !important;
+}
+
+.bg-alice-blue {
+  background-color: rgba(240, 248, 255, 0.95) !important;
+}
+
+.karmayogi-milestone-list {
+  font-size: 0.9rem;
+  margin-top: 10px;
+  padding-left: 20px;
+  text-align: left;
+}
+
+.karmayogi-numbered-list {
+  color: #002b5b;
+  padding-left: 20px;
+}
+
+.karmayogi-numbered-list li {
+  margin-bottom: 10px;
+}
+
+.karmayogi-milestone-icon.icon-blue {
+  background-color: #0099ff !important;
+}
+
+.karmayogi-milestone-icon.icon-teal {
+  background-color: #20c997 !important;
+}
+
+.karmayogi-milestone-icon.icon-yellow {
+  background-color: #ffc107 !important;
+}
+
+.karmayogi-milestone-icon.icon-red {
+  background-color: #e74c3c !important;
+}
+
+.karmayogi-milestone-icon.icon-gray {
+  background-color: #495057 !important;
+}
+
+.karmayogi-section-title-sm {
+  font-size: 1.5rem;
+}
+
+/* DAKSH Timeline Styles */
+.daksh-timeline {
+  padding-left: 40px;
+  position: relative;
+}
+
+.daksh-timeline::before {
+  content: '';
+  background-color: #28a745;
+  border-radius: 2px;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 3px;
+}
+
+.daksh-timeline-item {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.daksh-timeline-dot {
+  border-radius: 50%;
+  border: 3px solid #fff;
+  height: 20px;
+  left: -32px;
+  position: absolute;
+  top: 5px;
+  width: 20px;
+}
+
+.daksh-timeline-dot.dot-blue {
+  background-color: #0063ae;
+  box-shadow: 0 0 0 3px rgba(0, 99, 174, 0.2);
+}
+
+.daksh-timeline-dot.dot-green {
+  background-color: #28a745;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2);
+}
+
+.daksh-timeline-dot.dot-orange {
+  background-color: #ffa500;
+  box-shadow: 0 0 0 3px rgba(255, 165, 0, 0.2);
+}
+
+.daksh-timeline-dot.dot-danger {
+  background-color: #dc3545;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2);
+}
+
+.daksh-timeline-dot.dot-gray {
+  background-color: #6c757d;
+  box-shadow: 0 0 0 3px rgba(108, 117, 125, 0.2);
+}
+
+.daksh-timeline-date {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.daksh-timeline-content {
+  color: #002b5b;
+  line-height: 1.7;
+}
+
+/* DAKSH Checklist Styles */
+.daksh-checklist {
+  list-style: none;
+  padding-left: 0;
+}
+
+.daksh-checklist-item {
+  margin-bottom: 15px;
+  padding-left: 30px;
+  position: relative;
+}
+
+.daksh-checklist-item i {
+  font-size: 1.2rem;
+  left: 0;
+  position: absolute;
+  top: 3px;
+}
+
+.daksh-checklist-item.icon-blue i {
+  color: #0063ae;
+}
+
+.daksh-checklist-item.icon-green i {
+  color: #28a745;
+}
+
+.daksh-checklist-item.icon-orange i {
+  color: #ffa500;
+}
+
+.daksh-checklist-item.icon-danger i {
+  color: #dc3545;
+}
+
+.daksh-checklist-item.icon-gray i {
+  color: #6c757d;
+}
+
+/* ========================================
+   FACULTY DEVELOPMENT PROGRAMME STYLES
+   ======================================== */
+
+/* FDP Section Backgrounds */
+.karmayogi-fdp-vision-section,
+.karmayogi-fdp-intervention-section,
+.karmayogi-fdp-elements-section {
+  background: linear-gradient(135deg, #fff8f0 0%, #ffe8cc 100%);
+}
+
+.karmayogi-fdp-ideation-section,
+.karmayogi-fdp-learnings-section {
+  background-color: #ffffff;
+}
+
+/* Text Large Style */
+.karmayogi-text-large {
+  color: #002b5b;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+/* Feature List */
+.karmayogi-feature-title {
+  color: #0063ae;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.karmayogi-feature-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.karmayogi-feature-list li {
+  align-items: flex-start;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.karmayogi-feature-list li i {
+  color: #0063ae;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.karmayogi-feature-list li span {
+  color: #002b5b;
+  line-height: 1.7;
+}
+
+/* Phase Cards */
+.karmayogi-phase-card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  padding: 25px;
+  position: relative;
+}
+
+.karmayogi-phase-card-primary {
+  border-top: 4px solid #0063ae;
+}
+
+.karmayogi-phase-card-success {
+  border-top: 4px solid #28a745;
+}
+
+.karmayogi-phase-badge {
+  background-color: #0063ae;
+  border-radius: 20px;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  padding: 5px 15px;
+}
+
+.karmayogi-phase-badge-success {
+  background-color: #28a745;
+}
+
+.karmayogi-phase-title {
+  color: #002b5b;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.karmayogi-phase-duration {
+  color: #6c757d;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+}
+
+.karmayogi-phase-description {
+  color: #002b5b;
+  line-height: 1.7;
+}
+
+.karmayogi-phase-note {
+  background-color: rgba(0, 99, 174, 0.1);
+  border-left: 3px solid #0063ae;
+  margin-top: 15px;
+  padding: 15px;
+}
+
+.karmayogi-phase-note p {
+  color: #002b5b;
+  margin: 0;
+}
+
+/* Learning Cards */
+.karmayogi-learning-card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  padding: 25px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.karmayogi-learning-card:hover {
+  transform: translateY(-5px);
+}
+
+.karmayogi-learning-icon {
+  align-items: center;
+  background: linear-gradient(135deg, #0063ae 0%, #004a8f 100%);
+  border-radius: 50%;
+  color: #ffffff;
+  display: flex;
+  font-size: 1.5rem;
+  height: 60px;
+  justify-content: center;
+  margin: 0 auto 15px;
+  width: 60px;
+}
+
+.karmayogi-learning-title {
+  color: #002b5b;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.karmayogi-learning-text {
+  color: #6c757d;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Requirements Card */
+.karmayogi-requirements-card {
+  background-color: #ffffff;
+  border-left: 4px solid #ffa500;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+}
+
+.karmayogi-requirements-title {
+  color: #0063ae;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.karmayogi-requirements-text {
+  color: #002b5b;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* Topics Card */
+.karmayogi-topics-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+}
+
+.karmayogi-topics-title {
+  color: #0063ae;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.karmayogi-topic-item {
+  align-items: center;
+  background-color: rgba(0, 99, 174, 0.05);
+  border-radius: 8px;
+  display: flex;
+  gap: 10px;
+  padding: 12px 15px;
+}
+
+.karmayogi-topic-item i {
+  color: #0063ae;
+  font-size: 1.2rem;
+}
+
+.karmayogi-topic-item span {
+  color: #002b5b;
+  line-height: 1.5;
+}
+
+/* ========================================
+   NATIONAL LEARNING WEEK STYLES
+   ======================================== */
+
+/* Quote Block Styles */
+.karmayogi-quote-block {
+  background-color: rgba(248, 250, 252, 0.9);
+  border-left: 5px solid #0063ae;
+  border-radius: 8px;
+  padding: 25px;
+}
+
+.karmayogi-quote-icon {
+  color: #0063ae;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.karmayogi-quote-text {
+  color: #002b5b;
+  font-style: normal;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* Highlight Text */
+.karmayogi-highlight {
+  color: #0063ae;
+}
+
+/* Text Utility Classes */
+.text-primary {
+  color: #0063ae !important;
+}
+
+.text-dark-blue {
+  color: #002b5b !important;
+}
+
+.text-success {
+  color: #28a745 !important;
+}
+
+.text-danger {
+  color: #dc3545 !important;
+}
+
+/* Border Utilities */
+.border-left-danger {
+  border-left: 5px solid #dc3545 !important;
+}
+
+.border-left-gray {
+  border-left: 5px solid #6c757d !important;
+}
+
+/* Background Utilities */
+.bg-light-blue {
+  background-color: rgba(0, 153, 255, 0.05) !important;
+}
+
+/* NLW Stat Title Colors */
+.nlw-stat-blue {
+  color: #0063ae;
+  font-size: 1.5rem;
+}
+
+.nlw-stat-green {
+  color: #28a745;
+  font-size: 1.5rem;
+}
+
+.nlw-stat-orange {
+  color: #ffa500;
+  font-size: 1.5rem;
+}
+
+.nlw-stat-danger {
+  color: #dc3545;
+  font-size: 1.5rem;
+}
+
+/* Karmayogi List Styles */
+.karmayogi-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.karmayogi-list-item {
+  line-height: 1.8;
+  margin-bottom: 12px;
+  padding-left: 25px;
+  position: relative;
+}
+
+.karmayogi-list-icon {
+  color: #0063ae;
+  left: 0;
+  position: absolute;
+}
+
+/* NLW Charts Section */
+.nlw-charts-section {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* NLW Chart Card */
+.nlw-chart-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.nlw-chart-container {
+  height: 400px;
+  position: relative;
+}
+
+/* NLW Document Card */
+.nlw-document-card {
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.nlw-document-card:hover {
+  transform: translateX(5px);
+}
+
+.nlw-document-card-blue {
+  background-color: rgba(0, 99, 174, 0.1);
+  border-left: 4px solid #0063ae;
+}
+
+.nlw-document-card-blue:hover {
+  background-color: rgba(0, 99, 174, 0.15);
+}
+
+.nlw-document-card-danger {
+  background-color: rgba(220, 53, 69, 0.1);
+  border-left: 4px solid #dc3545;
+}
+
+.nlw-document-card-danger:hover {
+  background-color: rgba(220, 53, 69, 0.15);
+}
+
+.nlw-document-icon {
+  font-size: 2.5rem;
+}
+
+.nlw-document-card-blue .nlw-document-icon {
+  color: #0063ae;
+}
+
+.nlw-document-info {
+  flex: 1;
+}
+
+.nlw-document-title {
+  color: #002b5b;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.nlw-document-desc {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin: 5px 0 0 0;
+}
+
+.nlw-document-link {
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.nlw-document-list {
+  margin-top: 20px;
+}
+
+/* Timeline Note */
+.daksh-timeline-note {
+  color: #6c757d;
+  font-size: 0.95rem;
+  margin-top: 8px;
+}
+
+/* NLW Link Cards */
+.nlw-link-card-blue {
+  border: 3px solid #0063ae;
+}
+
+.nlw-link-card-green {
+  border: 3px solid #28a745;
+}
+
+/* NLW Buttons */
+.nlw-btn-primary {
+  background-color: #0063ae;
+  border: none;
+  font-size: 0.9rem;
+  padding: 8px 20px;
+}
+
+.nlw-btn-success {
+  background-color: #28a745;
+  border: none;
+  color: white;
+  font-size: 0.9rem;
+  padding: 8px 20px;
+}
+
+.nlw-btn-current {
+  cursor: default;
+}
+
+/* ========================================
+   NATIONAL TRAINING CONCLAVE STYLES
+   ======================================== */
+
+/* Border Left Utilities */
+.border-left-blue {
+  border-left: 5px solid #0063ae !important;
+}
+
+.border-left-green {
+  border-left: 5px solid #28a745 !important;
+}
+
+.border-left-orange {
+  border-left: 5px solid #ffa500 !important;
+}
+
+/* Background Utilities */
+.bg-alice-blue {
+  background-color: rgba(240, 248, 255, 0.95) !important;
+}
+
+/* Text Utilities */
+.text-orange {
+  color: #ffa500 !important;
+}
+
+/* List Color Variants */
+.karmayogi-list-green .karmayogi-list-icon.icon-green {
+  color: #28a745;
+}
+
+.karmayogi-list-orange .karmayogi-list-icon.icon-orange {
+  color: #ffa500;
+}
+
+.karmayogi-list-danger .karmayogi-list-icon.icon-danger {
+  color: #dc3545;
+}
+
+.karmayogi-list-gray .karmayogi-list-icon.icon-gray {
+  color: #6c757d;
+}
+
+/* Milestone Icon Color Variants */
+.karmayogi-milestone-icon.icon-blue {
+  background-color: #0099ff;
+}
+
+.karmayogi-milestone-icon.icon-teal {
+  background-color: #20c997;
+}
+
+/* NTC Microsite Link */
+.ntc-microsite-link {
+  background-color: rgba(0, 99, 174, 0.1);
+  border-left: 5px solid #0063ae;
+  border-radius: 10px;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.ntc-microsite-url {
+  align-items: center;
+  color: #0063ae;
+  display: inline-flex;
+  font-size: 1.1rem;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.ntc-microsite-hint {
+  color: #6c757d;
+  font-size: 0.95rem;
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+
+/* Additional NTC Utilities */
+.text-primary-blue {
+  color: #0063ae !important;
+}
+
+.text-green {
+  color: #28a745 !important;
+}
+
+.text-red {
+  color: #dc3545 !important;
+}
+
+.text-gray {
+  color: #6c757d !important;
+}
+
+.bg-quote {
+  background-color: rgba(248, 250, 252, 0.95) !important;
+}
+
+.border-left-red {
+  border-left: 5px solid #dc3545 !important;
+}
+
+.border-left-gray {
+  border-left: 5px solid #6c757d !important;
+}
+
+/* Milestone Icon Additional Colors */
+.karmayogi-milestone-icon.icon-red {
+  background-color: #dc3545;
+}
+
+.karmayogi-milestone-icon.icon-orange {
+  background-color: #ffa500;
+}
+
+.karmayogi-milestone-icon.icon-yellow {
+  background-color: #ffc107;
+}
+
+.karmayogi-milestone-icon.icon-dark-green {
+  background-color: #198754;
+}
+
+.karmayogi-milestone-icon.icon-gray {
+  background-color: #6c757d;
+}
+
+/* Stat Typography */
+.nscsti-stat-big {
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+/* DAKSH / NTC Timeline Styles */
+.daksh-timeline {
+  border-left: 2px solid #e9ecef;
+  margin-left: 20px;
+  padding-bottom: 20px;
+  padding-left: 30px;
+  position: relative;
+}
+
+.daksh-timeline-item {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.daksh-timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.daksh-timeline-dot {
+  background-color: #ffffff;
+  border: 4px solid #0063ae;
+  border-radius: 50%;
+  height: 20px;
+  left: -41px;
+  position: absolute;
+  top: 5px;
+  width: 20px;
+}
+
+.daksh-timeline-dot.dot-blue {
+  border-color: #0063ae;
+}
+
+.daksh-timeline-dot.dot-green {
+  border-color: #28a745;
+}
+
+.daksh-timeline-dot.dot-orange {
+  border-color: #ffa500;
+}
+
+.daksh-timeline-dot.dot-danger {
+  border-color: #dc3545;
+}
+
+.daksh-timeline-dot.dot-gray {
+  border-color: #6c757d;
+}
+
+.daksh-timeline-date {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.daksh-timeline-content {
+  color: #002b5b;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* DAKSH / NTC Checklist Styles */
+.daksh-checklist {
+  list-style: none;
+  padding-left: 0;
+}
+
+.daksh-checklist-item {
+  line-height: 1.8;
+  margin-bottom: 15px;
+  padding-left: 35px;
+  position: relative;
+}
+
+.daksh-checklist-item i {
+  font-size: 1.2rem;
+  left: 0;
+  position: absolute;
+  top: 2px;
+}
+
+.daksh-checklist-item.icon-blue i {
+  color: #0063ae;
+}
+
+.daksh-checklist-item.icon-green i {
+  color: #28a745;
+}
+
+.daksh-checklist-item.icon-orange i {
+  color: #ffa500;
+}
+
+.daksh-checklist-item.icon-danger i {
+  color: #dc3545;
+}
+
+.daksh-checklist-item.icon-gray i {
+  color: #6c757d;
+}
+
+/* Big Stat Highlight */
+.karmayogi-stat-big {
+  display: block;
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+/* Viksit Panchayat Additional Backgrounds */
+.bg-light-green {
+  background-color: rgba(40, 167, 69, 0.05) !important;
+}
+
+.bg-light-orange {
+  background-color: rgba(255, 153, 51, 0.05) !important;
+}
+
+.bg-light-cyan {
+  background-color: rgba(0, 168, 232, 0.05) !important;
+}
+
+.bg-light-red {
+  background-color: rgba(220, 53, 69, 0.05) !important;
+}
+
+/* Viksit Panchayat Additional Borders */
+.border-left-cyan {
+  border-left: 5px solid #00a8e8 !important;
+}
+
+/* Viksit Panchayat Icon Colors */
+.karmayogi-learning-icon.icon-pink {
+  background-color: #e83e8c;
+}
+
+/* General Utilities */
+.font-12 {
+  font-size: 1.2rem !important;
+}
+
+.m-0 {
+  margin: 0 !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-purple {
+  color: #6f42c1 !important;
+}
+
+.text-info {
+  color: #17a2b8 !important;
+}
+
+
+.text-left {
+  text-align: left !important;
+}
+
+.h-100 {
+  height: 100% !important;
+}
+
+/* AGK Specific Styles */
+.agk-stat-number {
+  font-size: 2.5rem !important;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.btn-karmayogi-orange {
+  background-color: #ffa500;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff !important;
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 15px 40px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-karmayogi-orange:hover {
+  background-color: #e69500;
+  color: #ffffff !important;
+}
+
+.phase-card-icon-lg {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+/* Learning Card Icon Backgrounds */
+.karmayogi-learning-icon.icon-blue {
+  background-color: #0099ff;
+}
+
+.karmayogi-learning-icon.icon-teal {
+  background-color: #20c997;
+}
+
+.karmayogi-learning-icon.icon-yellow {
+  background-color: #ffc107;
+}
+
+.karmayogi-learning-icon.icon-orange {
+  background-color: #ff9933;
+}
+
+.karmayogi-learning-icon.icon-red {
+  background-color: #dc3545;
+}
+
+.karmayogi-learning-icon.icon-cyan {
+  background-color: #00a8e8;
+}
+
+
+/* ULB Overview Card */
+.ulb-overview-card {
+  background-color: #ffffff;
+  border: 3px solid #0063ae;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ulb-overview-header {
+  background-color: #0063ae;
+  flex-shrink: 0;
+  padding: 15px 20px;
+}
+
+.ulb-overview-header h3 {
+  align-items: center;
+  color: #ffffff;
+  display: flex;
+  font-size: 1.1rem;
+  gap: 10px;
+  margin: 0;
+}
+
+.ulb-overview-body {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+  padding: 18px 20px;
+}
+
+.ulb-overview-item {
+  margin-bottom: 16px;
+}
+
+.ulb-overview-item:last-child {
+  margin-bottom: 0;
+}
+
+.ulb-overview-item-inner {
+  align-items: flex-start;
+  display: flex;
+  gap: 10px;
+}
+
+.ulb-overview-icon {
+  color: #0063ae;
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  margin-top: 2px;
+}
+
+.ulb-overview-label {
+  color: #002b5b;
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.ulb-overview-value {
+  color: #6c757d;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+/* ULB Info Chip (Challenges/Outcomes) */
+.ulb-info-chip {
+  border-left: 4px solid;
+  border-radius: 8px;
+  padding: 15px;
+  height: 100%;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.ulb-info-chip i {
+  font-size: 1.1rem;
+}
+
+.ulb-info-chip.blue {
+  background-color: rgba(0, 99, 174, 0.1);
+  border-color: #0063ae;
+}
+
+.ulb-info-chip.green {
+  background-color: rgba(40, 167, 69, 0.1);
+  border-color: #28a745;
+}
+
+.ulb-info-chip.orange {
+  background-color: rgba(255, 165, 0, 0.1);
+  border-color: #ffa500;
+}
+
+.ulb-info-chip.red {
+  background-color: rgba(220, 53, 69, 0.1);
+  border-color: #dc3545;
+}
+
+.ulb-info-chip.gray {
+  background-color: rgba(108, 117, 125, 0.1);
+  border-color: #6c757d;
+}
+
+/* ULB Stat Blocks */
+.ulb-stat-display {
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+}
+
+.ulb-stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.ulb-stat-label {
+  color: #002b5b;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.ulb-stat-display.blue {
+  background-color: rgba(0, 99, 174, 0.1);
+}
+
+.ulb-stat-display.blue .ulb-stat-number {
+  color: #0063ae;
+}
+
+.ulb-stat-display.green {
+  background-color: rgba(40, 167, 69, 0.1);
+}
+
+.ulb-stat-display.green .ulb-stat-number {
+  color: #28a745;
+}
+
+.ulb-stat-display.orange {
+  background-color: rgba(255, 165, 0, 0.1);
+}
+
+.ulb-stat-display.orange .ulb-stat-number {
+  color: #ffa500;
+}
+
+/* Workshop Cards Simple */
+.ulb-workshop-card {
+  border-left: 4px solid;
+  border-radius: 8px;
+  padding: 15px;
+  height: 100%;
+}
+
+.ulb-workshop-card.blue {
+  background-color: rgba(0, 99, 174, 0.1);
+  border-color: #0063ae;
+}
+
+.ulb-workshop-card.green {
+  background-color: rgba(40, 167, 69, 0.1);
+  border-color: #28a745;
+}
+
+.ulb-workshop-card.orange {
+  background-color: rgba(255, 165, 0, 0.1);
+  border-color: #ffa500;
+}
+
+.ulb-workshop-card.red {
+  background-color: rgba(220, 53, 69, 0.1);
+  border-color: #dc3545;
+}
+
+.ulb-workshop-card.gray {
+  background-color: rgba(108, 117, 125, 0.1);
+  border-color: #6c757d;
+}
+
+.ulb-workshop-title {
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.ulb-workshop-date {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+/* Challenges Box */
+.ulb-challenges-box {
+  background-color: rgba(0, 99, 174, 0.05);
+  border-left: 5px solid #0063ae;
+  border-radius: 10px;
+  padding: 25px;
+}
+
+.ulb-challenge-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-left: 4px solid;
+  border-radius: 8px;
+  padding: 15px;
+  height: 100%;
+}
+
+.ulb-challenge-item.blue {
+  border-color: #0063ae;
+}
+
+.ulb-challenge-item.green {
+  border-color: #28a745;
+}
+
+.ulb-challenge-item.orange {
+  border-color: #ffa500;
 }
