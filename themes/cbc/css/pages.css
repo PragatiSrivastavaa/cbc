@@ -8647,7 +8647,7 @@ h1.page-hero-title {
 
 .org-node-secretary {
   background: #0063ae;
-  border: 2px solid #ffa500;
+  border: 2px solid #0063ae;
 }
 
 .org-node::before,
@@ -17028,9 +17028,35 @@ th.text-center {
 
 
 
-.pillar-cards-row .team-member-card.is-ps-pps {
+.ps-pps-row {
+  align-items: flex-start !important;
+}
+
+.ps-pps-row .team-member-card.is-ps-pps {
   background: #ffffff !important;
   border-left: 4px solid #002b5b !important;
+  height: auto !important;
+  min-height: 140px !important;
+}
+
+.ps-pps-row .contact-details {
+  border-top: none !important;
+  padding-top: 0 !important;
+  margin-top: 5px !important;
+}
+
+.ps-pps-row .team-member-info {
+  padding: 8px 8px !important;
+}
+
+.ps-pps-row .team-member-name {
+  margin-bottom: 2px !important;
+  line-height: 1.1 !important;
+}
+
+.ps-pps-row .team-member-role {
+  margin-bottom: 5px !important;
+  line-height: 1.1 !important;
 }
 
 /* Increased font size for Leadership and Secretariat names as requested */
