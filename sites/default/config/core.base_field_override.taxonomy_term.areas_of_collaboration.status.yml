@@ -1,0 +1,22 @@
+uuid: 9fdbf8be-9605-49e5-a10f-ddd0126e590b
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.areas_of_collaboration
+id: taxonomy_term.areas_of_collaboration.status
+field_name: status
+entity_type: taxonomy_term
+bundle: areas_of_collaboration
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,18 @@
+uuid: 9833a15d-63e8-4fca-b8ee-25185ad52e49
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.case_studies
+id: node.case_studies.changed
+field_name: changed
+entity_type: node
+bundle: case_studies
+label: Changed
+description: 'The time that the node was last edited.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

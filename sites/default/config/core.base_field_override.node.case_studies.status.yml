@@ -1,0 +1,22 @@
+uuid: a438c089-025b-40a5-85ef-fad254222682
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.case_studies
+id: node.case_studies.status
+field_name: status
+entity_type: node
+bundle: case_studies
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

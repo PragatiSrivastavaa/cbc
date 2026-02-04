@@ -1,0 +1,22 @@
+uuid: d738ee47-e5e0-4917-85ef-9c4396945edd
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.news_letters
+id: node.news_letters.status
+field_name: status
+entity_type: node
+bundle: news_letters
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

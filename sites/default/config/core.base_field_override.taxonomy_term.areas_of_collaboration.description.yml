@@ -1,0 +1,21 @@
+uuid: 608b75a5-16ac-4364-8211-7bdd174502b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.areas_of_collaboration
+  module:
+    - text
+id: taxonomy_term.areas_of_collaboration.description
+field_name: description
+entity_type: taxonomy_term
+bundle: areas_of_collaboration
+label: Description
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

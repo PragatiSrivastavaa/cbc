@@ -1,0 +1,20 @@
+uuid: d701d6fe-a7c9-471d-a7de-b2896f5bb31c
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.photo_gallery
+  module:
+    - path
+id: node.photo_gallery.path
+field_name: path
+entity_type: node
+bundle: photo_gallery
+label: 'URL alias'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

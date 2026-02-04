@@ -1,0 +1,22 @@
+uuid: 697acfdf-869b-4736-9840-450523ecb5fb
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.know_your_cbc
+id: node.know_your_cbc.sticky
+field_name: sticky
+entity_type: node
+bundle: know_your_cbc
+label: 'Sticky at top of lists'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -16,11 +16,11 @@
 
             <article class="newsletter-item">
               <div class="newsletter-content">
-                <h3 class="newsletter-title">
+                <h2 class="newsletter-title">
                   <a href="{{ link_url }}" target="_blank" rel="noopener noreferrer">
                     {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}
                   </a>
-                </h3>
+                </h2>
                 <p class="newsletter-date">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_start_date }}'] }}</p>
               </div>
             </article>

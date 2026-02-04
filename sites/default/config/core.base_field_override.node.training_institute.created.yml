@@ -1,0 +1,18 @@
+uuid: 9b8997a8-9611-4da1-959a-ff640912a89a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.training_institute
+id: node.training_institute.created
+field_name: created
+entity_type: node
+bundle: training_institute
+label: 'Authored on'
+description: 'The date and time that the content was created.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

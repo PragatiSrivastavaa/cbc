@@ -1,0 +1,20 @@
+uuid: 85d29941-083f-4e4f-a7cb-5ea7adc45235
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.photo_gallery_category
+  module:
+    - path
+id: taxonomy_term.photo_gallery_category.path
+field_name: path
+entity_type: taxonomy_term
+bundle: photo_gallery_category
+label: 'URL alias'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

@@ -1,0 +1,20 @@
+uuid: 4df13d4a-5b2b-4c24-b4dc-84cb1226d57c
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.our_collaboration_matters
+  module:
+    - path
+id: node.our_collaboration_matters.path
+field_name: path
+entity_type: node
+bundle: our_collaboration_matters
+label: 'URL alias'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

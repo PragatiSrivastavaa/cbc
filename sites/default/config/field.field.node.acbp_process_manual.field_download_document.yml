@@ -6,7 +6,14 @@ dependencies:
     - field.storage.node.field_download_document
     - node.type.acbp_process_manual
   module:
+    - content_translation
     - file
+third_party_settings:
+  content_translation:
+    translation_sync:
+      target_id: target_id
+      display: display
+      description: description
 id: node.acbp_process_manual.field_download_document
 field_name: field_download_document
 entity_type: node
@@ -14,7 +21,7 @@ bundle: acbp_process_manual
 label: 'Download Document'
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:

@@ -12,7 +12,7 @@ bundle: capacity_building_units
 label: Email
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings: {  }

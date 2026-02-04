@@ -1,0 +1,18 @@
+uuid: b2dd00b0-a522-4e99-a3b5-5269ef9b8236
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.home_banner
+id: node.home_banner.created
+field_name: created
+entity_type: node
+bundle: home_banner
+label: 'Authored on'
+description: 'The date and time that the content was created.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

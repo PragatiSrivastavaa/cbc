@@ -1,0 +1,18 @@
+uuid: 3db22589-9c3e-4381-b0ff-4db0e1807243
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.capacity_building_units
+id: node.capacity_building_units.created
+field_name: created
+entity_type: node
+bundle: capacity_building_units
+label: 'Authored on'
+description: 'The date and time that the content was created.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

@@ -1,0 +1,22 @@
+uuid: 94e81aef-c972-4686-b4c2-5e94360a0e23
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.media_corner
+id: node.media_corner.status
+field_name: status
+entity_type: node
+bundle: media_corner
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

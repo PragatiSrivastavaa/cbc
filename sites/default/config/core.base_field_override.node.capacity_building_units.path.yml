@@ -1,0 +1,20 @@
+uuid: af7054af-359d-4aed-82c8-b7afffaeea75
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.capacity_building_units
+  module:
+    - path
+id: node.capacity_building_units.path
+field_name: path
+entity_type: node
+bundle: capacity_building_units
+label: 'URL alias'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

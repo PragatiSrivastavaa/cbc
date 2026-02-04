@@ -1,0 +1,18 @@
+uuid: 26ca7701-d8ed-4b90-841e-5cd2df3124d9
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.ministry
+id: taxonomy_term.ministry.name
+field_name: name
+entity_type: taxonomy_term
+bundle: ministry
+label: Name
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

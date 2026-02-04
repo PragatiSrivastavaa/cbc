@@ -1,0 +1,22 @@
+uuid: 291ca3d5-a4e2-482a-9cda-8153a04e0804
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.registration_guidelines_for_igot
+id: node.registration_guidelines_for_igot.status
+field_name: status
+entity_type: node
+bundle: registration_guidelines_for_igot
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

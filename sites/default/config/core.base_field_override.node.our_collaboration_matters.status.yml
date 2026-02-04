@@ -1,0 +1,22 @@
+uuid: 4ffb911d-471f-49df-98f7-9de0e330b6df
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.our_collaboration_matters
+id: node.our_collaboration_matters.status
+field_name: status
+entity_type: node
+bundle: our_collaboration_matters
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

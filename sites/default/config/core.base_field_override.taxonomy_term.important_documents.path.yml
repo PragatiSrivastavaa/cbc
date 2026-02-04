@@ -1,0 +1,20 @@
+uuid: dc30d69f-542d-447a-9611-2baf01d04c43
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.important_documents
+  module:
+    - path
+id: taxonomy_term.important_documents.path
+field_name: path
+entity_type: taxonomy_term
+bundle: important_documents
+label: 'URL alias'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

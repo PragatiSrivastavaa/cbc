@@ -1,0 +1,20 @@
+uuid: 47ba286d-81de-4f31-963c-daa9746f9f0e
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.ministry
+  module:
+    - path
+id: taxonomy_term.ministry.path
+field_name: path
+entity_type: taxonomy_term
+bundle: ministry
+label: 'URL alias'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

@@ -14,7 +14,7 @@ bundle: tender
 label: 'Date of NIT'
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings: {  }

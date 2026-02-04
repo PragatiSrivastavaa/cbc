@@ -1,0 +1,18 @@
+uuid: 5d7f6650-c74b-4f5e-b3d7-9bd85a1a50ee
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.ministry
+id: taxonomy_term.ministry.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: ministry
+label: Changed
+description: 'The time that the term was last edited.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

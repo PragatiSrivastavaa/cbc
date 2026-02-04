@@ -1,0 +1,22 @@
+uuid: 3f0fdb28-8787-4d79-9583-faaca3f387a3
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.areas_of_collaboration
+id: node.areas_of_collaboration.sticky
+field_name: sticky
+entity_type: node
+bundle: areas_of_collaboration
+label: 'Sticky at top of lists'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

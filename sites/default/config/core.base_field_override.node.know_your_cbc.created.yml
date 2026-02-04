@@ -1,0 +1,18 @@
+uuid: 26c21e62-c2d3-4f27-8b58-b68ae65e7978
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.know_your_cbc
+id: node.know_your_cbc.created
+field_name: created
+entity_type: node
+bundle: know_your_cbc
+label: 'Authored on'
+description: 'The date and time that the content was created.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

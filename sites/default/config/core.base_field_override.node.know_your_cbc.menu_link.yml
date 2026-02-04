@@ -1,0 +1,20 @@
+uuid: 7bbfa3a4-a17d-41a4-af0e-16016cd390e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.know_your_cbc
+id: node.know_your_cbc.menu_link
+field_name: menu_link
+entity_type: node
+bundle: know_your_cbc
+label: 'Menu link'
+description: 'Computed menu link for the node (only available during node saving).'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

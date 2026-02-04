@@ -1,0 +1,22 @@
+uuid: faf15e07-df10-4239-9117-0f08c5c9272c
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.news
+id: taxonomy_term.news.status
+field_name: status
+entity_type: taxonomy_term
+bundle: news
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

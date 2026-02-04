@@ -1,0 +1,18 @@
+uuid: 8cf99262-abc7-47af-96e4-09383a3a30f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.quick-links
+id: menu_link_content.quick-links.changed
+field_name: changed
+entity_type: menu_link_content
+bundle: quick-links
+label: Changed
+description: 'The time that the menu link was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

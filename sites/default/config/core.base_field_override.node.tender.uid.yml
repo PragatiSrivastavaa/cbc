@@ -1,0 +1,20 @@
+uuid: 89bcd66b-f4df-4b4f-b274-de8fdb93ca42
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.tender
+id: node.tender.uid
+field_name: uid
+entity_type: node
+bundle: tender
+label: 'Authored by'
+description: 'The username of the content author.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

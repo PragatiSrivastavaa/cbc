@@ -1,0 +1,18 @@
+uuid: 397a44b4-60fb-4c72-bb85-11e09938eb5a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.media_corner
+id: node.media_corner.changed
+field_name: changed
+entity_type: node
+bundle: media_corner
+label: Changed
+description: 'The time that the node was last edited.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

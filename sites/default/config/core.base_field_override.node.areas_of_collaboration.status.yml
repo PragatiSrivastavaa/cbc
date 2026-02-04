@@ -1,0 +1,22 @@
+uuid: c288ecdd-1275-4b74-88b2-fe5f0396ee9c
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.areas_of_collaboration
+id: node.areas_of_collaboration.status
+field_name: status
+entity_type: node
+bundle: areas_of_collaboration
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

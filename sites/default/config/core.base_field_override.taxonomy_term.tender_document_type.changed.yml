@@ -1,0 +1,18 @@
+uuid: 22f75b07-f39a-4993-a8a3-519eba186da9
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.tender_document_type
+id: taxonomy_term.tender_document_type.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: tender_document_type
+label: Changed
+description: 'The time that the term was last edited.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

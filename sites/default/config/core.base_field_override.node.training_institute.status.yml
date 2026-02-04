@@ -1,0 +1,22 @@
+uuid: 3ddc43dd-0227-48a2-a62f-1485e026ef2c
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.training_institute
+id: node.training_institute.status
+field_name: status
+entity_type: node
+bundle: training_institute
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

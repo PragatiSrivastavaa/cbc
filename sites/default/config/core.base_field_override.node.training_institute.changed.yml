@@ -1,0 +1,18 @@
+uuid: 482d3c2a-0bc9-48b0-9014-da1b890d982e
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.training_institute
+id: node.training_institute.changed
+field_name: changed
+entity_type: node
+bundle: training_institute
+label: Changed
+description: 'The time that the node was last edited.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

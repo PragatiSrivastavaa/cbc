@@ -240,7 +240,7 @@ function cbc_preprocess_input(&$variables) {
   // List of types allowed to have autocomplete attribute.
   // Source: W3C / HTML5 spec.
   $allowed_autocomplete_types = [
-    'color', 'date', 'datetime-local', 'email', 'hidden', 'month', 
+    'color', 'date', 'datetime-local', 'email', 'month', 
     'number', 'password', 'range', 'search', 'tel', 'text', 'time', 'url', 'week'
   ];
 
@@ -253,7 +253,7 @@ function cbc_preprocess_input(&$variables) {
       }
     }
     else {
-      // Remove autocomplete if present on invalid types (submit, button, etc).
+      // Remove autocomplete if present on invalid types (submit, button, hidden, etc).
       // This fixes the W3C validation error.
       $variables['attributes']->removeAttribute('autocomplete');
     }
@@ -393,6 +393,13 @@ function cbc_preprocess_textarea(&$variables) {
   if (isset($element['#errors'])) {
     $variables['errors'] = $element['#errors'];
   }
+  // Remove 'pattern' attribute as it is invalid for textarea elements
+  if (isset($variables['attributes']['pattern'])) {
+    unset($variables['attributes']['pattern']);
+  }
+  if ($variables['attributes'] instanceof \Drupal\Core\Template\Attribute) {
+    $variables['attributes']->removeAttribute('pattern');
+  }
 }
 
 /**
@@ -403,5 +410,16 @@ function cbc_preprocess_text_format_wrapper(&$variables) {
   $element = $variables['element'];
   if (isset($element['#errors'])) {
     $variables['errors'] = $element['#errors'];
+  }
+}
+
+/**
+ * Implements hook_preprocess_container().
+ * Fixes duplicate ID 'edit-actions' error by ensuring unique IDs.
+ */
+function cbc_preprocess_container(&$variables) {
+  if (isset($variables['attributes']['id']) && strpos((string) $variables['attributes']['id'], 'edit-actions') === 0) {
+    // Use a custom prefix to ensure uniqueness and avoid collision with default ids like 'edit-actions--2'
+    $variables['attributes']['id'] = Html::getUniqueId('cbc-form-actions');
   }
 }

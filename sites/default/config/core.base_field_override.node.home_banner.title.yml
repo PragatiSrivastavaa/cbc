@@ -1,0 +1,18 @@
+uuid: 1114a12b-c15d-4c2e-81c9-eebdc7244155
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.home_banner
+id: node.home_banner.title
+field_name: title
+entity_type: node
+bundle: home_banner
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

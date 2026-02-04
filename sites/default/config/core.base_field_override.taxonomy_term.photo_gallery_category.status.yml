@@ -1,0 +1,22 @@
+uuid: 24f0c475-b088-404f-95e8-a7a5035ace91
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.photo_gallery_category
+id: taxonomy_term.photo_gallery_category.status
+field_name: status
+entity_type: taxonomy_term
+bundle: photo_gallery_category
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

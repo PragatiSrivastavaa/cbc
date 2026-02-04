@@ -1,0 +1,20 @@
+uuid: 07470ffc-a40b-4743-80b5-e1e149abd0f3
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.training_institute
+id: node.training_institute.uid
+field_name: uid
+entity_type: node
+bundle: training_institute
+label: 'Authored by'
+description: 'The username of the content author.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

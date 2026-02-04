@@ -1,0 +1,18 @@
+uuid: ce276ba0-54ec-4973-96d2-3f8c9bd38d7a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.news_letters
+id: node.news_letters.title
+field_name: title
+entity_type: node
+bundle: news_letters
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

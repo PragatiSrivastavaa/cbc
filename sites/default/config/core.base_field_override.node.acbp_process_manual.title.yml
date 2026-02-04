@@ -1,0 +1,18 @@
+uuid: afc69d51-8201-4f5b-b05b-78f292add09d
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.acbp_process_manual
+id: node.acbp_process_manual.title
+field_name: title
+entity_type: node
+bundle: acbp_process_manual
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

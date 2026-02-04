@@ -1,0 +1,22 @@
+uuid: aa5ae9ad-3aed-4f62-a3f5-7efecf8488f0
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.tender_document_type
+id: taxonomy_term.tender_document_type.status
+field_name: status
+entity_type: taxonomy_term
+bundle: tender_document_type
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

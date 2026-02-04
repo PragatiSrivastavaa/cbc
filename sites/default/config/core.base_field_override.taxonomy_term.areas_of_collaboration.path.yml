@@ -1,0 +1,20 @@
+uuid: e09ba1ab-e66d-41b3-b520-9b3d475cbc44
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.areas_of_collaboration
+  module:
+    - path
+id: taxonomy_term.areas_of_collaboration.path
+field_name: path
+entity_type: taxonomy_term
+bundle: areas_of_collaboration
+label: 'URL alias'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

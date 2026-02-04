@@ -1,0 +1,18 @@
+uuid: d6c638a0-e0c1-4aa5-b900-5b970fa14b8e
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.important_documents
+id: taxonomy_term.important_documents.name
+field_name: name
+entity_type: taxonomy_term
+bundle: important_documents
+label: Name
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

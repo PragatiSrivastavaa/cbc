@@ -1,0 +1,20 @@
+uuid: 5c6a8a32-91c7-4e8e-9743-5e767551ff75
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.testimonials
+id: node.testimonials.menu_link
+field_name: menu_link
+entity_type: node
+bundle: testimonials
+label: 'Menu link'
+description: 'Computed menu link for the node (only available during node saving).'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

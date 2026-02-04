@@ -1,0 +1,18 @@
+uuid: 2846ce1a-cc45-4fea-9f8e-5f719c3a610b
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.know_your_cbc
+id: node.know_your_cbc.title
+field_name: title
+entity_type: node
+bundle: know_your_cbc
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,18 @@
+uuid: b6acf9e1-c8f2-4579-8ca9-40889cdbd348
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.quick-links
+id: menu_link_content.quick-links.title
+field_name: title
+entity_type: menu_link_content
+bundle: quick-links
+label: 'Menu link title'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

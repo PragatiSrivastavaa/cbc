@@ -1,0 +1,18 @@
+uuid: d211ae2d-7c64-43cc-80d5-39da72bdea9a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.know_your_cbc
+id: node.know_your_cbc.changed
+field_name: changed
+entity_type: node
+bundle: know_your_cbc
+label: Changed
+description: 'The time that the node was last edited.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

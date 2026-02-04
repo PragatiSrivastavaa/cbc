@@ -1,0 +1,18 @@
+uuid: 3e6cc1e9-7a4b-4d58-ba46-0d1ce0392bf5
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer
+id: menu_link_content.footer.title
+field_name: title
+entity_type: menu_link_content
+bundle: footer
+label: 'Menu link title'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

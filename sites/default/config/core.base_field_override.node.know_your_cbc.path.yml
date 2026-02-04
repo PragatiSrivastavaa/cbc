@@ -1,0 +1,20 @@
+uuid: 1a6e6b8b-51ee-4c9f-8706-a46ca21ea6f8
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.know_your_cbc
+  module:
+    - path
+id: node.know_your_cbc.path
+field_name: path
+entity_type: node
+bundle: know_your_cbc
+label: 'URL alias'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

@@ -1,0 +1,18 @@
+uuid: 51dc4d5d-3d7a-411f-aa2a-f161486810e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.registration_guidelines_for_igot
+id: node.registration_guidelines_for_igot.created
+field_name: created
+entity_type: node
+bundle: registration_guidelines_for_igot
+label: 'Authored on'
+description: 'The date and time that the content was created.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created
