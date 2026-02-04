@@ -8646,8 +8646,8 @@ h1.page-hero-title {
 
 
 .org-node-secretary {
-  background: #fff0d4;
-  border: 2px solid #0063ae;
+  background: #0063ae;
+  border: 2px solid #ffa500;
 }
 
 .org-node::before,
@@ -8739,7 +8739,7 @@ h1.page-hero-title {
 }
 
 .org-node-secretary h4 {
-  color: #0063ae;
+  color: #ffffff;
   font-weight: 700;
   font-size: 1.3rem;
   margin: 0;

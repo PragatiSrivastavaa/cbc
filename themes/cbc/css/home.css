@@ -280,11 +280,13 @@
 
 .alert-bar-track {
   display: flex;
-  gap: 40px;
-  /* Reduced from 60px */
+  /* gap: 40px; Replaced by margin on items for consistent spacing calculation */
   animation: scrollAlerts 10s linear infinite;
   white-space: nowrap;
   will-change: transform;
+  width: max-content;
+  /* Critical: Ensures transform(-50%) uses full content width */
+  min-width: 100%;
 }
 
 .alert-bar-track.paused {
@@ -302,6 +304,8 @@
   font-weight: 500;
   padding: 0 15px;
   /* Reduced from 20px */
+  margin-right: 40px;
+  /* Explicit spacing between items */
   white-space: nowrap;
   height: 100%;
   text-decoration: none;
@@ -13442,7 +13446,7 @@ a[href*="/user/password"] {
   height: auto !important;
   /* Explicitly ignore equal height force */
   min-height: 0 !important;
-  min-width: 300px;
+  min-width: 275px;
 }
 
 .home-opinion-card-content {

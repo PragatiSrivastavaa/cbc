@@ -102,6 +102,40 @@ function initializeAlertBar() {
 
   if (!alertTrack || !pauseBtn || !prevBtn || !nextBtn) return;
 
+  // Duplicate items for seamless scrolling
+  if (!alertTrack.hasAttribute('data-cloned')) {
+    const originalItems = alertTrack.querySelectorAll('.alert-item');
+    if (originalItems.length > 0) {
+      originalItems.forEach(item => {
+        const clone = item.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        alertTrack.appendChild(clone);
+      });
+      alertTrack.setAttribute('data-cloned', 'true');
+    }
+  }
+
+  // Dynamic animation speed adjustment based on content length
+  let currentAnimationDuration = 15; // default fallback
+
+  function updateAnimationSpeed() {
+    // Calculate total width of ONE set of items (half the scrollWidth because we duplicated)
+    const contentWidth = alertTrack.scrollWidth / 2;
+
+    // Desired speed: pixels per second. Lower is slower.
+    // 60px/s is a good reading speed.
+    const speed = 60;
+
+    const duration = contentWidth / speed;
+    currentAnimationDuration = Math.max(duration, 15); // Ensure at least 15s for short content
+
+    alertTrack.style.animationDuration = `${currentAnimationDuration}s`;
+  }
+
+  // Initialize speed calculation
+  updateAnimationSpeed();
+  window.addEventListener('resize', updateAnimationSpeed);
+
   let isPaused = false;
   let animationOffset = 0;
   const alertItems = alertTrack.querySelectorAll('.alert-item');
@@ -111,7 +145,7 @@ function initializeAlertBar() {
     if (alertItems.length === 0) return 400;
     const firstItem = alertItems[0];
     const itemWidth = firstItem.offsetWidth;
-    const gap = 60;
+    const gap = 40; // Matched to CSS gap
     return itemWidth + gap;
   }
 
@@ -206,8 +240,7 @@ function initializeAlertBar() {
 
         // Adjust animation to start from the scrolled position
         // We'll use animation-delay to offset the start
-        const animationDuration = 10; // seconds
-        const delaySeconds = (offsetPercent / 100) * animationDuration;
+        const delaySeconds = (offsetPercent / 100) * currentAnimationDuration;
         alertTrack.style.animationDelay = `-${delaySeconds}s`;
 
         animationOffset = 0; // Reset for next time
