@@ -1,0 +1,22 @@
+uuid: e23b506e-ac19-45b9-912c-badefd8e8f63
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.capacity_building_units
+id: node.capacity_building_units.sticky
+field_name: sticky
+entity_type: node
+bundle: capacity_building_units
+label: 'Sticky at top of lists'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

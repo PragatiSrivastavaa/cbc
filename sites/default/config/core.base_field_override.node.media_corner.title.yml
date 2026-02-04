@@ -1,0 +1,18 @@
+uuid: 0cdddfe1-d2c9-4260-b89d-612c31733f20
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.media_corner
+id: node.media_corner.title
+field_name: title
+entity_type: node
+bundle: media_corner
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

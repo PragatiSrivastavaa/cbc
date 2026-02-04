@@ -1,0 +1,21 @@
+uuid: 353d874e-2491-4433-aff1-39ca93ee7c85
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.important_documents
+  module:
+    - text
+id: taxonomy_term.important_documents.description
+field_name: description
+entity_type: taxonomy_term
+bundle: important_documents
+label: Description
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

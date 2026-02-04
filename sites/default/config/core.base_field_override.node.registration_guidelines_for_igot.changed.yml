@@ -1,0 +1,18 @@
+uuid: 76402de9-c4d4-42a8-9a0d-24fd87799f0d
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.registration_guidelines_for_igot
+id: node.registration_guidelines_for_igot.changed
+field_name: changed
+entity_type: node
+bundle: registration_guidelines_for_igot
+label: Changed
+description: 'The time that the node was last edited.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

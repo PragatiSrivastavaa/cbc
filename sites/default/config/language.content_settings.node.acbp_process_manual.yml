@@ -4,6 +4,13 @@ status: true
 dependencies:
   config:
     - node.type.acbp_process_manual
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
 id: node.acbp_process_manual
 target_entity_type_id: node
 target_bundle: acbp_process_manual

@@ -1,0 +1,18 @@
+uuid: cdf611c6-9180-451a-9c2c-ff4fb33b11bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.our_collaboration_matters
+id: node.our_collaboration_matters.title
+field_name: title
+entity_type: node
+bundle: our_collaboration_matters
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

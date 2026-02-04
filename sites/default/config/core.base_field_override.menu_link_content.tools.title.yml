@@ -1,0 +1,18 @@
+uuid: 4a0edecd-0321-4691-86f0-ac4b232ea1e0
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.tools
+id: menu_link_content.tools.title
+field_name: title
+entity_type: menu_link_content
+bundle: tools
+label: 'Menu link title'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

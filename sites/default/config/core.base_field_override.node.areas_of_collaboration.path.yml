@@ -1,0 +1,20 @@
+uuid: 4e78145e-b7b2-4d6d-b83a-dd8b621404bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.areas_of_collaboration
+  module:
+    - path
+id: node.areas_of_collaboration.path
+field_name: path
+entity_type: node
+bundle: areas_of_collaboration
+label: 'URL alias'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

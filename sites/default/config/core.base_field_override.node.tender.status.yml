@@ -1,0 +1,22 @@
+uuid: 5aa081b4-e137-491f-8198-8c3a40f6d13f
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.tender
+id: node.tender.status
+field_name: status
+entity_type: node
+bundle: tender
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

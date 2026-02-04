@@ -1,0 +1,22 @@
+uuid: b9c408ca-7e3d-4baf-b412-917b08f5133e
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.capacity_building_units
+id: node.capacity_building_units.status
+field_name: status
+entity_type: node
+bundle: capacity_building_units
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

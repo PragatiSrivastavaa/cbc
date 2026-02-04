@@ -1,0 +1,20 @@
+uuid: c64e0786-7a33-48a6-bb96-c26cc5dbb040
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.know_your_cbc
+id: node.know_your_cbc.uid
+field_name: uid
+entity_type: node
+bundle: know_your_cbc
+label: 'Authored by'
+description: 'The username of the content author.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

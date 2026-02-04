@@ -1,0 +1,20 @@
+uuid: 2e782549-e436-44a7-bb59-5558ba65dd91
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.acbp_process_manual
+id: node.acbp_process_manual.uid
+field_name: uid
+entity_type: node
+bundle: acbp_process_manual
+label: 'Authored by'
+description: 'The username of the content author.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

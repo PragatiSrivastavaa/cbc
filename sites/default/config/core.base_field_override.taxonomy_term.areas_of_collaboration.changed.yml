@@ -1,0 +1,18 @@
+uuid: fe352feb-d87d-4275-b1f9-b0952e422949
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.areas_of_collaboration
+id: taxonomy_term.areas_of_collaboration.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: areas_of_collaboration
+label: Changed
+description: 'The time that the term was last edited.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

@@ -1,0 +1,20 @@
+uuid: 521f3beb-e614-41cd-b359-13dccb8b24b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.tender_document_type
+  module:
+    - path
+id: taxonomy_term.tender_document_type.path
+field_name: path
+entity_type: taxonomy_term
+bundle: tender_document_type
+label: 'URL alias'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

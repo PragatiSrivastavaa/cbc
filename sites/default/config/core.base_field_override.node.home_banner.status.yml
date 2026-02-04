@@ -1,0 +1,22 @@
+uuid: 32ab2438-1559-4a48-99ac-3bc22ac97d2e
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.home_banner
+id: node.home_banner.status
+field_name: status
+entity_type: node
+bundle: home_banner
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

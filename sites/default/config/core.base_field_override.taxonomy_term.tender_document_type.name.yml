@@ -1,0 +1,18 @@
+uuid: 60725273-4168-4e8b-a179-096ba5f42caf
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.tender_document_type
+id: taxonomy_term.tender_document_type.name
+field_name: name
+entity_type: taxonomy_term
+bundle: tender_document_type
+label: Name
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

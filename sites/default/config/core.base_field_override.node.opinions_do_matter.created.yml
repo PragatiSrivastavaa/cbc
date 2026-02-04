@@ -1,0 +1,18 @@
+uuid: 45b62ccc-fda9-40cf-91cb-cc2964819abf
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.opinions_do_matter
+id: node.opinions_do_matter.created
+field_name: created
+entity_type: node
+bundle: opinions_do_matter
+label: 'Authored on'
+description: 'The date and time that the content was created.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

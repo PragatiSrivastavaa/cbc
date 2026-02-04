@@ -1,0 +1,18 @@
+uuid: 4dafbcd9-bdcb-4b5a-a424-1b17aba2d9c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.reports
+id: node.reports.title
+field_name: title
+entity_type: node
+bundle: reports
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

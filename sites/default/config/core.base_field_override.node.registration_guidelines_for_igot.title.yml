@@ -1,0 +1,18 @@
+uuid: 2ac406d3-e761-45ef-ac35-97e0d5e19d5f
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.registration_guidelines_for_igot
+id: node.registration_guidelines_for_igot.title
+field_name: title
+entity_type: node
+bundle: registration_guidelines_for_igot
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -4,6 +4,13 @@ status: true
 dependencies:
   config:
     - node.type.capacity_building_units
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
 id: node.capacity_building_units
 target_entity_type_id: node
 target_bundle: capacity_building_units

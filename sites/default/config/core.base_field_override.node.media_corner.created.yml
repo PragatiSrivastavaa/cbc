@@ -1,0 +1,18 @@
+uuid: c4d72fb0-103d-4fa9-8ab9-969afadd4148
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.media_corner
+id: node.media_corner.created
+field_name: created
+entity_type: node
+bundle: media_corner
+label: 'Authored on'
+description: 'The date and time that the content was created.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

@@ -1,0 +1,18 @@
+uuid: 51474555-34b1-4c2d-bbe4-18cba9e2aad8
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.important_documents
+id: node.important_documents.created
+field_name: created
+entity_type: node
+bundle: important_documents
+label: 'Authored on'
+description: 'The date and time that the content was created.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

@@ -1,0 +1,22 @@
+uuid: 3d5fab96-8dd0-4739-ae9f-065851225396
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.know_your_cbc
+id: node.know_your_cbc.status
+field_name: status
+entity_type: node
+bundle: know_your_cbc
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

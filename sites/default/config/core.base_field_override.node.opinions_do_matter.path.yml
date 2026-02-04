@@ -1,0 +1,20 @@
+uuid: 56c0e27b-f8c0-4cc6-8256-ecd20f76c09e
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.opinions_do_matter
+  module:
+    - path
+id: node.opinions_do_matter.path
+field_name: path
+entity_type: node
+bundle: opinions_do_matter
+label: 'URL alias'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

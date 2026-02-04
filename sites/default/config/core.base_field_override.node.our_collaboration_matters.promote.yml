@@ -1,0 +1,22 @@
+uuid: 17d2211c-8776-4b2f-9c45-b17f1ce151c5
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.our_collaboration_matters
+id: node.our_collaboration_matters.promote
+field_name: promote
+entity_type: node
+bundle: our_collaboration_matters
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

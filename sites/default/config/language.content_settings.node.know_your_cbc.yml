@@ -4,6 +4,13 @@ status: true
 dependencies:
   config:
     - node.type.know_your_cbc
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
 id: node.know_your_cbc
 target_entity_type_id: node
 target_bundle: know_your_cbc

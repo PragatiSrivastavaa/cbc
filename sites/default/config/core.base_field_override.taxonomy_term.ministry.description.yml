@@ -1,0 +1,21 @@
+uuid: 5e026c23-3fd1-4629-8025-02a1a366bcc6
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.ministry
+  module:
+    - text
+id: taxonomy_term.ministry.description
+field_name: description
+entity_type: taxonomy_term
+bundle: ministry
+label: Description
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

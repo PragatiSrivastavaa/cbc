@@ -6,7 +6,14 @@ dependencies:
     - field.storage.node.field_document
     - node.type.case_studies
   module:
+    - content_translation
     - file
+third_party_settings:
+  content_translation:
+    translation_sync:
+      target_id: target_id
+      display: display
+      description: description
 id: node.case_studies.field_document
 field_name: field_document
 entity_type: node
@@ -14,7 +21,7 @@ bundle: case_studies
 label: Document
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:

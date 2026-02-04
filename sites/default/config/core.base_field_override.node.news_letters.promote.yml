@@ -1,0 +1,22 @@
+uuid: 13a398b0-0ef7-4af7-b36d-cf9fd430134f
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.news_letters
+id: node.news_letters.promote
+field_name: promote
+entity_type: node
+bundle: news_letters
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

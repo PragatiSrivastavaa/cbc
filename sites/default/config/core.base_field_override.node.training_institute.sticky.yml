@@ -1,0 +1,22 @@
+uuid: ff465a8b-1dd0-43e6-a397-ba9ea0b9d0f7
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.training_institute
+id: node.training_institute.sticky
+field_name: sticky
+entity_type: node
+bundle: training_institute
+label: 'Sticky at top of lists'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

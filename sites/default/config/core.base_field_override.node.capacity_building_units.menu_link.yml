@@ -1,0 +1,20 @@
+uuid: 2fbe1a43-4dc0-4d18-a563-60c71de406ec
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.capacity_building_units
+id: node.capacity_building_units.menu_link
+field_name: menu_link
+entity_type: node
+bundle: capacity_building_units
+label: 'Menu link'
+description: 'Computed menu link for the node (only available during node saving).'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

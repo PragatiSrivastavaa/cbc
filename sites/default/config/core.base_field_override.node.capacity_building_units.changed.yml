@@ -1,0 +1,18 @@
+uuid: dab5269e-382b-4337-bbe8-c5ae032c9b25
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.capacity_building_units
+id: node.capacity_building_units.changed
+field_name: changed
+entity_type: node
+bundle: capacity_building_units
+label: Changed
+description: 'The time that the node was last edited.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

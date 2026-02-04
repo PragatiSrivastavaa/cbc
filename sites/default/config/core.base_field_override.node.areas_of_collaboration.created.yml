@@ -1,0 +1,18 @@
+uuid: 6e93905a-722e-4181-a7da-356322bfd0b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.areas_of_collaboration
+id: node.areas_of_collaboration.created
+field_name: created
+entity_type: node
+bundle: areas_of_collaboration
+label: 'Authored on'
+description: 'The date and time that the content was created.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

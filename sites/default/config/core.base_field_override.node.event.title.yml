@@ -1,0 +1,18 @@
+uuid: 8782906d-8ed4-4b8f-8e1c-2a70d3b0bca8
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.event
+id: node.event.title
+field_name: title
+entity_type: node
+bundle: event
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,20 @@
+uuid: 8c768618-eeb9-4a19-bee9-8b0ecb994591
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.opinions_do_matter
+id: node.opinions_do_matter.uid
+field_name: uid
+entity_type: node
+bundle: opinions_do_matter
+label: 'Authored by'
+description: 'The username of the content author.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

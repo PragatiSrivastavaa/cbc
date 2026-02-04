@@ -1,0 +1,22 @@
+uuid: 205a39e8-3fb7-4c52-a24d-061ab229a52d
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.important_documents
+id: node.important_documents.status
+field_name: status
+entity_type: node
+bundle: important_documents
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

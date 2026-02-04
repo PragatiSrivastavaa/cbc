@@ -1,0 +1,18 @@
+uuid: d738179d-238e-4350-9943-5656949a1afc
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.areas_of_collaboration
+id: taxonomy_term.areas_of_collaboration.name
+field_name: name
+entity_type: taxonomy_term
+bundle: areas_of_collaboration
+label: Name
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

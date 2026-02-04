@@ -1,0 +1,18 @@
+uuid: 054eff82-c30e-46df-b2e0-2c7f53c62ec6
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.opinions_do_matter
+id: node.opinions_do_matter.title
+field_name: title
+entity_type: node
+bundle: opinions_do_matter
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

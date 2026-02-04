@@ -1,0 +1,22 @@
+uuid: 4d92b6b8-a48b-498a-9e55-2e6d8f400a40
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.opinions_do_matter
+id: node.opinions_do_matter.status
+field_name: status
+entity_type: node
+bundle: opinions_do_matter
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

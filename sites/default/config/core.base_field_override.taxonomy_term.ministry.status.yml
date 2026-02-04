@@ -1,0 +1,22 @@
+uuid: b5d09cfa-de8c-4e50-aca5-c7fd5d1d276a
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.ministry
+id: taxonomy_term.ministry.status
+field_name: status
+entity_type: taxonomy_term
+bundle: ministry
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
