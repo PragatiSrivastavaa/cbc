@@ -1,23 +1,23 @@
-var simplemaps_countrymap_mapdata={
+var simplemaps_countrymap_mapdata = {
   main_settings: {
     //General settings
-		width: "responsive",
+    width: "responsive",
     background_color: "#FFFFFF",
     background_transparent: "yes",
     border_color: "#ffffff",
     pop_ups: "detect",
-    
-		//State defaults
-		state_description: "State description",
+
+    //State defaults
+    state_description: "State description",
     state_color: "#0063ae",
     state_hover_color: "#004b88",
     state_url: "",
     border_size: 1.5,
     all_states_inactive: "no",
     all_states_zoomable: "yes",
-    
-		//Location defaults
-		location_description: "Location description",
+
+    //Location defaults
+    location_description: "Location description",
     location_url: "",
     location_color: "#ff9800",
     location_opacity: 0.8,
@@ -30,9 +30,9 @@ var simplemaps_countrymap_mapdata={
     location_hover_border: 2.5,
     all_locations_inactive: "no",
     all_locations_hidden: "no",
-    
-		//Label defaults
-		label_color: "#ffffff",
+
+    //Label defaults
+    label_color: "#ffffff",
     label_hover_color: "#ffffff",
     label_size: 16,
     label_font: "Arial",
@@ -40,9 +40,9 @@ var simplemaps_countrymap_mapdata={
     label_scale: "yes",
     hide_labels: "no",
     hide_eastern_labels: "no",
-   
-		//Zoom settings
-		zoom: "yes",
+
+    //Zoom settings
+    zoom: "yes",
     manual_zoom: "yes",
     back_image: "no",
     initial_back: "no",
@@ -53,17 +53,17 @@ var simplemaps_countrymap_mapdata={
     zoom_out_incrementally: "yes",
     zoom_percentage: 0.99,
     zoom_time: 0.5,
-    
-		//Popup settings
-		popup_color: "white",
+
+    //Popup settings
+    popup_color: "white",
     popup_opacity: 0.9,
     popup_shadow: 1,
     popup_corners: 5,
     popup_font: "12px/1.5 Verdana, Arial, Helvetica, sans-serif",
     popup_nocss: "no",
-    
-		//Advanced settings
-		div: "training-institutes-map",
+
+    //Advanced settings
+    div: "training-institutes-map",
     auto_load: "yes",
     url_new_tab: "yes",
     images_directory: "",
@@ -530,12 +530,23 @@ var simplemaps_countrymap_mapdata={
         return;
       }
 
+      var rawTitle = sanitize(item.title) || 'Training Institute';
+      var upperTitle = rawTitle.toUpperCase();
+      var pinColor = '#ff9800'; // Default orange
+
+      if (upperTitle.indexOf('CTI') !== -1) {
+        pinColor = '#0063ae'; // Blue for CTI
+      } else if (upperTitle.indexOf('ATI') !== -1) {
+        pinColor = '#ff9800'; // Orange for ATI
+      }
+
       locations[String(index + 1)] = {
-        name: sanitize(item.title) || 'Training Institute',
+        name: rawTitle,
         lat: lat,
         lng: lng,
         description: buildDescription(item),
-        url: extractUrl(item.field_website)
+        url: extractUrl(item.field_website),
+        color: pinColor
       };
     });
     return locations;
