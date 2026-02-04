@@ -6,6 +6,7 @@ dependencies:
     - 'block_content:basic:a8ac2645-f3bc-45ab-819c-adef7e404253'
   module:
     - block_content
+    - language
   theme:
     - cbc
 id: cbc_aboutus
@@ -22,4 +23,12 @@ settings:
   status: true
   info: ''
   view_mode: full
-visibility: {  }
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      en: en
+      hi: hi
