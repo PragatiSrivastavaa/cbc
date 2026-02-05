@@ -1,0 +1,65 @@
+{% include 'themes/cbc/templates/layout/header.html.twig' %}
+
+<main id="app-content">
+  <div class="page-hero-section">
+    <div class="page-hero-overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1 class="page-hero-title">About Karmayogi</h1>
+          <p class="page-hero-subtitle">Transforming Civil Service Capacity Building in India</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{ page.breadcrumb }}
+
+  <section class="py-5">
+    <div class="container">
+      <div class="content-section">
+        <!-- Karmayogi Definition Cards Section -->
+        <div class="karmayogi-cards-section">
+          <div class="text-center mb-5">
+            <h2 class="mb-2">What Does Being a Karmayogi Mean?</h2>
+            <p class="text-muted">Explore the essence of a Karmayogi in English and Hindi</p>
+          </div>
+          
+          <div class="row justify-content-center">
+            <!-- English Card -->
+            <div class="col-md-6 col-lg-5 karmayogi-card-wrapper">
+              <div class="karmayogi-card">
+                <div class="karmayogi-card-img-container">
+                  <img src="{{ base_path }}{{ directory }}/img/card_english.jpg" alt="Being a Karmayogi - English" class="karmayogi-card-img">
+                </div>
+                <div class="karmayogi-card-body">
+                  <h3 class="karmayogi-card-title">English Version</h3>
+                  <p class="karmayogi-card-subtitle">Detailed explanation of Karmayogi principles</p>
+                  <a href="{{ base_path }}{{ directory }}/img/card_english.jpg" target="_blank" class="karmayogi-card-btn">View Full Size</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hindi Card -->
+            <div class="col-md-6 col-lg-5 karmayogi-card-wrapper">
+              <div class="karmayogi-card">
+                <div class="karmayogi-card-img-container">
+                  <img src="{{ base_path }}{{ directory }}/img/card_hindi.jpg" alt="Being a Karmayogi - Hindi" class="karmayogi-card-img">
+                </div>
+                <div class="karmayogi-card-body">
+                  <h3 class="karmayogi-card-title">Hindi Version</h3>
+                  <p class="karmayogi-card-subtitle">कर्मयोगी होने का विस्तृत अर्थ</p>
+                  <a href="{{ base_path }}{{ directory }}/img/card_hindi.jpg" target="_blank" class="karmayogi-card-btn">View Full Size</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {{ page.content }}
+    </div>
+  </section>
+</main>
+
+{% include 'themes/cbc/templates/layout/footer.html.twig' %}

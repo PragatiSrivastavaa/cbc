@@ -423,3 +423,20 @@ function cbc_preprocess_container(&$variables) {
     $variables['attributes']['id'] = Html::getUniqueId('cbc-form-actions');
   }
 }
+
+/**
+ * Implements hook_theme_suggestions_page_alter().
+ */
+function cbc_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  // Add path-based suggestions.
+  $path = \Drupal::service('path.current')->getPath();
+  $alias = \Drupal::service('path_alias.manager')->getAliasByPath($path);
+  
+  if ($alias) {
+    $clean_alias = str_replace(['/', '-'], ['_', '_'], trim($alias, '/'));
+    // Ensure "about-karmayogi" becomes "about_karmayogi" for the suggestion
+    // but the file name can have dashes if we follow Drupal's template naming convention
+    // Drupal converts underscores in suggestions to dashes for file names.
+    $suggestions[] = 'page__' . $clean_alias;
+  }
+}
