@@ -1,6 +1,6 @@
 uuid: de1190d2-204a-4560-9e48-3cda7248adf8
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - views.view.photo_gallery
