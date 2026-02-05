@@ -14,7 +14,9 @@ dependencies:
     - taxonomy.vocabulary.designation
   content:
     - 'taxonomy_term:designation:27b2dc7f-c109-4733-aa34-09837b30fa85'
+    - 'taxonomy_term:designation:624e1924-7752-4115-bd3b-9f70446a3fe8'
     - 'taxonomy_term:designation:6ebecb04-b4d1-484e-94fa-899585a9cf9a'
+    - 'taxonomy_term:designation:786c75b6-9505-4f07-9652-734ff47f62d7'
     - 'taxonomy_term:designation:b3e91a42-f8e6-4871-9bcd-4c66297e558a'
     - 'taxonomy_term:designation:c008965c-fa3c-4fe1-b488-4ddf1d1c206c'
     - 'taxonomy_term:designation:d19b3c2e-cb3f-484e-99e0-e78d4d56bfd5'
@@ -702,9 +704,8 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: text_summary_or_trimmed
-          settings:
-            trim_length: 600
+          type: text_default
+          settings: {  }
           group_column: value
           group_columns: {  }
           group_rows: true
