@@ -1,0 +1,41 @@
+<section class="karmayogi-section-fullwidth testimonials-grid-section">
+  <div class="container py-5">
+    <div class="row g-4">
+      {% for row in rows %}
+        {% set node = row.content['#row']._entity %}
+        {% set tokens = row.content['#view'].style_plugin.render_tokens[loop.index0] %}
+        {% set video_url = '' %}
+
+        {# Get video file #}
+        {% if node.field_video.entity is not empty %}
+          {% set media = node.field_video.entity %}
+          {% if media.field_media_video_file.entity is not empty %}
+            {% set file = media.field_media_video_file.entity %}
+            {% set video_url = file_url(file.uri.value) %}
+          {% endif %}
+        {% endif %}
+
+        <div class="col-lg-4 col-md-6">
+          <div class="testimonial-video-card">
+            {% if video_url %}
+              <div class="testimonial-video-container">
+                <video class="testimonial-card-video" controls playsinline>
+                  <source src="{{ video_url }}" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            {% endif %}
+            <div class="testimonial-card-content">
+              <h3 class="testimonial-card-title">{{ tokens['{{ title }}'] }}</h3>
+              {% if tokens['{{ body }}'] %}
+                <div class="testimonial-card-description">
+                  {{ tokens['{{ body }}'] }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
