@@ -28,7 +28,10 @@
 
                 {% if view_uri %}
                   {% if view_uri starts with 'internal:' %}
-                    {% set view_url = view_uri|replace({'internal:': ''}) %}
+                    {% set view_url = view_uri|replace({
+                      'internal:/cbc': '',
+                      'internal:': ''
+                    }) %}
                   {% else %}
                     {% set view_url = view_uri %}
                   {% endif %}
