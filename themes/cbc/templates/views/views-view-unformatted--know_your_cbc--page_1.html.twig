@@ -3,20 +3,66 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="content-section">
-        <p class="lead">Learn about the Capacity Building Commission, its structure, leadership, and how we work to transform civil service capacity building in India.</p>
-        
+
+
+        <!-- Karmayogi Definition Cards Section -->
+        <div class="karmayogi-cards-section">
+          <div class="text-center mb-5">
+            <h2 class="mb-2">What Does Being a Karmayogi Mean?</h2>
+            <p class="text-muted">Explore the essence of a Karmayogi in English and Hindi</p>
+          </div>
+
+          <div class="row justify-content-center">
+            <!-- English Card -->
+            <div class="col-md-6 col-lg-5 karmayogi-card-wrapper">
+              <div class="karmayogi-card">
+                <div class="karmayogi-card-img-container">
+                  <img src="{{ base_path }}{{ directory }}/img/card_english.jpg" alt="Being a Karmayogi - English"
+                    class="karmayogi-card-img">
+                </div>
+                <div class="karmayogi-card-body">
+                  <h3 class="karmayogi-card-title">English Version</h3>
+                  <p class="karmayogi-card-subtitle">Detailed explanation of Karmayogi principles</p>
+                  <a href="{{ base_path }}{{ directory }}/img/card_english.jpg" target="_blank"
+                    class="karmayogi-card-btn">View Full Size</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hindi Card -->
+            <div class="col-md-6 col-lg-5 karmayogi-card-wrapper">
+              <div class="karmayogi-card">
+                <div class="karmayogi-card-img-container">
+                  <img src="{{ base_path }}{{ directory }}/img/card_hindi.jpg" alt="Being a Karmayogi - Hindi"
+                    class="karmayogi-card-img">
+                </div>
+                <div class="karmayogi-card-body">
+                  <h3 class="karmayogi-card-title">Hindi Version</h3>
+                  <p class="karmayogi-card-subtitle">कर्मयोगी होने का विस्तृत अर्थ</p>
+                  <a href="{{ base_path }}{{ directory }}/img/card_hindi.jpg" target="_blank"
+                    class="karmayogi-card-btn">View Full Size</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+       
+
         <!-- Document Pages Carousel Section -->
-        <div class="document-carousel-section mt-5 mb-5">
+        <div class="document-carousel-section text-center mt-5 mb-5">
           <h2 class="mb-4">Know Your CBC</h2>
+           <p class="lead">Learn about the Capacity Building Commission, its structure, leadership, and how we work to
+          transform civil service capacity building in India.</p>
           <div class="document-carousel-wrapper position-relative">
             <div class="carousel-controls">
               <button id="documentPrevBtn" aria-label="Previous page">‹</button>
               <button id="documentNextBtn" aria-label="Next page">›</button>
             </div>
-            
 
-              <!-- Presentation pages - Drupal compatible -->
-              <!-- 
+
+            <!-- Presentation pages - Drupal compatible -->
+            <!-- 
                 For Drupal integration:
                 1. Replace '../../img/about_cbc_presentation/' with:
                    {{ base_path }}{{ directory }}/img/about_cbc_presentation/
@@ -24,26 +70,24 @@
                 2. All 28 pages are pre-rendered as static HTML (no JS required to load)
                 3. Navigation uses minimal JS with scrollIntoView (Drupal-safe)
               -->
-          
-      <div class="document-carousel-track" id="documentCarouselTrack">
-  {% for row in rows %}
-    <div class="document-page"
-         id="kyc-page-{{ loop.index }}"
-         data-page-number="{{ loop.index }}">
-      <div class="document-page-content">
-        <div class="pdf-page-container">
-          {{ row.content }}
-        </div>
-      </div>
-    </div>
-  {% endfor %}
-</div>
 
-          
-           <div class="carousel-indicators">
-  <span id="currentPage">1</span> /
-  <span id="totalPages">{{ rows|length }}</span>
-</div>
+            <div class="document-carousel-track" id="documentCarouselTrack">
+              {% for row in rows %}
+              <div class="document-page" id="kyc-page-{{ loop.index }}" data-page-number="{{ loop.index }}">
+                <div class="document-page-content">
+                  <div class="pdf-page-container">
+                    {{ row.content }}
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+
+
+            <div class="carousel-indicators">
+              <span id="currentPage">1</span> /
+              <span id="totalPages">{{ rows|length }}</span>
+            </div>
           </div>
         </div>
 
@@ -61,8 +105,8 @@
           </div>
         </div>
         -->
-        
-  </div>
-  </div>
+
+      </div>
+    </div>
   </div>
 </section>

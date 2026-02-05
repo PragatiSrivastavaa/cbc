@@ -2708,7 +2708,7 @@ ul.navbar-nav.nav-rounded {
 /* About Section Content Styling */
 .content-section p,
 .content-section p.lead {
-  text-align: justify !important;
+  text-align: center;
 }
 
 /* Milestone Card Styles */
@@ -11846,6 +11846,104 @@ body.modal-open {
   color: #0063ae;
   font-weight: bold;
   font-size: 1.2rem;
+}
+
+/* Karmayogi Cards Section */
+.karmayogi-cards-section {
+  /* margin: 4rem 0; */
+  background: #f8faff;
+  padding: 3rem 1.5rem;
+  border-radius: 20px;
+}
+
+.karmayogi-card-wrapper {
+  margin-bottom: 2rem;
+}
+
+.karmayogi-card {
+  background: #ffffff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.karmayogi-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0, 99, 174, 0.15);
+  border-color: rgba(0, 99, 174, 0.2);
+}
+
+.karmayogi-card-img-container {
+  position: relative;
+  width: 100%;
+  padding-top: 80%;
+  /* Maintain aspect ratio */
+  overflow: hidden;
+}
+
+.karmayogi-card-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 1rem;
+  transition: transform 0.5s ease;
+}
+
+.karmayogi-card:hover .karmayogi-card-img {
+  transform: scale(1.02);
+}
+
+.karmayogi-card-body {
+  padding: 1.5rem;
+  text-align: center;
+  background: #fcfcfc;
+  border-top: 1px solid #f0f0f0;
+}
+
+.karmayogi-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #003b73;
+  margin-bottom: 0.5rem;
+}
+
+.karmayogi-card-subtitle {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.karmayogi-card-btn {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  background: #0063ae;
+  color: #fff;
+  border-radius: 50px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.karmayogi-card-btn:hover {
+  background: #004b88;
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 99, 174, 0.3);
+}
+
+@media (max-width: 991px) {
+  .karmayogi-cards-section {
+    padding: 2rem 1rem;
+  }
 }
 
 .highlight-box {
