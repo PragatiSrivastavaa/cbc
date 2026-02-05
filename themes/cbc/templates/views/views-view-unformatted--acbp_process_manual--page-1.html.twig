@@ -1,12 +1,15 @@
- <section class="karmayogi-section-fullwidth karmayogi-vision-section">
-    <div class="container">
-      <div class="karmayogi-content-wrapper">
-        <h2 class="karmayogi-section-title">
-          <i class="bi bi-file-earmark-text-fill me-3" style="color: #0063ae;"></i>ACBP Process Manual
-        </h2>
-        <div class="mou-status-table-wrapper">
-          <div class="table-responsive">
-            <table class="table mou-status-table collaboration-table">
+<section class="karmayogi-section-fullwidth karmayogi-vision-section">
+  <div class="container">
+    <div class="karmayogi-content-wrapper">
+
+      <h2 class="karmayogi-section-title">
+        <i class="bi bi-file-earmark-text-fill me-3" style="color:#0063ae;"></i>
+        ACBP Process Manual
+      </h2>
+
+      <div class="mou-status-table-wrapper">
+        <div class="table-responsive">
+          <table class="table mou-status-table collaboration-table">
             <thead>
               <tr>
                 <th>Title</th>
@@ -14,24 +17,54 @@
                 <th class="text-center">Download Document</th>
               </tr>
             </thead>
+
             <tbody>
-   {% for row in rows %}
-              {% set entity = row.content['#row']._entity %}
-              <tr>
-                <td>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</td>
-                <td class="text-center">
-                  <a href="{{ link }}" target="_blank" class="action-link">View</a>
-                </td>
-                <td class="text-center">
-                  <a href="{{ link }}" download class="action-link">Download</a>
-                </td>
-              </tr>
-               
-             {% endfor %}
+              {% for row in rows %}
+                {% set entity = row.content['#row']._entity %}
+
+                {# -------- VIEW LINK (Link field) -------- #}
+                {% set view_uri = entity.field_link.uri ?? '' %}
+                {% set view_url = '' %}
+
+                {% if view_uri %}
+                  {% if view_uri starts with 'internal:' %}
+                    {% set view_url = view_uri|replace({'internal:': ''}) %}
+                  {% else %}
+                    {% set view_url = view_uri %}
+                  {% endif %}
+                {% endif %}
+
+                {# -------- DOWNLOAD LINK (File field) -------- #}
+                {% set file = entity.field_download_document.entity %}
+                {% set file_url = file ? file_url(file.uri.value) : '' %}
+
+                <tr>
+                  <td>{{ entity.label }}</td>
+
+                  <td class="text-center">
+                    {% if view_url %}
+                      <a href="{{ view_url }}" target="_blank" class="action-link">
+                        View
+                      </a>
+                    {% endif %}
+                  </td>
+
+                  <td class="text-center">
+                    {% if file_url %}
+                      <a href="{{ file_url }}" download class="action-link">
+                        Download
+                      </a>
+                    {% endif %}
+                  </td>
+                </tr>
+
+              {% endfor %}
             </tbody>
+
           </table>
         </div>
-        </div>
       </div>
+
     </div>
-  </section>
+  </div>
+</section>
