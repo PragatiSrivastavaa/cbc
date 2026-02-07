@@ -8514,7 +8514,7 @@ h1.page-hero-title {
   pointer-events: none;
 }
 
-.org-level-1-container .row>div:first-child::before {
+/* .org-level-1-container .row>div:first-child::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -8526,9 +8526,9 @@ h1.page-hero-title {
   z-index: 2;
   transform: translateY(-50%);
   pointer-events: none;
-}
+} */
 
-.org-level-1-container .row>div:nth-child(2)::before {
+/* .org-level-1-container .row>div:nth-child(2)::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -8540,7 +8540,7 @@ h1.page-hero-title {
   z-index: 2;
   transform: translateY(-50%);
   pointer-events: none;
-}
+} */
 
 /* Double-headed arrow between Chairperson and Member HR */
 .org-level-1-container .row>div:nth-child(2)::after {
@@ -8556,7 +8556,7 @@ h1.page-hero-title {
   pointer-events: none;
 }
 
-.org-level-1-container .row>div:nth-child(2) .org-node-chairperson::after {
+/* .org-level-1-container .row>div:nth-child(2) .org-node-chairperson::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -8568,9 +8568,9 @@ h1.page-hero-title {
   z-index: 2;
   transform: translateY(-50%);
   pointer-events: none;
-}
+} */
 
-.org-level-1-container .row>div:nth-child(3) .org-node-member[data-position="right"]::before {
+/* .org-level-1-container .row>div:nth-child(3) .org-node-member[data-position="right"]::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -8582,7 +8582,7 @@ h1.page-hero-title {
   z-index: 2;
   transform: translateY(-50%);
   pointer-events: none;
-}
+} */
 
 .org-level-2-container {
   position: relative;
@@ -8596,14 +8596,14 @@ h1.page-hero-title {
 .org-level-2-container .row::before {
   content: '';
   position: absolute;
-  top: -12px;
-  left: 18.5%;
+  top: -11px;
+  left: 19.4%;
   right: 0;
   height: 2px;
   background: #0063ae;
   border-radius: 2px;
   z-index: 0;
-  width: 60%;
+  width: 58.5%;
 }
 
 .org-level-3-container {
@@ -19454,4 +19454,133 @@ th.text-center {
   .testimonial-card-title {
     font-size: 1.1rem !important;
   }
+}
+
+/* ===========================================
+   ABOUT CBC PAGE FIXES
+   =========================================== */
+
+/* Centralize Mandate Cards */
+.mandate-card {
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+/* Vision and Mission Card Alignment */
+.vision-mission-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  height: 100% !important;
+}
+
+.vision-mission-card .vision-content,
+.vision-mission-card .mission-content {
+  flex-grow: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Reset Vision Icon Wrapper styling if it exists */
+.vision-icon-wrapper {
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin-bottom: 0.5rem !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+/* Ensure icons are centered */
+.vision-mission-card i,
+.mandate-card i {
+  display: inline-block;
+}
+
+/* ===========================================
+   FIXED VISION & MISSION ICONS + STRETCHED LINK
+   =========================================== */
+
+/* Vision and Mission Icon Styling - Overriding previous resets */
+.vision-icon-wrapper,
+.mission-icon-wrapper {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 50% !important;
+  transition: transform 0.3s ease, background-color 0.3s ease !important;
+  margin-bottom: 1rem !important;
+}
+
+.vision-icon-wrapper {
+  background-color: rgba(0, 99, 174, 0.1) !important;
+  color: #0063ae !important;
+}
+
+.mission-icon-wrapper {
+  background-color: rgba(255, 193, 7, 0.1) !important;
+  color: #ffc107 !important;
+}
+
+/* Hover Effects */
+.vision-mission-card:hover .vision-icon-wrapper,
+.vision-icon-wrapper:hover {
+  background-color: #0063ae !important;
+  color: #ffffff !important;
+  transform: scale(1.1) !important;
+}
+
+.vision-mission-card:hover .vision-icon-wrapper i,
+.vision-icon-wrapper:hover i {
+  color: #ffffff !important;
+}
+
+.vision-mission-card:hover .mission-icon-wrapper,
+.mission-icon-wrapper:hover {
+  background-color: #ffc107 !important;
+  color: #ffffff !important;
+  transform: scale(1.1) !important;
+}
+
+.vision-mission-card:hover .mission-icon-wrapper i,
+.mission-icon-wrapper:hover i {
+  color: #ffffff !important;
+}
+
+.vision-icon-wrapper i,
+.mission-icon-wrapper i {
+  font-size: 2.5rem !important;
+  display: inline-block !important;
+}
+
+/* Ensure stretched-link works if Bootstrap is missing/old */
+.stretched-link::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  content: "";
+  pointer-events: auto;
+  background-color: transparent;
+}
+
+.position-relative {
+  position: relative !important;
+}
+
+/* Framework Box Hover Effect */
+.framework-box.position-relative:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
