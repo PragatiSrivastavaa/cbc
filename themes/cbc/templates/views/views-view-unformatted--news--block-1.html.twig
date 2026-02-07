@@ -3,7 +3,7 @@
 
     {% for row in rows %}
       {% set entity = row.content['#row']._entity %}
-      {% set link_item = entity.field_action.0 %}
+      {% set link_item = entity.field_link.0 %}
       {% set title_text = row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] %}
 
       <div class="alert-item">
