@@ -44,3 +44,7 @@ sites/simpletest
 # Ignore multi-site test environment.
 # simpletest
 
+/sites/*/files
+*.mp4
+*.mov
+*.avi
