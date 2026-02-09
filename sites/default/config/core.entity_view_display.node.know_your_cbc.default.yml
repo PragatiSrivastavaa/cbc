@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.know_your_cbc.field_images
+    - field.field.node.know_your_cbc.field_video
     - node.type.know_your_cbc
   module:
     - image
@@ -23,6 +24,15 @@ content:
         attribute: lazy
     third_party_settings: {  }
     weight: 104
+    region: content
+  field_video:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 101
     region: content
   links:
     settings: {  }

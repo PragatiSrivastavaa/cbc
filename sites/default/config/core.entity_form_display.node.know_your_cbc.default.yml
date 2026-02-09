@@ -4,10 +4,12 @@ status: true
 dependencies:
   config:
     - field.field.node.know_your_cbc.field_images
+    - field.field.node.know_your_cbc.field_video
     - image.style.thumbnail
     - node.type.know_your_cbc
   module:
     - image
+    - media_library
     - path
 id: node.know_your_cbc.default
 targetEntityType: node
@@ -27,6 +29,13 @@ content:
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_video:
+    type: media_library_widget
+    weight: 121
+    region: content
+    settings:
+      media_types: {  }
     third_party_settings: {  }
   langcode:
     type: language_select
@@ -69,6 +78,11 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  translation:
+    weight: 10
+    region: content
+    settings: {  }
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete

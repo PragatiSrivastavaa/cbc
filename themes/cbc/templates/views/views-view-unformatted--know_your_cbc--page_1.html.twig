@@ -11,17 +11,33 @@
           <p class="lead">Learn about the Capacity Building Commission, its structure, leadership, and how we work to
             transform civil service capacity building in India.</p>
           <!-- Video Section -->
+          {% set video_url = '' %}
+          
+          {# Try to get dynamic video from the first result row's entity #}
+          {% if view.result|length > 0 %}
+            {% set node = view.result[0]._entity %}
+            {# Check if the node has 'field_video' and it is not empty #}
+            {% if node.hasField('field_video') and not node.field_video.isEmpty() %}
+               {% set media_entity = node.field_video.entity %}
+               {# Check if the media entity has 'field_media_video_file' (standard video file field) #}
+               {% if media_entity and media_entity.hasField('field_media_video_file') and not media_entity.field_media_video_file.isEmpty() %}
+                  {% set video_url = file_url(media_entity.field_media_video_file.entity.uri.value) %}
+               {% endif %}
+            {% endif %}
+          {% endif %}
 
+          {% if video_url is not empty %}
           <div class="video-section container mt-5 mb-5">
             <div class="video-wrapper">
               <div class="ratio ratio-16x9">
                 <video class="w-100" controls preload="metadata">
-                  <source src="{{ base_path }}{{ directory }}/img/Mission_Karmayogi.mp4" type="video/mp4">
+                  <source src="{{ video_url }}" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
               </div>
             </div>
           </div>
+          {% endif %}
 
 
           <div class="document-carousel-wrapper position-relative">
