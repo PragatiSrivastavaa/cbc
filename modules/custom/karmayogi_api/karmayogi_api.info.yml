@@ -1,0 +1,6 @@
+name: 'Karmayogi API'
+type: module
+description: 'Fetch data from Karmayogi API'
+core_version_requirement: ^10 || ^11
+package: Custom
+version: 1.0

@@ -1,0 +1,19 @@
+<?php
+
+use Drupal\Core\Theme\ThemeManagerInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function karmayogi_api_theme($existing, $type, $theme, $path) {
+  return [
+    'karmayogi_insights' => [
+      'variables' => [
+        'data' => NULL,
+      ],
+      'template' => 'karmayogi-insights',
+      'path' => \Drupal::service('extension.list.module')
+        ->getPath('karmayogi_api') . '/templates',
+    ],
+  ];
+}

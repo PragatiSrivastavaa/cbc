@@ -1,0 +1,20 @@
+uuid: 1cb93a4d-dfb8-4efa-9f93-31b3ad7d8a30
+langcode: en
+status: true
+dependencies:
+  module:
+    - karmayogi_api
+  theme:
+    - cbc
+id: cbc_karmayogiinsightsblock
+theme: cbc
+region: count_section
+weight: 0
+provider: null
+plugin: karmayogi_insights_block
+settings:
+  id: karmayogi_insights_block
+  label: 'Karmayogi Insights Block'
+  label_display: '0'
+  provider: karmayogi_api
+visibility: {  }
