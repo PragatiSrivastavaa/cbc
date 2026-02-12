@@ -1,25 +1,25 @@
 <div class="alert-bar-wrapper">
-  <div class="alert-bar-track" id="alertTrack">
+    <div class="alert-bar-track" id="alertTrack">
 
-    {% for row in rows %}
-      {% set entity = row.content['#row']._entity %}
-      {% set link_item = entity.field_link.0 %}
-      {% set title_text = row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] %}
+      {% for row in rows %}
+        {% set entity = row.content['#row']._entity %}
+        {% set link_item = entity.field_link.0 %}
+        {% set title_text = row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] %}
 
-      <div class="alert-item">
-        <span class="alert-dot"></span>
+        <div class="alert-item">
+          <span class="alert-dot"></span>
 
-        {% if link_item and link_item.url %}
-          <a href="{{ link_item.url }}" target="_blank" rel="noopener">
+          {% if link_item and link_item.url %}
+            <a href="{{ link_item.url }}" target="_blank" rel="noopener">
+              <span>{{ title_text }}</span>
+            </a>
+          {% else %}
             <span>{{ title_text }}</span>
-          </a>
-        {% else %}
-          <span>{{ title_text }}</span>
-        {% endif %}
+          {% endif %}
 
-      </div>
+        </div>
 
-    {% endfor %}
+      {% endfor %}
 
-  </div>
+    </div>
 </div>

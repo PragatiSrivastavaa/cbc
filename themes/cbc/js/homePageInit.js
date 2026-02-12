@@ -84,6 +84,24 @@ function initializeCarousel() {
     btn.addEventListener('click', () => showSlide(i));
   });
 
+  // New Navigation Arrows
+  const prevArrow = document.querySelector('.carousel-prev');
+  const nextArrow = document.querySelector('.carousel-next');
+
+  if (prevArrow) {
+    prevArrow.addEventListener('click', () => {
+      const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(prevIndex);
+    });
+  }
+
+  if (nextArrow) {
+    nextArrow.addEventListener('click', () => {
+      const nextIndex = (currentSlide + 1) % slides.length;
+      showSlide(nextIndex);
+    });
+  }
+
   // Initialize first slide
   showSlide(0);
 }
@@ -207,44 +225,40 @@ function initializeAlertBar() {
 
   function scrollContent(direction) {
     const step = getStepSize();
-    const scrollAmount = direction === 'left' ? step : -step;
+    const trackWidth = alertTrack.scrollWidth / 2;
 
-    // Get current animation position
+    // Get current visual position from the running animation
     const currentPos = getCurrentTransform();
 
-    // Calculate new offset
-    animationOffset = currentPos + scrollAmount;
+    // Calculate what percentage through the animation we are
+    // The animation goes from 0 to -trackWidth (translateX(-50%))
+    const currentProgress = Math.abs(currentPos) / trackWidth;
 
-    // Temporarily pause to apply the scroll
-    const wasPaused = isPaused;
-    if (!wasPaused) {
-      alertTrack.style.animationPlayState = 'paused';
+    // Shift by one item
+    const shiftAmount = step / trackWidth;
+    let newProgress;
+    if (direction === 'left') {
+      newProgress = currentProgress - shiftAmount;
+    } else {
+      newProgress = currentProgress + shiftAmount;
     }
 
-    // Apply the scroll offset
-    alertTrack.style.transform = `translateX(${animationOffset}px)`;
+    // Keep within 0-1 range
+    if (newProgress < 0) newProgress += 1;
+    if (newProgress > 1) newProgress -= 1;
 
-    // If it wasn't paused, resume animation after a brief moment
-    // The animation will continue from its current cycle
-    if (!wasPaused) {
-      setTimeout(() => {
-        // Remove the manual transform and let animation continue
-        // The animation will pick up from where it was
-        alertTrack.style.transform = '';
-        alertTrack.style.animationPlayState = 'running';
+    // Convert progress to animation-delay to "seek" the animation
+    const newDelay = -(newProgress * currentAnimationDuration);
 
-        // To make the scroll stick, we need to adjust the animation timing
-        // Get the track width to calculate the offset percentage
-        const trackWidth = alertTrack.scrollWidth / 2; // Since we duplicate items
-        const offsetPercent = (animationOffset / trackWidth) * 100;
+    // Restart the animation from the new position
+    alertTrack.style.animation = 'none';
+    alertTrack.offsetHeight; // Force reflow
+    alertTrack.style.animation = '';
+    alertTrack.style.animationDuration = `${currentAnimationDuration}s`;
+    alertTrack.style.animationDelay = `${newDelay}s`;
 
-        // Adjust animation to start from the scrolled position
-        // We'll use animation-delay to offset the start
-        const delaySeconds = (offsetPercent / 100) * currentAnimationDuration;
-        alertTrack.style.animationDelay = `-${delaySeconds}s`;
-
-        animationOffset = 0; // Reset for next time
-      }, 100);
+    if (isPaused) {
+      alertTrack.style.animationPlayState = 'paused';
     }
   }
 
@@ -591,23 +605,17 @@ function initializeNewsBanner() {
 
   if (!newsTrack || !toggleBtn) return;
 
-  const toggleIcon = toggleBtn.querySelector('i');
   let isPaused = false;
-  let hasDuplicated = false;
 
   // Duplicate banners for seamless scrolling (only once)
-  function duplicateBanners() {
-    if (!hasDuplicated && newsTrack) {
-      const banners = newsTrack.querySelectorAll('.news-banner');
-      banners.forEach(banner => {
-        const clone = banner.cloneNode(true);
-        newsTrack.appendChild(clone);
-      });
-      hasDuplicated = true;
-    }
+  if (!newsTrack.hasAttribute('data-cloned')) {
+    const banners = newsTrack.querySelectorAll('.news-banner');
+    banners.forEach(banner => {
+      const clone = banner.cloneNode(true);
+      newsTrack.appendChild(clone);
+    });
+    newsTrack.setAttribute('data-cloned', 'true');
   }
-
-  duplicateBanners();
 
   // Remove old listener
   const newToggleBtn = toggleBtn.cloneNode(true);
@@ -615,16 +623,16 @@ function initializeNewsBanner() {
   const newToggleIcon = newToggleBtn.querySelector('i');
 
   newToggleBtn.addEventListener('click', () => {
-    if (isPaused) {
-      newsTrack.classList.remove('paused');
-      newToggleIcon.classList.remove('fa-play');
-      newToggleIcon.classList.add('fa-pause');
-      isPaused = false;
-    } else {
-      newsTrack.classList.add('paused');
+    if (!isPaused) {
+      newsTrack.style.animationPlayState = 'paused';
       newToggleIcon.classList.remove('fa-pause');
       newToggleIcon.classList.add('fa-play');
       isPaused = true;
+    } else {
+      newsTrack.style.animationPlayState = 'running';
+      newToggleIcon.classList.remove('fa-play');
+      newToggleIcon.classList.add('fa-pause');
+      isPaused = false;
     }
   });
 }

@@ -162,6 +162,60 @@
   transform: scale(1.3);
 }
 
+/* Hero Carousel Navigation Arrows */
+.carousel-prev,
+.carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-prev {
+  left: 20px;
+}
+
+.carousel-next {
+  right: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+
+  .carousel-prev,
+  .carousel-next {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+
+  .carousel-prev {
+    left: 10px;
+  }
+
+  .carousel-next {
+    right: 10px;
+  }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .slide-content {
@@ -202,9 +256,22 @@
   display: flex;
   align-items: center;
   gap: 15px;
-  padding: 10px 16px;
+  padding: 10px 0px;
   /* Reduced from 17px to 10px */
   height: 100%;
+}
+
+/* Ensure Drupal view wrappers inside alert bar expand fully */
+.alert-bar-content>div:not(.alert-controls),
+.alert-bar-content .region,
+.alert-bar-content .region-alerts,
+.alert-bar-content .block,
+.alert-bar-content .views-element-container,
+.alert-bar-content .view,
+.alert-bar-content .view-content {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .alert-label {
@@ -238,6 +305,8 @@
   gap: 8px;
   flex-shrink: 0;
   margin-left: auto;
+  z-index: 10;
+  position: relative;
 }
 
 .alert-control-btn {
@@ -269,6 +338,14 @@
 
 .alert-control-btn i {
   font-size: 0.85rem;
+}
+
+.alert-view-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .alert-bar-wrapper {
@@ -13545,4 +13622,15 @@ a[href*="/user/password"] {
 
 .home-opinion-card-link:hover {
   color: #004d99 !important;
+}
+
+/* What's New Vertical Scroll Animation */
+@keyframes scrollBannersVertical {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-50%);
+  }
 }
