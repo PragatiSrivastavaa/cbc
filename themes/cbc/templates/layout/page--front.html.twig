@@ -191,7 +191,11 @@
           <div class="letter-paper">
             <div class="letter-header-new">
               <div class="letter-title-wrapper">
-                <h2 class="letter-title-new">FROM THE <br> CHAIRPERSON'S DESK<span class="letter-pencil-icon">✏️</span></h2>
+                {% if language == 'hi' %}
+                  <h2 class="letter-title-new">अध्यक्ष की <br> कलम से<span class="letter-pencil-icon">✏️</span></h2>
+                {% else %}
+                  <h2 class="letter-title-new">FROM THE <br> CHAIRPERSON'S DESK<span class="letter-pencil-icon">✏️</span></h2>
+                {% endif %}
               </div>
               <div class="letter-chairperson-photo">
                 <img src="{{ base_path }}themes/cbc/img/cbc-chairman.png" alt="Ms. S. Radha Chauhan" class="letter-chairperson-img">
@@ -200,60 +204,96 @@
             <div class="letter-divider"></div>
             <div class="letter-content" id="letterContent">
               <div class="letter-text">
-                <p class="letter-intro">
-                  Let us join hands for continuously empowering our capacity building eco-system.
-                </p>
-                <p class="letter-paragraph">
-                  Mission Karmayogi is a path-breaking and a first of its kind initiative envisioned by Hon'ble Prime
-                  Minister Shri Narendra Modi, in the year 2020. Since its inception, Mission Karmayogi team has
-                  functioned with dedication towards developing an eco-system which strives to enable lifelong learning
-                  for the Civil Servants, who are an important link for citizen-centric delivery of services. The
-                  Capacity Building Commission, established on 1st April, 2021, functions at the core of Mission
-                  Karmayogi, through policy frameworks laying foundation of capacity building initiatives.
-                </p>
-                <p class="letter-paragraph">
-                  It gives me immense pride to lead the efforts of Capacity Building Commission. We together need to
-                  take this journey ahead.
-                </p>
-                <p class="letter-paragraph">
-                  As we are aware, civil servants perform in a ever-growing and sometimes uncertain environment. The
-                  emerging and new technologies are not only providing unseen opportunities, but at the same time posing
-                  challenges never imagined before. As civil servants, our duty is to deliver in any given situation and
-                  upkeep the trust of the citizens. Continuous capacity building is the key to strive through any
-                  challenge that might come and to optimally utilise the opportunities that might go unutilised if we
-                  are not well-equipped to handle them.
-                </p>
-                <p class="letter-paragraph">
-                  It is pertinent to mention here that we all need to come together to continuously build a learning
-                  eco-system which enables our manpower to be ready to face and utilise any given situation to the best
-                  advantage of the citizens. Our civil servants across the Central and State Governments need to be a
-                  part of this learning process. The wider the chain, the greater the impact will be.
-                </p>
-                <p class="letter-paragraph">
-                  We at the Commission are continuously functioning to arrive at the frameworks and policies that
-                  emphasise upon innovation, foresight and research. We wish to build an eco-system where we learn from
-                  the capacity building best practices of each other and institutionalise them as part of our
-                  eco-system.
-                </p>
-                <p class="letter-paragraph">
-                  We emphasise on the capacity enhancement and upgrading of our Training Institute in all aspects while
-                  acknowledging that they are the backbone of our learning framework.
-                </p>
-                <p class="letter-paragraph">
-                  I feel that excellence should not only be institutionalised but also celebrated by all of us. I wish
-                  to acknowledge the efforts put by you, which has set an example for other to strive towards
-                  excellence.
-                </p>
-                <p class="letter-paragraph">
-                  I consider all my stakeholder an important part of my team & journey and we are open to any feedback,
-                  suggestions that might help us grow together.
-                </p>
+                {% if language == 'hi' %}
+                  <p class="letter-intro">
+                    आईए हम सब अपने क्षमता विकास पारितंत्र को लगातार सशक्त बनाने के लिए सहयोग करें।
+                  </p>
+                  <p class="letter-paragraph">
+                    मिशन कर्मयोगी एक पथ प्रवर्तक और अपने आप में एक ऐसी अनूठी पहल है जिसकी संकल्पना वर्ष 2020 में माननीय प्रधानमंत्री श्री नरेंद्र मोदी द्वारा की गई थी। अपनी शुरुआत से ही, मिशन कर्मयोगी की टीम ने एक ऐसे पारितंत्र को विकसित करने के लिए समर्पण की भावना से कार्य किया है, जो सिविल सेवकों को जीवनपर्यंत सीखने को सक्षम बनाने में मदद करता है। ये सिविल सेवक नागरिक केंद्रित सेवा प्रदानगी के लिए एक महत्वपूर्ण कड़ी है। 1 अप्रैल 2021 को स्थापित क्षमता विकास आयोग, नीतिगत ढांचों के माध्यम से क्षमता विकास संबंधी पहलों की आधारशिला रखते हुए मिशन कर्मयोगी के महत्वपूर्ण भाग के रूप में कार्य करता है।
+                  </p>
+                  <p class="letter-paragraph">
+                    क्षमता विकास आयोग के प्रयासों का नेतृत्व करना, मेरे लिए अत्यंत गर्व की बात है। हम सबको मिलकर इस सफर को आगे बढ़ाना है।
+                  </p>
+                  <p class="letter-paragraph">
+                    जैसा कि हम सब जानते हैं, कि सिविल सेवक निरंतर प्रगतिशील तथा कभी-कभी अनिश्चित महौल में कार्य करते हैं। उभरती हुई और नई प्रौद्योगिकियां न केवल ऐसे अनदेखे अवसर प्रदान कर रही है, बल्कि साथ ही ऐसी चुनौतियां भी खड़ी कर रह रही हैं जिनकी पहले कभी कल्पना नहीं की गई थी। सिविल सेवक के रूप में हमारा दायित्व किसी भी स्थिति में सेवा प्रदान करना और नागरिकों का विश्वास बनाए रखना है। लगातार क्षमता विकास, हमारे समक्ष आने वाले किसी भी चुनौती का सामना करने और उन अवसरों का इष्टतम उपयोग करने की कुंजी है, जिन्हें हम पूरी तरह से तैयार नहीं होने पर खो सकते हैं।
+                  </p>
+                  <p class="letter-paragraph">
+                    यहां यह उल्लेख करना प्रासंगिक है कि एक शिक्षण पारितंत्र के निरंतर विकास हेतु हम सबको एक साथ आने की आवश्यकता है, ताकि हमारी जनशक्ति किसी भी परिस्थिति का सामना करने और नागरिकों की भलाई के लिए उसी परिस्थिति का उपयोग करने में समर्थ बन सके। केंद्र और राज्य सरकार के हमारे सिविल सेवकों को इस शिक्षण प्रक्रिया का भाग होना आवश्यक है। जितना व्यापक इसका दायरा होगा, उतना ही गहरा उसका प्रभाव भी होगा।
+                  </p>
+                  <p class="letter-paragraph">
+                    आयोग में हम सब मिलकर ऐसे फ्रेमवर्क और नीति निर्माण पर निरंतर कार्य कर रहे हैं जो नवाचार, दूर दृष्टि और अनुसंधान पर बल देती हैं। हम एक ऐसा पारितंत्र बनाना चाहते है, जहां हम एक-दूसरे की क्षमता विकास की बेहतरीन पद्धतियों से सीख सकें और अपने पारितंत्र के भाग रूप में उसे स्थापित कर सकें।
+                  </p>
+                  <p class="letter-paragraph">
+                    हम अपने प्रशिक्षण संस्थान के क्षमता संवर्धन और उसके उन्नयन के सभी पहलुओं पर जोर देते हैं, क्योंकि हम मानते हैं कि वह हमारे शिक्षण फ्रेमवर्क की रीढ़ है।
+                  </p>
+                  <p class="letter-paragraph">
+                    मैं महसूस करती हूं कि उत्कृष्टता को न केवल स्थापित किया जाना चाहिए परंतु हमारे द्वारा इसे उत्सव के रूप में मनाया भी जाना चाहिए। मैं आपके द्वारा किए जा रहे प्रयासों के प्रति आभार व्यक्त करती हूं जिसने उत्कृष्टता के प्रति उन्मुख रहने हेतु अन्यों के लिए एक उदाहरण स्थापित किया है।
+                  </p>
+                  <p class="letter-paragraph">
+                    मैं अपने सभी हितधारकों को अपनी टीम और सफर का एक महत्वपूर्ण हिस्सा मानती हूं और हम ऐसे किसी भी फीडबैक, सुझावों का स्वागत करते हैं, जो हमें साथ मिलकर आगे बढ़ने में मदद करें।
+                  </p>
+                {% else %}
+                  <p class="letter-intro">
+                    Let us join hands for continuously empowering our capacity building eco-system.
+                  </p>
+                  <p class="letter-paragraph">
+                    Mission Karmayogi is a path-breaking and a first of its kind initiative envisioned by Hon'ble Prime
+                    Minister Shri Narendra Modi, in the year 2020. Since its inception, Mission Karmayogi team has
+                    functioned with dedication towards developing an eco-system which strives to enable lifelong learning
+                    for the Civil Servants, who are an important link for citizen-centric delivery of services. The
+                    Capacity Building Commission, established on 1st April, 2021, functions at the core of Mission
+                    Karmayogi, through policy frameworks laying foundation of capacity building initiatives.
+                  </p>
+                  <p class="letter-paragraph">
+                    It gives me immense pride to lead the efforts of Capacity Building Commission. We together need to
+                    take this journey ahead.
+                  </p>
+                  <p class="letter-paragraph">
+                    As we are aware, civil servants perform in a ever-growing and sometimes uncertain environment. The
+                    emerging and new technologies are not only providing unseen opportunities, but at the same time posing
+                    challenges never imagined before. As civil servants, our duty is to deliver in any given situation and
+                    upkeep the trust of the citizens. Continuous capacity building is the key to strive through any
+                    challenge that might come and to optimally utilise the opportunities that might go unutilised if we
+                    are not well-equipped to handle them.
+                  </p>
+                  <p class="letter-paragraph">
+                    It is pertinent to mention here that we all need to come together to continuously build a learning
+                    eco-system which enables our manpower to be ready to face and utilise any given situation to the best
+                    advantage of the citizens. Our civil servants across the Central and State Governments need to be a
+                    part of this learning process. The wider the chain, the greater the impact will be.
+                  </p>
+                  <p class="letter-paragraph">
+                    We at the Commission are continuously functioning to arrive at the frameworks and policies that
+                    emphasise upon innovation, foresight and research. We wish to build an eco-system where we learn from
+                    the capacity building best practices of each other and institutionalise them as part of our
+                    eco-system.
+                  </p>
+                  <p class="letter-paragraph">
+                    We emphasise on the capacity enhancement and upgrading of our Training Institute in all aspects while
+                    acknowledging that they are the backbone of our learning framework.
+                  </p>
+                  <p class="letter-paragraph">
+                    I feel that excellence should not only be institutionalised but also celebrated by all of us. I wish
+                    to acknowledge the efforts put by you, which has set an example for other to strive towards
+                    excellence.
+                  </p>
+                  <p class="letter-paragraph">
+                    I consider all my stakeholder an important part of my team & journey and we are open to any feedback,
+                    suggestions that might help us grow together.
+                  </p>
+                {% endif %}
               </div>
             </div>
             <div class="letter-signature">
-              <div class="signature-wishes">Best Wishes,</div>
-              <div class="signature-name">Ms. S. Radha Chauhan</div>
-              <div class="signature-title">Chairperson</div>
+              {% if language == 'hi' %}
+                <div class="signature-wishes">शुभकामनाओं सहित,</div>
+                <div class="signature-name">सुश्री एस. राधा चौहान</div>
+                <div class="signature-title">अध्यक्ष</div>
+              {% else %}
+                <div class="signature-wishes">Best Wishes,</div>
+                <div class="signature-name">Ms. S. Radha Chauhan</div>
+                <div class="signature-title">Chairperson</div>
+              {% endif %}
             </div>
           </div>
         </div>

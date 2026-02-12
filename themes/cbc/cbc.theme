@@ -46,7 +46,7 @@ function cbc_preprocess_image_widget(array &$variables) {
 
 function cbc_preprocess_page(&$variables) {
   $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
-  $vars['language'] = $language;
+  $variables['language'] = $language;
 
   if (!empty($_SESSION['saltval']) && !empty($_SESSION['matchval']) && ($_SESSION['saltval'] == $_SESSION['matchval'])) {
     $variables['randval'] = $_SESSION['saltval'];
