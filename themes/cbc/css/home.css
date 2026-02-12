@@ -307,6 +307,7 @@
   margin-left: auto;
   z-index: 10;
   position: relative;
+  margin-right: 0.3rem;
 }
 
 .alert-control-btn {
@@ -2725,7 +2726,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  animation: scrollBannersVertical 60s linear infinite;
+  animation: scrollBannersVertical 20s linear infinite;
   padding: 0;
   transform: translateY(0);
 }
@@ -3249,7 +3250,7 @@
 .media-track {
   display: flex;
   flex-direction: column;
-  animation: continuousSlideUp 80s linear infinite;
+  animation: continuousSlideUp 40s linear infinite;
 }
 
 .media-item {
@@ -3366,7 +3367,7 @@
 .newsletters-track {
   display: flex;
   flex-direction: column;
-  animation: continuousSlideUp 40s linear infinite;
+  animation: continuousSlideUp 20s linear infinite;
 }
 
 .newsletters-item {
@@ -8130,15 +8131,40 @@ h2.infocus-heading {
 }
 
 .partners-slider {
-  display: flex;
-  gap: 15px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
+  overflow: hidden;
   margin-top: 15px;
+  position: relative;
+  width: 100%;
 }
 
-.partners-slider::-webkit-scrollbar {
+.partners-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  padding: 10px 0;
+}
+
+.partners-track.marquee {
+  animation: partnersMarquee var(--duration, 40s) linear infinite;
+  animation-play-state: running;
+}
+
+.partners-track.paused {
+  animation-play-state: paused !important;
+}
+
+@keyframes partnersMarquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.partners-slider::-webkit-scrollbar,
+.partners-track::-webkit-scrollbar {
   display: none;
 }
 
@@ -10751,7 +10777,7 @@ h2.infocus-heading {
 .media-track {
   display: flex;
   flex-direction: column;
-  animation: continuousSlideUp 80s linear infinite;
+  animation: continuousSlideUp 40s linear infinite;
 }
 
 .media-item {
@@ -10868,7 +10894,7 @@ h2.infocus-heading {
 .newsletters-track {
   display: flex;
   flex-direction: column;
-  animation: continuousSlideUp 40s linear infinite;
+  animation: continuousSlideUp 20s linear infinite;
 }
 
 .newsletters-item {

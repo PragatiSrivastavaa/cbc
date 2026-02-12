@@ -140,9 +140,9 @@ function initializeAlertBar() {
     // Calculate total width of ONE set of items (half the scrollWidth because we duplicated)
     const contentWidth = alertTrack.scrollWidth / 2;
 
-    // Desired speed: pixels per second. Lower is slower.
-    // 60px/s is a good reading speed.
-    const speed = 60;
+    // Desired speed: pixels per second. Higher is faster.
+    // 100px/s for a brisker scroll speed.
+    const speed = 100;
 
     const duration = contentWidth / speed;
     currentAnimationDuration = Math.max(duration, 15); // Ensure at least 15s for short content
@@ -605,17 +605,48 @@ function initializeNewsBanner() {
 
   if (!newsTrack || !toggleBtn) return;
 
-  let isPaused = false;
-
   // Duplicate banners for seamless scrolling (only once)
   if (!newsTrack.hasAttribute('data-cloned')) {
     const banners = newsTrack.querySelectorAll('.news-banner');
     banners.forEach(banner => {
       const clone = banner.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
       newsTrack.appendChild(clone);
     });
     newsTrack.setAttribute('data-cloned', 'true');
   }
+
+  // --- Dynamic Speed Calculation ---
+  function updateNewsAnimationSpeed() {
+    // 1. Get total height of the track
+    // The track contains 2 sets of items (original + clone).
+    // We want the duration for ONE full cycle (half height).
+    const scrollHeight = newsTrack.scrollHeight;
+    const oneCycleHeight = scrollHeight / 2;
+
+    // 2. Define target speed (pixels per second)
+    // Adjust this value to make it faster or slower.
+    // 30px/s is a readable slow scroll. 80px/s is faster.
+    const speedPxPerSec = 80;
+
+    // 3. Calculate duration
+    let duration = oneCycleHeight / speedPxPerSec;
+
+    // Ensure a minimum reasonable duration so it doesn't fly too fast if empty
+    if (duration < 5) duration = 5;
+
+    // 4. Apply to the element
+    newsTrack.style.animationDuration = `${duration}s`;
+  }
+
+  // Calculate initially and on resize
+  updateNewsAnimationSpeed();
+  window.addEventListener('resize', updateNewsAnimationSpeed);
+  // Also update on window load to ensure all resources (fonts/images) are loaded for correct height
+  window.addEventListener('load', updateNewsAnimationSpeed);
+
+  // --- Pause/Play Logic ---
+  let isPaused = false;
 
   // Remove old listener
   const newToggleBtn = toggleBtn.cloneNode(true);
@@ -624,15 +655,28 @@ function initializeNewsBanner() {
 
   newToggleBtn.addEventListener('click', () => {
     if (!isPaused) {
-      newsTrack.style.animationPlayState = 'paused';
+      newsTrack.classList.add('paused');
       newToggleIcon.classList.remove('fa-pause');
       newToggleIcon.classList.add('fa-play');
       isPaused = true;
     } else {
-      newsTrack.style.animationPlayState = 'running';
+      newsTrack.classList.remove('paused');
       newToggleIcon.classList.remove('fa-play');
       newToggleIcon.classList.add('fa-pause');
       isPaused = false;
+    }
+  });
+
+  // Pause on hover (optional, good for UX)
+  newsTrack.addEventListener('mouseenter', () => {
+    if (!isPaused) {
+      newsTrack.classList.add('paused');
+    }
+  });
+
+  newsTrack.addEventListener('mouseleave', () => {
+    if (!isPaused) {
+      newsTrack.classList.remove('paused');
     }
   });
 }
@@ -1589,102 +1633,122 @@ function initializePartnerSlider() {
 
   if (!partnerSlider || !partnerNext || !partnerPrev) return;
 
-  const partnerCards = partnerSlider.querySelectorAll('.partner-card');
+  // Create a track div to contain all items if it doesn't exist
+  let track = partnerSlider.querySelector('.partners-track');
+  if (!track) {
+    track = document.createElement('div');
+    track.className = 'partners-track';
+    // Move all current children into the track
+    while (partnerSlider.firstChild) {
+      track.appendChild(partnerSlider.firstChild);
+    }
+    partnerSlider.appendChild(track);
+  }
+
+  const partnerCards = track.querySelectorAll('.partner-card');
   if (!partnerCards.length) return;
 
-  // Calculate card width dynamically. 
-  // We assume a card width around 280-300px plus gap.
-  // Using offsetWidth accounts for padding/border. We add an estimated gap of 20px.
-  // If no gap is actually set in CSS, this might overscroll slightly, but it's usually safer.
-  const firstCard = partnerCards[0];
-  const cardWidth = (firstCard.offsetWidth || 280) + 24; // 24px gap adjustment
-
-  // Clone items for infinite scroll
-  const originalCards = Array.from(partnerCards);
-  const singleSetWidth = cardWidth * originalCards.length;
-
-  // Check if already cloned
-  if (partnerSlider.children.length === originalCards.length) {
+  // Duplicate items for seamless continuous scrolling
+  if (!track.hasAttribute('data-cloned')) {
+    const originalCards = Array.from(partnerCards);
     originalCards.forEach(card => {
       const clone = card.cloneNode(true);
       clone.setAttribute('aria-hidden', 'true');
-      partnerSlider.appendChild(clone);
+      track.appendChild(clone);
     });
+    track.setAttribute('data-cloned', 'true');
   }
 
-  let partnerAutoSlide;
-  let isPartnerPaused = false;
+  // Dynamic animation speed adjustment
+  let currentAnimationDuration = 40; // fallback
 
-  // Scroll Listener for Infinite Loop
-  partnerSlider.addEventListener('scroll', () => {
-    // If we have scrolled past the original set, snap back to start
-    if (partnerSlider.scrollLeft >= singleSetWidth) {
-      partnerSlider.style.scrollBehavior = 'auto'; // Disable smooth for instant snap
-      partnerSlider.scrollLeft -= singleSetWidth;
-      partnerSlider.style.scrollBehavior = 'smooth'; // Re-enable
-    }
+  function updateAnimationSpeed() {
+    // Calculate total width of ONE set of items (half the scrollWidth because we duplicated)
+    const contentWidth = track.scrollWidth / 2;
+
+    // Desired speed: pixels per second. 
+    // 120px/s provides a much more brisk and noticeable movement.
+    const speed = 120;
+
+    currentAnimationDuration = contentWidth / speed;
+    track.style.setProperty('--duration', `${currentAnimationDuration}s`);
+    track.classList.add('marquee');
+  }
+
+  // Initialize speed calculation
+  updateAnimationSpeed();
+  window.addEventListener('resize', updateAnimationSpeed);
+
+  // Pause on hover
+  partnerSlider.addEventListener('mouseenter', () => {
+    track.classList.add('paused');
+  });
+  partnerSlider.addEventListener('mouseleave', () => {
+    track.classList.remove('paused');
   });
 
-  function slidePartnerNext() {
-    partnerSlider.scrollBy({ left: cardWidth, behavior: 'smooth' });
+  // Manual navigation - shifts animation delay to "seek"
+  function getStepSize() {
+    const firstCard = track.querySelector('.partner-card');
+    const width = (firstCard && firstCard.offsetWidth) || 150;
+    const gap = 24; // matches CSS gap
+    return width + gap;
   }
 
-  function slidePartnerPrev() {
-    // If at start (or close to it), snap to end of original set
-    if (partnerSlider.scrollLeft <= 5) {
-      partnerSlider.style.scrollBehavior = 'auto';
-      partnerSlider.scrollLeft += singleSetWidth;
-      partnerSlider.style.scrollBehavior = 'smooth';
+  // Get current animation transform value
+  function getCurrentTransform() {
+    const style = window.getComputedStyle(track);
+    const matrix = style.transform || style.webkitTransform;
+    if (matrix && matrix !== 'none') {
+      const values = matrix.split('(')[1].split(')')[0].split(',');
+      return parseFloat(values[4] || 0);
     }
-    partnerSlider.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    return 0;
   }
 
-  // Remove old listeners
+  function scrollMarquee(direction) {
+    const step = getStepSize();
+    const trackWidth = track.scrollWidth / 2;
+
+    // Get current visual position from the running animation
+    const currentPos = getCurrentTransform();
+
+    // Calculate progress percentage (0 to 1)
+    const currentProgress = Math.abs(currentPos) / trackWidth;
+
+    const shiftAmount = step / trackWidth;
+    let newProgress;
+
+    if (direction === 'left') {
+      newProgress = currentProgress - shiftAmount;
+    } else {
+      newProgress = currentProgress + shiftAmount;
+    }
+
+    // Keep within 0-1 range
+    if (newProgress < 0) newProgress += 1;
+    if (newProgress > 1) newProgress -= 1;
+
+    // Convert progress to negative animation-delay to "seek"
+    const newDelay = -(newProgress * currentAnimationDuration);
+
+    // Restart animation from new position
+    track.style.animation = 'none';
+    track.offsetHeight; // Force reflow
+    track.style.animation = '';
+    track.style.animationDelay = `${newDelay}s`;
+  }
+
+  // Replace buttons with clean clones to avoid double listeners
   const newPartnerNext = partnerNext.cloneNode(true);
   const newPartnerPrev = partnerPrev.cloneNode(true);
   partnerNext.parentNode.replaceChild(newPartnerNext, partnerNext);
   partnerPrev.parentNode.replaceChild(newPartnerPrev, partnerPrev);
 
-  // Manual buttons
-  newPartnerNext.addEventListener('click', () => {
-    slidePartnerNext();
-    restartPartnerAuto();
-  });
-
-  newPartnerPrev.addEventListener('click', () => {
-    slidePartnerPrev();
-    restartPartnerAuto();
-  });
-
-  // Auto slide
-  function startPartnerAuto() {
-    if (partnerAutoSlide) clearInterval(partnerAutoSlide);
-    partnerAutoSlide = setInterval(() => {
-      if (!isPartnerPaused) {
-        slidePartnerNext();
-      }
-    }, 3000);
-  }
-
-  function stopPartnerAuto() {
-    if (partnerAutoSlide) clearInterval(partnerAutoSlide);
-  }
-
-  function restartPartnerAuto() {
-    stopPartnerAuto();
-    startPartnerAuto();
-  }
-
-  startPartnerAuto();
-
-  // Pause on hover
-  partnerSlider.addEventListener('mouseenter', () => { isPartnerPaused = true; });
-  partnerSlider.addEventListener('mouseleave', () => { isPartnerPaused = false; });
-  newPartnerNext.addEventListener('mouseenter', () => { isPartnerPaused = true; });
-  newPartnerNext.addEventListener('mouseleave', () => { isPartnerPaused = false; });
-  newPartnerPrev.addEventListener('mouseenter', () => { isPartnerPaused = true; });
-  newPartnerPrev.addEventListener('mouseleave', () => { isPartnerPaused = false; });
+  newPartnerNext.addEventListener('click', () => scrollMarquee('right'));
+  newPartnerPrev.addEventListener('click', () => scrollMarquee('left'));
 }
+
 
 //----------------------------------- Chairperson Modal -------------------------------//
 function initializeChairpersonModal() {
