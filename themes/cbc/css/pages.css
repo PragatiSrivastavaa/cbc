@@ -19686,7 +19686,7 @@ th.text-center {
 #edit-submit {
   padding: 9px 26px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #0d6efd, #005192);
+  background: linear-gradient(135deg, #0d6efd, #00579b);
   color: #fff;
   border: none;
   font-weight: 600;
@@ -19720,7 +19720,7 @@ th.text-center {
 #edit-submit {
   padding: 12px 22px;
   border-radius: 8px;
-  background: linear-gradient(135deg, #0d6efd, #0099ff);
+  background: linear-gradient(135deg, #0d6efd, #00579b);
   color: #fff;
   border: none;
   font-weight: 600;
