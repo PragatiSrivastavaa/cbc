@@ -1,0 +1,53 @@
+{#
+/**
+ * @file
+ * Theme override for the search page.
+ */
+#}
+
+{% include 'themes/cbc/templates/layout/header.html.twig' %}
+
+<main id="app-content">
+  <!-- Hero Section -->
+  {% if content.field_hero_section %}
+    {{ content.field_hero_section }}
+  {% else %}
+    <div class="page-hero-section">
+      <div class="page-hero-overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
+            <div class="page-hero-title">{{ page.page_title }}</div>
+            <p class="page-hero-subtitle"> {{ page.view_header }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Breadcrumb Section -->
+  {{ page.breadcrumb }}
+
+  <!-- Main Content Section -->
+  <section class="py-5">
+    <div class="container">
+      {% if page.highlighted %}
+        <div class="highlighted">{{ page.highlighted }}</div>
+      {% endif %}
+      {% if page.help %}
+        <div class="help">{{ page.help }}</div>
+      {% endif %}
+      {% if page.messages %}
+        <div class="messages-area">{{ page.messages }}</div>
+      {% endif %}
+      
+      <div class="row">
+        <div class="col-12">
+          {{ page.content }}
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+{% include 'themes/cbc/templates/layout/footer.html.twig' %}

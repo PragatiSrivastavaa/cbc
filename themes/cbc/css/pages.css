@@ -19734,6 +19734,18 @@ th.text-center {
 }
 
 /* ===== Search Results ===== */
+.search-results-wrapper {
+  max-width: 1000px;
+  margin: 40px auto;
+}
+
+.search-results-wrapper h3 {
+  /* text-align: center; */
+  margin-bottom: 25px;
+  color: #003b73;
+  font-size: 24px;
+}
+
 .search-results {
   list-style: none;
   padding: 0;
@@ -19804,4 +19816,22 @@ th.text-center {
 .pager__item a:hover {
   background: #0d6efd;
   color: #fff;
+}
+
+@media (max-width: 992px) {
+
+  .container-inline div,
+  .container-inline label {
+    display: inline-block;
+    width: 100%;
+  }
+
+  #edit-submit {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .search-form {
+    margin: 0px auto 35px;
+  }
 }
