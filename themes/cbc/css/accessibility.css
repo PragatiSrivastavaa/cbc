@@ -934,10 +934,178 @@ body[data-keyboard-only="true"] .accessibility-toggle-group * {
   pointer-events: auto !important;
 }
 
+/* CRITICAL: Ensure navigation and menus are ALWAYS accessible in keyboard-only mode */
+body[data-keyboard-only="true"] nav,
+body[data-keyboard-only="true"] nav *,
+body[data-keyboard-only="true"] header,
+body[data-keyboard-only="true"] header *,
+body[data-keyboard-only="true"] [role="navigation"],
+body[data-keyboard-only="true"] [role="navigation"] *,
+body[data-keyboard-only="true"] .menu,
+body[data-keyboard-only="true"] .menu *,
+body[data-keyboard-only="true"] .navbar,
+body[data-keyboard-only="true"] .navbar *,
+body[data-keyboard-only="true"] [class*="menu"],
+body[data-keyboard-only="true"] [class*="menu"] *,
+body[data-keyboard-only="true"] [class*="nav"],
+body[data-keyboard-only="true"] [class*="nav"] * {
+  pointer-events: auto !important;
+}
+
 /* Ensure the drawer itself remains usable with mouse in case user gets stuck? 
    No, if they toggle it on, they should use keyboard to toggle it off. */
 
 /* === SCROLLBAR STYLING FOR DRAWER === */
 .accessibility-drawer::-webkit-scrollbar {
   width: 8px;
+}
+
+/* ============================================
+   WCAG 2.4.7 - KEYBOARD FOCUS INDICATORS
+   Level AA Compliance - Focus Visible
+   ============================================ */
+
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 3px solid #0066cc !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.25) !important;
+}
+
+/* ============================================
+   WCAG 2.4.7 - KEYBOARD FOCUS INDICATORS
+   Level AA Compliance - Focus Visible
+   ============================================ */
+
+/* Remove default browser outline to replace with custom indicator */
+*:focus {
+  outline: none;
+}
+
+/* ===== GLOBAL FOCUS INDICATOR ===== */
+*:focus-visible {
+  outline: 3px solid #ffcc00 !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(255, 204, 0, 0.4) !important;
+}
+
+/* ===== LINKS ===== */
+a:focus-visible {
+  outline: 3px solid #ffcc00 !important;
+  outline-offset: 2px !important;
+  background-color: rgba(255, 204, 0, 0.15) !important;
+  border-radius: 2px !important;
+}
+
+nav a:focus-visible,
+.menu a:focus-visible,
+header a:focus-visible {
+  outline: 3px solid #ffcc00 !important;
+  outline-offset: 2px !important;
+  background-color: rgba(255, 204, 0, 0.2) !important;
+  box-shadow: 0 0 0 5px rgba(255, 204, 0, 0.4) !important;
+}
+
+/* ===== BUTTONS ===== */
+button:focus-visible,
+input[type="submit"]:focus-visible,
+input[type="button"]:focus-visible,
+.btn:focus-visible {
+  outline: 3px solid #ffcc00 !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(255, 204, 0, 0.4) !important;
+}
+
+/* ===== FORM INPUTS ===== */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid #ffcc00 !important;
+  outline-offset: 0 !important;
+  border-color: #ffcc00 !important;
+  box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.35) !important;
+}
+
+/* Search bar - extra visibility */
+#edit-keys:focus-visible,
+input[type="search"]:focus-visible,
+.search-input:focus-visible {
+  outline: 3px solid #ffcc00 !important;
+  box-shadow: 0 0 0 5px rgba(255, 204, 0, 0.45) !important;
+  background-color: rgba(255, 204, 0, 0.1) !important;
+}
+
+/* ===== CAROUSEL CONTROLS ===== */
+.carousel-prev:focus-visible,
+.carousel-next:focus-visible,
+.photo-prev:focus-visible,
+.photo-next:focus-visible,
+.youtube-prev:focus-visible,
+.youtube-next:focus-visible,
+[class*="-prev"]:focus-visible,
+[class*="-next"]:focus-visible {
+  outline: 3px solid #ffcc00 !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 5px rgba(255, 204, 0, 0.4) !important;
+}
+
+/* ===== ACCESSIBILITY DRAWER ===== */
+.accessibility-toggle:focus-visible,
+.text-size-btn:focus-visible,
+.contrast-btn:focus-visible {
+  outline: 3px solid #ffcc00 !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 6px rgba(255, 204, 0, 0.4) !important;
+}
+
+/* ===== SKIP LINK ===== */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip-link:focus {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 100000;
+  padding: 15px 25px;
+  background: #0066cc;
+  color: white;
+  font-weight: 600;
+  outline: 3px solid white !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  width: auto;
+  height: auto;
+  overflow: visible;
+}
+
+/* ===== ACCESS ICON ===== */
+.access-icon:focus-visible {
+  outline: 3px solid #0066cc !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 5px rgba(0, 102, 204, 0.4) !important;
+  transform: scale(1.1);
+}
+
+/* ===== HIGH CONTRAST ===== */
+body[data-theme="high-contrast"] *:focus-visible {
+  outline: 4px solid #000000 !important;
+  box-shadow: 0 0 0 6px rgba(255, 255, 0, 0.5) !important;
+}
+
+/* ===== REMOVE MOUSE FOCUS ===== */
+*:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
 }

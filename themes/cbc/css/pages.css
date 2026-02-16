@@ -1342,8 +1342,9 @@ ul.navbar-nav.nav-rounded {
   max-width: 500px;
 }
 
-/* Show dropdown on hover */
-.navbar-nav .nav-item.dropdown:hover .dropdown-menu {
+/* Show dropdown on hover OR when .hover class is present (for keyboard) */
+.navbar-nav .nav-item.dropdown:hover .dropdown-menu,
+.navbar-nav .nav-item.dropdown.hover .dropdown-menu {
   display: block;
   opacity: 1;
 }

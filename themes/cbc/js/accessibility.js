@@ -298,6 +298,29 @@ class AccessibilityManager {
     this.setBodyDataAttr(`data-${feature}`, newState ? 'true' : null);
     this.settings[feature] = newState;
     this.saveSettings();
+
+    // Special handling for keyboard-only mode
+    if (feature === 'keyboard-only') {
+      if (newState) {
+        // When enabled: Auto-focus first interactive element
+        setTimeout(() => {
+          const firstFocusable = document.querySelector('.skip-link, nav a, header a, button, input, [tabindex="0"]');
+          if (firstFocusable) {
+            firstFocusable.focus();
+            // Scroll to element if needed
+            firstFocusable.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 100);
+      } else {
+        // When disabled: Return focus to accessibility icon
+        setTimeout(() => {
+          const accessIcon = document.querySelector('.access-icon');
+          if (accessIcon) {
+            accessIcon.focus();
+          }
+        }, 100);
+      }
+    }
   }
 
   resetAllSettings() {
@@ -414,6 +437,12 @@ class AccessibilityManager {
       if (e.altKey && e.key === 'p') {
         e.preventDefault();
         this.toggleFeature('pause-animations');
+      }
+
+      // Alt + K: Toggle keyboard-only mode
+      if (e.altKey && e.key === 'k') {
+        e.preventDefault();
+        this.toggleFeature('keyboard-only');
       }
     });
   }
