@@ -13977,3 +13977,53 @@ body[data-pause-animations="true"] .newsletters-box::-webkit-scrollbar-thumb:hov
 body[data-pause-animations="true"] .news-wrapper::-webkit-scrollbar-thumb:hover {
   background: #8fc1e3;
 }
+
+/* ======================================================================
+   GLOBAL PAUSE FOR ALL ANIMATIONS AND VISUAL EFFECTS
+   ====================================================================== */
+
+/* Pause ALL CSS animations globally */
+body[data-pause-animations="true"] *,
+body[data-pause-animations="true"] *::before,
+body[data-pause-animations="true"] *::after {
+  animation-play-state: paused !important;
+}
+
+/* Disable ALL CSS transitions globally for immediate stop */
+body[data-pause-animations="true"] * {
+  transition: none !important;
+}
+
+/* Stop transform animations by preventing animation from running */
+body[data-pause-animations="true"] [class*="animate"],
+body[data-pause-animations="true"] [class*="slide"],
+body[data-pause-animations="true"] [class*="fade"],
+body[data-pause-animations="true"] [class*="zoom"],
+body[data-pause-animations="true"] [class*="bounce"],
+body[data-pause-animations="true"] [class*="rotate"],
+body[data-pause-animations="true"] [class*="pulse"],
+body[data-pause-animations="true"] [class*="scale"],
+body[data-pause-animations="true"] .animate-in,
+body[data-pause-animations="true"] .animate-out {
+  animation: none !important;
+  animation-play-state: paused !important;
+}
+
+/* Specifically target In Focus and similar sections */
+body[data-pause-animations="true"] .infocus-container,
+body[data-pause-animations="true"] .infocus-content,
+body[data-pause-animations="true"] .map-islands-container .blink-dot {
+  animation: none !important;
+}
+
+/* Stop any SVG animations */
+body[data-pause-animations="true"] svg,
+body[data-pause-animations="true"] svg * {
+  animation-play-state: paused !important;
+}
+
+/* Pause marquee elements */
+body[data-pause-animations="true"] marquee {
+  -webkit-animation-play-state: paused !important;
+  animation-play-state: paused !important;
+}
