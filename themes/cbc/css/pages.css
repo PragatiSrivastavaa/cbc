@@ -608,7 +608,14 @@ tbody tr:nth-child(even) {
   height: 26px;
   margin-right: 10px;
   flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
+
+.access-icon:hover {
+  transform: scale(1.1);
+}
+
 
 /* === LANGUAGE TOGGLE === */
 .language-toggle {
@@ -1605,10 +1612,12 @@ ul.navbar-nav.nav-rounded {
 /* Search Box */
 .search-wrapper {
   position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   margin-left: 8px;
+  flex-shrink: 0;
 }
+
 
 .search-wrapper input {
   padding: 6px 32px 6px 12px;
@@ -19684,7 +19693,7 @@ th.text-center {
 
 /* Search Button */
 #edit-submit {
-  padding: 9px 26px;
+  padding: 9px 9px;
   border-radius: 10px;
   background: linear-gradient(135deg, #0d6efd, #00579b);
   color: #fff;
@@ -19697,7 +19706,7 @@ th.text-center {
 
 #edit-submit:hover {
   transform: translateY(-1px);
-  background: linear-gradient(135deg, #084298, #0094d9);
+  /* background: linear-gradient(135deg, #084298, #0094d9); */
   box-shadow: 0 8px 18px rgba(13, 110, 253, 0.35);
 }
 
@@ -19717,21 +19726,6 @@ th.text-center {
 
 
 /* ===== Search Button ===== */
-#edit-submit {
-  padding: 12px 22px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #0d6efd, #00579b);
-  color: #fff;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-#edit-submit:hover {
-  background: linear-gradient(135deg, #084298, #007bff);
-  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
-}
 
 /* ===== Search Results ===== */
 .search-results-wrapper {

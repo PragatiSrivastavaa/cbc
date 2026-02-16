@@ -304,7 +304,7 @@ class AccessibilityManager {
     this.setTextSize('normal', true);
     this.setTheme('default', true);
     this.setCursorSize('normal', true);
-    ['hide-images', 'highlight-links', 'increased-line-height', 'keyboard-only'].forEach(feature => {
+    ['hide-images', 'highlight-links', 'increased-line-height', 'keyboard-only', 'pause-animations'].forEach(feature => {
       const toggle = document.querySelector(`[data-feature="${feature}"]`);
       this.setToggleState(toggle, false);
       this.setBodyDataAttr(`data-${feature}`, null);
@@ -317,7 +317,7 @@ class AccessibilityManager {
     this.setTextSize(this.settings.textSize || 'normal', true);
     this.setTheme(this.settings.theme || 'default', true);
     this.setCursorSize(this.settings.cursorSize || 'normal', true);
-    ['hide-images', 'highlight-links', 'increased-line-height'].forEach(feature => {
+    ['hide-images', 'highlight-links', 'increased-line-height', 'pause-animations'].forEach(feature => {
       const isActive = !!this.settings[feature];
       const toggle = document.querySelector(`[data-feature="${feature}"]`);
       this.setToggleState(toggle, isActive);
@@ -340,7 +340,8 @@ class AccessibilityManager {
       cursorSize: 'normal',
       'hide-images': false,
       'highlight-links': false,
-      'increased-line-height': false
+      'increased-line-height': false,
+      'pause-animations': false
     };
 
     try {
@@ -354,7 +355,8 @@ class AccessibilityManager {
         ...parsed,
         'hide-images': parsed['hide-images'] ?? parsed.hideImages ?? defaults['hide-images'],
         'highlight-links': parsed['highlight-links'] ?? parsed.highlightLinks ?? defaults['highlight-links'],
-        'increased-line-height': parsed['increased-line-height'] ?? parsed.increasedLineHeight ?? defaults['increased-line-height']
+        'increased-line-height': parsed['increased-line-height'] ?? parsed.increasedLineHeight ?? defaults['increased-line-height'],
+        'pause-animations': parsed['pause-animations'] ?? parsed.pauseAnimations ?? defaults['pause-animations']
       };
     } catch (e) {
       console.warn('Could not load accessibility settings:', e);
@@ -406,6 +408,12 @@ class AccessibilityManager {
         const currentTheme = this.settings.theme;
         const newTheme = currentTheme === 'high-contrast' ? 'default' : 'high-contrast';
         this.setTheme(newTheme);
+      }
+
+      // Alt + P: Toggle pause animations
+      if (e.altKey && e.key === 'p') {
+        e.preventDefault();
+        this.toggleFeature('pause-animations');
       }
     });
   }

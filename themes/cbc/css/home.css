@@ -10258,7 +10258,7 @@ h2.infocus-heading {
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   flex-shrink: 0;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
   padding-bottom: 15px;
   border-bottom: 1px solid #e9ecef;
 }
@@ -13659,4 +13659,241 @@ a[href*="/user/password"] {
   100% {
     transform: translateY(-50%);
   }
+}
+
+/* ==================================== login css ========================================== */
+
+form#user-login-form {
+  max-width: 430px;
+  margin: 30px auto;
+  padding: 45px 40px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: 0.4s ease;
+}
+
+form#user-login-form:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 70px rgba(0, 123, 255, 0.15);
+}
+
+/* ================= FORM ================= */
+
+.user-login-form .form-item {
+  margin-bottom: 22px;
+}
+
+.user-login-form label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Inputs */
+
+.user-login-form .form-text {
+  width: 100%;
+  padding: 9px 16px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  font-size: 14px;
+  transition: all 0.35s ease;
+}
+
+.user-login-form .form-text:focus {
+  border-color: #009EDB;
+  box-shadow: 0 0 0 4px rgba(0, 158, 219, 0.15);
+  transform: scale(1.02);
+  outline: none;
+}
+
+/* ================= CAPTCHA ================= */
+
+.user-login-form .captcha {
+  background: linear-gradient(135deg, #f0f7ff, #ffffff);
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid #e6f0ff;
+  margin-bottom: 10px;
+}
+
+/* Image wrapper */
+
+.user-login-form .captcha__image-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-login-form .captcha__image-wrapper img {
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #dce3f0;
+}
+
+/* ===== HIDE TEXT ===== */
+
+.user-login-form .reload-captcha {
+  font-size: 0;
+  /* Hide text */
+}
+
+/* ===== MODERN REFRESH ICON BUTTON ===== */
+
+
+/* CAPTCHA Input */
+
+.user-login-form .js-form-item-captcha-response .form-text {
+  padding: 10px 12px;
+}
+
+/* Description */
+
+.user-login-form .captcha__description,
+.user-login-form .description {
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* ================= BUTTON ================= */
+
+.user-login-form #edit-submit {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(90deg, #2774AC, #004b88, #00c6ff);
+  background-size: 200% auto;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+
+.user-login-form #edit-submit:hover {
+  background-position: right center;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 158, 219, 0.3);
+}
+
+/* Responsive */
+
+@media (max-width: 480px) {
+  #block-sjvn-content--2 {
+    width: 92%;
+    padding: 30px 22px;
+  }
+
+  .user-login-form .reload-captcha::after {
+    right: -38px;
+  }
+}
+
+/* need to remove code  */
+.leadership-message-column {
+  display: none;
+}
+
+.leadership-grid-new {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* ========================================
+   WCAG 2.2.2 ACCESSIBILITY - PAUSE ANIMATIONS
+   ======================================== */
+
+/* Pause all marquee/scrolling animations when accessibility pause is active */
+body[data-pause-animations="true"] .partners-track.marquee {
+  animation-play-state: paused !important;
+}
+
+body[data-pause-animations="true"] .media-track {
+  animation-play-state: paused !important;
+}
+
+body[data-pause-animations="true"] .newsletters-track {
+  animation-play-state: paused !important;
+}
+
+/* Pause all blinking animations */
+body[data-pause-animations="true"] .wave-text {
+  animation: none !important;
+}
+
+body[data-pause-animations="true"] .blink-dot {
+  animation: none !important;
+  opacity: 1 !important;
+}
+
+body[data-pause-animations="true"] .wave-text span:not(.blink-dot) {
+  animation: none !important;
+  background: linear-gradient(135deg, #004d99 0%, #0073cf 50%, #0099ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Pause NEW badge glow animation */
+body[data-pause-animations="true"] .badge-glow {
+  animation: none !important;
+  opacity: 0.6;
+}
+
+/* Ensure paused content remains visible and accessible */
+body[data-pause-animations="true"] .new-badge {
+  opacity: 1 !important;
+}
+
+/* Pause any other continuous animations on the page */
+body[data-pause-animations="true"] .news-banner-track {
+  animation-play-state: paused !important;
+}
+
+body[data-pause-animations="true"] .media-header .wave-text span {
+  animation: none !important;
+}
+
+/* Pause alert bar scrolling */
+body[data-pause-animations="true"] .alert-bar-track {
+  animation-play-state: paused !important;
+}
+
+/* Pause news banner vertical scrolling */
+body[data-pause-animations="true"] .news-banner-track {
+  animation-play-state: paused !important;
+}
+
+/* Pause vertical testimonials auto-scroll */
+body[data-pause-animations="true"] .vertical-testimonials-scroll.auto-scroll {
+  animation-play-state: paused !important;
+}
+
+/* Pause any element with scrollAlerts animation */
+body[data-pause-animations="true"] [style*="scrollAlerts"] {
+  animation-play-state: paused !important;
+}
+
+/* Pause any element with scrollBannersVertical animation */
+body[data-pause-animations="true"] [style*="scrollBannersVertical"] {
+  animation-play-state: paused !important;
+}
+
+/* Pause any element with autoScrollVertical animation */
+body[data-pause-animations="true"] [style*="autoScrollVertical"] {
+  animation-play-state: paused !important;
+}
+
+/* Global catch-all for any continuous slide animations */
+body[data-pause-animations="true"] [style*="continuousSlide"] {
+  animation-play-state: paused !important;
 }

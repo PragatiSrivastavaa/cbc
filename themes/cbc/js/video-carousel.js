@@ -1,4 +1,4 @@
-(function() {
+(function () {
   const videoContainer = document.getElementById('videoTestimonials');
   const videos = document.querySelectorAll('.testimonial-video');
   const unmuteBtn = document.getElementById('videoUnmuteBtn');
@@ -12,10 +12,10 @@
 
   // Unmute toggle
   if (unmuteBtn) {
-    unmuteBtn.addEventListener('click', function() {
+    unmuteBtn.addEventListener('click', function () {
       isMuted = !isMuted;
       videos.forEach(video => video.muted = isMuted);
-      
+
       const icon = this.querySelector('i');
       if (isMuted) {
         icon.className = 'fas fa-volume-mute';
@@ -29,17 +29,22 @@
 
   // Auto-advance to next video when current one ends
   videos.forEach((video, index) => {
-    video.addEventListener('ended', function() {
-      // Hide current video
-      videos[currentIndex].classList.remove('active');
-      
-      // Move to next video (loop back to start if at end)
-      currentIndex = (currentIndex + 1) % videos.length;
-      
-      // Show and play next video
-      videos[currentIndex].classList.add('active');
-      videos[currentIndex].muted = isMuted;
-      videos[currentIndex].play();
+    video.addEventListener('ended', function () {
+      // Check global pause-animations accessibility setting
+      const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
+
+      if (!globalPauseActive) {
+        // Hide current video
+        videos[currentIndex].classList.remove('active');
+
+        // Move to next video (loop back to start if at end)
+        currentIndex = (currentIndex + 1) % videos.length;
+
+        // Show and play next video
+        videos[currentIndex].classList.add('active');
+        videos[currentIndex].muted = isMuted;
+        videos[currentIndex].play();
+      }
     });
   });
 })();

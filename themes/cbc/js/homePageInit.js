@@ -567,7 +567,9 @@ function initializeCollaborationCarousel() {
   function startCollabAuto() {
     if (collabAutoSlide) clearInterval(collabAutoSlide);
     collabAutoSlide = setInterval(() => {
-      if (!isCollabPaused) {
+      // Check global pause-animations accessibility setting
+      const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
+      if (!isCollabPaused && !globalPauseActive) {
         slideCollabNext();
       }
     }, 4000); // 4 seconds
@@ -850,7 +852,9 @@ function initializePhotoCarousel() {
       clearInterval(photoAutoSlide);
     }
     photoAutoSlide = setInterval(() => {
-      if (!isTransitioning) {
+      // Check global pause-animations accessibility setting
+      const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
+      if (!isTransitioning && !globalPauseActive) {
         slideNext();
       }
     }, 5000);
@@ -1005,7 +1009,9 @@ function initializeYouTubeCarousel() {
       clearInterval(ytAutoSlide);
     }
     ytAutoSlide = setInterval(() => {
-      if (!isTransitioning) {
+      // Check global pause-animations accessibility setting
+      const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
+      if (!isTransitioning && !globalPauseActive) {
         slideNext();
       }
     }, 5000);
@@ -1442,7 +1448,10 @@ function startAutoScroll(cardsList) {
   }
 
   function autoScroll() {
-    if (isEventsCarouselPaused || isUserScrolling) {
+    // Check if global accessibility pause is active
+    const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
+
+    if (isEventsCarouselPaused || isUserScrolling || globalPauseActive) {
       eventsCarouselInterval = requestAnimationFrame(autoScroll);
       return;
     }
