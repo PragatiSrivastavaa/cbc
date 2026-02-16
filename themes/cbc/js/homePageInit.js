@@ -669,6 +669,36 @@ function initializeNewsBanner() {
     }
   });
 
+  // Add manual scroll with mouse wheel
+  const newsSection = newsTrack.closest('.news-section') || newsTrack.parentElement;
+  if (newsSection) {
+    newsSection.addEventListener('wheel', (e) => {
+      const trackIsPaused = newsTrack.classList.contains('paused');
+      const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
+
+      if (trackIsPaused || globalPauseActive) {
+        e.preventDefault();
+        const scrollAmount = e.deltaY > 0 ? 100 : -100;
+        newsTrack.scrollTop += scrollAmount;
+      }
+    }, { passive: false });
+  }
+
+  // Add keyboard navigation
+  newsTrack.setAttribute('tabindex', '0');
+  newsTrack.addEventListener('keydown', (e) => {
+    const trackIsPaused = newsTrack.classList.contains('paused');
+    const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
+
+    if (trackIsPaused || globalPauseActive) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        const scrollAmount = e.key === 'ArrowDown' ? 100 : -100;
+        newsTrack.scrollTop += scrollAmount;
+      }
+    }
+  });
+
   // Pause on hover (optional, good for UX)
   newsTrack.addEventListener('mouseenter', () => {
     if (!isPaused) {
@@ -720,6 +750,36 @@ function initializeMediaCorner() {
       isMediaCornerPaused = false;
     }
   });
+
+  // Add manual scroll with mouse wheel - focused scrolling
+  const mediaSection = mediaCornerTrack.closest('.media-corner-section') || mediaCornerTrack.parentElement;
+  if (mediaSection) {
+    mediaSection.addEventListener('wheel', (e) => {
+      const isPaused = mediaCornerTrack.style.animationPlayState === 'paused';
+      const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
+
+      if (isPaused || globalPauseActive) {
+        e.preventDefault();
+        const scrollAmount = e.deltaY > 0 ? 100 : -100;
+        mediaCornerTrack.scrollTop += scrollAmount;
+      }
+    }, { passive: false });
+  }
+
+  // Add keyboard navigation
+  mediaCornerTrack.setAttribute('tabindex', '0');
+  mediaCornerTrack.addEventListener('keydown', (e) => {
+    const isPaused = mediaCornerTrack.style.animationPlayState === 'paused';
+    const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
+
+    if (isPaused || globalPauseActive) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        const scrollAmount = e.key === 'ArrowDown' ? 100 : -100;
+        mediaCornerTrack.scrollTop += scrollAmount;
+      }
+    }
+  });
 }
 
 // ============================= Newsletters Section ------------------------------------//
@@ -757,6 +817,36 @@ function initializeNewsletters() {
       newNewslettersIcon.classList.remove("fa-play");
       newNewslettersIcon.classList.add("fa-pause");
       isNewslettersPaused = false;
+    }
+  });
+
+  // Add manual scroll with mouse wheel
+  const newslettersSection = newslettersTrack.closest('.newsletters-section') || newslettersTrack.parentElement;
+  if (newslettersSection) {
+    newslettersSection.addEventListener('wheel', (e) => {
+      const isPaused = newslettersTrack.style.animationPlayState === 'paused';
+      const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
+
+      if (isPaused || globalPauseActive) {
+        e.preventDefault();
+        const scrollAmount = e.deltaY > 0 ? 100 : -100;
+        newslettersTrack.scrollTop += scrollAmount;
+      }
+    }, { passive: false });
+  }
+
+  // Add keyboard navigation
+  newslettersTrack.setAttribute('tabindex', '0');
+  newslettersTrack.addEventListener('keydown', (e) => {
+    const isPaused = newslettersTrack.style.animationPlayState === 'paused';
+    const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
+
+    if (isPaused || globalPauseActive) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        const scrollAmount = e.key === 'ArrowDown' ? 100 : -100;
+        newslettersTrack.scrollTop += scrollAmount;
+      }
     }
   });
 }
