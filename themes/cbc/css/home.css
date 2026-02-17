@@ -8102,7 +8102,7 @@ h2.infocus-heading {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  color: #2e2e2e;
+  color: #004b88;
   font-size: 20px;
   cursor: pointer;
   transition: background 0.3s ease;
@@ -9895,7 +9895,7 @@ h2.infocus-heading {
 .collab-header-content h2 {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #1f1f1f;
+  color: #004b88;
   margin: 0;
   letter-spacing: 0.5px;
 }
@@ -10092,7 +10092,7 @@ h2.infocus-heading {
   top: 50%;
   transform: translateY(-50%);
   background: #ffa901;
-  color: #1f1f1f;
+  color: #004b88;
   border: none;
   padding: 3px 12px;
   font-size: 1.4rem;
