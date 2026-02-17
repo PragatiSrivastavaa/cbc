@@ -625,6 +625,7 @@ tbody tr:nth-child(even) {
   border-left: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+.language-toggle .language-links,
 .language-toggle ul {
   list-style: none;
   padding: 0;
@@ -654,6 +655,9 @@ tbody tr:nth-child(even) {
   flex-wrap: wrap;
 }
 
+.language-toggle nav .language-links,
+.language-toggle .block-language .language-links,
+.language-toggle .language-switcher-locale-url .language-links,
 .language-toggle nav ul,
 .language-toggle .block-language ul,
 .language-toggle .language-switcher-locale-url ul {
@@ -669,6 +673,7 @@ tbody tr:nth-child(even) {
 /* Style for language links/options */
 .language-toggle a,
 .language-toggle .language-link,
+.language-toggle .language-link-wrapper a,
 .language-toggle li a {
   color: #ffffff;
   text-decoration: none;
@@ -695,6 +700,7 @@ tbody tr:nth-child(even) {
 }
 
 /* Ensure all language items are visible */
+.language-toggle .language-link-wrapper,
 .language-toggle li {
   display: inline-flex;
   align-items: center;
@@ -706,6 +712,8 @@ tbody tr:nth-child(even) {
 .language-toggle .lang-active,
 .language-toggle a.is-active,
 .language-toggle .language-link.is-active,
+.language-toggle .language-link-wrapper.is-active,
+.language-toggle .language-link-wrapper.active,
 .language-toggle li.is-active,
 .language-toggle li.is-active a,
 .language-toggle li.active,
@@ -718,6 +726,8 @@ tbody tr:nth-child(even) {
 .language-toggle .lang-inactive,
 .language-toggle a:not(.is-active),
 .language-toggle .language-link:not(.is-active),
+.language-toggle .language-link-wrapper:not(.is-active):not(.active),
+.language-toggle .language-link-wrapper:not(.is-active):not(.active) a,
 .language-toggle li:not(.is-active):not(.active),
 .language-toggle li:not(.is-active):not(.active) a {
   display: inline-flex !important;
@@ -729,6 +739,7 @@ tbody tr:nth-child(even) {
 
 .language-toggle a:hover,
 .language-toggle .language-link:hover,
+.language-toggle .language-link-wrapper a:hover,
 .language-toggle li a:hover {
   opacity: 1;
   color: #ffa500;
@@ -738,6 +749,7 @@ tbody tr:nth-child(even) {
 /* Ensure inactive language items are visible */
 .language-toggle .lang-select,
 .language-toggle .lang-select>*:not(.is-active):not(.active),
+.language-toggle .language-link-wrapper:not(.is-active):not(.active),
 .language-toggle li:not(.is-active):not(.active) {
   display: inline-flex !important;
   visibility: visible !important;

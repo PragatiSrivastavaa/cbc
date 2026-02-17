@@ -11,9 +11,9 @@
 <div class="page-breadcrumb-section">
   <div class="container">
     <nav aria-label="breadcrumb">
-      <ol class="breadcrumb mb-0">
+      <div class="breadcrumb mb-0">
         {% for item in breadcrumb %}
-          <li class="breadcrumb-item{% if loop.last %} active{% endif %}"
+          <span class="breadcrumb-item{% if loop.last %} active{% endif %}"
               {% if loop.last %}aria-current="page"{% endif %}>
 
             {# Link item if it has a URL and is NOT the last item #}
@@ -22,9 +22,9 @@
             {% else %}
               {{ item.text }}
             {% endif %}
-          </li>
+          </span>
         {% endfor %}
-      </ol>
+      </div>
     </nav>
   </div>
 </div>
