@@ -7927,12 +7927,12 @@ h2.infocus-heading {
 #instagram-widget-container div[style*="background-color:white"],
 #instagram-widget-container div[style*="border-radius:12px"] {
   /* background-color: #ffffff !important; */
-  color: #E4405F !important;
+  color: #a02d42 !important;
 }
 
 #instagram-widget-container div[style*="background-color:white"] a,
 #instagram-widget-container div[style*="border-radius:12px"] a {
-  color: #E4405F !important;
+  color: #a02d42 !important;
   text-decoration: none !important;
 }
 
@@ -8101,7 +8101,7 @@ h2.infocus-heading {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  color: #fff;
+  color: #2e2e2e;
   font-size: 20px;
   cursor: pointer;
   transition: background 0.3s ease;
@@ -9894,7 +9894,7 @@ h2.infocus-heading {
 .collab-header-content h2 {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #1f1f1f;
   margin: 0;
   letter-spacing: 0.5px;
 }
@@ -10090,7 +10090,7 @@ h2.infocus-heading {
   top: 50%;
   transform: translateY(-50%);
   background: #ffa901;
-  color: #fff;
+  color: #1f1f1f;
   border: none;
   padding: 3px 12px;
   font-size: 1.4rem;

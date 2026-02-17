@@ -19,7 +19,10 @@ function initializeHomePage() {
     initializeInfocusSection();
     initializeHomeEvents();
     initializePartnerSlider();
+    initializePartnerSlider();
     initializeChairpersonModal();
+    initializeSocialLinkAccessibility(); // Fix for empty social links
+    initializeContactIconsAccessibility(); // Fix for missing accessible names on contact icons
   };
 
   // If DOM is already loaded, wait a bit for elements to be ready
@@ -109,6 +112,62 @@ function initializeCarousel() {
 // Initialize everything
 initializeHomePage();
 
+
+
+// ----------------------- Contact Icons Accessibility ----------------------- //
+function initializeContactIconsAccessibility() {
+  const contactSection = document.querySelector('.footer-contact');
+  if (!contactSection) return;
+
+  // Helper to add label to icon
+  const addLabelToIcon = (icon, label) => {
+    if (icon) {
+      if (!icon.hasAttribute('aria-label') && !icon.hasAttribute('aria-labelledby')) {
+        icon.setAttribute('aria-label', label);
+        icon.setAttribute('role', 'img');
+      }
+    }
+  };
+
+  // 1. Phone Icons
+  // Look for icons inside links with tel: protocol
+  const phoneLinks = contactSection.querySelectorAll('a[href^="tel:"]');
+  phoneLinks.forEach(link => {
+    const icon = link.querySelector('i, svg');
+    if (icon) addLabelToIcon(icon, 'Phone');
+  });
+
+  // Look for standalone phone icons if not found in links (fallback)
+  const phoneIcons = contactSection.querySelectorAll('.fa-phone, .fa-phone-alt, .fa-mobile, .fa-mobile-alt');
+  phoneIcons.forEach(icon => {
+    if (!icon.closest('a[href^="tel:"]')) { // Avoid double labeling
+      addLabelToIcon(icon, 'Phone');
+    }
+  });
+
+  // 2. Email Icons
+  // Look for icons inside links with mailto: protocol
+  const emailLinks = contactSection.querySelectorAll('a[href^="mailto:"]');
+  emailLinks.forEach(link => {
+    const icon = link.querySelector('i, svg');
+    if (icon) addLabelToIcon(icon, 'Email');
+  });
+
+  // Look for standalone email icons (fallback)
+  const emailIcons = contactSection.querySelectorAll('.fa-envelope, .fa-envelope-open');
+  emailIcons.forEach(icon => {
+    if (!icon.closest('a[href^="mailto:"]')) {
+      addLabelToIcon(icon, 'Email');
+    }
+  });
+
+  // 3. Location/Address Icon
+  // Usually map marker
+  const locationIcons = contactSection.querySelectorAll('.fa-map-marker, .fa-map-marker-alt, .fa-location-arrow, .fa-location-dot');
+  locationIcons.forEach(icon => {
+    addLabelToIcon(icon, 'Location');
+  });
+}
 
 
 // ----------------------- Alert Bar Section ---------------------------------//
@@ -1960,9 +2019,67 @@ function initializePartnerSlider() {
     }
   };
 
-  partnerSlider.addEventListener('mouseleave', resumeAnimation);
   partnerSlider.addEventListener('focusout', resumeAnimation);
 }
+
+
+//----------------------------------- Social Link Accessibility Fix -------------------------------//
+function initializeSocialLinkAccessibility() {
+  // Target social section and footer links
+  const socialLinks = document.querySelectorAll('.social-section a, .footer-modern a, .social-header-controls button');
+
+  socialLinks.forEach(link => {
+    // Check if link has text content
+    const hasText = link.textContent.trim().length > 0;
+    const hasLabel = link.hasAttribute('aria-label');
+    const hasTitle = link.hasAttribute('title');
+
+    if (!hasText && !hasLabel) {
+      // Determine label based on href or icon class
+      let label = '';
+      const href = link.getAttribute('href') || '';
+      const icon = link.querySelector('i, svg');
+      const iconClass = icon ? icon.className : '';
+
+      if (href.includes('twitter.com') || href.includes('x.com') || iconClass.includes('fa-twitter') || iconClass.includes('fa-x-twitter')) {
+        label = 'Visit our X (Twitter) page';
+      } else if (href.includes('facebook.com') || iconClass.includes('fa-facebook')) {
+        label = 'Visit our Facebook page';
+      } else if (href.includes('instagram.com') || iconClass.includes('fa-instagram')) {
+        label = 'Visit our Instagram page';
+      } else if (href.includes('linkedin.com') || iconClass.includes('fa-linkedin')) {
+        label = 'Visit our LinkedIn page';
+      } else if (href.includes('youtube.com') || iconClass.includes('fa-youtube')) {
+        label = 'Visit our YouTube channel';
+      } else if (iconClass.includes('fa-chevron-left')) {
+        label = 'Previous';
+      } else if (iconClass.includes('fa-chevron-right')) {
+        label = 'Next';
+      } else {
+        // Generic fallback if we can't identify platform
+        label = hasTitle ? link.getAttribute('title') : 'Social Link';
+      }
+
+      if (label) {
+        link.setAttribute('aria-label', label);
+      }
+    }
+  });
+
+  // Specific fix for "Empty link" error in social widget headers if they are anchors
+  const widgetHeaders = document.querySelectorAll('.social-embed-container .element-invisible');
+  // If embedded widgets create empty iframes/links, we might need to target them specifically if accessible.
+  // However, the WAVE error likely points to the 'Follow Us' buttons which might be <a> tags with background images.
+
+  // Fix for potential "Follow Us" empty links from social widgets
+  const followLinks = document.querySelectorAll('.social-embed-container a');
+  followLinks.forEach(link => {
+    if (!link.textContent.trim() && !link.getAttribute('aria-label')) {
+      link.setAttribute('aria-label', 'Follow Us');
+    }
+  });
+}
+
 
 
 //----------------------------------- Chairperson Modal -------------------------------//

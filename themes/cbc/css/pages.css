@@ -2281,10 +2281,10 @@ ul.navbar-nav.nav-rounded {
 }
 
 .social-icons a:hover {
-  background: #00b3ff;
+  background: #0a2540;
   color: #fff;
   transform: translateY(-3px);
-  box-shadow: 0 0 15px #00b3ff;
+  /* box-shadow: 0 0 15px #00b3ff; */
 }
 
 /* Link Sections */
@@ -8144,7 +8144,7 @@ h1.page-hero-title {
 }
 
 .page-breadcrumb-section .breadcrumb-item.active {
-  color: #6c757d;
+  color: #353637;
 }
 
 .page-breadcrumb-section .breadcrumb-item+.breadcrumb-item::before {
@@ -19057,9 +19057,19 @@ th.text-center {
   line-height: 1.2;
 }
 
-/* Viksit Panchayat Additional Backgrounds */
-.bg-light-green {
-  background-color: rgba(40, 167, 69, 0.05) !important;
+/* Social Media List Accessibility Fix */
+.footer-social-list {
+  display: flex !important;
+  gap: 10px !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.footer-social-list-item {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .bg-light-orange {

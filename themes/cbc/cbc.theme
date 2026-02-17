@@ -440,3 +440,92 @@ function cbc_theme_suggestions_page_alter(array &$suggestions, array $variables)
     $suggestions[] = 'page__' . $clean_alias;
   }
 }
+
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function cbc_preprocess_block(&$variables) {
+    // Helper to process content string
+    $process_content = function($text) {
+        if (empty($text) || !is_string($text)) return $text;
+
+        // TARGETING: Only target blocks that explicitly use the "social-icons" wrapper.
+        // This avoids affecting the main social media feed or other blocks with icons.
+        if (strpos($text, 'social-icons') !== false) {
+            
+            // If ALREADY a list, do nothing
+            if (strpos($text, '<ul class="footer-social-list"') !== false) {
+                return $text;
+            }
+
+            // If text contains social-icons div, let's try to preserve it or use it
+            // We'll extract anchors and wrap them
+            
+            // Regex to find all anchor tags that likely contain icons
+            // Looking for <a ...><i ...></i></a> pattern
+            // Using a broad pattern to catch the links shown in screenshot
+            // The screenshot shows: <a href="..." ...><i class="..."></i></a>
+            
+            preg_match_all('/<a\s+[^>]*href=["\'][^"\']*["\'][^>]*>.*?<\/a>/is', $text, $matches);
+            
+            if (!empty($matches[0]) && count($matches[0]) > 1) { // Only if we find multiple links essentially
+                 // Create new list structure
+                 $list_items = '';
+                 foreach ($matches[0] as $link) {
+                     $list_items .= '<li class="footer-social-list-item" style="display:inline-flex;">' . $link . '</li>';
+                 }
+                 
+                 $new_list = '<ul class="footer-social-list" style="display:flex; gap:10px; list-style:none; padding:0; margin:0;">' . $list_items . '</ul>';
+                 
+                 // If we found the specific container div, replace it?
+                 // Or just replace the links?
+                 // Replacing just the links might be messy if they are scattered.
+                 // But replacing the whole regex match sequence is better.
+                 
+                 // Let's replace the block of links.
+                 // We find the first and last link position
+                 $first_link = $matches[0][0];
+                 $last_link = end($matches[0]);
+                 
+                 $start_pos = strpos($text, $first_link);
+                 $end_pos = strpos($text, $last_link, $start_pos) + strlen($last_link);
+                 
+                 if ($start_pos !== false && $end_pos !== false) {
+                     // Check if they are wrapped in .social-icons div
+                     // This is getting complex to replace nicely in string.
+                     // Simpler approach: If we found "social-icons" div, replace its innerHTML
+                     
+                     if (preg_match('/<div[^>]*class=["\'][^"\']*social-icons[^"\']*["\'][^>]*>(.*?)<\/div>/is', $text, $div_match)) {
+                         // Found the wrapper
+                         return str_replace($div_match[0], '<div class="social-icons">' . $new_list . '</div>', $text);
+                     } else {
+                         // No wrapper found, just replace the sequence of links
+                         // We reconstruct by checking if links are adjacent or close
+                         // For now, simpler to just return the new list if it seems to be ONLY links
+                         // But the block has Title and P tag.
+                         
+                         // Fallback: replace the exact strings of links with list items? No, structure needs UL wrapping.
+                         // Let's stick to replacing the sequence from first to last link
+                         $length = $end_pos - $start_pos;
+                         $text = substr_replace($text, $new_list, $start_pos, $length);
+                         return $text;
+                     }
+                 }
+            }
+        }
+        return $text;
+    };
+
+    // Target specific content paths
+    if (isset($variables['content']['body'][0]['#text'])) {
+        $variables['content']['body'][0]['#text'] = $process_content($variables['content']['body'][0]['#text']);
+    }
+    // Check if it's a render array with 'processed' text (common in formatted text fields)
+    if (isset($variables['content']['body']['#items']) && isset($variables['content']['body'][0]['value'])) {
+       // This is raw value usually, processed is elsewhere?
+       // Usually preprocess_block works on the render array.
+    }
+}
+
+
