@@ -150,6 +150,17 @@ class AccessibilityManager {
     this.setupGroupNavigation('.contrast-themes', '.contrast-btn');
     this.setupGroupNavigation('.cursor-size-controls', '.cursor-size-option');
     this.setupGroupNavigation('.accessibility-toggle-group', '.accessibility-toggle');
+
+    // Track last interacted element for focus restoration
+    document.addEventListener('click', (e) => { this.lastInteractionElement = e.target; }, true);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        this.lastInteractionElement = e.target;
+      }
+    }, true);
+
+    // Initialize global dialog focus trap
+    this.initGlobalDialogFocusTrap();
   }
 
   setupGroupNavigation(containerSelector, itemSelector) {
@@ -190,6 +201,7 @@ class AccessibilityManager {
     document.body.style.width = '100%';
 
     // Focus management for accessibility
+    this.lastFocusedElement = document.activeElement;
     const closeBtn = document.getElementById('closeAccessibilityBtn');
     if (closeBtn) {
       closeBtn.focus();
@@ -211,6 +223,11 @@ class AccessibilityManager {
     // Restore scroll position
     if (this.scrollPosition !== undefined) {
       window.scrollTo(0, this.scrollPosition);
+    }
+
+    // Restore focus
+    if (this.lastFocusedElement && document.body.contains(this.lastFocusedElement)) {
+      this.lastFocusedElement.focus();
     }
   }
 
@@ -429,6 +446,120 @@ class AccessibilityManager {
       if (e.altKey && e.key === 'k') {
         e.preventDefault();
         this.toggleFeature('keyboard-only');
+      }
+    });
+  }
+
+  initGlobalDialogFocusTrap() {
+    // Listen for Drupal/jQuery UI dialog open events
+    // Using window event listener for broad compatibility with Drupal's dialog system
+    window.addEventListener('dialog:aftercreate', (event) => {
+      const dialogContent = event.target;
+      if (!dialogContent) return;
+
+      const dialogWrapper = dialogContent.closest('.ui-dialog');
+      if (!dialogWrapper) return;
+
+      // Ensure ARIA attributes are present for Drupal UI dialogs
+      if (!dialogWrapper.hasAttribute('role')) {
+        dialogWrapper.setAttribute('role', 'dialog');
+      }
+      if (!dialogWrapper.hasAttribute('aria-modal')) {
+        dialogWrapper.setAttribute('aria-modal', 'true');
+      }
+
+      // Attempt to find a title to label the dialog
+      const titleBar = dialogWrapper.querySelector('.ui-dialog-title');
+      if (titleBar && titleBar.id && !dialogWrapper.hasAttribute('aria-labelledby')) {
+        dialogWrapper.setAttribute('aria-labelledby', titleBar.id);
+      } else if (titleBar && !titleBar.id && !dialogWrapper.hasAttribute('aria-labelledby')) {
+        const generatedId = 'dialog-title-' + Math.random().toString(36).substr(2, 9);
+        titleBar.id = generatedId;
+        dialogWrapper.setAttribute('aria-labelledby', generatedId);
+      }
+
+      // Ensure close button has an aria-label
+      const closeBtn = dialogWrapper.querySelector('.ui-dialog-titlebar-close');
+      if (closeBtn && !closeBtn.hasAttribute('aria-label')) {
+        closeBtn.setAttribute('aria-label', 'Close');
+      }
+
+      // 1. Focus the first focusable element inside the dialog
+      const focusableSelectors = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
+
+      // Delay to ensure DOM is ready and animations started
+      setTimeout(() => {
+        const focusableElements = dialogWrapper.querySelectorAll(focusableSelectors);
+        if (focusableElements.length > 0) {
+          focusableElements[0].focus();
+        }
+        this.setupFocusTrap(dialogWrapper);
+      }, 100);
+
+      // Restore focus on close for Drupal dialogs
+      if (typeof jQuery !== 'undefined') {
+        jQuery(dialogContent).on('dialogclose', (event, ui) => {
+          if (this.lastInteractionElement && document.body.contains(this.lastInteractionElement)) {
+            this.lastInteractionElement.focus();
+          }
+        });
+      }
+    });
+
+    // Handle custom modals that may exist or be added dynamically
+    this.observeCustomModals();
+  }
+
+  observeCustomModals() {
+    // Observer for custom modals
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType === 1) {
+            if (node.getAttribute('role') === 'dialog' || node.getAttribute('role') === 'alertdialog' || node.querySelector('[role="dialog"], [role="alertdialog"]')) {
+              this.setupFocusTrap(node.hasAttribute('role') ? node : node.querySelector('[role="dialog"], [role="alertdialog"]'));
+            }
+          }
+        });
+      });
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Initial check
+    document.querySelectorAll('[role="dialog"], [role="alertdialog"]').forEach(modal => {
+      this.setupFocusTrap(modal);
+    });
+  }
+
+  setupFocusTrap(container) {
+    if (!container || container.hasAttribute('data-focus-trap')) return;
+    container.setAttribute('data-focus-trap', 'true');
+
+    const focusableSelectors = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
+
+    container.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab') return;
+
+      const focusableElements = Array.from(container.querySelectorAll(focusableSelectors)).filter(el => {
+        return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+      });
+
+      if (focusableElements.length === 0) return;
+
+      const firstFocusable = focusableElements[0];
+      const lastFocusable = focusableElements[focusableElements.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstFocusable) {
+          e.preventDefault();
+          lastFocusable.focus();
+        }
+      } else {
+        if (document.activeElement === lastFocusable) {
+          e.preventDefault();
+          firstFocusable.focus();
+        }
       }
     });
   }

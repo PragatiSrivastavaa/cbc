@@ -183,7 +183,7 @@
     </section>
 
     <!-- Chairperson Message Modal -->
-    <div class="chairperson-modal" id="chairpersonModal">
+    <div class="chairperson-modal" id="chairpersonModal" role="dialog" aria-modal="true" aria-labelledby="chairpersonModalTitle">
       <div class="modal-backdrop" id="modalBackdrop"></div>
       <div class="modal-content-wrapper" id="modalContentWrapper">
         <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
@@ -192,9 +192,9 @@
             <div class="letter-header-new">
               <div class="letter-title-wrapper">
                 {% if language == 'hi' %}
-                  <h2 class="letter-title-new">अध्यक्ष की <br> कलम से<span class="letter-pencil-icon">✏️</span></h2>
+                  <h2 class="letter-title-new" id="chairpersonModalTitle">अध्यक्ष की <br> कलम से<span class="letter-pencil-icon">✏️</span></h2>
                 {% else %}
-                  <h2 class="letter-title-new">FROM THE <br> CHAIRPERSON'S DESK<span class="letter-pencil-icon">✏️</span></h2>
+                  <h2 class="letter-title-new" id="chairpersonModalTitle">FROM THE <br> CHAIRPERSON'S DESK<span class="letter-pencil-icon">✏️</span></h2>
                 {% endif %}
               </div>
               <div class="letter-chairperson-photo">
@@ -361,7 +361,7 @@
     </section>
 
     <!-- Event Details Modal -->
-    <div class="event-modal" id="homeEventModal">
+    <div class="event-modal" id="homeEventModal" role="dialog" aria-modal="true" aria-labelledby="homeEventModalTitle">
       <div class="event-modal-backdrop" id="homeEventModalBackdrop"></div>
       <div class="event-modal-content">
         <button class="event-modal-close" id="homeEventModalClose">

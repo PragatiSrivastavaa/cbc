@@ -1,6 +1,6 @@
-// Home Page Initialization Scripts
-// This file contains all initialization functions for the home page
 // It will be called when navigating to the home page via the router
+
+let lastFocusedElement;
 
 function initializeHomePage() {
   // Wait for DOM to be fully ready and elements to be available
@@ -1783,7 +1783,7 @@ function showHomeEventModal(event) {
           <i class="fas fa-map-marker-alt"></i> ${event.venue}
         </div>
       ` : ''}
-      <h2 class="event-modal-title">${event.title}</h2>
+      <h2 class="event-modal-title" id="homeEventModalTitle">${event.title}</h2>
       <div class="event-modal-description">
         <p>${event.description}</p>
       </div>
@@ -1797,12 +1797,21 @@ function openHomeEventModal() {
   const modal = document.getElementById('homeEventModal');
   if (!modal) return;
 
+  // Save focus
+  lastFocusedElement = document.activeElement;
+
   modal.classList.add('active');
   modal.style.display = 'flex';
   modal.style.visibility = 'visible';
   modal.style.opacity = '1';
   modal.style.zIndex = '10000';
   document.body.style.overflow = 'hidden';
+
+  // Set focus to the close button or first focusable element
+  const closeBtn = document.getElementById('homeEventModalClose');
+  if (closeBtn) {
+    setTimeout(() => closeBtn.focus(), 100);
+  }
 }
 
 function closeHomeEventModal() {
@@ -1815,6 +1824,11 @@ function closeHomeEventModal() {
     modal.style.opacity = '';
     modal.style.zIndex = '';
     document.body.style.overflow = '';
+
+    // Restore focus
+    if (lastFocusedElement && document.body.contains(lastFocusedElement)) {
+      lastFocusedElement.focus();
+    }
   }
 }
 
@@ -2110,6 +2124,9 @@ function initializeChairpersonModal() {
 
   // Open modal with scroll unroll animation (top to bottom)
   function openModal() {
+    // Save focus
+    lastFocusedElement = document.activeElement;
+
     document.body.style.overflow = 'hidden';
     modal.classList.add('active');
 
@@ -2123,6 +2140,11 @@ function initializeChairpersonModal() {
     setTimeout(() => {
       modalWrapper.style.transform = 'translateY(0)';
       modalWrapper.style.opacity = '1';
+
+      // Set focus to the close button
+      if (closeBtn) {
+        closeBtn.focus();
+      }
     }, 10);
   }
 
@@ -2134,6 +2156,11 @@ function initializeChairpersonModal() {
     setTimeout(() => {
       modal.classList.remove('active');
       document.body.style.overflow = '';
+
+      // Restore focus
+      if (lastFocusedElement && document.body.contains(lastFocusedElement)) {
+        lastFocusedElement.focus();
+      }
     }, 1200);
   }
 

@@ -29,6 +29,13 @@
           const dialogWrapper = dialogContent.closest('.ui-dialog');
           if (dialogWrapper) {
             dialogWrapper.classList.add('cbc-join-form-dialog');
+
+            // Add specific labels for accessibility
+            if (hasIndividualForm) {
+              hasIndividualForm.setAttribute('aria-label', 'Join the Mission - Individual Application Form');
+            } else if (hasOrganisationForm) {
+              hasOrganisationForm.setAttribute('aria-label', 'Join the Mission - Organization Collaboration Form');
+            }
           }
         });
       });

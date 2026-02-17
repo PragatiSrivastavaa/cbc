@@ -14,6 +14,7 @@ let escapeKeyHandler = null; // Store escape key handler reference
 let modalClickHandler = null; // Store click handler reference
 let currentPage = 1;
 const itemsPerPage = 9;
+let lastFocusedElement;
 
 // Initialize events page
 async function initializeEventsPage() {
@@ -43,7 +44,7 @@ async function initializeEventsPage() {
   setupEventListeners();
   await fetchEvents();
   // fetchEvents already calls renderCalendar() and renderEventList()
-  
+
   // Set initial view state based on which view is displayed
   const listView = document.getElementById('listView');
   const calendarView = document.getElementById('calendarView');
@@ -54,7 +55,7 @@ async function initializeEventsPage() {
     document.body.classList.add('calendar-view-active');
     document.body.classList.remove('list-view-active');
   }
-  
+
   switchView(currentView);
 }
 
@@ -687,7 +688,7 @@ async function showDayEvents(events, date) {
     // Show list of events for the day with full information
     modalBody.innerHTML = `
         <div class="day-events-header">
-          <h2 class="event-modal-title">Events on ${dateStr}</h2>
+          <h2 class="event-modal-title" id="eventModalTitle">Events on ${dateStr}</h2>
           <p class="day-events-count">${events.length} event${events.length > 1 ? 's' : ''} on this day</p>
         </div>
         <div class="day-events-list">
@@ -1016,7 +1017,7 @@ function setModalContentAndOpen(modalBody, modal, event, formattedDate) {
           <i class="fas fa-map-marker-alt"></i> ${event.venue}
         </div>
       ` : ''}
-      <h2 class="event-modal-title">${event.title}</h2>
+      <h2 class="event-modal-title" id="eventModalTitle">${event.title}</h2>
       <div class="event-modal-description">
         <p>${event.description}</p>
       </div>
@@ -1060,6 +1061,14 @@ function openEventModal() {
   // Use requestAnimationFrame to ensure DOM is ready
   requestAnimationFrame(() => {
     try {
+      // Save focus
+      lastFocusedElement = document.activeElement;
+
+      // Ensure ARIA attributes are present
+      if (!modal.hasAttribute('role')) modal.setAttribute('role', 'dialog');
+      if (!modal.hasAttribute('aria-modal')) modal.setAttribute('aria-modal', 'true');
+      if (!modal.hasAttribute('aria-labelledby')) modal.setAttribute('aria-labelledby', 'eventModalTitle');
+
       // Force show the modal
       modal.classList.add('active');
       modal.style.display = 'flex';
@@ -1072,6 +1081,12 @@ function openEventModal() {
       modal.style.width = '100%';
       modal.style.height = '100%';
       document.body.style.overflow = 'hidden';
+
+      // Set focus to the close button
+      const closeBtn = document.getElementById('eventModalClose');
+      if (closeBtn) {
+        setTimeout(() => closeBtn.focus(), 100);
+      }
 
       console.log('Modal opened successfully');
     } catch (error) {
@@ -1106,6 +1121,11 @@ function closeEventModal() {
     modal.style.width = '';
     modal.style.height = '';
     document.body.style.overflow = '';
+
+    // Restore focus
+    if (lastFocusedElement && document.body.contains(lastFocusedElement)) {
+      lastFocusedElement.focus();
+    }
 
     console.log('Modal closed');
   }
