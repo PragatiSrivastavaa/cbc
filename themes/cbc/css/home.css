@@ -220,9 +220,10 @@
 @media (max-width: 768px) {
   .slide-content {
     top: 55%;
-    left: 0%;
+    left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    width: 90%;
     max-width: 100%;
   }
 
@@ -10048,7 +10049,8 @@ h2.infocus-heading {
 }
 
 .collab-track>a {
-  flex: 0 0 350px;
+  flex: 0 0 calc(100% - 40px);
+  max-width: 350px;
   /* Fixed width for consistent carousel items */
   text-decoration: none;
   /* Remove underline from anchor */
@@ -10116,8 +10118,14 @@ h2.infocus-heading {
 }
 
 @media (max-width: 992px) {
-  .collab-box {
-    flex: 0 0 80%;
+  .collab-track>a {
+    flex: 0 0 85%;
+  }
+}
+
+@media (max-width: 480px) {
+  .collab-track>a {
+    flex: 0 0 95%;
   }
 }
 
@@ -13239,122 +13247,149 @@ div.infocus-map-container {
 /* -------------------------------------------------------------------- */
 
 /* Force the OUTERMOST Jitender Card to be a flex container */
-/* This targets the card directly inside the col-lg-4 if it matches this class */
-.col-lg-4>.jitender-card {
-  height: 100% !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
+/* -------------------------------------------------------------------- */
+/* DESKTOP ONLY: TARGET CARD FLEX STACK FOR STRETCHED LAYOUT           */
+/* -------------------------------------------------------------------- */
+@media (min-width: 992px) {
 
-/* Force innermost content wrappers to stretch completely */
-.jitender-card .jitender-content-wrapper {
-  height: 100% !important;
-  flex-grow: 1 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  min-height: 0 !important;
-}
+  /* This targets the card directly inside the col-lg-4 if it matches this class */
+  .col-lg-4>.jitender-card {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
 
-.jitender-card .jitender-section {
-  flex-grow: 1 !important;
-  flex-basis: 0 !important;
-  /* Start from 0 to force fair spacing/growth */
-  display: flex !important;
-  flex-direction: column !important;
-  height: auto !important;
-  min-height: 0 !important;
-}
+  /* Force innermost content wrappers to stretch completely */
+  .jitender-card .jitender-content-wrapper {
+    height: 100% !important;
+    flex-grow: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+  }
 
-.jitender-card .jitender-image-wrapper {
-  flex-grow: 1 !important;
-  height: auto !important;
-  /* Rely on flex-grow, not percentage */
-  display: flex !important;
-  flex-direction: column !important;
-  min-height: 0 !important;
-}
+  .jitender-card .jitender-section {
+    flex-grow: 1 !important;
+    flex-basis: 0 !important;
+    /* Start from 0 to force fair spacing/growth */
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
 
-.jitender-card .jitender-image {
-  object-fit: cover !important;
-  height: 100% !important;
-  width: 100% !important;
-  flex-grow: 1 !important;
-}
+  .jitender-card .jitender-image-wrapper {
+    flex-grow: 1 !important;
+    height: auto !important;
+    /* Rely on flex-grow, not percentage */
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+  }
 
-/* Ensure message section compresses */
-.jitender-card .jitender-message-section {
-  flex-grow: 0 !important;
-  flex-basis: auto !important;
-  height: auto !important;
-  flex-shrink: 0 !important;
+  .jitender-card .jitender-image {
+    object-fit: cover !important;
+    height: 100% !important;
+    width: 100% !important;
+    flex-grow: 1 !important;
+  }
+
+  /* Ensure message section compresses */
+  .jitender-card .jitender-message-section {
+    flex-grow: 0 !important;
+    flex-basis: auto !important;
+    height: auto !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Force the OUTERMOST What's New Box to be a flex container */
+  .col-lg-5>.whts-box {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+  }
+
+  /* Force the Region to grow */
+  .whts-box .region-what-s-news {
+    flex-grow: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    min-height: 0 !important;
+  }
+
+  /* Force the intermediate Drupal wrappers to grow */
+  .whts-box .region-what-s-news .block,
+  .whts-box .region-what-s-news .views-element-container,
+  .whts-box .region-what-s-news .views-element-container>div,
+  /* Target generic div */
+  .whts-box .region-what-s-news .view,
+  .whts-box .region-what-s-news .view-content {
+    flex-grow: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    min-height: 0 !important;
+  }
+
+  /* Force the inner News Section to grow */
+  .whts-box .news-section {
+    flex-grow: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    min-height: 0 !important;
+  }
+
+  /* Force the list wrapper to take available space */
+  .whts-box .news-wrapper {
+    flex-grow: 1 !important;
+    height: 100% !important;
+    /* Force explicit 100% then let flex handle it */
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-bottom: none !important;
+    /* Move border to bottom of container if needed */
+  }
+
+  /* Move border to the bottom of the news wrapper or track */
+  .whts-box .news-banner-track {
+    flex-grow: 1 !important;
+  }
+
+  /* Ensure footer stays at bottom but doesn't grow */
+  .whts-box .news-footer {
+    flex-shrink: 0 !important;
+    margin-top: auto !important;
+    width: 100%;
+  }
 }
 
 /* -------------------------------------------------------------------- */
-/* FINAL OVERRIDE: TARGET WHAT'S NEW CARD FLEX STACK                    */
+/* MOBILE FIXES: RESTORE VISIBILITY AND FIXED HEIGHTS                  */
 /* -------------------------------------------------------------------- */
+@media (max-width: 991px) {
+  .jitender-card .jitender-image-wrapper {
+    height: 350px !important;
+    min-height: 350px !important;
+    display: block !important;
+    visibility: visible !important;
+  }
 
-/* Force the OUTERMOST What's New Box to be a flex container */
-.col-lg-5>.whts-box {
-  height: 100% !important;
-  display: flex !important;
-  flex-direction: column !important;
-  min-height: 0 !important;
-}
+  .jitender-card .jitender-image {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
 
-/* Force the Region to grow */
-.whts-box .region-what-s-news {
-  flex-grow: 1 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  height: 100% !important;
-  min-height: 0 !important;
-}
-
-/* Force the intermediate Drupal wrappers to grow */
-.whts-box .region-what-s-news .block,
-.whts-box .region-what-s-news .views-element-container,
-.whts-box .region-what-s-news .views-element-container>div,
-/* Target generic div */
-.whts-box .region-what-s-news .view,
-.whts-box .region-what-s-news .view-content {
-  flex-grow: 1 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  height: 100% !important;
-  min-height: 0 !important;
-}
-
-/* Force the inner News Section to grow */
-.whts-box .news-section {
-  flex-grow: 1 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  height: 100% !important;
-  min-height: 0 !important;
-}
-
-/* Force the list wrapper to take available space */
-.whts-box .news-wrapper {
-  flex-grow: 1 !important;
-  height: 100% !important;
-  /* Force explicit 100% then let flex handle it */
-  min-height: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  border-bottom: none !important;
-  /* Move border to bottom of container if needed */
-}
-
-/* Move border to the bottom of the news wrapper or track */
-.whts-box .news-banner-track {
-  flex-grow: 1 !important;
-}
-
-/* Ensure footer stays at bottom but doesn't grow */
-.whts-box .news-footer {
-  flex-shrink: 0 !important;
-  margin-top: auto !important;
-  width: 100%;
+  .whts-box .news-wrapper {
+    height: 180px !important;
+    max-height: 180px !important;
+    overflow: hidden !important;
+  }
 }
 
 
