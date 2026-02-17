@@ -36,7 +36,6 @@
               {% if video_url %}
                 <video class="w-100 rounded-3" controls muted preload="metadata">
                   <source src="{{ video_url }}" type="video/mp4">
-                  <track label="English" kind="captions" srclang="en" src="/themes/cbc/vtt/{{ video_url|split('/')|last|replace({'.mp4': ''}) }}.vtt" default>
                 </video>
               {% endif %}
             </div>

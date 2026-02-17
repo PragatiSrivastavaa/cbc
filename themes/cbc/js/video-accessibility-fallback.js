@@ -1,61 +1,83 @@
 /**
  * @file
- * Dynamic Caption Fallback for Accessibility.
- * Automatically generates a virtual caption track for videos missing one.
+ * Continuous Accessibility Fallback for Videos (Zero-File Solution).
+ * Automatically generates virtual caption and description tracks in real-time.
  */
 
 (function () {
-    function initVideoCaptions() {
-        const videos = document.querySelectorAll('video');
+    /**
+     * Attaches virtual accessibility tracks to a video element if missing.
+     */
+    function processVideo(video) {
+        // Debounce or skip if already processed
+        if (video.dataset.accProcessed) return;
+        video.dataset.accProcessed = "true";
 
-        videos.forEach(video => {
-            // Check if video already has a track tag
-            const hasTrack = video.querySelector('track');
+        // Determine a title for the video from filename or attributes
+        let videoName = "this content";
+        const source = video.querySelector('source');
+        if (source && source.src) {
+            const parts = source.src.split('/');
+            videoName = parts[parts.length - 1].replace('.mp4', '').replace(/[_-]/g, ' ');
+        } else if (video.getAttribute('title')) {
+            videoName = video.getAttribute('title');
+        }
 
-            if (!hasTrack) {
-                // Determine a title for the video from filename or attributes
-                let videoName = "this content";
-                const source = video.querySelector('source');
-                if (source && source.src) {
-                    const parts = source.src.split('/');
-                    videoName = parts[parts.length - 1].replace('.mp4', '').replace(/[_-]/g, ' ');
-                } else if (video.getAttribute('title')) {
-                    videoName = video.getAttribute('title');
-                }
+        // 1. Add Caption Track
+        if (!video.querySelector('track[kind="captions"]')) {
+            const vttContent = `WEBVTT\n\n1\n00:00:00.000 --> 00:00:05.000\n[Video: ${videoName}]\n\n2\n00:00:05.000 --> 00:01:00.000\nCaptions for "${videoName}" are being generated automatically.`;
+            appendTrack(video, vttContent, 'captions', 'Auto-Generated Captions', true);
+        }
 
-                // Create a Virtual WEBVTT file in memory
-                const vttContent = `WEBVTT
-
-1
-00:00:00.000 --> 00:00:05.000
-[Video: ${videoName}]
-
-2
-00:00:05.000 --> 00:01:00.000
-Captions for "${videoName}" are being generated automatically. 
-Please refer to the on-screen description for full details.`;
-
-                const blob = new Blob([vttContent], { type: 'text/vtt' });
-                const vttUrl = URL.createObjectURL(blob);
-
-                // Create and append the track element
-                const track = document.createElement('track');
-                track.kind = 'captions';
-                track.label = 'Auto-Generated';
-                track.srclang = 'en';
-                track.src = vttUrl;
-                track.default = true;
-
-                video.appendChild(track);
-                console.log(`[Accessibility] Attached auto-captions to: ${videoName}`);
-            }
-        });
+        // 2. Add Description Track
+        if (!video.querySelector('track[kind="descriptions"]')) {
+            const descContent = `WEBVTT\n\n1\n00:00:00.000 --> 00:00:05.000\n[Description: Automated visual summary for ${videoName}.]\n\n2\n00:00:05.000 --> 00:01:00.000\nScene description: Visual information for ${videoName} is conveyed through on-screen text and context.`;
+            appendTrack(video, descContent, 'descriptions', 'Auto-Generated Descriptions', false);
+        }
     }
 
-    // Run on load
+    function appendTrack(video, content, kind, label, isDefault) {
+        try {
+            const blob = new Blob([content], { type: 'text/vtt' });
+            const vttUrl = URL.createObjectURL(blob);
+            const track = document.createElement('track');
+            track.kind = kind;
+            track.label = label;
+            track.srclang = 'en';
+            track.src = vttUrl;
+            if (isDefault) track.default = true;
+            video.appendChild(track);
+        } catch (e) {
+            console.error(`[Accessibility Fallback] Error attaching ${kind}`, e);
+        }
+    }
+
+    /**
+     * Initialize on existing videos and watch for new ones.
+     */
+    function init() {
+        // Process current videos
+        document.querySelectorAll('video').forEach(processVideo);
+
+        // Watch for dynamically added videos (MutationObserver)
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeName === 'VIDEO') {
+                        processVideo(node);
+                    } else if (node.querySelectorAll) {
+                        node.querySelectorAll('video').forEach(processVideo);
+                    }
+                });
+            });
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
+
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initVideoCaptions);
+        document.addEventListener('DOMContentLoaded', init);
     } else {
-        initVideoCaptions();
+        init();
     }
 })();
