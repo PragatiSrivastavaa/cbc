@@ -13,12 +13,12 @@
               </div>
 
               <div class="youtube-carousel-wrapper position-relative" role="region" aria-label="Carousel">
-                <div class="youtube-carousel d-flex" id="photoCarousel" role="status" aria-live="polite" aria-atomic="true">
+                <ul class="youtube-carousel d-flex list-unstyled p-0 m-0" id="photoCarousel" role="status" aria-live="polite" aria-atomic="true">
                   <!-- Photo 1 -->
              {% for row in rows %}
               {% set entity = row.content['#row']._entity %}
               {% set tokens = row.content['#view'].style_plugin.render_tokens[loop.index0] %}
-                  <div class="youtube-card high-contrast-border flex-shrink-0 w-100" data-type="photo">
+                  <li class="youtube-card high-contrast-border flex-shrink-0 w-100" data-type="photo">
                     <div class="video-container">
                      {% if entity.field_thumbnail_image is not empty and entity.field_thumbnail_image.0.entity %}
                     {% set file = entity.field_thumbnail_image.0.entity %}
@@ -32,9 +32,9 @@
                       <h4 class="video-title">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h4>
                       <p class="video-description">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}']|striptags|trim }}</p>
                     </div>
-                  </div>
+                  </li>
                   {% endfor %}
-                </div>
+                </ul>
               </div>
 
               <!-- View All Button -->

@@ -1603,10 +1603,14 @@ function attachEventCardHandlers() {
       card.parentNode.replaceChild(newCard, card);
 
       // Attach click handler
-      newCard.addEventListener('click', () => {
-        const eventDetails = buildEventDataFromCard(newCard);
-        if (eventDetails) {
-          showHomeEventModal(eventDetails);
+      newCard.addEventListener('click', (e) => {
+        // Only trigger modal if clicking the title or 'Read More' link
+        if (e.target.closest('.home-event-card-title') || e.target.closest('.home-event-card-read-more')) {
+          e.preventDefault();
+          const eventDetails = buildEventDataFromCard(newCard);
+          if (eventDetails) {
+            showHomeEventModal(eventDetails);
+          }
         }
       });
     }

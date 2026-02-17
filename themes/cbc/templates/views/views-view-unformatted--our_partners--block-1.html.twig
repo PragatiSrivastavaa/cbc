@@ -10,11 +10,11 @@
         </div>
 
         <!-- Slider -->
-        <div class="partners-slider" id="partnersSlider" role="region" aria-label="Carousel">
+        <ul class="partners-slider list-unstyled p-0 m-0" id="partnersSlider" role="region" aria-label="Carousel">
          {% for row in rows %}
-              {% set entity = row.content['#row']._entity %}
-              {% set entity = row.content['#row']._entity %}
-                   {% set link_item = entity.field_link.0 %}
+               {% set entity = row.content['#row']._entity %}
+               {% set entity = row.content['#row']._entity %}
+                    {% set link_item = entity.field_link.0 %}
 
                 {% if link_item %}
                   {# Convert internal/external link to usable URL #}
@@ -24,12 +24,12 @@
                   {% set link = path('entity.node.canonical', {'node': entity.id()}) %}
                 {% endif %}
         
-          <div class="partner-card">
+          <li class="partner-card">
              <a href="{{ link }}" target="_blank" rel="noopener noreferrer">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}
             </a>
-          </div>
+          </li>
 
           {% endfor %}
-        </div>
+        </ul>
 
         </div>

@@ -14,7 +14,7 @@
               </div>
 
               <div class="youtube-carousel-wrapper position-relative" role="region" aria-label="Carousel">
-                <div class="youtube-carousel d-flex" id="youtubeCarousel" role="status" aria-live="polite" aria-atomic="true">
+                <ul class="youtube-carousel d-flex list-unstyled p-0 m-0" id="youtubeCarousel" role="status" aria-live="polite" aria-atomic="true">
 
         {% for row in rows %}
           {% set node = row.content['#row']._entity %}
@@ -30,7 +30,7 @@
             {% endif %}
           {% endif %}
 
-          <div class="youtube-card high-contrast-border flex-shrink-0 w-100">
+          <li class="youtube-card high-contrast-border flex-shrink-0 w-100">
 
             <div class="video-container">
               {% if video_url %}
@@ -45,11 +45,11 @@
               <p class="video-description">{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ field_event_description }}']|striptags|trim }}</p>
             </div>
 
-          </div>
+          </li>
 
         {% endfor %}
 
-      </div>
+      </ul>
     </div>
 
     <div class="video-gallery-footer text-end">

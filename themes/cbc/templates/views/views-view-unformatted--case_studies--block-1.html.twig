@@ -12,35 +12,38 @@
                 <i class="fas fa-chevron-left"></i>
               </button>
          <div class="case-studies-carousel-container" role="status" aria-live="polite" aria-atomic="true">
-  <div class="case-studies-carousel-track">
+  <ul class="case-studies-carousel-track list-unstyled p-0 m-0">
 
     {% for row in rows %}
   {% set node = row.content['#row']._entity %}
   {% set file = node.field_document.entity %}
 
   {% if file %}
-    <div class="case-studies-carousel-item">
-      <a href="{{ file_url(file.uri.value) }}"
-         class="card case-study-card"
-         target="_blank"
-         rel="noopener">
+    <li class="case-studies-carousel-item">
+      <div class="card case-study-card">
 
         <div class="case-study-icon">
           <i class="bi bi-file-earmark-pdf-fill"></i>
         </div>
 
         <div class="card-body">
-          <h3 class="card-title">{{ node.label }}</h3>
+          <h3 class="card-title">
+            <a href="{{ file_url(file.uri.value) }}"
+               target="_blank"
+               rel="noopener">
+              {{ node.label }}
+            </a>
+          </h3>
           <p class="card-text">Case Study</p>
         </div>
 
-      </a>
-    </div>
+      </div>
+    </li>
   {% endif %}
 {% endfor %}
 
 
-  </div>
+  </ul>
 </div>
 
      

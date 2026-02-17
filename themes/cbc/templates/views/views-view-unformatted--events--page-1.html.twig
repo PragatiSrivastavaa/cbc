@@ -25,11 +25,11 @@
               <div class="spinner"></div>
               <p>Loading events...</p>
             </div>
-            <div class="events-list" id="eventsList">
+            <ul class="events-list list-unstyled p-0 m-0" id="eventsList">
 
               {% for row in rows %}
                  {% set node = row.content['#row']._entity %}
-      <div class="event-list-card">
+      <li class="event-list-card">
       <div class="event-list-image">
        {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_images }}'] }}
       </div>
@@ -48,9 +48,9 @@
          
         </div>
       </div>
-    </div>
+    </li>
               {% endfor %}
-            </div>
+            </ul>
           </div>
         </div>
         <!-- End of Events List View -->

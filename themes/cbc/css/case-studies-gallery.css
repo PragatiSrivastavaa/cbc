@@ -31,7 +31,6 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   height: 100%;
-  cursor: pointer;
   border: 1px solid #e0e0e0;
   background: #ffffff;
 }
@@ -118,11 +117,11 @@
   .case-studies-carousel-wrapper {
     padding: 0 40px;
   }
-  
+
   .case-studies-carousel-item {
     flex: 0 0 100%;
   }
-  
+
   .case-studies-nav-btn {
     width: 35px;
     height: 35px;
@@ -235,11 +234,11 @@
   .gallery-carousel-wrapper {
     padding: 0 40px;
   }
-  
+
   .gallery-carousel-item {
     flex: 0 0 100%;
   }
-  
+
   .gallery-nav-btn {
     width: 35px;
     height: 35px;

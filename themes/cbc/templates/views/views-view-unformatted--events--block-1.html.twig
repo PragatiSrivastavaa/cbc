@@ -18,12 +18,11 @@
   <!-- Events Cards Only (Full Width) -->
         <div class="events-content-wrappe high-contrast-no-borderr" role="region" aria-label="Carousel">
           <div class="events-cards-container high-contrast-no-border" id="eventsCarouselTrack" role="status" aria-live="polite" aria-atomic="true">
-            <div class="events-cards-list high-contrast-no-border" id="homeEventsCardsList">
+            <ul class="events-cards-list high-contrast-no-border list-unstyled p-0 m-0" id="homeEventsCardsList">
               <!-- Event Card 1 -->
                 {% for row in rows %}
                  {% set node = row.content['#row']._entity %}
-                 <a href="{{ path('entity.node.canonical', {'node': node.id}) }}">
-              <div class="home-event-card high-contrast-border" data-event-id="home-event-1" data-date="2025-11-07"
+              <li class="home-event-card high-contrast-border" data-event-id="home-event-1" data-date="2025-11-07"
                 data-venue="Capacity Building Commission">
                 <div class="home-event-card-image">
                  {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_images }}'] }}
@@ -32,18 +31,19 @@
                   <div class="home-event-card-date">
                     <i class="fas fa-calendar"></i> {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_start }}'] }}
                   </div>
-                  <h3 class="home-event-card-title">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
+                  <a href="{{ path('entity.node.canonical', {'node': node.id}) }}">
+                    <h3 class="home-event-card-title">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
+                  </a>
                   {% set description = row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}']|striptags|trim %}
                   {% set truncated_description = description|length > 100 ? description|slice(0, 100) ~ '...' : description %}
                   <p class="home-event-card-description">{{ truncated_description }}</p>
-                  <div class="home-event-card-read-more">
+                  <a class="home-event-card-read-more" href="{{ path('entity.node.canonical', {'node': node.id}) }}">
                     Read More <i class="fas fa-arrow-right"></i>
-                  </div>
+                  </a>
                 </div>
-              </div>
-              </a>
+              </li>
               {% endfor %}
-            </div>
+            </ul>
           </div>
         </div>
         <!-- End of Events Cards Only (Full Width) -->
