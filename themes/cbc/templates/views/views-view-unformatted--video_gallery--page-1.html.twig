@@ -4,7 +4,7 @@
       <div class="content-section">
         <p class="lead">Explore our collection of videos featuring insights from leadership, initiatives, and capacity building programs.</p>
         
-        <div class="video-gallery-grid-page mt-5" id="videoGalleryPage">
+        <ul class="video-gallery-grid-page mt-5 list-unstyled p-0 m-0" id="videoGalleryPage">
 {% for row in rows %}
           {% set node = row.content['#row']._entity %}
           {% set tokens = row.content['#view'].style_plugin.render_tokens[loop.index0] %}
@@ -19,7 +19,7 @@
             {% endif %}
           {% endif %}
 
-          <div class="video-gallery-card-page">
+          <li class="video-gallery-card-page">
             <div class="video-container-page">
               {% if video_url %}
               <video class="w-100 rounded-3" controls muted preload="metadata">
@@ -33,11 +33,11 @@
               <h4 class="video-title-page">{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ title }}'] }}</h4>
               <p class="video-description-page">{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ field_event_description }}']|striptags|trim }}</p>
             </div>
-          </div>
+          </li>
 
 
 {% endfor  %}
-          </div>
+          </ul>
     </div>
   </div>
   </div>

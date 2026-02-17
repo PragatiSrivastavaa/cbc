@@ -10,7 +10,7 @@
               </div>
               <div class="section-body">
                 <div class="media-corner-box high-contrast-border position-relative overflow-hidden" role="region" aria-label="Carousel">
-                  <div class="media-track" id="mediaTrack" role="status" aria-live="polite" aria-atomic="true">
+                  <ul class="media-track list-unstyled p-0 m-0" id="mediaTrack" role="status" aria-live="polite" aria-atomic="true">
                     {% for row in rows %}
                     {% set entity = row.content['#row']._entity %}
                    {% set link_item = entity.field_link.0 %}
@@ -22,16 +22,16 @@
                   {# If linked field is empty, link to node page #}
                   {% set link = path('entity.node.canonical', {'node': entity.id()}) %}
                 {% endif %}
-                    <div class="media-item">
+                    <li class="media-item">
                       <a href="{{ link }}" target="_blank"
                         rel="noopener noreferrer">
                         {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}
                         <p>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</p>
                       </a>
-                    </div>
+                    </li>
 
                     {% endfor %}
-                  </div>
+                  </ul>
                 </div>
 
                 <div class="media-footer text-end">

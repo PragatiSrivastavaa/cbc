@@ -5,6 +5,7 @@
   {% set first_slide = true %}
   {% set video_urls = [] %}
 
+  <ul class="carousel-track list-unstyled p-0 m-0">
   {% for row in rows %}
     {% set node = row.content['#row']._entity %}
     {% set video_url = '' %}
@@ -30,15 +31,16 @@
       {% set first_slide = false %}
     {% endif %}
 
-    <div class="slide-content {% if loop.first %}active{% endif %}" id="slide{{ loop.index }}">
-    </div>
+    <li class="slide-content {% if loop.first %}active{% endif %}" id="slide{{ loop.index }}">
+    </li>
   {% endfor %}
+  </ul>
 
-  <div class="nav-buttons">
+  <ul class="nav-buttons list-unstyled p-0 m-0 d-flex gap-2">
     {% for i in 1..rows|length %}
-      <button class="{% if i == 1 %}active{% endif %}" data-slide="{{ i }}" {% if i == 1 %}aria-current="true"{% endif %}></button>
+      <li><button class="{% if i == 1 %}active{% endif %}" data-slide="{{ i }}" {% if i == 1 %}aria-current="true"{% endif %} aria-label="Go to slide {{ i }}"></button></li>
     {% endfor %}
-  </div>
+  </ul>
 
   <button class="carousel-prev" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
   <button class="carousel-next" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>

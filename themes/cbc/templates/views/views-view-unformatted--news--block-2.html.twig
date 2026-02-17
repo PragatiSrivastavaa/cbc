@@ -18,7 +18,7 @@
 
   <!-- News Slider -->
   <div class="news-wrapper high-contrast-border" id="newsWrapper">
-    <div class="news-banner-track" id="newsTrack">
+    <ul class="news-banner-track list-unstyled p-0 m-0" id="newsTrack">
 
       {% for row in rows %}
         {% set node = row.content['#row']._entity %}
@@ -36,7 +36,7 @@
         {% if node.field_category is not empty
           and node.field_category.entity.label() == "What's New" %}
 
-          <div class="news-banner high-contrast-border">
+          <li class="news-banner high-contrast-border">
 
             {# NEW badge only for today or future dates #}
             {% if node.field_end_date is not empty %}
@@ -57,12 +57,12 @@
               </a>
             </div>
 
-          </div>
+          </li>
 
         {% endif %}
       {% endfor %}
 
-    </div>
+    </ul>
   </div>
 
   <!-- Footer -->

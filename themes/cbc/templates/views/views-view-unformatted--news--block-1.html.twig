@@ -1,12 +1,12 @@
 <div class="alert-bar-wrapper" role="region" aria-label="Carousel">
-    <div class="alert-bar-track" id="alertTrack" role="status" aria-live="polite" aria-atomic="true">
+    <ul class="alert-bar-track list-unstyled p-0 m-0" id="alertTrack" role="status" aria-live="polite" aria-atomic="true">
 
       {% for row in rows %}
         {% set entity = row.content['#row']._entity %}
         {% set link_item = entity.field_link.0 %}
         {% set title_text = row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] %}
 
-        <div class="alert-item">
+        <li class="alert-item">
           <span class="alert-dot"></span>
 
           {% if link_item and link_item.url %}
@@ -17,9 +17,9 @@
             <span>{{ title_text }}</span>
           {% endif %}
 
-        </div>
+        </li>
 
       {% endfor %}
 
-    </div>
+    </ul>
 </div>

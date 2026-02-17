@@ -32,7 +32,7 @@
               <td>
                 {% if node.field_tender_related_files is not empty %}
                   <div class="view view-tender view-id-tender view-display-id-block_2">
-                    <div class="view-content">
+                    <ul class="view-content list-unstyled p-0 m-0">
 
                       {% for item in node.field_tender_related_files %}
                         {% set paragraph = item.entity %}
@@ -53,18 +53,20 @@
                           {% set size = file.filesize.value ? file.filesize.value|format_size : 'Unknown' %}
 
                           
-                                <a href="{{ file_url(file.uri.value) }}" target="_blank" rel="noopener" class="document-link d-block mb-1">
-                                  {{ label }}
-                                </a>
-                                <small class="text-muted">(<strong>Format</strong>: {{ extension }} ,
-                                <strong>Size</strong>: {{ size }} ,
-                                <strong>Language</strong>: {{ language }})
-                              </small>
+                                <li class="mb-2">
+                                  <a href="{{ file_url(file.uri.value) }}" target="_blank" rel="noopener" class="document-link d-block mb-1">
+                                    {{ label }}
+                                  </a>
+                                  <small class="text-muted">(<strong>Format</strong>: {{ extension }} ,
+                                  <strong>Size</strong>: {{ size }} ,
+                                  <strong>Language</strong>: {{ language }})
+                                </small>
+                                </li>
 
                         {% endif %}
                       {% endfor %}
 
-                    </div>
+                    </ul>
                   </div>
                 {% else %}
                   No Documents Available
