@@ -18,7 +18,9 @@
     </div>
    
     <div class="d-flex align-items-center mt-2 mt-md-0">
-      <img src="{{ base_path }}themes/cbc/img/accessability.png" alt="Accessibility Options - Click to Open" class="access-icon" role="button" tabindex="0" title="Open Accessibility Options (Alt+A)" />
+      <button class="access-icon" aria-label="Open Accessibility Options" title="Open Accessibility Options (Alt+A)">
+        <img src="{{ base_path }}themes/cbc/img/accessability.png" alt="" aria-hidden="true" />
+      </button>
       <div class="search-wrapper">
         {{ page.search_section }}
         <!-- <i class="bi bi-search"></i> -->
@@ -74,18 +76,18 @@
       <div class="accessibility-section">
         <h3><i class="fas fa-mouse-pointer"></i> Cursor Size</h3>
         <div class="cursor-size-controls">
-          <div class="cursor-size-option high-contrast-border" data-cursor="normal" role="button" tabindex="0" aria-pressed="true">
+          <button class="cursor-size-option high-contrast-border" data-cursor="normal" aria-pressed="true">
             <span class="cursor-label">Normal Cursor</span>
             <div class="cursor-demo normal">●</div>
-          </div>
-          <div class="cursor-size-option high-contrast-border" data-cursor="large" role="button" tabindex="0" aria-pressed="false">
+          </button>
+          <button class="cursor-size-option high-contrast-border" data-cursor="large" aria-pressed="false">
             <span class="cursor-label">Large Cursor</span>
             <div class="cursor-demo large">●</div>
-          </div>
-          <div class="cursor-size-option high-contrast-border" data-cursor="extra-large" role="button" tabindex="0" aria-pressed="false">
+          </button>
+          <button class="cursor-size-option high-contrast-border" data-cursor="extra-large" aria-pressed="false">
             <span class="cursor-label">Extra Large Cursor</span>
             <div class="cursor-demo extra-large">●</div>
-          </div>
+          </button>
         </div>
       </div>
 
@@ -94,10 +96,8 @@
 
   <div class="accessibility-toggle-group">
 
-    <div class="accessibility-toggle high-contrast-border"
-         role="switch"
-         tabindex="0"
-         aria-checked="false"
+    <button class="accessibility-toggle high-contrast-border"
+         aria-pressed="false"
          aria-label="Hide Images"
          data-feature="hide-images"
          data-state="off">
@@ -108,12 +108,10 @@
 
       <!-- visual only -->
       <span class="toggle-switch high-contrast-border" aria-hidden="true"></span>
-    </div>
+    </button>
 
-    <div class="accessibility-toggle high-contrast-border"
-         role="switch"
-         tabindex="0"
-         aria-checked="false"
+    <button class="accessibility-toggle high-contrast-border"
+         aria-pressed="false"
          aria-label="Highlight Links"
          data-feature="highlight-links"
          data-state="off">
@@ -123,12 +121,10 @@
       </span>
 
       <span class="toggle-switch high-contrast-border" aria-hidden="true"></span>
-    </div>
+    </button>
 
-    <div class="accessibility-toggle high-contrast-border"
-         role="switch"
-         tabindex="0"
-         aria-checked="false"
+    <button class="accessibility-toggle high-contrast-border"
+         aria-pressed="false"
          aria-label="Increase Line Height"
          data-feature="increased-line-height"
          data-state="off">
@@ -138,12 +134,10 @@
       </span>
 
       <span class="toggle-switch high-contrast-border" aria-hidden="true"></span>
-    </div>
+    </button>
 
-    <div class="accessibility-toggle high-contrast-border"
-         role="switch"
-         tabindex="0"
-         aria-checked="false"
+    <button class="accessibility-toggle high-contrast-border"
+         aria-pressed="false"
          aria-label="Pause Animations - Stop all moving and blinking content"
          data-feature="pause-animations"
          data-state="off">
@@ -153,12 +147,10 @@
       </span>
 
       <span class="toggle-switch high-contrast-border" aria-hidden="true"></span>
-    </div>
+    </button>
 
-    <div class="accessibility-toggle high-contrast-border"
-         role="switch"
-         tabindex="0"
-         aria-checked="false"
+    <button class="accessibility-toggle high-contrast-border"
+         aria-pressed="false"
          aria-label="Keyboard Only Mode"
          data-feature="keyboard-only"
          data-state="off">
@@ -168,7 +160,7 @@
       </span>
 
       <span class="toggle-switch high-contrast-border" aria-hidden="true"></span>
-    </div>
+    </button>
 
   </div>
 </div>
@@ -177,6 +169,7 @@
       <button class="accessibility-reset-btn high-contrast-border" id="resetAccessibilityBtn" aria-label="Reset All Accessibility Settings">
         <i class="fas fa-redo-alt"></i> Reset All Settings
       </button>
+    </div>
     </div>
   </div>
   <div class="accessibility-overlay" id="accessibilityOverlay" data-state="hidden"></div>

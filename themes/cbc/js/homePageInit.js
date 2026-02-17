@@ -183,6 +183,9 @@ function initializeAlertBar() {
   pauseBtn.parentNode.replaceChild(newPauseBtn, pauseBtn);
   const newPauseIcon = newPauseBtn.querySelector('i');
 
+  // Set initial accessible label
+  newPauseBtn.setAttribute('aria-label', 'Pause Alerts');
+
   function pauseAnimation() {
     if (!isPaused) {
       const currentPos = getCurrentTransform();
@@ -192,6 +195,7 @@ function initializeAlertBar() {
       alertTrack.style.transform = `translateX(${animationOffset}px)`;
       newPauseIcon.classList.remove('fa-pause');
       newPauseIcon.classList.add('fa-play');
+      newPauseBtn.setAttribute('aria-label', 'Play Alerts'); // Update label
       isPaused = true;
     }
   }
@@ -205,6 +209,7 @@ function initializeAlertBar() {
       alertTrack.style.transform = '';
       newPauseIcon.classList.remove('fa-play');
       newPauseIcon.classList.add('fa-pause');
+      newPauseBtn.setAttribute('aria-label', 'Pause Alerts'); // Update label
       isPaused = false;
     }
   }
@@ -655,16 +660,21 @@ function initializeNewsBanner() {
   toggleBtn.parentNode.replaceChild(newToggleBtn, toggleBtn);
   const newToggleIcon = newToggleBtn.querySelector('i');
 
+  // Set initial label
+  newToggleBtn.setAttribute('aria-label', 'Pause News Updates');
+
   newToggleBtn.addEventListener('click', () => {
     if (!isPaused) {
       newsTrack.classList.add('paused');
       newToggleIcon.classList.remove('fa-pause');
       newToggleIcon.classList.add('fa-play');
+      newToggleBtn.setAttribute('aria-label', 'Play News Updates');
       isPaused = true;
     } else {
       newsTrack.classList.remove('paused');
       newToggleIcon.classList.remove('fa-play');
       newToggleIcon.classList.add('fa-pause');
+      newToggleBtn.setAttribute('aria-label', 'Pause News Updates');
       isPaused = false;
     }
   });
@@ -737,16 +747,21 @@ function initializeMediaCorner() {
   mediaCornerBtn.parentNode.replaceChild(newMediaCornerBtn, mediaCornerBtn);
   const newMediaCornerIcon = newMediaCornerBtn.querySelector("i");
 
+  // Set initial label
+  newMediaCornerBtn.setAttribute('aria-label', 'Pause Media Corner');
+
   newMediaCornerBtn.addEventListener("click", () => {
     if (!isMediaCornerPaused) {
       mediaCornerTrack.style.animationPlayState = "paused";
       newMediaCornerIcon.classList.remove("fa-pause");
       newMediaCornerIcon.classList.add("fa-play");
+      newMediaCornerBtn.setAttribute('aria-label', 'Play Media Corner');
       isMediaCornerPaused = true;
     } else {
       mediaCornerTrack.style.animationPlayState = "running";
       newMediaCornerIcon.classList.remove("fa-play");
       newMediaCornerIcon.classList.add("fa-pause");
+      newMediaCornerBtn.setAttribute('aria-label', 'Pause Media Corner');
       isMediaCornerPaused = false;
     }
   });
@@ -806,16 +821,21 @@ function initializeNewsletters() {
   newslettersBtn.parentNode.replaceChild(newNewslettersBtn, newslettersBtn);
   const newNewslettersIcon = newNewslettersBtn.querySelector("i");
 
+  // Set initial label
+  newNewslettersBtn.setAttribute('aria-label', 'Pause Newsletters');
+
   newNewslettersBtn.addEventListener("click", () => {
     if (!isNewslettersPaused) {
       newslettersTrack.style.animationPlayState = "paused";
       newNewslettersIcon.classList.remove("fa-pause");
       newNewslettersIcon.classList.add("fa-play");
+      newNewslettersBtn.setAttribute('aria-label', 'Play Newsletters');
       isNewslettersPaused = true;
     } else {
       newslettersTrack.style.animationPlayState = "running";
       newNewslettersIcon.classList.remove("fa-play");
       newNewslettersIcon.classList.add("fa-pause");
+      newNewslettersBtn.setAttribute('aria-label', 'Pause Newsletters');
       isNewslettersPaused = false;
     }
   });
@@ -921,6 +941,11 @@ function initializePhotoCarousel() {
   // Remove old listeners
   const newPhotoNext = photoNext.cloneNode(true);
   const newPhotoPrev = photoPrev.cloneNode(true);
+
+  // accessibility
+  newPhotoNext.setAttribute('aria-label', 'Next Photo');
+  newPhotoPrev.setAttribute('aria-label', 'Previous Photo');
+
   photoNext.parentNode.replaceChild(newPhotoNext, photoNext);
   photoPrev.parentNode.replaceChild(newPhotoPrev, photoPrev);
 
@@ -1078,6 +1103,11 @@ function initializeYouTubeCarousel() {
   // Remove old listeners
   const newYtNext = ytNext.cloneNode(true);
   const newYtPrev = ytPrev.cloneNode(true);
+
+  // accessibility
+  newYtNext.setAttribute('aria-label', 'Next Video');
+  newYtPrev.setAttribute('aria-label', 'Previous Video');
+
   ytNext.parentNode.replaceChild(newYtNext, ytNext);
   ytPrev.parentNode.replaceChild(newYtPrev, ytPrev);
 
@@ -1152,6 +1182,11 @@ function initializeSocialCarousel() {
     // Remove old listeners
     const newSocialNext = socialNext.cloneNode(true);
     const newSocialPrev = socialPrev.cloneNode(true);
+
+    // accessibility
+    newSocialNext.setAttribute('aria-label', 'Next Social Post');
+    newSocialPrev.setAttribute('aria-label', 'Previous Social Post');
+
     socialNext.parentNode.replaceChild(newSocialNext, socialNext);
     socialPrev.parentNode.replaceChild(newSocialPrev, socialPrev);
 
@@ -1838,14 +1873,95 @@ function initializePartnerSlider() {
     track.style.animationDelay = `${newDelay}s`;
   }
 
-  // Replace buttons with clean clones to avoid double listeners
+  if (!partnerSlider || !partnerPrev || !partnerNext) return; // Pause button might be missing in some views
+
+  const partnerTrack = partnerSlider.querySelector('.partners-track') || partnerSlider; // Rename local variable to avoid conflict
+
+  // Clone buttons to remove old listeners
   const newPartnerNext = partnerNext.cloneNode(true);
   const newPartnerPrev = partnerPrev.cloneNode(true);
+
+  // accessibility labels for prev/next
+  newPartnerNext.setAttribute('aria-label', 'Next Partner');
+  newPartnerPrev.setAttribute('aria-label', 'Previous Partner');
+
   partnerNext.parentNode.replaceChild(newPartnerNext, partnerNext);
   partnerPrev.parentNode.replaceChild(newPartnerPrev, partnerPrev);
 
-  newPartnerNext.addEventListener('click', () => scrollMarquee('right'));
-  newPartnerPrev.addEventListener('click', () => scrollMarquee('left'));
+  // Pause Button Logic
+  const partnerPause = document.getElementById('partnerPause');
+  let isPartnerPaused = false;
+  let newPartnerPause;
+
+  if (partnerPause) {
+    newPartnerPause = partnerPause.cloneNode(true);
+    partnerPause.parentNode.replaceChild(newPartnerPause, partnerPause);
+
+    // Initial Check for global pause
+    const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
+    if (globalPauseActive) {
+      isPartnerPaused = true;
+      partnerTrack.classList.add('paused');
+      const icon = newPartnerPause.querySelector('i');
+      if (icon) {
+        icon.classList.remove('fa-pause');
+        icon.classList.add('fa-play');
+      }
+      newPartnerPause.setAttribute('aria-label', 'Play Partners');
+    }
+
+    newPartnerPause.addEventListener('click', () => {
+      const icon = newPartnerPause.querySelector('i');
+      if (!isPartnerPaused) {
+        partnerTrack.classList.add('paused');
+        if (icon) {
+          icon.classList.remove('fa-pause');
+          icon.classList.add('fa-play');
+        }
+        newPartnerPause.setAttribute('aria-label', 'Play Partners');
+        isPartnerPaused = true;
+      } else {
+        partnerTrack.classList.remove('paused');
+        if (icon) {
+          icon.classList.remove('fa-play');
+          icon.classList.add('fa-pause');
+        }
+        newPartnerPause.setAttribute('aria-label', 'Pause Partners');
+        isPartnerPaused = false;
+      }
+    });
+  }
+
+
+  // Manual Navigation
+  newPartnerNext.addEventListener('click', () => {
+    scrollMarquee('right');
+  });
+
+  newPartnerPrev.addEventListener('click', () => {
+    scrollMarquee('left');
+  });
+
+  // Pause on hover (accessibility requirement: allow pausing on focus/hover)
+  partnerSlider.addEventListener('mouseenter', () => {
+    partnerTrack.classList.add('paused');
+  });
+
+  // Pause on focus within the slider (for keyboard/screen reader users)
+  partnerSlider.addEventListener('focusin', () => {
+    partnerTrack.classList.add('paused');
+  });
+
+  const resumeAnimation = () => {
+    // Only resume if not manually paused AND global pause is not active
+    const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
+    if (!isPartnerPaused && !globalPauseActive) {
+      partnerTrack.classList.remove('paused');
+    }
+  };
+
+  partnerSlider.addEventListener('mouseleave', resumeAnimation);
+  partnerSlider.addEventListener('focusout', resumeAnimation);
 }
 
 
@@ -1951,6 +2067,11 @@ function initializeDocumentCarousel() {
   // Remove old listeners
   const newNextBtn = nextBtn.cloneNode(true);
   const newPrevBtn = prevBtn.cloneNode(true);
+
+  // accessibility
+  newNextBtn.setAttribute('aria-label', 'Next Document Page');
+  newPrevBtn.setAttribute('aria-label', 'Previous Document Page');
+
   nextBtn.parentNode.replaceChild(newNextBtn, nextBtn);
   prevBtn.parentNode.replaceChild(newPrevBtn, prevBtn);
 

@@ -15,9 +15,9 @@
 #}
 {% block content %}
   {% if site_logo %}
-    <a href="{{ path('<front>') }}" rel="home" class="site-logo">
-      <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" fetchpriority="high" />
-    </a>
+      <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="navbar-brand">
+       <img src="{{ base_path }}themes/cbc/img/emblem.png" alt="Emblem and Capacity Building Commission logo" class="img-fluid d-inline-block align-text-top logo-img header-logo">
+      </a>
   {% endif %}
   {% if site_name %}
     <div class="site-name">

@@ -84,7 +84,7 @@
   /* Reduced from 1.4rem */
   font-weight: 500;
   margin-bottom: 1.2rem;
-  color: #bde0ff;
+  color: #ffffff;
   opacity: 0;
   animation: fadeLeft 1.2s ease-in-out forwards;
   animation-delay: 0.2s;
@@ -104,7 +104,7 @@
   display: inline-block;
   /* margin-top: 1.5rem; */
   padding: 10px 24px;
-  background: linear-gradient(90deg, #0099ff, #00ccff);
+  background: linear-gradient(90deg, #0056b3, #007bff);
   color: #fff;
   border: none;
   border-radius: 0;
@@ -294,7 +294,7 @@
 }
 
 .alert-label i {
-  color: #ffa500;
+  color: #ffffff;
   font-size: 1.1rem;
   animation: pulseIcon 2s ease-in-out infinite;
 }
@@ -2421,13 +2421,13 @@
 }
 
 .collab-content-wrapper {
-  padding: 2.5rem 5%;
+  padding: 2.5rem 5% 0.5rem;
   position: relative;
   background: #ffe7b3;
 }
 
 .collab-footer {
-  padding: 0px 5% 20px;
+  padding: 0px 5% 2rem;
   text-align: right;
   /* border-top: 1px solid #e9ecef; */
   background: #ffe7b3;
@@ -6863,7 +6863,7 @@ h2.infocus-heading {
   align-items: center;
   gap: 12px;
   padding: 12px 30px;
-  background: linear-gradient(135deg, #008df9a6 0%, #0273cf6e 100%);
+  background: linear-gradient(135deg, #005ea6 0%, #005ea6 100%);
   color: #fff;
   text-decoration: none;
   border-radius: 12px;
@@ -7484,9 +7484,9 @@ h2.infocus-heading {
 
 .social-prev,
 .social-next {
-  background: rgba(255, 255, 255, 0.2) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-  color: #fff !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid #004b88 !important;
+  color: #004b88 !important;
   border-radius: 4px !important;
   width: 32px !important;
   height: 32px !important;
@@ -7856,16 +7856,11 @@ h2.infocus-heading {
 }
 
 /* Text colors for different platforms */
-#twitter-widget-container a,
-#twitter-widget-container p,
-#twitter-widget-container strong {
-  color: #ffffff !important;
-}
 
 #linkedin-widget-container a,
 #linkedin-widget-container p,
 #linkedin-widget-container {
-  color: #0077b5 !important;
+  color: #005582 !important;
 }
 
 #linkedin-widget-container p:last-of-type,
@@ -7882,7 +7877,7 @@ h2.infocus-heading {
 #facebook-widget-container a[style*="color:#1877f2"],
 #facebook-widget-container p[style*="color:#1877f2"],
 #facebook-widget-container strong[style*="color:#1877f2"] {
-  color: #1877f2 !important;
+  color: #083F87 !important;
 }
 
 #facebook-widget-container p[style*="color:#666"] {
@@ -7944,7 +7939,7 @@ h2.infocus-heading {
 /* Facebook Follow Us button - blue background */
 #facebook-widget-container div[style*="background-color:#1877f2"],
 #facebook-widget-container div[style*="border-radius:12px"] {
-  background-color: #1877f2 !important;
+  background-color: #0077b5 !important;
   color: #ffffff !important;
 }
 
@@ -9218,7 +9213,7 @@ h2.infocus-heading {
   }
 
   .collab-content-wrapper {
-    padding: 1.5rem 4%;
+    padding: 1.5rem 5% 0.5rem;
   }
 
   .collab-header-content {
@@ -11136,7 +11131,7 @@ h2.infocus-heading {
   gap: 12px;
   animation: none;
   border: 2px solid #ff6600;
-  background: #ff6600;
+  background: #B34700;
 }
 
 .typing-text {

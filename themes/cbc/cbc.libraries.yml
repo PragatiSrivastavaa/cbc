@@ -18,7 +18,9 @@ global-scripts:
     js/accessibility.js: {}
     js/languageSwitcher.js: {}
     js/searchButtonIcon.js: {}
+
     js/joinMissionDialog.js: {}
+    js/formAccessibility.js: {}
   dependencies:
     - core/jquery
     - core/jquery.form

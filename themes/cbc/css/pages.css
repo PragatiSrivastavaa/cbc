@@ -593,7 +593,7 @@ tbody tr:nth-child(even) {
 }
 
 .top-bar a:hover {
-  color: #ffa500;
+  color: #ffd54f;
   text-decoration: underline;
 }
 
@@ -19829,4 +19829,32 @@ th.text-center {
   .search-form {
     margin: 0px auto 35px;
   }
+}
+
+/* === ACCESSIBILITY CONTRAST FIXES === */
+/* Ensure Breadcrumb links meet WCAG AA (4.5:1) standards */
+.page-breadcrumb-section .breadcrumb-item a {
+  color: #002a5c !important;
+  /* Dark Blue - Contrast ratio > 10:1 against white/light gray */
+  font-weight: 600;
+}
+
+.page-breadcrumb-section .breadcrumb-item a:hover {
+  color: #b90e0e !important;
+  /* Dark Red for hover state */
+  text-decoration: underline;
+}
+
+/* Ensure View More buttons have sufficient contrast */
+.view-more {
+  color: #ffffff !important;
+  background: #004b88;
+  /* Fallback */
+  background: linear-gradient(90deg, #004b88, #002a5c) !important;
+  /* Darker gradient for better text contrast */
+}
+
+.view-more:hover {
+  background: linear-gradient(90deg, #003b73, #001f44) !important;
+  color: #ffffff !important;
 }

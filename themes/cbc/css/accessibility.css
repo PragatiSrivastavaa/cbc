@@ -232,6 +232,14 @@
 }
 
 .accessibility-toggle {
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  width: 100%;
+  text-align: left;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -309,6 +317,14 @@
 }
 
 .cursor-size-option {
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  width: 100%;
+  text-align: left;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -401,6 +417,11 @@
 
 /* === ACCESSIBILITY ICON TRIGGER === */
 .access-icon {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: transparent;
+  padding: 0;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;

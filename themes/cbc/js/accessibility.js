@@ -114,38 +114,24 @@ class AccessibilityManager {
     });
 
     document.querySelectorAll('.cursor-size-option').forEach(option => {
-      option.setAttribute('tabindex', option.getAttribute('tabindex') || '0');
-      option.setAttribute('role', option.getAttribute('role') || 'button');
+      // Button elements handle role/tabindex implicitly
       option.setAttribute('aria-pressed', option.getAttribute('aria-pressed') || 'false');
       option.addEventListener('click', (e) => {
         const cursor = e.currentTarget.getAttribute('data-cursor');
         this.setCursorSize(cursor);
       });
-      option.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          const cursor = e.currentTarget.getAttribute('data-cursor');
-          this.setCursorSize(cursor);
-        }
-      });
+      // Native button handles keyboard events automatically
     });
 
     document.querySelectorAll('.accessibility-toggle').forEach(toggle => {
-      toggle.setAttribute('tabindex', toggle.getAttribute('tabindex') || '0');
-      toggle.setAttribute('role', toggle.getAttribute('role') || 'button');
+      // Button elements handle role/tabindex implicitly
       toggle.setAttribute('aria-pressed', toggle.getAttribute('aria-pressed') || 'false');
       toggle.setAttribute('data-state', toggle.getAttribute('data-state') || 'off');
       toggle.addEventListener('click', (e) => {
         const feature = e.currentTarget.getAttribute('data-feature');
         this.toggleFeature(feature);
       });
-      toggle.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          const feature = e.currentTarget.getAttribute('data-feature');
-          this.toggleFeature(feature);
-        }
-      });
+      // Native button handles keyboard events automatically
     });
 
     const resetBtn = document.getElementById('resetAccessibilityBtn');
@@ -464,13 +450,8 @@ function initAccessibilityManager() {
         accessibilityManager.openDrawer();
       });
 
-      // Keyboard support for accessibility icon
-      accessIcon.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          accessibilityManager.openDrawer();
-        }
-      });
+      // KEYBOARD SUPPORT: Native buttons handle Enter/Space automatically.
+      // No manual keydown listener needed.
     }
   } else {
     // Create new instance
