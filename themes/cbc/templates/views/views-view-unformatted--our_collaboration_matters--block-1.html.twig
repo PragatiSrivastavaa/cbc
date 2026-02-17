@@ -17,8 +17,8 @@
                   <img src="{{ img_url }}" class="collab-image" alt="{{ tokens['{{ title }}'] }}">
                 {% endif %}
                 
-                  <h3>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
-                  <div class="collab-description">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ body }}'] }}{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ field_event_description }}'] }}</div>
+                  <h3>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}']|striptags }}</h3>
+                  <div class="collab-description">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ body }}']|striptags }}{{row.content['#view'].style_plugin.render_tokens[ loop.index0 ]['{{ field_event_description }}']|striptags }}</div>
                 </div>
                 </a>
               </li>
