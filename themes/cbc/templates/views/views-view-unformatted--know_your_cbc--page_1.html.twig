@@ -40,7 +40,7 @@
           {% endif %}
 
 
-          <div class="document-carousel-wrapper position-relative">
+          <div class="document-carousel-wrapper position-relative" role="region" aria-label="Carousel">
             <div class="carousel-controls">
               <button id="documentPrevBtn" aria-label="Previous page">‹</button>
               <button id="documentNextBtn" aria-label="Next page">›</button>
@@ -57,7 +57,7 @@
                 3. Navigation uses minimal JS with scrollIntoView (Drupal-safe)
               -->
 
-            <div class="document-carousel-track" id="documentCarouselTrack">
+            <div class="document-carousel-track" id="documentCarouselTrack" role="status" aria-live="polite" aria-atomic="true">
               {% for row in rows %}
               <div class="document-page" id="kyc-page-{{ loop.index }}" data-page-number="{{ loop.index }}">
                 <div class="document-page-content">

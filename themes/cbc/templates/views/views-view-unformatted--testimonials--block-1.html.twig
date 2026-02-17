@@ -1,5 +1,5 @@
-<div class="vertical-testimonials-scroll" id="videoTestimonials">
-   <div class="opinions-vertical-box">
+<div class="vertical-testimonials-scroll" id="videoTestimonials" role="region" aria-label="Carousel">
+   <div class="opinions-vertical-box" role="status" aria-live="polite" aria-atomic="true">
                 {% for row in rows %}
           {% set node = row.content['#row']._entity %}
           {% set tokens = row.content['#view'].style_plugin.render_tokens[loop.index0] %}

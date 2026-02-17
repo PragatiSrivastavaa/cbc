@@ -1,7 +1,7 @@
-<div class="blog-carousel-wrapper">
+<div class="blog-carousel-wrapper" role="region" aria-label="Carousel">
   <button class="collab-arrow" id="blogPrevBtn" style="position: static; transform: none; margin: 0;" aria-label="Previous">❮</button>
   
-  <div class="carousel-track" id="opinionCarouselTrack" style="flex: 1; min-width: 0;">
+  <div class="carousel-track" id="opinionCarouselTrack" style="flex: 1; min-width: 0;" role="status" aria-live="polite" aria-atomic="true">
     {% for row in rows %}
       {% set entity = row.content['#row']._entity %}
       <div class="home-opinion-card">

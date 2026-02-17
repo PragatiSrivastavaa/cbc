@@ -25,14 +25,14 @@
 
         // 1. Add Caption Track
         if (!video.querySelector('track[kind="captions"]')) {
-            const vttContent = `WEBVTT\n\n1\n00:00:00.000 --> 00:00:05.000\n[Video: ${videoName}]\n\n2\n00:00:05.000 --> 00:01:00.000\nCaptions for "${videoName}" are being generated automatically.`;
-            appendTrack(video, vttContent, 'captions', 'Auto-Generated Captions', true);
+            const vttContent = `WEBVTT\n\n1\n00:00:00.000 --> 00:00:05.000\n[Video: ${videoName}]\n\n2\n00:00:05.000 --> 00:00:10.000\nCaptions for "${videoName}" are currently unavailable.`;
+            appendTrack(video, vttContent, 'captions', 'Captions Unavailable', true);
         }
 
         // 2. Add Description Track
         if (!video.querySelector('track[kind="descriptions"]')) {
-            const descContent = `WEBVTT\n\n1\n00:00:00.000 --> 00:00:05.000\n[Description: Automated visual summary for ${videoName}.]\n\n2\n00:00:05.000 --> 00:01:00.000\nScene description: Visual information for ${videoName} is conveyed through on-screen text and context.`;
-            appendTrack(video, descContent, 'descriptions', 'Auto-Generated Descriptions', false);
+            const descContent = `WEBVTT\n\n1\n00:00:00.000 --> 00:00:05.000\n[Description: visual summary for ${videoName}.]\n\n2\n00:00:05.000 --> 00:00:10.000\nScene description: Visual information for ${videoName} is conveyed through on-screen context.`;
+            appendTrack(video, descContent, 'descriptions', 'Descriptions Unavailable', false);
         }
     }
 

@@ -6,11 +6,11 @@
             <h2 class="karmayogi-section-title text-center" style="margin-bottom: 40px;">
               <i class="bi bi-file-earmark-pdf-fill me-3" style="color: #0063ae;"></i>Case Studies
             </h2>
-            <div class="case-studies-carousel-wrapper position-relative">
+            <div class="case-studies-carousel-wrapper position-relative" role="region" aria-label="Carousel">
               <button class="case-studies-nav-btn case-studies-nav-prev" aria-label="Previous">
                 <i class="fas fa-chevron-left"></i>
               </button>
-         <div class="case-studies-carousel-container">
+         <div class="case-studies-carousel-container" role="status" aria-live="polite" aria-atomic="true">
   <div class="case-studies-carousel-track">
 
     {% for row in rows %}
@@ -337,6 +337,17 @@
       track.style.transition = 'transform 0.5s ease';
       track.style.transform = `translateX(${translateX}px)`;
       
+      items.forEach((item, i) => {
+        const link = item.querySelector('a');
+        if (link) {
+          if (i === currentIndex % items.length) {
+            link.setAttribute('aria-current', 'page');
+          } else {
+            link.removeAttribute('aria-current');
+          }
+        }
+      });
+
       isTransitioning = true;
       setTimeout(() => {
         isTransitioning = false;
@@ -428,6 +439,18 @@
       
       track.style.transition = 'transform 0.5s ease';
       track.style.transform = `translateX(${translateX}px)`;
+      
+      // Update aria-current on active links
+      items.forEach((item, i) => {
+        const link = item.querySelector('a');
+        if (link) {
+          if (i === currentIndex) {
+            link.setAttribute('aria-current', 'page');
+          } else {
+            link.removeAttribute('aria-current');
+          }
+        }
+      });
       
       // Update button states
       prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';

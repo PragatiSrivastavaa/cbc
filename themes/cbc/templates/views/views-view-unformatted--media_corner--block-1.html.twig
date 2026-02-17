@@ -9,8 +9,8 @@
                 </div>
               </div>
               <div class="section-body">
-                <div class="media-corner-box high-contrast-border position-relative overflow-hidden">
-                  <div class="media-track" id="mediaTrack">
+                <div class="media-corner-box high-contrast-border position-relative overflow-hidden" role="region" aria-label="Carousel">
+                  <div class="media-track" id="mediaTrack" role="status" aria-live="polite" aria-atomic="true">
                     {% for row in rows %}
                     {% set entity = row.content['#row']._entity %}
                    {% set link_item = entity.field_link.0 %}

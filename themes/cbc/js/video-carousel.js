@@ -9,6 +9,7 @@
 
   // Play first video
   videos[currentIndex].play();
+  videos[currentIndex].setAttribute('aria-current', 'true'); // Set initial aria-current
 
   // Unmute toggle
   if (unmuteBtn) {
@@ -36,12 +37,14 @@
       if (!globalPauseActive) {
         // Hide current video
         videos[currentIndex].classList.remove('active');
+        videos[currentIndex].removeAttribute('aria-current'); // Remove aria-current
 
         // Move to next video (loop back to start if at end)
         currentIndex = (currentIndex + 1) % videos.length;
 
         // Show and play next video
         videos[currentIndex].classList.add('active');
+        videos[currentIndex].setAttribute('aria-current', 'true'); // Add aria-current
         videos[currentIndex].muted = isMuted;
         videos[currentIndex].play();
       }

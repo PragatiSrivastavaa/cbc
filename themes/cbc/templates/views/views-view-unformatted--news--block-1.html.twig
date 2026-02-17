@@ -1,5 +1,5 @@
-<div class="alert-bar-wrapper">
-    <div class="alert-bar-track" id="alertTrack">
+<div class="alert-bar-wrapper" role="region" aria-label="Carousel">
+    <div class="alert-bar-track" id="alertTrack" role="status" aria-live="polite" aria-atomic="true">
 
       {% for row in rows %}
         {% set entity = row.content['#row']._entity %}

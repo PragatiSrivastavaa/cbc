@@ -1,4 +1,6 @@
-<div class="carousel">
+<div class="carousel" role="region" aria-label="Carousel">
+  <div role="status" aria-live="polite" aria-atomic="true">
+
 
   {% set first_slide = true %}
   {% set video_urls = [] %}
@@ -34,13 +36,14 @@
 
   <div class="nav-buttons">
     {% for i in 1..rows|length %}
-      <button class="{% if i == 1 %}active{% endif %}" data-slide="{{ i }}"></button>
+      <button class="{% if i == 1 %}active{% endif %}" data-slide="{{ i }}" {% if i == 1 %}aria-current="true"{% endif %}></button>
     {% endfor %}
   </div>
 
   <button class="carousel-prev" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
   <button class="carousel-next" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
 
+  </div>
 </div>
 
 <script type="application/json" id="carousel-video-data">

@@ -8055,7 +8055,7 @@ h2.infocus-heading {
 /*-------------------------------------------------- end socil media section ---------------------------------*/
 
 .partners-section {
-  padding: 40px 5%;
+  padding: 30px 5%;
   position: relative;
   overflow: hidden;
   background: linear-gradient(180deg, #f8f9fa 0%, rgba(248, 249, 250, 0.95) 20%, rgba(250, 251, 252, 0.9) 40%, rgba(252, 253, 254, 0.8) 60%, rgba(253, 254, 255, 0.6) 80%, #ffffff 100%);
@@ -8166,8 +8166,8 @@ h2.infocus-heading {
 
 .partner-card {
   flex: 0 0 auto;
-  width: 150px;
-  height: 100px;
+  width: 140px;
+  height: 80px;
   background: #fff;
   border: 1px solid #eee;
   border-radius: 10px;

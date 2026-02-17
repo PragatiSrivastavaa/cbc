@@ -80,7 +80,7 @@
       </div>
 
       <!-- event section -->
-     <section class="events-section">
+     <section class="events-section" role="region" aria-label="Carousel">
         <div class="events-header">
           <h2><span>Latest</span> Events</h2>
           <div class="events-header-controls">
@@ -93,7 +93,9 @@
           </div>
         </div>
         <!-- Events Cards Only (Full Width) -->
-        {{ page.events_section }}
+        <div role="status" aria-live="polite" aria-atomic="true">
+          {{ page.events_section }}
+        </div>
          <!-- See More Button -->
         <div class="events-footer high-contrast-no-border">
           <a href="/events" class="events-see-more-btn">
@@ -113,7 +115,7 @@
         <div class="row">
           <!-- Social Media Card - 4 columns -->
           <div class="col-lg-4">
-            <div class="social-section-right socil-bg">
+            <div class="social-section-right socil-bg" role="region" aria-label="Carousel">
               <div class="section-header social-header">
                 <h3 class="section-header-title">SOCIAL MEDIA</h3>
                 <div class="section-header-controls">
@@ -121,7 +123,9 @@
                   <button class="social-next" aria-label="Next social media feed"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
                 </div>
               </div>
-              {{page.social_media}}
+              <div role="status" aria-live="polite" aria-atomic="true">
+                {{page.social_media}}
+              </div>
               
             </div>
           </div>

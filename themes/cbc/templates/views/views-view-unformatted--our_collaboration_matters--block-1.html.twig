@@ -1,9 +1,9 @@
 <div class="collab-content-wrapper">
           <button class="collab-arrow left" id="collabPrevBtn" aria-label="Previous">❮</button>
-          <div class="collab-carousel">
+          <div class="collab-carousel" role="region" aria-label="Carousel">
 
 
-            <div class="collab-track" id="collabTrack">
+            <div class="collab-track" id="collabTrack" role="status" aria-live="polite" aria-atomic="true">
               {% for row in rows %}
               {% set entity = row.content['#row']._entity %}
               {% set tokens = row.content['#view'].style_plugin.render_tokens[loop.index0] %}

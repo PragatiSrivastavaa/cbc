@@ -59,10 +59,20 @@ function initializeCarousel() {
   function showSlide(index) {
     slides.forEach((slide, i) => {
       slide.classList.toggle('active', i === index);
+      if (i === index) {
+        slide.setAttribute('aria-current', 'true');
+      } else {
+        slide.removeAttribute('aria-current');
+      }
     });
 
     buttons.forEach((btn, i) => {
       btn.classList.toggle('active', i === index);
+      if (i === index) {
+        btn.setAttribute('aria-current', 'true');
+      } else {
+        btn.removeAttribute('aria-current');
+      }
     });
 
     // Change video source for the active slide
@@ -481,6 +491,20 @@ function initializeBlogSection() {
   let blogAutoScroll;
   let isBlogPaused = false;
 
+  function updateBlogAriaCurrent() {
+    const currentIndex = Math.round(track.scrollLeft / cardWidth) % originalCards.length;
+    originalCards.forEach((card, i) => {
+      const link = card.querySelector('a');
+      if (link) {
+        if (i === currentIndex) {
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      }
+    });
+  }
+
   // Scroll Listener for Infinite Loop
   track.addEventListener('scroll', () => {
     // If we have scrolled past the original set, snap back to start
@@ -489,6 +513,7 @@ function initializeBlogSection() {
       track.scrollLeft -= singleSetWidth;
       track.style.scrollBehavior = 'smooth'; // Re-enable
     }
+    updateBlogAriaCurrent();
   });
 
   function slideBlogNext() {
@@ -559,6 +584,7 @@ function initializeBlogSection() {
 
   // Start auto scroll
   startBlogAuto();
+  updateBlogAriaCurrent();
 }
 
 // ----------------------- Collaboration Carousel ----------------------- //
@@ -596,6 +622,29 @@ function initializeCollaborationCarousel() {
   let collabAutoSlide;
   let isCollabPaused = false;
 
+  function updateCollabAriaCurrent() {
+    const currentIndex = Math.round(collabTrack.scrollLeft / cardWidth) % originalItems.length;
+    originalItems.forEach((item, i) => {
+      // The item itself is the <a> tag based on previous viewed_file investigation
+      if (item.tagName === 'A') {
+        if (i === currentIndex) {
+          item.setAttribute('aria-current', 'page');
+        } else {
+          item.removeAttribute('aria-current');
+        }
+      } else {
+        const link = item.querySelector('a');
+        if (link) {
+          if (i === currentIndex) {
+            link.setAttribute('aria-current', 'page');
+          } else {
+            link.removeAttribute('aria-current');
+          }
+        }
+      }
+    });
+  }
+
   // Scroll Listener for Infinite Loop (Forward)
   collabTrack.addEventListener('scroll', () => {
     // If we have scrolled past the original set, snap back to start
@@ -604,6 +653,7 @@ function initializeCollaborationCarousel() {
       collabTrack.scrollLeft -= singleSetWidth;
       collabTrack.style.scrollBehavior = 'smooth'; // Re-enable
     }
+    updateCollabAriaCurrent();
   });
 
   // Next Slide
@@ -670,6 +720,7 @@ function initializeCollaborationCarousel() {
 
   // Start auto slide
   startCollabAuto();
+  updateCollabAriaCurrent();
 
   // Pause on hover
   collabTrack.addEventListener('mouseenter', () => { isCollabPaused = true; });
@@ -983,6 +1034,17 @@ function initializePhotoCarousel() {
       card.style.opacity = '1';
       card.style.visibility = 'visible';
       card.style.display = 'flex';
+
+      // Set aria-current on the link inside the card if it's the active slide
+      const link = card.querySelector('a');
+      if (link) {
+        if (i === index) {
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      }
+
       const img = card.querySelector('img');
       if (img) {
         img.style.opacity = '1';
@@ -1135,6 +1197,14 @@ function initializeYouTubeCarousel() {
       card.style.opacity = '1';
       card.style.visibility = 'visible';
       card.style.display = 'flex';
+
+      // Set aria-current on the active slide
+      if (i === index) {
+        card.setAttribute('aria-current', 'true');
+      } else {
+        card.removeAttribute('aria-current');
+      }
+
       const video = card.querySelector('video');
       if (video) {
         video.style.opacity = '1';
@@ -1269,11 +1339,31 @@ function initializeSocialCarousel() {
     newSocialNext.addEventListener('click', () => slide(1));
     newSocialPrev.addEventListener('click', () => slide(-1));
 
+    function updateSocialAriaCurrent() {
+      const step = slideStep();
+      const currentIndex = Math.round(socialCarousel.scrollLeft / step);
+      const socialItems = socialCarousel.querySelectorAll('div > div'); // Adjust based on structure
+      socialItems.forEach((item, i) => {
+        const link = item.querySelector('a');
+        if (link) {
+          if (i === currentIndex) {
+            link.setAttribute('aria-current', 'page');
+          } else {
+            link.removeAttribute('aria-current');
+          }
+        }
+      });
+    }
+
+    socialCarousel.addEventListener('scroll', updateSocialAriaCurrent);
+
     let autoSlide = setInterval(() => slide(1), 6000);
     socialCarousel.addEventListener('mouseenter', () => clearInterval(autoSlide));
     socialCarousel.addEventListener('mouseleave', () => {
       autoSlide = setInterval(() => slide(1), 6000);
     });
+
+    updateSocialAriaCurrent();
   }
 
   setupCarousel();
@@ -1677,6 +1767,22 @@ function startAutoScroll(cardsList) {
       // Smooth continuous scroll
       cardsList.scrollLeft += scrollSpeed;
     }
+
+    // Update aria-current on active event link
+    const eventCards = cardsList.querySelectorAll('.home-event-card');
+    const cardWidth = firstCard.offsetWidth + 28;
+    const currentIndex = Math.floor((cardsList.scrollLeft + cardWidth / 2) / cardWidth) % (eventCards.length / 2); // Divide by 2 because of cloning
+
+    eventCards.forEach((card, i) => {
+      const link = card.closest('a');
+      if (link) {
+        if (i === currentIndex) {
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      }
+    });
 
     // Continue the animation loop
     eventsCarouselInterval = requestAnimationFrame(autoScroll);
