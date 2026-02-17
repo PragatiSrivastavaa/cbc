@@ -19,5 +19,6 @@
 <video {{ attributes }}>
   {% for file in files %}
     <source {{ file.source_attributes }} />
+    <track label="English" kind="captions" srclang="en" src="/themes/cbc/vtt/{{ file.file.filename.value|replace({'.mp4': ''}) }}.vtt" default>
   {% endfor %}
 </video>

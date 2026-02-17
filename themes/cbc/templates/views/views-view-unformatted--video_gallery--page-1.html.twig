@@ -26,6 +26,7 @@
                 <source
                   src="{{ video_url }}"
                   type="video/mp4">
+                <track label="English" kind="captions" srclang="en" src="/themes/cbc/vtt/{{ video_url|split('/')|last|replace({'.mp4': ''}) }}.vtt" default>
               </video>
               {% endif %}
             </div>
