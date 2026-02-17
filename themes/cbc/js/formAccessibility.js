@@ -1,36 +1,88 @@
-// Form Accessibility Enhancements
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Add instruction for mandatory fields if not present
-    const forms = document.querySelectorAll('form');
-    forms.forEach(form => {
-        // Check if form has required fields
-        if (form.querySelector('.form-required')) {
-            const instruction = document.createElement('div');
-            instruction.className = 'form-required-instruction mb-3';
-            instruction.innerHTML = '<small><strong><span style="color: red;">*</span> denotes mandatory fields</strong></small>';
-            // Insert at top of form
-            form.insertBefore(instruction, form.firstChild);
-        }
+/**
+ * @file
+ * Form Accessibility Enhancements.
+ */
 
-        // 2. Focus first error on submit (Drupal often reloads, so we check on load)
-        const firstError = form.querySelector('.form-item--error-message, .error, [aria-invalid="true"]');
-        if (firstError) {
-            // Find the input associated with this error
-            const formItem = firstError.closest('.js-form-item');
-            if (formItem) {
-                const input = formItem.querySelector('input, select, textarea');
-                if (input) {
-                    input.focus();
-                    // Ensure aria-describedby includes the error ID
-                    if (!firstError.id) {
-                        firstError.id = 'error-' + Math.random().toString(36).substr(2, 9);
+(function ($, Drupal) {
+    'use strict';
+
+    Drupal.behaviors.formAccessibility = {
+        attach: function (context, settings) {
+            // 1. Add instruction for mandatory fields if not present.
+            $('form', context).once('form-required-instruction').each(function () {
+                const $form = $(this);
+                if ($form.find('.form-required').length > 0) {
+                    const $instruction = $('<div class="form-required-instruction mb-3"><small><strong><span style="color: red;">*</span> denotes mandatory fields</strong></small></div>');
+                    $form.prepend($instruction);
+                }
+            });
+
+            // 2. Handle focus and aria-describedby for errors.
+            // We look for errors within the current context (useful for AJAX).
+            const $errorMessages = $('.form-item--error-message', context);
+
+            if ($errorMessages.length > 0) {
+                $errorMessages.each(function () {
+                    const $error = $(this);
+                    const $formItem = $error.closest('.js-form-item');
+
+                    if ($formItem.length) {
+                        const $input = $formItem.find('input, select, textarea');
+
+                        if ($input.length) {
+                            // Ensure the error message has a unique ID.
+                            if (!$error.attr('id')) {
+                                const inputName = $input.attr('name') || 'field';
+                                $error.attr('id', 'error-' + inputName.replace(/[\[\]]/g, '-') + '-' + Math.random().toString(36).substr(2, 5));
+                            }
+
+                            // Link input to error message.
+                            const errorId = $error.attr('id');
+                            let describedBy = $input.attr('aria-describedby') || '';
+                            if (!describedBy.includes(errorId)) {
+                                describedBy = (describedBy + ' ' + errorId).trim();
+                                $input.attr('aria-describedby', describedBy);
+                            }
+
+                            // Mark as invalid.
+                            $input.attr('aria-invalid', 'true');
+                        }
                     }
-                    const existingDescribedBy = input.getAttribute('aria-describedby') || '';
-                    if (!existingDescribedBy.includes(firstError.id)) {
-                        input.setAttribute('aria-describedby', (existingDescribedBy + ' ' + firstError.id).trim());
-                    }
+                });
+
+                // 3. Focus and highlight the first field with an error.
+                // Use the first error message to find its associated input for better reliability.
+                const $firstError = $errorMessages.first();
+                const $firstFormItem = $firstError.closest('.js-form-item');
+                const $firstErrorInput = $firstFormItem.find('input, select, textarea').first();
+
+                if ($firstErrorInput.length) {
+                    // Add a temporary highlight class to the error message.
+                    $firstError.addClass('error-highlight-flash');
+                    setTimeout(() => {
+                        $firstError.removeClass('error-highlight-flash');
+                    }, 3000);
+
+                    // Delay focus slightly to ensure smooth scrolling isn't interrupted and 
+                    // to overcome any Drupal AJAX focus theft.
+                    setTimeout(() => {
+                        $firstErrorInput.focus();
+
+                        // Explicit scrolling to account for fixed headers.
+                        const headerOffset = 150; // Adjust based on site header height.
+                        const elementPosition = $firstErrorInput.offset().top;
+                        const offsetPosition = elementPosition - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }, 200); // Slightly longer delay for stability.
                 }
             }
         }
-    });
-});
+    };
+
+
+})(jQuery, Drupal);
+

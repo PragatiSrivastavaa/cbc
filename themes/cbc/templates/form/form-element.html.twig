@@ -83,7 +83,7 @@
     {{ label }}
   {% endif %}
   {% if errors %}
-    <div class="form-item--error-message invalid-feedback d-block">
+    <div id="{{ name|clean_id }}-error" class="form-item--error-message invalid-feedback d-block">
       <strong>{{ errors }}</strong>
     </div>
   {% endif %}
