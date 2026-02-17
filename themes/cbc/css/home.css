@@ -4290,7 +4290,7 @@ h2.infocus-heading {
 }
 
 .blog-carousel-wrapper {
-  padding: 0rem 1rem;
+  padding: 1rem 1rem;
   position: relative;
   display: flex;
   align-items: center;
@@ -4446,7 +4446,7 @@ h2.infocus-heading {
 .blog-footer {
   text-align: right;
   position: relative;
-  margin: 0rem 2rem 3rem;
+  margin: 0rem 2rem 2rem;
 }
 
 .blog-see-more-btn {
@@ -4454,7 +4454,7 @@ h2.infocus-heading {
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1.875rem;
-  background: linear-gradient(135deg, #ffa90196 0%, #ffa600bf 100%);
+  background: linear-gradient(135deg, #fca701 0%, #ffa600bf 100%);
   color: #fff;
   text-decoration: none;
   border-radius: 0.75rem;
@@ -4505,6 +4505,7 @@ h2.infocus-heading {
   align-items: flex-start;
   /* margin-bottom: 2rem; */
   width: 100%;
+  padding: 1rem;
 }
 
 /* 75% Carousel Section */
@@ -8096,7 +8097,7 @@ h2.infocus-heading {
 }
 
 .slider-btn {
-  background: #ff9e43;
+  background: #feb72f;
   border: none;
   width: 40px;
   height: 40px;
@@ -10047,15 +10048,20 @@ h2.infocus-heading {
   display: none;
 }
 
-.collab-track>a {
+.collab-item {
   flex: 0 0 calc(100% - 40px);
   max-width: 350px;
   /* Fixed width for consistent carousel items */
+  list-style: none;
+}
+
+.collab-item>a {
   text-decoration: none;
   /* Remove underline from anchor */
   color: inherit;
   display: block;
   /* Ensure anchor behaves like a block */
+  height: 100%;
 }
 
 .collab-box {
@@ -10117,13 +10123,13 @@ h2.infocus-heading {
 }
 
 @media (max-width: 992px) {
-  .collab-track>a {
+  .collab-item {
     flex: 0 0 85%;
   }
 }
 
 @media (max-width: 480px) {
-  .collab-track>a {
+  .collab-item {
     flex: 0 0 95%;
   }
 }

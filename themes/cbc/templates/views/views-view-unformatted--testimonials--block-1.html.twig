@@ -1,27 +1,27 @@
 <div class="vertical-testimonials-scroll" id="videoTestimonials" role="region" aria-label="Carousel">
    <ul class="opinions-vertical-box list-unstyled p-0 m-0" role="status" aria-live="polite" aria-atomic="true">
-                {% for row in rows %}
-          {% set node = row.content['#row']._entity %}
-          {% set tokens = row.content['#view'].style_plugin.render_tokens[loop.index0] %}
-          {% set video_url = '' %}
+                 {% for row in rows %}
+           {% set node = row.content['#row']._entity %}
+           {% set tokens = row.content['#view'].style_plugin.render_tokens[loop.index0] %}
+           {% set video_url = '' %}
 
-          {# Get video file #}
-          {% if node.field_video.entity is not empty %}
-            {% set media = node.field_video.entity %}
-            {% if media.field_media_video_file.entity is not empty %}
-              {% set file = media.field_media_video_file.entity %}
-              {% set video_url = file_url(file.uri.value) %}
-            {% endif %}
-          {% endif %}
-
-           {% if video_url %}
-            <li class="testimonial-item">
-              <video class="testimonial-video active" muted playsinline>
-                <source src="{{ video_url }}" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-            </li>
+           {# Get video file #}
+           {% if node.field_video.entity is not empty %}
+             {% set media = node.field_video.entity %}
+             {% if media.field_media_video_file.entity is not empty %}
+               {% set file = media.field_media_video_file.entity %}
+               {% set video_url = file_url(file.uri.value) %}
              {% endif %}
+           {% endif %}
+
+            {% if video_url %}
+             <li class="testimonial-item">
+               <video class="testimonial-video active" muted playsinline>
+                 <source src="{{ video_url }}" type="video/mp4">
+                 Your browser does not support the video tag.
+               </video>
+             </li>
+              {% endif %}
             
 
 
