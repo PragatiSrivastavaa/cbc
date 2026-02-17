@@ -92,6 +92,7 @@ function initializeCarousel() {
   const nextArrow = document.querySelector('.carousel-next');
 
   if (prevArrow) {
+    prevArrow.setAttribute('aria-label', 'Previous Slide');
     prevArrow.addEventListener('click', () => {
       const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
       showSlide(prevIndex);
@@ -99,6 +100,7 @@ function initializeCarousel() {
   }
 
   if (nextArrow) {
+    nextArrow.setAttribute('aria-label', 'Next Slide');
     nextArrow.addEventListener('click', () => {
       const nextIndex = (currentSlide + 1) % slides.length;
       showSlide(nextIndex);
@@ -284,6 +286,11 @@ function initializeAlertBar() {
   // Navigation functionality - scrolls content left/right
   const newPrevBtn = prevBtn.cloneNode(true);
   const newNextBtn = nextBtn.cloneNode(true);
+
+  // Set accessible labels
+  newPrevBtn.setAttribute('aria-label', 'Previous Alert');
+  newNextBtn.setAttribute('aria-label', 'Next Alert');
+
   prevBtn.parentNode.replaceChild(newPrevBtn, prevBtn);
   nextBtn.parentNode.replaceChild(newNextBtn, nextBtn);
 
@@ -501,6 +508,11 @@ function initializeBlogSection() {
   // Remove old listeners
   const newNextBtn = nextBtn.cloneNode(true);
   const newPrevBtn = prevBtn.cloneNode(true);
+
+  // Set accessible labels
+  newNextBtn.setAttribute('aria-label', 'Next Opinion');
+  newPrevBtn.setAttribute('aria-label', 'Previous Opinion');
+
   nextBtn.parentNode.replaceChild(newNextBtn, nextBtn);
   prevBtn.parentNode.replaceChild(newPrevBtn, prevBtn);
 
@@ -613,6 +625,11 @@ function initializeCollaborationCarousel() {
   // Remove old listeners
   const newNextBtn = nextBtn.cloneNode(true);
   const newPrevBtn = prevBtn.cloneNode(true);
+
+  // Set accessible labels
+  newNextBtn.setAttribute('aria-label', 'Next Collaboration');
+  newPrevBtn.setAttribute('aria-label', 'Previous Collaboration');
+
   nextBtn.parentNode.replaceChild(newNextBtn, nextBtn);
   prevBtn.parentNode.replaceChild(newPrevBtn, prevBtn);
 
@@ -1564,6 +1581,7 @@ function attachCarouselHandlers(cardsList) {
 
   // Manual navigation - Previous button
   if (prevBtn) {
+    prevBtn.setAttribute('aria-label', 'Previous Events');
     prevBtn.onclick = function (e) {
       e.preventDefault();
       e.stopPropagation();
@@ -1589,6 +1607,7 @@ function attachCarouselHandlers(cardsList) {
 
   // Manual navigation - Next button
   if (nextBtn) {
+    nextBtn.setAttribute('aria-label', 'Next Events');
     nextBtn.onclick = function (e) {
       e.preventDefault();
       e.stopPropagation();

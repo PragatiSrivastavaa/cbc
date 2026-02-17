@@ -479,8 +479,8 @@ class AccessibilityManager {
       }
 
       // Ensure close button has an aria-label
-      const closeBtn = dialogWrapper.querySelector('.ui-dialog-titlebar-close');
-      if (closeBtn && !closeBtn.hasAttribute('aria-label')) {
+      const closeBtn = dialogWrapper.querySelector('.ui-dialog-titlebar-close, .close-btn, .modal-close');
+      if (closeBtn && !closeBtn.hasAttribute('aria-label') && !closeBtn.innerText.trim()) {
         closeBtn.setAttribute('aria-label', 'Close');
       }
 
