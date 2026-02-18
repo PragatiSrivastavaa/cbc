@@ -34,7 +34,7 @@
 
             <div class="video-container">
               {% if video_url %}
-                <video class="w-100 rounded-3" controls muted preload="metadata">
+                <video class="w-100 rounded-3" controls muted preload="metadata" aria-label="Video: {{ node.label }}">
                   <source src="{{ video_url }}" type="video/mp4">
                 </video>
               {% endif %}

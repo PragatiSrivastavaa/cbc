@@ -16,7 +16,7 @@
     {% endif %}
   {% endif %}
 
-  <video id="bg-video" autoplay muted loop playsinline preload="auto">
+  <video id="bg-video" autoplay muted loop playsinline preload="auto" aria-label="CBC Introduction Video">
     {% if first_video_url %}
       <source src="{{ first_video_url }}" type="video/mp4" />
     {% endif %}

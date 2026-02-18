@@ -5,11 +5,11 @@
   <li class="chairperson-image-card high-contrast-border {{ is_ps_pps ? 'is-ps-pps' : '' }}">
              {% set entity = row.content['#row']._entity %}
           <div class="chairperson-image-wrapper">
-            {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}
+            {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}']|replace({'alt="': 'alt="" data-original-alt="'})|raw }}
             <div class="chairperson-overlay">
               <p>
               {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}']|striptags|trim }}</p>
-              <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}" class="view-more">View More →</a>
+              <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}" class="view-more" aria-label="View more about {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}">View More →</a>
             </div>
           </div>
           <div class="chairperson-content">
