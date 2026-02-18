@@ -1,7 +1,7 @@
 <div class="blog-carousel-wrapper" role="region" aria-label="Carousel">
   <button class="collab-arrow" id="blogPrevBtn" style="position: static; transform: none; margin: 0;" aria-label="Previous">❮</button>
   
-  <ul class="carousel-track list-unstyled p-0 m-0" id="opinionCarouselTrack" style="flex: 1; min-width: 0;" role="status" aria-live="polite" aria-atomic="true">
+  <ul class="carousel-track list-unstyled p-0 m-0" id="opinionCarouselTrack" style="flex: 1; min-width: 0;">
     {% for row in rows %}
       {% set entity = row.content['#row']._entity %}
       <li class="home-opinion-card">
@@ -10,7 +10,7 @@
           <h3>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
           {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}'] }}
         </div>
-        <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}" class="home-opinion-card-link">Read More →</a>
+        <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}" class="home-opinion-card-link" aria-label="Read more about {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}">Read More →</a>
       </li>
     {% endfor %}
   </ul>

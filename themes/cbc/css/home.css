@@ -181,6 +181,9 @@
   justify-content: center;
   transition: all 0.3s ease;
   backdrop-filter: blur(4px);
+  /* Added shadows for visibility on white backgrounds */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .carousel-prev:hover,
@@ -14061,4 +14064,17 @@ body[data-pause-animations="true"] svg * {
 body[data-pause-animations="true"] marquee {
   -webkit-animation-play-state: paused !important;
   animation-play-state: paused !important;
+}
+
+/* Standard Visually Hidden Class for Accessibility */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }

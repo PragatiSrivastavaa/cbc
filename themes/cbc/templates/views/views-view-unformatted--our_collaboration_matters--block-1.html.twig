@@ -3,7 +3,7 @@
           <div class="collab-carousel" role="region" aria-label="Carousel">
 
 
-            <ul class="collab-track list-unstyled p-0 m-0" id="collabTrack" role="status" aria-live="polite" aria-atomic="true">
+            <ul class="collab-track list-unstyled p-0 m-0" id="collabTrack">
               {% for row in rows %}
               {% set entity = row.content['#row']._entity %}
               {% set tokens = row.content['#view'].style_plugin.render_tokens[loop.index0] %}

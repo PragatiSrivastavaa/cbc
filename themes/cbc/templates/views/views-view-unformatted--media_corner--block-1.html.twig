@@ -10,7 +10,7 @@
               </div>
               <div class="section-body">
                 <div class="media-corner-box high-contrast-border position-relative overflow-hidden" role="region" aria-label="Carousel">
-                  <ul class="media-track list-unstyled p-0 m-0" id="mediaTrack" role="status" aria-live="polite" aria-atomic="true">
+                  <ul class="media-track list-unstyled p-0 m-0" id="mediaTrack">
                     {% for row in rows %}
                     {% set entity = row.content['#row']._entity %}
                    {% set link_item = entity.field_link.0 %}
@@ -25,7 +25,9 @@
                     <li class="media-item">
                       <a href="{{ link }}" target="_blank"
                         rel="noopener noreferrer">
-                        {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}
+                        <div class="media-image-wrapper" loading="lazy">
+                          {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}
+                        </div>
                         <p>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</p>
                       </a>
                     </li>

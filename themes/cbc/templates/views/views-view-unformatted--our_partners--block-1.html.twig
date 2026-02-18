@@ -10,7 +10,7 @@
         </div>
 
         <!-- Slider -->
-        <ul class="partners-slider list-unstyled p-0 m-0" id="partnersSlider" role="region" aria-label="Carousel">
+        <ul class="partners-slider list-unstyled p-0 m-0" id="partnersSlider">
          {% for row in rows %}
                {% set entity = row.content['#row']._entity %}
                {% set entity = row.content['#row']._entity %}
@@ -25,7 +25,10 @@
                 {% endif %}
         
           <li class="partner-card">
-             <a href="{{ link }}" target="_blank" rel="noopener noreferrer">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}
+             <a href="{{ link }}" target="_blank" rel="noopener noreferrer">
+               <div class="partner-image-wrapper" loading="lazy">
+                 {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}
+               </div>
             </a>
           </li>
 

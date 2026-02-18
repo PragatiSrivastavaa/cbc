@@ -2,10 +2,29 @@
   <div role="status" aria-live="polite" aria-atomic="true">
 
 
-  {% set first_slide = true %}
-  {% set video_urls = [] %}
+  {% set first_video_url = '' %}
+  
+  {# Extract first video URL for the background video element #}
+  {% if rows|length > 0 %}
+    {% set first_node = rows[0].content['#row']._entity %}
+    {% if first_node.field_banner_video.entity is not empty %}
+      {% set media = first_node.field_banner_video.entity %}
+      {% if media.field_media_video_file.entity is not empty %}
+        {% set file = media.field_media_video_file.entity %}
+        {% set first_video_url = file_url(file.uri.value) %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+  <video id="bg-video" autoplay muted loop playsinline preload="auto">
+    {% if first_video_url %}
+      <source src="{{ first_video_url }}" type="video/mp4" />
+    {% endif %}
+    Your browser does not support the video tag.
+  </video>
 
   <ul class="carousel-track list-unstyled p-0 m-0">
+  {% set video_urls = [] %}
   {% for row in rows %}
     {% set node = row.content['#row']._entity %}
     {% set video_url = '' %}
@@ -21,17 +40,12 @@
 
     {% set video_urls = video_urls|merge([video_url]) %}
 
-    {% if first_slide %}
-      <video id="bg-video" autoplay muted loop playsinline preload="auto">
-        {% if video_url %}
-          <source src="{{ video_url }}" type="video/mp4" />
-        {% endif %}
-        Your browser does not support the video tag.
-      </video>
-      {% set first_slide = false %}
-    {% endif %}
-
     <li class="slide-content {% if loop.first %}active{% endif %}" id="slide{{ loop.index }}">
+      {# General Solution: Use the Node Label (Title) as the accessible text #}
+      {# General Solution: Use the Node Label (Title) + Descriptive Text #}
+      <span class="visually-hidden">
+        {{ node.label }}. This is a CBC video which represents the creation as CBC does this kind of work.
+      </span>
     </li>
   {% endfor %}
   </ul>
