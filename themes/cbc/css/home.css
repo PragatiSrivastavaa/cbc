@@ -14078,3 +14078,99 @@ body[data-pause-animations="true"] marquee {
   white-space: nowrap !important;
   border: 0 !important;
 }
+
+/* Reorder Commission Leadership on Mobile - Centre element first */
+@media (max-width: 767px) {
+  .leadership-members-row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .leadership-members-row li:nth-child(2) {
+    order: -1;
+    margin-bottom: 20px;
+  }
+}
+
+/* Fix Opinions Do Matter & Testimonials Mobile Layout */
+@media (max-width: 991px) {
+  .opinions-layout-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    /* Increased gap */
+  }
+
+  .blog-carousel-wrapper {
+    padding: 0px;
+  }
+
+  .opinions-carousel-section {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+    position: relative;
+    /* Ensure controls positioning context */
+  }
+
+  .opinions-testimonials-column {
+    width: 100%;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+  }
+
+  /* Carousel Controls - Positioned on sides of the card */
+  .cbc-blog-carousel .carousel-control-prev,
+  .cbc-blog-carousel .carousel-control-next {
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 165, 0, 0.8);
+    /* Theme orange background for visibility */
+    border-radius: 50%;
+    opacity: 1;
+    z-index: 10;
+  }
+
+  .cbc-blog-carousel .carousel-control-prev {
+    left: -10px;
+    /* Pull out slightly */
+  }
+
+  .cbc-blog-carousel .carousel-control-next {
+    right: -10px;
+    /* Pull out slightly */
+  }
+
+  .cbc-blog-carousel .carousel-control-prev-icon,
+  .cbc-blog-carousel .carousel-control-next-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Wider Cards for better readability */
+  .home-opinion-card {
+    min-width: 280px;
+    /* Significantly wider */
+    max-width: 340px;
+    /* Cap width */
+    width: 85%;
+    /* Responsive width */
+    margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+  }
+
+  /* Ensure Testimonials video/card fits nicely */
+  .opinions-testimonials-column .youtube-card,
+  .opinions-testimonials-column .video-container {
+    height: auto !important;
+    min-height: 250px;
+  }
+
+  .opinions-testimonials-column iframe,
+  .opinions-testimonials-column video {
+    height: 250px !important;
+  }
+}

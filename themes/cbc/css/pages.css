@@ -19938,3 +19938,15 @@ th.text-center {
   background: linear-gradient(90deg, #003b73, #001f44) !important;
   color: #ffffff !important;
 }
+
+/* Reorder Team Leadership on Mobile - Centre element first */
+@media (max-width: 767px) {
+  .meet-team-section-enhanced .team-category ul.row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .meet-team-section-enhanced .team-category ul.row li:nth-child(2) {
+    order: -1;
+  }
+}
