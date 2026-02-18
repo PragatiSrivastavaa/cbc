@@ -1,221 +1,162 @@
 /**
- * Dropdown Menu Keyboard Accessibility
- * WCAG 2.1.1 Compliance - Keyboard Access for Navigation Menus
+ * CBC Dropdown Menu Keyboard Accessibility
  */
 
 (function () {
     'use strict';
 
-    console.log('🔵 Dropdown Keyboard Navigation: Script loaded!');
+    console.log('🔵 CBC Dropdown Keyboard Navigation: Script Loaded');
 
-    // Initialize keyboard navigation for dropdowns
-    function initDropdownKeyboardNav() {
-        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-        console.log('🔵 Found', dropdownToggles.length, 'dropdown toggles');
+    let initAttempts = 0;
 
-        dropdownToggles.forEach(toggle => {
-            // Handle Enter and Space to open dropdown
-            toggle.addEventListener('keydown', function (e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    e.stopPropagation();
+    const init = () => {
+        initAttempts++;
+        const navs = document.querySelectorAll('.navbar-nav');
 
-                    console.log('🔵 Enter/Space pressed on:', this.textContent.trim());
+        if (navs.length === 0) {
+            if (initAttempts < 10) {
+                console.log('⚠️ No .navbar-nav found, retrying attempt ' + initAttempts);
+                setTimeout(init, 500);
+            }
+            return;
+        }
 
-                    // KEYBOARD HOVER SIMULATION
-                    // We toggle the .hover class on the PARENT LI
-                    // This matches the CSS rule: .nav-item.dropdown.hover .dropdown-menu
-                    const parentItem = this.closest('.nav-item.dropdown');
+        console.log('🟢 CBC Dropdown Keyboard Navigation: Initializing on ' + navs.length + ' nav(s)');
 
-                    if (parentItem) {
-                        if (parentItem.classList.contains('hover')) {
-                            // Close
-                            parentItem.classList.remove('hover');
-                            this.setAttribute('aria-expanded', 'false');
-                            console.log('🔴 Closed (removed .hover class)');
-                        } else {
-                            // Open
-                            // First close any other open dropdowns
-                            document.querySelectorAll('.nav-item.dropdown.hover').forEach(el => {
-                                el.classList.remove('hover');
-                                const toggle = el.querySelector('.dropdown-toggle');
-                                if (toggle) toggle.setAttribute('aria-expanded', 'false');
-                            });
-
-                            parentItem.classList.add('hover');
-                            this.setAttribute('aria-expanded', 'true');
-                            console.log('🟢 Opened (added .hover class)');
-
-                            // Focus first item
-                            const dropdownMenu = this.nextElementSibling;
-                            if (dropdownMenu) {
-                                setTimeout(() => {
-                                    const firstItem = dropdownMenu.querySelector('.dropdown-item');
-                                    if (firstItem) firstItem.focus();
-                                }, 100);
-                            }
-                        }
-                    } else {
-                        console.log('⚠️ Parent .nav-item.dropdown not found');
-                        this.click(); // Fallback
-                    }
-                }
-
-                // Arrow Down - Open dropdown and focus first item
-                if (e.key === 'ArrowDown') {
-                    e.preventDefault();
-
-                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
-                    if (!isExpanded) {
-                        this.click(); // Open it
-                    }
-
-                    // Focus first item in dropdown
-                    const dropdownMenu = this.nextElementSibling;
-                    setTimeout(() => {
-                        const firstItem = dropdownMenu.querySelector('.dropdown-item');
-                        if (firstItem) {
-                            firstItem.focus();
-                        }
-                    }, 100);
-                }
-
-                // Escape - Close dropdown
-                if (e.key === 'Escape') {
-                    e.preventDefault();
-                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
-                    if (isExpanded) {
-                        this.click(); // Close it
-                    }
-                    this.focus();
-                }
-            });
-
-            // Handle Tab to close dropdown when leaving
-            toggle.addEventListener('blur', function (e) {
-                const dropdownMenu = this.nextElementSibling;
-                // Check if moving into dropdown, if not close
-                setTimeout(() => {
-                    const dropdownMenu = this.nextElementSibling;
-                    if (dropdownMenu && !dropdownMenu.contains(document.activeElement)) {
-                        const isExpanded = this.getAttribute('aria-expanded') === 'true';
-                        if (isExpanded && typeof bootstrap !== 'undefined' && bootstrap.Dropdown) {
-                            const instance = bootstrap.Dropdown.getInstance(this);
-                            if (instance) instance.hide();
-                        }
-                    }
-                }, 150);
-            });
-        });
-
-        // Handle keyboard navigation within dropdown menus
-        const dropdownMenus = document.querySelectorAll('.dropdown-menu');
-        dropdownMenus.forEach(menu => {
-            const items = Array.from(menu.querySelectorAll('.dropdown-item'));
-
-            items.forEach((item, index) => {
-                item.addEventListener('keydown', function (e) {
-                    // Arrow Down - Move to next item
-                    if (e.key === 'ArrowDown') {
-                        e.preventDefault();
-                        const nextItem = items[index + 1];
-                        if (nextItem) {
-                            nextItem.focus();
-                        } else {
-                            items[0].focus(); // Loop to first
-                        }
-                    }
-
-                    // Arrow Up - Move to previous item
-                    if (e.key === 'ArrowUp') {
-                        e.preventDefault();
-                        const prevItem = items[index - 1];
-                        if (prevItem) {
-                            prevItem.focus();
-                        } else {
-                            items[items.length - 1].focus(); // Loop to last
-                        }
-                    }
-
-                    // Escape - Close dropdown and return focus to toggle
-                    if (e.key === 'Escape') {
-                        e.preventDefault();
-                        const dropdown = this.closest('.dropdown');
-                        if (dropdown) {
-                            const toggle = dropdown.querySelector('.dropdown-toggle');
-                            if (toggle) {
-                                toggle.focus();
-                                toggle.click(); // Close
-                            }
-                        }
-                    }
-
-                    // Tab - Allow natural tab, close dropdown when leaving
-                    if (e.key === 'Tab') {
-                        setTimeout(() => {
-                            if (!menu.contains(document.activeElement)) {
-                                const dropdown = this.closest('.dropdown');
-                                if (dropdown) {
-                                    const toggle = dropdown.querySelector('.dropdown-toggle');
-                                    if (toggle) {
-                                        const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
-                                        if (isExpanded && typeof bootstrap !== 'undefined' && bootstrap.Dropdown) {
-                                            const instance = bootstrap.Dropdown.getInstance(toggle);
-                                            if (instance) instance.hide();
-                                        }
-                                    }
-                                }
-                            }
-                        }, 100);
-                    }
-                });
-            });
-        });
-    }
-
-    // Close all dropdowns when clicking outside
-    document.addEventListener('click', function (e) {
-        if (!e.target.closest('.dropdown')) {
-            // Close Bootstrap instances
-            const openDropdowns = document.querySelectorAll('.dropdown-menu.show');
-            openDropdowns.forEach(menu => {
-                const dropdown = menu.closest('.dropdown');
-                if (dropdown) {
-                    const toggle = dropdown.querySelector('.dropdown-toggle');
-                    if (toggle && typeof bootstrap !== 'undefined' && bootstrap.Dropdown) {
-                        const instance = bootstrap.Dropdown.getInstance(toggle);
-                        if (instance) instance.hide();
-                    }
-                }
-            });
-
-            // Close our manual .hover class instances
-            document.querySelectorAll('.nav-item.dropdown.hover').forEach(el => {
+        // Helper: Close all dropdowns
+        const closeAll = (exceptParent = null) => {
+            document.querySelectorAll('.dropdown.hover, .has-submenu.hover').forEach(el => {
+                if (exceptParent && exceptParent.contains(el)) return;
                 el.classList.remove('hover');
                 const toggle = el.querySelector('.dropdown-toggle');
                 if (toggle) toggle.setAttribute('aria-expanded', 'false');
             });
-        }
-    });
+        };
 
-    // Handle Escape globally to close .hover instances
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-            document.querySelectorAll('.nav-item.dropdown.hover').forEach(el => {
-                el.classList.remove('hover');
-                const toggle = el.querySelector('.dropdown-toggle');
-                if (toggle) {
-                    toggle.setAttribute('aria-expanded', 'false');
-                    toggle.focus();
+        // Keydown Handler
+        const handleKeyDown = (e) => {
+            try {
+                const target = e.target;
+                const toggle = target.closest('.dropdown-toggle');
+                const item = target.closest('.dropdown-item, .sub-item');
+
+                // 1. Handle Toggle (Enter/Space/ArrowDown)
+                if (toggle && (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown')) {
+                    const parent = toggle.closest('.dropdown, .has-submenu');
+                    if (!parent) return;
+
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const isCurrentlyOpen = parent.classList.contains('hover');
+
+                    if (!isCurrentlyOpen) {
+                        // Close siblings at same level
+                        const siblings = parent.parentElement.querySelectorAll(':scope > .hover');
+                        siblings.forEach(el => el.classList.remove('hover'));
+
+                        parent.classList.add('hover');
+                        toggle.setAttribute('aria-expanded', 'true');
+                        console.log('🟢 Keyboard Opened:', toggle.textContent.trim());
+
+                        // Focus first child
+                        setTimeout(() => {
+                            const first = parent.querySelector('.dropdown-item, .sub-item');
+                            if (first) {
+                                first.focus();
+                            }
+                        }, 50);
+                    } else if (e.key !== 'ArrowDown') {
+                        // Close on Enter/Space if already open
+                        parent.classList.remove('hover');
+                        toggle.setAttribute('aria-expanded', 'false');
+                        console.log('🔴 Keyboard Closed:', toggle.textContent.trim());
+                    }
+                }
+
+                // 2. Handle Item navigation
+                if (item) {
+                    const menu = item.closest('.dropdown-menu, .sub-items-container');
+                    if (!menu) return;
+
+                    const items = Array.from(menu.querySelectorAll('.dropdown-item, .sub-item'));
+                    const index = items.indexOf(item);
+
+                    if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        (items[index + 1] || items[0]).focus();
+                    } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        (items[index - 1] || items[items.length - 1]).focus();
+                    } else if (e.key === 'Escape') {
+                        e.preventDefault();
+                        const p = item.closest('.dropdown, .has-submenu');
+                        if (p) {
+                            const t = p.querySelector('.dropdown-toggle');
+                            p.classList.remove('hover');
+                            if (t) {
+                                t.setAttribute('aria-expanded', 'false');
+                                t.focus();
+                            }
+                        }
+                    } else if (e.key === 'ArrowRight' && item.classList.contains('dropdown-toggle')) {
+                        // Enter nested menu
+                        e.preventDefault();
+                        item.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+                    } else if (e.key === 'ArrowLeft') {
+                        // Exit nested menu
+                        const nestedMenu = item.closest('.sub-items-container');
+                        if (nestedMenu) {
+                            e.preventDefault();
+                            const p = nestedMenu.closest('.has-submenu');
+                            if (p) {
+                                p.classList.remove('hover');
+                                const t = p.querySelector('.dropdown-toggle');
+                                if (t) {
+                                    t.setAttribute('aria-expanded', 'false');
+                                    t.focus();
+                                }
+                            }
+                        }
+                    }
+                }
+            } catch (err) {
+                console.warn('CBC Keyboard Nav Warning:', err);
+            }
+        };
+
+        // Attach listeners to each nav
+        navs.forEach(nav => {
+            if (nav.hasAttribute('data-cbc-nav-init')) return;
+            nav.setAttribute('data-cbc-nav-init', 'true');
+            nav.addEventListener('keydown', handleKeyDown);
+        });
+
+        // Global listeners (once)
+        if (!document.body.hasAttribute('data-cbc-global-init')) {
+            document.body.setAttribute('data-cbc-global-init', 'true');
+
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.dropdown, .has-submenu')) {
+                    closeAll();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeAll();
                 }
             });
         }
-    });
+    };
 
-    // Initialize on DOM ready
+    // Initialize with a few retries for safety
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initDropdownKeyboardNav);
+        document.addEventListener('DOMContentLoaded', init);
     } else {
-        initDropdownKeyboardNav();
+        init();
+        setTimeout(init, 1000);
     }
+
 })();
+

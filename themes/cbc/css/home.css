@@ -14174,3 +14174,27 @@ body[data-pause-animations="true"] marquee {
     height: 250px !important;
   }
 }
+
+/* Accessibility: Keyboard Navigation for Dropdowns */
+/* Keyboard & Focus visibility fixes */
+.nav-item.dropdown.hover>.dropdown-menu,
+.nav-item.dropdown.show>.dropdown-menu,
+.nav-item.dropdown:focus-within>.dropdown-menu,
+.has-submenu.hover>.sub-items-container,
+.has-submenu:focus-within>.sub-items-container {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  z-index: 1000 !important;
+}
+
+/* Ensure focus is visible */
+.dropdown-item:focus,
+.nav-link:focus,
+.sub-item:focus {
+  outline: 2px solid #ffc107 !important;
+  outline-offset: -2px !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+}

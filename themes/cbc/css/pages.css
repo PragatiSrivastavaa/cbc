@@ -1510,6 +1510,7 @@ ul.navbar-nav.nav-rounded {
   }
 
   .navbar-nav .dropdown-menu .has-submenu:hover>.sub-items-container,
+  .navbar-nav .dropdown-menu .has-submenu.hover>.sub-items-container,
   .navbar-nav .dropdown-menu .has-submenu:focus-within>.sub-items-container {
     opacity: 1;
     visibility: visible;

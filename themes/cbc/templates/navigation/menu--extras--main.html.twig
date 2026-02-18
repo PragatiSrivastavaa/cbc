@@ -24,6 +24,7 @@
                  role="button"
                  data-bs-toggle="dropdown"
                  aria-expanded="false"
+                 aria-haspopup="true"
                {% endif %}>
 
               {% if icon %}
@@ -39,11 +40,18 @@
                 {% for child in item.below %}
                   {% set child_icon = child.original_link.entity.field_icon.value ?? '' %}
                   {% set child_desc = child.original_link.entity.field_descriptions.value ?? '' %}
+                  {% set child_dropdown_id = child.title|clean_class ~ '-sub' %}
 
                   <li class="{% if child.below %}has-submenu{% endif %}">
 
-                    <a class="dropdown-item knowledge-item {% if child.below %}has-sub-items{% endif %}"
-                       href="{{ child.url }}">
+                    <a class="dropdown-item knowledge-item {% if child.below %}has-sub-items dropdown-toggle{% endif %}"
+                       href="{{ child.url }}"
+                       {% if child.below %}
+                         id="{{ child_dropdown_id }}"
+                         aria-expanded="false"
+                         aria-haspopup="true"
+                         role="button"
+                       {% endif %}>
 
                       {% if child_icon %}
                         <div class="knowledge-icon">
@@ -65,7 +73,8 @@
                       {% set parent_index = loop.parent.loop.index %}
 
                       <div class="sub-items-container"
-                           id="sub-{{ parent_index }}-{{ loop.index }}">
+                           id="sub-{{ parent_index }}-{{ loop.index }}"
+                           aria-labelledby="{{ child_dropdown_id }}">
 
                         {% for sub in child.below %}
                           {% set sub_icon = sub.original_link.entity.field_icon.value ?? '' %}
