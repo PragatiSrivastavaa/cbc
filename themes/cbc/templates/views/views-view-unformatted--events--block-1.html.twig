@@ -37,7 +37,7 @@
                   {% set description = row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}']|striptags|trim %}
                   {% set truncated_description = description|length > 100 ? description|slice(0, 100) ~ '...' : description %}
                   <p class="home-event-card-description">{{ truncated_description }}</p>
-                  <a class="home-event-card-read-more" href="{{ path('entity.node.canonical', {'node': node.id}) }}" aria-label="Read more about {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}">
+                  <a class="home-event-card-read-more" href="{{ path('entity.node.canonical', {'node': node.id}) }}" aria-label="Read more about {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}']|striptags|trim }}">
                     Read More <i class="fas fa-arrow-right"></i>
                   </a>
                 </div>

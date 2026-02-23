@@ -9,7 +9,7 @@
             <div class="chairperson-overlay">
               <p>
               {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}']|striptags|trim }}</p>
-              <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}" class="view-more" aria-label="View more about {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}">View More →</a>
+              <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}" class="view-more" aria-label="View more about {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}']|striptags|trim }}">View More →</a>
             </div>
           </div>
           <div class="chairperson-content">
