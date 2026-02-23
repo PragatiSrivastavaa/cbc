@@ -1,13 +1,12 @@
 <div class="container">
 {% for row in rows %}
-
   {% set entity = row.content['#row']._entity %}
   {% set current_index = loop.index0 %}
   {% set prev_index = current_index - 1 %}
-  
+
   {# Get current category token #}
   {% set category = row.content['#view'].style_plugin.render_tokens[current_index]['{{ field_gallery_category }}'] %}
-  
+
   {# Get previous category token (null if first item) #}
   {% set prev_category = null %}
   {% if not loop.first %}
@@ -19,7 +18,8 @@
 
   {# Close previous group if this is a new group (and not the very first one) #}
   {% if is_new_group and not loop.first %}
-      </div></div>
+      </ul>
+    </div>
   {% endif %}
 
   {# Open new group header #}
@@ -32,33 +32,31 @@
       <ul class="row list-unstyled p-0 m-0">
   {% endif %}
 
-  {# Gallery card item #}
-  <li class="col-md-4 mb-4">
-    <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}">
-    <div class="card gallery-card">
+    {# Gallery card item #}
+    <li class="col-md-4 mb-4">
+      <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}">
+        <div class="card gallery-card">
 
-      {% if entity.field_thumbnail_image.entity %}
-        <img
-          src="{{ file_url(entity.field_thumbnail_image.entity.fileuri) }}"
-          class="card-img-top"
-          alt="{{ entity.label }}"
-        >
-      {% endif %}
-      
-      <div class="card-body">
-        <h3 class="card-title">{{ entity.label }}</h3>
-        <div class="card-text">
-          {{ row.content['#view'].style_plugin.render_tokens[current_index]['{{ field_event_description }}']|striptags|trim }}
+          {% if entity.field_thumbnail_image.entity %}
+          <img src="{{ file_url(entity.field_thumbnail_image.entity.fileuri) }}" class="card-img-top"
+            alt="{{ entity.label }}">
+          {% endif %}
+
+          <div class="card-body">
+            <h3 class="card-title">{{ entity.label }}</h3>
+            <div class="card-text">
+              {{ row.content['#view'].style_plugin.render_tokens[current_index]['{{ field_event_description }}']|striptags|trim }}
+            </div>
+          </div>
+
         </div>
-      </div>
-
-    </div>
-    </a>
-  </li>
+      </a>
+    </li>
 
   {# Close the last group at the end of the loop #}
   {% if loop.last %}
-      </ul></div>
+      </ul>
+    </div>
   {% endif %}
 
 {% endfor %}
