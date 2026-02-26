@@ -1,9 +1,8 @@
 <div class="collab-content-wrapper">
-          <button class="collab-arrow left" id="collabPrevBtn" aria-label="Previous">❮</button>
           <div class="collab-carousel" role="region" aria-label="Carousel">
 
 
-            <ul class="collab-track list-unstyled p-0 m-0" id="collabTrack">
+            <ul class="collab-track list-unstyled m-0" id="collabTrack">
               {% for row in rows %}
               {% set entity = row.content['#row']._entity %}
               {% set tokens = row.content['#view'].style_plugin.render_tokens[loop.index0] %}
@@ -24,11 +23,13 @@
               </li>
               {% endfor %}
             </ul>
-
-
           </div>
-          <button class="collab-arrow right" id="collabNextBtn" aria-label="Next">❯</button>
         </div>
         <div class="collab-footer">
+          <div class="collab-controls">
+            <button class="collab-arrow" id="collabPrevBtn" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+            <button class="collab-arrow collab-pause-btn" id="collabPauseBtn" aria-label="Pause Collaboration Carousel"><i class="fas fa-pause" aria-hidden="true"></i></button>
+            <button class="collab-arrow" id="collabNextBtn" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+          </div>
           <a href="/collaborations" class="view-more" aria-label="View all collaborations">View More <i class="fas fa-arrow-right"></i></a>
         </div>

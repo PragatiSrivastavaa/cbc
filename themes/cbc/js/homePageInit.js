@@ -23,6 +23,7 @@ function initializeHomePage() {
     initializeChairpersonModal();
     initializeSocialLinkAccessibility(); // Fix for empty social links
     initializeContactIconsAccessibility(); // Fix for missing accessible names on contact icons
+    initializeTestimonialsCarousel(); // WCAG: Pause/Next/Prev for testimonials
   };
 
   // If DOM is already loaded, wait a bit for elements to be ready
@@ -94,7 +95,10 @@ function initializeCarousel() {
   }
 
   buttons.forEach((btn, i) => {
-    btn.addEventListener('click', () => showSlide(i));
+    btn.addEventListener('click', () => {
+      showSlide(i);
+      restartAutoSlide();
+    });
   });
 
   // New Navigation Arrows
@@ -106,6 +110,7 @@ function initializeCarousel() {
     prevArrow.addEventListener('click', () => {
       const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
       showSlide(prevIndex);
+      restartAutoSlide();
     });
   }
 
@@ -114,11 +119,120 @@ function initializeCarousel() {
     nextArrow.addEventListener('click', () => {
       const nextIndex = (currentSlide + 1) % slides.length;
       showSlide(nextIndex);
+      restartAutoSlide();
     });
   }
 
-  // Initialize first slide
+  // --- WCAG 2.2.2: Auto-slide with Pause/Play control ---
+  let carouselAutoSlide = null;
+  let isCarouselPaused = false;
+
+  function startAutoSlide() {
+    if (carouselAutoSlide) clearInterval(carouselAutoSlide);
+    carouselAutoSlide = setInterval(() => {
+      const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
+      if (!isCarouselPaused && !globalPauseActive) {
+        const nextIndex = (currentSlide + 1) % slides.length;
+        showSlide(nextIndex);
+      }
+    }, 10000); // 10 seconds per WCAG 2.2.2 recommendation for slower content
+  }
+
+  function stopAutoSlide() {
+    if (carouselAutoSlide) {
+      clearInterval(carouselAutoSlide);
+      carouselAutoSlide = null;
+    }
+  }
+
+  function restartAutoSlide() {
+    if (!isCarouselPaused) {
+      stopAutoSlide();
+      startAutoSlide();
+    }
+  }
+
+  // Pause/Play Button
+  const carouselPauseBtn = document.getElementById('carouselPauseBtn');
+  if (carouselPauseBtn) {
+    carouselPauseBtn.addEventListener('click', () => {
+      const icon = carouselPauseBtn.querySelector('i');
+      if (isCarouselPaused) {
+        // Resume
+        isCarouselPaused = false;
+        video.play().catch(err => console.log('Video resume failed:', err));
+        startAutoSlide();
+        icon.classList.remove('fa-play');
+        icon.classList.add('fa-pause');
+        carouselPauseBtn.setAttribute('aria-label', 'Pause Video and Carousel');
+      } else {
+        // Pause
+        isCarouselPaused = true;
+        video.pause();
+        stopAutoSlide();
+        icon.classList.remove('fa-pause');
+        icon.classList.add('fa-play');
+        carouselPauseBtn.setAttribute('aria-label', 'Play Video and Carousel');
+      }
+    });
+  }
+
+  // Listen for global pause-animations changes
+  const carouselObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === 'data-pause-animations') {
+        const globalPaused = document.body.getAttribute('data-pause-animations') === 'true';
+        if (globalPaused) {
+          video.pause();
+          stopAutoSlide();
+          // Update button icon to show paused state
+          if (carouselPauseBtn) {
+            const icon = carouselPauseBtn.querySelector('i');
+            icon.classList.remove('fa-pause');
+            icon.classList.add('fa-play');
+            carouselPauseBtn.setAttribute('aria-label', 'Play Video and Carousel');
+          }
+        } else if (!isCarouselPaused) {
+          video.play().catch(err => console.log('Video resume failed:', err));
+          startAutoSlide();
+          if (carouselPauseBtn) {
+            const icon = carouselPauseBtn.querySelector('i');
+            icon.classList.remove('fa-play');
+            icon.classList.add('fa-pause');
+            carouselPauseBtn.setAttribute('aria-label', 'Pause Video and Carousel');
+          }
+        }
+      }
+    });
+  });
+  carouselObserver.observe(document.body, { attributes: true, attributeFilter: ['data-pause-animations'] });
+
+  // Initialize first slide and start auto-slide
   showSlide(0);
+  const currentGlobalPause = document.body.getAttribute('data-pause-animations') === 'true';
+  if (!currentGlobalPause) {
+    startAutoSlide();
+  } else {
+    video.pause();
+    if (carouselPauseBtn) {
+      const icon = carouselPauseBtn.querySelector('i');
+      if (icon) {
+        icon.classList.remove('fa-pause');
+        icon.classList.add('fa-play');
+      }
+      carouselPauseBtn.setAttribute('aria-label', 'Play Video and Carousel');
+    }
+  }
+
+  // Handle video ended to automatically go to next slide (WCAG: allow full content play)
+  video.addEventListener('ended', () => {
+    const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
+    if (!isCarouselPaused && !globalPauseActive) {
+      const nextIndex = (currentSlide + 1) % slides.length;
+      showSlide(nextIndex);
+      restartAutoSlide();
+    }
+  });
 }
 
 // Initialize everything
@@ -490,6 +604,9 @@ function initializeBlogSection() {
 
   let blogAutoScroll;
   let isBlogPaused = false;
+  let isBlogManuallyPaused = false;
+
+  const pauseBtn = document.getElementById("blogPauseBtn");
 
   function updateBlogAriaCurrent() {
     const currentIndex = Math.round(track.scrollLeft / cardWidth) % originalCards.length;
@@ -558,7 +675,9 @@ function initializeBlogSection() {
   // Auto Scroll Functions
   function startBlogAuto() {
     blogAutoScroll = setInterval(() => {
-      if (!isBlogPaused) {
+      // Check if global accessibility pause is active
+      const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
+      if (!isBlogPaused && !isBlogManuallyPaused && !globalPauseActive) {
         slideBlogNext();
       }
     }, 4000);
@@ -575,12 +694,37 @@ function initializeBlogSection() {
 
   // Pause on hover
   track.addEventListener('mouseenter', () => { isBlogPaused = true; });
-  track.addEventListener('mouseleave', () => { isBlogPaused = false; });
+  track.addEventListener('mouseleave', () => { if (!isBlogManuallyPaused) isBlogPaused = false; });
 
   newNextBtn.addEventListener('mouseenter', () => { isBlogPaused = true; });
-  newNextBtn.addEventListener('mouseleave', () => { isBlogPaused = false; });
+  newNextBtn.addEventListener('mouseleave', () => { if (!isBlogManuallyPaused) isBlogPaused = false; });
   newPrevBtn.addEventListener('mouseenter', () => { isBlogPaused = true; });
-  newPrevBtn.addEventListener('mouseleave', () => { isBlogPaused = false; });
+  newPrevBtn.addEventListener('mouseleave', () => { if (!isBlogManuallyPaused) isBlogPaused = false; });
+
+  if (pauseBtn) {
+    pauseBtn.onclick = function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const icon = pauseBtn.querySelector('i');
+      if (isBlogManuallyPaused) {
+        // Resume
+        isBlogManuallyPaused = false;
+        isBlogPaused = false;
+        icon.classList.remove('fa-play');
+        icon.classList.add('fa-pause');
+        pauseBtn.setAttribute('aria-label', 'Pause Opinions Carousel');
+        restartBlogAuto();
+      } else {
+        // Pause
+        isBlogManuallyPaused = true;
+        isBlogPaused = true;
+        icon.classList.remove('fa-pause');
+        icon.classList.add('fa-play');
+        pauseBtn.setAttribute('aria-label', 'Play Opinions Carousel');
+        stopBlogAuto();
+      }
+    };
+  }
 
   // Start auto scroll
   startBlogAuto();
@@ -592,6 +736,7 @@ function initializeCollaborationCarousel() {
   const collabTrack = document.getElementById('collabTrack');
   const nextBtn = document.getElementById('collabNextBtn');
   const prevBtn = document.getElementById('collabPrevBtn');
+  const collabPauseBtn = document.getElementById('collabPauseBtn');
 
   if (!collabTrack || !nextBtn || !prevBtn) return;
 
@@ -607,9 +752,6 @@ function initializeCollaborationCarousel() {
   const singleSetWidth = cardWidth * originalItems.length;
 
   // Check if we already cloned (in case of re-init)
-  // We check if the number of children is equal to the original set size
-  // Note: This simple check assumes no other dynamic additions. 
-  // For better idempotency, we could use a specialized class or attribute.
   if (!collabTrack.hasAttribute('data-cloned')) {
     originalItems.forEach(item => {
       const clone = item.cloneNode(true);
@@ -621,11 +763,11 @@ function initializeCollaborationCarousel() {
 
   let collabAutoSlide;
   let isCollabPaused = false;
+  let isCollabManuallyPaused = false; // WCAG 2.2.2: Track user's explicit pause action
 
   function updateCollabAriaCurrent() {
     const currentIndex = Math.round(collabTrack.scrollLeft / cardWidth) % originalItems.length;
     originalItems.forEach((item, i) => {
-      // The item itself is the <a> tag based on previous viewed_file investigation
       if (item.tagName === 'A') {
         if (i === currentIndex) {
           item.setAttribute('aria-current', 'page');
@@ -647,11 +789,10 @@ function initializeCollaborationCarousel() {
 
   // Scroll Listener for Infinite Loop (Forward)
   collabTrack.addEventListener('scroll', () => {
-    // If we have scrolled past the original set, snap back to start
     if (collabTrack.scrollLeft >= singleSetWidth) {
-      collabTrack.style.scrollBehavior = 'auto'; // Disable smooth for instant snap
+      collabTrack.style.scrollBehavior = 'auto';
       collabTrack.scrollLeft -= singleSetWidth;
-      collabTrack.style.scrollBehavior = 'smooth'; // Re-enable
+      collabTrack.style.scrollBehavior = 'smooth';
     }
     updateCollabAriaCurrent();
   });
@@ -663,7 +804,6 @@ function initializeCollaborationCarousel() {
 
   // Prev Slide
   function slideCollabPrev() {
-    // If at start (or close to it), snap to end of original set to allow scrolling left into it
     if (collabTrack.scrollLeft <= 5) {
       collabTrack.style.scrollBehavior = 'auto';
       collabTrack.scrollLeft += singleSetWidth;
@@ -686,24 +826,23 @@ function initializeCollaborationCarousel() {
   // Button Controls
   newNextBtn.addEventListener('click', () => {
     slideCollabNext();
-    restartCollabAuto();
+    if (!isCollabManuallyPaused) restartCollabAuto();
   });
 
   newPrevBtn.addEventListener('click', () => {
     slideCollabPrev();
-    restartCollabAuto();
+    if (!isCollabManuallyPaused) restartCollabAuto();
   });
 
   // Auto Slide
   function startCollabAuto() {
     if (collabAutoSlide) clearInterval(collabAutoSlide);
     collabAutoSlide = setInterval(() => {
-      // Check global pause-animations accessibility setting
       const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
-      if (!isCollabPaused && !globalPauseActive) {
+      if (!isCollabPaused && !isCollabManuallyPaused && !globalPauseActive) {
         slideCollabNext();
       }
-    }, 4000); // 4 seconds
+    }, 4000);
   }
 
   function stopCollabAuto() {
@@ -716,6 +855,31 @@ function initializeCollaborationCarousel() {
   function restartCollabAuto() {
     stopCollabAuto();
     startCollabAuto();
+  }
+
+  // --- WCAG 2.2.2: Pause/Play Button ---
+  if (collabPauseBtn) {
+    const newCollabPauseBtn = collabPauseBtn.cloneNode(true);
+    collabPauseBtn.parentNode.replaceChild(newCollabPauseBtn, collabPauseBtn);
+
+    newCollabPauseBtn.addEventListener('click', () => {
+      const icon = newCollabPauseBtn.querySelector('i');
+      if (isCollabManuallyPaused) {
+        // Resume
+        isCollabManuallyPaused = false;
+        startCollabAuto();
+        icon.classList.remove('fa-play');
+        icon.classList.add('fa-pause');
+        newCollabPauseBtn.setAttribute('aria-label', 'Pause Collaboration Carousel');
+      } else {
+        // Pause
+        isCollabManuallyPaused = true;
+        stopCollabAuto();
+        icon.classList.remove('fa-pause');
+        icon.classList.add('fa-play');
+        newCollabPauseBtn.setAttribute('aria-label', 'Play Collaboration Carousel');
+      }
+    });
   }
 
   // Start auto slide
@@ -1065,7 +1229,7 @@ function initializePhotoCarousel() {
     if (isTransitioning) return;
     const nextIndex = (photoIndex + 1) % photoCards.length;
     showPhotoSlide(nextIndex);
-    restartAutoSlide();
+    if (!photoIsPaused) restartAutoSlide();
   }
 
   // Previous slide
@@ -1073,7 +1237,7 @@ function initializePhotoCarousel() {
     if (isTransitioning) return;
     const prevIndex = (photoIndex - 1 + photoCards.length) % photoCards.length;
     showPhotoSlide(prevIndex);
-    restartAutoSlide();
+    if (!photoIsPaused) restartAutoSlide();
   }
 
   // Remove old listeners
@@ -1099,15 +1263,37 @@ function initializePhotoCarousel() {
     slidePrev();
   });
 
+  // Pause button
+  let photoIsPaused = false;
+  const photoPauseBtn = document.getElementById('photoPauseBtn');
+  if (photoPauseBtn) {
+    photoPauseBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const icon = photoPauseBtn.querySelector('i');
+      if (photoIsPaused) {
+        photoIsPaused = false;
+        icon.classList.remove('fa-play');
+        icon.classList.add('fa-pause');
+        startAutoSlide();
+      } else {
+        photoIsPaused = true;
+        icon.classList.remove('fa-pause');
+        icon.classList.add('fa-play');
+        stopAutoSlide();
+      }
+    });
+  }
+
   // Auto slide functionality
   function startAutoSlide() {
     if (photoAutoSlide) {
       clearInterval(photoAutoSlide);
     }
+    if (photoIsPaused) return;
+
     photoAutoSlide = setInterval(() => {
-      // Check global pause-animations accessibility setting
       const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
-      if (!isTransitioning && !globalPauseActive) {
+      if (!isTransitioning && !globalPauseActive && !photoIsPaused) {
         slideNext();
       }
     }, 5000);
@@ -1235,7 +1421,7 @@ function initializeYouTubeCarousel() {
     if (isTransitioning) return;
     const nextIndex = (ytIndex + 1) % ytCards.length;
     showYouTubeSlide(nextIndex);
-    restartAutoSlide();
+    if (!ytIsPaused) restartAutoSlide();
   }
 
   // Previous slide
@@ -1243,7 +1429,7 @@ function initializeYouTubeCarousel() {
     if (isTransitioning) return;
     const prevIndex = (ytIndex - 1 + ytCards.length) % ytCards.length;
     showYouTubeSlide(prevIndex);
-    restartAutoSlide();
+    if (!ytIsPaused) restartAutoSlide();
   }
 
   // Remove old listeners
@@ -1269,15 +1455,37 @@ function initializeYouTubeCarousel() {
     slidePrev();
   });
 
+  // Pause button
+  let ytIsPaused = false;
+  const ytPauseBtn = document.getElementById('youtubePauseBtn');
+  if (ytPauseBtn) {
+    ytPauseBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const icon = ytPauseBtn.querySelector('i');
+      if (ytIsPaused) {
+        ytIsPaused = false;
+        icon.classList.remove('fa-play');
+        icon.classList.add('fa-pause');
+        startAutoSlide();
+      } else {
+        ytIsPaused = true;
+        icon.classList.remove('fa-pause');
+        icon.classList.add('fa-play');
+        stopAutoSlide();
+      }
+    });
+  }
+
   // Auto slide functionality
   function startAutoSlide() {
     if (ytAutoSlide) {
       clearInterval(ytAutoSlide);
     }
+    if (ytIsPaused) return;
+
     ytAutoSlide = setInterval(() => {
-      // Check global pause-animations accessibility setting
       const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
-      if (!isTransitioning && !globalPauseActive) {
+      if (!isTransitioning && !globalPauseActive && !ytIsPaused) {
         slideNext();
       }
     }, 5000);
@@ -1620,6 +1828,7 @@ function attachEventCardHandlers() {
 // Events Carousel Functionality
 let eventsCarouselInterval = null;
 let isEventsCarouselPaused = false;
+let isEventsManuallyPaused = false; // WCAG 2.2.2 compliance
 let isUserScrolling = false;
 let carouselHandlersAttached = false;
 
@@ -1653,6 +1862,7 @@ function initEventsCarousel() {
 function attachCarouselHandlers(cardsList) {
   const prevBtn = document.getElementById('eventsPrevBtn');
   const nextBtn = document.getElementById('eventsNextBtn');
+  const pauseBtn = document.getElementById('eventsPauseBtn');
 
   // Pause on hover
   cardsList.addEventListener('mouseenter', () => {
@@ -1660,7 +1870,7 @@ function attachCarouselHandlers(cardsList) {
   });
 
   cardsList.addEventListener('mouseleave', () => {
-    isEventsCarouselPaused = false;
+    if (!isEventsManuallyPaused) isEventsCarouselPaused = false;
   });
 
   // Track user scrolling
@@ -1694,7 +1904,7 @@ function attachCarouselHandlers(cardsList) {
       });
 
       setTimeout(() => {
-        isEventsCarouselPaused = false;
+        if (!isEventsManuallyPaused) isEventsCarouselPaused = false;
       }, 1000);
     };
   }
@@ -1720,8 +1930,32 @@ function attachCarouselHandlers(cardsList) {
       });
 
       setTimeout(() => {
-        isEventsCarouselPaused = false;
+        if (!isEventsManuallyPaused) isEventsCarouselPaused = false;
       }, 1000);
+    };
+  }
+
+  // --- WCAG 2.2.2: Pause/Play Button ---
+  if (pauseBtn) {
+    pauseBtn.onclick = function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const icon = pauseBtn.querySelector('i');
+      if (isEventsManuallyPaused) {
+        // Resume
+        isEventsManuallyPaused = false;
+        isEventsCarouselPaused = false;
+        icon.classList.remove('fa-play');
+        icon.classList.add('fa-pause');
+        pauseBtn.setAttribute('aria-label', 'Pause events carousel');
+      } else {
+        // Pause
+        isEventsManuallyPaused = true;
+        isEventsCarouselPaused = true;
+        icon.classList.remove('fa-pause');
+        icon.classList.add('fa-play');
+        pauseBtn.setAttribute('aria-label', 'Play events carousel');
+      }
     };
   }
 }
@@ -1729,7 +1963,7 @@ function attachCarouselHandlers(cardsList) {
 function startAutoScroll(cardsList) {
   // Ensure cards are duplicated for infinite scroll
   const cards = cardsList.querySelectorAll('.home-event-card');
-  if (cards.length > 0 && cardsList.scrollWidth <= cardsList.clientWidth * 1.5) {
+  if (cards.length > 0 && !cardsList.hasAttribute('data-cloned')) {
     // Duplicate cards if not already duplicated
     const firstCard = cards[0];
     const cardWidth = firstCard.offsetWidth;
@@ -1739,8 +1973,10 @@ function startAutoScroll(cardsList) {
     if (cardsList.scrollWidth < totalWidth * 1.5) {
       cards.forEach(card => {
         const clone = card.cloneNode(true);
+        clone.classList.add('cloned');
         cardsList.appendChild(clone);
       });
+      cardsList.setAttribute('data-cloned', 'true');
     }
   }
 
@@ -1748,7 +1984,7 @@ function startAutoScroll(cardsList) {
     // Check if global accessibility pause is active
     const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
 
-    if (isEventsCarouselPaused || isUserScrolling || globalPauseActive) {
+    if (isEventsCarouselPaused || isUserScrolling || globalPauseActive || isEventsManuallyPaused) {
       eventsCarouselInterval = requestAnimationFrame(autoScroll);
       return;
     }
@@ -1773,20 +2009,24 @@ function startAutoScroll(cardsList) {
     }
 
     // Update aria-current on active event link
-    const eventCards = cardsList.querySelectorAll('.home-event-card');
+    const eventCards = cardsList.querySelectorAll('.home-event-card:not(.cloned)');
     const cardWidth = firstCard.offsetWidth + 28;
-    const currentIndex = Math.floor((cardsList.scrollLeft + cardWidth / 2) / cardWidth) % (eventCards.length / 2); // Divide by 2 because of cloning
 
-    eventCards.forEach((card, i) => {
-      const link = card.closest('a');
-      if (link) {
-        if (i === currentIndex) {
-          link.setAttribute('aria-current', 'page');
-        } else {
-          link.removeAttribute('aria-current');
+    // Only calculate index if we have cards
+    if (eventCards.length > 0) {
+      const currentIndex = Math.floor((cardsList.scrollLeft + cardWidth / 2) / cardWidth) % eventCards.length;
+
+      eventCards.forEach((card, i) => {
+        const link = card.closest('a') || card.querySelector('a');
+        if (link) {
+          if (i === currentIndex) {
+            link.setAttribute('aria-current', 'page');
+          } else {
+            link.removeAttribute('aria-current');
+          }
         }
-      }
-    });
+      });
+    }
 
     // Continue the animation loop
     eventsCarouselInterval = requestAnimationFrame(autoScroll);
@@ -2444,6 +2684,127 @@ function initializeDocumentCarousel() {
 
   // Start auto scroll
   startDocumentAuto();
+}
+// ----------------------- Testimonials Carousel ----------------------- //
+function initializeTestimonialsCarousel() {
+  const container = document.getElementById('videoTestimonials');
+  if (!container) {
+    // Retry once if not immediately available
+    setTimeout(() => {
+      const retryContainer = document.getElementById('videoTestimonials');
+      if (retryContainer) initializeTestimonialsCarousel();
+    }, 500);
+    return;
+  }
+
+  const videos = container.querySelectorAll('.testimonial-video');
+  const nextBtn = document.getElementById('testiNextBtn');
+  const prevBtn = document.getElementById('testiPrevBtn');
+  const pauseBtn = document.getElementById('testiPauseBtn');
+
+  if (!videos.length) return;
+
+  let currentIndex = 0;
+  let isPaused = false;
+  let isManuallyPaused = false;
+  let testimonialInterval = null;
+
+  function showTestimonial(index) {
+    // Hide all
+    videos.forEach((vid, i) => {
+      vid.classList.remove('active');
+      vid.pause();
+    });
+
+    // Show selected
+    currentIndex = (index + videos.length) % videos.length;
+    const activeVid = videos[currentIndex];
+    activeVid.classList.add('active');
+
+    // Attempt to play if not globally paused
+    const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
+    if (!globalPauseActive && !isPaused) {
+      activeVid.play().catch(err => console.log('Testimonial video play failed:', err));
+    }
+  }
+
+  function startAuto() {
+    stopAuto();
+    testimonialInterval = setInterval(() => {
+      const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
+      if (!isPaused && !isManuallyPaused && !globalPauseActive) {
+        showTestimonial(currentIndex + 1);
+      }
+    }, 6000); // 6 seconds per testimonial
+  }
+
+  function stopAuto() {
+    if (testimonialInterval) clearInterval(testimonialInterval);
+  }
+
+  if (nextBtn) {
+    nextBtn.onclick = (e) => {
+      e.preventDefault();
+      showTestimonial(currentIndex + 1);
+      startAuto();
+    };
+  }
+
+  if (prevBtn) {
+    prevBtn.onclick = (e) => {
+      e.preventDefault();
+      showTestimonial(currentIndex - 1);
+      startAuto();
+    };
+  }
+
+  if (pauseBtn) {
+    pauseBtn.onclick = (e) => {
+      e.preventDefault();
+      const icon = pauseBtn.querySelector('i');
+      if (isManuallyPaused) {
+        isManuallyPaused = false;
+        isPaused = false;
+        icon.classList.remove('fa-play');
+        icon.classList.add('fa-pause');
+        pauseBtn.setAttribute('aria-label', 'Pause Testimonials Carousel');
+        const activeVid = videos[currentIndex];
+        const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
+        if (!globalPauseActive) activeVid.play();
+        startAuto();
+      } else {
+        isManuallyPaused = true;
+        isPaused = true;
+        icon.classList.remove('fa-pause');
+        icon.classList.add('fa-play');
+        pauseBtn.setAttribute('aria-label', 'Play Testimonials Carousel');
+        videos[currentIndex].pause();
+        stopAuto();
+      }
+    };
+  }
+
+  // Handle global pause
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === 'data-pause-animations') {
+        const globalPaused = document.body.getAttribute('data-pause-animations') === 'true';
+        const activeVid = videos[currentIndex];
+        if (globalPaused) {
+          activeVid.pause();
+          stopAuto();
+        } else if (!isManuallyPaused) {
+          activeVid.play().catch(() => { });
+          startAuto();
+        }
+      }
+    });
+  });
+  observer.observe(document.body, { attributes: true, attributeFilter: ['data-pause-animations'] });
+
+  // Initial start
+  showTestimonial(0);
+  startAuto();
 }
 
 // Make function globally available

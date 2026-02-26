@@ -3,7 +3,7 @@
   top: 0;
   width: 100%;
   max-width: 100vw;
-  height: 85vh;
+  height: 73vh;
   overflow: hidden;
   margin-top: 0;
   padding-top: 0;
@@ -138,23 +138,24 @@
 /* Navigation Buttons */
 .nav-buttons {
   position: absolute;
-  bottom: 40px;
+  bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 3;
+  z-index: 100;
   display: flex;
   gap: 12px;
+  align-items: center;
 }
 
 .nav-buttons button {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  border: none;
-  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 75, 136, 0.2);
+  background: rgba(0, 75, 136, 0.1);
   cursor: pointer;
   transition: 0.3s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .nav-buttons button.active {
@@ -162,43 +163,69 @@
   transform: scale(1.3);
 }
 
-/* Hero Carousel Navigation Arrows */
+/* Hero Carousel Navigation Controls */
 .carousel-prev,
-.carousel-next {
+.carousel-next,
+.hero-pause-container .carousel-pause-btn {
+  background: #fcfdff !important;
+  border: 1px solid rgba(0, 75, 136, 0.1) !important;
+  color: #004b88 !important;
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  font-size: 11px !important;
+  padding: 0 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12) !important;
+  z-index: 100;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: white;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(4px);
-  /* Added shadows for visibility on white backgrounds */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-}
-
-.carousel-prev:hover,
-.carousel-next:hover {
-  background: rgba(255, 255, 255, 0.4);
-  transform: translateY(-50%) scale(1.1);
 }
 
 .carousel-prev {
   left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .carousel-next {
   right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
 }
+
+.hero-pause-container {
+  position: absolute;
+  bottom: 2rem;
+  right: 20px;
+  z-index: 100;
+}
+
+.hero-pause-container .carousel-pause-btn {
+  position: static;
+  transform: none;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+  background: #ffffff !important;
+  color: #002d62 !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18) !important;
+  transform: translateY(-50%) scale(1.1) !important;
+}
+
+.hero-pause-container .carousel-pause-btn:hover {
+  background: #ffffff !important;
+  color: #002d62 !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18) !important;
+  transform: scale(1.1) !important;
+}
+
+/* Removed legacy conflicting pause button blocks */
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -2432,22 +2459,24 @@
 
 .collab-footer {
   padding: 0px 5% 2rem;
-  text-align: right;
-  /* border-top: 1px solid #e9ecef; */
   background: #ffe7b3;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100%;
 }
 
 .collab-footer .view-more {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 24px;
+  gap: 8px;
+  padding: 8px 16px;
   background: linear-gradient(135deg, #0063ae 0%, #0099ff 100%);
   color: #fff;
   text-decoration: none;
-  border-radius: 8px;
+  border-radius: 6px;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.9rem;
   transition: all 0.3s ease;
 }
 
@@ -2591,22 +2620,26 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: #0063ae;
-  color: #fff;
+  background: #ffa90154;
   border: none;
-  padding: 3px 12px;
-  font-size: 1.4rem;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
+  color: #004b88;
+  font-size: 9px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
   z-index: 10;
-  box-shadow: 0 2px 6px rgba(0, 99, 174, 0.2);
+  box-shadow: none !important;
 }
 
 .collab-arrow:hover {
-  background: #003b73;
+  background: #f48020;
   transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 4px 12px rgba(0, 99, 174, 0.3);
 }
 
 .collab-arrow.left {
@@ -2615,6 +2648,51 @@
 
 .collab-arrow.right {
   right: 10px;
+}
+
+.collab-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.collab-controls .collab-arrow {
+  position: static;
+  transform: none;
+  font-size: 15px;
+}
+
+.collab-controls .collab-arrow:hover {
+  transform: scale(1.1);
+}
+
+
+
+/* WCAG 2.2.2: Collaboration Carousel Pause/Play Button */
+.collab-pause-btn {
+  width: 30px;
+  height: 30px;
+  background: #feb72f;
+  border: none;
+  border-radius: 50%;
+  color: #004b88;
+  font-size: 9px;
+  cursor: pointer;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0;
+  box-shadow: none !important;
+}
+
+.collab-pause-btn:hover {
+  transform: none !important;
+}
+
+.collab-pause-btn:focus-visible {
+  outline: 2px solid #ffc107;
+  outline-offset: 2px;
 }
 
 @media (max-width: 992px) {
@@ -4255,27 +4333,41 @@ h2.infocus-heading {
   margin: 0;
 }
 
+/* Photo and Video Gallery Specific Controls (Standardized to Events/Yellow Style) */
+.photo-pause-btn,
+.youtube-pause-btn,
+.photo-prev,
+.photo-next,
+.youtube-prev,
+.youtube-next,
 .carousel-controls button {
-  background: #ffffff;
-  border: 2px solid #0063ae;
-  color: #0063ae;
-  border-radius: 50%;
-  width: 38px;
-  height: 38px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.3rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 99, 174, 0.2);
+  background: #fee8bc !important;
+  border: none !important;
+  color: #004b88 !important;
+  border-radius: 50% !important;
+  width: 30px !important;
+  height: 30px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  font-size: 11px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  padding: 0 !important;
 }
 
+.photo-pause-btn:hover,
+.youtube-pause-btn:hover,
+.photo-prev:hover,
+.photo-next:hover,
+.youtube-prev:hover,
+.youtube-next:hover,
 .carousel-controls button:hover {
-  background: #0063ae;
-  color: #ffffff;
-  transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(0, 99, 174, 0.3);
+  background: #f48020 !important;
+  color: #ffffff !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3) !important;
 }
 
 /* Carousel Track */
@@ -4286,10 +4378,8 @@ h2.infocus-heading {
   scroll-behavior: smooth;
   transition: transform 0.6s ease;
   align-items: stretch;
-  padding-top: 0.25rem;
   position: relative;
   z-index: 1;
-  padding: 2.5rem 0rem;
 }
 
 .blog-carousel-wrapper {
@@ -4445,26 +4535,29 @@ h2.infocus-heading {
   margin-right: 0;
 }
 
-/* Blog Footer - See More Button */
+/* Blog Footer - See More Button / Controls Layout */
 .blog-footer {
-  text-align: right;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: auto;
   position: relative;
-  margin: 0rem 2rem 2rem;
+  margin: 0rem 0.5rem 2rem;
 }
 
 .blog-see-more-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1.875rem;
-  background: linear-gradient(135deg, #fca701 0%, #ffa600bf 100%);
-  color: #fff;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  background: #ffa901;
+  color: #004b88;
   text-decoration: none;
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
   font-weight: 600;
-  font-size: 1.0625rem;
+  font-size: 0.9rem;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0.375rem 1.25rem rgba(255, 169, 1, 0.25);
+  box-shadow: 0 0.25rem 0.75rem rgba(255, 169, 1, 0.2), 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
   border: none;
   cursor: pointer;
   position: relative;
@@ -4504,18 +4597,25 @@ h2.infocus-heading {
 /* Wrapper for the 75/25 layout */
 .opinions-layout-wrapper {
   display: flex;
-  /* gap: 1.5rem; */
-  align-items: flex-start;
-  /* margin-bottom: 2rem; */
+  align-items: stretch;
   width: 100%;
   padding: 1rem;
+  background: transparent;
 }
 
 /* 75% Carousel Section */
 .opinions-carousel-section {
-  flex: 0 0 75%;
+  flex: 0 0 72%;
   position: relative;
   min-width: 0;
+}
+
+/* Vertical Segregator Line */
+.opinions-segregator {
+  width: 1px;
+  background: #e0e0e0;
+  margin: 20px 2%;
+  flex-shrink: 0;
 }
 
 /* Ensure the carousel wrapper inside takes full width */
@@ -4523,11 +4623,18 @@ h2.infocus-heading {
   width: 100%;
 }
 
+.opinions-testimonials-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+
 /* 25% Vertical Testimonials Box */
 .opinions-vertical-box {
-  flex: 0 0 auto;
-  /* Allow width to adjust to video content */
-  height: 410px;
+  width: 100%;
+  height: 395px;
   /* Fixed height to match carousel cards */
   background: #ffffff;
   border-radius: 12px;
@@ -4537,26 +4644,15 @@ h2.infocus-heading {
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
-  min-width: 200px;
-  /* Minimum width safety */
-  margin: 1rem;
   margin-top: 40px;
   position: relative;
-}
-
-.opinions-testimonials-column {
-  flex: 0 0 25%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .opinions-testimonials-column .blog-footer {
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  padding-right: 1rem;
-  margin: 10px;
+  margin: 15px;
 }
 
 /* Hide the carousel controls in the vertical box */
@@ -4591,7 +4687,7 @@ h2.infocus-heading {
 
 .vertical-testimonials-header h3 {
   color: #ffffff;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 700;
   margin: 0;
   text-transform: uppercase;
@@ -4635,13 +4731,13 @@ h2.infocus-heading {
   color: white;
   border: none;
   border-radius: 50%;
-  width: 45px;
-  height: 45px;
+  width: 35px;
+  height: 35px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 14px;
   z-index: 10;
   transition: all 0.3s ease;
 }
@@ -6415,25 +6511,30 @@ h2.infocus-heading {
 .events-header-controls {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 }
 
 /* Events Carousel Navigation Arrows */
 .events-carousel-nav {
   position: relative;
   background: #ffffff;
-  border: 2px solid #0063ae;
+  border: 1.5px solid #0063ae;
   color: #0063ae;
-  width: 38px;
-  height: 38px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 99, 174, 0.2);
-  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 99, 174, 0.15);
+  font-size: 9px;
+}
+
+.events-pause-btn:focus-visible {
+  outline: 2px solid #ffc107;
+  outline-offset: 2px;
 }
 
 .events-carousel-nav:hover {
@@ -9915,7 +10016,7 @@ h2.infocus-heading {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 12px 24px;
+  padding: 8px 20px;
   background: linear-gradient(135deg, #ffaa0187 0%, #f7a401b0 100%);
   color: #fff;
   text-decoration: none;
@@ -10099,7 +10200,7 @@ h2.infocus-heading {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: #ffa901;
+  background: #ffa90142;
   color: #004b88;
   border: none;
   padding: 3px 12px;
@@ -11789,7 +11890,7 @@ h2.infocus-heading {
   font-weight: 700;
   text-align: center;
   margin-bottom: 40px;
-  color: #f8a501;
+  color: #004985;
   margin-top: 4rem;
 }
 
@@ -13641,7 +13742,7 @@ a[href*="/user/password"] {
 }
 
 .home-opinion-card h3 {
-  font-size: 1.1rem !important;
+  font-size: 1rem !important;
   color: #003b73 !important;
   margin: 0 !important;
   padding: 0 1.25rem 0.25rem !important;
@@ -13656,10 +13757,10 @@ a[href*="/user/password"] {
 }
 
 .home-opinion-card p {
-  font-size: 1.05rem !important;
+  font-size: 0.95rem !important;
   color: #555 !important;
   margin: 0px 0.7rem 0.7rem !important;
-  padding: 0 1.25rem 1.25rem !important;
+  padding: 0 1.25rem 1rem !important;
   line-height: 1.5 !important;
   display: -webkit-box !important;
   -webkit-box-orient: vertical !important;
@@ -13675,8 +13776,8 @@ a[href*="/user/password"] {
   color: #0063ae !important;
   text-decoration: none !important;
   font-weight: 600 !important;
-  font-size: 0.95rem !important;
-  padding: 15px 0px !important;
+  font-size: 0.85rem !important;
+  padding: 12px 0px !important;
   margin-top: auto !important;
   display: inline-block !important;
   transition: all 0.3s ease !important;

@@ -41,23 +41,23 @@
     {% set video_urls = video_urls|merge([video_url]) %}
 
     <li class="slide-content {% if loop.first %}active{% endif %}" id="slide{{ loop.index }}">
-      {# General Solution: Use the Node Label (Title) as the accessible text #}
-      {# General Solution: Use the Node Label (Title) + Descriptive Text #}
-      <span class="visually-hidden">
-        {{ node.label }}. This is a CBC video which represents the creation as CBC does this kind of work.
-      </span>
     </li>
   {% endfor %}
   </ul>
 
-  <ul class="nav-buttons list-unstyled p-0 m-0 d-flex gap-2">
+  <button class="carousel-prev" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
+  <button class="carousel-next" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
+
+  <div class="hero-pause-container">
+    <button class="carousel-pause-btn" id="carouselPauseBtn" aria-label="Pause Video and Carousel"><i class="fas fa-pause" aria-hidden="true"></i></button>
+  </div>
+
+  {# Move dots to separate container if still needed, or hide them as user didn't ask for them specifically #}
+  <ul class="nav-buttons list-unstyled p-0 m-0">
     {% for i in 1..rows|length %}
       <li><button class="{% if i == 1 %}active{% endif %}" data-slide="{{ i }}" {% if i == 1 %}aria-current="true"{% endif %} aria-label="Go to slide {{ i }}"></button></li>
     {% endfor %}
   </ul>
-
-  <button class="carousel-prev" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
-  <button class="carousel-next" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
 
   </div>
 </div>

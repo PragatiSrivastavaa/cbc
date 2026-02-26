@@ -88,6 +88,9 @@
             <button class="events-carousel-nav prev" id="eventsPrevBtn" aria-label="Previous events">
               <i class="fas fa-chevron-left"></i>
             </button>
+            <button class="events-carousel-nav pause events-pause-btn" id="eventsPauseBtn" aria-label="Pause events carousel">
+              <i class="fas fa-pause"></i>
+            </button>
             <button class="events-carousel-nav next" id="eventsNextBtn" aria-label="Next events">
               <i class="fas fa-chevron-right"></i>
             </button>
@@ -319,18 +322,31 @@
           {{ page.option_do_matter }}
           <!-- See More Button for Opinions -->
           <div class="blog-footer">
+            <div class="collab-controls">
+              <button class="collab-arrow" id="blogPrevBtn" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+              <button class="collab-arrow collab-pause-btn" id="blogPauseBtn" aria-label="Pause Opinions Carousel"><i class="fas fa-pause" aria-hidden="true"></i></button>
+              <button class="collab-arrow" id="blogNextBtn" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+            </div>
             <a href="/opinions-do-matter" class="blog-see-more-btn">
               See More
               <i class="fas fa-arrow-right" aria-hidden="true"></i>
             </a>
           </div>
         </div>
+
+        <!-- Vertical Divider -->
+        <div class="opinions-segregator"></div>
         
         <!-- 25% Vertical Testimonials Box -->
         <div class="opinions-testimonials-column">
           {{ page.testimonials_section }}
           <!-- See More Button for Testimonials -->
           <div class="blog-footer">
+            <div class="collab-controls">
+              <button class="collab-arrow" id="testiPrevBtn" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+              <button class="collab-arrow collab-pause-btn" id="testiPauseBtn" aria-label="Pause Testimonials Carousel"><i class="fas fa-pause" aria-hidden="true"></i></button>
+              <button class="collab-arrow" id="testiNextBtn" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+            </div>
             <a href="/testimonials" class="blog-see-more-btn">
               See More
               <i class="fas fa-arrow-right" aria-hidden="true"></i>

@@ -1299,10 +1299,10 @@ ul.navbar-nav.nav-rounded {
 }
 
 .navbar-nav .nav-link.active {
-  color: #ffffff;
+  color: #002D62;
   border-bottom: none;
   padding: 6px 18px;
-  background: linear-gradient(90deg, #ffc107 0%, #ffa500 100%);
+  background: #FFB003;
   font-weight: 700;
   box-shadow: 0 3px 8px rgba(255, 165, 0, 0.25);
 }
@@ -17917,14 +17917,14 @@ th.text-center {
 .nscsti-highlight-box {
   background-color: #ff9e0f;
   border-radius: 8px;
-  color: white;
+  color: #004985;
   margin-bottom: 0px;
   padding: 15px 20px;
   text-align: center;
 }
 
 .nscsti-highlight-box a {
-  color: #ffffff !important;
+  color: #004985 !important;
 }
 
 .nscsti-table-container {
@@ -18070,7 +18070,7 @@ th.text-center {
 .states-header-orange {
   background-color: #ff9e0f;
   border-radius: 8px;
-  color: white;
+  color: #004985;
   margin-bottom: 20px;
   padding: 15px 20px;
   text-align: center;
