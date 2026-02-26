@@ -32,6 +32,87 @@
   /* Extra fallback */
 }
 
+/* Video Overlay Filter - 2 Color Transitional Cover (via ::after pseudo-element) */
+.carousel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(100, 170, 230, 0.30) 0%, rgba(255, 210, 130, 0.28) 100%);
+  pointer-events: none;
+  z-index: 2;
+  animation: twoColorShift 10s ease-in-out infinite alternate;
+}
+
+/* Rotating Rectangle / Cross Sweep Effect */
+.carousel::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 80%;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.04) 20%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.04) 80%,
+      transparent 100%);
+  transform: translate(-50%, -50%) rotate(0deg);
+  transform-origin: center center;
+  pointer-events: none;
+  z-index: 3;
+  animation: sweepRect 12s linear infinite;
+  border-radius: 10px;
+}
+
+@keyframes sweepRect {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  25% {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg);
+  }
+
+  75% {
+    transform: translate(-50%, -50%) rotate(270deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Keep .video-overlay-filter for forward compatibility */
+.video-overlay-filter {
+  display: none;
+}
+
+@keyframes twoColorShift {
+  0% {
+    background: linear-gradient(135deg, rgba(100, 170, 230, 0.30) 0%, rgba(255, 210, 130, 0.28) 100%);
+    opacity: 0.85;
+  }
+
+  50% {
+    background: linear-gradient(155deg, rgba(80, 150, 215, 0.28) 0%, rgba(255, 200, 110, 0.30) 100%);
+    opacity: 0.90;
+  }
+
+  100% {
+    background: linear-gradient(115deg, rgba(110, 175, 235, 0.28) 0%, rgba(255, 215, 140, 0.28) 100%);
+    opacity: 0.85;
+  }
+}
+
+
 /* Animate the background slightly */
 @keyframes gradientMove {
   0% {
@@ -54,7 +135,7 @@
   top: 50%;
   left: 3%;
   transform: translateY(-50%);
-  z-index: 2;
+  z-index: 3;
   color: #fff;
   max-width: 650px;
   opacity: 0;
