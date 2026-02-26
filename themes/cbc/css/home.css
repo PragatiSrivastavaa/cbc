@@ -33,7 +33,7 @@
 }
 
 /* Video Overlay Filter - 2 Color Transitional Cover (via ::after pseudo-element) */
-.carousel::after {
+/* .carousel::after {
   content: '';
   position: absolute;
   top: 0;
@@ -47,7 +47,7 @@
 }
 
 /* Rotating Rectangle / Cross Sweep Effect */
-.carousel::before {
+/* .carousel::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -91,7 +91,7 @@
 }
 
 /* Keep .video-overlay-filter for forward compatibility */
-.video-overlay-filter {
+/* .video-overlay-filter {
   display: none;
 }
 
@@ -110,11 +110,11 @@
     background: linear-gradient(115deg, rgba(110, 175, 235, 0.28) 0%, rgba(255, 215, 140, 0.28) 100%);
     opacity: 0.85;
   }
-}
+}  */
 
 
 /* Animate the background slightly */
-@keyframes gradientMove {
+/* @keyframes gradientMove {
   0% {
     background-position: 0% 50%;
   }
@@ -126,7 +126,7 @@
   100% {
     background-position: 0% 50%;
   }
-}
+} */
 
 
 /* Slide Content */
