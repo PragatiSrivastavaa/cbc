@@ -3,7 +3,7 @@
   top: 0;
   width: 100%;
   max-width: 100vw;
-  height: 73vh;
+  height: calc(100vh - var(--header-height, 160px) - var(--alert-height, 60px) - 5px);
   overflow: hidden;
   margin-top: 0;
   padding-top: 0;

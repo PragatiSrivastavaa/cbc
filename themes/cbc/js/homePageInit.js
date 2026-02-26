@@ -24,7 +24,11 @@ function initializeHomePage() {
     initializeSocialLinkAccessibility(); // Fix for empty social links
     initializeContactIconsAccessibility(); // Fix for missing accessible names on contact icons
     initializeTestimonialsCarousel(); // WCAG: Pause/Next/Prev for testimonials
+    updateHeroHeight();
   };
+
+  // Add resize listener for dynamic height adjustment
+  window.addEventListener('resize', updateHeroHeight);
 
   // If DOM is already loaded, wait a bit for elements to be ready
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
@@ -129,13 +133,15 @@ function initializeCarousel() {
 
   function startAutoSlide() {
     if (carouselAutoSlide) clearInterval(carouselAutoSlide);
+    // Increase fallback timer to 60 seconds to ensure long videos play completely
+    // The main transition is handled by the 'ended' event listener below
     carouselAutoSlide = setInterval(() => {
       const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
       if (!isCarouselPaused && !globalPauseActive) {
         const nextIndex = (currentSlide + 1) % slides.length;
         showSlide(nextIndex);
       }
-    }, 10000); // 10 seconds per WCAG 2.2.2 recommendation for slower content
+    }, 60000);
   }
 
   function stopAutoSlide() {
@@ -237,6 +243,23 @@ function initializeCarousel() {
 
 // Initialize everything
 initializeHomePage();
+
+// --------------------- Dynamic Height Calculation -------------------------//
+function updateHeroHeight() {
+  const header = document.querySelector('header');
+  const alertBar = document.querySelector('.alert-bar-container');
+  const root = document.documentElement;
+
+  if (header) {
+    const headerHeight = header.offsetHeight;
+    root.style.setProperty('--header-height', `${headerHeight}px`);
+  }
+
+  if (alertBar) {
+    const alertBarHeight = alertBar.offsetHeight;
+    root.style.setProperty('--alert-height', `${alertBarHeight}px`);
+  }
+}
 
 
 
