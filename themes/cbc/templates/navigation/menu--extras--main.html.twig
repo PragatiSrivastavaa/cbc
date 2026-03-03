@@ -7,7 +7,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mb-2 mb-lg-0 nav-rounded">
+      <div class="navbar-nav mb-2 mb-lg-0 nav-rounded">
 
         {% for item in items %}
           {% set dropdown_id = item.title|clean_class ~ '-dropdown' %}
@@ -15,7 +15,7 @@
           {% set icon = item.original_link.entity.field_icon.value ?? '' %}
           {% set desc = item.original_link.entity.field_descriptions.value ?? '' %}
 
-          <li class="nav-item {% if item.below %}dropdown{% endif %}">
+          <div class="nav-item {% if item.below %}dropdown{% endif %}">
 
             <a class="nav-link {{ active }} {% if item.below %}dropdown-toggle{% endif %}"
                href="{{ item.url }}"
@@ -35,14 +35,14 @@
             </a>
 
             {% if item.below %}
-              <ul class="dropdown-menu" aria-labelledby="{{ dropdown_id }}">
+              <div class="dropdown-menu" aria-labelledby="{{ dropdown_id }}">
 
                 {% for child in item.below %}
                   {% set child_icon = child.original_link.entity.field_icon.value ?? '' %}
                   {% set child_desc = child.original_link.entity.field_descriptions.value ?? '' %}
                   {% set child_dropdown_id = child.title|clean_class ~ '-sub' %}
 
-                  <li class="{% if child.below %}has-submenu{% endif %}">
+                  <div class="{% if child.below %}has-submenu{% endif %}">
 
                     <a class="dropdown-item knowledge-item {% if child.below %}has-sub-items dropdown-toggle{% endif %}"
                        href="{{ child.url }}"
@@ -99,16 +99,16 @@
                         {% endfor %}
                       </div>
                     {% endif %}
-                  </li>
+                  </div>
                 {% endfor %}
-              </ul>
+              </div>
             {% endif %}
-          </li>
+          </div>
         {% endfor %}
-        <li class="nav-item nav-item-infocus">
+        <div class="nav-item nav-item-infocus">
           <a class="nav-link" href="#in-focus-section">In Focus</a>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
 
     <div class="d-flex align-items-center">

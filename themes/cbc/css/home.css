@@ -229,19 +229,38 @@
 }
 
 .nav-buttons button {
-  width: 12px;
-  height: 12px;
+  position: relative;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  border: 1px solid rgba(0, 75, 136, 0.2);
-  background: rgba(0, 75, 136, 0.1);
+  border: 2px solid rgba(0, 75, 136, 0.4);
+  background: rgba(0, 75, 136, 0.2);
   cursor: pointer;
-  transition: 0.3s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0;
+}
+
+.nav-buttons button::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border-radius: 50%;
+}
+
+.nav-buttons button:focus-visible {
+  outline: 3px solid #ffcc00 !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 4px rgba(255, 204, 0, 0.5) !important;
 }
 
 .nav-buttons button.active {
   background: #00baff;
-  transform: scale(1.3);
+  border-color: #00baff;
+  transform: scale(1.2);
 }
 
 /* Hero Carousel Navigation Controls */

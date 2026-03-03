@@ -56,11 +56,11 @@
   </div>
 
   {# Move dots to separate container if still needed, or hide them as user didn't ask for them specifically #}
-  <ul class="nav-buttons list-unstyled p-0 m-0">
+  <div class="nav-buttons p-0 m-0">
     {% for i in 1..rows|length %}
-      <li><button class="{% if i == 1 %}active{% endif %}" data-slide="{{ i }}" {% if i == 1 %}aria-current="true"{% endif %} aria-label="Go to slide {{ i }}"></button></li>
+      <button class="{% if i == 1 %}active{% endif %}" data-slide="{{ i }}" {% if i == 1 %}aria-current="true"{% endif %} aria-label="Go to slide {{ i }}"></button>
     {% endfor %}
-  </ul>
+  </div>
 
   </div>
 </div>

@@ -55,9 +55,9 @@
       {%- endfor -%}
     </div>
   {% else %}
-    <ul{{ attributes }}>
+    <div{{ attributes }}>
       {%- for item in links -%}
-        <li{{ item.attributes }}>
+        <span{{ item.attributes }}>
           {%- if item.link -%}
             {{ item.link }}
           {%- elseif item.text_attributes -%}
@@ -65,8 +65,8 @@
           {%- else -%}
             {{ item.text }}
           {%- endif -%}
-        </li>
+        </span>
       {%- endfor -%}
-    </ul>
+    </div>
   {% endif %}
 {%- endif %}

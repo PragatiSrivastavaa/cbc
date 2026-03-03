@@ -821,6 +821,8 @@ tbody tr:nth-child(even) {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background: #004b88;
+  box-shadow: 0 0 8px #ffc107;
 }
 
 
@@ -1062,7 +1064,7 @@ tbody tr:nth-child(even) {
   align-items: center;
 }
 
-ul.navbar-nav.nav-rounded {
+.navbar-nav.nav-rounded {
   height: auto;
   min-height: 46px;
   display: flex;
@@ -1076,7 +1078,7 @@ ul.navbar-nav.nav-rounded {
 }
 
 /* Rounded Navigation Bar */
-ul.navbar-nav.nav-rounded {
+.navbar-nav.nav-rounded {
   background: #004b88;
   border-radius: 0;
   padding: 7px clamp(8px, 1vw, 12px);
@@ -1101,14 +1103,14 @@ ul.navbar-nav.nav-rounded {
 }
 
 @media (max-width: 1200px) {
-  ul.navbar-nav.nav-rounded {
+  .navbar-nav.nav-rounded {
     gap: clamp(0.2rem, 0.4vw, 0.4rem);
     padding: 7px clamp(6px, 0.8vw, 10px);
   }
 }
 
 @media (max-width: 992px) {
-  ul.navbar-nav.nav-rounded {
+  .navbar-nav.nav-rounded {
     gap: 0.3rem;
     padding: 7px 8px;
     flex-wrap: wrap;
@@ -1148,7 +1150,7 @@ ul.navbar-nav.nav-rounded {
     padding: 7px 15px;
   }
 
-  ul.navbar-nav.nav-rounded {
+  .navbar-nav.nav-rounded {
     gap: 0.5rem;
     padding: 8px 12px;
   }
@@ -1222,7 +1224,7 @@ ul.navbar-nav.nav-rounded {
     padding: 7px 15px;
   }
 
-  ul.navbar-nav.nav-rounded {
+  .navbar-nav.nav-rounded {
     gap: 0.45rem;
   }
 
@@ -1241,7 +1243,7 @@ ul.navbar-nav.nav-rounded {
     padding: 8px 16px;
   }
 
-  ul.navbar-nav.nav-rounded {
+  .navbar-nav.nav-rounded {
     gap: 0.5rem;
     padding: 10px 12px;
   }
@@ -1266,7 +1268,7 @@ ul.navbar-nav.nav-rounded {
     padding: 10px 20px;
   }
 
-  ul.navbar-nav.nav-rounded {
+  .navbar-nav.nav-rounded {
     gap: 0.6rem;
     padding: 12px 15px;
   }
@@ -1476,7 +1478,7 @@ ul.navbar-nav.nav-rounded {
   display: none;
 }
 
-.navbar-nav li.has-submenu {
+.navbar-nav .has-submenu {
   position: relative;
 }
 
@@ -1858,7 +1860,7 @@ ul.navbar-nav.nav-rounded {
     max-height: 45px;
   }
 
-  ul.navbar-nav.nav-rounded {
+  .navbar-nav.nav-rounded {
     border-radius: 0;
     box-shadow: none;
     padding: 5px;
