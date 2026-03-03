@@ -546,6 +546,11 @@
   animation: scrollAlerts 15s linear infinite;
 }
 
+/* Accessibility: Pause animation when a link inside is focused */
+.alert-bar-track:focus-within {
+  animation-play-state: paused !important;
+}
+
 @keyframes pulseIcon {
 
   0%,

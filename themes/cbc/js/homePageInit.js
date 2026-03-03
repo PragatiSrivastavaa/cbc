@@ -2278,13 +2278,7 @@ function initializePartnerSlider() {
   updateAnimationSpeed();
   window.addEventListener('resize', updateAnimationSpeed);
 
-  // Pause on hover
-  partnerSlider.addEventListener('mouseenter', () => {
-    track.classList.add('paused');
-  });
-  partnerSlider.addEventListener('mouseleave', () => {
-    track.classList.remove('paused');
-  });
+  // Pause on hover logic moved below where isPartnerPaused is defined
 
   // Manual navigation - shifts animation delay to "seek"
   function getStepSize() {
@@ -2426,6 +2420,7 @@ function initializePartnerSlider() {
   };
 
   partnerSlider.addEventListener('focusout', resumeAnimation);
+  partnerSlider.addEventListener('mouseleave', resumeAnimation);
 }
 
 
