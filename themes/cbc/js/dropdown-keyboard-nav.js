@@ -130,6 +130,20 @@
             if (nav.hasAttribute('data-cbc-nav-init')) return;
             nav.setAttribute('data-cbc-nav-init', 'true');
             nav.addEventListener('keydown', handleKeyDown);
+
+            // Accessiblity fix: update aria-expanded on mouse hover
+            nav.querySelectorAll('.dropdown, .has-submenu').forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    const toggle = this.querySelector('.dropdown-toggle');
+                    if (toggle) toggle.setAttribute('aria-expanded', 'true');
+                });
+                item.addEventListener('mouseleave', function() {
+                    const toggle = this.querySelector('.dropdown-toggle');
+                    if (toggle && !this.classList.contains('hover')) {
+                        toggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
         });
 
         // Global listeners (once)
