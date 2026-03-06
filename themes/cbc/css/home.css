@@ -3350,7 +3350,7 @@
   flex-direction: column;
   flex: 1;
   height: 100%;
-  padding: 8px;
+  /* padding: 8px; */
 }
 
 /* Section Header Styles - Rectangular Professional Design */
@@ -3401,7 +3401,7 @@
 .section-body {
   background: #ffffff;
   flex: 1;
-  padding: 8px;
+  /* padding: 8px; */
 }
 
 .media-header .wave-text span {
@@ -3526,6 +3526,7 @@
   padding-top: 10px;
   padding-bottom: 0;
   margin-bottom: 0;
+  padding: 15px;
 }
 
 .media-footer .view-all {
@@ -3566,7 +3567,7 @@
   flex-direction: column;
   flex: 1;
   height: 100%;
-  padding: 8px;
+  /* padding: 8px; */
 }
 
 .newsletters-box {
@@ -3643,6 +3644,8 @@
   padding-top: 10px;
   padding-bottom: 0;
   margin-bottom: 0;
+  padding: 15px;
+  margin-top: 10px;
 }
 
 .newsletters-footer .view-all {
@@ -10924,7 +10927,7 @@ h2.infocus-heading {
   flex-direction: column;
   flex: 1;
   height: 100%;
-  padding: 8px;
+  /* padding: 8px; */
 }
 
 /* Section Header Styles - Rectangular Professional Design */
@@ -10975,7 +10978,7 @@ h2.infocus-heading {
 .section-body {
   background: #ffffff;
   flex: 1;
-  padding: 8px;
+  /* padding: 8px; */
 }
 
 .media-header .wave-text span {
@@ -11140,7 +11143,7 @@ h2.infocus-heading {
   flex-direction: column;
   flex: 1;
   height: 100%;
-  padding: 8px;
+  /* padding: 8px; */
 }
 
 .newsletters-box {
@@ -14186,29 +14189,28 @@ body[data-pause-animations="true"] [style*="continuousSlide"] {
 .media-corner-box::-webkit-scrollbar,
 .newsletters-box::-webkit-scrollbar,
 .news-wrapper::-webkit-scrollbar {
-  width: 6px;
+  width: 3px;
   display: block !important;
 }
 
 .media-corner-box::-webkit-scrollbar-track,
 .newsletters-box::-webkit-scrollbar-track,
 .news-wrapper::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #f8f8f8;
   border-radius: 10px;
 }
 
 .media-corner-box::-webkit-scrollbar-thumb,
 .newsletters-box::-webkit-scrollbar-thumb,
 .news-wrapper::-webkit-scrollbar-thumb {
-  background: #004b88;
+  background: #c0c0c0;
   border-radius: 10px;
-  border: 1px solid #f1f1f1;
 }
 
 .media-corner-box::-webkit-scrollbar-thumb:hover,
 .newsletters-box::-webkit-scrollbar-thumb:hover,
 .news-wrapper::-webkit-scrollbar-thumb:hover {
-  background: #003366;
+  background: #a0a0a0;
 }
 
 /* Firefox scrollbar visibility */
@@ -14216,7 +14218,8 @@ body[data-pause-animations="true"] [style*="continuousSlide"] {
 .newsletters-box,
 .news-wrapper {
   scrollbar-width: thin;
-  scrollbar-color: #004b88 #f1f1f1;
+  scrollbar-color: #c0c0c0 #f8f8f8;
+  padding: 5px;
 }
 
 /* ======================================================================
