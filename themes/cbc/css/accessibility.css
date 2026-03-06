@@ -14,7 +14,8 @@
   background: #ffffff;
   box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
   z-index: 99999;
-  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  visibility: hidden;
+  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow-y: auto;
   overflow-x: hidden;
   border-left: 3px solid #0063ae;
@@ -25,6 +26,7 @@
 
 .accessibility-drawer[data-state="open"] {
   right: 0;
+  visibility: visible;
 }
 
 /* === DRAWER HEADER === */

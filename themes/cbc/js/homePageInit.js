@@ -1243,6 +1243,11 @@ function initializePhotoCarousel() {
     photoCarousel.style.transform = `translateX(-${index * 100}%)`;
 
     setTimeout(() => {
+      photoCards.forEach((card, i) => {
+        if (i !== index) {
+          card.style.visibility = 'hidden';
+        }
+      });
       isTransitioning = false;
     }, 600);
   }
@@ -1428,6 +1433,7 @@ function initializeYouTubeCarousel() {
     setTimeout(() => {
       ytCards.forEach((card, i) => {
         if (i !== index) {
+          card.style.visibility = 'hidden';
           const video = card.querySelector('video');
           if (video) {
             video.pause();
@@ -3019,6 +3025,11 @@ if (document.readyState === 'loading') {
           // Radius 4 for clean, visible dot
           circle.setAttribute('r', '4');
           circle.setAttribute('class', 'map-dot-svg');
+          circle.setAttribute('tabindex', '0');
+          circle.setAttribute('role', 'img');
+          if (data.title) {
+            circle.setAttribute('aria-label', data.title);
+          }
           if (data.title) {
             const titleEl = document.createElementNS('http://www.w3.org/2000/svg', 'title');
             titleEl.textContent = data.title;

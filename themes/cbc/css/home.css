@@ -139,11 +139,13 @@
   color: #fff;
   max-width: 650px;
   opacity: 0;
-  transition: opacity 1s ease, transform 1s ease;
+  visibility: hidden;
+  transition: opacity 1s ease, transform 1s ease, visibility 1s ease;
 }
 
 .slide-content.active {
   opacity: 1;
+  visibility: visible;
   transform: translateY(-50%) translateX(0);
 }
 
@@ -1075,10 +1077,23 @@
   transition: background 0.3s ease;
 }
 
+.infocus-btn:focus-visible {
+  outline: 3px solid #ffcc00 !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 4px rgba(255, 204, 0, 0.5) !important;
+}
+
 .infocus-btn:hover {
   background-color: #006699;
   color: #fff;
   text-decoration: none;
+}
+
+.map-dot-svg:focus-visible {
+  outline: 3px solid #ffcc00 !important;
+  outline-offset: 5px !important;
+  r: 6 !important;
+  /* Slightly enlarge dot on focus */
 }
 
 /* Moving border effect for In Focus label - REMOVED as requested for clean UI */
@@ -2964,6 +2979,15 @@
 
 .news-banner:hover::before {
   left: 100%;
+}
+
+.news-banner:focus-visible {
+  outline: 3px solid #ffcc00 !important;
+  outline-offset: -3px !important;
+  /* Inset to avoid clipping by overflow:hidden */
+  box-shadow: inset 0 0 0 4px rgba(255, 204, 0, 0.4), 0 0 15px rgba(255, 204, 0, 0.3) !important;
+  z-index: 10 !important;
+  position: relative !important;
 }
 
 /* NEW Badge */
@@ -10508,6 +10532,14 @@ h2.infocus-heading {
   left: 100%;
 }
 
+.news-banner:focus-visible {
+  outline: 3px solid #ffcc00 !important;
+  outline-offset: -3px !important;
+  box-shadow: inset 0 0 0 4px rgba(255, 204, 0, 0.4), 0 0 15px rgba(255, 204, 0, 0.3) !important;
+  z-index: 10 !important;
+  position: relative !important;
+}
+
 /* NEW Badge */
 .new-badge {
   position: relative;
@@ -10620,6 +10652,12 @@ h2.infocus-heading {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+}
+
+.view-all:focus-visible {
+  outline: 3px solid #ffcc00 !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 4px rgba(255, 204, 0, 0.5) !important;
 }
 
 .view-all:hover {
