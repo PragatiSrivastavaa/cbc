@@ -25,7 +25,9 @@
               <li class="home-event-card high-contrast-border" data-event-id="home-event-1" data-date="2025-11-07"
                 data-venue="Capacity Building Commission">
                 <div class="home-event-card-image">
-                 {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_images }}'] }}
+                  {% if node.field_event_images.0.entity %}
+                    <img src="{{ file_url(node.field_event_images.0.entity.fileuri) }}" alt="" loading="lazy">
+                  {% endif %}
                 </div>
                 <div class="home-event-card-content">
                   <div class="home-event-card-date">
