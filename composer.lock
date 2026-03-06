@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "33c2bd6b2a04b9487456001aa9eae2bb",
+    "content-hash": "cc1eb6610add56494dc90c8e64ef7ca7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1942,6 +1942,67 @@
             "keywords": [
                 "drupal"
             ]
+        },
+        {
+            "name": "drupal/counter",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/counter.git",
+                "reference": "8.x-1.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/counter-8.x-1.5.zip",
+                "reference": "8.x-1.5",
+                "shasum": "564be4acf7bc4a6fb8d6ca6fbdb0a1c2989b6230"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10 || ^11",
+                "matomo/device-detector": "^5.0.3"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.5",
+                    "datestamp": "1768483955",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "anatolij zajika",
+                    "homepage": "https://www.drupal.org/user/2610102"
+                },
+                {
+                    "name": "drupalnesia",
+                    "homepage": "https://www.drupal.org/user/75798"
+                },
+                {
+                    "name": "gaurav.kapoor",
+                    "homepage": "https://www.drupal.org/user/3495331"
+                },
+                {
+                    "name": "madan879",
+                    "homepage": "https://www.drupal.org/user/3203481"
+                },
+                {
+                    "name": "vitalblue",
+                    "homepage": "https://www.drupal.org/user/224799"
+                }
+            ],
+            "description": "This module used for displaying a Site Counter, Node Count, Unique Visitor and Client IP.",
+            "homepage": "http://drupal.org/project/counter",
+            "support": {
+                "source": "https://git.drupalcode.org/project/counter"
+            }
         },
         {
             "name": "drupal/csp",
@@ -3972,6 +4033,75 @@
             "time": "2024-03-31T07:05:07+00:00"
         },
         {
+            "name": "matomo/device-detector",
+            "version": "5.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/matomo-org/device-detector.git",
+                "reference": "cd1283126b4cf5081fdc0381b5b5e7849333cfa4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/matomo-org/device-detector/zipball/cd1283126b4cf5081fdc0381b5b5e7849333cfa4",
+                "reference": "cd1283126b4cf5081fdc0381b5b5e7849333cfa4",
+                "shasum": ""
+            },
+            "require": {
+                "mustangostang/spyc": "*",
+                "php": "^7.2|^8.0"
+            },
+            "replace": {
+                "piwik/device-detector": "self.version"
+            },
+            "require-dev": {
+                "matthiasmullie/scrapbook": "^1.4.7",
+                "mayflower/mo4-coding-standard": "^v8.0.0",
+                "phpstan/phpstan": "^0.12.52",
+                "phpunit/phpunit": "^8.5.8",
+                "psr/cache": "^1.0.1",
+                "psr/simple-cache": "^1.0.1",
+                "symfony/yaml": "^5.1.7"
+            },
+            "suggest": {
+                "doctrine/cache": "Can directly be used for caching purpose",
+                "ext-yaml": "Necessary for using the Pecl YAML parser"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DeviceDetector\\": ""
+                },
+                "exclude-from-classmap": [
+                    "Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "The Matomo Team",
+                    "email": "hello@matomo.org",
+                    "homepage": "https://matomo.org/team/"
+                }
+            ],
+            "description": "The Universal Device Detection library, that parses User Agents and detects devices (desktop, tablet, mobile, tv, cars, console, etc.), clients (browsers, media players, mobile apps, feed readers, libraries, etc), operating systems, devices, brands and models.",
+            "homepage": "https://matomo.org",
+            "keywords": [
+                "devicedetection",
+                "parser",
+                "useragent"
+            ],
+            "support": {
+                "forum": "https://forum.matomo.org/",
+                "issues": "https://github.com/matomo-org/device-detector/issues",
+                "source": "https://github.com/matomo-org/matomo",
+                "wiki": "https://dev.matomo.org/"
+            },
+            "time": "2022-03-08T09:22:55+00:00"
+        },
+        {
             "name": "mck89/peast",
             "version": "v1.17.2",
             "source": {
@@ -4019,6 +4149,60 @@
                 "source": "https://github.com/mck89/peast/tree/v1.17.2"
             },
             "time": "2025-07-01T09:30:45+00:00"
+        },
+        {
+            "name": "mustangostang/spyc",
+            "version": "0.6.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mustangostang/spyc.git",
+                "reference": "4627c838b16550b666d15aeae1e5289dd5b77da0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mustangostang/spyc/zipball/4627c838b16550b666d15aeae1e5289dd5b77da0",
+                "reference": "4627c838b16550b666d15aeae1e5289dd5b77da0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.3.*@dev"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.5.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "Spyc.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "mustangostang",
+                    "email": "vlad.andersen@gmail.com"
+                }
+            ],
+            "description": "A simple YAML loader/dumper class for PHP",
+            "homepage": "https://github.com/mustangostang/spyc/",
+            "keywords": [
+                "spyc",
+                "yaml",
+                "yml"
+            ],
+            "support": {
+                "issues": "https://github.com/mustangostang/spyc/issues",
+                "source": "https://github.com/mustangostang/spyc/tree/0.6.3"
+            },
+            "time": "2019-09-10T13:16:29+00:00"
         },
         {
             "name": "nikic/php-parser",

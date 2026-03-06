@@ -27,8 +27,8 @@
     {{ page.contact_us }}
 
     <div class="visit-stats">
-      <p><strong>Last Updated:</strong> 31 Oct 2025</p>
-      <p><strong>Visitors:</strong> 2,213,098</p>
+      <p><strong>Last Updated: </strong>{{ node.field_publication_date | date('d/m/Y') }}</p>
+      <p><strong>Visitors:</strong> {{ total_visitors }}</p>
     </div>
   </div>
 </div>
