@@ -935,12 +935,10 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow-y: scroll;
   height: auto !important;
-  max-height: none !important;
-  /* Override the fixed 500px limit */
+  max-height: 400px !important;
   min-height: 320px;
-  /* Preserve the existing min-height observed */
 }
 
 .whts-box .news-banner-track {
@@ -2895,12 +2893,10 @@
 }
 
 .news-wrapper {
-  overflow: hidden;
+  overflow-y: scroll;
   position: relative;
   padding: 10px 15px;
   margin: 0;
-  /* height: 280px; */
-  /* max-height: 400px; */
 }
 
 /* Top and bottom decorative strips */
@@ -2928,7 +2924,6 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  animation: scrollBannersVertical 20s linear infinite;
   padding: 0;
   transform: translateY(0);
 }
@@ -3249,6 +3244,7 @@
   .news-wrapper {
     height: 140px;
     max-height: 140px;
+    overflow-y: scroll;
   }
 
   .news-header h2 {
@@ -3466,7 +3462,6 @@
 .media-track {
   display: flex;
   flex-direction: column;
-  animation: continuousSlideUp 40s linear infinite;
 }
 
 .media-item {
@@ -3583,7 +3578,6 @@
 .newsletters-track {
   display: flex;
   flex-direction: column;
-  animation: continuousSlideUp 20s linear infinite;
 }
 
 .newsletters-item {
@@ -10455,7 +10449,7 @@ h2.infocus-heading {
 }
 
 .news-wrapper {
-  overflow: hidden;
+  overflow-y: scroll;
   position: relative;
   padding: 10px 10px;
   margin: 0;
@@ -11036,13 +11030,12 @@ h2.infocus-heading {
 .media-corner-box {
   height: 270px;
   position: relative;
-  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .media-track {
   display: flex;
   flex-direction: column;
-  animation: continuousSlideUp 40s linear infinite;
 }
 
 .media-item {
@@ -11153,13 +11146,12 @@ h2.infocus-heading {
 .newsletters-box {
   height: 270px;
   position: relative;
-  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .newsletters-track {
   display: flex;
   flex-direction: column;
-  animation: continuousSlideUp 20s linear infinite;
 }
 
 .newsletters-item {
@@ -14190,84 +14182,41 @@ body[data-pause-animations="true"] [style*="continuousSlide"] {
   animation-play-state: paused !important;
 }
 
-/* ======================================================================
-   MANUAL SCROLLING FOR VERTICAL SECTIONS WHEN PAUSED
-   ====================================================================== */
-
-/* Enable manual scrolling for Media Corner when paused */
-body[data-pause-animations="true"] .media-corner-box,
-.media-corner-box:has(.media-track[style*="paused"]) {
-  overflow-y: auto !important;
-  overflow-x: hidden;
+/* Visible scrollbar styling for sections */
+.media-corner-box::-webkit-scrollbar,
+.newsletters-box::-webkit-scrollbar,
+.news-wrapper::-webkit-scrollbar {
+  width: 6px;
+  display: block !important;
 }
 
-body[data-pause-animations="true"] .media-track,
-.media-track[style*="paused"] {
-  animation: none !important;
-  transform: none !important;
+.media-corner-box::-webkit-scrollbar-track,
+.newsletters-box::-webkit-scrollbar-track,
+.news-wrapper::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
 }
 
-/* Enable manual scrolling for Newsletters when paused */
-body[data-pause-animations="true"] .newsletters-box,
-.newsletters-box:has(.newsletters-track[style*="paused"]) {
-  overflow-y: auto !important;
-  overflow-x: hidden;
+.media-corner-box::-webkit-scrollbar-thumb,
+.newsletters-box::-webkit-scrollbar-thumb,
+.news-wrapper::-webkit-scrollbar-thumb {
+  background: #004b88;
+  border-radius: 10px;
+  border: 1px solid #f1f1f1;
 }
 
-body[data-pause-animations="true"] .newsletters-track,
-.newsletters-track[style*="paused"] {
-  animation: none !important;
-  transform: none !important;
+.media-corner-box::-webkit-scrollbar-thumb:hover,
+.newsletters-box::-webkit-scrollbar-thumb:hover,
+.news-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #003366;
 }
 
-/* Enable manual scrolling for News/What's New when paused */
-body[data-pause-animations="true"] .news-wrapper,
-.news-wrapper:has(.news-banner-track.paused) {
-  overflow-y: auto !important;
-  overflow-x: hidden;
-}
-
-body[data-pause-animations="true"] .news-banner-track,
-.news-banner-track.paused {
-  animation: none !important;
-  transform: none !important;
-}
-
-/* Ensure content is visible when scrollable */
-body[data-pause-animations="true"] .media-corner-box,
-body[data-pause-animations="true"] .newsletters-box,
-body[data-pause-animations="true"] .news-wrapper,
-.media-corner-box:has(.media-track[style*="paused"]),
-.newsletters-box:has(.newsletters-track[style*="paused"]),
-.news-wrapper:has(.news-banner-track.paused) {
-  cursor: default;
-}
-
-/* Add scrollbar styling for better UX */
-body[data-pause-animations="true"] .media-corner-box::-webkit-scrollbar,
-body[data-pause-animations="true"] .newsletters-box::-webkit-scrollbar,
-body[data-pause-animations="true"] .news-wrapper::-webkit-scrollbar {
-  width: 8px;
-}
-
-body[data-pause-animations="true"] .media-corner-box::-webkit-scrollbar-track,
-body[data-pause-animations="true"] .newsletters-box::-webkit-scrollbar-track,
-body[data-pause-animations="true"] .news-wrapper::-webkit-scrollbar-track {
-  background: #f8f9fa;
-  border-radius: 4px;
-}
-
-body[data-pause-animations="true"] .media-corner-box::-webkit-scrollbar-thumb,
-body[data-pause-animations="true"] .newsletters-box::-webkit-scrollbar-thumb,
-body[data-pause-animations="true"] .news-wrapper::-webkit-scrollbar-thumb {
-  background: #b8d4e8;
-  border-radius: 4px;
-}
-
-body[data-pause-animations="true"] .media-corner-box::-webkit-scrollbar-thumb:hover,
-body[data-pause-animations="true"] .newsletters-box::-webkit-scrollbar-thumb:hover,
-body[data-pause-animations="true"] .news-wrapper::-webkit-scrollbar-thumb:hover {
-  background: #8fc1e3;
+/* Firefox scrollbar visibility */
+.media-corner-box,
+.newsletters-box,
+.news-wrapper {
+  scrollbar-width: thin;
+  scrollbar-color: #004b88 #f1f1f1;
 }
 
 /* ======================================================================
