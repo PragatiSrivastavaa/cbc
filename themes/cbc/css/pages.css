@@ -2337,6 +2337,13 @@ tbody tr:nth-child(even) {
   gap: 14px;
 }
 
+
+.karmayogi-content-wrapper .social-icons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+}
+
 .social-icons a {
   background: #0a2540;
   color: #00c6ff;
@@ -19130,16 +19137,59 @@ th.text-center {
 /* Social Media List Accessibility Fix */
 .footer-social-list {
   display: flex !important;
-  gap: 10px !important;
+  gap: 15px !important;
   list-style: none !important;
   padding: 0 !important;
   margin: 0 !important;
+  justify-content: center !important;
 }
 
 .footer-social-list-item {
   display: inline-flex !important;
+}
+
+.footer-social-list-item a {
+  display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  width: 3rem !important;
+  height: 3rem !important;
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  border-radius: 50% !important;
+  color: #00a8e8 !important;
+  text-decoration: none !important;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.footer-social-list-item a:hover {
+  background-color: #00a8e8 !important;
+  color: #ffffff !important;
+  transform: translateY(-5px) scale(1.1) !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4) !important;
+  border-color: transparent !important;
+}
+
+.footer-social-list-item a i {
+  font-size: 1.25rem !important;
+}
+
+/* Visually hide the text for screen readers */
+.footer-social-list-item a {
+  overflow: hidden !important;
+}
+
+.footer-social-list-item a span,
+.footer-social-list-item a .sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }
 
 .bg-light-orange {
