@@ -2981,13 +2981,18 @@
   left: 100%;
 }
 
-.news-banner:focus-visible {
+.news-banner:focus-visible,
+.news-banner:focus-within {
   outline: 3px solid #ffcc00 !important;
   outline-offset: -3px !important;
   /* Inset to avoid clipping by overflow:hidden */
   box-shadow: inset 0 0 0 4px rgba(255, 204, 0, 0.4), 0 0 15px rgba(255, 204, 0, 0.3) !important;
   z-index: 10 !important;
   position: relative !important;
+}
+
+.news-banner a:focus {
+  outline: none !important;
 }
 
 /* NEW Badge */
@@ -10532,12 +10537,17 @@ h2.infocus-heading {
   left: 100%;
 }
 
-.news-banner:focus-visible {
+.news-banner:focus-visible,
+.news-banner:focus-within {
   outline: 3px solid #ffcc00 !important;
   outline-offset: -3px !important;
   box-shadow: inset 0 0 0 4px rgba(255, 204, 0, 0.4), 0 0 15px rgba(255, 204, 0, 0.3) !important;
   z-index: 10 !important;
   position: relative !important;
+}
+
+.news-banner a:focus {
+  outline: none !important;
 }
 
 /* NEW Badge */
