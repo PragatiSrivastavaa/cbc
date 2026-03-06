@@ -19205,7 +19205,7 @@ th.text-center {
   background-color: #ffa500;
   border: none;
   border-radius: 8px;
-  color: #ffffff !important;
+  color: #204586 !important;
   display: inline-block;
   font-size: 1.1rem;
   font-weight: 700;
@@ -19216,7 +19216,7 @@ th.text-center {
 
 .btn-karmayogi-orange:hover {
   background-color: #e69500;
-  color: #ffffff !important;
+  color: #204586 !important;
 }
 
 .phase-card-icon-lg {
