@@ -1,25 +1,25 @@
 {% include 'themes/cbc/templates/layout/header.html.twig' %}
 
-  <!-- Main Content Container -->
-  <main id="app-content">
-    <h1 class="visually-hidden">Capacity Building Commission</h1>
+<!-- Main Content Container -->
+<main id="app-content">
+  <h1 class="visually-hidden">Capacity Building Commission</h1>
 
-    <!-- slider section -->
+  <!-- slider section -->
 
-    <section>
-      {{ page.banner_section }}
-    </section>
+  <section>
+    {{ page.banner_section }}
+  </section>
 
-    <!-- Alert Bar Section -->
-    <div class="alert-bar-container">
-      <div class="alert-bar-content">
-        <!-- <div class="alert-label">
+  <!-- Alert Bar Section -->
+  <div class="alert-bar-container">
+    <div class="alert-bar-content">
+      <!-- <div class="alert-label">
         <i class="fas fa-exclamation-circle"></i>
         <span>Alert</span>
       </div> -->
 
-        {{ page.alerts }}
-        <div class="alert-controls">
+      {{ page.alerts }}
+      <div class="alert-controls">
         <button class="alert-control-btn" id="alertPrevBtn" title="Previous" aria-label="Previous Alert">
           <i class="fas fa-chevron-left" aria-hidden="true"></i>
         </button>
@@ -30,422 +30,455 @@
           <i class="fas fa-chevron-right" aria-hidden="true"></i>
         </button>
       </div>
+    </div>
+  </div>
+
+  <!-- About CBC & Modi Section -->
+  <section class="info-wrapper">
+    <div class="about-pm-section">
+
+      <!-- Left Column: About CBC -->
+      <div class="about-cbc-column">
+        <div class="mission-karmayogi-section-alt">
+          <div class="mission-content">
+            {{ page.about_us}}
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: PM Modi -->
+      <div class="pm-modi-column">
+        <div class="modi-card">
+          {{ page.modi_content }}
+        </div>
       </div>
     </div>
 
-    <!-- About CBC & Modi Section -->
-    <section class="info-wrapper">
-      <div class="about-pm-section">
-        
-        <!-- Left Column: About CBC -->
-        <div class="about-cbc-column">
-          <div class="mission-karmayogi-section-alt">
-            <div class="mission-content">
-            {{ page.about_us}}
-            </div>
+    <!-- New Combined Row Section -->
+    <div class="combined-info-row">
+      <div class="row">
+        <!-- Jitender Ji Section -->
+        <div class="col-lg-4">
+          <div class="jitender-card">
+            {{ page.jitender_content }}
           </div>
         </div>
 
-        <!-- Right Column: PM Modi -->
-        <div class="pm-modi-column">
-          <div class="modi-card">
-           {{ page.modi_content }}
+        <!-- What's New Card -->
+        <div class="col-lg-5">
+          <div class="whts-box">
+            {{ page.what_s_news }}
           </div>
         </div>
-      </div>
 
-      <!-- New Combined Row Section -->
-      <div class="combined-info-row">
-        <div class="row">
-          <!-- Jitender Ji Section -->
-          <div class="col-lg-4">
-            <div class="jitender-card">
-              {{ page.jitender_content }}
-            </div>
-          </div>
-          
-          <!-- What's New Card -->
-          <div class="col-lg-5">
-            <div class="whts-box">
-              {{ page.what_s_news }}
-            </div>
-          </div>
-          
-          <!-- In Focus Card -->
-          <div class="col-lg-3">
-            <div class="infocus-container" id="in-focus-section">
-              {{ page.in_focus }}
-            </div>
+        <!-- In Focus Card -->
+        <div class="col-lg-3">
+          <div class="infocus-container" id="in-focus-section">
+            {{ page.in_focus }}
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- event section -->
-     <section class="events-section">
-        <div class="events-header">
-          <h2><span>Latest</span> Events</h2>
-          <div class="events-header-controls">
-            <button class="events-carousel-nav prev" id="eventsPrevBtn" aria-label="Previous events">
-              <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="events-carousel-nav pause events-pause-btn" id="eventsPauseBtn" aria-label="Pause events carousel">
-              <i class="fas fa-pause"></i>
-            </button>
-            <button class="events-carousel-nav next" id="eventsNextBtn" aria-label="Next events">
-              <i class="fas fa-chevron-right"></i>
-            </button>
-          </div>
-        </div>
-        <!-- Events Cards Only (Full Width) -->
-        <div>
-          {{ page.events_section }}
-        </div>
-         <!-- See More Button -->
-        <div class="events-footer high-contrast-no-border">
-          <a href="/events" class="events-see-more-btn">
-            See More Events
-            <i class="fas fa-arrow-right" aria-hidden="true"></i>
-          </a>
-        </div>
-      </section>
-
-      <!-- Section 2: Social Media, Media Corner, and Newsletters - Side by Side -->
-      <div class="information-corner-header">
-        <div class="information-corner-title">
-          <h2>Information Corner</h2>
+    <!-- event section -->
+    <section class="events-section">
+      <div class="events-header">
+        <h2><span>Latest</span> Events</h2>
+        <div class="events-header-controls">
+          <button class="events-carousel-nav prev" id="eventsPrevBtn" aria-label="Previous events">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="events-carousel-nav pause events-pause-btn" id="eventsPauseBtn"
+            aria-label="Pause events carousel">
+            <i class="fas fa-pause"></i>
+          </button>
+          <button class="events-carousel-nav next" id="eventsNextBtn" aria-label="Next events">
+            <i class="fas fa-chevron-right"></i>
+          </button>
         </div>
       </div>
-      <div class="whts-sec">
-        <div class="row">
-          <!-- Social Media Card - 4 columns -->
-          <div class="col-lg-4">
-            <div class="social-section-right socil-bg">
-              <div class="section-header social-header">
-                <h3 class="section-header-title">SOCIAL MEDIA</h3>
-                <div class="section-header-controls">
-                  <button class="social-prev" aria-label="Previous social media feed"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
-                  <button class="social-next" aria-label="Next social media feed"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
-                </div>
-              </div>
-              <div>
-                {{page.social_media}}
-              </div>
-              
-            </div>
-          </div>
-
-          <!-- Media Corner Card - 4 columns -->
-          <div class="col-lg-4">
-            <section class="media-corner-section">
-             
-              
-                  {{ page.media_corner }}
-                 
-
-            </section>
-          </div>
-
-          <!-- Newsletters Card - 4 columns -->
-          <div class="col-lg-4">
-            <section class="newsletters-section">
-              
-                  {{ page.newsletters }}
-                
-            </section>
-          </div>
-        </div>
+      <!-- Events Cards Only (Full Width) -->
+      <div>
+        {{ page.events_section }}
       </div>
-
-
-
-
-
-      <div class="collab-section">        
-        <div class="collab-header-full">
-          <div class="collab-header-content">
-            <h2>Our Collaboration Matters</h2>
-          </div>
-        </div>
-        {{ page.our_collaboration_matters }}
+      <!-- See More Button -->
+      <div class="events-footer high-contrast-no-border">
+        <a href="/events" class="events-see-more-btn">
+          See More Events
+          <i class="fas fa-arrow-right" aria-hidden="true"></i>
+        </a>
       </div>
     </section>
 
-    <!-- leadership  -->
-    <section class="leadership-section">
-      <h2 class="leadership-title">Commission Leadership</h2>
-
-      <div class="leadership-grid-new">
-        <div class="leadership-team-column">
-          {{ page.our_team }}
-        </div>
-        <div class="leadership-message-column">
-          <div class="chairperson-message-card high-contrast-border">
-            <div class="message-preview-container" id="chairpersonMessageImage">
-              <div class="message-preview-letter">
-                {{ page.chairperson_desk }}
+    <!-- Section 2: Social Media, Media Corner, and Newsletters - Side by Side -->
+    <div class="information-corner-header">
+      <div class="information-corner-title">
+        <h3>Information Corner</h3>
+      </div>
+    </div>
+    <div class="whts-sec">
+      <div class="row">
+        <!-- Social Media Card - 4 columns -->
+        <div class="col-lg-4">
+          <div class="social-section-right socil-bg">
+            <div class="section-header social-header">
+              <h3 class="section-header-title">SOCIAL MEDIA</h3>
+              <div class="section-header-controls">
+                <button class="social-prev" aria-label="Previous social media feed"><i class="fas fa-chevron-left"
+                    aria-hidden="true"></i></button>
+                <button class="social-next" aria-label="Next social media feed"><i class="fas fa-chevron-right"
+                    aria-hidden="true"></i></button>
               </div>
+            </div>
+            <div>
+              {{page.social_media}}
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Media Corner Card - 4 columns -->
+        <div class="col-lg-4">
+          <section class="media-corner-section">
+
+
+            {{ page.media_corner }}
+
+
+          </section>
+        </div>
+
+        <!-- Newsletters Card - 4 columns -->
+        <div class="col-lg-4">
+          <section class="newsletters-section">
+
+            {{ page.newsletters }}
+
+          </section>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="collab-section">
+      <div class="collab-header-full">
+        <div class="collab-header-content">
+          <h3>Our Collaboration Matters</h3>
+        </div>
+      </div>
+      {{ page.our_collaboration_matters }}
+    </div>
+  </section>
+
+  <!-- leadership  -->
+  <section class="leadership-section">
+    <h3 class="leadership-title">Commission Leadership</h3>
+
+    <div class="leadership-grid-new">
+      <div class="leadership-team-column">
+        {{ page.our_team }}
+      </div>
+      <div class="leadership-message-column">
+        <div class="chairperson-message-card high-contrast-border">
+          <div class="message-preview-container" id="chairpersonMessageImage">
+            <div class="message-preview-letter">
+              {{ page.chairperson_desk }}
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Chairperson Message Modal -->
-    <div class="chairperson-modal" id="chairpersonModal" role="dialog" aria-modal="true" aria-labelledby="chairpersonModalTitle">
-      <div class="modal-backdrop" id="modalBackdrop"></div>
-      <div class="modal-content-wrapper" id="modalContentWrapper">
-        <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close Chairperson Message Modal">&times;</button>
-        <div class="letter-container" id="letterContainer">
-          <div class="letter-paper">
-            <div class="letter-header-new">
-              <div class="letter-title-wrapper">
-                {% if language == 'hi' %}
-                  <h2 class="letter-title-new" id="chairpersonModalTitle">अध्यक्ष की <br> कलम से<span class="letter-pencil-icon">✏️</span></h2>
-                {% else %}
-                  <h2 class="letter-title-new" id="chairpersonModalTitle">FROM THE <br> CHAIRPERSON'S DESK<span class="letter-pencil-icon">✏️</span></h2>
-                {% endif %}
-              </div>
-              <div class="letter-chairperson-photo">
-                <img src="{{ base_path }}themes/cbc/img/cbc-chairman.png" alt="Ms. S. Radha Chauhan" class="letter-chairperson-img">
-              </div>
-            </div>
-            <div class="letter-divider"></div>
-            <div class="letter-content" id="letterContent">
-              <div class="letter-text">
-                {% if language == 'hi' %}
-                  <p class="letter-intro">
-                    आईए हम सब अपने क्षमता विकास पारितंत्र को लगातार सशक्त बनाने के लिए सहयोग करें।
-                  </p>
-                  <p class="letter-paragraph">
-                    मिशन कर्मयोगी एक पथ प्रवर्तक और अपने आप में एक ऐसी अनूठी पहल है जिसकी संकल्पना वर्ष 2020 में माननीय प्रधानमंत्री श्री नरेंद्र मोदी द्वारा की गई थी। अपनी शुरुआत से ही, मिशन कर्मयोगी की टीम ने एक ऐसे पारितंत्र को विकसित करने के लिए समर्पण की भावना से कार्य किया है, जो सिविल सेवकों को जीवनपर्यंत सीखने को सक्षम बनाने में मदद करता है। ये सिविल सेवक नागरिक केंद्रित सेवा प्रदानगी के लिए एक महत्वपूर्ण कड़ी है। 1 अप्रैल 2021 को स्थापित क्षमता विकास आयोग, नीतिगत ढांचों के माध्यम से क्षमता विकास संबंधी पहलों की आधारशिला रखते हुए मिशन कर्मयोगी के महत्वपूर्ण भाग के रूप में कार्य करता है।
-                  </p>
-                  <p class="letter-paragraph">
-                    क्षमता विकास आयोग के प्रयासों का नेतृत्व करना, मेरे लिए अत्यंत गर्व की बात है। हम सबको मिलकर इस सफर को आगे बढ़ाना है।
-                  </p>
-                  <p class="letter-paragraph">
-                    जैसा कि हम सब जानते हैं, कि सिविल सेवक निरंतर प्रगतिशील तथा कभी-कभी अनिश्चित महौल में कार्य करते हैं। उभरती हुई और नई प्रौद्योगिकियां न केवल ऐसे अनदेखे अवसर प्रदान कर रही है, बल्कि साथ ही ऐसी चुनौतियां भी खड़ी कर रह रही हैं जिनकी पहले कभी कल्पना नहीं की गई थी। सिविल सेवक के रूप में हमारा दायित्व किसी भी स्थिति में सेवा प्रदान करना और नागरिकों का विश्वास बनाए रखना है। लगातार क्षमता विकास, हमारे समक्ष आने वाले किसी भी चुनौती का सामना करने और उन अवसरों का इष्टतम उपयोग करने की कुंजी है, जिन्हें हम पूरी तरह से तैयार नहीं होने पर खो सकते हैं।
-                  </p>
-                  <p class="letter-paragraph">
-                    यहां यह उल्लेख करना प्रासंगिक है कि एक शिक्षण पारितंत्र के निरंतर विकास हेतु हम सबको एक साथ आने की आवश्यकता है, ताकि हमारी जनशक्ति किसी भी परिस्थिति का सामना करने और नागरिकों की भलाई के लिए उसी परिस्थिति का उपयोग करने में समर्थ बन सके। केंद्र और राज्य सरकार के हमारे सिविल सेवकों को इस शिक्षण प्रक्रिया का भाग होना आवश्यक है। जितना व्यापक इसका दायरा होगा, उतना ही गहरा उसका प्रभाव भी होगा।
-                  </p>
-                  <p class="letter-paragraph">
-                    आयोग में हम सब मिलकर ऐसे फ्रेमवर्क और नीति निर्माण पर निरंतर कार्य कर रहे हैं जो नवाचार, दूर दृष्टि और अनुसंधान पर बल देती हैं। हम एक ऐसा पारितंत्र बनाना चाहते है, जहां हम एक-दूसरे की क्षमता विकास की बेहतरीन पद्धतियों से सीख सकें और अपने पारितंत्र के भाग रूप में उसे स्थापित कर सकें।
-                  </p>
-                  <p class="letter-paragraph">
-                    हम अपने प्रशिक्षण संस्थान के क्षमता संवर्धन और उसके उन्नयन के सभी पहलुओं पर जोर देते हैं, क्योंकि हम मानते हैं कि वह हमारे शिक्षण फ्रेमवर्क की रीढ़ है।
-                  </p>
-                  <p class="letter-paragraph">
-                    मैं महसूस करती हूं कि उत्कृष्टता को न केवल स्थापित किया जाना चाहिए परंतु हमारे द्वारा इसे उत्सव के रूप में मनाया भी जाना चाहिए। मैं आपके द्वारा किए जा रहे प्रयासों के प्रति आभार व्यक्त करती हूं जिसने उत्कृष्टता के प्रति उन्मुख रहने हेतु अन्यों के लिए एक उदाहरण स्थापित किया है।
-                  </p>
-                  <p class="letter-paragraph">
-                    मैं अपने सभी हितधारकों को अपनी टीम और सफर का एक महत्वपूर्ण हिस्सा मानती हूं और हम ऐसे किसी भी फीडबैक, सुझावों का स्वागत करते हैं, जो हमें साथ मिलकर आगे बढ़ने में मदद करें।
-                  </p>
-                {% else %}
-                  <p class="letter-intro">
-                    Let us join hands for continuously empowering our capacity building eco-system.
-                  </p>
-                  <p class="letter-paragraph">
-                    Mission Karmayogi is a path-breaking and a first of its kind initiative envisioned by Hon'ble Prime
-                    Minister Shri Narendra Modi, in the year 2020. Since its inception, Mission Karmayogi team has
-                    functioned with dedication towards developing an eco-system which strives to enable lifelong learning
-                    for the Civil Servants, who are an important link for citizen-centric delivery of services. The
-                    Capacity Building Commission, established on 1st April, 2021, functions at the core of Mission
-                    Karmayogi, through policy frameworks laying foundation of capacity building initiatives.
-                  </p>
-                  <p class="letter-paragraph">
-                    It gives me immense pride to lead the efforts of Capacity Building Commission. We together need to
-                    take this journey ahead.
-                  </p>
-                  <p class="letter-paragraph">
-                    As we are aware, civil servants perform in a ever-growing and sometimes uncertain environment. The
-                    emerging and new technologies are not only providing unseen opportunities, but at the same time posing
-                    challenges never imagined before. As civil servants, our duty is to deliver in any given situation and
-                    upkeep the trust of the citizens. Continuous capacity building is the key to strive through any
-                    challenge that might come and to optimally utilise the opportunities that might go unutilised if we
-                    are not well-equipped to handle them.
-                  </p>
-                  <p class="letter-paragraph">
-                    It is pertinent to mention here that we all need to come together to continuously build a learning
-                    eco-system which enables our manpower to be ready to face and utilise any given situation to the best
-                    advantage of the citizens. Our civil servants across the Central and State Governments need to be a
-                    part of this learning process. The wider the chain, the greater the impact will be.
-                  </p>
-                  <p class="letter-paragraph">
-                    We at the Commission are continuously functioning to arrive at the frameworks and policies that
-                    emphasise upon innovation, foresight and research. We wish to build an eco-system where we learn from
-                    the capacity building best practices of each other and institutionalise them as part of our
-                    eco-system.
-                  </p>
-                  <p class="letter-paragraph">
-                    We emphasise on the capacity enhancement and upgrading of our Training Institute in all aspects while
-                    acknowledging that they are the backbone of our learning framework.
-                  </p>
-                  <p class="letter-paragraph">
-                    I feel that excellence should not only be institutionalised but also celebrated by all of us. I wish
-                    to acknowledge the efforts put by you, which has set an example for other to strive towards
-                    excellence.
-                  </p>
-                  <p class="letter-paragraph">
-                    I consider all my stakeholder an important part of my team & journey and we are open to any feedback,
-                    suggestions that might help us grow together.
-                  </p>
-                {% endif %}
-              </div>
-            </div>
-            <div class="letter-signature">
+  <!-- Chairperson Message Modal -->
+  <div class="chairperson-modal" id="chairpersonModal" role="dialog" aria-modal="true"
+    aria-labelledby="chairpersonModalTitle">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-content-wrapper" id="modalContentWrapper">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close Chairperson Message Modal">&times;</button>
+      <div class="letter-container" id="letterContainer">
+        <div class="letter-paper">
+          <div class="letter-header-new">
+            <div class="letter-title-wrapper">
               {% if language == 'hi' %}
-                <div class="signature-wishes">शुभकामनाओं सहित,</div>
-                <div class="signature-name">सुश्री एस. राधा चौहान</div>
-                <div class="signature-title">अध्यक्ष</div>
+              <h3 class="letter-title-new" id="chairpersonModalTitle">अध्यक्ष की <br> कलम से<span
+                  class="letter-pencil-icon">✏️</span></h3>
               {% else %}
-                <div class="signature-wishes">Best Wishes,</div>
-                <div class="signature-name">Ms. S. Radha Chauhan</div>
-                <div class="signature-title">Chairperson</div>
+              <h3 class="letter-title-new" id="chairpersonModalTitle">FROM THE <br> CHAIRPERSON'S DESK<span
+                  class="letter-pencil-icon">✏️</span></h3>
+              {% endif %}
+            </div>
+            <div class="letter-chairperson-photo">
+              <img src="{{ base_path }}themes/cbc/img/cbc-chairman.png" alt="Ms. S. Radha Chauhan"
+                class="letter-chairperson-img">
+            </div>
+          </div>
+          <div class="letter-divider"></div>
+          <div class="letter-content" id="letterContent">
+            <div class="letter-text">
+              {% if language == 'hi' %}
+              <p class="letter-intro">
+                आईए हम सब अपने क्षमता विकास पारितंत्र को लगातार सशक्त बनाने के लिए सहयोग करें।
+              </p>
+              <p class="letter-paragraph">
+                मिशन कर्मयोगी एक पथ प्रवर्तक और अपने आप में एक ऐसी अनूठी पहल है जिसकी संकल्पना वर्ष 2020 में माननीय
+                प्रधानमंत्री श्री नरेंद्र मोदी द्वारा की गई थी। अपनी शुरुआत से ही, मिशन कर्मयोगी की टीम ने एक ऐसे
+                पारितंत्र को विकसित करने के लिए समर्पण की भावना से कार्य किया है, जो सिविल सेवकों को जीवनपर्यंत सीखने को
+                सक्षम बनाने में मदद करता है। ये सिविल सेवक नागरिक केंद्रित सेवा प्रदानगी के लिए एक महत्वपूर्ण कड़ी है। 1
+                अप्रैल 2021 को स्थापित क्षमता विकास आयोग, नीतिगत ढांचों के माध्यम से क्षमता विकास संबंधी पहलों की
+                आधारशिला रखते हुए मिशन कर्मयोगी के महत्वपूर्ण भाग के रूप में कार्य करता है।
+              </p>
+              <p class="letter-paragraph">
+                क्षमता विकास आयोग के प्रयासों का नेतृत्व करना, मेरे लिए अत्यंत गर्व की बात है। हम सबको मिलकर इस सफर को
+                आगे बढ़ाना है।
+              </p>
+              <p class="letter-paragraph">
+                जैसा कि हम सब जानते हैं, कि सिविल सेवक निरंतर प्रगतिशील तथा कभी-कभी अनिश्चित महौल में कार्य करते हैं।
+                उभरती हुई और नई प्रौद्योगिकियां न केवल ऐसे अनदेखे अवसर प्रदान कर रही है, बल्कि साथ ही ऐसी चुनौतियां भी
+                खड़ी कर रह रही हैं जिनकी पहले कभी कल्पना नहीं की गई थी। सिविल सेवक के रूप में हमारा दायित्व किसी भी
+                स्थिति में सेवा प्रदान करना और नागरिकों का विश्वास बनाए रखना है। लगातार क्षमता विकास, हमारे समक्ष आने
+                वाले किसी भी चुनौती का सामना करने और उन अवसरों का इष्टतम उपयोग करने की कुंजी है, जिन्हें हम पूरी तरह से
+                तैयार नहीं होने पर खो सकते हैं।
+              </p>
+              <p class="letter-paragraph">
+                यहां यह उल्लेख करना प्रासंगिक है कि एक शिक्षण पारितंत्र के निरंतर विकास हेतु हम सबको एक साथ आने की
+                आवश्यकता है, ताकि हमारी जनशक्ति किसी भी परिस्थिति का सामना करने और नागरिकों की भलाई के लिए उसी परिस्थिति
+                का उपयोग करने में समर्थ बन सके। केंद्र और राज्य सरकार के हमारे सिविल सेवकों को इस शिक्षण प्रक्रिया का
+                भाग होना आवश्यक है। जितना व्यापक इसका दायरा होगा, उतना ही गहरा उसका प्रभाव भी होगा।
+              </p>
+              <p class="letter-paragraph">
+                आयोग में हम सब मिलकर ऐसे फ्रेमवर्क और नीति निर्माण पर निरंतर कार्य कर रहे हैं जो नवाचार, दूर दृष्टि और
+                अनुसंधान पर बल देती हैं। हम एक ऐसा पारितंत्र बनाना चाहते है, जहां हम एक-दूसरे की क्षमता विकास की बेहतरीन
+                पद्धतियों से सीख सकें और अपने पारितंत्र के भाग रूप में उसे स्थापित कर सकें।
+              </p>
+              <p class="letter-paragraph">
+                हम अपने प्रशिक्षण संस्थान के क्षमता संवर्धन और उसके उन्नयन के सभी पहलुओं पर जोर देते हैं, क्योंकि हम
+                मानते हैं कि वह हमारे शिक्षण फ्रेमवर्क की रीढ़ है।
+              </p>
+              <p class="letter-paragraph">
+                मैं महसूस करती हूं कि उत्कृष्टता को न केवल स्थापित किया जाना चाहिए परंतु हमारे द्वारा इसे उत्सव के रूप
+                में मनाया भी जाना चाहिए। मैं आपके द्वारा किए जा रहे प्रयासों के प्रति आभार व्यक्त करती हूं जिसने
+                उत्कृष्टता के प्रति उन्मुख रहने हेतु अन्यों के लिए एक उदाहरण स्थापित किया है।
+              </p>
+              <p class="letter-paragraph">
+                मैं अपने सभी हितधारकों को अपनी टीम और सफर का एक महत्वपूर्ण हिस्सा मानती हूं और हम ऐसे किसी भी फीडबैक,
+                सुझावों का स्वागत करते हैं, जो हमें साथ मिलकर आगे बढ़ने में मदद करें।
+              </p>
+              {% else %}
+              <p class="letter-intro">
+                Let us join hands for continuously empowering our capacity building eco-system.
+              </p>
+              <p class="letter-paragraph">
+                Mission Karmayogi is a path-breaking and a first of its kind initiative envisioned by Hon'ble Prime
+                Minister Shri Narendra Modi, in the year 2020. Since its inception, Mission Karmayogi team has
+                functioned with dedication towards developing an eco-system which strives to enable lifelong learning
+                for the Civil Servants, who are an important link for citizen-centric delivery of services. The
+                Capacity Building Commission, established on 1st April, 2021, functions at the core of Mission
+                Karmayogi, through policy frameworks laying foundation of capacity building initiatives.
+              </p>
+              <p class="letter-paragraph">
+                It gives me immense pride to lead the efforts of Capacity Building Commission. We together need to
+                take this journey ahead.
+              </p>
+              <p class="letter-paragraph">
+                As we are aware, civil servants perform in a ever-growing and sometimes uncertain environment. The
+                emerging and new technologies are not only providing unseen opportunities, but at the same time posing
+                challenges never imagined before. As civil servants, our duty is to deliver in any given situation and
+                upkeep the trust of the citizens. Continuous capacity building is the key to strive through any
+                challenge that might come and to optimally utilise the opportunities that might go unutilised if we
+                are not well-equipped to handle them.
+              </p>
+              <p class="letter-paragraph">
+                It is pertinent to mention here that we all need to come together to continuously build a learning
+                eco-system which enables our manpower to be ready to face and utilise any given situation to the best
+                advantage of the citizens. Our civil servants across the Central and State Governments need to be a
+                part of this learning process. The wider the chain, the greater the impact will be.
+              </p>
+              <p class="letter-paragraph">
+                We at the Commission are continuously functioning to arrive at the frameworks and policies that
+                emphasise upon innovation, foresight and research. We wish to build an eco-system where we learn from
+                the capacity building best practices of each other and institutionalise them as part of our
+                eco-system.
+              </p>
+              <p class="letter-paragraph">
+                We emphasise on the capacity enhancement and upgrading of our Training Institute in all aspects while
+                acknowledging that they are the backbone of our learning framework.
+              </p>
+              <p class="letter-paragraph">
+                I feel that excellence should not only be institutionalised but also celebrated by all of us. I wish
+                to acknowledge the efforts put by you, which has set an example for other to strive towards
+                excellence.
+              </p>
+              <p class="letter-paragraph">
+                I consider all my stakeholder an important part of my team & journey and we are open to any feedback,
+                suggestions that might help us grow together.
+              </p>
               {% endif %}
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="collab-header-full">
-      <div class="collab-header-content">
-        <h2>Opinions Do Matter</h2>
-      </div>
-    </div>
-    <!-- opinion section -->
-    <section class="cbc-blog-carousel">
-      <div class="opinions-layout-wrapper">
-        <!-- 75% Carousel Section -->
-        <div class="opinions-carousel-section">
-          {{ page.option_do_matter }}
-          <!-- See More Button for Opinions -->
-          <div class="blog-footer">
-            <div class="collab-controls">
-              <button class="collab-arrow" id="blogPrevBtn" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
-              <button class="collab-arrow collab-pause-btn" id="blogPauseBtn" aria-label="Pause Opinions Carousel"><i class="fas fa-pause" aria-hidden="true"></i></button>
-              <button class="collab-arrow" id="blogNextBtn" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
-            </div>
-            <a href="/opinions-do-matter" class="blog-see-more-btn">
-              See More
-              <i class="fas fa-arrow-right" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- Vertical Divider -->
-        <div class="opinions-segregator"></div>
-        
-        <!-- 25% Vertical Testimonials Box -->
-        <div class="opinions-testimonials-column">
-          {{ page.testimonials_section }}
-          <!-- See More Button for Testimonials -->
-          <div class="blog-footer">
-            <div class="collab-controls">
-              <button class="collab-arrow" id="testiPrevBtn" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
-              <button class="collab-arrow collab-pause-btn" id="testiPauseBtn" aria-label="Pause Testimonials Carousel"><i class="fas fa-pause" aria-hidden="true"></i></button>
-              <button class="collab-arrow" id="testiNextBtn" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
-            </div>
-            <a href="/testimonials" class="blog-see-more-btn">
-              See More
-              <i class="fas fa-arrow-right" aria-hidden="true"></i>
-            </a>
+          <div class="letter-signature">
+            {% if language == 'hi' %}
+            <div class="signature-wishes">शुभकामनाओं सहित,</div>
+            <div class="signature-name">सुश्री एस. राधा चौहान</div>
+            <div class="signature-title">अध्यक्ष</div>
+            {% else %}
+            <div class="signature-wishes">Best Wishes,</div>
+            <div class="signature-name">Ms. S. Radha Chauhan</div>
+            <div class="signature-title">Chairperson</div>
+            {% endif %}
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
 
 
-
-    <!-- socil media -->
-    <section class="social-section">
-      <div class="information-corner-header">
-        <div class="information-corner-title">
-          <h2>Glimpses</h2>
-        </div>
-      </div>
-      <div class="container py-5 pt-0">
-        <div class="row g-4 align-items-stretch">
-          <!-- Photo Gallery Section - Left -->
-          <div class="col-lg-6 col-md-6">
-            {{ page.photo_gallery }}
+  <div class="collab-header-full">
+    <div class="collab-header-content">
+      <h3>Opinions Do Matter</h3>
+    </div>
+  </div>
+  <!-- opinion section -->
+  <section class="cbc-blog-carousel">
+    <div class="opinions-layout-wrapper">
+      <!-- 75% Carousel Section -->
+      <div class="opinions-carousel-section">
+        {{ page.option_do_matter }}
+        <!-- See More Button for Opinions -->
+        <div class="blog-footer">
+          <div class="collab-controls">
+            <button class="collab-arrow" id="blogPrevBtn" aria-label="Previous"><i
+                class="fas fa-chevron-left"></i></button>
+            <button class="collab-arrow collab-pause-btn" id="blogPauseBtn" aria-label="Pause Opinions Carousel"><i
+                class="fas fa-pause" aria-hidden="true"></i></button>
+            <button class="collab-arrow" id="blogNextBtn" aria-label="Next"><i
+                class="fas fa-chevron-right"></i></button>
           </div>
-
-          
-          <!-- Video Gallery Section -->
-          <div class="col-lg-6 col-md-6">
-           {{ page.video_gallery_section }}
-           </div>
+          <a href="/opinions-do-matter" class="blog-see-more-btn">
+            See More
+            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </a>
         </div>
       </div>
-    </section>
 
-    <!-- Event Details Modal -->
-    <div class="event-modal" id="homeEventModal" role="dialog" aria-modal="true" aria-labelledby="homeEventModalTitle">
-      <div class="event-modal-backdrop" id="homeEventModalBackdrop"></div>
-      <div class="event-modal-content">
-        <button class="event-modal-close" id="homeEventModalClose" aria-label="Close Event Details Modal">
-          <i class="fas fa-times"></i>
-        </button>
-        <div class="event-modal-body" id="homeEventModalBody">
-           <h2 id="homeEventModalTitle" class="visually-hidden">Event Details</h2>
-          <!-- Event details will be populated here -->
+      <!-- Vertical Divider -->
+      <div class="opinions-segregator"></div>
+
+      <!-- 25% Vertical Testimonials Box -->
+      <div class="opinions-testimonials-column">
+        {{ page.testimonials_section }}
+        <!-- See More Button for Testimonials -->
+        <div class="blog-footer">
+          <div class="collab-controls">
+            <button class="collab-arrow" id="testiPrevBtn" aria-label="Previous"><i
+                class="fas fa-chevron-left"></i></button>
+            <button class="collab-arrow collab-pause-btn" id="testiPauseBtn" aria-label="Pause Testimonials Carousel"><i
+                class="fas fa-pause" aria-hidden="true"></i></button>
+            <button class="collab-arrow" id="testiNextBtn" aria-label="Next"><i
+                class="fas fa-chevron-right"></i></button>
+          </div>
+          <a href="/testimonials" class="blog-see-more-btn">
+            See More
+            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </a>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- count section -->
-   
-      {{ page.count_section }}
-   
 
-    <!-- partner section -->
-    <section class="partners-section">
-      <div class="container py-5">
-        {{page.logo_carousel}}
+
+  <!-- socil media -->
+  <section class="social-section">
+    <div class="information-corner-header">
+      <div class="information-corner-title">
+        <h3>Glimpses</h3>
       </div>
-    </section>
-
-  </main>
-  <!-- End of Main Content Container -->
-
-    <!-- Footer -->
- {% include 'themes/cbc/templates/layout/footer.html.twig' %}
-
-  <!-- Twitter Widget Script -->
-  <script async src="https://platform.twitter.com/widgets.js"></script>
-
-  <!-- LinkedIn Widget Script -->
-  <script src="https://platform.linkedin.com/in.js" data-lang="en_US"></script>
+    </div>
+    <div class="container py-5 pt-0">
+      <div class="row g-4 align-items-stretch">
+        <!-- Photo Gallery Section - Left -->
+        <div class="col-lg-6 col-md-6">
+          {{ page.photo_gallery }}
+        </div>
 
 
-  <!-- Video Testimonials Auto-Carousel Library -->
-  {{ attach_library('cbc/video-carousel') }}
+        <!-- Video Gallery Section -->
+        <div class="col-lg-6 col-md-6">
+          {{ page.video_gallery_section }}
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- Initialize Twitter Widget -->
-  <script>
-    // Ensure Twitter timeline loads after widgets.js is ready
-    window.addEventListener('load', function () {
-      if (window.twttr && window.twttr.ready) {
-        window.twttr.ready(function () {
-          window.twttr.widgets.load();
-        });
-      } else {
-        // Poll until twttr is available
-        var checkInterval = setInterval(function () {
-          if (window.twttr && window.twttr.ready) {
-            window.twttr.ready(function () {
-              window.twttr.widgets.load();
-            });
-            clearInterval(checkInterval);
-          }
-        }, 100);
+  <!-- Event Details Modal -->
+  <div class="event-modal" id="homeEventModal" role="dialog" aria-modal="true" aria-labelledby="homeEventModalTitle">
+    <div class="event-modal-backdrop" id="homeEventModalBackdrop"></div>
+    <div class="event-modal-content">
+      <button class="event-modal-close" id="homeEventModalClose" aria-label="Close Event Details Modal">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="event-modal-body" id="homeEventModalBody">
+        <h2 id="homeEventModalTitle" class="visually-hidden">Event Details</h2>
+        <!-- Event details will be populated here -->
+      </div>
+    </div>
+  </div>
 
-        // Stop checking after 10 seconds
-        setTimeout(function () {
+  <!-- count section -->
+
+  {{ page.count_section }}
+
+
+  <!-- partner section -->
+  <section class="partners-section">
+    <div class="container py-5">
+      {{page.logo_carousel}}
+    </div>
+  </section>
+
+</main>
+<!-- End of Main Content Container -->
+
+<!-- Footer -->
+{% include 'themes/cbc/templates/layout/footer.html.twig' %}
+
+<!-- Twitter Widget Script -->
+<script async src="https://platform.twitter.com/widgets.js"></script>
+
+<!-- LinkedIn Widget Script -->
+<script src="https://platform.linkedin.com/in.js" data-lang="en_US"></script>
+
+
+<!-- Video Testimonials Auto-Carousel Library -->
+{{ attach_library('cbc/video-carousel') }}
+
+<!-- Initialize Twitter Widget -->
+<script>
+  // Ensure Twitter timeline loads after widgets.js is ready
+  window.addEventListener('load', function () {
+    if (window.twttr && window.twttr.ready) {
+      window.twttr.ready(function () {
+        window.twttr.widgets.load();
+      });
+    } else {
+      // Poll until twttr is available
+      var checkInterval = setInterval(function () {
+        if (window.twttr && window.twttr.ready) {
+          window.twttr.ready(function () {
+            window.twttr.widgets.load();
+          });
           clearInterval(checkInterval);
-        }, 10000);
-      }
-    });
-  </script>
+        }
+      }, 100);
+
+      // Stop checking after 10 seconds
+      setTimeout(function () {
+        clearInterval(checkInterval);
+      }, 10000);
+    }
+  });
+</script>

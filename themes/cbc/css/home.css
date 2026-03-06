@@ -806,7 +806,7 @@
   transform: translateY(-10px);
 }
 
-.stat h2 {
+.stat h4 {
   font-size: 2.5rem;
   font-weight: 700;
   background: linear-gradient(45deg, #ffffff, #d4e8ff);
@@ -1752,7 +1752,7 @@
     padding: 20px 4%;
   }
 
-  .collab-header-content h2 {
+  .collab-header-content h3 {
     font-size: 1.1rem !important;
     /* Reduced from 1.3rem */
   }
@@ -2004,7 +2004,7 @@
     padding: 1.2rem 3%;
   }
 
-  .collab-header-content h2 {
+  .collab-header-content h3 {
     font-size: 1.2rem;
   }
 
@@ -2543,7 +2543,7 @@
   /* margin-bottom: 2rem; */
 }
 
-.information-corner-title h2 {
+.information-corner-title h3 {
   font-size: 1.2rem !important;
   /* Reduced from 1.5rem */
   font-weight: 700;
@@ -2560,7 +2560,7 @@
   text-align: center;
 }
 
-.collab-header-content h2 {
+.collab-header-content h3 {
   font-size: 1.2rem !important;
   /* Reduced from 1.5rem */
   font-weight: 700;
@@ -8308,14 +8308,14 @@ h2.infocus-heading {
   /* border-bottom: 2px solid #e9ecef; */
 }
 
-.partners-header h2 {
+.partners-header h4 {
   font-weight: 700;
   color: #2c53a2;
   position: relative;
   margin-bottom: 0;
 }
 
-.partners-header h2::after {
+.partners-header h4::after {
   content: "";
   position: absolute;
   bottom: -6px;
@@ -9456,7 +9456,7 @@ h2.infocus-heading {
     padding: 1.2rem 4%;
   }
 
-  .collab-header-content h2 {
+  .collab-header-content h3 {
     font-size: 1.1rem !important;
     /* Reduced from 1.3rem */
   }
@@ -9646,7 +9646,7 @@ h2.infocus-heading {
     padding: 1.2rem 3%;
   }
 
-  .collab-header-content h2 {
+  .collab-header-content h3 {
     font-size: 1.2rem;
   }
 
@@ -10127,7 +10127,7 @@ h2.infocus-heading {
   text-align: center;
 }
 
-.collab-header-content h2 {
+.collab-header-content h3 {
   font-size: 1.5rem;
   font-weight: 700;
   color: #004b88;
