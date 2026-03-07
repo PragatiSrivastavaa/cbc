@@ -15,7 +15,8 @@
               </div>
 
               <div class="youtube-carousel-wrapper position-relative" role="region" aria-label="Carousel">
-                <ul class="youtube-carousel d-flex list-unstyled p-0 m-0" id="youtubeCarousel" role="status" aria-live="polite" aria-atomic="true">
+                <div role="status" aria-live="polite" aria-atomic="true">
+                <ul class="youtube-carousel d-flex list-unstyled p-0 m-0" id="youtubeCarousel">
 
         {% for row in rows %}
           {% set node = row.content['#row']._entity %}
@@ -51,6 +52,7 @@
         {% endfor %}
 
       </ul>
+      </div>
     </div>
 
     <div class="video-gallery-footer text-end">

@@ -14,7 +14,8 @@
               </div>
 
               <div class="youtube-carousel-wrapper position-relative" role="region" aria-label="Carousel">
-                <ul class="youtube-carousel d-flex list-unstyled p-0 m-0" id="photoCarousel" role="status" aria-live="polite" aria-atomic="true">
+                <div role="status" aria-live="polite" aria-atomic="true">
+                <ul class="youtube-carousel d-flex list-unstyled p-0 m-0" id="photoCarousel">
                   <!-- Photo 1 -->
              {% for row in rows %}
               {% set entity = row.content['#row']._entity %}
@@ -36,6 +37,7 @@
                   </li>
                   {% endfor %}
                 </ul>
+                </div>
               </div>
 
               <!-- View All Button -->
