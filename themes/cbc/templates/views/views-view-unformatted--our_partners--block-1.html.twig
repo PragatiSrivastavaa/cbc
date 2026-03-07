@@ -1,38 +1,38 @@
 <!-- Header row -->
 <div class="container mb-5">
-        <div class="partners-header mb-3">
-          <h3>Our Partners</h3>     
-          <div class="slider-controls">
-            <button class="slider-btn" id="partnerPrev" aria-label="Previous Partner">&#10094;</button>
-            <button class="slider-btn" id="partnerPause" aria-label="Pause Partners"><i class="fas fa-pause"></i></button>
-            <button class="slider-btn" id="partnerNext" aria-label="Next Partner">&#10095;</button>
-          </div>
+  <div class="partners-header mb-3">
+    <h3>Our Partners</h3>
+    <div class="slider-controls">
+      <button class="slider-btn" id="partnerPrev" aria-label="Previous Partner">&#10094;</button>
+      <button class="slider-btn" id="partnerPause" aria-label="Pause Partners"><i class="fas fa-pause"></i></button>
+      <button class="slider-btn" id="partnerNext" aria-label="Next Partner">&#10095;</button>
+    </div>
+  </div>
+
+  <!-- Slider -->
+  <ul class="partners-slider list-unstyled p-0 m-0" id="partnersSlider">
+    {% for row in rows %}
+    {% set entity = row.content['#row']._entity %}
+    {% set entity = row.content['#row']._entity %}
+    {% set link_item = entity.field_link.0 %}
+
+    {% if link_item %}
+    {# Convert internal/external link to usable URL #}
+    {% set link = link_item.url %}
+    {% else %}
+    {# If linked field is empty, link to node page #}
+    {% set link = path('entity.node.canonical', {'node': entity.id()}) %}
+    {% endif %}
+
+    <li class="partner-card">
+      <a href="{{ link }}" target="_blank" rel="noopener noreferrer">
+        <div class="partner-image-wrapper">
+          {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}
         </div>
+      </a>
+    </li>
 
-        <!-- Slider -->
-        <ul class="partners-slider list-unstyled p-0 m-0" id="partnersSlider">
-         {% for row in rows %}
-               {% set entity = row.content['#row']._entity %}
-               {% set entity = row.content['#row']._entity %}
-                    {% set link_item = entity.field_link.0 %}
+    {% endfor %}
+  </ul>
 
-                {% if link_item %}
-                  {# Convert internal/external link to usable URL #}
-                  {% set link = link_item.url %}
-                {% else %}
-                  {# If linked field is empty, link to node page #}
-                  {% set link = path('entity.node.canonical', {'node': entity.id()}) %}
-                {% endif %}
-        
-          <li class="partner-card">
-             <a href="{{ link }}" target="_blank" rel="noopener noreferrer">
-               <div class="partner-image-wrapper">
-                 {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}
-               </div>
-            </a>
-          </li>
-
-          {% endfor %}
-        </ul>
-
-        </div>
+</div>
