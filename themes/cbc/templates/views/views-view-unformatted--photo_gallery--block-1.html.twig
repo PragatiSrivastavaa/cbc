@@ -1,9 +1,9 @@
 <!-- Photo Gallery Section - Left -->
 <div class="youtube-section p-3 rounded-4 socil-bg position-relative h-100">
               <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4 class="social-heading d-flex align-items-center gap-2 mb-0">
+                <h3 class="social-heading d-flex align-items-center gap-2 mb-0">
                   <i class="fas fa-images text-info"></i> Photo Gallery
-                </h4>
+                </h3>
                 <div class="d-flex align-items-center gap-3">
                   <div class="carousel-controls d-flex gap-2">
                     <button class="photo-prev"><i class="fas fa-chevron-left"></i></button>
@@ -14,7 +14,7 @@
               </div>
 
               <div class="youtube-carousel-wrapper position-relative" role="region" aria-label="Carousel">
-                <ul class="youtube-carousel d-flex list-unstyled p-0 m-0" id="photoCarousel" role="status" aria-live="polite" aria-atomic="true">
+                <ul class="youtube-carousel d-flex list-unstyled p-0 m-0" id="photoCarousel" aria-live="polite" aria-atomic="true">
                   <!-- Photo 1 -->
              {% for row in rows %}
               {% set entity = row.content['#row']._entity %}
@@ -30,7 +30,7 @@
 
                     </div>
                     <div class="video-caption">
-                      <h4 class="video-title">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h4>
+                      <h3 class="video-title">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
                       <p class="video-description">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}']|striptags|trim }}</p>
                     </div>
                   </li>
