@@ -14,7 +14,7 @@
               </div>
 
               <div class="youtube-carousel-wrapper position-relative" role="region" aria-label="Carousel">
-                <ul class="youtube-carousel d-flex list-unstyled p-0 m-0" id="photoCarousel" aria-live="polite" aria-atomic="true">
+                <ul class="youtube-carousel d-flex list-unstyled p-0 m-0" id="photoCarousel" role="status" aria-live="polite" aria-atomic="true">
                   <!-- Photo 1 -->
              {% for row in rows %}
               {% set entity = row.content['#row']._entity %}

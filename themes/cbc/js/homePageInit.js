@@ -64,7 +64,7 @@ function initializeCarousel() {
     slides.forEach((slide, i) => {
       slide.classList.toggle('active', i === index);
       if (i === index) {
-        slide.setAttribute('aria-current', 'true');
+        slide.setAttribute('aria-current', 'page');
       } else {
         slide.removeAttribute('aria-current');
       }
@@ -73,7 +73,7 @@ function initializeCarousel() {
     buttons.forEach((btn, i) => {
       btn.classList.toggle('active', i === index);
       if (i === index) {
-        btn.setAttribute('aria-current', 'true');
+        btn.setAttribute('aria-current', 'page');
       } else {
         btn.removeAttribute('aria-current');
       }
@@ -1410,7 +1410,7 @@ function initializeYouTubeCarousel() {
 
       // Set aria-current on the active slide
       if (i === index) {
-        card.setAttribute('aria-current', 'true');
+        card.setAttribute('aria-current', 'page');
       } else {
         card.removeAttribute('aria-current');
       }
