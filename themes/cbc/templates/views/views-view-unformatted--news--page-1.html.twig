@@ -7,6 +7,7 @@
           {% for row in rows %}
             {% set node = row.content['#row']._entity %}
         {% set entity = row.content['#row']._entity %}
+        {% set title_text = row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] %}
                    {% set link_item = entity.field_link.0 %}
 
                 {% if link_item %}
@@ -39,7 +40,7 @@
                 <div class="whats-new-content">
 
               <a href="{{ link }}" target="_blank" rel="noopener noreferrer">
-                <h3 class="whats-new-title">{{ node.label }}</h3>
+                <h3 class="whats-new-title">{{ title_text }}</h3>
               </a>
             
 
