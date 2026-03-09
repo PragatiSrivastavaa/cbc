@@ -59,7 +59,7 @@ function cbc_preprocess_page(&$variables) {
   $variables['#cache']['max-age'] = 0;
   global $base_url;
   $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
-  $vars['language'] = $language;
+  $variables['language'] = $language;
 
 // for total visit count
   if (\Drupal::moduleHandler()->moduleExists('counter')) {

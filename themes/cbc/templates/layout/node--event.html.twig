@@ -11,7 +11,7 @@
                 <div class="event-image-item">
                   <img
                     src="{{ file_url(image_item.entity.fileuri) }}"
-                    alt="{{ node.label }} - Image {{ loop.index }}"
+                    alt="{{ node.title.value }} - Image {{ loop.index }}"
                     loading="lazy"
                   >
                 </div>
@@ -46,7 +46,7 @@
 
         {# Event Title #}
         <h1 class="event-article-title">
-          {{ node.label }}
+          {{ node.title.value }}
         </h1>
 
         {# Event Description #}

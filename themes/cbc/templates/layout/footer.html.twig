@@ -8,7 +8,7 @@
 
   <!-- Useful Links -->
   <div class="footer-links">
-    <h4>Useful Links</h4>
+    <h4>{% if language == 'hi' %}उपयोगी लिंक{% else %}Useful Links{% endif %}</h4>
     
       {{ page.footer_useful_links }}
     
@@ -16,19 +16,24 @@
 
   <!-- Quick Links -->
   <div class="footer-links">
-    <h4>Quick Links</h4>
+    <h4>{% if language == 'hi' %}त्वरित लिंक{% else %}Quick Links{% endif %}</h4>
     
   {{ page.footer_quick_links }}
   </div>
 
   <!-- Contact Info -->
   <div class="footer-contact">
-    <h4>Contact Us</h4>
+    <h4>{% if language == 'hi' %}संपर्क करें{% else %}Contact Us{% endif %}</h4>
     {{ page.contact_us }}
 
     <div class="visit-stats">
-      <p><strong>Last Updated: </strong>{{ node.field_publication_date | date('d/m/Y') }}</p>
-      <p><strong>Visitors:</strong> {{ total_visitors }}</p>
+      
+        <p><strong>{% if language == 'hi' %}अंतिम अद्यतन: {% else %}Last Updated: {% endif %}</strong>{{ node.field_publication_date.value | date('d/m/Y') }}</p>
+     
+      
+      <p>
+        <strong>{% if language == 'hi' %}कुल आगंतुक: {% else %}Total Visitors: {% endif %}</strong> {{ total_visitors }}<br>
+      </p>
     </div>
   </div>
 </div>
