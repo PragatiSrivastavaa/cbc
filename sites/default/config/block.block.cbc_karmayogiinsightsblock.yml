@@ -1,6 +1,6 @@
 uuid: 1cb93a4d-dfb8-4efa-9f93-31b3ad7d8a30
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - karmayogi_api

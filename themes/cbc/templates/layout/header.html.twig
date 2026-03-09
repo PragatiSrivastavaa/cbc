@@ -1,14 +1,14 @@
 <header>
-<h1 class="visually-hidden">Capacity Building Commission</h1>
+<h1 class="visually-hidden">{% if language == 'hi' %}क्षमता निर्माण आयोग{% else %}Capacity Building Commission{% endif %}</h1>
 <!-- Skip Navigation Link - Industry Standard Accessibility -->
-<a href="#app-content" class="skip-link">Skip to main content</a>
+<a href="#app-content" class="skip-link">{% if language == 'hi' %}मुख्य सामग्री पर जाएं{% else %}Skip to main content{% endif %}</a>
 
 <!-- Top Bar -->
 <div class="top-bar">
   <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap px-3">
     <div class="d-flex align-items-center">
-      <a href="#app-content">Skip to main content</a>
-      <a class="header-border" href="/screen-reader-access" title="Screen Reader Access Information">Screen Reader</a>
+      <a href="#app-content">{% if language == 'hi' %}मुख्य सामग्री पर जाएं{% else %}Skip to main content{% endif %}</a>
+      <a class="header-border" href="/screen-reader-access" title="{% if language == 'hi' %}स्क्रीन रीडर एक्सेस जानकारी{% else %}Screen Reader Access Information{% endif %}">{% if language == 'hi' %}स्क्रीन रीडर{% else %}Screen Reader{% endif %}</a>
        <!-- Language Toggle -->
   <div class="language-toggle">
     {{ page.language }}
@@ -16,7 +16,7 @@
     </div>
    
     <div class="d-flex align-items-center mt-md-0">
-      <button class="access-icon" aria-label="Open Accessibility Options" title="Open Accessibility Options (Alt+A)">
+      <button class="access-icon" aria-label="{% if language == 'hi' %}एक्सेसिबिलिटी विकल्प खोलें{% else %}Open Accessibility Options{% endif %}" title="{% if language == 'hi' %}एक्सेसिबिलिटी विकल्प खोलें (Alt+A){% else %}Open Accessibility Options (Alt+A){% endif %}">
         <img src="{{ base_path }}themes/cbc/img/accessability.png" alt="" aria-hidden="true" />
       </button>
       <div class="search-wrapper">
@@ -31,77 +31,77 @@
  {{ page.primary_menu }}
 </header>
   <!-- Accessibility Drawer -->
-  <div class="accessibility-drawer" id="accessibilityDrawer" role="dialog" aria-label="Accessibility Options" aria-modal="true" data-state="closed" inert>
+  <div class="accessibility-drawer" id="accessibilityDrawer" role="dialog" aria-label="{% if language == 'hi' %}एक्सेसिबिलिटी विकल्प{% else %}Accessibility Options{% endif %}" aria-modal="true" data-state="closed" inert>
     <div class="accessibility-header">
-      <h2><i class="fas fa-universal-access"></i> Accessibility Options</h2>
-      <button class="accessibility-close-btn" id="closeAccessibilityBtn" aria-label="Close Accessibility Menu">
+      <h2><i class="fas fa-universal-access"></i> {% if language == 'hi' %}एक्सेसिबिलिटी विकल्प{% else %}Accessibility Options{% endif %}</h2>
+      <button class="accessibility-close-btn" id="closeAccessibilityBtn" aria-label="{% if language == 'hi' %}एक्सेसिबिलिटी मेनू बंद करें{% else %}Close Accessibility Menu{% endif %}">
         <i class="fas fa-times"></i>
       </button>
     </div>
     <div class="accessibility-content">
       <div class="accessibility-section">
-        <h3><i class="fas fa-text-height"></i> Text Size</h3>
+        <h3><i class="fas fa-text-height"></i> {% if language == 'hi' %}टेक्स्ट का आकार{% else %}Text Size{% endif %}</h3>
         <div class="text-size-controls">
-          <button class="text-size-btn high-contrast-border" data-size="small" aria-label="Small Text Size" aria-pressed="false"><span>A-</span></button>
-          <button class="text-size-btn high-contrast-border" data-size="normal" aria-label="Normal Text Size" aria-pressed="true"><span>A</span></button>
-          <button class="text-size-btn high-contrast-border" data-size="large" aria-label="Large Text Size" aria-pressed="false"><span>A+</span></button>
-          <button class="text-size-btn high-contrast-border" data-size="extra-large" aria-label="Extra Large Text Size" aria-pressed="false"><span>A++</span></button>
+          <button class="text-size-btn high-contrast-border" data-size="small" aria-label="{% if language == 'hi' %}छोटा टेक्स्ट आकार{% else %}Small Text Size{% endif %}" aria-pressed="false"><span>A-</span></button>
+          <button class="text-size-btn high-contrast-border" data-size="normal" aria-label="{% if language == 'hi' %}सामान्य टेक्स्ट आकार{% else %}Normal Text Size{% endif %}" aria-pressed="true"><span>A</span></button>
+          <button class="text-size-btn high-contrast-border" data-size="large" aria-label="{% if language == 'hi' %}बड़ा टेक्स्ट आकार{% else %}Large Text Size{% endif %}" aria-pressed="false"><span>A+</span></button>
+          <button class="text-size-btn high-contrast-border" data-size="extra-large" aria-label="{% if language == 'hi' %}अत्यधिक बड़ा टेक्स्ट आकार{% else %}Extra Large Text Size{% endif %}" aria-pressed="false"><span>A++</span></button>
         </div>
       </div>
 
       <div class="accessibility-section">
-        <h3><i class="fas fa-adjust"></i> Display Themes</h3>
+        <h3><i class="fas fa-adjust"></i> {% if language == 'hi' %}डिस्प्ले थीम{% else %}Display Themes{% endif %}</h3>
         <div class="contrast-themes">
-          <button class="contrast-btn high-contrast-border" data-theme="default" aria-label="Default Theme" aria-pressed="true">
+          <button class="contrast-btn high-contrast-border" data-theme="default" aria-label="{% if language == 'hi' %}डिफ़ॉल्ट थीम{% else %}Default Theme{% endif %}" aria-pressed="true">
             <span class="contrast-preview high-contrast-border default">Aa</span>
-            <span class="contrast-name">Normal</span>
+            <span class="contrast-name">{% if language == 'hi' %}सामान्य{% else %}Normal{% endif %}</span>
           </button>
-          <button class="contrast-btn high-contrast-border" data-theme="high-contrast" aria-label="High Contrast Theme" aria-pressed="false">
+          <button class="contrast-btn high-contrast-border" data-theme="high-contrast" aria-label="{% if language == 'hi' %}उच्च कंट्रास्ट थीम{% else %}High Contrast Theme{% endif %}" aria-pressed="false">
             <span class="contrast-preview high-contrast">Aa</span>
-            <span class="contrast-name">High Contrast</span>
+            <span class="contrast-name">{% if language == 'hi' %}उच्च कंट्रास्ट{% else %}High Contrast{% endif %}</span>
           </button>
-          <button class="contrast-btn high-contrast-border" data-theme="dark" aria-label="Dark Mode Theme" aria-pressed="false">
+          <button class="contrast-btn high-contrast-border" data-theme="dark" aria-label="{% if language == 'hi' %}डार्क मोड थीम{% else %}Dark Mode Theme{% endif %}" aria-pressed="false">
             <span class="contrast-preview dark-mode">Aa</span>
-            <span class="contrast-name">Dark Mode</span>
+            <span class="contrast-name">{% if language == 'hi' %}डार्क मोड{% else %}Dark Mode{% endif %}</span>
           </button>
-          <button class="contrast-btn high-contrast-border" data-theme="yellow-black" aria-label="Yellow Black Theme" aria-pressed="false">
+          <button class="contrast-btn high-contrast-border" data-theme="yellow-black" aria-label="{% if language == 'hi' %}पीला काला थीम{% else %}Yellow Black Theme{% endif %}" aria-pressed="false">
             <span class="contrast-preview yellow-black">Aa</span>
-            <span class="contrast-name">Yellow-Black</span>
+            <span class="contrast-name">{% if language == 'hi' %}पीला-काला{% else %}Yellow-Black{% endif %}</span>
           </button>
         </div>
       </div>
 
       <div class="accessibility-section">
-        <h3><i class="fas fa-mouse-pointer"></i> Cursor Size</h3>
+        <h3><i class="fas fa-mouse-pointer"></i> {% if language == 'hi' %}कर्सर का आकार{% else %}Cursor Size{% endif %}</h3>
         <div class="cursor-size-controls">
           <button class="cursor-size-option high-contrast-border" data-cursor="normal" aria-pressed="true">
-            <span class="cursor-label">Normal Cursor</span>
+            <span class="cursor-label">{% if language == 'hi' %}सामान्य कर्सर{% else %}Normal Cursor{% endif %}</span>
             <span class="cursor-demo normal">●</span>
           </button>
           <button class="cursor-size-option high-contrast-border" data-cursor="large" aria-pressed="false">
-            <span class="cursor-label">Large Cursor</span>
+            <span class="cursor-label">{% if language == 'hi' %}बड़ा कर्सर{% else %}Large Cursor{% endif %}</span>
             <span class="cursor-demo large">●</span>
           </button>
           <button class="cursor-size-option high-contrast-border" data-cursor="extra-large" aria-pressed="false">
-            <span class="cursor-label">Extra Large Cursor</span>
+            <span class="cursor-label">{% if language == 'hi' %}अत्यधिक बड़ा कर्सर{% else %}Extra Large Cursor{% endif %}</span>
             <span class="cursor-demo extra-large">●</span>
           </button>
         </div>
       </div>
 
       <div class="accessibility-section">
-  <h3><i class="fas fa-eye"></i> Visual Adjustments</h3>
+  <h3><i class="fas fa-eye"></i> {% if language == 'hi' %}विजुअल एडजस्टमेंट{% else %}Visual Adjustments{% endif %}</h3>
 
   <div class="accessibility-toggle-group">
 
     <button class="accessibility-toggle high-contrast-border"
          aria-pressed="false"
-         aria-label="Hide Images"
+         aria-label="{% if language == 'hi' %}छवियां छुपाएं{% else %}Hide Images{% endif %}"
          data-feature="hide-images"
          data-state="off">
 
       <span class="toggle-label">
-        <i class="fas fa-image"></i> Hide Images
+        <i class="fas fa-image"></i> {% if language == 'hi' %}छवियां छुपाएं{% else %}Hide Images{% endif %}
       </span>
 
       <!-- visual only -->
@@ -110,12 +110,12 @@
 
     <button class="accessibility-toggle high-contrast-border"
          aria-pressed="false"
-         aria-label="Highlight Links"
+         aria-label="{% if language == 'hi' %}लिंक हाइलाइट करें{% else %}Highlight Links{% endif %}"
          data-feature="highlight-links"
          data-state="off">
 
       <span class="toggle-label">
-        <i class="fas fa-link"></i> Highlight Links
+        <i class="fas fa-link"></i> {% if language == 'hi' %}लिंक हाइलाइट करें{% else %}Highlight Links{% endif %}
       </span>
 
       <span class="toggle-switch high-contrast-border" aria-hidden="true"></span>
@@ -123,12 +123,12 @@
 
     <button class="accessibility-toggle high-contrast-border"
          aria-pressed="false"
-         aria-label="Increase Line Height"
+         aria-label="{% if language == 'hi' %}लाइन की ऊंचाई बढ़ाएं{% else %}Increase Line Height{% endif %}"
          data-feature="increased-line-height"
          data-state="off">
 
       <span class="toggle-label">
-        <i class="fas fa-align-justify"></i> Increase Line Height
+        <i class="fas fa-align-justify"></i> {% if language == 'hi' %}लाइन की ऊंचाई बढ़ाएं{% else %}Increase Line Height{% endif %}
       </span>
 
       <span class="toggle-switch high-contrast-border" aria-hidden="true"></span>
@@ -136,12 +136,12 @@
 
     <button class="accessibility-toggle high-contrast-border"
          aria-pressed="false"
-         aria-label="Pause Animations - Stop all moving and blinking content"
+         aria-label="{% if language == 'hi' %}एनिमेशन रोकें{% else %}Pause Animations{% endif %}"
          data-feature="pause-animations"
          data-state="off">
 
       <span class="toggle-label">
-        <i class="fas fa-pause-circle"></i> Pause Animations
+        <i class="fas fa-pause-circle"></i> {% if language == 'hi' %}एनिमेशन रोकें{% else %}Pause Animations{% endif %}
       </span>
 
       <span class="toggle-switch high-contrast-border" aria-hidden="true"></span>
@@ -149,12 +149,12 @@
 
     <button class="accessibility-toggle high-contrast-border"
          aria-pressed="false"
-         aria-label="Keyboard Only Mode"
+         aria-label="{% if language == 'hi' %}केवल कीबोर्ड मोड{% else %}Keyboard Only Mode{% endif %}"
          data-feature="keyboard-only"
          data-state="off">
 
       <span class="toggle-label">
-        <i class="fas fa-keyboard"></i> Keyboard Only Mode
+        <i class="fas fa-keyboard"></i> {% if language == 'hi' %}केवल कीबोर्ड मोड{% else %}Keyboard Only Mode{% endif %}
       </span>
 
       <span class="toggle-switch high-contrast-border" aria-hidden="true"></span>
@@ -164,8 +164,8 @@
 </div>
 
 
-      <button class="accessibility-reset-btn high-contrast-border" id="resetAccessibilityBtn" aria-label="Reset All Accessibility Settings">
-        <i class="fas fa-redo-alt"></i> Reset All Settings
+      <button class="accessibility-reset-btn high-contrast-border" id="resetAccessibilityBtn" aria-label="{% if language == 'hi' %}सभी सेटिंग्स रीसेट करें{% else %}Reset All Accessibility Settings{% endif %}">
+        <i class="fas fa-redo-alt"></i> {% if language == 'hi' %}सभी सेटिंग्स रीसेट करें{% else %}Reset All Settings{% endif %}
       </button>
     </div>
     </div>
