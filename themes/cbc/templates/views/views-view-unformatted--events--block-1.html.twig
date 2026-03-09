@@ -17,7 +17,7 @@
 #}
   <!-- Events Cards Only (Full Width) -->
         <div class="events-content-wrapper high-contrast-no-border" role="region" aria-label="Carousel">
-          <div class="events-cards-container high-contrast-no-border" id="" role="status" aria-live="polite" aria-atomic="true">
+          <div class="events-cards-container high-contrast-no-border" aria-live="polite" aria-atomic="true">
             <ul class="events-cards-list high-contrast-no-border list-unstyled p-0 m-0" id="homeEventsCardsList">
               <!-- Event Card 1 -->
                 {% for row in rows %}
@@ -25,7 +25,9 @@
               <li class="home-event-card high-contrast-border" data-event-id="home-event-1" data-date="2025-11-07"
                 data-venue="Capacity Building Commission">
                 <div class="home-event-card-image">
-                 {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_images }}'] }}
+                  {% if node.field_event_images.0.entity %}
+                    <img src="{{ file_url(node.field_event_images.0.entity.fileuri) }}" alt="" loading="lazy">
+                  {% endif %}
                 </div>
                 <div class="home-event-card-content">
                   <div class="home-event-card-date">

@@ -35,7 +35,7 @@
             </a>
 
             {% if item.below %}
-              <div class="dropdown-menu" aria-labelledby="{{ dropdown_id }}">
+              <div class="dropdown-menu" role="menu" aria-labelledby="{{ dropdown_id }}">
 
                 {% for child in item.below %}
                   {% set child_icon = child.original_link.entity.field_icon.value ?? '' %}
@@ -74,6 +74,7 @@
 
                       <div class="sub-items-container"
                            id="sub-{{ parent_index }}-{{ loop.index }}"
+                           role="group"
                            aria-labelledby="{{ child_dropdown_id }}">
 
                         {% for sub in child.below %}
@@ -113,7 +114,7 @@
 
     <div class="d-flex align-items-center">
       <a class="navbar-brand d-flex align-items-center" href="{{ path('<front>') }}">
-        <img src="{{ base_path ~ directory }}/img/logo.png" alt="Emblem and Commission Building Comission logo" />
+        <img src="{{ base_path ~ directory }}/img/logo.png" alt="" />
       </a>
     </div>
 

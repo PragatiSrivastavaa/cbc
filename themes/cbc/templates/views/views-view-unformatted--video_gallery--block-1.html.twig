@@ -2,9 +2,9 @@
  
             <div class="youtube-section p-3 rounded-4 socil-bg position-relative h-100">
               <div class="d-flex justify-content-between align-items-center mb-3">
-                <h3 class="social-heading d-flex align-items-center gap-2 mb-0">
+                <h4 class="social-heading d-flex align-items-center gap-2 mb-0">
                   <i class="fa-regular fa-circle-play text-info"></i> Video Gallery
-                </h3>
+                </h4>
                 <div class="d-flex align-items-center gap-3">
                   <div class="carousel-controls d-flex gap-2">
                     <button class="youtube-prev"><i class="fas fa-chevron-left"></i></button>
@@ -15,6 +15,7 @@
               </div>
 
               <div class="youtube-carousel-wrapper position-relative" role="region" aria-label="Carousel">
+                <div role="status" aria-live="polite" aria-atomic="true">
                 <ul class="youtube-carousel d-flex list-unstyled p-0 m-0" id="youtubeCarousel">
 
         {% for row in rows %}
@@ -51,10 +52,11 @@
         {% endfor %}
 
       </ul>
+      </div>
     </div>
 
     <div class="video-gallery-footer text-end">
-      <a href="/video-gallery" class="view-all-videos-btn">
+      <a href="/video-gallery" class="view-all-videos-btn" aria-label="View all videos">
         View All Videos <i class="fas fa-arrow-right"></i>
       </a>
     </div>

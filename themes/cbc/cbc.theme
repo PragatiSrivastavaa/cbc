@@ -257,6 +257,19 @@ function cbc_preprocess_input(&$variables) {
       // This fixes the W3C validation error.
       $variables['attributes']->removeAttribute('autocomplete');
     }
+    
+    // Add accessibility attributes if there are errors
+    if (!empty($element['#errors'])) {
+      $input_name = $element['#name'] ?? 'field';
+      $error_id = 'error-' . str_replace(['[', ']'], ['-', ''], $input_name);
+      
+      $described_by = $variables['attributes']->offsetExists('aria-describedby') ? $variables['attributes']->offsetGet('aria-describedby')->value() : '';
+      if (strpos($described_by, $error_id) === false) {
+        $new_described_by = trim($described_by . ' ' . $error_id);
+        $variables['attributes']->setAttribute('aria-describedby', $new_described_by);
+      }
+      $variables['attributes']->setAttribute('aria-invalid', 'true');
+    }
   }
   elseif (isset($variables['attributes']) && is_array($variables['attributes'])) {
     // Array fallback.
@@ -269,6 +282,18 @@ function cbc_preprocess_input(&$variables) {
        if (isset($variables['attributes']['autocomplete'])) {
          unset($variables['attributes']['autocomplete']);
        }
+    }
+
+    // Add accessibility attributes if there are errors (Array fallback)
+    if (!empty($element['#errors'])) {
+      $input_name = $element['#name'] ?? 'field';
+      $error_id = 'error-' . str_replace(['[', ']'], ['-', ''], $input_name);
+      
+      $described_by = $variables['attributes']['aria-describedby'] ?? '';
+      if (strpos($described_by, $error_id) === false) {
+        $variables['attributes']['aria-describedby'] = trim($described_by . ' ' . $error_id);
+      }
+      $variables['attributes']['aria-invalid'] = 'true';
     }
   }
 }
@@ -392,6 +417,25 @@ function cbc_preprocess_textarea(&$variables) {
   $element = $variables['element'];
   if (isset($element['#errors'])) {
     $variables['errors'] = $element['#errors'];
+    
+    // Add accessibility attributes for textarea
+    $input_name = $element['#name'] ?? 'field';
+    $error_id = 'error-' . str_replace(['[', ']'], ['-', ''], $input_name);
+
+    if ($variables['attributes'] instanceof \Drupal\Core\Template\Attribute) {
+       $described_by = $variables['attributes']->offsetExists('aria-describedby') ? $variables['attributes']->offsetGet('aria-describedby')->value() : '';
+       if (strpos($described_by, $error_id) === false) {
+         $new_described_by = trim($described_by . ' ' . $error_id);
+         $variables['attributes']->setAttribute('aria-describedby', $new_described_by);
+       }
+       $variables['attributes']->setAttribute('aria-invalid', 'true');
+    } elseif (is_array($variables['attributes'])) {
+       $described_by = $variables['attributes']['aria-describedby'] ?? '';
+       if (strpos($described_by, $error_id) === false) {
+         $variables['attributes']['aria-describedby'] = trim($described_by . ' ' . $error_id);
+       }
+       $variables['attributes']['aria-invalid'] = 'true';
+    }
   }
   // Remove 'pattern' attribute as it is invalid for textarea elements
   if (isset($variables['attributes']['pattern'])) {
@@ -400,6 +444,33 @@ function cbc_preprocess_textarea(&$variables) {
   if ($variables['attributes'] instanceof \Drupal\Core\Template\Attribute) {
     $variables['attributes']->removeAttribute('pattern');
   }
+}
+
+/**
+ * Implements hook_preprocess_select().
+ * Add accessibility attributes for select elements with errors.
+ */
+function cbc_preprocess_select(&$variables) {
+    $element = $variables['element'];
+    if (!empty($element['#errors'])) {
+        $input_name = $element['#name'] ?? 'field';
+        $error_id = 'error-' . str_replace(['[', ']'], ['-', ''], $input_name);
+
+        if ($variables['attributes'] instanceof \Drupal\Core\Template\Attribute) {
+            $described_by = $variables['attributes']->offsetExists('aria-describedby') ? $variables['attributes']->offsetGet('aria-describedby')->value() : '';
+            if (strpos($described_by, $error_id) === false) {
+                $new_described_by = trim($described_by . ' ' . $error_id);
+                $variables['attributes']->setAttribute('aria-describedby', $new_described_by);
+            }
+            $variables['attributes']->setAttribute('aria-invalid', 'true');
+        } elseif (is_array($variables['attributes'])) {
+            $described_by = $variables['attributes']['aria-describedby'] ?? '';
+            if (strpos($described_by, $error_id) === false) {
+                $variables['attributes']['aria-describedby'] = trim($described_by . ' ' . $error_id);
+            }
+            $variables['attributes']['aria-invalid'] = 'true';
+        }
+    }
 }
 
 /**

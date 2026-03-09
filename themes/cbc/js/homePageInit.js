@@ -19,7 +19,6 @@ function initializeHomePage() {
     initializeInfocusSection();
     initializeHomeEvents();
     initializePartnerSlider();
-    initializePartnerSlider();
     initializeChairpersonModal();
     initializeSocialLinkAccessibility(); // Fix for empty social links
     initializeContactIconsAccessibility(); // Fix for missing accessible names on contact icons
@@ -65,7 +64,7 @@ function initializeCarousel() {
     slides.forEach((slide, i) => {
       slide.classList.toggle('active', i === index);
       if (i === index) {
-        slide.setAttribute('aria-current', 'true');
+        slide.setAttribute('aria-current', 'page');
       } else {
         slide.removeAttribute('aria-current');
       }
@@ -74,7 +73,7 @@ function initializeCarousel() {
     buttons.forEach((btn, i) => {
       btn.classList.toggle('active', i === index);
       if (i === index) {
-        btn.setAttribute('aria-current', 'true');
+        btn.setAttribute('aria-current', 'page');
       } else {
         btn.removeAttribute('aria-current');
       }
@@ -926,6 +925,10 @@ function initializeNewsBanner() {
 
   if (!newsTrack || !toggleBtn) return;
 
+  // Prevent double initialization
+  if (newsTrack.hasAttribute('data-initialized')) return;
+  newsTrack.setAttribute('data-initialized', 'true');
+
   // Duplicate banners for seamless scrolling (only once)
   if (!newsTrack.hasAttribute('data-cloned')) {
     const banners = newsTrack.querySelectorAll('.news-banner');
@@ -937,103 +940,72 @@ function initializeNewsBanner() {
     newsTrack.setAttribute('data-cloned', 'true');
   }
 
-  // --- Dynamic Speed Calculation ---
-  function updateNewsAnimationSpeed() {
-    // 1. Get total height of the track
-    // The track contains 2 sets of items (original + clone).
-    // We want the duration for ONE full cycle (half height).
-    const scrollHeight = newsTrack.scrollHeight;
-    const oneCycleHeight = scrollHeight / 2;
+  const newsWrapper = newsTrack.closest('.news-wrapper') || newsTrack.parentElement;
 
-    // 2. Define target speed (pixels per second)
-    // Adjust this value to make it faster or slower.
-    // 30px/s is a readable slow scroll. 80px/s is faster.
-    const speedPxPerSec = 80;
+  // --- State ---
+  let isManuallyPaused = false;  // user clicked pause button
+  let isHovered = false;         // mouse is over the section
+  let scrollInterval;
 
-    // 3. Calculate duration
-    let duration = oneCycleHeight / speedPxPerSec;
-
-    // Ensure a minimum reasonable duration so it doesn't fly too fast if empty
-    if (duration < 5) duration = 5;
-
-    // 4. Apply to the element
-    newsTrack.style.animationDuration = `${duration}s`;
-  }
-
-  // Calculate initially and on resize
-  updateNewsAnimationSpeed();
-  window.addEventListener('resize', updateNewsAnimationSpeed);
-  // Also update on window load to ensure all resources (fonts/images) are loaded for correct height
-  window.addEventListener('load', updateNewsAnimationSpeed);
-
-  // --- Pause/Play Logic ---
-  let isPaused = false;
-
-  // Remove old listener
+  // --- Icon Helper ---
+  // Remove old listener by cloning
   const newToggleBtn = toggleBtn.cloneNode(true);
   toggleBtn.parentNode.replaceChild(newToggleBtn, toggleBtn);
-  const newToggleIcon = newToggleBtn.querySelector('i');
+  const icon = newToggleBtn.querySelector('i');
 
-  // Set initial label
-  newToggleBtn.setAttribute('aria-label', 'Pause News Updates');
-
-  newToggleBtn.addEventListener('click', () => {
-    if (!isPaused) {
-      newsTrack.classList.add('paused');
-      newToggleIcon.classList.remove('fa-pause');
-      newToggleIcon.classList.add('fa-play');
+  function updateIcon() {
+    // Show play icon when paused (either manually or by hover)
+    // Show pause icon when scrolling
+    const effectivelyPaused = isManuallyPaused || isHovered;
+    if (effectivelyPaused) {
+      icon.classList.remove('fa-pause');
+      icon.classList.add('fa-play');
       newToggleBtn.setAttribute('aria-label', 'Play News Updates');
-      isPaused = true;
     } else {
-      newsTrack.classList.remove('paused');
-      newToggleIcon.classList.remove('fa-play');
-      newToggleIcon.classList.add('fa-pause');
+      icon.classList.remove('fa-play');
+      icon.classList.add('fa-pause');
       newToggleBtn.setAttribute('aria-label', 'Pause News Updates');
-      isPaused = false;
     }
-  });
-
-  // Add manual scroll with mouse wheel
-  const newsSection = newsTrack.closest('.news-section') || newsTrack.parentElement;
-  if (newsSection) {
-    newsSection.addEventListener('wheel', (e) => {
-      const trackIsPaused = newsTrack.classList.contains('paused');
-      const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
-
-      if (trackIsPaused || globalPauseActive) {
-        e.preventDefault();
-        const scrollAmount = e.deltaY > 0 ? 100 : -100;
-        newsTrack.scrollTop += scrollAmount;
-      }
-    }, { passive: false });
   }
 
-  // Add keyboard navigation
-  newsTrack.setAttribute('tabindex', '0');
-  newsTrack.addEventListener('keydown', (e) => {
-    const trackIsPaused = newsTrack.classList.contains('paused');
+  // --- Auto-scroll ---
+  function step() {
     const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
-
-    if (trackIsPaused || globalPauseActive) {
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        const scrollAmount = e.key === 'ArrowDown' ? 100 : -100;
-        newsTrack.scrollTop += scrollAmount;
+    if (!isManuallyPaused && !isHovered && !globalPauseActive) {
+      const halfHeight = newsTrack.scrollHeight / 2;
+      newsWrapper.scrollTop += 0.8;
+      if (newsWrapper.scrollTop >= halfHeight) {
+        newsWrapper.scrollTop = 0;
       }
     }
+    scrollInterval = requestAnimationFrame(step);
+  }
+  scrollInterval = requestAnimationFrame(step);
+
+  // --- Manual Pause/Play Button ---
+  newToggleBtn.addEventListener('click', () => {
+    isManuallyPaused = !isManuallyPaused;
+    updateIcon();
   });
 
-  // Pause on hover (optional, good for UX)
-  newsTrack.addEventListener('mouseenter', () => {
-    if (!isPaused) {
-      newsTrack.classList.add('paused');
-    }
+  // --- Hover Pause ---
+  newsWrapper.addEventListener('mouseenter', () => {
+    isHovered = true;
+    updateIcon();
+  });
+  newsWrapper.addEventListener('mouseleave', () => {
+    isHovered = false;
+    updateIcon();
   });
 
-  newsTrack.addEventListener('mouseleave', () => {
-    if (!isPaused) {
-      newsTrack.classList.remove('paused');
-    }
+  // --- Focus Pause (keyboard accessibility) ---
+  newsWrapper.addEventListener('focusin', () => {
+    isHovered = true;
+    updateIcon();
+  });
+  newsWrapper.addEventListener('focusout', () => {
+    isHovered = false;
+    updateIcon();
   });
 }
 
@@ -1044,6 +1016,10 @@ function initializeMediaCorner() {
 
   if (!mediaCornerTrack || !mediaCornerBtn) return;
 
+  // Prevent double initialization
+  if (mediaCornerTrack.hasAttribute('data-initialized')) return;
+  mediaCornerTrack.setAttribute('data-initialized', 'true');
+
   // Duplicate items for seamless scrolling
   const mediaItems = mediaCornerTrack.querySelectorAll(".media-item");
   if (mediaItems.length > 0) {
@@ -1053,62 +1029,70 @@ function initializeMediaCorner() {
     });
   }
 
-  const mediaCornerIcon = mediaCornerBtn.querySelector("i");
-  let isMediaCornerPaused = false;
+  const mediaWrapper = mediaCornerTrack.closest('.media-corner-box');
 
-  // Remove old listener
+  // --- State ---
+  let isManuallyPaused = false;
+  let isHovered = false;
+  let scrollInterval;
+
+  // --- Icon Helper ---
   const newMediaCornerBtn = mediaCornerBtn.cloneNode(true);
   mediaCornerBtn.parentNode.replaceChild(newMediaCornerBtn, mediaCornerBtn);
-  const newMediaCornerIcon = newMediaCornerBtn.querySelector("i");
+  const icon = newMediaCornerBtn.querySelector("i");
 
-  // Set initial label
-  newMediaCornerBtn.setAttribute('aria-label', 'Pause Media Corner');
-
-  newMediaCornerBtn.addEventListener("click", () => {
-    if (!isMediaCornerPaused) {
-      mediaCornerTrack.style.animationPlayState = "paused";
-      newMediaCornerIcon.classList.remove("fa-pause");
-      newMediaCornerIcon.classList.add("fa-play");
+  function updateIcon() {
+    const effectivelyPaused = isManuallyPaused || isHovered;
+    if (effectivelyPaused) {
+      icon.classList.remove('fa-pause');
+      icon.classList.add('fa-play');
       newMediaCornerBtn.setAttribute('aria-label', 'Play Media Corner');
-      isMediaCornerPaused = true;
     } else {
-      mediaCornerTrack.style.animationPlayState = "running";
-      newMediaCornerIcon.classList.remove("fa-play");
-      newMediaCornerIcon.classList.add("fa-pause");
+      icon.classList.remove('fa-play');
+      icon.classList.add('fa-pause');
       newMediaCornerBtn.setAttribute('aria-label', 'Pause Media Corner');
-      isMediaCornerPaused = false;
     }
-  });
-
-  // Add manual scroll with mouse wheel - focused scrolling
-  const mediaSection = mediaCornerTrack.closest('.media-corner-section') || mediaCornerTrack.parentElement;
-  if (mediaSection) {
-    mediaSection.addEventListener('wheel', (e) => {
-      const isPaused = mediaCornerTrack.style.animationPlayState === 'paused';
-      const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
-
-      if (isPaused || globalPauseActive) {
-        e.preventDefault();
-        const scrollAmount = e.deltaY > 0 ? 100 : -100;
-        mediaCornerTrack.scrollTop += scrollAmount;
-      }
-    }, { passive: false });
   }
 
-  // Add keyboard navigation
-  mediaCornerTrack.setAttribute('tabindex', '0');
-  mediaCornerTrack.addEventListener('keydown', (e) => {
-    const isPaused = mediaCornerTrack.style.animationPlayState === 'paused';
+  // --- Auto-scroll ---
+  function step() {
     const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
-
-    if (isPaused || globalPauseActive) {
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        const scrollAmount = e.key === 'ArrowDown' ? 100 : -100;
-        mediaCornerTrack.scrollTop += scrollAmount;
+    if (!isManuallyPaused && !isHovered && !globalPauseActive && mediaWrapper) {
+      const halfHeight = mediaCornerTrack.scrollHeight / 2;
+      mediaWrapper.scrollTop += 0.5;
+      if (mediaWrapper.scrollTop >= halfHeight - 1) {
+        mediaWrapper.scrollTop = 0;
       }
     }
+    scrollInterval = requestAnimationFrame(step);
+  }
+  scrollInterval = requestAnimationFrame(step);
+
+  // --- Manual Pause/Play Button ---
+  newMediaCornerBtn.addEventListener("click", () => {
+    isManuallyPaused = !isManuallyPaused;
+    updateIcon();
   });
+
+  // --- Hover Pause ---
+  if (mediaWrapper) {
+    mediaWrapper.addEventListener('mouseenter', () => {
+      isHovered = true;
+      updateIcon();
+    });
+    mediaWrapper.addEventListener('mouseleave', () => {
+      isHovered = false;
+      updateIcon();
+    });
+    mediaWrapper.addEventListener('focusin', () => {
+      isHovered = true;
+      updateIcon();
+    });
+    mediaWrapper.addEventListener('focusout', () => {
+      isHovered = false;
+      updateIcon();
+    });
+  }
 }
 
 // ============================= Newsletters Section ------------------------------------//
@@ -1117,6 +1101,10 @@ function initializeNewsletters() {
   const newslettersBtn = document.getElementById("toggleNewslettersSlideBtn");
 
   if (!newslettersTrack || !newslettersBtn) return;
+
+  // Prevent double initialization
+  if (newslettersTrack.hasAttribute('data-initialized')) return;
+  newslettersTrack.setAttribute('data-initialized', 'true');
 
   // Duplicate items for seamless scrolling
   const newslettersItems = newslettersTrack.querySelectorAll(".newsletters-item");
@@ -1127,62 +1115,70 @@ function initializeNewsletters() {
     });
   }
 
-  const newslettersIcon = newslettersBtn.querySelector("i");
-  let isNewslettersPaused = false;
+  const newslettersWrapper = newslettersTrack.closest('.newsletters-box');
 
-  // Remove old listener
+  // --- State ---
+  let isManuallyPaused = false;
+  let isHovered = false;
+  let scrollInterval;
+
+  // --- Icon Helper ---
   const newNewslettersBtn = newslettersBtn.cloneNode(true);
   newslettersBtn.parentNode.replaceChild(newNewslettersBtn, newslettersBtn);
-  const newNewslettersIcon = newNewslettersBtn.querySelector("i");
+  const icon = newNewslettersBtn.querySelector("i");
 
-  // Set initial label
-  newNewslettersBtn.setAttribute('aria-label', 'Pause Newsletters');
-
-  newNewslettersBtn.addEventListener("click", () => {
-    if (!isNewslettersPaused) {
-      newslettersTrack.style.animationPlayState = "paused";
-      newNewslettersIcon.classList.remove("fa-pause");
-      newNewslettersIcon.classList.add("fa-play");
+  function updateIcon() {
+    const effectivelyPaused = isManuallyPaused || isHovered;
+    if (effectivelyPaused) {
+      icon.classList.remove('fa-pause');
+      icon.classList.add('fa-play');
       newNewslettersBtn.setAttribute('aria-label', 'Play Newsletters');
-      isNewslettersPaused = true;
     } else {
-      newslettersTrack.style.animationPlayState = "running";
-      newNewslettersIcon.classList.remove("fa-play");
-      newNewslettersIcon.classList.add("fa-pause");
+      icon.classList.remove('fa-play');
+      icon.classList.add('fa-pause');
       newNewslettersBtn.setAttribute('aria-label', 'Pause Newsletters');
-      isNewslettersPaused = false;
     }
-  });
-
-  // Add manual scroll with mouse wheel
-  const newslettersSection = newslettersTrack.closest('.newsletters-section') || newslettersTrack.parentElement;
-  if (newslettersSection) {
-    newslettersSection.addEventListener('wheel', (e) => {
-      const isPaused = newslettersTrack.style.animationPlayState === 'paused';
-      const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
-
-      if (isPaused || globalPauseActive) {
-        e.preventDefault();
-        const scrollAmount = e.deltaY > 0 ? 100 : -100;
-        newslettersTrack.scrollTop += scrollAmount;
-      }
-    }, { passive: false });
   }
 
-  // Add keyboard navigation
-  newslettersTrack.setAttribute('tabindex', '0');
-  newslettersTrack.addEventListener('keydown', (e) => {
-    const isPaused = newslettersTrack.style.animationPlayState === 'paused';
+  // --- Auto-scroll ---
+  function step() {
     const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
-
-    if (isPaused || globalPauseActive) {
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        const scrollAmount = e.key === 'ArrowDown' ? 100 : -100;
-        newslettersTrack.scrollTop += scrollAmount;
+    if (!isManuallyPaused && !isHovered && !globalPauseActive && newslettersWrapper) {
+      const halfHeight = newslettersTrack.scrollHeight / 2;
+      newslettersWrapper.scrollTop += 0.5;
+      if (newslettersWrapper.scrollTop >= halfHeight - 1) {
+        newslettersWrapper.scrollTop = 0;
       }
     }
+    scrollInterval = requestAnimationFrame(step);
+  }
+  scrollInterval = requestAnimationFrame(step);
+
+  // --- Manual Pause/Play Button ---
+  newNewslettersBtn.addEventListener("click", () => {
+    isManuallyPaused = !isManuallyPaused;
+    updateIcon();
   });
+
+  // --- Hover Pause ---
+  if (newslettersWrapper) {
+    newslettersWrapper.addEventListener('mouseenter', () => {
+      isHovered = true;
+      updateIcon();
+    });
+    newslettersWrapper.addEventListener('mouseleave', () => {
+      isHovered = false;
+      updateIcon();
+    });
+    newslettersWrapper.addEventListener('focusin', () => {
+      isHovered = true;
+      updateIcon();
+    });
+    newslettersWrapper.addEventListener('focusout', () => {
+      isHovered = false;
+      updateIcon();
+    });
+  }
 }
 // ---------------------------- Photo Carousel Section ----------------------------------//
 function initializePhotoCarousel() {
@@ -1243,6 +1239,11 @@ function initializePhotoCarousel() {
     photoCarousel.style.transform = `translateX(-${index * 100}%)`;
 
     setTimeout(() => {
+      photoCards.forEach((card, i) => {
+        if (i !== index) {
+          card.style.visibility = 'hidden';
+        }
+      });
       isTransitioning = false;
     }, 600);
   }
@@ -1409,7 +1410,7 @@ function initializeYouTubeCarousel() {
 
       // Set aria-current on the active slide
       if (i === index) {
-        card.setAttribute('aria-current', 'true');
+        card.setAttribute('aria-current', 'page');
       } else {
         card.removeAttribute('aria-current');
       }
@@ -1428,6 +1429,7 @@ function initializeYouTubeCarousel() {
     setTimeout(() => {
       ytCards.forEach((card, i) => {
         if (i !== index) {
+          card.style.visibility = 'hidden';
           const video = card.querySelector('video');
           if (video) {
             video.pause();
@@ -2401,11 +2403,6 @@ function initializePartnerSlider() {
     scrollMarquee('left');
   });
 
-  // Pause on hover (accessibility requirement: allow pausing on focus/hover)
-  partnerSlider.addEventListener('mouseenter', () => {
-    partnerTrack.classList.add('paused');
-  });
-
   // Pause on focus within the slider (for keyboard/screen reader users)
   partnerSlider.addEventListener('focusin', () => {
     partnerTrack.classList.add('paused');
@@ -2420,7 +2417,6 @@ function initializePartnerSlider() {
   };
 
   partnerSlider.addEventListener('focusout', resumeAnimation);
-  partnerSlider.addEventListener('mouseleave', resumeAnimation);
 }
 
 
@@ -3019,6 +3015,11 @@ if (document.readyState === 'loading') {
           // Radius 4 for clean, visible dot
           circle.setAttribute('r', '4');
           circle.setAttribute('class', 'map-dot-svg');
+          circle.setAttribute('tabindex', '0');
+          circle.setAttribute('role', 'img');
+          if (data.title) {
+            circle.setAttribute('aria-label', data.title);
+          }
           if (data.title) {
             const titleEl = document.createElementNS('http://www.w3.org/2000/svg', 'title');
             titleEl.textContent = data.title;

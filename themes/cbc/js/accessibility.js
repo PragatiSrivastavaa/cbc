@@ -45,6 +45,11 @@ class AccessibilityManager {
       return;
     }
 
+    // Ensure drawer starts inert (excluded from tab order) when closed
+    if (this.drawer.getAttribute('data-state') !== 'open') {
+      this.drawer.setAttribute('inert', '');
+    }
+
     this.createReadingGuide();
     this.attachEventListeners();
     this.applySettings();
@@ -161,6 +166,32 @@ class AccessibilityManager {
 
     // Initialize global dialog focus trap
     this.initGlobalDialogFocusTrap();
+
+    // Ensure page scrolls to focused elements (WCAG 2.4.7 focus visible/scroll positioning)
+    document.addEventListener('focusin', (e) => {
+      const element = e.target;
+      if (!element || element === document.body) return;
+
+      // Only scroll if via keyboard (using common focus-visible logic)
+      try {
+        if (element.matches(':focus-visible')) {
+          const rect = element.getBoundingClientRect();
+          const threshold = 120; // Enough space for sticky header/navbar
+
+          const isObscured = rect.top < threshold || rect.bottom > (window.innerHeight || document.documentElement.clientHeight);
+
+          if (isObscured) {
+            element.scrollIntoView({
+              behavior: 'smooth',
+              block: rect.top < threshold ? 'center' : 'nearest',
+              inline: 'nearest'
+            });
+          }
+        }
+      } catch (err) {
+        // Fallback or ignore if matches(':focus-visible') not supported
+      }
+    }, true);
   }
 
   setupGroupNavigation(containerSelector, itemSelector) {
@@ -190,6 +221,9 @@ class AccessibilityManager {
   openDrawer() {
     if (!this.drawer || !this.overlay) return;
 
+    // Remove inert so drawer is reachable by keyboard
+    this.drawer.removeAttribute('inert');
+
     this.drawer.setAttribute('data-state', 'open');
     this.overlay.setAttribute('data-state', 'active');
 
@@ -204,7 +238,7 @@ class AccessibilityManager {
     this.lastFocusedElement = document.activeElement;
     const closeBtn = document.getElementById('closeAccessibilityBtn');
     if (closeBtn) {
-      closeBtn.focus();
+      setTimeout(() => closeBtn.focus(), 50);
     }
   }
 
@@ -213,6 +247,9 @@ class AccessibilityManager {
 
     this.drawer.setAttribute('data-state', 'closed');
     this.overlay.setAttribute('data-state', 'hidden');
+
+    // Make drawer unreachable via keyboard — prevents focus trap when closed
+    this.drawer.setAttribute('inert', '');
 
     // Restore body scroll
     document.body.style.overflow = '';
@@ -517,7 +554,10 @@ class AccessibilityManager {
         mutation.addedNodes.forEach((node) => {
           if (node.nodeType === 1) {
             if (node.getAttribute('role') === 'dialog' || node.getAttribute('role') === 'alertdialog' || node.querySelector('[role="dialog"], [role="alertdialog"]')) {
-              this.setupFocusTrap(node.hasAttribute('role') ? node : node.querySelector('[role="dialog"], [role="alertdialog"]'));
+              const target = node.hasAttribute('role') ? node : node.querySelector('[role="dialog"], [role="alertdialog"]');
+              // Skip accessibility drawer — managed separately via openDrawer/closeDrawer
+              if (target && target.id === 'accessibilityDrawer') return;
+              this.setupFocusTrap(target);
             }
           }
         });
@@ -526,8 +566,9 @@ class AccessibilityManager {
 
     observer.observe(document.body, { childList: true, subtree: true });
 
-    // Initial check
+    // Initial check — skip the accessibility drawer (it has dedicated open/close management)
     document.querySelectorAll('[role="dialog"], [role="alertdialog"]').forEach(modal => {
+      if (modal.id === 'accessibilityDrawer') return;
       this.setupFocusTrap(modal);
     });
   }
@@ -540,6 +581,12 @@ class AccessibilityManager {
 
     container.addEventListener('keydown', (e) => {
       if (e.key !== 'Tab') return;
+
+      // Only trap focus when this dialog is actually open/active
+      const dataState = container.getAttribute('data-state');
+      const isVisible = !!(container.offsetWidth || container.offsetHeight || container.getClientRects().length);
+      const isActive = (dataState === 'open' || dataState === 'active') && isVisible;
+      if (!isActive) return;
 
       const focusableElements = Array.from(container.querySelectorAll(focusableSelectors)).filter(el => {
         return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);

@@ -9,7 +9,7 @@
                 </div>
               </div>
               <div class="section-body">
-                <div class="media-corner-box high-contrast-border position-relative overflow-hidden" role="region" aria-label="Carousel">
+                <div class="media-corner-box high-contrast-border position-relative" role="region" aria-label="Carousel">
                   <ul class="media-track list-unstyled p-0 m-0" id="mediaTrack">
                     {% for row in rows %}
                     {% set entity = row.content['#row']._entity %}
@@ -25,7 +25,7 @@
                     <li class="media-item">
                       <a href="{{ link }}" target="_blank"
                         rel="noopener noreferrer">
-                        <div class="media-image-wrapper" loading="lazy">
+                        <div class="media-image-wrapper">
                           {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_image }}'] }}
                         </div>
                         <p>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</p>
@@ -37,7 +37,6 @@
                 </div>
 
                 <div class="media-footer text-end">
-                  <a href="/media-corner" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                  <a href="/media-corner" class="view-all" aria-label="View all media corner">View All <i class="fas fa-arrow-right"></i></a>
                 </div>
               </div>
-            

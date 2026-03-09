@@ -13,7 +13,7 @@
                   {% set file = entity.field_image.0.entity %}
                   {% set img_url = file_url(file.fileuri) %}
 
-                  <img src="{{ img_url }}" class="collab-image" alt="{{ tokens['{{ title }}']|striptags|trim }}">
+                  <img src="{{ img_url }}" class="collab-image" alt="">
                 {% endif %}
                 
                   <h3>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}']|striptags }}</h3>

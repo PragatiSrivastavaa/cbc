@@ -31,7 +31,9 @@
                  {% set node = row.content['#row']._entity %}
       <li class="event-list-card">
       <div class="event-list-image">
-       {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_images }}'] }}
+        {% if node.field_event_images.0.entity %}
+          <img src="{{ file_url(node.field_event_images.0.entity.fileuri) }}" alt="" loading="lazy">
+        {% endif %}
       </div>
       <div class="event-list-content">
         <h2 class="event-list-title">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h2>

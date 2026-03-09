@@ -14,7 +14,8 @@
               </div>
 
               <div class="youtube-carousel-wrapper position-relative" role="region" aria-label="Carousel">
-                <ul class="youtube-carousel d-flex list-unstyled p-0 m-0" id="photoCarousel" role="status" aria-live="polite" aria-atomic="true">
+                <div role="status" aria-live="polite" aria-atomic="true">
+                <ul class="youtube-carousel d-flex list-unstyled p-0 m-0" id="photoCarousel">
                   <!-- Photo 1 -->
              {% for row in rows %}
               {% set entity = row.content['#row']._entity %}
@@ -30,17 +31,18 @@
 
                     </div>
                     <div class="video-caption">
-                      <h4 class="video-title">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h4>
+                      <h3 class="video-title">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
                       <p class="video-description">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}']|striptags|trim }}</p>
                     </div>
                   </li>
                   {% endfor %}
                 </ul>
+                </div>
               </div>
 
               <!-- View All Button -->
               <div class="video-gallery-footer text-end">
-                <a href="/photo-gallery" class="view-all-videos-btn">
+                <a href="/photo-gallery" class="view-all-videos-btn" aria-label="View all photos">
                   View All Photos <i class="fas fa-arrow-right"></i>
                 </a>
               </div>

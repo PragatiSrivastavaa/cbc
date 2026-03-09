@@ -1,4 +1,5 @@
 <header>
+<h1 class="visually-hidden">Capacity Building Commission</h1>
 <!-- Skip Navigation Link - Industry Standard Accessibility -->
 <a href="#app-content" class="skip-link">Skip to main content</a>
 
@@ -14,7 +15,7 @@
   </div> 
     </div>
    
-    <div class="d-flex align-items-center mt-2 mt-md-0">
+    <div class="d-flex align-items-center mt-md-0">
       <button class="access-icon" aria-label="Open Accessibility Options" title="Open Accessibility Options (Alt+A)">
         <img src="{{ base_path }}themes/cbc/img/accessability.png" alt="" aria-hidden="true" />
       </button>
@@ -30,7 +31,7 @@
  {{ page.primary_menu }}
 </header>
   <!-- Accessibility Drawer -->
-  <div class="accessibility-drawer" id="accessibilityDrawer" role="dialog" aria-label="Accessibility Options" aria-modal="true" data-state="closed">
+  <div class="accessibility-drawer" id="accessibilityDrawer" role="dialog" aria-label="Accessibility Options" aria-modal="true" data-state="closed" inert>
     <div class="accessibility-header">
       <h2><i class="fas fa-universal-access"></i> Accessibility Options</h2>
       <button class="accessibility-close-btn" id="closeAccessibilityBtn" aria-label="Close Accessibility Menu">
@@ -168,5 +169,4 @@
       </button>
     </div>
     </div>
-  </div>
   <div class="accessibility-overlay" id="accessibilityOverlay" data-state="hidden"></div>

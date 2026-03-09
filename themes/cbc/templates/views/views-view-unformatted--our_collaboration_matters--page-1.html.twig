@@ -1,4 +1,4 @@
-<div class="container">
+<div class="collab-content-wrapper collab-grid-row">
 <div class="collab-content-wrapper collab-grid-row">
               {% for row in rows %}
               {% set entity = row.content['#row']._entity %}
@@ -8,7 +8,7 @@
         {% set file = entity.field_image.0.entity %}
         {% set img_url = file_url(file.fileuri) %}
 
-        <img src="{{ img_url }}" class="collab-image" alt="{{ tokens['{{ title }}'] }}">
+        <img src="{{ img_url }}" class="collab-image" alt="">
       {% endif %}
                
                 <h3>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
