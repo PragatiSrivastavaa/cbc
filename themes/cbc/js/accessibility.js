@@ -238,7 +238,10 @@ class AccessibilityManager {
     this.lastFocusedElement = document.activeElement;
     const closeBtn = document.getElementById('closeAccessibilityBtn');
     if (closeBtn) {
-      setTimeout(() => closeBtn.focus(), 50);
+      setTimeout(() => {
+        closeBtn.focus();
+        this.setupFocusTrap(this.drawer);
+      }, 50);
     }
   }
 
@@ -543,6 +546,17 @@ class AccessibilityManager {
       }
     });
 
+    // Handle Bootstrap Modals
+    document.addEventListener('shown.bs.modal', (e) => {
+      this.setupFocusTrap(e.target);
+    });
+
+    // Handle Bootstrap Collapses (for drawers/menus)
+    document.addEventListener('shown.bs.collapse', (e) => {
+      // Small delay to ensure items are visible for focusable check
+      setTimeout(() => this.setupFocusTrap(e.target), 100);
+    });
+
     // Handle custom modals that may exist or be added dynamically
     this.observeCustomModals();
   }
@@ -574,22 +588,39 @@ class AccessibilityManager {
   }
 
   setupFocusTrap(container) {
-    if (!container || container.hasAttribute('data-focus-trap')) return;
-    container.setAttribute('data-focus-trap', 'true');
+    if (!container || container.hasAttribute('data-focus-trapAttached')) return;
+    container.setAttribute('data-focus-trapAttached', 'true');
 
     const focusableSelectors = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
 
     container.addEventListener('keydown', (e) => {
       if (e.key !== 'Tab') return;
 
-      // Only trap focus when this dialog is actually open/active
+      // Only trap focus when this dialog/container is actually open/active/visible
+      // 1. Check if it's the drawer with its specific data-state
       const dataState = container.getAttribute('data-state');
+      const isDrawer = container.id === 'accessibilityDrawer';
+      
+      // 2. Check general visibility (important for Bootstrap collapses/modals)
       const isVisible = !!(container.offsetWidth || container.offsetHeight || container.getClientRects().length);
-      const isActive = (dataState === 'open' || dataState === 'active') && isVisible;
+      
+      // 3. Determine if it should be active
+      let isActive = isVisible;
+      if (isDrawer) {
+        isActive = (dataState === 'open' || dataState === 'active');
+      } else if (container.classList.contains('modal')) {
+        isActive = container.classList.contains('show');
+      } else if (container.classList.contains('collapse')) {
+        isActive = container.classList.contains('show');
+      }
+
       if (!isActive) return;
 
       const focusableElements = Array.from(container.querySelectorAll(focusableSelectors)).filter(el => {
-        return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+        // Must be visible and not have inert/tabindex=-1
+        return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length) && 
+               el.getAttribute('tabindex') !== '-1' &&
+               !el.hasAttribute('disabled');
       });
 
       if (focusableElements.length === 0) return;
@@ -597,12 +628,12 @@ class AccessibilityManager {
       const firstFocusable = focusableElements[0];
       const lastFocusable = focusableElements[focusableElements.length - 1];
 
-      if (e.shiftKey) {
+      if (e.shiftKey) { // Shift + Tab
         if (document.activeElement === firstFocusable) {
           e.preventDefault();
           lastFocusable.focus();
         }
-      } else {
+      } else { // Tab
         if (document.activeElement === lastFocusable) {
           e.preventDefault();
           firstFocusable.focus();
