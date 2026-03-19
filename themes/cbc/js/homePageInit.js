@@ -90,6 +90,13 @@ function initializeCarousel() {
       source.type = 'video/mp4';
       video.appendChild(source);
 
+      // Apply filter only to the first video (index 0)
+      if (index === 0) {
+        video.style.filter = 'brightness(115%) saturate(150%)';
+      } else {
+        video.style.filter = 'none';
+      }
+
       video.load();
       video.play().catch(err => console.log('Video play failed:', err));
     }
@@ -1776,78 +1783,9 @@ function addMapIslands(container) {
 // Events are now in static HTML, so we just need to attach click handlers and initialize carousel
 
 function initializeHomeEvents() {
-  // Setup modal close listeners
-  const modalBackdrop = document.getElementById('homeEventModalBackdrop');
-  const modalClose = document.getElementById('homeEventModalClose');
-
-  if (modalBackdrop) {
-    modalBackdrop.addEventListener('click', closeHomeEventModal);
-  }
-  if (modalClose) {
-    modalClose.addEventListener('click', closeHomeEventModal);
-  }
-
-  // Attach click handlers to existing HTML event cards
-  attachEventCardHandlers();
-
-  // Initialize carousel with existing HTML cards
+  // Event cards navigate directly to node pages via their <a> links.
+  // No modal logic needed — just initialize the carousel.
   initEventsCarousel();
-}
-
-function buildEventDataFromCard(card) {
-  if (!card) return null;
-
-  const title = card.querySelector('.home-event-card-title')?.textContent.trim() || '';
-  const description = card.querySelector('.home-event-card-description')?.textContent.trim() || '';
-  const dateAttr = card.dataset.date;
-  const fallbackDateText = card.querySelector('.home-event-card-date')?.textContent.replace(/\s+/g, ' ').trim();
-  const imageEl = card.querySelector('.home-event-card-image img');
-  const image = imageEl ? imageEl.getAttribute('src') : '';
-  const venue = card.dataset.venue || '';
-
-  let parsedDate = null;
-  if (dateAttr) {
-    parsedDate = new Date(dateAttr);
-  } else if (fallbackDateText) {
-    parsedDate = new Date(fallbackDateText);
-  }
-
-  return {
-    id: card.getAttribute('data-event-id') || '',
-    title,
-    description,
-    date: parsedDate || new Date(),
-    image,
-    venue
-  };
-}
-
-function attachEventCardHandlers() {
-  const eventsCardsList = document.getElementById('homeEventsCardsList');
-  if (!eventsCardsList) return;
-
-  const eventCards = eventsCardsList.querySelectorAll('.home-event-card');
-
-  eventCards.forEach(card => {
-    const eventId = card.getAttribute('data-event-id');
-    if (eventId) {
-      // Remove any existing listeners by cloning
-      const newCard = card.cloneNode(true);
-      card.parentNode.replaceChild(newCard, card);
-
-      // Attach click handler
-      newCard.addEventListener('click', (e) => {
-        // Only trigger modal if clicking the title or 'Read More' link
-        if (e.target.closest('.home-event-card-title') || e.target.closest('.home-event-card-read-more')) {
-          e.preventDefault();
-          const eventDetails = buildEventDataFromCard(newCard);
-          if (eventDetails) {
-            showHomeEventModal(eventDetails);
-          }
-        }
-      });
-    }
-  });
 }
 
 // Events Carousel Functionality
@@ -2072,159 +2010,7 @@ function startAutoScroll(cardsList) {
   }, 100);
 }
 
-// Calendar rendering removed - calendar only on events page
 
-function showHomeDayEvents(events, date) {
-  if (!events || events.length === 0) return;
-
-  const modalBody = document.getElementById('homeEventModalBody');
-  const modal = document.getElementById('homeEventModal');
-
-  if (!modalBody || !modal) return;
-
-  const dateStr = date.toLocaleDateString('en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
-
-  if (events.length === 1) {
-    showHomeEventModal(events[0]);
-  } else {
-    modalBody.innerHTML = `
-      <div class="day-events-header">
-        <h2 class="event-modal-title">Events on ${dateStr}</h2>
-        <p class="day-events-count">${events.length} event${events.length > 1 ? 's' : ''} on this day</p>
-      </div>
-      <div class="day-events-list">
-        ${events.map((event, idx) => {
-      const eventDate = new Date(event.date);
-      const formattedDate = eventDate.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      });
-      return `
-            <div class="day-event-item" data-event-id="${event.id}" data-event-index="${idx}">
-              ${event.image ? `
-                <div class="day-event-image">
-                  <img src="${event.image}" alt="${event.title}" onerror="this.style.display='none'">
-                </div>
-              ` : ''}
-              <div class="day-event-content">
-                <div class="day-event-date">
-                  <i class="fas fa-calendar"></i> ${formattedDate}
-                </div>
-                ${event.venue ? `
-                  <div class="day-event-venue">
-                    <i class="fas fa-map-marker-alt"></i> ${event.venue}
-                  </div>
-                ` : ''}
-                <h3 class="day-event-title">${event.title}</h3>
-                <p class="day-event-description">${event.description}</p>
-                <button class="day-event-view-btn">View Full Details <i class="fas fa-arrow-right"></i></button>
-              </div>
-            </div>
-          `;
-    }).join('')}
-      </div>
-    `;
-    openHomeEventModal();
-
-    setTimeout(() => {
-      const dayEventItems = modalBody.querySelectorAll('.day-event-item');
-      dayEventItems.forEach((item) => {
-        const idx = parseInt(item.dataset.eventIndex);
-        item.addEventListener('click', (e) => {
-          if (e.target.closest('.day-event-view-btn')) {
-            closeHomeEventModal();
-            setTimeout(() => showHomeEventModal(events[idx]), 300);
-          } else {
-            closeHomeEventModal();
-            setTimeout(() => showHomeEventModal(events[idx]), 300);
-          }
-        });
-      });
-    }, 100);
-  }
-}
-
-function showHomeEventModal(event) {
-  const modalBody = document.getElementById('homeEventModalBody');
-  const modal = document.getElementById('homeEventModal');
-
-  if (!modalBody || !modal) return;
-
-  const eventDate = new Date(event.date);
-  const formattedDate = eventDate.toLocaleDateString('en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
-
-  modalBody.innerHTML = `
-    <div class="event-modal-image">
-      <img src="${event.image || 'img/event1.jpg'}" alt="${event.title}" onerror="this.src='img/event1.jpg'">
-    </div>
-    <div class="event-modal-info">
-      <div class="event-modal-date">
-        <i class="fas fa-calendar"></i> ${formattedDate}
-      </div>
-      ${event.venue ? `
-        <div class="event-modal-venue">
-          <i class="fas fa-map-marker-alt"></i> ${event.venue}
-        </div>
-      ` : ''}
-      <h2 class="event-modal-title" id="homeEventModalTitle">${event.title}</h2>
-      <div class="event-modal-description">
-        <p>${event.description}</p>
-      </div>
-    </div>
-  `;
-
-  openHomeEventModal();
-}
-
-function openHomeEventModal() {
-  const modal = document.getElementById('homeEventModal');
-  if (!modal) return;
-
-  // Save focus
-  lastFocusedElement = document.activeElement;
-
-  modal.classList.add('active');
-  modal.style.display = 'flex';
-  modal.style.visibility = 'visible';
-  modal.style.opacity = '1';
-  modal.style.zIndex = '10000';
-  document.body.style.overflow = 'hidden';
-
-  // Set focus to the close button or first focusable element
-  const closeBtn = document.getElementById('homeEventModalClose');
-  if (closeBtn) {
-    setTimeout(() => closeBtn.focus(), 100);
-  }
-}
-
-function closeHomeEventModal() {
-  const modal = document.getElementById('homeEventModal');
-  if (modal) {
-    modal.classList.remove('active');
-    // Reset all inline styles that were set when opening
-    modal.style.display = '';
-    modal.style.visibility = '';
-    modal.style.opacity = '';
-    modal.style.zIndex = '';
-    document.body.style.overflow = '';
-
-    // Restore focus
-    if (lastFocusedElement && document.body.contains(lastFocusedElement)) {
-      lastFocusedElement.focus();
-    }
-  }
-}
 
 //----------------------------------- Partner Section -------------------------------//
 function initializePartnerSlider() {

@@ -26,37 +26,14 @@ async function initializeEventsPage() {
     return;
   }
 
-  // Verify modal exists - wait longer if needed
-  let modal = document.getElementById('eventModal');
-  let retries = 0;
-  while (!modal && retries < 10) {
-    await new Promise(resolve => setTimeout(resolve, 100));
-    modal = document.getElementById('eventModal');
-    retries++;
-  }
+  if (eventListenersSetup) return;
+  eventListenersSetup = true;
 
-  if (!modal) {
-    console.error('Modal not found in DOM after retries!');
-    return;
-  }
-  console.log('Modal found in DOM:', modal);
-
+  // Set up event listeners
   setupEventListeners();
+
+  // Fetch events
   await fetchEvents();
-  // fetchEvents already calls renderCalendar() and renderEventList()
-
-  // Set initial view state based on which view is displayed
-  const listView = document.getElementById('listView');
-  const calendarView = document.getElementById('calendarView');
-  if (listView && listView.style.display !== 'none') {
-    document.body.classList.add('list-view-active');
-    document.body.classList.remove('calendar-view-active');
-  } else if (calendarView && calendarView.style.display !== 'none') {
-    document.body.classList.add('calendar-view-active');
-    document.body.classList.remove('list-view-active');
-  }
-
-  switchView(currentView);
 }
 
 // Try to initialize when DOM is ready
@@ -153,39 +130,6 @@ function setupModalCloseHandlers() {
 
   // Add escape key handler once
   document.addEventListener('keydown', escapeKeyHandler);
-
-  // Remove old click handler if exists
-  if (modalClickHandler) {
-    document.removeEventListener('click', modalClickHandler, true);
-  }
-
-  // Create new click handler for modal close
-  modalClickHandler = function (e) {
-    // Check if click is on backdrop
-    if (e.target.id === 'eventModalBackdrop' || e.target.closest('#eventModalBackdrop')) {
-      const modal = document.getElementById('eventModal');
-      if (modal && modal.classList.contains('active') && !modalOpeningLock) {
-        e.preventDefault();
-        e.stopPropagation();
-        closeEventModal();
-        return false;
-      }
-    }
-
-    // Check if click is on close button
-    if (e.target.id === 'eventModalClose' || e.target.closest('#eventModalClose')) {
-      const modal = document.getElementById('eventModal');
-      if (modal && modal.classList.contains('active') && !modalOpeningLock) {
-        e.preventDefault();
-        e.stopPropagation();
-        closeEventModal();
-        return false;
-      }
-    }
-  };
-
-  // Add click handler once with capture phase
-  document.addEventListener('click', modalClickHandler, true);
 }
 
 async function fetchEvents() {
@@ -679,91 +623,23 @@ async function showDayEvents(events, date) {
   });
 
   if (events.length === 1) {
-    // Navigate to event details page for single event
+    // Navigate to event details page directly for single event
     const event = events[0];
-    localStorage.setItem('currentEvent', JSON.stringify(event));
-    window.location.href = `pages/event-details.html?id=${encodeURIComponent(event.id)}`;
+    if (event.link) {
+      window.location.href = event.link;
+    } else {
+      console.warn('No link available for event:', event.id);
+    }
     return;
   } else {
-    // Show list of events for the day with full information
-    modalBody.innerHTML = `
-        <div class="day-events-header">
-          <h2 class="event-modal-title" id="eventModalTitle">Events on ${dateStr}</h2>
-          <p class="day-events-count">${events.length} event${events.length > 1 ? 's' : ''} on this day</p>
-        </div>
-        <div class="day-events-list">
-          ${events.map((event, idx) => {
-      const eventDate = new Date(event.date);
-      const formattedDate = eventDate.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      });
-      return `
-              <div class="day-event-item" data-event-id="${event.id}" data-event-index="${idx}">
-                ${event.image ? `
-                  <div class="day-event-image">
-                    <img src="${event.image}" alt="${event.title}" onerror="this.style.display='none'">
-                  </div>
-                ` : ''}
-                <div class="day-event-content">
-                  <div class="day-event-date">
-                    <i class="fas fa-calendar"></i> ${formattedDate}
-                  </div>
-                  ${event.venue ? `
-                    <div class="day-event-venue">
-                      <i class="fas fa-map-marker-alt"></i> ${event.venue}
-                    </div>
-                  ` : ''}
-                  <h3 class="day-event-title">${event.title}</h3>
-                  <p class="day-event-description">${event.description}</p>
-                  <button class="day-event-view-btn">View Full Details <i class="fas fa-arrow-right"></i></button>
-                </div>
-              </div>
-            `;
-    }).join('')}
-        </div>
-      `;
-
-    // Open modal after setting content
-    setTimeout(() => {
-      if (!modalOpeningLock) {
-        openEventModal();
-      }
-    }, 50);
-
-    // Add click handlers to day event items - use event delegation instead
-    setTimeout(() => {
-      // Remove old handler if exists
-      if (dayEventClickHandler) {
-        modalBody.removeEventListener('click', dayEventClickHandler);
-      }
-
-      // Create new handler using event delegation
-      dayEventClickHandler = (e) => {
-        const dayEventItem = e.target.closest('.day-event-item');
-        if (!dayEventItem) return;
-
-        e.preventDefault();
-        e.stopPropagation();
-
-        const idx = parseInt(dayEventItem.dataset.eventIndex);
-        if (isNaN(idx) || idx < 0 || idx >= events.length) {
-          console.error('Invalid event index:', idx);
-          return;
-        }
-
-        console.log('Day event item clicked, navigating to event:', idx);
-
-        // Navigate to event details page
-        const event = events[idx];
-        localStorage.setItem('currentEvent', JSON.stringify(event));
-        window.location.href = `pages/event-details.html?id=${encodeURIComponent(event.id)}`;
-      };
-
-      // Add new handler
-      modalBody.addEventListener('click', dayEventClickHandler);
-    }, 100);
+    // For multiple events on a day, since we're removing the modal, 
+    // we take the user to the first one or we can let them see the list.
+    // For now, let's navigate to the first one as requested "only the node page should open".
+    const event = events[0];
+    if (event.link) {
+      window.location.href = event.link;
+    }
+    return;
   }
 }
 
@@ -827,22 +703,22 @@ function renderEventList() {
           <div class="event-list-date">
             ${formattedDate}
           </div>
-          <button class="event-list-read-more">
+          <a class="event-list-read-more" href="${event.link || '#'}">
             Know Details
-          </button>
+          </a>
         </div>
       </div>
     `;
 
     // Attach click handler to card (except when clicking links)
     eventCard.addEventListener('click', (e) => {
-      // Don't trigger if text selection
-      if (window.getSelection().toString().length > 0) return;
+      // Don't trigger if clicking the link itself or if text selection
+      if (e.target.closest('a') || window.getSelection().toString().length > 0) return;
 
-      // Store event data in localStorage for the details page
-      localStorage.setItem('currentEvent', JSON.stringify(event));
-      // Navigate to event details page
-      window.location.href = `pages/event-details.html?id=${encodeURIComponent(event.id)}`;
+      // Navigate directly to event node page
+      if (event.link) {
+        window.location.href = event.link;
+      }
     });
 
     eventsList.appendChild(eventCard);
@@ -951,232 +827,6 @@ function renderPaginationControls(totalPages) {
   }
 }
 
-function showEventModal(event) {
-  console.log('showEventModal called with event:', event);
-
-  // Prevent multiple simultaneous calls
-  if (modalOpeningLock) {
-    console.log('Modal opening lock active, ignoring showEventModal call');
-    return;
-  }
-
-  const modalBody = document.getElementById('eventModalBody');
-  const modal = document.getElementById('eventModal');
-
-  if (!modalBody) {
-    console.error('eventModalBody not found in showEventModal');
-    alert('Error: Modal body not found');
-    return;
-  }
-
-  if (!modal) {
-    console.error('eventModal not found in showEventModal');
-    alert('Error: Modal not found');
-    return;
-  }
-
-  const eventDate = new Date(event.date);
-  const formattedDate = eventDate.toLocaleDateString('en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
-
-  console.log('Setting modal content, formatted date:', formattedDate);
-
-  // Close modal first if it's open
-  if (modal.classList.contains('active')) {
-    closeEventModal();
-    // Wait a bit before setting new content
-    setTimeout(() => {
-      setModalContentAndOpen(modalBody, modal, event, formattedDate);
-    }, 150);
-  } else {
-    setModalContentAndOpen(modalBody, modal, event, formattedDate);
-  }
-}
-
-function setModalContentAndOpen(modalBody, modal, event, formattedDate) {
-  // Prevent if lock is active
-  if (modalOpeningLock) {
-    console.log('Modal opening lock active, skipping setModalContentAndOpen');
-    return;
-  }
-
-  modalBody.innerHTML = `
-    <div class="event-modal-image">
-      <img src="${event.image || 'img/event1.jpg'}" alt="${event.title}" onerror="this.src='img/event1.jpg'">
-    </div>
-    <div class="event-modal-info">
-      <div class="event-modal-date">
-        <i class="fas fa-calendar"></i> ${formattedDate}
-      </div>
-      ${event.venue ? `
-        <div class="event-modal-venue">
-          <i class="fas fa-map-marker-alt"></i> ${event.venue}
-        </div>
-      ` : ''}
-      <h2 class="event-modal-title" id="eventModalTitle">${event.title}</h2>
-      <div class="event-modal-description">
-        <p>${event.description}</p>
-      </div>
-    </div>
-  `;
-
-  console.log('Modal content set, calling openEventModal');
-
-  // Open modal after setting content
-  setTimeout(() => {
-    if (!modalOpeningLock) {
-      openEventModal();
-    }
-  }, 50);
-}
-
-function openEventModal() {
-  // Prevent recursion - check lock first
-  if (modalOpeningLock) {
-    console.log('Modal opening lock active, ignoring call');
-    return;
-  }
-
-  const modal = document.getElementById('eventModal');
-  if (!modal) {
-    console.error('Modal element not found in openEventModal');
-    return;
-  }
-
-  // If already open and visible, just return
-  const isActive = modal.classList.contains('active');
-  const isVisible = modal.style.display === 'flex' || window.getComputedStyle(modal).display === 'flex';
-  if (isActive && isVisible) {
-    console.log('Modal already active and visible, skipping');
-    return;
-  }
-
-  // Set lock immediately to prevent recursion
-  modalOpeningLock = true;
-
-  // Use requestAnimationFrame to ensure DOM is ready
-  requestAnimationFrame(() => {
-    try {
-      // Save focus
-      lastFocusedElement = document.activeElement;
-
-      // Ensure ARIA attributes are present
-      if (!modal.hasAttribute('role')) modal.setAttribute('role', 'dialog');
-      if (!modal.hasAttribute('aria-modal')) modal.setAttribute('aria-modal', 'true');
-      if (!modal.hasAttribute('aria-labelledby')) modal.setAttribute('aria-labelledby', 'eventModalTitle');
-
-      // Force show the modal
-      modal.classList.add('active');
-      modal.style.display = 'flex';
-      modal.style.visibility = 'visible';
-      modal.style.opacity = '1';
-      modal.style.zIndex = '99999';
-      modal.style.position = 'fixed';
-      modal.style.top = '0';
-      modal.style.left = '0';
-      modal.style.width = '100%';
-      modal.style.height = '100%';
-      document.body.style.overflow = 'hidden';
-
-      // Set focus to the close button
-      const closeBtn = document.getElementById('eventModalClose');
-      if (closeBtn) {
-        setTimeout(() => closeBtn.focus(), 100);
-      }
-
-      console.log('Modal opened successfully');
-    } catch (error) {
-      console.error('Error opening modal:', error);
-    } finally {
-      // Release lock after a delay
-      setTimeout(() => {
-        modalOpeningLock = false;
-      }, 300);
-    }
-  });
-}
-
-function closeEventModal() {
-  // Prevent closing if we're in the process of opening
-  if (modalOpeningLock) {
-    console.log('Modal opening in progress, ignoring close');
-    return;
-  }
-
-  const modal = document.getElementById('eventModal');
-  if (modal && modal.classList.contains('active')) {
-    modal.classList.remove('active');
-    // Reset all inline styles that were set when opening
-    modal.style.display = '';
-    modal.style.visibility = '';
-    modal.style.opacity = '';
-    modal.style.zIndex = '';
-    modal.style.position = '';
-    modal.style.top = '';
-    modal.style.left = '';
-    modal.style.width = '';
-    modal.style.height = '';
-    document.body.style.overflow = '';
-
-    // Restore focus
-    if (lastFocusedElement && document.body.contains(lastFocusedElement)) {
-      lastFocusedElement.focus();
-    }
-
-    console.log('Modal closed');
-  }
-}
-
-// Make showEventModal available globally for inline onclick handlers
-window.showEventModal = function (event) {
-  if (typeof event === 'string') {
-    try {
-      event = JSON.parse(event.replace(/&quot;/g, '"'));
-    } catch (e) {
-      console.error('Error parsing event:', e);
-      return;
-    }
-  }
-  showEventModal(event);
-};
-
-// Test function to verify modal works - also available globally
-window.testModal = function () {
-  console.log('Test modal called (window.testModal)');
-
-  // Check if modal exists
-  const modal = document.getElementById('eventModal');
-  const modalBody = document.getElementById('eventModalBody');
-
-  console.log('Modal check:', { modal: !!modal, modalBody: !!modalBody });
-
-  if (!modal || !modalBody) {
-    alert('Modal not found in DOM! Modal: ' + !!modal + ', ModalBody: ' + !!modalBody);
-    return;
-  }
-
-  const testEvent = {
-    id: 'test-1',
-    title: 'Test Event - Modal Working!',
-    description: 'If you can see this, the modal is working correctly. This means the modal system is functional.',
-    date: new Date(),
-    dateText: new Date().toLocaleDateString(),
-    image: 'img/event1.jpg',
-    venue: 'Test Venue'
-  };
-
-  console.log('Calling showEventModal with:', testEvent);
-  showEventModal(testEvent);
-};
-
-// Make sure testModal is available
-if (typeof window.testModal === 'undefined') {
-  window.testModal = window.testModal || function () {
-    alert('testModal function not properly loaded');
-  };
+  // Empty placeholder after removing event modal logic
 }
 

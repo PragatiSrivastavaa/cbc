@@ -1,0 +1,443 @@
+<!-- SWIPER CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+<style>
+    .cbc-custom-landing {
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+        color: #334155 !important;
+        background-color: #f8fafc !important;
+        padding: 40px 0 !important;
+        line-height: 1.6 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .cbc-custom-landing * {
+        box-sizing: border-box !important;
+    }
+
+    .cbc-custom-landing .container {
+        width: 100% !important;
+        max-width: 1140px !important;
+        margin: 0 auto !important;
+        padding: 0 15px !important;
+    }
+
+    .cbc-custom-landing h2 {
+        font-size: 28px !important;
+        color: #004b88 !important;
+        margin-top: 0 !important;
+        margin-bottom: 25px !important;
+        position: relative !important;
+        display: inline-block !important;
+        font-weight: 700 !important;
+    }
+
+    .cbc-custom-landing h2::after {
+        content: '' !important;
+        position: absolute !important;
+        bottom: -8px !important;
+        left: 0 !important;
+        width: 60px !important;
+        height: 4px !important;
+        background-color: #ffa500 !important;
+        border-radius: 2px !important;
+    }
+
+    /* ABOUT SECTION */
+    .cbc-custom-landing .section-about {
+        background-color: #ffffff !important;
+        padding: 40px !important;
+        border-radius: 20px !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+        margin-bottom: 50px !important;
+        border-left: 5px solid #0063ae !important;
+    }
+
+    .cbc-custom-landing .section-about p {
+        font-size: 17px !important;
+        color: #475569 !important;
+        margin: 0 !important;
+    }
+
+    /* TICKER */
+    .cbc-custom-landing .ticker-wrap {
+        background: linear-gradient(90deg, #004b88, #0063ae) !important;
+        padding: 12px 0 !important;
+        margin-bottom: 50px !important;
+        box-shadow: 0 4px 15px rgba(0, 99, 174, 0.2) !important;
+        overflow: hidden !important;
+        width: 100% !important;
+    }
+
+    .cbc-custom-landing .ticker-track {
+        display: flex !important;
+        white-space: nowrap !important;
+        animation: cbcTickerMove 30s linear infinite !important;
+    }
+
+    .cbc-custom-landing .ticker-track a {
+        color: #ffffff !important;
+        font-weight: 500 !important;
+        margin-right: 60px !important;
+        text-decoration: none !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        font-size: 15px !important;
+    }
+
+    .cbc-custom-landing .ticker-track a::before {
+        content: '●' !important;
+        color: #ffa500 !important;
+        font-size: 10px !important;
+    }
+
+    @keyframes cbcTickerMove {
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
+    /* GALLERY GRID */
+    .cbc-custom-landing .gallery-grid {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+        gap: 30px !important;
+        margin-bottom: 50px !important;
+        width: 100% !important;
+    }
+
+    .cbc-custom-landing .gallery-card {
+        background-color: #ffffff !important;
+        border: 1px solid rgba(0, 0, 0, 0.05) !important;
+        border-radius: 16px !important;
+        padding: 24px !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05) !important;
+        position: relative !important;
+    }
+
+    /* SWIPER */
+    .cbc-custom-landing .swiper {
+        border-radius: 12px !important;
+        overflow: hidden !important;
+        width: 100% !important;
+        height: 260px !important;
+        position: relative !important;
+    }
+
+    .cbc-custom-landing .swiper-slide img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+
+    .cbc-custom-landing .video-container {
+        width: 100% !important;
+        height: 100% !important;
+        background: #000 !important;
+    }
+
+    .cbc-custom-landing .video-container iframe {
+        width: 100% !important;
+        height: 100% !important;
+        border: none !important;
+    }
+
+    .cbc-custom-landing .caption {
+        padding: 15px !important;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        color: #004b88 !important;
+        background-color: #ffffff !important;
+        border-top: 1px solid #f0f0f0 !important;
+    }
+
+    /* SWIPER CONTROLS */
+    .cbc-custom-landing .swiper-button-next,
+    .cbc-custom-landing .swiper-button-prev {
+        color: #ffffff !important;
+        background: rgba(0, 0, 0, 0.5) !important;
+        width: 32px !important;
+        height: 32px !important;
+        border-radius: 50% !important;
+        backdrop-filter: blur(4px) !important;
+        transition: all 0.3s !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* Remove default icons */
+    .cbc-custom-landing .swiper-button-next::after,
+    .cbc-custom-landing .swiper-button-prev::after {
+        display: none !important;
+    }
+
+    /* Custom CSS chevrons */
+    .cbc-custom-landing .swiper-button-next::before,
+    .cbc-custom-landing .swiper-button-prev::before {
+        content: '' !important;
+        width: 8px !important;
+        height: 8px !important;
+        border-top: 2px solid #fff !important;
+        border-right: 2px solid #fff !important;
+        display: block !important;
+    }
+
+    .cbc-custom-landing .swiper-button-next::before {
+        transform: rotate(45deg) !important;
+        margin-right: 3px !important;
+    }
+
+    .cbc-custom-landing .swiper-button-prev::before {
+        transform: rotate(-135deg) !important;
+        margin-left: 3px !important;
+    }
+
+    .cbc-custom-landing .swiper-button-next:hover,
+    .cbc-custom-landing .swiper-button-prev:hover {
+        background: rgba(0, 0, 0, 0.6) !important;
+    }
+
+    .cbc-custom-landing .swiper-pagination-bullet {
+        background: #ffffff !important;
+        opacity: 0.6 !important;
+    }
+
+    .cbc-custom-landing .swiper-pagination-bullet-active {
+        background: #ffa500 !important;
+        opacity: 1 !important;
+    }
+
+    /* TESTIMONIALS */
+    .cbc-custom-landing .testimonial-container {
+        overflow: hidden !important;
+        padding: 20px 0 !important;
+        width: 100% !important;
+    }
+
+    .cbc-custom-landing .testimonial-track {
+        display: flex !important;
+        gap: 24px !important;
+        animation: cbcScrollTestimonials 40s linear infinite !important;
+        width: max-content !important;
+    }
+
+    .cbc-custom-landing .testimonial-card {
+        width: 320px !important;
+        background-color: #ffffff !important;
+        border-radius: 16px !important;
+        padding: 30px !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04) !important;
+        border-top: 4px solid #ffa500 !important;
+        flex-shrink: 0 !important;
+    }
+
+    .cbc-custom-landing .testimonial-card p {
+        font-style: italic !important;
+        color: #64748b !important;
+        margin-bottom: 20px !important;
+        font-size: 15px !important;
+    }
+
+    .cbc-custom-landing .testimonial-card .author {
+        font-weight: bold !important;
+        color: #004b88 !important;
+        display: block !important;
+    }
+
+    @keyframes cbcScrollTestimonials {
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .cbc-custom-landing .gallery-grid {
+            grid-template-columns: 1fr !important;
+        }
+
+        .cbc-custom-landing h2 {
+            font-size: 22px !important;
+        }
+
+        .cbc-custom-landing .swiper {
+            height: 200px !important;
+        }
+    }
+</style>
+
+<div class="cbc-custom-landing">
+    <div class="container">
+        <!-- ABOUT -->
+        <div class="section-about">
+            <h2>About Sadhana Saptah</h2>
+            <p>
+                Sadhana Saptah promotes discipline, service, and national values through structured daily observances.
+                This initiative focuses on bringing together citizens and officials to foster a sense of shared
+                responsibility
+                and collective progress.
+            </p>
+        </div>
+    </div>
+
+    <!-- TICKER -->
+    <div class="ticker-wrap">
+        <div class="ticker-track">
+            <a href="#">Curtain Raiser – Knowledge Base</a>
+            <a href="#">Nationwide Participation Events</a>
+            <a href="#">Jan Seva Activities</a>
+            <a href="#">Chairperson Visit Updates</a>
+            <!-- Duplicate for infinite loop -->
+            <a href="#">Curtain Raiser – Knowledge Base</a>
+            <a href="#">Nationwide Participation Events</a>
+            <a href="#">Jan Seva Activities</a>
+            <a href="#">Chairperson Visit Updates</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- CALENDAR -->
+        <div
+            style="margin-bottom: 50px; background-color: #004b88 !important; padding: 30px; border-radius: 16px; color: #ffffff !important; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px;">
+            <div>
+                <h2 style="color: #ffffff !important; margin: 0; border: none !important;">Event Calendar</h2>
+                <p style="margin: 10px 0 0; opacity: 0.9; color: #ffffff !important;">Stay updated with the latest
+                    events and schedules.</p>
+            </div>
+            <a href="https://igotkarmayogi.gov.in" target="_blank"
+                style="background-color: #ffa500 !important; color: #ffffff !important; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: bold; white-space: nowrap;">View
+                on iGoT</a>
+        </div>
+
+        <!-- GALLERIES -->
+        <div class="gallery-grid">
+            <!-- PHOTO GALLERY -->
+            <div class="gallery-card">
+                <h2>Event Photo Gallery</h2>
+                <div class="swiper photoSwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img
+                                src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=600&h=400&q=80">
+                        </div>
+                        <div class="swiper-slide">
+                            <img
+                                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&h=400&q=80">
+                        </div>
+                        <div class="swiper-slide">
+                            <img
+                                src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=600&h=400&q=80">
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+                <div class="caption">
+                    <strong>Capturing Sadhana Saptah:</strong> Nationwide observance highlights from local
+                    administrative centers.
+                </div>
+            </div>
+
+            <!-- VIDEO GALLERY -->
+            <div class="gallery-card">
+                <h2>Event Video Gallery</h2>
+                <div class="swiper videoSwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" title="National Values"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/r9pBy80zTws" title="Community Impact"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+                <div class="caption">
+                    <strong>Impact Stories:</strong> Watch how Sadhana Saptah is transforming community service and
+                    public values.
+                </div>
+            </div>
+        </div>
+
+        <!-- TESTIMONIALS -->
+        <div class="testimonial-section">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h2 style="border: none !important;">What People Say</h2>
+            </div>
+            <div class="testimonial-container">
+                <div class="testimonial-track">
+                    <div class="testimonial-card">
+                        <p>"This initiative created meaningful impact on our work culture."</p>
+                        <span class="author">— Senior Officer</span>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"A great step towards public service and national integration."</p>
+                        <span class="author">— Participant</span>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"Highly inspiring and well organized. Encourages participation."</p>
+                        <span class="author">— Member</span>
+                    </div>
+                    <!-- Duplicate for infinite loop -->
+                    <div class="testimonial-card">
+                        <p>"This initiative created meaningful impact on our work culture."</p>
+                        <span class="author">— Senior Officer</span>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"A great step towards public service and national integration."</p>
+                        <span class="author">— Participant</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        function initCbcSwipers() {
+            if (typeof Swiper !== 'undefined') {
+                new Swiper('.photoSwiper', {
+                    loop: true,
+                    autoplay: { delay: 3500, disableOnInteraction: false },
+                    pagination: { el: '.photoSwiper .swiper-pagination', clickable: true },
+                    navigation: { nextEl: '.photoSwiper .swiper-button-next', prevEl: '.photoSwiper .swiper-button-prev' },
+                    effect: 'fade',
+                    fadeEffect: { crossFade: true }
+                });
+                new Swiper('.videoSwiper', {
+                    loop: true,
+                    autoplay: { delay: 6000, disableOnInteraction: false },
+                    pagination: { el: '.videoSwiper .swiper-pagination', clickable: true },
+                    navigation: { nextEl: '.videoSwiper .swiper-button-next', prevEl: '.videoSwiper .swiper-button-prev' }
+                });
+            }
+        }
+
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            initCbcSwipers();
+        } else {
+            window.addEventListener('load', initCbcSwipers);
+        }
+    })();
+</script>
