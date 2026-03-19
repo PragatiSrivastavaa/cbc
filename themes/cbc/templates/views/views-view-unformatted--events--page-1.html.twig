@@ -43,7 +43,7 @@
         
         <div class="event-card-footer">
           <div class="event-list-date">
-            {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_start }}']|split(' - ')|first }}
+            {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_start }}']|striptags|split(' - ')|first|trim }}
           </div>
          <a class="event-list-read-more" href="{{ path('entity.node.canonical', {'node': node.id}) }}">
             Know Details</a>

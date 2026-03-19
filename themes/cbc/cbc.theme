@@ -25,6 +25,13 @@ function cbc_preprocess_menu(&$variables) {
   // Also provide 'directory' variable which is common in theme templates
   // but missing in menu ones.
   $variables['directory'] = \Drupal::theme()->getActiveTheme()->getPath();
+  
+  // Dynamic front page check for local/production consistency
+  try {
+    $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
+  } catch (\Exception $e) {
+    $variables['is_front'] = FALSE;
+  }
 }
 
 /**

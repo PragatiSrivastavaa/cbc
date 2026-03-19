@@ -31,7 +31,7 @@
                 </div>
                 <div class="home-event-card-content">
                   <div class="home-event-card-date">
-                    <i class="fas fa-calendar"></i> {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_start }}']|split(' - ')|first }}
+                    <i class="fas fa-calendar"></i> {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_start }}']|striptags|split(' - ')|first|trim }}
                   </div>
                   <a href="{{ path('entity.node.canonical', {'node': node.id}) }}">
                     <h3 class="home-event-card-title">{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
