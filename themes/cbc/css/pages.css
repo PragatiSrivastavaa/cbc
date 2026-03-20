@@ -1253,9 +1253,9 @@ tbody tr:nth-child(even) {
 
 .nav-item-infocus .nav-link {
   color: #ffffff !important;
-  padding: 6px 18px !important;
+  padding: 6px 8px !important;
   font-weight: 700 !important;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   letter-spacing: 0.5px;
   font-size: 11px !important;
   line-height: 1;
@@ -1263,6 +1263,7 @@ tbody tr:nth-child(even) {
   border-radius: 30px;
   border: 2px solid #FFC107;
   border-radius: 30px;
+  background-color: #fde7ca;
 }
 
 @keyframes rotate-border {
