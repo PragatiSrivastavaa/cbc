@@ -98,6 +98,12 @@ function initializeCarousel() {
       }
 
       video.load();
+      video.muted = isVideoMuted;
+      if (isVideoMuted) {
+        video.setAttribute('muted', 'muted');
+      } else {
+        video.removeAttribute('muted');
+      }
       video.play().catch(err => console.log('Video play failed:', err));
     }
 
@@ -133,9 +139,10 @@ function initializeCarousel() {
     });
   }
 
-  // --- WCAG 2.2.2: Auto-slide with Pause/Play control ---
+  // WCAG 2.2.2: Auto-slide with Pause/Play control ---
   let carouselAutoSlide = null;
   let isCarouselPaused = false;
+  let isVideoMuted = true;
 
   function startAutoSlide() {
     if (carouselAutoSlide) clearInterval(carouselAutoSlide);
@@ -187,6 +194,86 @@ function initializeCarousel() {
         carouselPauseBtn.setAttribute('aria-label', 'Play Video and Carousel');
       }
     });
+  }
+
+  // Mute/Unmute Button
+  const videoMuteBtn = document.getElementById('videoMuteBtn');
+  if (videoMuteBtn) {
+    videoMuteBtn.addEventListener('click', () => {
+      const icon = videoMuteBtn.querySelector('i');
+      isVideoMuted = !isVideoMuted;
+      video.muted = isVideoMuted;
+
+      if (isVideoMuted) {
+        video.setAttribute('muted', 'muted');
+        icon.classList.remove('fa-volume-up');
+        icon.classList.add('fa-volume-mute');
+        videoMuteBtn.setAttribute('aria-label', 'Unmute Video');
+      } else {
+        video.removeAttribute('muted');
+        icon.classList.remove('fa-volume-mute');
+        icon.classList.add('fa-volume-up');
+        videoMuteBtn.setAttribute('aria-label', 'Mute Video');
+      }
+    });
+
+    /**
+     * Synchronize the heights of the Photo and Video gallery cards
+     */
+    function syncGalleryHeights() {
+      const galleries = document.querySelectorAll('.glimpses-card');
+      if (galleries.length < 2) return;
+
+      if (window.innerWidth <= 768) {
+        // Don't sync on mobile where they are stacked
+        galleries.forEach(g => g.style.height = 'auto');
+        return;
+      }
+
+      // Reset heights first to get natural content height
+      galleries.forEach(g => g.style.height = 'auto');
+
+      // Small delay to allow layout to settle
+      setTimeout(() => {
+        let maxHeight = 0;
+        galleries.forEach(g => {
+          const h = g.offsetHeight;
+          if (h > maxHeight) maxHeight = h;
+        });
+
+        if (maxHeight > 0) {
+          galleries.forEach(g => {
+            g.style.height = `${maxHeight}px`;
+          });
+        }
+      }, 50);
+    }
+
+    // Initial sync
+    syncGalleryHeights();
+
+    // Sync when images/videos are loaded
+    window.addEventListener('load', syncGalleryHeights);
+
+    // Use ResizeObserver for more reliable syncing if available
+    if (window.ResizeObserver) {
+      const observer = new ResizeObserver(() => {
+        syncGalleryHeights();
+      });
+      const galleries = document.querySelectorAll('.glimpses-card');
+      galleries.forEach(g => observer.observe(g));
+    } else {
+      // Fallback for older browsers
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(syncGalleryHeights, 150);
+      });
+    }
+
+    // Periodic check for any dynamic content changes
+    setTimeout(syncGalleryHeights, 1000);
+    setTimeout(syncGalleryHeights, 3000);
   }
 
   // Listen for global pause-animations changes

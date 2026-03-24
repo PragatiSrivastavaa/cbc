@@ -267,7 +267,8 @@
 /* Hero Carousel Navigation Controls */
 .carousel-prev,
 .carousel-next,
-.hero-pause-container .carousel-pause-btn {
+.hero-pause-container .carousel-pause-btn,
+.hero-pause-container .video-mute-btn {
   background: #fcfdff !important;
   border: 1px solid rgba(0, 75, 136, 0.1) !important;
   color: #004b88 !important;
@@ -302,12 +303,22 @@
   position: absolute;
   bottom: 2rem;
   right: 20px;
-  z-index: 2;
+  z-index: 10;
+  display: flex !important;
+  gap: 12px !important;
+  flex-direction: row !important;
+  align-items: center !important;
 }
 
-.hero-pause-container .carousel-pause-btn {
-  position: static;
-  transform: none;
+.hero-pause-container .carousel-pause-btn,
+.hero-pause-container .video-mute-btn {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  display: flex !important;
 }
 
 .carousel-prev:hover,
@@ -318,7 +329,8 @@
   transform: translateY(-50%) scale(1.1) !important;
 }
 
-.hero-pause-container .carousel-pause-btn:hover {
+.hero-pause-container .carousel-pause-btn:hover,
+.hero-pause-container .video-mute-btn:hover {
   background: #ffffff !important;
   color: #002d62 !important;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18) !important;
@@ -339,7 +351,8 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
   }
 
-  .hero-pause-container .carousel-pause-btn {
+  .hero-pause-container .carousel-pause-btn,
+  .hero-pause-container .video-mute-btn {
     width: 28px !important;
     height: 28px !important;
     font-size: 0.7rem !important;
@@ -396,7 +409,8 @@
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1) !important;
   }
 
-  .hero-pause-container .carousel-pause-btn {
+  .hero-pause-container .carousel-pause-btn,
+  .hero-pause-container .video-mute-btn {
     width: 24px !important;
     height: 24px !important;
     font-size: 0.6rem !important;
@@ -453,7 +467,8 @@
     font-size: 0.55rem !important;
   }
 
-  .hero-pause-container .carousel-pause-btn {
+  .hero-pause-container .carousel-pause-btn,
+  .hero-pause-container .video-mute-btn {
     width: 22px !important;
     height: 22px !important;
     font-size: 0.55rem !important;
@@ -2683,7 +2698,7 @@
   background: #005ea6;
   padding: 20px 0;
   margin: 0;
-  /* margin-bottom: 2rem; */
+  margin-bottom: 2rem;
 }
 
 .information-corner-title h3 {
@@ -4983,7 +4998,7 @@ h2.infocus-heading {
 /* Testimonial Video Styling */
 /* Testimonial Video Styling */
 .testimonial-video {
-  height: 100%;
+  height: 100% !important;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -7436,20 +7451,29 @@ h2.infocus-heading {
   align-items: stretch;
 }
 
-.social-section .container {
-  margin-top: 3rem;
+/* Force all Drupal wrappers inside columns to be full height */
+.social-section .col-lg-6,
+.social-section .col-md-6,
+.social-section .col-lg-6 > div,
+.social-section .col-lg-6 [class*="region-"],
+.social-section .col-lg-6 .block,
+.social-section .col-lg-6 .content,
+.social-section .col-lg-6 .view,
+.social-section .col-lg-6 .view-content,
+.social-section .glimpses-card {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 1 auto !important;
+  height: auto !important;
 }
 
-.social-section .youtube-section.h-100 {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-height: 500px;
+.social-section .glimpses-card {
+  min-height: 550px;
 }
 
 .social-section .youtube-section .youtube-carousel-wrapper {
   flex: 1 1 auto;
-  min-height: 380px;
+  min-height: 400px;
   display: flex;
   align-items: stretch;
   height: 100%;
@@ -7473,21 +7497,29 @@ h2.infocus-heading {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 300px;
-  height: 300px;
+  min-height: 320px;
+  height: 320px;
   margin-bottom: 20px;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .social-section .youtube-card video,
 .social-section .youtube-card img {
   width: 100%;
-  height: 300px !important;
-  min-height: 300px !important;
-  max-height: 300px !important;
+  height: 320px !important;
+  min-height: 320px !important;
+  max-height: 320px !important;
   object-fit: cover;
   border: none;
   display: block;
   background: #000;
+}
+
+.social-section .video-gallery-footer {
+  margin-top: auto !important;
+  padding-top: 20px;
 }
 
 /* Tablet and medium screens */
