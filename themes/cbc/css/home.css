@@ -303,7 +303,6 @@
   position: absolute;
   bottom: 2rem;
   right: 20px;
-  z-index: 10;
   display: flex !important;
   gap: 12px !important;
   flex-direction: row !important;
@@ -7454,7 +7453,7 @@ h2.infocus-heading {
 /* Force all Drupal wrappers inside columns to be full height */
 .social-section .col-lg-6,
 .social-section .col-md-6,
-.social-section .col-lg-6 > div,
+.social-section .col-lg-6>div,
 .social-section .col-lg-6 [class*="region-"],
 .social-section .col-lg-6 .block,
 .social-section .col-lg-6 .content,
