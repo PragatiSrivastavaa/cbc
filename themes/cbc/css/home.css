@@ -4535,6 +4535,7 @@ h2.infocus-heading {
     flex: 0 0 100%;
     padding: 20px 15px 12px;
     min-width: unset;
+    max-height: 30px
   }
 
   .focus-circle-frame {
@@ -14548,11 +14549,6 @@ body[data-pause-animations="true"] marquee {
   .opinions-testimonials-column .video-container {
     height: auto !important;
     min-height: 250px;
-  }
-
-  .opinions-testimonials-column iframe,
-  .opinions-testimonials-column video {
-    height: 250px !important;
   }
 }
 

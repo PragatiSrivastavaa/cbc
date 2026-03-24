@@ -5,8 +5,8 @@
 
 <!-- Top Bar -->
 <div class="top-bar">
-  <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap px-3">
-    <div class="d-flex align-items-center">
+  <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap px-3 gap-2 py-1">
+    <div class="d-flex align-items-center flex-wrap gap-2">
       <a href="#app-content">{% if language == 'hi' %}मुख्य सामग्री पर जाएं{% else %}Skip to main content{% endif %}</a>
       <a class="header-border" href="/screen-reader-access" title="{% if language == 'hi' %}स्क्रीन रीडर एक्सेस जानकारी{% else %}Screen Reader Access Information{% endif %}">{% if language == 'hi' %}स्क्रीन रीडर{% else %}Screen Reader{% endif %}</a>
        <!-- Language Toggle -->
@@ -15,7 +15,7 @@
   </div> 
     </div>
    
-    <div class="d-flex align-items-center mt-md-0">
+    <div class="d-flex align-items-center mt-2 mt-md-0 gap-2">
       <button class="access-icon" aria-label="{% if language == 'hi' %}एक्सेसिबिलिटी विकल्प खोलें{% else %}Open Accessibility Options{% endif %}" title="{% if language == 'hi' %}एक्सेसिबिलिटी विकल्प खोलें (Alt+A){% else %}Open Accessibility Options (Alt+A){% endif %}">
         <img src="{{ base_path }}themes/cbc/img/accessability.png" alt="" aria-hidden="true" />
       </button>
