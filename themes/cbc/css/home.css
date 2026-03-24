@@ -4998,7 +4998,7 @@ h2.infocus-heading {
 /* Testimonial Video Styling */
 .testimonial-video {
   height: 100% !important;
-  width: auto;
+  max-width: 220px;
   height: auto;
   object-fit: contain;
   display: none;
