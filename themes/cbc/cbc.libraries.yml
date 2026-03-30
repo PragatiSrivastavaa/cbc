@@ -5,6 +5,7 @@ global-styling:
       css/home.css: {}
       css/pages.css: {}
       css/accessibility.css: {}
+      css/sadhana-saptah.css: {}
 
 global-scripts:
   js:
@@ -18,10 +19,10 @@ global-scripts:
     js/accessibility.js: {}
     js/languageSwitcher.js: {}
     js/searchButtonIcon.js: {}
-
     js/joinMissionDialog.js: {}
     js/formAccessibility.js: {}
     js/video-accessibility-fallback.js: {}
+    js/sadhana-saptah.js: { weight: 99 }
   dependencies:
     - core/jquery
     - core/jquery.form

@@ -15,6 +15,24 @@ use Drupal\block_content\Entity\BlockContent;
 use Drupal\file\Entity\File;
 use Drupal\counter\CounterUtility;
 
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Auto-attaches the sadhana-saptah library (CSS + JS) when the page body
+ * contains the landing page wrapper div.
+ * This means you DON'T need <link> or <script> tags in your Drupal body field.
+ */
+function cbc_preprocess_node(&$variables) {
+  $node = $variables['node'];
+  // Check the body field for the landing page marker class.
+  if ($node->hasField('body')) {
+    $body_value = $node->get('body')->value ?? '';
+    if (strpos($body_value, 'cbc-custom-landing') !== FALSE) {
+      $variables['#attached']['library'][] = 'cbc/sadhana-saptah';
+    }
+  }
+}
+
 
 
 /**

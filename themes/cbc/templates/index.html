@@ -1,901 +1,1014 @@
-<!-- SWIPER CDN -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
-<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-
-<style>
-    .cbc-custom-landing {
-        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
-        color: #334155 !important;
-        background-color: #f8fafc !important;
-        padding: 40px 0 !important;
-        line-height: 1.6 !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-    }
-
-    .cbc-custom-landing * {
-        box-sizing: border-box !important;
-    }
-
-    .cbc-custom-landing .container {
-        width: 100% !important;
-        max-width: 1140px !important;
-        margin: 0 auto !important;
-        padding: 0 15px !important;
-    }
-
-    .cbc-custom-landing h2 {
-        font-size: 28px !important;
-        color: #004b88 !important;
-        margin-top: 0 !important;
-        margin-bottom: 25px !important;
-        position: relative !important;
-        display: inline-block !important;
-        font-weight: 700 !important;
-    }
-
-    .cbc-custom-landing h2::after {
-        content: '' !important;
-        position: absolute !important;
-        bottom: -8px !important;
-        left: 0 !important;
-        width: 60px !important;
-        height: 4px !important;
-        background-color: #ffa500 !important;
-        border-radius: 2px !important;
-    }
-
-    /* ABOUT SECTION */
-    .cbc-custom-landing .section-about {
-        background-color: #ffffff !important;
-        padding: 40px !important;
-        border-radius: 20px !important;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
-        margin-bottom: 50px !important;
-        border-left: 5px solid #0063ae !important;
-    }
-
-    .cbc-custom-landing .section-about p {
-        font-size: 17px !important;
-        color: #475569 !important;
-        margin: 0 !important;
-    }
-
-    /* TICKER */
-    .cbc-custom-landing .ticker-wrap {
-        background: linear-gradient(90deg, #004b88, #0063ae) !important;
-        padding: 12px 0 !important;
-        margin-bottom: 50px !important;
-        box-shadow: 0 4px 15px rgba(0, 99, 174, 0.2) !important;
-        overflow: hidden !important;
-        width: 100% !important;
-    }
-
-    .cbc-custom-landing .ticker-track {
-        display: flex !important;
-        white-space: nowrap !important;
-        animation: cbcTickerMove 30s linear infinite !important;
-    }
-
-    .cbc-custom-landing .ticker-track a {
-        color: #ffffff !important;
-        font-weight: 500 !important;
-        margin-right: 60px !important;
-        text-decoration: none !important;
-        display: flex !important;
-        align-items: center !important;
-        gap: 8px !important;
-        font-size: 15px !important;
-    }
-
-    .cbc-custom-landing .ticker-track a::before {
-        content: '●' !important;
-        color: #ffa500 !important;
-        font-size: 10px !important;
-    }
-
-    @keyframes cbcTickerMove {
-        from {
-            transform: translateX(0);
-        }
-
-        to {
-            transform: translateX(-50%);
-        }
-    }
-
-    /* GALLERY GRID */
-    .cbc-custom-landing .gallery-grid {
-        display: grid !important;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
-        gap: 30px !important;
-        margin-bottom: 50px !important;
-        width: 100% !important;
-    }
-
-    .cbc-custom-landing .gallery-card {
-        background-color: #ffffff !important;
-        border: 1px solid rgba(0, 0, 0, 0.05) !important;
-        border-radius: 16px !important;
-        padding: 24px !important;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05) !important;
-        position: relative !important;
-    }
-
-    /* SWIPER */
-    .cbc-custom-landing .swiper {
-        border-radius: 12px !important;
-        overflow: hidden !important;
-        width: 100% !important;
-        height: 260px !important;
-        position: relative !important;
-    }
-
-    .cbc-custom-landing .eventSwiper {
-        height: 420px !important;
-    }
-
-    .cbc-custom-landing .swiper-slide img {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
-    }
-
-    .cbc-custom-landing .video-container {
-        width: 100% !important;
-        height: 100% !important;
-        background: #000 !important;
-    }
-
-    .cbc-custom-landing .video-container iframe {
-        width: 100% !important;
-        height: 100% !important;
-        border: none !important;
-    }
-
-    .cbc-custom-landing .caption {
-        padding: 15px !important;
-        font-size: 14px !important;
-        font-weight: 600 !important;
-        color: #004b88 !important;
-        background-color: #ffffff !important;
-        border-top: 1px solid #f0f0f0 !important;
-    }
-
-    /* SWIPER CONTROLS - COMPLETELY ISOLATED */
-    .cbc-custom-landing .cbc-next-btn,
-    .cbc-custom-landing .cbc-prev-btn {
-        color: #ffffff !important;
-        background: rgba(0, 0, 0, 0.45) !important;
-        width: 34px !important;
-        height: 34px !important;
-        border-radius: 50% !important;
-        backdrop-filter: blur(4px) !important;
-        transition: all 0.3s !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        position: absolute !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        z-index: 20 !important;
-        cursor: pointer !important;
-        border: none !important;
-    }
-
-    .cbc-custom-landing .cbc-next-btn {
-        right: 10px !important;
-    }
-
-    .cbc-custom-landing .cbc-prev-btn {
-        left: 10px !important;
-    }
-
-    .cbc-custom-landing .cbc-next-btn:after,
-    .cbc-custom-landing .cbc-prev-btn:after {
-        content: '' !important;
-        display: block !important;
-        width: 10px !important;
-        height: 10px !important;
-        border-top: 2.5px solid #ffffff !important;
-        border-right: 2.5px solid #ffffff !important;
-    }
-
-    .cbc-custom-landing .cbc-next-btn:after {
-        transform: rotate(45deg) translateX(-1px) !important;
-    }
-
-    .cbc-custom-landing .cbc-prev-btn:after {
-        transform: rotate(-135deg) translateX(-1px) !important;
-    }
-
-    .cbc-custom-landing .cbc-next-btn:hover,
-    .cbc-custom-landing .cbc-prev-btn:hover {
-        background: rgba(0, 0, 0, 0.7) !important;
-        transform: translateY(-50%) scale(1.1) !important;
-    }
-
-    .cbc-custom-landing .swiper-pagination-bullet {
-        background: #ffffff !important;
-        opacity: 0.6 !important;
-    }
-
-    .cbc-custom-landing .swiper-pagination-bullet-active {
-        background: #ffa500 !important;
-        opacity: 1 !important;
-    }
-
-    /* TESTIMONIALS */
-    .cbc-custom-landing .testimonial-container {
-        overflow: hidden !important;
-        padding: 20px 0 !important;
-        width: 100% !important;
-    }
-
-    .cbc-custom-landing .testimonial-track {
-        display: flex !important;
-        gap: 24px !important;
-        animation: cbcScrollTestimonials 40s linear infinite !important;
-        width: max-content !important;
-    }
-
-    .cbc-custom-landing .testimonial-card {
-        width: 320px !important;
-        background-color: #ffffff !important;
-        border-radius: 16px !important;
-        padding: 30px !important;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04) !important;
-        border-top: 4px solid #ffa500 !important;
-        flex-shrink: 0 !important;
-    }
-
-    .cbc-custom-landing .testimonial-card p {
-        font-style: italic !important;
-        color: #64748b !important;
-        margin-bottom: 20px !important;
-        font-size: 15px !important;
-    }
-
-    .cbc-custom-landing .testimonial-card .author {
-        font-weight: bold !important;
-        color: #004b88 !important;
-        display: block !important;
-    }
-
-    @keyframes cbcScrollTestimonials {
-        from {
-            transform: translateX(0);
-        }
-
-        to {
-            transform: translateX(-50%);
-        }
-    }
-
-    @media (max-width: 600px) {
-        .cbc-custom-landing .gallery-grid {
-            grid-template-columns: 1fr !important;
-        }
-
-        .cbc-custom-landing h2 {
-            font-size: 22px !important;
-        }
-
-        .cbc-custom-landing .swiper {
-            height: 200px !important;
-        }
-    }
-
-    /* NEW EVENT & CALENDAR SECTION */
-    .cbc-event-calendar-grid {
-        display: grid !important;
-        grid-template-columns: 1.35fr 0.75fr !important;
-        gap: 30px !important;
-        margin-bottom: 20px !important;
-        align-items: stretch !important;
-    }
-
-    .cbc-event-card {
-        background: #000 !important;
-        border-radius: 20px !important;
-        overflow: hidden !important;
-        position: relative !important;
-        height: 420px !important;
-        color: #fff !important;
-    }
-
-    .cbc-event-card .event-img {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
-        opacity: 0.7 !important;
-    }
-
-    .cbc-event-card .event-overlay {
-        position: absolute !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        padding: 40px !important;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%) !important;
-    }
-
-    .cbc-event-card h3 {
-        font-size: 24px !important;
-        margin: 0 0 15px 0 !important;
-        line-height: 1.3 !important;
-        color: #fff !important;
-    }
-
-    .cbc-event-card .event-meta {
-        display: flex !important;
-        align-items: center !important;
-        gap: 15px !important;
-        font-size: 14px !important;
-    }
-
-    .cbc-event-card .event-date-badge {
-        background: #ffffff !important;
-        color: #000 !important;
-        padding: 6px 15px !important;
-        border-radius: 20px !important;
-        font-weight: bold !important;
-        text-transform: uppercase !important;
-    }
-
-    .cbc-event-card .view-more-btn {
-        border: 1px solid #fff !important;
-        padding: 10px 25px !important;
-        border-radius: 25px !important;
-        color: #fff !important;
-        text-decoration: none !important;
-        font-weight: 600 !important;
-        transition: all 0.3s !important;
-    }
-
-    .cbc-event-card .view-more-btn:hover {
-        background: #fff !important;
-        color: #000 !important;
-    }
-
-    .cbc-calendar-card {
-        background: #f1f5f9 !important;
-        border-radius: 20px !important;
-        padding: 30px !important;
-        display: flex !important;
-        flex-direction: column !important;
-        height: 420px !important;
-    }
-
-    .cbc-calendar-header {
-        display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        margin-bottom: 20px !important;
-        color: #1e293b !important;
-    }
-
-    .cbc-calendar-grid {
-        display: grid !important;
-        grid-template-columns: repeat(7, 1fr) !important;
-        gap: 10px !important;
-        text-align: center !important;
-    }
-
-    .cbc-calendar-day-head {
-        font-weight: bold !important;
-        color: #64748b !important;
-        font-size: 13px !important;
-        padding-bottom: 10px !important;
-    }
-
-    .cbc-calendar-day {
-        padding: 8px !important;
-        border-radius: 8px !important;
-        font-size: 14px !important;
-        cursor: pointer !important;
-        transition: background 0.2s !important;
-    }
-
-    .cbc-calendar-day:hover {
-        background: #cbd5e1 !important;
-    }
-
-    .cbc-calendar-day.active {
-        background: #fde7ca !important;
-        color: #004b88 !important;
-        font-weight: bold !important;
-        border: 1px solid #004b88 !important;
-    }
-
-    .cbc-calendar-day.muted {
-        color: #94a3b8 !important;
-    }
-
-    .cbc-event-nav {
-        display: flex !important;
-        gap: 12px !important;
-        align-items: center !important;
-        font-size: 14px !important;
-        position: absolute !important;
-        bottom: 30px !important;
-        right: 30px !important;
-        z-index: 30 !important;
-        background: rgba(255, 255, 255, 0.1) !important;
-        backdrop-filter: blur(8px) !important;
-        padding: 5px 15px !important;
-        border-radius: 30px !important;
-        border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    }
-
-    .cbc-event-nav-btn {
-        width: 32px !important;
-        height: 32px !important;
-        border: 1.5px solid #ffffff !important;
-        border-radius: 50% !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        cursor: pointer !important;
-        color: #ffffff !important;
-        transition: all 0.3s !important;
-        font-weight: bold !important;
-    }
-
-    .cbc-event-nav-btn:hover {
-        background: #ffffff !important;
-        color: #000000 !important;
-    }
-
-    .cbc-event-fraction {
-        color: #ffffff !important;
-        font-weight: 600 !important;
-    }
-
-    @media (max-width: 900px) {
-        .cbc-event-calendar-grid {
-            grid-template-columns: 1fr !important;
-        }
-
-        .cbc-event-card {
-            height: 350px !important;
-        }
-    }
-
-    /* SUTRAS GRID */
-    .cbc-custom-landing .sutras-grid {
-        display: grid !important;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
-        gap: 25px !important;
-        margin-bottom: 50px !important;
-        width: 100% !important;
-    }
-
-    .cbc-custom-landing .sutra-card {
-        background-color: #ffffff !important;
-        border-radius: 16px !important;
-        padding: 30px !important;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
-        transition: all 0.3s ease !important;
-        border: 1px solid rgba(0, 0, 0, 0.05) !important;
-        display: flex !important;
-        flex-direction: column !important;
-        height: 100% !important;
-    }
-
-    .cbc-custom-landing .sutra-card:hover {
-        transform: translateY(-5px) !important;
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08) !important;
-        border-color: #004b88 !important;
-    }
-
-    .cbc-custom-landing .sutra-icon {
-        font-size: 40px !important;
-        margin-bottom: 20px !important;
-        display: block !important;
-    }
-
-    .cbc-custom-landing .sutra-card h3 {
-        font-size: 20px !important;
-        color: #004b88 !important;
-        margin-top: 0 !important;
-        margin-bottom: 12px !important;
-        font-weight: 700 !important;
-    }
-
-    .cbc-custom-landing .sutra-card p {
-        font-size: 15px !important;
-        color: #64748b !important;
-        margin-bottom: 20px !important;
-        font-weight: 500 !important;
-    }
-
-    .cbc-custom-landing .sutra-list {
-        padding-left: 0 !important;
-        margin: 0 !important;
-        list-style: none !important;
-    }
-
-    .cbc-custom-landing .sutra-list li {
-        position: relative !important;
-        padding-left: 20px !important;
-        margin-bottom: 10px !important;
-        font-size: 14px !important;
-        color: #475569 !important;
-    }
-
-    .cbc-custom-landing .sutra-list li::before {
-        content: '✓' !important;
-        position: absolute !important;
-        left: 0 !important;
-        color: #10b981 !important;
-        font-weight: bold !important;
-    }
-</style>
-
-<div class="cbc-custom-landing">
-    <div class="container">
-        <!-- ABOUT -->
-        <div class="section-about">
-            <h2>About SADHANA Saptah</h2>
-            <p style="margin-bottom: 20px !important;">
-                India's governance landscape is being reshaped by rapid technological change, renewed attention to
-                Indian Knowledge Systems, and an increasing focus on Citizen Centricity. SADHANA Saptah is conceived as
-                a theme-focused, sector-anchored exercise (sector classification as per SGOS) to strengthen governance
-                capability across Ministries, Departments, Organisations (MDO), and States. The structure of the week
-                shall be focused on three themes or Sutras — Technology, Tradition & Tangible Outcomes.
-            </p>
-            <p style="margin-bottom: 20px !important;">
-                The week coincides with the Foundation Day of CBC and completion of five years of Mission Karmayogi,
-                providing an opportunity to review progress while strengthening the national capacity-building
-                ecosystem.
-            </p>
-            <p style="margin-bottom: 20px !important;">
-                Through a blended delivery model—comprising Karmayogi Talks by domain experts, Samuhik Charchas within
-                institutions, digital learning through the iGOT platform, inter-ministerial workshops, and training
-                programmes conducted by civil services training institutions—the initiative will engage civil servants
-                across the government ecosystem. Participation will extend across 93 Central Ministries and Departments,
-                30 States and UTs implementing Mission Karmayogi, and more than 200 civil services training
-                institutions, supported through coordinated institutional mechanisms led by CBC.
-            </p>
-            <p>
-                Beyond a week of learning engagements, SĀDHANA Saptah aims to reinforce a culture of continuous learning
-                in government, accelerate engagement with the digital learning ecosystem, strengthen knowledge exchange
-                across institutions, and generate insights for strengthening the broader capacity-building architecture
-                under Mission Karmayogi.
-            </p>
-        </div>
-
-        <!-- THREE SUTRAS -->
-        <div class="sutras-grid">
-            <div class="sutra-card">
-                <div class="sutra-icon">🤖</div>
-                <h3>Technology</h3>
-                <p>AI and emerging technologies transforming the sector</p>
-                <ul class="sutra-list">
-                    <li>Sector-specific AI use cases</li>
-                    <li>Regulatory readiness</li>
-                    <li>Digital public infrastructure integration</li>
-                </ul>
-            </div>
-            <div class="sutra-card">
-                <div class="sutra-icon">🏛</div>
-                <h3>Tradition</h3>
-                <p>Indian Knowledge Systems and indigenous innovations</p>
-                <ul class="sutra-list">
-                    <li>Civilizational practices with contemporary relevance</li>
-                    <li>Community-led institutional models</li>
-                    <li>Indigenous governance insights</li>
-                </ul>
-            </div>
-            <div class="sutra-card">
-                <div class="sutra-icon">🎯</div>
-                <h3>Tangible Outcomes</h3>
-                <p>Outcome-oriented governance and public value creation</p>
-                <ul class="sutra-list">
-                    <li>Citizen impact tracking</li>
-                    <li>Clear articulation of priority sectoral outcomes</li>
-                    <li>Dashboard-based monitoring</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="container">
-        <!-- EVENTS & CALENDAR -->
-        <div class="cbc-event-calendar-grid">
-            <!-- EVENT SLIDER -->
-            <div>
-                <div class="swiper eventSwiper">
-                    <div class="swiper-wrapper">
-                        <!-- slides... -->
-                    </div>
-                    <!-- Relocated Nav inside Swiper -->
-                    <div class="cbc-event-nav">
-                        <div class="cbc-event-nav-btn cbc-event-prev">‹</div>
-                        <span class="cbc-event-fraction">1 of 5</span>
-                        <div class="cbc-event-nav-btn cbc-event-next">›</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CALENDAR -->
-            <div class="cbc-calendar-card">
-                <div class="cbc-calendar-header">
-                    <span style="font-weight: bold; font-size: 18px;">2nd April, 2026</span>
-                    <select style="border: none; background: transparent; font-weight: bold;">
-                        <option>2026</option>
-                    </select>
-                </div>
-                <div class="cbc-calendar-grid">
-                    <div class="cbc-calendar-day-head">Mon</div>
-                    <div class="cbc-calendar-day-head">Tue</div>
-                    <div class="cbc-calendar-day-head">Wed</div>
-                    <div class="cbc-calendar-day-head">Thu</div>
-                    <div class="cbc-calendar-day-head">Fri</div>
-                    <div class="cbc-calendar-day-head">Sat</div>
-                    <div class="cbc-calendar-day-head">Sun</div>
-
-                    <div class="cbc-calendar-day muted">30</div>
-                    <div class="cbc-calendar-day muted">31</div>
-                    <div class="cbc-calendar-day">1</div>
-                    <div class="cbc-calendar-day active">2</div>
-                    <div class="cbc-calendar-day">3</div>
-                    <div class="cbc-calendar-day">4</div>
-                    <div class="cbc-calendar-day">5</div>
-                    <div class="cbc-calendar-day">6</div>
-                    <div class="cbc-calendar-day">7</div>
-                    <div class="cbc-calendar-day">8</div>
-                    <div class="cbc-calendar-day">9</div>
-                    <div class="cbc-calendar-day">10</div>
-                    <div class="cbc-calendar-day">11</div>
-                    <div class="cbc-calendar-day">12</div>
-                    <div class="cbc-calendar-day">13</div>
-                    <div class="cbc-calendar-day">14</div>
-                    <div class="cbc-calendar-day">15</div>
-                    <div class="cbc-calendar-day">16</div>
-                    <div class="cbc-calendar-day">17</div>
-                    <div class="cbc-calendar-day">18</div>
-                    <div class="cbc-calendar-day">19</div>
-                    <div class="cbc-calendar-day">20</div>
-                    <div class="cbc-calendar-day">21</div>
-                    <div class="cbc-calendar-day">22</div>
-                    <div class="cbc-calendar-day">23</div>
-                    <div class="cbc-calendar-day">24</div>
-                    <div class="cbc-calendar-day">25</div>
-                    <div class="cbc-calendar-day">26</div>
-                    <div class="cbc-calendar-day">27</div>
-                    <div class="cbc-calendar-day">28</div>
-                    <div class="cbc-calendar-day">29</div>
-                    <div class="cbc-calendar-day">30</div>
-                    <div class="cbc-calendar-day muted">1</div>
-                    <div class="cbc-calendar-day muted">2</div>
-                    <div class="cbc-calendar-day muted">3</div>
-                </div>
-                <!-- Calendar Month Nav Removed as per user request -->
-            </div>
-        </div>
-
-        <!-- CENTERED ACTION BUTTON -->
-        <div style="text-align: end; margin-bottom: 50px;">
-            <a href="https://igotkarmayogi.gov.in" target="_blank"
-                style="background-color: #004b88 !important; color: #ffffff !important; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 15px; display: inline-block; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0, 75, 136, 0.2);">
-                See iGOT Calendar
-            </a>
-        </div>
-
-        <!-- GALLERIES -->
-        <div class="gallery-grid">
-            <!-- PHOTO GALLERY -->
-            <div class="gallery-card">
-                <h2>Event Photo Gallery</h2>
-                <div class="swiper photoSwiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img
-                                src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=600&h=400&q=80">
-                        </div>
-                        <div class="swiper-slide">
-                            <img
-                                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&h=400&q=80">
-                        </div>
-                        <div class="swiper-slide">
-                            <img
-                                src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=600&h=400&q=80">
-                        </div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="cbc-next-btn"></div>
-                    <div class="cbc-prev-btn"></div>
-                </div>
-                <div class="caption">
-                    <strong>Capturing Sadhana Saptah:</strong> Nationwide observance highlights from local
-                    administrative centers.
-                </div>
-            </div>
-
-            <!-- VIDEO GALLERY -->
-            <div class="gallery-card">
-                <h2>Event Video Gallery</h2>
-                <div class="swiper videoSwiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="video-container">
-                                <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" title="National Values"
-                                    allowfullscreen></iframe>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="video-container">
-                                <iframe src="https://www.youtube.com/embed/r9pBy80zTws" title="Community Impact"
-                                    allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="cbc-next-btn"></div>
-                    <div class="cbc-prev-btn"></div>
-                </div>
-                <div class="caption">
-                    <strong>Impact Stories:</strong> Watch how Sadhana Saptah is transforming community service and
-                    public values.
-                </div>
-            </div>
-        </div>
-
-        <!-- TESTIMONIALS -->
-        <div class="testimonial-section">
-            <div style="text-align: center; margin-bottom: 30px;">
-                <h2 style="border: none !important;">What People Say</h2>
-            </div>
-            <div class="testimonial-container">
-                <div class="testimonial-track">
-                    <div class="testimonial-card">
-                        <p>"This initiative created meaningful impact on our work culture."</p>
-                        <span class="author">— Senior Officer</span>
-                    </div>
-                    <div class="testimonial-card">
-                        <p>"A great step towards public service and national integration."</p>
-                        <span class="author">— Participant</span>
-                    </div>
-                    <div class="testimonial-card">
-                        <p>"Highly inspiring and well organized. Encourages participation."</p>
-                        <span class="author">— Member</span>
-                    </div>
-                    <!-- Duplicate for infinite loop -->
-                    <div class="testimonial-card">
-                        <p>"This initiative created meaningful impact on our work culture."</p>
-                        <span class="author">— Senior Officer</span>
-                    </div>
-                    <div class="testimonial-card">
-                        <p>"A great step towards public service and national integration."</p>
-                        <span class="author">— Participant</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
+<!--
+=======================================================================
+  SADHANA SAPTAH — Drupal Basic Page Body
+
+  PASTE THIS ENTIRE BLOCK into the Basic Page body field.
+  Use "Full HTML" text format in Drupal so tags are not stripped.
+
+  CSS & JS LOADING:
+  The small <script> below auto-detects the Drupal base path and loads
+  sadhana-saptah.css and sadhana-saptah.js from the cbc theme.
+  Works on localhost AND production without changing any paths.
+
+  HOW TO ADD MEDIA:
+  1. Upload file to Drupal → Media → Add Media.
+  2. Copy the file URL.
+  3. Paste into the matching carousel slide placeholder below.
+
+  WHERE TO ADD CAROUSEL ITEMS:
+  ★ Photos    → .photoSwiper  → copy a <div class="swiper-slide"> block
+  ★ Videos    → .videoSwiper  → copy a <div class="swiper-slide"> block
+  ★ Leaders   → .leadersSwiper → copy a <div class="swiper-slide"> block
+  ★ Video testimonials → .testimonialVideoSwiper → copy a slide block
+  ★ Written testimonials → .testimonial-track → copy a .testimonial-card
+=======================================================================
+-->
+
+<!--
+  SELF-LOADER: Detects the Drupal theme base path from existing page assets
+  and injects our CSS + JS. No hard-coded paths needed.
+-->
 <script>
     (function () {
-        const eventsData = {
-            '2': [{ img: 'https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&fit=crop&w=800&q=80', title: 'SADHANA Saptah Launch Event', location: 'New Delhi', date: '2nd April, 2026' }],
-            '3': [{ img: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80', title: 'Technology Sutra: AI in Governance', location: 'Bengaluru', date: '3rd April, 2026' }],
-            '4': [{ img: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80', title: 'Tradition Sutra: Indian Knowledge Systems', location: 'Varanasi', date: '4th April, 2026' }],
-            '5': [{ img: 'https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=800&q=80', title: 'Outcome Sutra: Citizen Centricity Workshop', location: 'Hyderabad', date: '5th April, 2026' }],
-            '6': [{ img: 'https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&fit=crop&w=800&q=80', title: 'Mid-week Review and Samuhik Charcha', location: 'Online', date: '6th April, 2026' }],
-            '7': [{ img: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80', title: 'Inter-ministerial Collaboration Session', location: 'New Delhi', date: '7th April, 2026' }],
-            '8': [{ img: 'https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=800&q=80', title: 'SADHANA Saptah Closing Ceremony', location: 'New Delhi', date: '8th April, 2026' }]
-        };
-
-        let eventSwiper;
-
-        function updateEventSwiper(day) {
-            const swiperWrapper = document.querySelector('.eventSwiper .swiper-wrapper');
-            const fractionText = document.querySelector('.cbc-event-fraction');
-            const events = eventsData[day] || [];
-
-            swiperWrapper.innerHTML = '';
-
-            if (events.length === 0) {
-                swiperWrapper.innerHTML = `
-                    <div class="swiper-slide">
-                        <div class="cbc-event-card" style="height: 420px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.85);">
-                            <div style="color:#94a3b8; font-size:18px; font-weight: 500;">No events scheduled for this day</div>
-                        </div>
-                    </div>
-                `;
-                fractionText.textContent = '0 of 0';
-            } else {
-                events.forEach(event => {
-                    const slide = `
-                        <div class="swiper-slide">
-                            <div class="cbc-event-card">
-                                <img src="${event.img}" class="event-img" alt="${event.title}">
-                                <div class="event-overlay">
-                                    <h3>${event.title}</h3>
-                                    <div class="event-meta">
-                                        <span>📍 ${event.location}</span>
-                                        <span class="event-date-badge">${event.date}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    swiperWrapper.insertAdjacentHTML('beforeend', slide);
-                });
+        /* Find the base URL of the cbc theme by looking at any already-loaded
+           theme stylesheet (e.g. home.css loaded by Drupal globally). */
+        function getThemeBase() {
+            var links = document.querySelectorAll('link[rel="stylesheet"]');
+            for (var i = 0; i < links.length; i++) {
+                var href = links[i].href || '';
+                var idx = href.indexOf('/themes/cbc/');
+                if (idx !== -1) { return href.substring(0, idx); }
             }
-
-            if (eventSwiper) {
-                eventSwiper.update();
-                eventSwiper.slideTo(0);
-                const total = eventSwiper.slides.length;
-                fractionText.textContent = (total > 0 && events.length > 0 ? '1' : '0') + ' of ' + events.length;
-            }
+            /* Fallback: derive from current page URL up to the Drupal root.
+               Works if Drupal is at a subdirectory like /cbc/ or at / */
+            var base = window.location.origin;
+            var path = window.location.pathname;
+            var drupalRoot = path.split('/themes/')[0];
+            return base + (drupalRoot || '');
         }
 
-        function initCbcSwipers() {
-            if (typeof Swiper !== 'undefined') {
-                new Swiper('.photoSwiper', {
-                    loop: true,
-                    autoplay: { delay: 3500, disableOnInteraction: false },
-                    pagination: { el: '.photoSwiper .swiper-pagination', clickable: true },
-                    navigation: { nextEl: '.photoSwiper .cbc-next-btn', prevEl: '.photoSwiper .cbc-prev-btn' },
-                    effect: 'fade',
-                    fadeEffect: { crossFade: true }
-                });
-                new Swiper('.videoSwiper', {
-                    loop: true,
-                    autoplay: { delay: 6000, disableOnInteraction: false },
-                    pagination: { el: '.videoSwiper .swiper-pagination', clickable: true },
-                    navigation: { nextEl: '.videoSwiper .cbc-next-btn', prevEl: '.videoSwiper .cbc-prev-btn' }
-                });
+        var base = getThemeBase();
+        var theme = base + '/themes/cbc';
 
-                eventSwiper = new Swiper('.eventSwiper', {
-                    loop: false,
-                    navigation: { nextEl: '.cbc-event-next', prevEl: '.cbc-event-prev' },
-                    on: {
-                        slideChange: function () {
-                            const current = this.realIndex + 1;
-                            const total = this.slides.length;
-                            document.querySelector('.cbc-event-fraction').textContent = current + ' of ' + total;
-                        }
-                    }
-                });
-
-                // Set initial state for April 2nd
-                updateEventSwiper('2');
-
-                // Calendar interactivity
-                document.querySelectorAll('.cbc-calendar-day:not(.muted)').forEach(dayEl => {
-                    dayEl.addEventListener('click', function () {
-                        document.querySelectorAll('.cbc-calendar-day').forEach(el => el.classList.remove('active'));
-                        this.classList.add('active');
-                        const day = this.textContent.trim();
-                        const headerSpan = document.querySelector('.cbc-calendar-header span');
-                        const months_short = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-                        // Handle ordinal suffix (simple version)
-                        let suffix = "th";
-                        if (day === "1") suffix = "st";
-                        else if (day === "2") suffix = "nd";
-                        else if (day === "3") suffix = "rd";
-
-                        headerSpan.textContent = `${day}${suffix} April, 2026`;
-                        updateEventSwiper(day);
-                    });
-                });
-
-                // Calendar Month Nav logic removed as buttons are gone
-            }
+        /* Inject CSS — skip if already loaded */
+        if (!document.querySelector('link[href*="sadhana-saptah.css"]')) {
+            var css = document.createElement('link');
+            css.rel = 'stylesheet';
+            css.type = 'text/css';
+            css.href = theme + '/css/sadhana-saptah.css';
+            document.head.appendChild(css);
         }
 
-        if (document.readyState === 'complete' || document.readyState === 'interactive') {
-            initCbcSwipers();
+        /* Inject Google Fonts — skip if already loaded */
+        if (!document.querySelector('link[href*="Outfit"]')) {
+            var gf = document.createElement('link');
+            gf.rel = 'stylesheet';
+            gf.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap';
+            document.head.appendChild(gf);
+        }
+
+        /* Inject JS after DOM is ready — skip if already loaded */
+        function loadJS() {
+            if (document.querySelector('script[src*="sadhana-saptah.js"]')) return;
+            var scr = document.createElement('script');
+            scr.src = theme + '/js/sadhana-saptah.js';
+            document.body.appendChild(scr);
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadJS);
         } else {
-            window.addEventListener('load', initCbcSwipers);
+            loadJS();
         }
     })();
 </script>
+
+<div class="cbc-custom-landing">
+    <div class="container">
+
+        <!-- ==================================================================
+     SECTION 1: ABOUT SADHANA SAPTAH + THREE SUTRAS
+     ================================================================== -->
+        <div class="cbc-about-section">
+
+            <h2>About SĀDHANA Saptah</h2>
+
+            <div class="section-about">
+                <p>
+                    India's governance landscape is being reshaped by rapid technological change, renewed attention to
+                    Indian Knowledge Systems, and an increasing focus on Citizen Centricity. <strong>SĀDHANA
+                        Saptah</strong>
+                    is conceived as a theme-focused, sector-anchored exercise (sector classification as per SGOS) to
+                    strengthen governance capability across Ministries, Departments, Organisations (MDO), and States.
+                    The structure of the week shall be focused on three themes or Sutras —
+                    <strong>Technology, Tradition &amp; Tangible Outcomes</strong>.
+                </p>
+                <p>
+                    The week coincides with the Foundation Day of CBC and completion of five years of
+                    Mission Karmayogi, providing an opportunity to review progress while strengthening
+                    the national capacity-building ecosystem.
+                </p>
+                <p>
+                    Through a blended delivery model—comprising Karmayogi Talks by domain experts, Samuhik
+                    Charchas within institutions, digital learning through the iGOT platform,
+                    inter-ministerial workshops, and training programmes conducted by civil services training
+                    institutions—the initiative will engage civil servants across the government ecosystem.
+                    Participation will extend across <strong>93 Central Ministries and Departments,
+                        30 States and UTs</strong> implementing Mission Karmayogi, and more than
+                    <strong>200 civil services training institutions</strong>, supported through coordinated
+                    institutional mechanisms led by CBC.
+                </p>
+                <p>
+                    Beyond a week of learning engagements, SĀDHANA Saptah aims to reinforce a culture of
+                    continuous learning in government, accelerate engagement with the digital learning ecosystem,
+                    strengthen knowledge exchange across institutions, and generate insights for strengthening
+                    the broader capacity-building architecture under Mission Karmayogi.
+                </p>
+            </div>
+
+            <!-- Three Sutras -->
+            <div class="sutras-grid">
+                <div class="sutra-card">
+                    <span class="sutra-icon">🤖</span>
+                    <h3>Technology</h3>
+                    <p>AI and emerging technologies transforming the sector</p>
+                    <ul class="sutra-list">
+                        <li>Sector-specific AI use cases</li>
+                        <li>Regulatory readiness</li>
+                        <li>Digital public infrastructure integration</li>
+                    </ul>
+                </div>
+                <div class="sutra-card">
+                    <span class="sutra-icon">🏛️</span>
+                    <h3>Tradition</h3>
+                    <p>Indian Knowledge Systems and indigenous innovations</p>
+                    <ul class="sutra-list">
+                        <li>Civilizational practices with contemporary relevance</li>
+                        <li>Community-led institutional models</li>
+                        <li>Indigenous governance insights</li>
+                    </ul>
+                </div>
+                <div class="sutra-card">
+                    <span class="sutra-icon">🎯</span>
+                    <h3>Tangible Outcomes</h3>
+                    <p>Outcome-oriented governance and public value creation</p>
+                    <ul class="sutra-list">
+                        <li>Citizen impact tracking</li>
+                        <li>Clear articulation of priority sectoral outcomes</li>
+                        <li>Dashboard-based monitoring</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div><!-- /cbc-about-section -->
+
+    </div><!-- /container -->
+
+    <!-- ==================================================================
+     SECTION 2: EVENT SCHEDULE
+     ================================================================== -->
+    <div class="cbc-schedule-section">
+        <span class="cbc-schedule-title">Event Schedule</span>
+        <span class="cbc-schedule-subtitle">2nd April – 8th April 2026</span>
+
+        <div class="cbc-schedule-tabs">
+            <button class="cbc-schedule-tab active" data-tab="week">Throughout the Week</button>
+            <button class="cbc-schedule-tab" data-tab="day1">Day 1 – Launch Day</button>
+            <button class="cbc-schedule-tab" data-tab="day2-7">Day 2–7</button>
+            <button class="cbc-schedule-tab" data-tab="day8">Day 8 – Valedictory</button>
+            <button class="cbc-schedule-tab" data-tab="courses">Courses in Focus</button>
+        </div>
+
+        <div class="container">
+
+            <!-- TAB: Throughout the Week -->
+            <div class="cbc-schedule-content active" id="tab-week">
+                <div class="cbc-schedule-table-card">
+                    <div class="cbc-schedule-card-header">
+                        <h3>Activities Available Throughout the Week</h3>
+                        <p>Flexible, self-paced and group-based learning opportunities.</p>
+                    </div>
+                    <div class="cbc-schedule-table-wrapper">
+                        <table class="cbc-schedule-table">
+                            <thead>
+                                <tr>
+                                    <th style="width:60px;">S.N.</th>
+                                    <th style="width:200px;">Format</th>
+                                    <th>Session / Activity</th>
+                                    <th style="width:260px;">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="cbc-schedule-sn">1</td>
+                                    <td><strong>Karmayogi Talks</strong></td>
+                                    <td>National Webinars – Morning &amp; Evening sessions</td>
+                                    <td>2 webinars per day, each 1 hour, thematic and sector-aligned</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">2</td>
+                                    <td><strong>IGOT Modules</strong></td>
+                                    <td>Courses on IGOT – At learner's convenience</td>
+                                    <td>1–2 courses mandatory per MDO; AI &amp; Marketplace courses included</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">3</td>
+                                    <td><strong>Samuhik Charcha</strong></td>
+                                    <td>MDO/State-led group discussions</td>
+                                    <td>Templatized format; 60–120 min; facilitated by CBC &amp; Karmayogi Bharat</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">4</td>
+                                    <td><strong>Workshops / Onsite Courses</strong></td>
+                                    <td>MDO/CSTI/State-led workshops &amp; physical training</td>
+                                    <td>Domain &amp; sectoral capacity building sessions</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: Day 1 – Launch Day -->
+            <div class="cbc-schedule-content" id="tab-day1">
+                <div class="cbc-schedule-table-card">
+                    <div class="cbc-schedule-card-header">
+                        <h3>Udghatan Samaroh – Launch Day</h3>
+                        <p>📅 2nd April 2026 | New Delhi</p>
+                    </div>
+                    <div class="cbc-schedule-table-wrapper">
+                        <table class="cbc-schedule-table">
+                            <thead>
+                                <tr>
+                                    <th style="width:60px;">S.N.</th>
+                                    <th>Session</th>
+                                    <th style="text-align:right;width:200px;">Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="cbc-schedule-sn">1.</td>
+                                    <td><strong>Inaugural Address</strong><br><span
+                                            style="color:#f39200;font-size:12px;">Guests of Honour / Chief Guest</span>
+                                    </td>
+                                    <td style="text-align:right;color:#0063ae;font-weight:600;">10:00 AM – 11:30 AM</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">2.</td>
+                                    <td><strong>Master Class: 'Capacity Building Imperative for an Entrepreneurial
+                                            State'</strong><br><span style="color:#f39200;font-size:12px;">Shri V.
+                                            Anantha Nageswaran, Chief Economic Advisor, Govt. of India</span></td>
+                                    <td style="text-align:right;color:#0063ae;font-weight:600;">11:30 AM – 12:00 Noon
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">3.</td>
+                                    <td><strong>Thematic Session-I: National Workshop on Future Ready Training
+                                            Institutions for Viksit Bharat</strong></td>
+                                    <td style="text-align:right;color:#0063ae;font-weight:600;">12:00 Noon – 1:30 PM
+                                    </td>
+                                </tr>
+                                <tr style="background:#fff9f2;">
+                                    <td colspan="3"
+                                        style="text-align:center;color:#f39200;font-weight:700;font-style:italic;font-size:13px;">
+                                        Lunch Break</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">4.</td>
+                                    <td><strong>Thematic Session-II: Karmayogi Quality Framework</strong></td>
+                                    <td style="text-align:right;color:#0063ae;font-weight:600;">2:30 PM – 3:30 PM</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">5.</td>
+                                    <td><strong>Special Address</strong><br><span
+                                            style="color:#f39200;font-size:12px;">Shri T. V. Somanathan, Cabinet
+                                            Secretary, Govt. of India</span></td>
+                                    <td style="text-align:right;color:#0063ae;font-weight:600;">3:30 PM – 4:00 PM</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">6.</td>
+                                    <td><strong>Closing Reflection and Vote of Thanks</strong></td>
+                                    <td style="text-align:right;color:#0063ae;font-weight:600;">4:00 PM – 4:15 PM</td>
+                                </tr>
+                                <tr style="background:#fff9f2;">
+                                    <td colspan="3"
+                                        style="text-align:center;color:#f39200;font-weight:700;font-style:italic;font-size:13px;">
+                                        Tea &amp; Networking</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: Day 2–7 -->
+            <div class="cbc-schedule-content" id="tab-day2-7">
+                <div class="cbc-schedule-table-card"
+                    style="padding:20px;background:transparent;box-shadow:none;border:none;">
+                    <div class="cbc-schedule-card-header"
+                        style="background:white;border-radius:16px;margin-bottom:20px;border:1px solid #f0f0f0;">
+                        <h3>Daily Webinar Sessions</h3>
+                        <p>📅 3rd April – 8th April 2026 | Virtual / Hybrid</p>
+                    </div>
+                    <div class="cbc-webinar-grid">
+                        <div class="cbc-webinar-card">
+                            <h4>Morning Session – Webinar 1</h4>
+                            <span class="cbc-duration-badge">60 minutes</span>
+                            <p class="cbc-webinar-desc">Theme-aligned webinar session led by domain experts covering
+                                Technology, Tradition, or Tangible Outcomes.</p>
+                        </div>
+                        <div class="cbc-webinar-card">
+                            <h4>Afternoon/Evening Session – Webinar 2</h4>
+                            <span class="cbc-duration-badge">60 minutes</span>
+                            <p class="cbc-webinar-desc">Complementary session with sectoral deep-dives, case studies,
+                                and interactive discussions.</p>
+                        </div>
+                    </div>
+                    <div class="cbc-date-pills">
+                        <div class="cbc-date-pill">🔵 3rd &amp; 4th April – Technology</div>
+                        <div class="cbc-date-pill" style="background:#fff3e0;color:#e67e22;">🟠 5th &amp; 6th April –
+                            Tradition</div>
+                        <div class="cbc-date-pill" style="background:#e8f5e9;color:#2e7d32;">🟢 7th &amp; 8th April –
+                            Tangible Outcomes</div>
+                    </div>
+                    <div class="cbc-schedule-table-card">
+                        <div class="cbc-schedule-table-wrapper">
+                            <table class="cbc-schedule-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:60px;">S.N.</th>
+                                        <th style="width:200px;">Format</th>
+                                        <th>Session</th>
+                                        <th>Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="cbc-schedule-sn">1</td>
+                                        <td><strong>IGOT Modules</strong></td>
+                                        <td>Courses on IGOT – At learner's convenience; AI &amp; Marketplace focus</td>
+                                        <td>1–2 courses mandatory per MDO</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cbc-schedule-sn">2</td>
+                                        <td><strong>Samuhik Charcha</strong></td>
+                                        <td>MDO/State-led Samuhik Charcha</td>
+                                        <td>Templatized format; 60–120 min; facilitated by CBC &amp; Karmayogi Bharat
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cbc-schedule-sn">3</td>
+                                        <td><strong>Workshops / Onsite Courses</strong></td>
+                                        <td>MDO/CSTI/State-led workshops &amp; physical training</td>
+                                        <td>Sectoral / domain capacity building sessions</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cbc-schedule-sn">4</td>
+                                        <td><strong>Thematic Days</strong></td>
+                                        <td>Technology (3–4 Apr), Traditions (5–6 Apr), Tangible Outcomes (7–8 Apr)</td>
+                                        <td>Samuhik Charchas, Karmayogi Talks, Webinars &amp; Panel Discussions</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: Day 8 – Valedictory -->
+            <div class="cbc-schedule-content" id="tab-day8">
+                <div class="cbc-schedule-table-card">
+                    <div class="cbc-schedule-card-header">
+                        <h3>Samapan Samaroh – Valedictory Day</h3>
+                        <p>📅 8th April 2026</p>
+                    </div>
+                    <div class="cbc-schedule-table-wrapper">
+                        <table class="cbc-schedule-table">
+                            <thead>
+                                <tr>
+                                    <th style="width:60px;">S.N.</th>
+                                    <th style="width:140px;">Duration</th>
+                                    <th>Session</th>
+                                    <th>Tentative Activities</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="cbc-schedule-sn">1</td>
+                                    <td>120 minutes</td>
+                                    <td><strong>Felicitation Session</strong></td>
+                                    <td>Summary of the Week (Data) · Felicitation of Karmayogi Leaderboard Achievers ·
+                                        Address by Chief Guest (~20 min)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: Courses in Focus -->
+            <div class="cbc-schedule-content" id="tab-courses">
+                <div class="cbc-schedule-table-card">
+                    <div class="cbc-schedule-card-header">
+                        <h3>Curated Learning Pathways on iGOT Karmayogi</h3>
+                        <p>AI Courses &amp; iGOT Marketplace Courses — available throughout the week</p>
+                    </div>
+                    <div style="padding:16px 16px 0;">
+                        <div class="cbc-course-tabs">
+                            <button class="cbc-course-tab active" data-course="ai">AI Courses</button>
+                            <button class="cbc-course-tab" data-course="marketplace">iGOT Marketplace Courses</button>
+                        </div>
+                    </div>
+
+                    <!-- AI Courses -->
+                    <div class="cbc-schedule-table-wrapper" id="course-ai-table">
+                        <table class="cbc-schedule-table">
+                            <thead>
+                                <tr style="background-color:#f39200 !important;">
+                                    <th style="width:60px;">S.N.</th>
+                                    <th>Course Name</th>
+                                    <th>Provider</th>
+                                    <th style="text-align:right;width:110px;">Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="cbc-schedule-sn">1</td>
+                                    <td>Artificial Intelligence for Public Governance</td>
+                                    <td>Wadhwani AI &amp; Data Security Council of India</td>
+                                    <td style="text-align:right;">3h 10m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">2</td>
+                                    <td>Large Language Models: Concepts and Applications</td>
+                                    <td>IIT Hyderabad</td>
+                                    <td style="text-align:right;">1h 45m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">3</td>
+                                    <td>Deep Tech and India</td>
+                                    <td>ORF</td>
+                                    <td style="text-align:right;">55m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">4</td>
+                                    <td>AI in Government: Transforming Public Service Delivery</td>
+                                    <td>IISc Bengaluru</td>
+                                    <td style="text-align:right;">2h 20m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">5</td>
+                                    <td>Artificial Intelligence for Smarter Governance</td>
+                                    <td>Karmayogi Bharat – NeGD</td>
+                                    <td style="text-align:right;">1h 30m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">6</td>
+                                    <td>IndiaAI for All</td>
+                                    <td>India AI Mission</td>
+                                    <td style="text-align:right;">2h 15m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">7</td>
+                                    <td>Fundamentals of Generative Artificial Intelligence</td>
+                                    <td>IIT Madras</td>
+                                    <td style="text-align:right;">50m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">8</td>
+                                    <td>Introduction to Artificial Intelligence</td>
+                                    <td>IIT Madras</td>
+                                    <td style="text-align:right;">45m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">9</td>
+                                    <td>AI Applications in Government</td>
+                                    <td>NIC</td>
+                                    <td style="text-align:right;">1h 50m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">10</td>
+                                    <td>आर्टिफिशियल इंटेलिजेंस की मूल बातें: अवसर, अनुप्रयोग और नैतिकता</td>
+                                    <td>Microsoft</td>
+                                    <td style="text-align:right;">1h 35m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">11</td>
+                                    <td>प्रशासन के लिए एआई: कार्यों का स्व-चालन</td>
+                                    <td>Wadhwani Foundation</td>
+                                    <td style="text-align:right;">40m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">12</td>
+                                    <td>सुशासन के सन्दर्भ में एआई</td>
+                                    <td>Wadhwani Foundation</td>
+                                    <td style="text-align:right;">1h 15m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">13</td>
+                                    <td>Artificial Intelligence in Finance</td>
+                                    <td>SUDI</td>
+                                    <td style="text-align:right;">1h 40m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">14</td>
+                                    <td>Core Areas of Artificial Intelligence</td>
+                                    <td>IIT Madras</td>
+                                    <td style="text-align:right;">45m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">15</td>
+                                    <td>शून्य से एआई तक</td>
+                                    <td>India AI Mission</td>
+                                    <td style="text-align:right;">2h 30m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">16</td>
+                                    <td>Advanced Prompt Engineering for Everyone</td>
+                                    <td>Vanderbilt University</td>
+                                    <td style="text-align:right;">2h 45m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">17</td>
+                                    <td>Build and Execute an Organisational AI Strategy</td>
+                                    <td>Coursera</td>
+                                    <td style="text-align:right;">3h 15m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">18</td>
+                                    <td>AI for Educators [Intermediate]</td>
+                                    <td>Common Sense Education</td>
+                                    <td style="text-align:right;">1h 25m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">19</td>
+                                    <td>AI for Energy and Biomedical Applications</td>
+                                    <td>University of Michigan</td>
+                                    <td style="text-align:right;">2h 05m</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Marketplace Courses -->
+                    <div class="cbc-schedule-table-wrapper" id="course-marketplace-table" style="display:none;">
+                        <table class="cbc-schedule-table">
+                            <thead>
+                                <tr style="background-color:#f39200 !important;">
+                                    <th style="width:60px;">S.N.</th>
+                                    <th>Course Name</th>
+                                    <th>Provider</th>
+                                    <th style="text-align:right;width:110px;">Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="cbc-schedule-sn">1</td>
+                                    <td>Strategy and Game Theory for Management</td>
+                                    <td>IIM, Ahmedabad</td>
+                                    <td style="text-align:right;color:#f39200;font-weight:700;">32h 42m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">2</td>
+                                    <td>Leadership Skills</td>
+                                    <td>IIM, Ahmedabad</td>
+                                    <td style="text-align:right;color:#f39200;font-weight:700;">46h 11m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">3</td>
+                                    <td>Law, Governance, and Public Policy</td>
+                                    <td>O. P. Jindal Global University</td>
+                                    <td style="text-align:right;color:#f39200;font-weight:700;">18h 37m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">4</td>
+                                    <td>Introduction to Quantum Information</td>
+                                    <td>KAIST</td>
+                                    <td style="text-align:right;color:#f39200;font-weight:700;">10h 48m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">5</td>
+                                    <td>Negotiation Fundamentals</td>
+                                    <td>ESSEC Business School</td>
+                                    <td style="text-align:right;color:#f39200;font-weight:700;">8h 35m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">6</td>
+                                    <td>Analysis and Interpretation of Large-Scale Programs</td>
+                                    <td>Johns Hopkins University</td>
+                                    <td style="text-align:right;color:#f39200;font-weight:700;">21h 6m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">7</td>
+                                    <td>Build and Execute an Organisational AI Strategy</td>
+                                    <td>Coursera Instructor Network</td>
+                                    <td style="text-align:right;color:#f39200;font-weight:700;">5h 52m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">8</td>
+                                    <td>Forest Carbon Credits and Initiatives</td>
+                                    <td>Michigan State University</td>
+                                    <td style="text-align:right;color:#f39200;font-weight:700;">6h</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">9</td>
+                                    <td>Design Thinking and Predictive Analytics for Data Products</td>
+                                    <td>UC San Diego</td>
+                                    <td style="text-align:right;color:#f39200;font-weight:700;">8h 25m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">10</td>
+                                    <td>Effective Engagement of Civil Society in Development</td>
+                                    <td>Erasmus University Rotterdam</td>
+                                    <td style="text-align:right;color:#f39200;font-weight:700;">13h 19m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">11</td>
+                                    <td>Blockchain Platforms</td>
+                                    <td>University at Buffalo, SUNY</td>
+                                    <td style="text-align:right;color:#f39200;font-weight:700;">16h 16m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">12</td>
+                                    <td>Trade and Investment: Evidence-based Policies for Development</td>
+                                    <td>Erasmus University Rotterdam</td>
+                                    <td style="text-align:right;color:#f39200;font-weight:700;">17h 2m</td>
+                                </tr>
+                                <tr>
+                                    <td class="cbc-schedule-sn">13</td>
+                                    <td>Foundations of Cybersecurity</td>
+                                    <td>Google</td>
+                                    <td style="text-align:right;color:#f39200;font-weight:700;">10h 10m</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+        </div><!-- /container -->
+    </div><!-- /cbc-schedule-section -->
+
+    <!-- ==================================================================
+     SECTION 3: EVENT GLIMPSES — 2-COLUMN GRID
+     (Leaders' Voices on left | Testimonials on right)
+     ================================================================== -->
+    <div class="cbc-glimpses-section">
+        <div class="container">
+
+            <div class="cbc-glimpses-header">
+                <h2>Event Glimpses</h2>
+                <p>Reliving the inspiring words and impactful moments from SĀDHANA Saptah.</p>
+            </div>
+
+            <div class="cbc-glimpses-grid">
+
+                <!-- ── LEFT COLUMN: Leaders' Voices — VIDEO Carousel ── -->
+                <div class="cbc-column-box">
+                    <div class="cbc-column-title">Leaders' Voices</div>
+
+                    <!--
+                    ★ HOW TO ADD A LEADER VIDEO:
+                    1. Get the YouTube embed URL:
+                       https://www.youtube.com/embed/YOUR_VIDEO_ID
+                       OR upload to Drupal Media and use the direct file URL.
+                    2. Copy the <div class="swiper-slide"> block below, paste it
+                       inside the swiper-wrapper, and replace the iframe src.
+                       No JS changes needed — JS auto-detects new slides.
+                    -->
+                    <div class="swiper leadersSwiper">
+                        <div class="swiper-wrapper">
+
+                            <!-- Leader Video 1: Replace YouTube ID with actual video -->
+                            <div class="swiper-slide">
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/BgwH4vcud5I"
+                                            title="Leader's Voice — DoP&amp;T" allowfullscreen></iframe>
+                                </div>
+                            </div>
+
+                            <!-- Leader Video 2 -->
+                            <div class="swiper-slide">
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4"
+                                            title="Leader's Voice 2" allowfullscreen></iframe>
+                                </div>
+                            </div>
+
+                            <!-- ★ PASTE MORE LEADER VIDEO SLIDES BELOW THIS LINE ★
+                                 Copy a swiper-slide block above, paste here, change the YouTube embed URL.
+                            -->
+
+                        </div><!-- /swiper-wrapper -->
+                        <div class="swiper-pagination"></div>
+                        <div class="cbc-swiper-btn cbc-next-btn"></div>
+                        <div class="cbc-swiper-btn cbc-prev-btn"></div>
+                    </div><!-- /leadersSwiper -->
+                </div><!-- /left column -->
+
+                <!-- ── RIGHT COLUMN: Testimonials (Tabbed) ── -->
+                <div class="cbc-column-box">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; gap:15px; flex-wrap:wrap;">
+                        <div class="cbc-column-title" style="margin-bottom:0;">Testimonials</div>
+                        <div class="cbc-testimonial-tabs" style="margin-top:0; margin-bottom:0; justify-content:flex-end;">
+                            <button class="cbc-testimonial-tab active" data-test-tab="video">Video</button>
+                            <button class="cbc-testimonial-tab" data-test-tab="written">Written</button>
+                        </div>
+                    </div>
+
+                    <!-- Video Testimonials Tab -->
+                    <div class="cbc-testimonial-content active" id="test-video">
+                        <!--
+                ★ HOW TO ADD A VIDEO TESTIMONIAL:
+                1. Upload video to Drupal Media OR use a YouTube link.
+                2. For YouTube: get the embed URL: https://www.youtube.com/embed/VIDEO_ID
+                3. Copy the <div class="swiper-slide"> block below, paste it,
+                   and replace the iframe src.
+                -->
+                        <div class="swiper testimonialVideoSwiper">
+                            <div class="swiper-wrapper">
+
+                                <!-- Video Testimonial Slide: Replace YouTube ID -->
+                                <div class="swiper-slide">
+                                    <div class="video-container">
+                                        <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4"
+                                            title="Video Testimonial 1" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="video-container">
+                                        <iframe src="https://www.youtube.com/embed/r9pBy80zTws"
+                                            title="Video Testimonial 2" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+
+                                <!-- ★ PASTE MORE VIDEO TESTIMONIAL SLIDES BELOW THIS LINE ★ -->
+
+                            </div><!-- /swiper-wrapper -->
+                            <div class="swiper-pagination"></div>
+                            <div class="cbc-swiper-btn cbc-next-btn"></div>
+                            <div class="cbc-swiper-btn cbc-prev-btn"></div>
+                        </div><!-- /testimonialVideoSwiper -->
+                    </div><!-- /test-video -->
+
+                    <!-- Written Testimonials Tab -->
+                    <div class="cbc-testimonial-content" id="test-written">
+                        <div class="testimonial-written-wrap">
+                            <!--
+                    ★ HOW TO ADD A WRITTEN TESTIMONIAL:
+                    Copy the <div class="testimonial-card"> block below, paste it,
+                    and change the quote and author text.
+                    -->
+                            <div class="testimonial-track">
+
+                                <div class="testimonial-card">
+                                    <p>"The AI modules were eye-opening. It has completely changed how I think about
+                                        data-driven decisions."</p>
+                                    <span class="author">— Senior Administrative Officer</span>
+                                </div>
+                                <div class="testimonial-card">
+                                    <p>"Samuhik Charcha sessions allowed us to bond as a team while solving real service
+                                        bottlenecks."</p>
+                                    <span class="author">— Deputy Secretary</span>
+                                </div>
+                                <div class="testimonial-card">
+                                    <p>"A masterfully organized week. The focus on Indian Knowledge Systems was
+                                        particularly inspiring."</p>
+                                    <span class="author">— Project Director</span>
+                                </div>
+                                <div class="testimonial-card">
+                                    <p>"The iGOT courses were highly relevant and helped me immediately apply learnings
+                                        in my department."</p>
+                                    <span class="author">— Under Secretary, Ministry of Finance</span>
+                                </div>
+
+                                <!-- ★ PASTE MORE WRITTEN TESTIMONIALS BELOW THIS LINE ★ -->
+
+                            </div><!-- /testimonial-track -->
+                        </div><!-- /testimonial-written-wrap -->
+                    </div><!-- /test-written -->
+
+                </div><!-- /right column -->
+
+            </div><!-- /cbc-glimpses-grid -->
+
+        </div><!-- /container -->
+    </div><!-- /cbc-glimpses-section -->
+
+    <!-- ==================================================================
+     SECTION 4: PHOTO & VIDEO GALLERY (Side by Side)
+     ================================================================== -->
+    <div class="cbc-gallery-section">
+        <div class="container">
+
+            <div class="cbc-glimpses-header">
+                <h2>Event Gallery</h2>
+                <p>Capturing the moments and milestones of SĀDHANA Saptah.</p>
+            </div>
+
+            <div class="gallery-grid">
+
+                <!-- Photo Gallery -->
+                <div class="gallery-card">
+                    <h3>📸 Photo Highlights</h3>
+                    <!--
+            ★ HOW TO ADD A PHOTO:
+            1. Upload your photo to Drupal → Media → Add Media (Image).
+            2. Open the image and copy its URL from the browser address bar,
+               or right-click → "Copy image address".
+            3. Copy the <div class="swiper-slide"> block below, paste it,
+               and replace the img src with your Drupal media URL.
+
+            Drupal media URLs typically look like:
+              /sites/default/files/2026-04/photo-name.jpg
+            -->
+                    <div class="swiper photoSwiper">
+                        <div class="swiper-wrapper">
+
+                            <!-- ★ REPLACE WITH YOUR DRUPAL MEDIA URL ★ -->
+                            <div class="swiper-slide">
+                                <img src="/sites/default/files/REPLACE-WITH-YOUR-PHOTO-1.jpg"
+                                    alt="SĀDHANA Saptah Session">
+                            </div>
+
+                            <div class="swiper-slide">
+                                <img src="/sites/default/files/REPLACE-WITH-YOUR-PHOTO-2.jpg"
+                                    alt="SĀDHANA Saptah Workshop">
+                            </div>
+
+                            <div class="swiper-slide">
+                                <img src="/sites/default/files/REPLACE-WITH-YOUR-PHOTO-3.jpg" alt="SĀDHANA Saptah Team">
+                            </div>
+
+                            <!-- ★ PASTE MORE PHOTO SLIDES BELOW THIS LINE ★ -->
+
+                        </div><!-- /swiper-wrapper -->
+                        <div class="swiper-pagination"></div>
+                        <div class="cbc-swiper-btn cbc-next-btn"></div>
+                        <div class="cbc-swiper-btn cbc-prev-btn"></div>
+                    </div><!-- /photoSwiper -->
+                    <p class="gallery-caption"><strong>Moments of Interaction:</strong> Capturing the spirit of SĀDHANA
+                        Saptah.</p>
+                </div><!-- /gallery-card Photo -->
+
+                <!-- Video Gallery -->
+                <div class="gallery-card">
+                    <h3>🎬 Video Highlights</h3>
+                    <!--
+            ★ HOW TO ADD A VIDEO:
+            Option A — YouTube: Use the YouTube embed URL:
+              https://www.youtube.com/embed/YOUR_VIDEO_ID
+
+            Option B — Drupal Media Upload:
+              1. Upload the video to Drupal → Media → Add Media (Video file).
+              2. Use the direct file URL as the iframe src is NOT needed for
+                 hosted videos. Instead use an HTML5 video tag:
+                 <video controls><source src="/sites/default/files/your-video.mp4"></video>
+
+            Copy the <div class="swiper-slide"> block below and paste it.
+            -->
+                    <div class="swiper videoSwiper">
+                        <div class="swiper-wrapper">
+
+                            <!-- DoP&T Official Video (YouTube) -->
+                            <div class="swiper-slide">
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/BgwH4vcud5I"
+                                        title="SĀDHANA Saptah — Official Video" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4"
+                                        title="SĀDHANA Saptah Highlight" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div><!-- /swiper-wrapper -->
+                        <div class="swiper-pagination"></div>
+                        <div class="cbc-swiper-btn cbc-next-btn"></div>
+                        <div class="cbc-swiper-btn cbc-prev-btn"></div>
+                    </div><!-- /videoSwiper -->
+                    <p class="gallery-caption"><strong>Impact Stories:</strong> Watch the transformation in action.</p>
+                </div><!-- /gallery-card Video -->
+
+            </div><!-- /gallery-grid -->
+
+        </div><!-- /container -->
+    </div><!-- /cbc-gallery-section -->
+
+    <!-- ==================================================================
+         SECTION 5: DoP&T SOCIAL MEDIA LINKS
+         ================================================================== -->
+    <div class="cbc-social-section" style="background:#000b1a;padding:40px 20px;text-align:center;position:relative;border-top:1px solid rgba(0,174,239,0.1);">
+
+        <div class="container" style="position:relative;z-index:1;">
+
+            <h3 style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;color:#ffffff;margin:0 0 5px;">
+                Connect with DoP&amp;T
+            </h3>
+            <p style="color:rgba(255,255,255,0.4);font-size:12px;margin:0 0 20px;letter-spacing:0.5px;">
+                Department of Personnel and Training
+            </p>
+
+            <!-- Social icons row — Exact footer style: Tiny circular cyan stroke -->
+            <div style="display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;">
+
+                <!-- X (Twitter) -->
+                <a href="https://x.com/CBC_MK" target="_blank" rel="noopener"
+                   style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(0,174,239,0.3);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.3s;background:rgba(255,255,255,0.03);"
+                   onmouseover="this.style.borderColor='#00adef';this.style.background='rgba(0,174,239,0.1)'" onmouseout="this.style.borderColor='rgba(0,174,239,0.3)';this.style.background='rgba(255,255,255,0.03)'">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#00adef">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/company/capacity-building-commission/" target="_blank" rel="noopener"
+                   style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(0,174,239,0.3);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.3s;background:rgba(255,255,255,0.03);"
+                   onmouseover="this.style.borderColor='#00adef';this.style.background='rgba(0,174,239,0.1)'" onmouseout="this.style.borderColor='rgba(0,174,239,0.3)';this.style.background='rgba(255,255,255,0.03)'">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#00adef">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/capacitybuildingcommission/" target="_blank" rel="noopener"
+                   style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(0,174,239,0.3);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.3s;background:rgba(255,255,255,0.03);"
+                   onmouseover="this.style.borderColor='#00adef';this.style.background='rgba(0,174,239,0.1)'" onmouseout="this.style.borderColor='rgba(0,174,239,0.3)';this.style.background='rgba(255,255,255,0.03)'">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00adef" stroke-width="2">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <circle cx="12" cy="12" r="4"/>
+                        <circle cx="17.5" cy="6.5" r="0.5" fill="#00adef"/>
+                    </svg>
+                </a>
+
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/share/1AQvydowQ9/" target="_blank" rel="noopener"
+                   style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(0,174,239,0.3);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.3s;background:rgba(255,255,255,0.03);"
+                   onmouseover="this.style.borderColor='#00adef';this.style.background='rgba(0,174,239,0.1)'" onmouseout="this.style.borderColor='rgba(0,174,239,0.3)';this.style.background='rgba(255,255,255,0.03)'">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#00adef">
+                        <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================================================================
+         HIDDEN DATA BLOCK: CALENDAR EVENTS
+         Editable via Drupal Basic Page HTML — ZERO JS interaction needed.
+         ================================================================== -->
+    <div id="cbc-events-data" style="display:none;">
+        <!-- Day 2: 2nd April -->
+        <div data-day="2"
+             data-img="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&fit=crop&w=800&q=80"
+             data-title="SĀDHANA Saptah Launch Event"
+             data-location="New Delhi"
+             data-date="2nd April, 2026"></div>
+
+        <!-- Day 3: 3rd April -->
+        <div data-day="3"
+             data-img="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80"
+             data-title="Technology Sutra: AI in Governance"
+             data-location="Bengaluru"
+             data-date="3rd April, 2026"></div>
+
+        <!-- Day 4: 4th April -->
+        <div data-day="4"
+             data-img="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80"
+             data-title="Tradition Sutra: Indian Knowledge Systems"
+             data-location="Varanasi"
+             data-date="4th April, 2026"></div>
+
+        <!-- Day 5: 5th April -->
+        <div data-day="5"
+             data-img="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=800&q=80"
+             data-title="Outcome Sutra: Citizen Centricity Workshop"
+             data-location="Hyderabad"
+             data-date="5th April, 2026"></div>
+
+        <!-- Day 6: 6th April -->
+        <div data-day="6"
+             data-img="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&fit=crop&w=800&q=80"
+             data-title="Mid-week Review and Samuhik Charcha"
+             data-location="Online"
+             data-date="6th April, 2026"></div>
+
+        <!-- Day 7: 7th April -->
+        <div data-day="7"
+             data-img="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80"
+             data-title="Inter-ministerial Collaboration Session"
+             data-location="New Delhi"
+             data-date="7th April, 2026"></div>
+
+        <!-- Day 8: 8th April -->
+        <div data-day="8"
+             data-img="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=800&q=80"
+             data-title="SĀDHANA Saptah Closing Ceremony"
+             data-location="New Delhi"
+             data-date="8th April, 2026"></div>
+    </div>
+
+</div><!-- /cbc-custom-landing -->

@@ -1,0 +1,1028 @@
+/* =====================================================
+   SADHANA SAPTAH - Landing Page CSS
+   File: sadhana-saptah.css
+   Scope: All styles prefixed with .cbc-custom-landing
+   to avoid conflicts with Drupal theme styles.
+   ===================================================== */
+
+/* ---- CAROUSEL BASE (replaces Swiper CDN) ---- */
+.swiper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+/* Slide effect: flex row */
+.swiper-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+    transition: transform 0.52s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Within a fade carousel the wrapper is a stacking context */
+.swiper.cbc-fade .swiper-wrapper {
+    display: block;
+    transition: none;
+}
+
+.swiper-slide {
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Fade carousel: each slide absolutely stacked */
+.swiper.cbc-fade .swiper-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.55s ease;
+    pointer-events: none;
+    flex-shrink: unset;
+    width: 100%;
+}
+
+.swiper.cbc-fade .swiper-slide.cbc-slide-active {
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+}
+
+/* Pagination */
+.swiper-pagination {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    z-index: 15;
+    text-align: center;
+    pointer-events: none;
+}
+
+.swiper-pagination-bullet {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+    margin: 0 4px;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: all 0.3s;
+    vertical-align: middle;
+}
+
+.swiper-pagination-bullet-active {
+    background: #ffa500;
+    transform: scale(1.3);
+    opacity: 1;
+}
+
+/* ---- CSS VARIABLES ---- */
+
+:root {
+    --cbc-primary: #003366;
+    --cbc-accent: #f39200;
+    --cbc-accent-gold: #ffa500;
+    --cbc-bg-slate: #f8fafc;
+    --cbc-text-main: #334155;
+    --cbc-text-light: #64748b;
+    --cbc-glass: rgba(255, 255, 255, 0.9);
+    --cbc-shadow-premium: 0 10px 40px -10px rgba(0, 51, 102, 0.15);
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+/* ---- BASE ---- */
+.cbc-custom-landing {
+    font-family: var(--font-body) !important;
+    color: var(--cbc-text-main) !important;
+    background-color: var(--cbc-bg-slate) !important;
+    line-height: 1.6 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.cbc-custom-landing * {
+    box-sizing: border-box !important;
+}
+
+.cbc-custom-landing .container {
+    width: 100% !important;
+    max-width: 1140px !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+}
+
+.cbc-custom-landing h1,
+.cbc-custom-landing h2,
+.cbc-custom-landing h3,
+.cbc-custom-landing h4 {
+    font-family: var(--font-heading) !important;
+}
+
+.cbc-custom-landing h2 {
+    font-size: 32px !important;
+    color: var(--cbc-primary) !important;
+    margin-top: 0 !important;
+    margin-bottom: 10px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.5px !important;
+    display: inline-block !important;
+    position: relative !important;
+}
+
+.cbc-custom-landing h2::after {
+    content: '' !important;
+    display: block !important;
+    width: 60px !important;
+    height: 4px !important;
+    background: var(--cbc-accent) !important;
+    border-radius: 2px !important;
+    margin: 8px auto 0 !important;
+}
+
+/* ---- SECTION HEADERS (CENTERED) ---- */
+.cbc-section-header {
+    text-align: center !important;
+    margin-bottom: 50px !important;
+    padding-top: 70px !important;
+}
+
+.cbc-section-header p {
+    font-size: 17px !important;
+    color: var(--cbc-text-light) !important;
+    max-width: 680px !important;
+    margin: 18px auto 0 !important;
+}
+
+/* ---- SECTION 1: ABOUT ---- */
+.cbc-about-section {
+    padding: 70px 0 40px !important;
+}
+
+.cbc-about-section h2 {
+    display: block !important;
+    text-align: center !important;
+}
+
+.cbc-about-section h2::after {
+    margin: 8px auto 0 !important;
+}
+
+.section-about {
+    background-color: #ffffff !important;
+    padding: 40px !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+    margin-bottom: 40px !important;
+    border-left: 5px solid var(--cbc-primary) !important;
+}
+
+.section-about p {
+    font-size: 16px !important;
+    color: #475569 !important;
+    margin-bottom: 16px !important;
+    line-height: 1.8 !important;
+}
+
+.section-about p:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* ---- THREE SUTRAS GRID ---- */
+.sutras-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 25px !important;
+    margin-bottom: 70px !important;
+    width: 100% !important;
+}
+
+.sutra-card {
+    background-color: #ffffff !important;
+    border-radius: 16px !important;
+    padding: 30px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
+    transition: all 0.3s ease !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.sutra-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08) !important;
+    border-color: var(--cbc-primary) !important;
+}
+
+.sutra-icon {
+    font-size: 40px !important;
+    margin-bottom: 16px !important;
+    display: block !important;
+}
+
+.sutra-card h3 {
+    font-size: 20px !important;
+    color: var(--cbc-primary) !important;
+    margin-top: 0 !important;
+    margin-bottom: 8px !important;
+    font-weight: 700 !important;
+}
+
+.sutra-card > p {
+    font-size: 14px !important;
+    color: var(--cbc-text-light) !important;
+    margin-bottom: 16px !important;
+    font-weight: 500 !important;
+}
+
+.sutra-list {
+    padding-left: 0 !important;
+    margin: 0 !important;
+    list-style: none !important;
+}
+
+.sutra-list li {
+    position: relative !important;
+    padding-left: 20px !important;
+    margin-bottom: 8px !important;
+    font-size: 14px !important;
+    color: #475569 !important;
+}
+
+.sutra-list li::before {
+    content: '•' !important;
+    position: absolute !important;
+    left: 0 !important;
+    color: var(--cbc-accent) !important;
+    font-weight: bold !important;
+}
+
+/* ---- SECTION 2: EVENT SCHEDULE ---- */
+.cbc-schedule-section {
+    padding: 70px 0 !important;
+    text-align: center !important;
+    background-color: #fff9f2 !important;
+    border-radius: 30px !important;
+    margin-bottom: 30px !important;
+}
+
+.cbc-schedule-title {
+    font-family: var(--font-heading) !important;
+    font-size: 32px !important;
+    color: var(--cbc-primary) !important;
+    font-weight: 800 !important;
+    display: block !important;
+    margin-bottom: 6px !important;
+}
+
+.cbc-schedule-subtitle {
+    font-size: 16px !important;
+    color: var(--cbc-accent) !important;
+    font-weight: 600 !important;
+    margin-bottom: 30px !important;
+    display: block !important;
+}
+
+.cbc-schedule-tabs {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    flex-wrap: wrap !important;
+    margin-bottom: 40px !important;
+    padding: 0 20px !important;
+}
+
+.cbc-schedule-tab {
+    padding: 10px 24px !important;
+    background: transparent !important;
+    border: 1.5px solid var(--cbc-primary) !important;
+    color: var(--cbc-primary) !important;
+    border-radius: 30px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    font-size: 14px !important;
+    font-family: var(--font-body) !important;
+}
+
+.cbc-schedule-tab.active {
+    background-color: var(--cbc-primary) !important;
+    color: #ffffff !important;
+}
+
+.cbc-schedule-tab:hover:not(.active) {
+    background-color: rgba(0, 51, 102, 0.06) !important;
+}
+
+.cbc-schedule-content {
+    display: none !important;
+    animation: fadeIn 0.4s ease-out !important;
+    width: 100% !important;
+    max-width: 1060px !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+}
+
+.cbc-schedule-content.active {
+    display: block !important;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Table Cards */
+.cbc-schedule-table-card {
+    background: #ffffff !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+    overflow: hidden !important;
+    margin-bottom: 20px !important;
+    border: 1px solid #f0f0f0 !important;
+}
+
+.cbc-schedule-card-header {
+    padding: 22px 24px !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+    text-align: center !important;
+}
+
+.cbc-schedule-card-header h3 {
+    font-size: 18px !important;
+    color: var(--cbc-primary) !important;
+    margin: 0 !important;
+    font-weight: 700 !important;
+}
+
+.cbc-schedule-card-header p {
+    font-size: 14px !important;
+    color: var(--cbc-text-light) !important;
+    margin: 4px 0 0 !important;
+}
+
+.cbc-schedule-table-wrapper {
+    width: 100% !important;
+    overflow-x: auto !important;
+}
+
+.cbc-schedule-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    text-align: left !important;
+}
+
+.cbc-schedule-table th {
+    background-color: var(--cbc-primary) !important;
+    color: #ffffff !important;
+    padding: 10px 15px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+}
+
+.cbc-schedule-table td {
+    padding: 10px 15px !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+    font-size: 13px !important;
+    vertical-align: middle !important;
+}
+
+.cbc-schedule-table tr:last-child td {
+    border-bottom: none !important;
+}
+
+.cbc-schedule-sn {
+    width: 50px !important;
+    font-weight: 600 !important;
+    color: var(--cbc-text-light) !important;
+}
+
+/* Webinar Cards (Day 2-7) */
+.cbc-webinar-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 20px !important;
+    margin-bottom: 30px !important;
+}
+
+.cbc-webinar-card {
+    background: #ffffff !important;
+    border-radius: 20px !important;
+    padding: 28px !important;
+    border-left: 6px solid var(--cbc-accent) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+}
+
+.cbc-webinar-card h4 {
+    color: var(--cbc-primary) !important;
+    font-size: 17px !important;
+    margin: 0 0 10px !important;
+    font-weight: 700 !important;
+}
+
+.cbc-duration-badge {
+    display: inline-block !important;
+    background: #fff3e0 !important;
+    color: var(--cbc-accent) !important;
+    padding: 3px 12px !important;
+    border-radius: 20px !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    margin-bottom: 12px !important;
+}
+
+.cbc-webinar-desc {
+    font-size: 14px !important;
+    color: var(--cbc-text-light) !important;
+    line-height: 1.55 !important;
+    margin: 0 !important;
+}
+
+.cbc-date-pills {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    flex-wrap: wrap !important;
+    margin-bottom: 24px !important;
+}
+
+.cbc-date-pill {
+    padding: 5px 16px !important;
+    background: #e6f3ff !important;
+    color: #0063ae !important;
+    border-radius: 20px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+}
+
+/* Course sub-tabs */
+.cbc-course-tabs {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    margin-bottom: 20px !important;
+}
+
+.cbc-course-tab {
+    padding: 6px 18px !important;
+    border: 1.5px solid var(--cbc-accent) !important;
+    color: var(--cbc-accent) !important;
+    background: transparent !important;
+    border-radius: 20px !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    transition: all 0.3s !important;
+    font-family: var(--font-body) !important;
+}
+
+.cbc-course-tab.active {
+    background: var(--cbc-accent) !important;
+    color: #ffffff !important;
+}
+
+/* ---- SECTION 3: EVENT GLIMPSES ---- */
+.cbc-glimpses-section {
+    padding: 70px 0 !important;
+    background-color: #ffffff !important;
+    border-top: 1px solid #f1f5f9 !important;
+}
+
+.cbc-glimpses-header {
+    text-align: center !important;
+    margin-bottom: 50px !important;
+}
+
+.cbc-glimpses-header h2 {
+    display: inline-block !important;
+}
+
+.cbc-glimpses-header p {
+    font-size: 17px !important;
+    color: var(--cbc-text-light) !important;
+    max-width: 680px !important;
+    margin: 12px auto 0 !important;
+}
+
+/* 2-Column Grid */
+.cbc-glimpses-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 40px !important;
+    align-items: stretch !important;
+}
+
+.cbc-column-box {
+    background: var(--cbc-glass) !important;
+    backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(0, 51, 102, 0.08) !important;
+    border-radius: 24px !important;
+    padding: 35px !important;
+    box-shadow: var(--cbc-shadow-premium) !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.cbc-column-title {
+    font-family: var(--font-heading) !important;
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    color: var(--cbc-primary) !important;
+    margin-bottom: 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}
+
+.cbc-column-title::before {
+    content: '' !important;
+    flex-shrink: 0 !important;
+    width: 4px !important;
+    height: 24px !important;
+    background: var(--cbc-accent) !important;
+    border-radius: 2px !important;
+}
+
+/* Leaders Carousel — now video-based, same dimensions as testimonial video */
+.leadersSwiper {
+    flex: 1 !important;
+    min-height: 320px !important;
+    width: 100% !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+}
+
+/* Testimonial Tabs */
+.cbc-testimonial-tabs {
+    display: flex !important;
+    gap: 10px !important;
+    margin-bottom: 20px !important;
+}
+
+.cbc-testimonial-tab {
+    padding: 10px 28px !important;
+    background: #edf2f7 !important;
+    border: none !important;
+    color: #4a5568 !important;
+    border-radius: 50px !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    font-size: 13px !important;
+    font-family: var(--font-body) !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
+}
+
+.cbc-testimonial-tab.active {
+    background: #003366 !important;
+    color: #ffffff !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 4px 12px rgba(0, 51, 102, 0.2) !important;
+}
+
+.cbc-testimonial-tab:hover:not(.active) {
+    background: #e2e8f0 !important;
+    color: #2d3748 !important;
+}
+
+.cbc-testimonial-content {
+    display: none !important;
+    animation: fadeInGlimpse 0.4s ease-out !important;
+}
+
+.cbc-testimonial-content.active {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+}
+
+@keyframes fadeInGlimpse {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Video testimonial swiper */
+.testimonialVideoSwiper {
+    height: 320px !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    width: 100% !important;
+}
+
+/* Written testimonials - marquee cards */
+.testimonial-written-wrap {
+    overflow: hidden !important;
+    flex: 1 !important;
+    padding: 5px 0 !important;
+}
+
+.testimonial-track {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    overflow-y: auto !important;
+    max-height: 320px !important;
+    padding-right: 6px !important;
+}
+
+.testimonial-track::-webkit-scrollbar {
+    width: 4px !important;
+}
+
+.testimonial-track::-webkit-scrollbar-thumb {
+    background: #cbd5e1 !important;
+    border-radius: 4px !important;
+}
+
+.testimonial-card {
+    background-color: #ffffff !important;
+    border-radius: 14px !important;
+    padding: 20px 22px !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+    border-left: 4px solid var(--cbc-accent-gold) !important;
+    flex-shrink: 0 !important;
+}
+
+.testimonial-card p {
+    font-style: italic !important;
+    color: #64748b !important;
+    margin-bottom: 10px !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+}
+
+.testimonial-card .author {
+    font-weight: 700 !important;
+    color: var(--cbc-primary) !important;
+    font-size: 13px !important;
+    display: block !important;
+}
+
+/* ---- SECTION 4: GALLERY ---- */
+.cbc-gallery-section {
+    padding: 70px 0 !important;
+    background-color: var(--cbc-bg-slate) !important;
+    border-top: 1px solid #f1f5f9 !important;
+}
+
+.gallery-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 30px !important;
+    width: 100% !important;
+}
+
+.gallery-card {
+    background-color: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    border-radius: 20px !important;
+    padding: 24px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05) !important;
+}
+
+.gallery-card h3 {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: var(--cbc-primary) !important;
+    margin-top: 0 !important;
+    margin-bottom: 16px !important;
+}
+
+/* Swiper base */
+.photoSwiper,
+.videoSwiper {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    width: 100% !important;
+    height: 280px !important;
+    position: relative !important;
+}
+
+.cbc-custom-landing .swiper-slide img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+}
+
+.video-container {
+    width: 100% !important;
+    height: 100% !important;
+    background: #000 !important;
+}
+
+.video-container iframe {
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+    display: block !important;
+}
+
+.gallery-caption {
+    margin-top: 12px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: var(--cbc-primary) !important;
+}
+
+/* ---- SWIPER CUSTOM NAVIGATION ---- */
+.cbc-swiper-btn {
+    color: #ffffff !important;
+    background: rgba(0, 0, 0, 0.45) !important;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    backdrop-filter: blur(4px) !important;
+    transition: all 0.3s !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 20 !important;
+    cursor: pointer !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.cbc-swiper-btn.cbc-next-btn { right: 10px !important; }
+.cbc-swiper-btn.cbc-prev-btn { left: 10px !important; }
+
+.cbc-swiper-btn::after {
+    content: '' !important;
+    display: block !important;
+    width: 10px !important;
+    height: 10px !important;
+    border-top: 2.5px solid #ffffff !important;
+    border-right: 2.5px solid #ffffff !important;
+}
+
+.cbc-swiper-btn.cbc-next-btn::after { transform: rotate(45deg) translateX(-2px) !important; }
+.cbc-swiper-btn.cbc-prev-btn::after { transform: rotate(-135deg) translateX(-2px) !important; }
+
+.cbc-swiper-btn:hover {
+    background: rgba(0, 0, 0, 0.7) !important;
+    transform: translateY(-50%) scale(1.1) !important;
+}
+
+.cbc-custom-landing .swiper-pagination-bullet { background: #ffffff !important; opacity: 0.5 !important; }
+.cbc-custom-landing .swiper-pagination-bullet-active { background: var(--cbc-accent-gold) !important; opacity: 1 !important; }
+
+/* ---- SECTION 5: SOCIAL MEDIA ---- */
+.cbc-social-section {
+    margin-top: 0 !important;
+    padding: 80px 0 !important;
+    background: linear-gradient(135deg, #001f3f 0%, var(--cbc-primary) 100%) !important;
+    text-align: center !important;
+    color: white !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.cbc-social-section::before {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background: radial-gradient(circle at 50% 0%, rgba(243, 146, 0, 0.18), transparent 65%) !important;
+    pointer-events: none !important;
+}
+
+.cbc-social-title {
+    font-family: var(--font-heading) !important;
+    font-size: 30px !important;
+    font-weight: 800 !important;
+    color: white !important;
+    margin: 0 0 8px !important;
+}
+
+.cbc-social-subtitle {
+    color: rgba(255,255,255,0.6) !important;
+    font-size: 15px !important;
+    margin: 0 !important;
+}
+
+.cbc-social-links {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 40px !important;
+    margin-top: 48px !important;
+    flex-wrap: wrap !important;
+}
+
+.cbc-social-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 12px !important;
+    text-decoration: none !important;
+    color: rgba(255,255,255,0.8) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    width: 90px !important;
+}
+
+.cbc-social-item:hover {
+    transform: translateY(-10px) !important;
+    color: white !important;
+}
+
+.cbc-social-icon {
+    width: 68px !important;
+    height: 68px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 30px !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    transition: all 0.3s !important;
+    line-height: 1 !important;
+}
+
+.cbc-social-item:hover .cbc-social-icon {
+    background: var(--cbc-accent) !important;
+    border-color: var(--cbc-accent) !important;
+    box-shadow: 0 15px 30px rgba(243, 146, 0, 0.35) !important;
+}
+
+.cbc-social-label {
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+}
+
+/* ---- EVENT CALENDAR SECTION (inside Section 2) ---- */
+.cbc-event-calendar-grid {
+    display: grid !important;
+    grid-template-columns: 1.5fr 1fr !important;
+    gap: 30px !important;
+    margin-bottom: 20px !important;
+    align-items: stretch !important;
+}
+
+.cbc-event-card {
+    background: #000 !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    position: relative !important;
+    height: 420px !important;
+    color: #fff !important;
+}
+
+.cbc-event-card .event-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    opacity: 0.65 !important;
+}
+
+.cbc-event-card .event-overlay {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    padding: 40px !important;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%) !important;
+}
+
+.cbc-event-card h3 {
+    font-size: 22px !important;
+    margin: 0 0 12px !important;
+    line-height: 1.3 !important;
+    color: #fff !important;
+}
+
+.cbc-event-card .event-meta {
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+    font-size: 13px !important;
+}
+
+.cbc-event-card .event-date-badge {
+    background: #fff !important;
+    color: #000 !important;
+    padding: 5px 14px !important;
+    border-radius: 20px !important;
+    font-weight: 700 !important;
+    font-size: 12px !important;
+}
+
+.cbc-event-nav {
+    display: flex !important;
+    gap: 10px !important;
+    align-items: center !important;
+    font-size: 13px !important;
+    position: absolute !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    z-index: 30 !important;
+    background: rgba(255,255,255,0.12) !important;
+    backdrop-filter: blur(8px) !important;
+    padding: 5px 14px !important;
+    border-radius: 30px !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+}
+
+.cbc-event-nav-btn {
+    width: 30px !important;
+    height: 30px !important;
+    border: 1.5px solid #fff !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    color: #fff !important;
+    transition: all 0.3s !important;
+    font-weight: bold !important;
+    background: transparent !important;
+    font-size: 14px !important;
+}
+
+.cbc-event-nav-btn:hover {
+    background: #fff !important;
+    color: #000 !important;
+}
+
+.cbc-event-fraction { color: #fff !important; font-weight: 600 !important; }
+
+.cbc-calendar-card {
+    background: #f1f5f9 !important;
+    border-radius: 20px !important;
+    padding: 28px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 420px !important;
+}
+
+.cbc-calendar-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 18px !important;
+    color: #1e293b !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+}
+
+.cbc-calendar-grid {
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr) !important;
+    gap: 8px !important;
+    text-align: center !important;
+    flex: 1 !important;
+}
+
+.cbc-calendar-day-head {
+    font-weight: 700 !important;
+    color: #64748b !important;
+    font-size: 12px !important;
+    padding-bottom: 8px !important;
+}
+
+.cbc-calendar-day {
+    padding: 7px !important;
+    border-radius: 8px !important;
+    font-size: 13px !important;
+    cursor: pointer !important;
+    transition: background 0.2s !important;
+    border: 1px solid transparent !important;
+}
+
+.cbc-calendar-day:hover:not(.muted) { background: #cbd5e1 !important; }
+.cbc-calendar-day.active { background: #fde7ca !important; color: var(--cbc-primary) !important; font-weight: 700 !important; border-color: var(--cbc-primary) !important; }
+.cbc-calendar-day.muted { color: #94a3b8 !important; cursor: default !important; }
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 992px) {
+    .cbc-glimpses-grid { grid-template-columns: 1fr !important; }
+    .cbc-event-calendar-grid { grid-template-columns: 1fr !important; }
+    .cbc-event-card { height: 320px !important; }
+    .cbc-calendar-card { height: auto !important; }
+    .sutras-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important; }
+}
+
+@media (max-width: 768px) {
+    .gallery-grid { grid-template-columns: 1fr !important; }
+    .cbc-webinar-grid { grid-template-columns: 1fr !important; }
+    .cbc-schedule-tab { padding: 8px 16px !important; font-size: 12px !important; }
+    .cbc-column-box { padding: 24px !important; }
+    .cbc-social-links { gap: 24px !important; }
+}
+
+@media (max-width: 600px) {
+    .cbc-custom-landing h2 { font-size: 24px !important; }
+    .cbc-schedule-title { font-size: 24px !important; }
+    .cbc-social-icon { width: 56px !important; height: 56px !important; font-size: 24px !important; }
+}
