@@ -680,24 +680,19 @@
                     <div class="swiper leadersSwiper">
                         <div class="swiper-wrapper">
 
-                            <!-- Leader Video 1: Replace YouTube ID with actual video -->
+                            <!-- Leader Video 1 (Direct Drupal .mp4 Example) -->
                             <div class="swiper-slide">
                                 <div class="video-container">
-                                    <iframe src="https://www.youtube.com/embed/BgwH4vcud5I"
-                                            title="Leader's Voice — DoP&amp;T" allowfullscreen></iframe>
+                                    <video controls playsinline>
+                                        <source src="/sites/default/files/2026-03/leader-video-1.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
                                 </div>
                             </div>
 
-                            <!-- Leader Video 2 -->
-                            <div class="swiper-slide">
-                                <div class="video-container">
-                                    <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4"
-                                            title="Leader's Voice 2" allowfullscreen></iframe>
-                                </div>
-                            </div>
-
-                            <!-- ★ PASTE MORE LEADER VIDEO SLIDES BELOW THIS LINE ★
-                                 Copy a swiper-slide block above, paste here, change the YouTube embed URL.
+                            <!-- ★ PASTE MORE LEADER VIDEOS BELOW THIS LINE ★
+                                 Copy the <div class="swiper-slide"> block above, 
+                                 paste it, and replace the <source src="..."> with your Drupal media URL.
                             -->
 
                         </div><!-- /swiper-wrapper -->
@@ -709,9 +704,11 @@
 
                 <!-- ── RIGHT COLUMN: Testimonials (Tabbed) ── -->
                 <div class="cbc-column-box">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; gap:15px; flex-wrap:wrap;">
+                    <div
+                        style="display:flex; justify-content:space-between; align-items:center; gap:15px; flex-wrap:wrap;">
                         <div class="cbc-column-title" style="margin-bottom:0;">Testimonials</div>
-                        <div class="cbc-testimonial-tabs" style="margin-top:0; margin-bottom:0; justify-content:flex-end;">
+                        <div class="cbc-testimonial-tabs"
+                            style="margin-top:0; margin-bottom:0; justify-content:flex-end;">
                             <button class="cbc-testimonial-tab active" data-test-tab="video">Video</button>
                             <button class="cbc-testimonial-tab" data-test-tab="written">Written</button>
                         </div>
@@ -721,19 +718,30 @@
                     <div class="cbc-testimonial-content active" id="test-video">
                         <!--
                 ★ HOW TO ADD A VIDEO TESTIMONIAL:
-                1. Upload video to Drupal Media OR use a YouTube link.
-                2. For YouTube: get the embed URL: https://www.youtube.com/embed/VIDEO_ID
-                3. Copy the <div class="swiper-slide"> block below, paste it,
-                   and replace the iframe src.
+                1. Upload video to Drupal Media.
+                2. Copy the <div class="swiper-slide"> block below, paste it,
+                   and replace the source src.
                 -->
                         <div class="swiper testimonialVideoSwiper">
                             <div class="swiper-wrapper">
 
-                                <!-- Video Testimonial Slide: Replace YouTube ID -->
+                                <!-- Video Testimonial 1 -->
                                 <div class="swiper-slide">
                                     <div class="video-container">
-                                        <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4"
-                                            title="Video Testimonial 1" allowfullscreen></iframe>
+                                        <video controls playsinline>
+                                            <source src="/sites/default/files/2026-03/testimonial-1.mp4"
+                                                type="video/mp4">
+                                        </video>
+                                    </div>
+                                </div>
+
+                                <!-- Video Testimonial 2 -->
+                                <div class="swiper-slide">
+                                    <div class="video-container">
+                                        <video controls playsinline>
+                                            <source src="/sites/default/files/2026-03/imgae%20%20%284%29.mp4"
+                                                type="video/mp4">
+                                        </video>
                                     </div>
                                 </div>
 
@@ -872,19 +880,18 @@
                     <div class="swiper videoSwiper">
                         <div class="swiper-wrapper">
 
-                            <!-- DoP&T Official Video (YouTube) -->
+                            <!-- Video Highlight (Direct Drupal .mp4) -->
                             <div class="swiper-slide">
                                 <div class="video-container">
-                                    <iframe src="https://www.youtube.com/embed/BgwH4vcud5I"
-                                        title="SĀDHANA Saptah — Official Video" allowfullscreen></iframe>
+                                    <video controls playsinline>
+                                        <source src="/sites/default/files/2026-03/gallery-video-1.mp4" type="video/mp4">
+                                    </video>
                                 </div>
                             </div>
-                            <div class="swiper-slide">
-                                <div class="video-container">
-                                    <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4"
-                                        title="SĀDHANA Saptah Highlight" allowfullscreen></iframe>
-                                </div>
-                            </div>
+
+                            <!-- ★ PASTE MORE VIDEO SLIDES BELOW THIS LINE ★
+                                 Copy the <div class="swiper-slide"> block above and update the source src.
+                            -->
                         </div><!-- /swiper-wrapper -->
                         <div class="swiper-pagination"></div>
                         <div class="cbc-swiper-btn cbc-next-btn"></div>
@@ -901,7 +908,8 @@
     <!-- ==================================================================
          SECTION 5: DoP&T SOCIAL MEDIA LINKS
          ================================================================== -->
-    <div class="cbc-social-section" style="background:#000b1a;padding:40px 20px;text-align:center;position:relative;border-top:1px solid rgba(0,174,239,0.1);">
+    <div class="cbc-social-section"
+        style="background:#000b1a;padding:40px 20px;text-align:center;position:relative;border-top:1px solid rgba(0,174,239,0.1);">
 
         <div class="container" style="position:relative;z-index:1;">
 
@@ -917,39 +925,46 @@
 
                 <!-- X (Twitter) -->
                 <a href="https://x.com/CBC_MK" target="_blank" rel="noopener"
-                   style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(0,174,239,0.3);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.3s;background:rgba(255,255,255,0.03);"
-                   onmouseover="this.style.borderColor='#00adef';this.style.background='rgba(0,174,239,0.1)'" onmouseout="this.style.borderColor='rgba(0,174,239,0.3)';this.style.background='rgba(255,255,255,0.03)'">
+                    style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(0,174,239,0.3);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.3s;background:rgba(255,255,255,0.03);"
+                    onmouseover="this.style.borderColor='#00adef';this.style.background='rgba(0,174,239,0.1)'"
+                    onmouseout="this.style.borderColor='rgba(0,174,239,0.3)';this.style.background='rgba(255,255,255,0.03)'">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="#00adef">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        <path
+                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                     </svg>
                 </a>
 
                 <!-- LinkedIn -->
                 <a href="https://www.linkedin.com/company/capacity-building-commission/" target="_blank" rel="noopener"
-                   style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(0,174,239,0.3);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.3s;background:rgba(255,255,255,0.03);"
-                   onmouseover="this.style.borderColor='#00adef';this.style.background='rgba(0,174,239,0.1)'" onmouseout="this.style.borderColor='rgba(0,174,239,0.3)';this.style.background='rgba(255,255,255,0.03)'">
+                    style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(0,174,239,0.3);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.3s;background:rgba(255,255,255,0.03);"
+                    onmouseover="this.style.borderColor='#00adef';this.style.background='rgba(0,174,239,0.1)'"
+                    onmouseout="this.style.borderColor='rgba(0,174,239,0.3)';this.style.background='rgba(255,255,255,0.03)'">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="#00adef">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        <path
+                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                     </svg>
                 </a>
 
                 <!-- Instagram -->
                 <a href="https://www.instagram.com/capacitybuildingcommission/" target="_blank" rel="noopener"
-                   style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(0,174,239,0.3);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.3s;background:rgba(255,255,255,0.03);"
-                   onmouseover="this.style.borderColor='#00adef';this.style.background='rgba(0,174,239,0.1)'" onmouseout="this.style.borderColor='rgba(0,174,239,0.3)';this.style.background='rgba(255,255,255,0.03)'">
+                    style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(0,174,239,0.3);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.3s;background:rgba(255,255,255,0.03);"
+                    onmouseover="this.style.borderColor='#00adef';this.style.background='rgba(0,174,239,0.1)'"
+                    onmouseout="this.style.borderColor='rgba(0,174,239,0.3)';this.style.background='rgba(255,255,255,0.03)'">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00adef" stroke-width="2">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                        <circle cx="12" cy="12" r="4"/>
-                        <circle cx="17.5" cy="6.5" r="0.5" fill="#00adef"/>
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                        <circle cx="12" cy="12" r="4" />
+                        <circle cx="17.5" cy="6.5" r="0.5" fill="#00adef" />
                     </svg>
                 </a>
 
                 <!-- Facebook -->
                 <a href="https://www.facebook.com/share/1AQvydowQ9/" target="_blank" rel="noopener"
-                   style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(0,174,239,0.3);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.3s;background:rgba(255,255,255,0.03);"
-                   onmouseover="this.style.borderColor='#00adef';this.style.background='rgba(0,174,239,0.1)'" onmouseout="this.style.borderColor='rgba(0,174,239,0.3)';this.style.background='rgba(255,255,255,0.03)'">
+                    style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(0,174,239,0.3);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.3s;background:rgba(255,255,255,0.03);"
+                    onmouseover="this.style.borderColor='#00adef';this.style.background='rgba(0,174,239,0.1)'"
+                    onmouseout="this.style.borderColor='rgba(0,174,239,0.3)';this.style.background='rgba(255,255,255,0.03)'">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="#00adef">
-                        <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                        <path
+                            d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" />
                     </svg>
                 </a>
             </div>
@@ -963,52 +978,41 @@
     <div id="cbc-events-data" style="display:none;">
         <!-- Day 2: 2nd April -->
         <div data-day="2"
-             data-img="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&fit=crop&w=800&q=80"
-             data-title="SĀDHANA Saptah Launch Event"
-             data-location="New Delhi"
-             data-date="2nd April, 2026"></div>
+            data-img="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&fit=crop&w=800&q=80"
+            data-title="SĀDHANA Saptah Launch Event" data-location="New Delhi" data-date="2nd April, 2026"></div>
 
         <!-- Day 3: 3rd April -->
         <div data-day="3"
-             data-img="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80"
-             data-title="Technology Sutra: AI in Governance"
-             data-location="Bengaluru"
-             data-date="3rd April, 2026"></div>
+            data-img="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80"
+            data-title="Technology Sutra: AI in Governance" data-location="Bengaluru" data-date="3rd April, 2026"></div>
 
         <!-- Day 4: 4th April -->
         <div data-day="4"
-             data-img="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80"
-             data-title="Tradition Sutra: Indian Knowledge Systems"
-             data-location="Varanasi"
-             data-date="4th April, 2026"></div>
+            data-img="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80"
+            data-title="Tradition Sutra: Indian Knowledge Systems" data-location="Varanasi" data-date="4th April, 2026">
+        </div>
 
         <!-- Day 5: 5th April -->
         <div data-day="5"
-             data-img="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=800&q=80"
-             data-title="Outcome Sutra: Citizen Centricity Workshop"
-             data-location="Hyderabad"
-             data-date="5th April, 2026"></div>
+            data-img="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=800&q=80"
+            data-title="Outcome Sutra: Citizen Centricity Workshop" data-location="Hyderabad"
+            data-date="5th April, 2026"></div>
 
         <!-- Day 6: 6th April -->
         <div data-day="6"
-             data-img="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&fit=crop&w=800&q=80"
-             data-title="Mid-week Review and Samuhik Charcha"
-             data-location="Online"
-             data-date="6th April, 2026"></div>
+            data-img="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&fit=crop&w=800&q=80"
+            data-title="Mid-week Review and Samuhik Charcha" data-location="Online" data-date="6th April, 2026"></div>
 
         <!-- Day 7: 7th April -->
         <div data-day="7"
-             data-img="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80"
-             data-title="Inter-ministerial Collaboration Session"
-             data-location="New Delhi"
-             data-date="7th April, 2026"></div>
+            data-img="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80"
+            data-title="Inter-ministerial Collaboration Session" data-location="New Delhi" data-date="7th April, 2026">
+        </div>
 
         <!-- Day 8: 8th April -->
         <div data-day="8"
-             data-img="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=800&q=80"
-             data-title="SĀDHANA Saptah Closing Ceremony"
-             data-location="New Delhi"
-             data-date="8th April, 2026"></div>
+            data-img="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=800&q=80"
+            data-title="SĀDHANA Saptah Closing Ceremony" data-location="New Delhi" data-date="8th April, 2026"></div>
     </div>
 
 </div><!-- /cbc-custom-landing -->

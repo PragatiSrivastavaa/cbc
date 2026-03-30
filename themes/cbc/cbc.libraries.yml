@@ -22,7 +22,7 @@ global-scripts:
     js/joinMissionDialog.js: {}
     js/formAccessibility.js: {}
     js/video-accessibility-fallback.js: {}
-    js/sadhana-saptah.js: { weight: 99 }
+    js/sadhana-saptah.js: {}
   dependencies:
     - core/jquery
     - core/jquery.form
