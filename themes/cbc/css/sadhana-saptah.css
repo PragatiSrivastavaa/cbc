@@ -1119,7 +1119,7 @@
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin: 40px 0 20px;
+    margin: 4rem 0 0px;
     flex-wrap: wrap;
 }
 
@@ -1195,8 +1195,7 @@
     height: auto;
     display: block;
     object-fit: cover;
-    /* Optional: Limit height on very large screens */
-    max-height: 500px;
+    ;
 }
 
 @media (max-width: 768px) {
