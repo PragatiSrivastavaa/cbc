@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Theme override for the SĀDHANA Saptah landing page.
+ * This template removes the default header banner and breadcrumbs
+ * to allow the custom Hero Banner to be the primary focus.
+ */
+#}
+
+{# We STILL include the header logic for scripts/meta, but the visual banner is removed #}
+{% include 'themes/cbc/templates/layout/header.html.twig' %}
+
+<main id="app-content">
+  <!-- 
+    The default Drupal Breadcrumbs and Page Hero sections 
+    have been removed from this custom template.
+  -->
+
+  <!-- Main Content Section -->
+  <section class="cbc-custom-landing-page-wrapper">
+    <div class="container">
+      {% if page.highlighted %}
+        <div class="highlighted">{{ page.highlighted }}</div>
+      {% endif %}
+      {% if page.help %}
+        <div class="help">{{ page.help }}</div>
+      {% endif %}
+      {% if page.messages %}
+        <div class="messages-area">{{ page.messages }}</div>
+      {% endif %}
+    </div>
+
+    {# This renders the Basic Page body field containing our custom landing page HTML #}
+    {{ page.content }}
+  </section>
+</main>
+
+{% include 'themes/cbc/templates/layout/footer.html.twig' %}
