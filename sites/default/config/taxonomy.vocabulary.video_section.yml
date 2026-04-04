@@ -1,0 +1,9 @@
+uuid: 6e93f31d-bafa-4349-bbf4-30c722062da5
+langcode: en
+status: true
+dependencies: {  }
+name: 'Video Section'
+vid: video_section
+description: null
+weight: 0
+new_revision: false
