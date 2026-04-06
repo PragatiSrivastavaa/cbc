@@ -1,0 +1,29 @@
+uuid: 5cf506ac-5fc5-44e0-a413-677d2e7995fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_video_section
+    - node.type.video_gallery
+    - taxonomy.vocabulary.video_section
+id: node.video_gallery.field_video_section
+field_name: field_video_section
+entity_type: node
+bundle: video_gallery
+label: 'Video Section'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      video_section: video_section
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

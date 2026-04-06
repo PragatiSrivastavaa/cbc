@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.video_gallery.field_event_description
     - field.field.node.video_gallery.field_order_no
     - field.field.node.video_gallery.field_video
+    - field.field.node.video_gallery.field_video_section
     - node.type.video_gallery
   module:
     - media_library
@@ -44,6 +45,16 @@ content:
     region: content
     settings:
       media_types: {  }
+    third_party_settings: {  }
+  field_video_section:
+    type: entity_reference_autocomplete
+    weight: 124
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   langcode:
     type: language_select
@@ -86,6 +97,11 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  translation:
+    weight: 10
+    region: content
+    settings: {  }
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
