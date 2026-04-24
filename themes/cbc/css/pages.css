@@ -1263,7 +1263,8 @@ tbody tr:nth-child(even) {
   border-radius: 30px;
   border: 2px solid #FFC107;
   border-radius: 30px;
-  background-color: #fde7ca;
+  /* background-color: #fde7ca; */
+  background-color: #b34700;
 }
 
 @keyframes rotate-border {

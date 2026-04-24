@@ -10,108 +10,102 @@
       <div class="navbar-nav mb-2 mb-lg-0 nav-rounded">
 
         {% for item in items %}
-          {% set dropdown_id = item.title|clean_class ~ '-dropdown' %}
-          {% set active = item.in_active_trail ? 'active' : '' %}
-          {% set icon = item.original_link.entity.field_icon.value ?? '' %}
-          {% set desc = item.original_link.entity.field_descriptions.value ?? '' %}
+        {% set dropdown_id = item.title|clean_class ~ '-dropdown' %}
+        {% set active = item.in_active_trail ? 'active' : '' %}
+        {% set icon = item.original_link.entity.field_icon.value ?? '' %}
+        {% set desc = item.original_link.entity.field_descriptions.value ?? '' %}
 
-          <div class="nav-item {% if item.below %}dropdown{% endif %}">
+        <div class="nav-item {% if item.below %}dropdown{% endif %}">
 
-            <a class="nav-link {{ active }} {% if item.below %}dropdown-toggle{% endif %}"
-               href="{{ item.url }}"
-               {% if item.below %}
-                 id="{{ dropdown_id }}"
-                 role="button"
-                 data-bs-toggle="dropdown"
-                 aria-expanded="false"
-                 aria-haspopup="true"
-               {% endif %}>
+          <a class="nav-link {{ active }} {% if item.below %}dropdown-toggle{% endif %}" href="{{ item.url }}" {% if
+            item.below %} id="{{ dropdown_id }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+            aria-haspopup="true" {% endif %}>
 
-              {% if icon %}
-                <i class="{{ icon }} me-1"></i>
-              {% endif %}
+            {% if icon %}
+            <i class="{{ icon }} me-1"></i>
+            {% endif %}
 
-              {{ item.title }}
-            </a>
+            {{ item.title }}
+          </a>
 
-            {% if item.below %}
-              <div class="dropdown-menu" role="menu" aria-labelledby="{{ dropdown_id }}">
+          {% if item.below %}
+          <div class="dropdown-menu" role="menu" aria-labelledby="{{ dropdown_id }}">
 
-                {% for child in item.below %}
-                  {% set child_icon = child.original_link.entity.field_icon.value ?? '' %}
-                  {% set child_desc = child.original_link.entity.field_descriptions.value ?? '' %}
-                  {% set child_dropdown_id = child.title|clean_class ~ '-sub' %}
+            {% for child in item.below %}
+            {% set child_icon = child.original_link.entity.field_icon.value ?? '' %}
+            {% set child_desc = child.original_link.entity.field_descriptions.value ?? '' %}
+            {% set child_dropdown_id = child.title|clean_class ~ '-sub' %}
 
-                  <div class="{% if child.below %}has-submenu{% endif %}">
+            <div class="{% if child.below %}has-submenu{% endif %}">
 
-                    <a class="dropdown-item knowledge-item {% if child.below %}has-sub-items dropdown-toggle{% endif %}"
-                       href="{{ child.url }}"
-                       {% if child.below %}
-                         id="{{ child_dropdown_id }}"
-                         aria-expanded="false"
-                         aria-haspopup="true"
-                         role="button"
-                       {% endif %}>
+              <a class="dropdown-item knowledge-item {% if child.below %}has-sub-items dropdown-toggle{% endif %}"
+                href="{{ child.url }}" {% if child.below %} id="{{ child_dropdown_id }}" aria-expanded="false"
+                aria-haspopup="true" role="button" {% endif %}>
 
-                      {% if child_icon %}
-                        <div class="knowledge-icon">
-                          <i class="{{ child_icon }}"></i>
-                        </div>
-                      {% endif %}
+                {% if child_icon %}
+                <div class="knowledge-icon">
+                  <i class="{{ child_icon }}"></i>
+                </div>
+                {% endif %}
 
-                      <div class="knowledge-content">
-                        <div class="knowledge-title">{{ child.title }}</div>
+                <div class="knowledge-content">
+                  <div class="knowledge-title">{{ child.title }}</div>
 
-                        {% if child_desc %}
-                          <div class="knowledge-desc">{{ child_desc }}</div>
-                        {% endif %}
-                      </div>
-                    </a>
+                  {% if child_desc %}
+                  <div class="knowledge-desc">{{ child_desc }}</div>
+                  {% endif %}
+                </div>
+              </a>
 
-                    {# ---------- LEVEL 3 ---------- #}
-                    {% if child.below %}
-                      {% set parent_index = loop.parent.loop.index %}
+              {# ---------- LEVEL 3 ---------- #}
+              {% if child.below %}
+              {% set parent_index = loop.parent.loop.index %}
 
-                      <div class="sub-items-container"
-                           id="sub-{{ parent_index }}-{{ loop.index }}"
-                           role="group"
-                           aria-labelledby="{{ child_dropdown_id }}">
+              <div class="sub-items-container" id="sub-{{ parent_index }}-{{ loop.index }}" role="group"
+                aria-labelledby="{{ child_dropdown_id }}">
 
-                        {% for sub in child.below %}
-                          {% set sub_icon = sub.original_link.entity.field_icon.value ?? '' %}
-                          {% set sub_desc = sub.original_link.entity.field_descriptions.value ?? '' %}
+                {% for sub in child.below %}
+                {% set sub_icon = sub.original_link.entity.field_icon.value ?? '' %}
+                {% set sub_desc = sub.original_link.entity.field_descriptions.value ?? '' %}
 
-                          <a class="dropdown-item sub-item"
-                             href="{{ sub.url }}"
-                             style="padding-left:32px;">
+                <a class="dropdown-item sub-item" href="{{ sub.url }}" style="padding-left:32px;">
 
-                            {% if sub_icon %}
-                              <i class="{{ sub_icon }} me-1"></i>
-                            {% endif %}
+                  {% if sub_icon %}
+                  <i class="{{ sub_icon }} me-1"></i>
+                  {% endif %}
 
-                            {{ sub.title }}
+                  {{ sub.title }}
 
-                            {% if sub_desc %}
-                              <div class="knowledge-desc small">
-                                {{ sub_desc }}
-                              </div>
-                            {% endif %}
-                          </a>
-                        {% endfor %}
-                      </div>
-                    {% endif %}
+                  {% if sub_desc %}
+                  <div class="knowledge-desc small">
+                    {{ sub_desc }}
                   </div>
+                  {% endif %}
+                </a>
                 {% endfor %}
               </div>
-            {% endif %}
+              {% endif %}
+            </div>
+            {% endfor %}
           </div>
+          {% endif %}
+        </div>
         {% endfor %}
         {% if is_front %}
-        <div class="d-none d-lg-block">
+        <!-- <div class="d-none d-lg-block">
           <div class="nav-item nav-item-infocus">
             <a class="nav-link d-flex align-items-center" href="{{ path('<front>') }}#in-focus-section">
               <img src="https://cbc.gov.in/sites/default/files/2026-03/Sadhana_text.png" alt="Sadhana" style="height: 15px; width: auto; margin-right: 4px; margin-bottom: 4px;" />
               <span style="font-size: 15px; color: #284099; font-weight: 400; font-family: Georgia, 'Times New Roman', serif; font-style: italic; line-height: 0.3;">Saptah</span>
+            </a>
+          </div>
+        </div> -->
+        <div class="d-none d-lg-block">
+          <div class="nav-item nav-item-infocus">
+            <a class="nav-link d-flex align-items-center" href="{{ path('<front>') }}#in-focus-section">
+              <span
+                style="font-size: 16px; color: #ffffff; font-weight: 400; font-family: Georgia, 'Times New Roman', serif; font-style: italic; line-height: 0.6;">In
+                Focus</span>
             </a>
           </div>
         </div>
@@ -121,14 +115,28 @@
 
     <div class="d-flex align-items-center">
       <a class="navbar-brand d-flex align-items-center" href="{{ path('<front>') }}">
-        <img src="{{ base_path ~ directory }}/img/logo.png" alt="Government of India emblem and Capacity Building Commission logo" />
+        <img src="{{ base_path ~ directory }}/img/logo.png"
+          alt="Government of India emblem and Capacity Building Commission logo" />
       </a>
       {% if is_front %}
+      <!-- <div class="d-lg-none ms-2">
+      <div class="nav-item-infocus">
+        <a class="nav-link d-flex align-items-center" href="{{ path('<front>') }}#in-focus-section"
+          style="padding-top: 5px !important; padding-bottom: 5px !important;">
+          <img src="https://cbc.gov.in/sites/default/files/2026-03/Sadhana_text.png" alt="Sadhana"
+            style="height: 15px; width: auto; margin-right: 4px; margin-bottom: 4px;" />
+          <span
+            style="font-size: 15px; color: #284099; font-weight: 400; font-family: Georgia, 'Times New Roman', serif; font-style: italic; line-height: 0.3;">Saptah</span>
+        </a>
+      </div>
+    </div> -->
       <div class="d-lg-none ms-2">
         <div class="nav-item-infocus">
-          <a class="nav-link d-flex align-items-center" href="{{ path('<front>') }}#in-focus-section" style="padding-top: 5px !important; padding-bottom: 5px !important;">
-            <img src="https://cbc.gov.in/sites/default/files/2026-03/Sadhana_text.png" alt="Sadhana" style="height: 15px; width: auto; margin-right: 4px; margin-bottom: 4px;" />
-            <span style="font-size: 15px; color: #284099; font-weight: 400; font-family: Georgia, 'Times New Roman', serif; font-style: italic; line-height: 0.3;">Saptah</span>
+          <a class="nav-link d-flex align-items-center" href="{{ path('<front>') }}#in-focus-section"
+            style="padding-top: 5px !important; padding-bottom: 5px !important;">
+            <span
+              style="font-size: 15px; color: #ffffff; font-weight: 400; font-family: Georgia, 'Times New Roman', serif; font-style: italic; line-height: 0.3;">In
+              Focus</span>
           </a>
         </div>
       </div>

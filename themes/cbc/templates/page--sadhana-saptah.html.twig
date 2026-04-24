@@ -1,1117 +1,1171 @@
 {#
 /**
- * @file
- * Theme override for the SĀDHANA Saptah landing page.
- * This template removes the default header banner and breadcrumbs
- * to allow the custom Hero Banner to be the primary focus.
- */
+* @file
+* Theme override for the SĀDHANA Saptah landing page.
+* This template removes the default header banner and breadcrumbs
+* to allow the custom Hero Banner to be the primary focus.
+*/
 #}
 
 {# We STILL include the header logic for scripts/meta, but the visual banner is removed #}
 {% include 'themes/cbc/templates/layout/header.html.twig' %}
 
 <main id="app-content">
-  <!-- 
+    <!-- 
     The default Drupal Breadcrumbs and Page Hero sections 
     have been removed from this custom template.
   -->
 
-  <!-- Main Content Section -->
-  <section class="cbc-custom-landing-page-wrapper">
-    <div class="container">
-      {% if page.highlighted %}
-        <div class="highlighted">{{ page.highlighted }}</div>
-      {% endif %}
-      {% if page.help %}
-        <div class="help">{{ page.help }}</div>
-      {% endif %}
-      {% if page.messages %}
-        <div class="messages-area">{{ page.messages }}</div>
-      {% endif %}
-    </div>
+    <!-- Main Content Section -->
+    <section class="cbc-custom-landing-page-wrapper">
+        <div class="container">
+            {% if page.highlighted %}
+            <div class="highlighted">{{ page.highlighted }}</div>
+            {% endif %}
+            {% if page.help %}
+            <div class="help">{{ page.help }}</div>
+            {% endif %}
+            {% if page.messages %}
+            <div class="messages-area">{{ page.messages }}</div>
+            {% endif %}
+        </div>
 
-    {# This renders the Basic Page body field containing our custom landing page HTML #}
-   <script>
-    (function () {
-        /* Find the base URL of the cbc theme by looking at any already-loaded
-           theme stylesheet (e.g. home.css loaded by Drupal globally). */
-        function getThemeBase() {
-            var links = document.querySelectorAll('link[rel="stylesheet"]');
-            for (var i = 0; i < links.length; i++) {
-                var href = links[i].href || '';
-                var idx = href.indexOf('/themes/cbc/');
-                if (idx !== -1) { return href.substring(0, idx); }
-            }
-            /* Fallback: derive from current page URL up to the Drupal root.
-               Works if Drupal is at a subdirectory like /cbc/ or at / */
-            var base = window.location.origin;
-            var path = window.location.pathname;
-            var drupalRoot = path.split('/themes/')[0];
-            return base + (drupalRoot || '');
-        }
-        var base = getThemeBase();
-        var theme = base + '/themes/cbc';
-        /* Inject CSS — skip if already loaded */
-        if (!document.querySelector('link[href*="sadhana-saptah.css"]')) {
-            var css = document.createElement('link');
-            css.rel = 'stylesheet';
-            css.type = 'text/css';
-            css.href = theme + '/css/sadhana-saptah.css';
-            document.head.appendChild(css);
-        }
-        /* Inject Google Fonts — skip if already loaded */
-        if (!document.querySelector('link[href*="Outfit"]')) {
-            var gf = document.createElement('link');
-            gf.rel = 'stylesheet';
-            gf.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap';
-            document.head.appendChild(gf);
-        }
-        /* Inject JS after DOM is ready — skip if already loaded */
-        function loadJS() {
-            if (document.querySelector('script[src*="sadhana-saptah.js"]')) return;
-            var scr = document.createElement('script');
-            scr.src = theme + '/js/sadhana-saptah.js';
-            document.body.appendChild(scr);
-        }
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', loadJS);
-        } else {
-            loadJS();
-        }
-    })();
-</script>
-<div class="cbc-custom-landing" style="background-color:#f5f0e8 !important;">
-    <!-- ==================================================================
+        {# This renders the Basic Page body field containing our custom landing page HTML #}
+        <script>
+            (function () {
+                /* Find the base URL of the cbc theme by looking at any already-loaded
+                   theme stylesheet (e.g. home.css loaded by Drupal globally). */
+                function getThemeBase() {
+                    var links = document.querySelectorAll('link[rel="stylesheet"]');
+                    for (var i = 0; i < links.length; i++) {
+                        var href = links[i].href || '';
+                        var idx = href.indexOf('/themes/cbc/');
+                        if (idx !== -1) { return href.substring(0, idx); }
+                    }
+                    /* Fallback: derive from current page URL up to the Drupal root.
+                       Works if Drupal is at a subdirectory like /cbc/ or at / */
+                    var base = window.location.origin;
+                    var path = window.location.pathname;
+                    var drupalRoot = path.split('/themes/')[0];
+                    return base + (drupalRoot || '');
+                }
+                var base = getThemeBase();
+                var theme = base + '/themes/cbc';
+                /* Inject CSS — skip if already loaded */
+                if (!document.querySelector('link[href*="sadhana-saptah.css"]')) {
+                    var css = document.createElement('link');
+                    css.rel = 'stylesheet';
+                    css.type = 'text/css';
+                    css.href = theme + '/css/sadhana-saptah.css';
+                    document.head.appendChild(css);
+                }
+                /* Inject Google Fonts — skip if already loaded */
+                if (!document.querySelector('link[href*="Outfit"]')) {
+                    var gf = document.createElement('link');
+                    gf.rel = 'stylesheet';
+                    gf.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap';
+                    document.head.appendChild(gf);
+                }
+                /* Inject JS after DOM is ready — skip if already loaded */
+                function loadJS() {
+                    if (document.querySelector('script[src*="sadhana-saptah.js"]')) return;
+                    var scr = document.createElement('script');
+                    scr.src = theme + '/js/sadhana-saptah.js';
+                    document.body.appendChild(scr);
+                }
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', loadJS);
+                } else {
+                    loadJS();
+                }
+            })();
+        </script>
+        <div class="cbc-custom-landing" style="background-color:#f5f0e8 !important;">
+            <!-- ==================================================================
                  HERO SECTION: Poster/Banner
-                 ================================================================== --><img style="border:5px solid #ee9926;" src="/sites/default/files/inline-images/WhatsApp%20Image%202026-03-30%20at%2015.27.47%20%281%29_0.jpeg" data-entity-uuid="024892a5-0207-4f0b-b6c6-21413bfb5e17" data-entity-type="file" width="1569" height="540">
-    <div class="container">
-        <!-- ==================================================================
+                 ================================================================== --><img
+                style="border:5px solid #ee9926;"
+                src="/sites/default/files/inline-images/WhatsApp%20Image%202026-03-30%20at%2015.27.47%20%281%29_0.jpeg"
+                data-entity-uuid="024892a5-0207-4f0b-b6c6-21413bfb5e17" data-entity-type="file" width="1569"
+                height="540">
+            <div class="container">
+                <!-- ==================================================================
                      TOP ACTION BUTTONS: Registration & iGOT
                      ================================================================== -->
-        <div class="cbc-registration-bar">
-            <a class="cbc-reg-btn cbc-reg-primary" href="https://cbc.negd.in/registration.aspx" target="_blank" rel="noopener"><span class="btn-icon">📋</span> Registration Link </a><a class="cbc-reg-btn cbc-reg-igot" href="https://igotkarmayogi.gov.in/" target="_blank" rel="noopener"><span class="btn-icon">🏛️</span> iGOT Karmayogi&nbsp;</a>
-        </div>
-        <!-- ==================================================================
+                <div class="cbc-registration-bar">
+                    <!-- <a class="cbc-reg-btn cbc-reg-primary" href="https://cbc.negd.in/registration.aspx" target="_blank" rel="noopener"><span class="btn-icon">📋</span> Registration Link </a> -->
+                    <a class="cbc-reg-btn cbc-reg-igot" href="https://igotkarmayogi.gov.in/" target="_blank"
+                        rel="noopener"><span class="btn-icon">🏛️</span> iGOT Karmayogi&nbsp;</a>
+                </div>
+                <!-- ==================================================================
                      SECTION 1: ABOUT SADHANA SAPTAH + THREE SUTRAS
                      ================================================================== -->
-        <div class="cbc-about-section">
-            <h2>
-                About <img class="cbc-sadhana-logo" src="https://cbc.gov.in/sites/default/files/2026-03/Sadhana_text.png" alt="SĀDHANA" width="4313" height="1069"> Saptah
-            </h2>
-            <div class="section-about">
-                <p>
-                    India's governance landscape is being reshaped by rapid technological change, renewed attention to Indian Knowledge Systems, and an increasing focus on Citizen Centricity. <strong><img class="cbc-sadhana-logo" src="https://cbc.gov.in/sites/default/files/2026-03/Sadhana_text.png" alt="SĀDHANA" width="4313" height="1069"> Saptah</strong> is conceived as a theme-focused, sector-anchored exercise (sector classification as per SGOS) to strengthen governance capability across Ministries, Departments, Organisations (MDO), and States. The structure of the week shall be focused on three themes or Sutras — <strong>Technology, Tradition &amp; Tangible Outcomes</strong>.
-                </p>
-                <p>
-                    The week coincides with the Foundation Day of CBC and completion of five years of Mission Karmayogi, providing an opportunity to review progress while strengthening the national capacity-building ecosystem.
-                </p>
-                <p>
-                    Through a blended delivery model—comprising Karmayogi Talks by domain experts, Samuhik Charchas within institutions, digital learning through the iGOT platform, inter-ministerial workshops, and training programmes conducted by civil services training institutions—the initiative will engage civil servants across the government ecosystem. Participation will extend across <strong>93 Central Ministries and Departments, 30 States and UTs</strong> implementing Mission Karmayogi, and more than <strong>200 civil services training institutions</strong>, supported through coordinated institutional mechanisms led by CBC.
-                </p>
-                <p>
-                    Beyond a week of learning engagements, <img class="cbc-sadhana-logo" src="https://cbc.gov.in/sites/default/files/2026-03/Sadhana_text.png" alt="SĀDHANA" width="4313" height="1069"> Saptah aims to reinforce a culture of continuous learning in government, accelerate engagement with the digital learning ecosystem, strengthen knowledge exchange across institutions, and generate insights for strengthening the broader capacity-building architecture under Mission Karmayogi.
-                </p>
+                <div class="cbc-about-section">
+                    <h2>
+                        About <img class="cbc-sadhana-logo"
+                            src="https://cbc.gov.in/sites/default/files/2026-03/Sadhana_text.png" alt="SĀDHANA"
+                            width="4313" height="1069"> Saptah
+                    </h2>
+                    <div class="section-about">
+                        <p>
+                            India's governance landscape is being reshaped by rapid technological change, renewed
+                            attention to Indian Knowledge Systems, and an increasing focus on Citizen Centricity.
+                            <strong><img class="cbc-sadhana-logo"
+                                    src="https://cbc.gov.in/sites/default/files/2026-03/Sadhana_text.png" alt="SĀDHANA"
+                                    width="4313" height="1069"> Saptah</strong> is conceived as a theme-focused,
+                            sector-anchored exercise (sector classification as per SGOS) to strengthen governance
+                            capability across Ministries, Departments, Organisations (MDO), and States. The structure of
+                            the week shall be focused on three themes or Sutras — <strong>Technology, Tradition &amp;
+                                Tangible Outcomes</strong>.
+                        </p>
+                        <p>
+                            The week coincides with the Foundation Day of CBC and completion of five years of Mission
+                            Karmayogi, providing an opportunity to review progress while strengthening the national
+                            capacity-building ecosystem.
+                        </p>
+                        <p>
+                            Through a blended delivery model—comprising Karmayogi Talks by domain experts, Samuhik
+                            Charchas within institutions, digital learning through the iGOT platform, inter-ministerial
+                            workshops, and training programmes conducted by civil services training institutions—the
+                            initiative will engage civil servants across the government ecosystem. Participation will
+                            extend across <strong>93 Central Ministries and Departments, 30 States and UTs</strong>
+                            implementing Mission Karmayogi, and more than <strong>200 civil services training
+                                institutions</strong>, supported through coordinated institutional mechanisms led by
+                            CBC.
+                        </p>
+                        <p>
+                            Beyond a week of learning engagements, <img class="cbc-sadhana-logo"
+                                src="https://cbc.gov.in/sites/default/files/2026-03/Sadhana_text.png" alt="SĀDHANA"
+                                width="4313" height="1069"> Saptah aims to reinforce a culture of continuous learning in
+                            government, accelerate engagement with the digital learning ecosystem, strengthen knowledge
+                            exchange across institutions, and generate insights for strengthening the broader
+                            capacity-building architecture under Mission Karmayogi.
+                        </p>
+                    </div>
+                    <!-- Three Sutras -->
+                    <div class="sutras-grid">
+                        <div class="sutra-card">
+                            <p>
+                                <span class="sutra-icon">🤖</span>
+                            </p>
+                            <h3>
+                                Technology
+                            </h3>
+                            <p>
+                                AI and emerging technologies transforming the sector
+                            </p>
+                            <ul class="sutra-list">
+                                <li>
+                                    Sector-specific AI use cases
+                                </li>
+                                <li>
+                                    Regulatory readiness
+                                </li>
+                                <li>
+                                    Digital public infrastructure integration
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sutra-card">
+                            <p>
+                                <span class="sutra-icon">🏛️</span>
+                            </p>
+                            <h3>
+                                Tradition
+                            </h3>
+                            <p>
+                                Indian Knowledge Systems and indigenous innovations
+                            </p>
+                            <ul class="sutra-list">
+                                <li>
+                                    Civilizational practices with contemporary relevance
+                                </li>
+                                <li>
+                                    Community-led institutional models
+                                </li>
+                                <li>
+                                    Indigenous governance insights
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sutra-card">
+                            <p>
+                                <span class="sutra-icon">🎯</span>
+                            </p>
+                            <h3>
+                                Tangible Outcomes
+                            </h3>
+                            <p>
+                                Outcome-oriented governance and public value creation
+                            </p>
+                            <ul class="sutra-list">
+                                <li>
+                                    Citizen impact tracking
+                                </li>
+                                <li>
+                                    Clear articulation of priority sectoral outcomes
+                                </li>
+                                <li>
+                                    Dashboard-based monitoring
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /cbc-about-section -->
             </div>
-            <!-- Three Sutras -->
-            <div class="sutras-grid">
-                <div class="sutra-card">
-                    <p>
-                        <span class="sutra-icon">🤖</span>
-                    </p>
-                    <h3>
-                        Technology
-                    </h3>
-                    <p>
-                        AI and emerging technologies transforming the sector
-                    </p>
-                    <ul class="sutra-list">
-                        <li>
-                            Sector-specific AI use cases
-                        </li>
-                        <li>
-                            Regulatory readiness
-                        </li>
-                        <li>
-                            Digital public infrastructure integration
-                        </li>
-                    </ul>
-                </div>
-                <div class="sutra-card">
-                    <p>
-                        <span class="sutra-icon">🏛️</span>
-                    </p>
-                    <h3>
-                        Tradition
-                    </h3>
-                    <p>
-                        Indian Knowledge Systems and indigenous innovations
-                    </p>
-                    <ul class="sutra-list">
-                        <li>
-                            Civilizational practices with contemporary relevance
-                        </li>
-                        <li>
-                            Community-led institutional models
-                        </li>
-                        <li>
-                            Indigenous governance insights
-                        </li>
-                    </ul>
-                </div>
-                <div class="sutra-card">
-                    <p>
-                        <span class="sutra-icon">🎯</span>
-                    </p>
-                    <h3>
-                        Tangible Outcomes
-                    </h3>
-                    <p>
-                        Outcome-oriented governance and public value creation
-                    </p>
-                    <ul class="sutra-list">
-                        <li>
-                            Citizen impact tracking
-                        </li>
-                        <li>
-                            Clear articulation of priority sectoral outcomes
-                        </li>
-                        <li>
-                            Dashboard-based monitoring
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- /cbc-about-section -->
-    </div>
-    <!-- /container --><!-- ==================================================================
+            <!-- /container --><!-- ==================================================================
              SECTION 2: EVENT SCHEDULE
              ================================================================== -->
-    <div class="cbc-schedule-section">
-        <p>
-            <span class="cbc-schedule-title">Event Schedule</span> <span class="cbc-schedule-subtitle">2nd April – 8th April 2026</span>
-        </p>
-        <div class="cbc-schedule-tabs">
-            <button class="cbc-schedule-tab active" data-tab="week">Throughout the Week</button> <button class="cbc-schedule-tab" data-tab="day1">Day 1 – Launch Day</button> <button class="cbc-schedule-tab" data-tab="day2-7">Day 2–7</button> <button class="cbc-schedule-tab" data-tab="day8">Day 8 – Valedictory</button> <button class="cbc-schedule-tab" data-tab="courses">Courses in Focus</button>
-        </div>
-        <div class="container">
-            <!-- TAB: Throughout the Week -->
-            <div class="cbc-schedule-content active" id="tab-week">
-                <div class="cbc-schedule-table-card">
-                    <div class="cbc-schedule-card-header">
-                        <h3>
-                            Activities Available Throughout the Week
-                        </h3>
-                        <p>
-                            Flexible, self-paced and group-based learning opportunities.
-                        </p>
+            <div class="cbc-schedule-section">
+                <p>
+                    <span class="cbc-schedule-title">Event Schedule</span> <span class="cbc-schedule-subtitle">2nd April
+                        – 8th April 2026</span>
+                </p>
+                <div class="cbc-schedule-tabs">
+                    <button class="cbc-schedule-tab active" data-tab="week">Throughout the Week</button> <button
+                        class="cbc-schedule-tab" data-tab="day1">Day 1 – Launch Day</button> <button
+                        class="cbc-schedule-tab" data-tab="day2-7">Day 2–7</button> <button class="cbc-schedule-tab"
+                        data-tab="day8">Day 8 – Valedictory</button> <button class="cbc-schedule-tab"
+                        data-tab="courses">Courses in Focus</button>
+                </div>
+                <div class="container">
+                    <!-- TAB: Throughout the Week -->
+                    <div class="cbc-schedule-content active" id="tab-week">
+                        <div class="cbc-schedule-table-card">
+                            <div class="cbc-schedule-card-header">
+                                <h3>
+                                    Activities Available Throughout the Week
+                                </h3>
+                                <p>
+                                    Flexible, self-paced and group-based learning opportunities.
+                                </p>
+                            </div>
+                            <div class="cbc-schedule-table-wrapper">
+                                <table class="table cbc-schedule-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:60px;">
+                                                S.N.
+                                            </th>
+                                            <th style="width:200px;">
+                                                Format
+                                            </th>
+                                            <th>
+                                                Session / Activity
+                                            </th>
+                                            <th style="width:260px;">
+                                                Details
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                1
+                                            </td>
+                                            <td>
+                                                <strong>Karmayogi Talks</strong>
+                                            </td>
+                                            <td>
+                                                National Webinars – Morning &amp; Evening sessions
+                                            </td>
+                                            <td>
+                                                2 webinars per day, each 1 hour, thematic and sector-aligned
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                2
+                                            </td>
+                                            <td>
+                                                <strong>IGOT Modules</strong>
+                                            </td>
+                                            <td>
+                                                Courses on IGOT – At learner's convenience
+                                            </td>
+                                            <td>
+                                                1–2 courses mandatory per MDO; AI &amp; Marketplace courses included
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                3
+                                            </td>
+                                            <td>
+                                                <strong>Samuhik Charcha</strong>
+                                            </td>
+                                            <td>
+                                                MDO/State-led group discussions
+                                            </td>
+                                            <td>
+                                                Templatized format; 60–120 min; facilitated by CBC &amp; Karmayogi
+                                                Bharat
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                4
+                                            </td>
+                                            <td>
+                                                <strong>Workshops / Onsite Courses</strong>
+                                            </td>
+                                            <td>
+                                                MDO/CSTI/State-led workshops &amp; physical training
+                                            </td>
+                                            <td>
+                                                Domain &amp; sectoral capacity building sessions
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                    <div class="cbc-schedule-table-wrapper">
-                        <table class="table cbc-schedule-table">
-                            <thead>
-                                <tr>
-                                    <th style="width:60px;">
-                                        S.N.
-                                    </th>
-                                    <th style="width:200px;">
-                                        Format
-                                    </th>
-                                    <th>
-                                        Session / Activity
-                                    </th>
-                                    <th style="width:260px;">
-                                        Details
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        1
-                                    </td>
-                                    <td>
-                                        <strong>Karmayogi Talks</strong>
-                                    </td>
-                                    <td>
-                                        National Webinars – Morning &amp; Evening sessions
-                                    </td>
-                                    <td>
-                                        2 webinars per day, each 1 hour, thematic and sector-aligned
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        2
-                                    </td>
-                                    <td>
-                                        <strong>IGOT Modules</strong>
-                                    </td>
-                                    <td>
-                                        Courses on IGOT – At learner's convenience
-                                    </td>
-                                    <td>
-                                        1–2 courses mandatory per MDO; AI &amp; Marketplace courses included
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        3
-                                    </td>
-                                    <td>
-                                        <strong>Samuhik Charcha</strong>
-                                    </td>
-                                    <td>
-                                        MDO/State-led group discussions
-                                    </td>
-                                    <td>
-                                        Templatized format; 60–120 min; facilitated by CBC &amp; Karmayogi Bharat
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        4
-                                    </td>
-                                    <td>
-                                        <strong>Workshops / Onsite Courses</strong>
-                                    </td>
-                                    <td>
-                                        MDO/CSTI/State-led workshops &amp; physical training
-                                    </td>
-                                    <td>
-                                        Domain &amp; sectoral capacity building sessions
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <!-- TAB: Day 1 – Launch Day -->
+                    <div class="cbc-schedule-content" id="tab-day1">
+                        <div class="cbc-schedule-table-card">
+                            <div class="cbc-schedule-card-header">
+                                <h3>
+                                    Udghatan Samaroh – Launch Day
+                                </h3>
+                                <p>
+                                    📅 2nd April 2026 | New Delhi
+                                </p>
+                            </div>
+                            <div class="cbc-schedule-table-wrapper">
+                                <table class="table cbc-schedule-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:60px;">
+                                                S.N.
+                                            </th>
+                                            <th>
+                                                Session
+                                            </th>
+                                            <th style="text-align:right;width:200px;">
+                                                Time
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                1.
+                                            </td>
+                                            <td>
+                                                <strong>Inaugural Address</strong><br>
+                                                <span style="color:#f39200;font-size:12px;">Guests of Honour / Chief
+                                                    Guest</span>
+                                            </td>
+                                            <td style="color:#0063ae;text-align:right;">
+                                                <strong>10:00 AM – 11:30 AM</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                2.
+                                            </td>
+                                            <td>
+                                                <strong>Master Class: 'Capacity Building Imperative for an
+                                                    Entrepreneurial State'</strong><br>
+                                                <span style="color:#f39200;font-size:12px;">Shri V. Anantha Nageswaran,
+                                                    Chief Economic Advisor, Govt. of India</span>
+                                            </td>
+                                            <td style="color:#0063ae;text-align:right;">
+                                                <strong>11:30 AM – 12:00 Noon</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                3.
+                                            </td>
+                                            <td>
+                                                <strong>Thematic Session-I: National Workshop on Future Ready Training
+                                                    Institutions for Viksit Bharat</strong>
+                                            </td>
+                                            <td style="color:#0063ae;text-align:right;">
+                                                <strong>12:00 Noon – 1:30 PM</strong>
+                                            </td>
+                                        </tr>
+                                        <tr style="background-color:#fff9f2;">
+                                            <td style="color:#f39200;font-size:13px;text-align:center;" colspan="3">
+                                                <em><strong>Lunch Break</strong></em>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                4.
+                                            </td>
+                                            <td>
+                                                <strong>Thematic Session-II: Karmayogi Quality Framework</strong>
+                                            </td>
+                                            <td style="color:#0063ae;text-align:right;">
+                                                <strong>2:30 PM – 3:30 PM</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                5.
+                                            </td>
+                                            <td>
+                                                <strong>Special Address</strong><br>
+                                                <span style="color:#f39200;font-size:12px;">Shri T. V. Somanathan,
+                                                    Cabinet Secretary, Govt. of India</span>
+                                            </td>
+                                            <td style="color:#0063ae;text-align:right;">
+                                                <strong>3:30 PM – 4:00 PM</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                6.
+                                            </td>
+                                            <td>
+                                                <strong>Closing Reflection and Vote of Thanks</strong>
+                                            </td>
+                                            <td style="color:#0063ae;text-align:right;">
+                                                <strong>4:00 PM – 4:15 PM</strong>
+                                            </td>
+                                        </tr>
+                                        <tr style="background-color:#fff9f2;">
+                                            <td style="color:#f39200;font-size:13px;text-align:center;" colspan="3">
+                                                <em><strong>Tea &amp; Networking</strong></em>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- TAB: Day 2–7 -->
+                    <div class="cbc-schedule-content" id="tab-day2-7">
+                        <div class="cbc-schedule-table-card"
+                            style="background-color:transparent;border-style:none;box-shadow:none;padding:20px;">
+                            <div class="cbc-schedule-card-header"
+                                style="background-color:white;border-radius:16px;border:1px solid #f0f0f0;margin-bottom:20px;">
+                                <h3>
+                                    Daily Webinar Sessions
+                                </h3>
+                                <p>
+                                    📅 3rd April – 8th April 2026 | Virtual / Hybrid
+                                </p>
+                            </div>
+                            <div class="cbc-webinar-grid">
+                                <div class="cbc-webinar-card">
+                                    <h4>
+                                        Morning Session – Webinar 1
+                                    </h4>
+                                    <p>
+                                        <span class="cbc-duration-badge">60 minutes</span>
+                                    </p>
+                                    <p class="cbc-webinar-desc">
+                                        Theme-aligned webinar session led by domain experts covering Technology,
+                                        Tradition, or Tangible Outcomes.
+                                    </p>
+                                </div>
+                                <div class="cbc-webinar-card">
+                                    <h4>
+                                        Afternoon/Evening Session – Webinar 2
+                                    </h4>
+                                    <p>
+                                        <span class="cbc-duration-badge">60 minutes</span>
+                                    </p>
+                                    <p class="cbc-webinar-desc">
+                                        Complementary session with sectoral deep-dives, case studies, and interactive
+                                        discussions.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="cbc-date-pills">
+                                <div class="cbc-date-pill">
+                                    🔵 3rd &amp; 4th April – Technology
+                                </div>
+                                <div class="cbc-date-pill" style="background-color:#fff3e0;color:#e67e22;">
+                                    🟠 5th &amp; 6th April – Tradition
+                                </div>
+                                <div class="cbc-date-pill" style="background-color:#e8f5e9;color:#2e7d32;">
+                                    🟢 7th &amp; 8th April – Tangible Outcomes
+                                </div>
+                            </div>
+                            <div class="cbc-schedule-table-card">
+                                <div class="cbc-schedule-table-wrapper">
+                                    <table class="table cbc-schedule-table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:60px;">
+                                                    S.N.
+                                                </th>
+                                                <th style="width:200px;">
+                                                    Format
+                                                </th>
+                                                <th>
+                                                    Session
+                                                </th>
+                                                <th>
+                                                    Details
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="cbc-schedule-sn">
+                                                    1
+                                                </td>
+                                                <td>
+                                                    <strong>IGOT Modules</strong>
+                                                </td>
+                                                <td>
+                                                    Courses on IGOT – At learner's convenience; AI &amp; Marketplace
+                                                    focus
+                                                </td>
+                                                <td>
+                                                    1–2 courses mandatory per MDO
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="cbc-schedule-sn">
+                                                    2
+                                                </td>
+                                                <td>
+                                                    <strong>Samuhik Charcha</strong>
+                                                </td>
+                                                <td>
+                                                    MDO/State-led Samuhik Charcha
+                                                </td>
+                                                <td>
+                                                    Templatized format; 60–120 min; facilitated by CBC &amp; Karmayogi
+                                                    Bharat
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="cbc-schedule-sn">
+                                                    3
+                                                </td>
+                                                <td>
+                                                    <strong>Workshops / Onsite Courses</strong>
+                                                </td>
+                                                <td>
+                                                    MDO/CSTI/State-led workshops &amp; physical training
+                                                </td>
+                                                <td>
+                                                    Sectoral / domain capacity building sessions
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="cbc-schedule-sn">
+                                                    4
+                                                </td>
+                                                <td>
+                                                    <strong>Thematic Days</strong>
+                                                </td>
+                                                <td>
+                                                    Technology (3–4 Apr), Traditions (5–6 Apr), Tangible Outcomes (7–8
+                                                    Apr)
+                                                </td>
+                                                <td>
+                                                    Samuhik Charchas, Karmayogi Talks, Webinars &amp; Panel Discussions
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- TAB: Day 8 – Valedictory -->
+                    <div class="cbc-schedule-content" id="tab-day8">
+                        <div class="cbc-schedule-table-card">
+                            <div class="cbc-schedule-card-header">
+                                <h3>
+                                    Samapan Samaroh – Valedictory Day
+                                </h3>
+                                <p>
+                                    📅 8th April 2026
+                                </p>
+                            </div>
+                            <div class="cbc-schedule-table-wrapper">
+                                <table class="table cbc-schedule-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:60px;">
+                                                S.N.
+                                            </th>
+                                            <th style="width:140px;">
+                                                Duration
+                                            </th>
+                                            <th>
+                                                Session
+                                            </th>
+                                            <th>
+                                                Tentative Activities
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                1
+                                            </td>
+                                            <td>
+                                                120 minutes
+                                            </td>
+                                            <td>
+                                                <strong>Felicitation Session</strong>
+                                            </td>
+                                            <td>
+                                                Summary of the Week (Data) · Felicitation of Karmayogi Leaderboard
+                                                Achievers · Address by Chief Guest (~20 min)
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- TAB: Courses in Focus -->
+                    <div class="cbc-schedule-content" id="tab-courses">
+                        <div class="cbc-schedule-table-card">
+                            <div class="cbc-schedule-card-header">
+                                <h3>
+                                    Curated Learning Pathways on iGOT Karmayogi
+                                </h3>
+                                <p>
+                                    AI Courses &amp; iGOT Marketplace Courses — available throughout the week
+                                </p>
+                            </div>
+                            <div style="padding:16px 16px 0;">
+                                <div class="cbc-course-tabs">
+                                    <button class="cbc-course-tab active" data-course="ai">AI Courses</button> <button
+                                        class="cbc-course-tab" data-course="marketplace">iGOT Marketplace
+                                        Courses</button>
+                                </div>
+                            </div>
+                            <!-- AI Courses -->
+                            <div class="cbc-schedule-table-wrapper" id="course-ai-table">
+                                <table class="table cbc-schedule-table">
+                                    <thead>
+                                        <tr style="background-color:#f39200 !important;">
+                                            <th style="width:60px;">
+                                                S.N.
+                                            </th>
+                                            <th>
+                                                Course Name
+                                            </th>
+                                            <th>
+                                                Provider
+                                            </th>
+                                            <th style="text-align:right;width:110px;">
+                                                Duration
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                1
+                                            </td>
+                                            <td>
+                                                Artificial Intelligence for Public Governance
+                                            </td>
+                                            <td>
+                                                Wadhwani AI &amp; Data Security Council of India
+                                            </td>
+                                            <td style="text-align:right;">
+                                                3h 10m
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                2
+                                            </td>
+                                            <td>
+                                                Large Language Models: Concepts and Applications
+                                            </td>
+                                            <td>
+                                                IIT Hyderabad
+                                            </td>
+                                            <td style="text-align:right;">
+                                                1h 45m
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                3
+                                            </td>
+                                            <td>
+                                                Deep Tech and India
+                                            </td>
+                                            <td>
+                                                ORF
+                                            </td>
+                                            <td style="text-align:right;">
+                                                55m
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                4
+                                            </td>
+                                            <td>
+                                                AI in Government: Transforming Public Service Delivery
+                                            </td>
+                                            <td>
+                                                IISc Bengaluru
+                                            </td>
+                                            <td style="text-align:right;">
+                                                2h 20m
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                5
+                                            </td>
+                                            <td>
+                                                Artificial Intelligence for Smarter Governance
+                                            </td>
+                                            <td>
+                                                Karmayogi Bharat – NeGD
+                                            </td>
+                                            <td style="text-align:right;">
+                                                1h 30m
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                6
+                                            </td>
+                                            <td>
+                                                IndiaAI for All
+                                            </td>
+                                            <td>
+                                                India AI Mission
+                                            </td>
+                                            <td style="text-align:right;">
+                                                2h 15m
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                7
+                                            </td>
+                                            <td>
+                                                Fundamentals of Generative Artificial Intelligence
+                                            </td>
+                                            <td>
+                                                IIT Madras
+                                            </td>
+                                            <td style="text-align:right;">
+                                                50m
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                8
+                                            </td>
+                                            <td>
+                                                Introduction to Artificial Intelligence
+                                            </td>
+                                            <td>
+                                                IIT Madras
+                                            </td>
+                                            <td style="text-align:right;">
+                                                45m
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                9
+                                            </td>
+                                            <td>
+                                                AI Applications in Government
+                                            </td>
+                                            <td>
+                                                NIC
+                                            </td>
+                                            <td style="text-align:right;">
+                                                1h 50m
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                10
+                                            </td>
+                                            <td>
+                                                आर्टिफिशियल इंटेलिजेंस की मूल बातें: अवसर, अनुप्रयोग और नैतिकता
+                                            </td>
+                                            <td>
+                                                Microsoft
+                                            </td>
+                                            <td style="text-align:right;">
+                                                1h 35m
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                11
+                                            </td>
+                                            <td>
+                                                प्रशासन के लिए एआई: कार्यों का स्व-चालन
+                                            </td>
+                                            <td>
+                                                Wadhwani Foundation
+                                            </td>
+                                            <td style="text-align:right;">
+                                                40m
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                12
+                                            </td>
+                                            <td>
+                                                सुशासन के सन्दर्भ में एआई
+                                            </td>
+                                            <td>
+                                                Wadhwani Foundation
+                                            </td>
+                                            <td style="text-align:right;">
+                                                1h 15m
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                13
+                                            </td>
+                                            <td>
+                                                Artificial Intelligence in Finance
+                                            </td>
+                                            <td>
+                                                SUDI
+                                            </td>
+                                            <td style="text-align:right;">
+                                                1h 40m
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                14
+                                            </td>
+                                            <td>
+                                                Core Areas of Artificial Intelligence
+                                            </td>
+                                            <td>
+                                                IIT Madras
+                                            </td>
+                                            <td style="text-align:right;">
+                                                45m
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                15
+                                            </td>
+                                            <td>
+                                                शून्य से एआई तक
+                                            </td>
+                                            <td>
+                                                India AI Mission
+                                            </td>
+                                            <td style="text-align:right;">
+                                                2h 30m
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                16
+                                            </td>
+                                            <td>
+                                                Advanced Prompt Engineering for Everyone
+                                            </td>
+                                            <td>
+                                                Vanderbilt University
+                                            </td>
+                                            <td style="text-align:right;">
+                                                2h 45m
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                17
+                                            </td>
+                                            <td>
+                                                Build and Execute an Organisational AI Strategy
+                                            </td>
+                                            <td>
+                                                Coursera
+                                            </td>
+                                            <td style="text-align:right;">
+                                                3h 15m
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                18
+                                            </td>
+                                            <td>
+                                                AI for Educators [Intermediate]
+                                            </td>
+                                            <td>
+                                                Common Sense Education
+                                            </td>
+                                            <td style="text-align:right;">
+                                                1h 25m
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                19
+                                            </td>
+                                            <td>
+                                                AI for Energy and Biomedical Applications
+                                            </td>
+                                            <td>
+                                                University of Michigan
+                                            </td>
+                                            <td style="text-align:right;">
+                                                2h 05m
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Marketplace Courses -->
+                            <div class="cbc-schedule-table-wrapper" style="display:none;" id="course-marketplace-table">
+                                <table class="table cbc-schedule-table">
+                                    <thead>
+                                        <tr style="background-color:#f39200 !important;">
+                                            <th style="width:60px;">
+                                                S.N.
+                                            </th>
+                                            <th>
+                                                Course Name
+                                            </th>
+                                            <th>
+                                                Provider
+                                            </th>
+                                            <th style="text-align:right;width:110px;">
+                                                Duration
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                1
+                                            </td>
+                                            <td>
+                                                Strategy and Game Theory for Management
+                                            </td>
+                                            <td>
+                                                IIM, Ahmedabad
+                                            </td>
+                                            <td style="color:#f39200;text-align:right;">
+                                                <strong>32h 42m</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                2
+                                            </td>
+                                            <td>
+                                                Leadership Skills
+                                            </td>
+                                            <td>
+                                                IIM, Ahmedabad
+                                            </td>
+                                            <td style="color:#f39200;text-align:right;">
+                                                <strong>46h 11m</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                3
+                                            </td>
+                                            <td>
+                                                Law, Governance, and Public Policy
+                                            </td>
+                                            <td>
+                                                O. P. Jindal Global University
+                                            </td>
+                                            <td style="color:#f39200;text-align:right;">
+                                                <strong>18h 37m</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                4
+                                            </td>
+                                            <td>
+                                                Introduction to Quantum Information
+                                            </td>
+                                            <td>
+                                                KAIST
+                                            </td>
+                                            <td style="color:#f39200;text-align:right;">
+                                                <strong>10h 48m</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                5
+                                            </td>
+                                            <td>
+                                                Negotiation Fundamentals
+                                            </td>
+                                            <td>
+                                                ESSEC Business School
+                                            </td>
+                                            <td style="color:#f39200;text-align:right;">
+                                                <strong>8h 35m</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                6
+                                            </td>
+                                            <td>
+                                                Analysis and Interpretation of Large-Scale Programs
+                                            </td>
+                                            <td>
+                                                Johns Hopkins University
+                                            </td>
+                                            <td style="color:#f39200;text-align:right;">
+                                                <strong>21h 6m</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                7
+                                            </td>
+                                            <td>
+                                                Build and Execute an Organisational AI Strategy
+                                            </td>
+                                            <td>
+                                                Coursera Instructor Network
+                                            </td>
+                                            <td style="color:#f39200;text-align:right;">
+                                                <strong>5h 52m</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                8
+                                            </td>
+                                            <td>
+                                                Forest Carbon Credits and Initiatives
+                                            </td>
+                                            <td>
+                                                Michigan State University
+                                            </td>
+                                            <td style="color:#f39200;text-align:right;">
+                                                <strong>6h</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                9
+                                            </td>
+                                            <td>
+                                                Design Thinking and Predictive Analytics for Data Products
+                                            </td>
+                                            <td>
+                                                UC San Diego
+                                            </td>
+                                            <td style="color:#f39200;text-align:right;">
+                                                <strong>8h 25m</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                10
+                                            </td>
+                                            <td>
+                                                Effective Engagement of Civil Society in Development
+                                            </td>
+                                            <td>
+                                                Erasmus University Rotterdam
+                                            </td>
+                                            <td style="color:#f39200;text-align:right;">
+                                                <strong>13h 19m</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                11
+                                            </td>
+                                            <td>
+                                                Blockchain Platforms
+                                            </td>
+                                            <td>
+                                                University at Buffalo, SUNY
+                                            </td>
+                                            <td style="color:#f39200;text-align:right;">
+                                                <strong>16h 16m</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                12
+                                            </td>
+                                            <td>
+                                                Trade and Investment: Evidence-based Policies for Development
+                                            </td>
+                                            <td>
+                                                Erasmus University Rotterdam
+                                            </td>
+                                            <td style="color:#f39200;text-align:right;">
+                                                <strong>17h 2m</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cbc-schedule-sn">
+                                                13
+                                            </td>
+                                            <td>
+                                                Foundations of Cybersecurity
+                                            </td>
+                                            <td>
+                                                Google
+                                            </td>
+                                            <td style="color:#f39200;text-align:right;">
+                                                <strong>10h 10m</strong>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <p>
+                    <!-- /container -->&nbsp;
+                </p>
             </div>
-            <!-- TAB: Day 1 – Launch Day -->
-            <div class="cbc-schedule-content" id="tab-day1">
-                <div class="cbc-schedule-table-card">
-                    <div class="cbc-schedule-card-header">
-                        <h3>
-                            Udghatan Samaroh – Launch Day
-                        </h3>
-                        <p>
-                            📅 2nd April 2026 | New Delhi
-                        </p>
-                    </div>
-                    <div class="cbc-schedule-table-wrapper">
-                        <table class="table cbc-schedule-table">
-                            <thead>
-                                <tr>
-                                    <th style="width:60px;">
-                                        S.N.
-                                    </th>
-                                    <th>
-                                        Session
-                                    </th>
-                                    <th style="text-align:right;width:200px;">
-                                        Time
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        1.
-                                    </td>
-                                    <td>
-                                        <strong>Inaugural Address</strong><br>
-                                        <span style="color:#f39200;font-size:12px;">Guests of Honour / Chief Guest</span>
-                                    </td>
-                                    <td style="color:#0063ae;text-align:right;">
-                                        <strong>10:00 AM – 11:30 AM</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        2.
-                                    </td>
-                                    <td>
-                                        <strong>Master Class: 'Capacity Building Imperative for an Entrepreneurial State'</strong><br>
-                                        <span style="color:#f39200;font-size:12px;">Shri V. Anantha Nageswaran, Chief Economic Advisor, Govt. of India</span>
-                                    </td>
-                                    <td style="color:#0063ae;text-align:right;">
-                                        <strong>11:30 AM – 12:00 Noon</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        3.
-                                    </td>
-                                    <td>
-                                        <strong>Thematic Session-I: National Workshop on Future Ready Training Institutions for Viksit Bharat</strong>
-                                    </td>
-                                    <td style="color:#0063ae;text-align:right;">
-                                        <strong>12:00 Noon – 1:30 PM</strong>
-                                    </td>
-                                </tr>
-                                <tr style="background-color:#fff9f2;">
-                                    <td style="color:#f39200;font-size:13px;text-align:center;" colspan="3">
-                                        <em><strong>Lunch Break</strong></em>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        4.
-                                    </td>
-                                    <td>
-                                        <strong>Thematic Session-II: Karmayogi Quality Framework</strong>
-                                    </td>
-                                    <td style="color:#0063ae;text-align:right;">
-                                        <strong>2:30 PM – 3:30 PM</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        5.
-                                    </td>
-                                    <td>
-                                        <strong>Special Address</strong><br>
-                                        <span style="color:#f39200;font-size:12px;">Shri T. V. Somanathan, Cabinet Secretary, Govt. of India</span>
-                                    </td>
-                                    <td style="color:#0063ae;text-align:right;">
-                                        <strong>3:30 PM – 4:00 PM</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        6.
-                                    </td>
-                                    <td>
-                                        <strong>Closing Reflection and Vote of Thanks</strong>
-                                    </td>
-                                    <td style="color:#0063ae;text-align:right;">
-                                        <strong>4:00 PM – 4:15 PM</strong>
-                                    </td>
-                                </tr>
-                                <tr style="background-color:#fff9f2;">
-                                    <td style="color:#f39200;font-size:13px;text-align:center;" colspan="3">
-                                        <em><strong>Tea &amp; Networking</strong></em>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <!-- TAB: Day 2–7 -->
-            <div class="cbc-schedule-content" id="tab-day2-7">
-                <div class="cbc-schedule-table-card" style="background-color:transparent;border-style:none;box-shadow:none;padding:20px;">
-                    <div class="cbc-schedule-card-header" style="background-color:white;border-radius:16px;border:1px solid #f0f0f0;margin-bottom:20px;">
-                        <h3>
-                            Daily Webinar Sessions
-                        </h3>
-                        <p>
-                            📅 3rd April – 8th April 2026 | Virtual / Hybrid
-                        </p>
-                    </div>
-                    <div class="cbc-webinar-grid">
-                        <div class="cbc-webinar-card">
-                            <h4>
-                                Morning Session – Webinar 1
-                            </h4>
-                            <p>
-                                <span class="cbc-duration-badge">60 minutes</span>
-                            </p>
-                            <p class="cbc-webinar-desc">
-                                Theme-aligned webinar session led by domain experts covering Technology, Tradition, or Tangible Outcomes.
-                            </p>
-                        </div>
-                        <div class="cbc-webinar-card">
-                            <h4>
-                                Afternoon/Evening Session – Webinar 2
-                            </h4>
-                            <p>
-                                <span class="cbc-duration-badge">60 minutes</span>
-                            </p>
-                            <p class="cbc-webinar-desc">
-                                Complementary session with sectoral deep-dives, case studies, and interactive discussions.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="cbc-date-pills">
-                        <div class="cbc-date-pill">
-                            🔵 3rd &amp; 4th April – Technology
-                        </div>
-                        <div class="cbc-date-pill" style="background-color:#fff3e0;color:#e67e22;">
-                            🟠 5th &amp; 6th April – Tradition
-                        </div>
-                        <div class="cbc-date-pill" style="background-color:#e8f5e9;color:#2e7d32;">
-                            🟢 7th &amp; 8th April – Tangible Outcomes
-                        </div>
-                    </div>
-                    <div class="cbc-schedule-table-card">
-                        <div class="cbc-schedule-table-wrapper">
-                            <table class="table cbc-schedule-table">
-                                <thead>
-                                    <tr>
-                                        <th style="width:60px;">
-                                            S.N.
-                                        </th>
-                                        <th style="width:200px;">
-                                            Format
-                                        </th>
-                                        <th>
-                                            Session
-                                        </th>
-                                        <th>
-                                            Details
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="cbc-schedule-sn">
-                                            1
-                                        </td>
-                                        <td>
-                                            <strong>IGOT Modules</strong>
-                                        </td>
-                                        <td>
-                                            Courses on IGOT – At learner's convenience; AI &amp; Marketplace focus
-                                        </td>
-                                        <td>
-                                            1–2 courses mandatory per MDO
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cbc-schedule-sn">
-                                            2
-                                        </td>
-                                        <td>
-                                            <strong>Samuhik Charcha</strong>
-                                        </td>
-                                        <td>
-                                            MDO/State-led Samuhik Charcha
-                                        </td>
-                                        <td>
-                                            Templatized format; 60–120 min; facilitated by CBC &amp; Karmayogi Bharat
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cbc-schedule-sn">
-                                            3
-                                        </td>
-                                        <td>
-                                            <strong>Workshops / Onsite Courses</strong>
-                                        </td>
-                                        <td>
-                                            MDO/CSTI/State-led workshops &amp; physical training
-                                        </td>
-                                        <td>
-                                            Sectoral / domain capacity building sessions
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cbc-schedule-sn">
-                                            4
-                                        </td>
-                                        <td>
-                                            <strong>Thematic Days</strong>
-                                        </td>
-                                        <td>
-                                            Technology (3–4 Apr), Traditions (5–6 Apr), Tangible Outcomes (7–8 Apr)
-                                        </td>
-                                        <td>
-                                            Samuhik Charchas, Karmayogi Talks, Webinars &amp; Panel Discussions
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- TAB: Day 8 – Valedictory -->
-            <div class="cbc-schedule-content" id="tab-day8">
-                <div class="cbc-schedule-table-card">
-                    <div class="cbc-schedule-card-header">
-                        <h3>
-                            Samapan Samaroh – Valedictory Day
-                        </h3>
-                        <p>
-                            📅 8th April 2026
-                        </p>
-                    </div>
-                    <div class="cbc-schedule-table-wrapper">
-                        <table class="table cbc-schedule-table">
-                            <thead>
-                                <tr>
-                                    <th style="width:60px;">
-                                        S.N.
-                                    </th>
-                                    <th style="width:140px;">
-                                        Duration
-                                    </th>
-                                    <th>
-                                        Session
-                                    </th>
-                                    <th>
-                                        Tentative Activities
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        1
-                                    </td>
-                                    <td>
-                                        120 minutes
-                                    </td>
-                                    <td>
-                                        <strong>Felicitation Session</strong>
-                                    </td>
-                                    <td>
-                                        Summary of the Week (Data) · Felicitation of Karmayogi Leaderboard Achievers · Address by Chief Guest (~20 min)
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <!-- TAB: Courses in Focus -->
-            <div class="cbc-schedule-content" id="tab-courses">
-                <div class="cbc-schedule-table-card">
-                    <div class="cbc-schedule-card-header">
-                        <h3>
-                            Curated Learning Pathways on iGOT Karmayogi
-                        </h3>
-                        <p>
-                            AI Courses &amp; iGOT Marketplace Courses — available throughout the week
-                        </p>
-                    </div>
-                    <div style="padding:16px 16px 0;">
-                        <div class="cbc-course-tabs">
-                            <button class="cbc-course-tab active" data-course="ai">AI Courses</button> <button class="cbc-course-tab" data-course="marketplace">iGOT Marketplace Courses</button>
-                        </div>
-                    </div>
-                    <!-- AI Courses -->
-                    <div class="cbc-schedule-table-wrapper" id="course-ai-table">
-                        <table class="table cbc-schedule-table">
-                            <thead>
-                                <tr style="background-color:#f39200 !important;">
-                                    <th style="width:60px;">
-                                        S.N.
-                                    </th>
-                                    <th>
-                                        Course Name
-                                    </th>
-                                    <th>
-                                        Provider
-                                    </th>
-                                    <th style="text-align:right;width:110px;">
-                                        Duration
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        1
-                                    </td>
-                                    <td>
-                                        Artificial Intelligence for Public Governance
-                                    </td>
-                                    <td>
-                                        Wadhwani AI &amp; Data Security Council of India
-                                    </td>
-                                    <td style="text-align:right;">
-                                        3h 10m
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        2
-                                    </td>
-                                    <td>
-                                        Large Language Models: Concepts and Applications
-                                    </td>
-                                    <td>
-                                        IIT Hyderabad
-                                    </td>
-                                    <td style="text-align:right;">
-                                        1h 45m
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        3
-                                    </td>
-                                    <td>
-                                        Deep Tech and India
-                                    </td>
-                                    <td>
-                                        ORF
-                                    </td>
-                                    <td style="text-align:right;">
-                                        55m
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        4
-                                    </td>
-                                    <td>
-                                        AI in Government: Transforming Public Service Delivery
-                                    </td>
-                                    <td>
-                                        IISc Bengaluru
-                                    </td>
-                                    <td style="text-align:right;">
-                                        2h 20m
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        5
-                                    </td>
-                                    <td>
-                                        Artificial Intelligence for Smarter Governance
-                                    </td>
-                                    <td>
-                                        Karmayogi Bharat – NeGD
-                                    </td>
-                                    <td style="text-align:right;">
-                                        1h 30m
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        6
-                                    </td>
-                                    <td>
-                                        IndiaAI for All
-                                    </td>
-                                    <td>
-                                        India AI Mission
-                                    </td>
-                                    <td style="text-align:right;">
-                                        2h 15m
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        7
-                                    </td>
-                                    <td>
-                                        Fundamentals of Generative Artificial Intelligence
-                                    </td>
-                                    <td>
-                                        IIT Madras
-                                    </td>
-                                    <td style="text-align:right;">
-                                        50m
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        8
-                                    </td>
-                                    <td>
-                                        Introduction to Artificial Intelligence
-                                    </td>
-                                    <td>
-                                        IIT Madras
-                                    </td>
-                                    <td style="text-align:right;">
-                                        45m
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        9
-                                    </td>
-                                    <td>
-                                        AI Applications in Government
-                                    </td>
-                                    <td>
-                                        NIC
-                                    </td>
-                                    <td style="text-align:right;">
-                                        1h 50m
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        10
-                                    </td>
-                                    <td>
-                                        आर्टिफिशियल इंटेलिजेंस की मूल बातें: अवसर, अनुप्रयोग और नैतिकता
-                                    </td>
-                                    <td>
-                                        Microsoft
-                                    </td>
-                                    <td style="text-align:right;">
-                                        1h 35m
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        11
-                                    </td>
-                                    <td>
-                                        प्रशासन के लिए एआई: कार्यों का स्व-चालन
-                                    </td>
-                                    <td>
-                                        Wadhwani Foundation
-                                    </td>
-                                    <td style="text-align:right;">
-                                        40m
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        12
-                                    </td>
-                                    <td>
-                                        सुशासन के सन्दर्भ में एआई
-                                    </td>
-                                    <td>
-                                        Wadhwani Foundation
-                                    </td>
-                                    <td style="text-align:right;">
-                                        1h 15m
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        13
-                                    </td>
-                                    <td>
-                                        Artificial Intelligence in Finance
-                                    </td>
-                                    <td>
-                                        SUDI
-                                    </td>
-                                    <td style="text-align:right;">
-                                        1h 40m
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        14
-                                    </td>
-                                    <td>
-                                        Core Areas of Artificial Intelligence
-                                    </td>
-                                    <td>
-                                        IIT Madras
-                                    </td>
-                                    <td style="text-align:right;">
-                                        45m
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        15
-                                    </td>
-                                    <td>
-                                        शून्य से एआई तक
-                                    </td>
-                                    <td>
-                                        India AI Mission
-                                    </td>
-                                    <td style="text-align:right;">
-                                        2h 30m
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        16
-                                    </td>
-                                    <td>
-                                        Advanced Prompt Engineering for Everyone
-                                    </td>
-                                    <td>
-                                        Vanderbilt University
-                                    </td>
-                                    <td style="text-align:right;">
-                                        2h 45m
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        17
-                                    </td>
-                                    <td>
-                                        Build and Execute an Organisational AI Strategy
-                                    </td>
-                                    <td>
-                                        Coursera
-                                    </td>
-                                    <td style="text-align:right;">
-                                        3h 15m
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        18
-                                    </td>
-                                    <td>
-                                        AI for Educators [Intermediate]
-                                    </td>
-                                    <td>
-                                        Common Sense Education
-                                    </td>
-                                    <td style="text-align:right;">
-                                        1h 25m
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        19
-                                    </td>
-                                    <td>
-                                        AI for Energy and Biomedical Applications
-                                    </td>
-                                    <td>
-                                        University of Michigan
-                                    </td>
-                                    <td style="text-align:right;">
-                                        2h 05m
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- Marketplace Courses -->
-                    <div class="cbc-schedule-table-wrapper" style="display:none;" id="course-marketplace-table">
-                        <table class="table cbc-schedule-table">
-                            <thead>
-                                <tr style="background-color:#f39200 !important;">
-                                    <th style="width:60px;">
-                                        S.N.
-                                    </th>
-                                    <th>
-                                        Course Name
-                                    </th>
-                                    <th>
-                                        Provider
-                                    </th>
-                                    <th style="text-align:right;width:110px;">
-                                        Duration
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        1
-                                    </td>
-                                    <td>
-                                        Strategy and Game Theory for Management
-                                    </td>
-                                    <td>
-                                        IIM, Ahmedabad
-                                    </td>
-                                    <td style="color:#f39200;text-align:right;">
-                                        <strong>32h 42m</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        2
-                                    </td>
-                                    <td>
-                                        Leadership Skills
-                                    </td>
-                                    <td>
-                                        IIM, Ahmedabad
-                                    </td>
-                                    <td style="color:#f39200;text-align:right;">
-                                        <strong>46h 11m</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        3
-                                    </td>
-                                    <td>
-                                        Law, Governance, and Public Policy
-                                    </td>
-                                    <td>
-                                        O. P. Jindal Global University
-                                    </td>
-                                    <td style="color:#f39200;text-align:right;">
-                                        <strong>18h 37m</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        4
-                                    </td>
-                                    <td>
-                                        Introduction to Quantum Information
-                                    </td>
-                                    <td>
-                                        KAIST
-                                    </td>
-                                    <td style="color:#f39200;text-align:right;">
-                                        <strong>10h 48m</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        5
-                                    </td>
-                                    <td>
-                                        Negotiation Fundamentals
-                                    </td>
-                                    <td>
-                                        ESSEC Business School
-                                    </td>
-                                    <td style="color:#f39200;text-align:right;">
-                                        <strong>8h 35m</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        6
-                                    </td>
-                                    <td>
-                                        Analysis and Interpretation of Large-Scale Programs
-                                    </td>
-                                    <td>
-                                        Johns Hopkins University
-                                    </td>
-                                    <td style="color:#f39200;text-align:right;">
-                                        <strong>21h 6m</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        7
-                                    </td>
-                                    <td>
-                                        Build and Execute an Organisational AI Strategy
-                                    </td>
-                                    <td>
-                                        Coursera Instructor Network
-                                    </td>
-                                    <td style="color:#f39200;text-align:right;">
-                                        <strong>5h 52m</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        8
-                                    </td>
-                                    <td>
-                                        Forest Carbon Credits and Initiatives
-                                    </td>
-                                    <td>
-                                        Michigan State University
-                                    </td>
-                                    <td style="color:#f39200;text-align:right;">
-                                        <strong>6h</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        9
-                                    </td>
-                                    <td>
-                                        Design Thinking and Predictive Analytics for Data Products
-                                    </td>
-                                    <td>
-                                        UC San Diego
-                                    </td>
-                                    <td style="color:#f39200;text-align:right;">
-                                        <strong>8h 25m</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        10
-                                    </td>
-                                    <td>
-                                        Effective Engagement of Civil Society in Development
-                                    </td>
-                                    <td>
-                                        Erasmus University Rotterdam
-                                    </td>
-                                    <td style="color:#f39200;text-align:right;">
-                                        <strong>13h 19m</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        11
-                                    </td>
-                                    <td>
-                                        Blockchain Platforms
-                                    </td>
-                                    <td>
-                                        University at Buffalo, SUNY
-                                    </td>
-                                    <td style="color:#f39200;text-align:right;">
-                                        <strong>16h 16m</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        12
-                                    </td>
-                                    <td>
-                                        Trade and Investment: Evidence-based Policies for Development
-                                    </td>
-                                    <td>
-                                        Erasmus University Rotterdam
-                                    </td>
-                                    <td style="color:#f39200;text-align:right;">
-                                        <strong>17h 2m</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cbc-schedule-sn">
-                                        13
-                                    </td>
-                                    <td>
-                                        Foundations of Cybersecurity
-                                    </td>
-                                    <td>
-                                        Google
-                                    </td>
-                                    <td style="color:#f39200;text-align:right;">
-                                        <strong>10h 10m</strong>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <p>
-            <!-- /container -->&nbsp;
-        </p>
-    </div>
-    <!-- /cbc-schedule-section --><!-- ==================================================================
+            <!-- /cbc-schedule-section --><!-- ==================================================================
              SECTION 3: EVENT GLIMPSES — 2-COLUMN GRID
              (Leaders' Voices on left | Testimonials on right)
              ================================================================== -->
-    <div class="cbc-glimpses-section" style="background-color:#f5f0e8 !important;">
-        <div class="container">
-            <div class="cbc-glimpses-header">
-                <h2>
-                    Event Glimpses
-                </h2>
-                <p>
-                    Reliving the inspiring words and impactful moments from <img class="cbc-sadhana-logo" src="https://cbc.gov.in/sites/default/files/2026-03/Sadhana_text.png" alt="SĀDHANA" width="4313" height="1069"> Saptah.
-                </p>
-            </div>
-            <div class="cbc-glimpses-grid">
-                <!-- ── LEFT COLUMN: Leaders' Voices — VIDEO Carousel ── -->
-                <div class="cbc-column-box" style="display:flex !important;flex-direction:column !important;min-height:640px !important;">
-                    <div class="cbc-column-title">
-                        Team CBC
+            <div class="cbc-glimpses-section" style="background-color:#f5f0e8 !important;">
+                <div class="container">
+                    <div class="cbc-glimpses-header">
+                        <h2>
+                            Event Glimpses
+                        </h2>
+                        <p>
+                            Reliving the inspiring words and impactful moments from <img class="cbc-sadhana-logo"
+                                src="https://cbc.gov.in/sites/default/files/2026-03/Sadhana_text.png" alt="SĀDHANA"
+                                width="4313" height="1069"> Saptah.
+                        </p>
                     </div>
-                    <!--
+                    <div class="cbc-glimpses-grid">
+                        <!-- ── LEFT COLUMN: Leaders' Voices — VIDEO Carousel ── -->
+                        <div class="cbc-column-box"
+                            style="display:flex !important;flex-direction:column !important;min-height:640px !important;">
+                            <div class="cbc-column-title">
+                                Team CBC
+                            </div>
+                            <!--
                                                             ★ HOW TO ADD A LEADER VIDEO:
                                                             1. Get the YouTube embed URL:
                                                                https://www.youtube.com/embed/YOUR_VIDEO_ID
@@ -1123,74 +1177,106 @@
                                                                        inside the swiper-wrapper, and replace the iframe src.
                                                                        No JS changes needed — JS auto-detects new slides.
                                                                     -->
-                        <div class="swiper leadersSwiper" style="height:520px !important;margin-top:auto !important;width:100% !important;">
-                            <div class="swiper-wrapper">
-                                <!-- Leader Video 1 (Direct Drupal .mp4 Example) -->
-                                <div class="swiper-slide">
-                                    <div class="video-container" style="height:100% !important;">
-                                        <video style="height:100% !important;object-fit:cover !important;width:100% !important;" controls="" playsinline="">
-                                                                                                                        <source src="/sites/default/files/2026-03/WhatsApp%20Video%202026-03-31%20at%2010.21.40.mp4" type="video/mp4">
-                                                                                                                        Your browser does not support the video tag.
-                                                                                                                    </video>
+                            <div class="swiper leadersSwiper"
+                                style="height:520px !important;margin-top:auto !important;width:100% !important;">
+                                <div class="swiper-wrapper">
+                                    <!-- Leader Video 1 (Direct Drupal .mp4 Example) -->
+                                    <div class="swiper-slide">
+                                        <div class="video-container" style="height:100% !important;">
+                                            <video
+                                                style="height:100% !important;object-fit:cover !important;width:100% !important;"
+                                                controls="" playsinline="">
+                                                <source
+                                                    src="/sites/default/files/2026-03/WhatsApp%20Video%202026-03-31%20at%2010.21.40.mp4"
+                                                    type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="video-container" style="height:100% !important;">
-                                        <video style="height:100% !important;object-fit:cover !important;width:100% !important;" controls="" playsinline="">
-                                                                                                                        <source src="/sites/default/files/2026-03/WhatsApp%20Video%202026-03-31%20at%2010.23.30%20AM%20%281%29.mp4" type="video/mp4">
-                                                                                                                        Your browser does not support the video tag.
-                                                                                                                    </video>
+                                    <div class="swiper-slide">
+                                        <div class="video-container" style="height:100% !important;">
+                                            <video
+                                                style="height:100% !important;object-fit:cover !important;width:100% !important;"
+                                                controls="" playsinline="">
+                                                <source
+                                                    src="/sites/default/files/2026-03/WhatsApp%20Video%202026-03-31%20at%2010.23.30%20AM%20%281%29.mp4"
+                                                    type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="video-container" style="height:100% !important;">
-                                        <video style="height:100% !important;object-fit:cover !important;width:100% !important;" controls="" playsinline="">
-                                                                                                                        <source src="/sites/default/files/2026-03/WhatsApp%20Video%202026-03-31%20at%2010.12.13%20AM.mp4" type="video/mp4">
-                                                                                                                        Your browser does not support the video tag.
-                                                                                                                    </video>
+                                    <div class="swiper-slide">
+                                        <div class="video-container" style="height:100% !important;">
+                                            <video
+                                                style="height:100% !important;object-fit:cover !important;width:100% !important;"
+                                                controls="" playsinline="">
+                                                <source
+                                                    src="/sites/default/files/2026-03/WhatsApp%20Video%202026-03-31%20at%2010.12.13%20AM.mp4"
+                                                    type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="video-container" style="height:100% !important;">
-                                        <video style="height:100% !important;object-fit:cover !important;width:100% !important;" controls="" playsinline="">
-                                                                                                                        <source src="/sites/default/files/2026-03/CBC%20BYTE%20JAGDIP%20JI.mp4" type="video/mp4">
-                                                                                                                        Your browser does not support the video tag.
-                                                                                                                    </video>
+                                    <div class="swiper-slide">
+                                        <div class="video-container" style="height:100% !important;">
+                                            <video
+                                                style="height:100% !important;object-fit:cover !important;width:100% !important;"
+                                                controls="" playsinline="">
+                                                <source src="/sites/default/files/2026-03/CBC%20BYTE%20JAGDIP%20JI.mp4"
+                                                    type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="video-container" style="height:100% !important;">
-                                        <video style="height:100% !important;object-fit:cover !important;width:100% !important;" controls="" playsinline="">
-                                                                                                                        <source src="/sites/default/files/2026-03/WhatsApp%20Video%202026-03-31%20at%2010.00.01%20AM%20%281%29.mp4" type="video/mp4">
-                                                                                                                        Your browser does not support the video tag.
-                                                                                                                    </video>
+                                    <div class="swiper-slide">
+                                        <div class="video-container" style="height:100% !important;">
+                                            <video
+                                                style="height:100% !important;object-fit:cover !important;width:100% !important;"
+                                                controls="" playsinline="">
+                                                <source
+                                                    src="/sites/default/files/2026-03/WhatsApp%20Video%202026-03-31%20at%2010.00.01%20AM%20%281%29.mp4"
+                                                    type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="video-container" style="height:100% !important;">
-                                        <video style="height:100% !important;object-fit:cover !important;width:100% !important;" controls="" playsinline="">
-                                                                                                                        <source src="/sites/default/files/2026-03/WhatsApp%20Video%202026-03-31%20at%2010.00.00%20AM%20%281%29.mp4" type="video/mp4">
-                                                                                                                        Your browser does not support the video tag.
-                                                                                                                    </video>
+                                    <div class="swiper-slide">
+                                        <div class="video-container" style="height:100% !important;">
+                                            <video
+                                                style="height:100% !important;object-fit:cover !important;width:100% !important;"
+                                                controls="" playsinline="">
+                                                <source
+                                                    src="/sites/default/files/2026-03/WhatsApp%20Video%202026-03-31%20at%2010.00.00%20AM%20%281%29.mp4"
+                                                    type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="video-container" style="height:100% !important;">
-                                        <video style="height:100% !important;object-fit:cover !important;width:100% !important;" controls="" playsinline="">
-                                                                                                                        <source src="/sites/default/files/2026-03/WhatsApp%20Video%202026-03-31%20at%2012.23.46%20PM.mp4" type="video/mp4">
-                                                                                                                        Your browser does not support the video tag.
-                                                                                                                    </video>
+                                    <div class="swiper-slide">
+                                        <div class="video-container" style="height:100% !important;">
+                                            <video
+                                                style="height:100% !important;object-fit:cover !important;width:100% !important;"
+                                                controls="" playsinline="">
+                                                <source
+                                                    src="/sites/default/files/2026-03/WhatsApp%20Video%202026-03-31%20at%2012.23.46%20PM.mp4"
+                                                    type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="video-container" style="height:100% !important;">
-                                        <video style="height:100% !important;object-fit:cover !important;width:100% !important;" controls="" playsinline="">
-                                                                                                                        <source src="/sites/default/files/2026-03/WhatsApp%20Video%202026-03-31%20at%209.59.59%20AM.mp4" type="video/mp4">
-                                                                                                                        Your browser does not support the video tag.
-                                                                                                                    </video>
+                                    <div class="swiper-slide">
+                                        <div class="video-container" style="height:100% !important;">
+                                            <video
+                                                style="height:100% !important;object-fit:cover !important;width:100% !important;"
+                                                controls="" playsinline="">
+                                                <source
+                                                    src="/sites/default/files/2026-03/WhatsApp%20Video%202026-03-31%20at%209.59.59%20AM.mp4"
+                                                    type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- ★ PASTE MORE LEADER VIDEOS BELOW THIS LINE ★
+                                    <!-- ★ PASTE MORE LEADER VIDEOS BELOW THIS LINE ★
                                                                                                  Copy the 
                                                                 
                                 <div class="swiper-slide">
@@ -1212,40 +1298,50 @@
                             <!-- /leadersSwiper -->
                         </div>
                         <!-- /left column --><!-- ── RIGHT COLUMN: Collaborative Efforts — VIDEO Carousel ── -->
-                        <div class="cbc-column-box" style="display:flex !important;flex-direction:column !important;min-height:640px !important;">
+                        <div class="cbc-column-box"
+                            style="display:flex !important;flex-direction:column !important;min-height:640px !important;">
                             <div class="cbc-column-title">
                                 Our collaborative efforts matter
                             </div>
-                            <div class="swiper testimonialVideoSwiper" style="height:520px !important;margin-top:auto !important;width:100% !important;">
+                            <div class="swiper testimonialVideoSwiper"
+                                style="height:520px !important;margin-top:auto !important;width:100% !important;">
                                 <div class="swiper-wrapper">
                                     <!-- ★ DYNAMIC COLLABORATIVE VIDEO CAROUSEL VIA TWIG TWEAK ('video_gallery', 'page_3') ★ -->
                                     {% set collab_video_results = drupal_view_result('video_gallery', 'page_3') %}
                                     {% if collab_video_results is not empty %}
-                                        {% for row in collab_video_results %}
-                                            {% set entity = row._entity %}
-                                            {% if entity.field_video is not empty %}
-                                                {% for video_item in entity.field_video %}
-                                                    {% if video_item.entity and video_item.entity.field_media_video_file is not empty %}
-                                                    <div class="swiper-slide">
-                                                        <div class="video-container" style="height:100% !important;">
-                                                            <video style="height:100% !important;object-fit:cover !important;width:100% !important;" controls playsinline>
-                                                                <source src="{{ file_url(video_item.entity.field_media_video_file.entity.fileuri) }}" type="video/mp4">
-                                                            </video>
-                                                        </div>
-                                                    </div>
-                                                    {% endif %}
-                                                {% endfor %}
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% else %}
-                                        <!-- Fallback Collaborative Video -->
-                                        <div class="swiper-slide">
-                                            <div class="video-container" style="height:100% !important;">
-                                                <video style="height:100% !important;object-fit:cover !important;width:100% !important;" controls playsinline>
-                                                    <source src="/sites/default/files/2026-03/WhatsApp%20Video%202026-03-31%20at%2010.00.01%20AM.mp4" type="video/mp4">
-                                                </video>
-                                            </div>
+                                    {% for row in collab_video_results %}
+                                    {% set entity = row._entity %}
+                                    {% if entity.field_video is not empty %}
+                                    {% for video_item in entity.field_video %}
+                                    {% if video_item.entity and video_item.entity.field_media_video_file is not empty %}
+                                    <div class="swiper-slide">
+                                        <div class="video-container" style="height:100% !important;">
+                                            <video
+                                                style="height:100% !important;object-fit:cover !important;width:100% !important;"
+                                                controls playsinline>
+                                                <source
+                                                    src="{{ file_url(video_item.entity.field_media_video_file.entity.fileuri) }}"
+                                                    type="video/mp4">
+                                            </video>
                                         </div>
+                                    </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% else %}
+                                    <!-- Fallback Collaborative Video -->
+                                    <div class="swiper-slide">
+                                        <div class="video-container" style="height:100% !important;">
+                                            <video
+                                                style="height:100% !important;object-fit:cover !important;width:100% !important;"
+                                                controls playsinline>
+                                                <source
+                                                    src="/sites/default/files/2026-03/WhatsApp%20Video%202026-03-31%20at%2010.00.01%20AM.mp4"
+                                                    type="video/mp4">
+                                            </video>
+                                        </div>
+                                    </div>
                                     {% endif %}
                                 </div>
                                 <div class="swiper-pagination">
@@ -1276,7 +1372,9 @@
                             Event Gallery
                         </h2>
                         <p>
-                            Capturing the moments and milestones of <img class="cbc-sadhana-logo" src="https://cbc.gov.in/sites/default/files/2026-03/Sadhana_text.png" alt="SĀDHANA" width="4313" height="1069"> Saptah.
+                            Capturing the moments and milestones of <img class="cbc-sadhana-logo"
+                                src="https://cbc.gov.in/sites/default/files/2026-03/Sadhana_text.png" alt="SĀDHANA"
+                                width="4313" height="1069"> Saptah.
                         </p>
                     </div>
                     <div class="gallery-grid">
@@ -1298,47 +1396,51 @@
                                                                             Drupal media URLs typically look like:
                                                                               /sites/default/files/2026-04/photo-name.jpg
                                                                             -->
-                                <div class="swiper photoSwiper">
-                                    <div class="swiper-wrapper">
-                                        <!-- ★ DYNAMIC PHOTO CAROUSEL VIA TWIG TWEAK ('photo_gallery', 'page_2') ★ -->
-                                        {% set photo_view_results = drupal_view_result('photo_gallery', 'page_2') %}
-                                        {% if photo_view_results is not empty %}
-                                            {% for row in photo_view_results %}
-                                                {% set entity = row._entity %}
-                                                {% if entity.field_images is not empty %}
-                                                    {% for image_item in entity.field_images %}
-                                                        {% if image_item.entity %}
-                                                        <div class="swiper-slide" data-gallery-title="{{ entity.label() }}">
-                                                            <img src="{{ file_url(image_item.entity.fileuri) }}" alt="{{ entity.label() }}" width="1600" height="1131">
-                                                        </div>
-                                                        {% endif %}
-                                                    {% endfor %}
-                                                {% endif %}
-                                            {% endfor %}
-                                        {% endif %}
+                            <div class="swiper photoSwiper">
+                                <div class="swiper-wrapper">
+                                    <!-- ★ DYNAMIC PHOTO CAROUSEL VIA TWIG TWEAK ('photo_gallery', 'page_2') ★ -->
+                                    {% set photo_view_results = drupal_view_result('photo_gallery', 'page_2') %}
+                                    {% if photo_view_results is not empty %}
+                                    {% for row in photo_view_results %}
+                                    {% set entity = row._entity %}
+                                    {% if entity.field_images is not empty %}
+                                    {% for image_item in entity.field_images %}
+                                    {% if image_item.entity %}
+                                    <div class="swiper-slide" data-gallery-title="{{ entity.label() }}">
+                                        <img src="{{ file_url(image_item.entity.fileuri) }}" alt="{{ entity.label() }}"
+                                            width="1600" height="1131">
                                     </div>
-                                    <!-- /swiper-wrapper -->
-                                    <div class="swiper-pagination">
-                                        &nbsp;
-                                    </div>
-                                    <div class="cbc-swiper-btn cbc-next-btn">
-                                        &nbsp;
-                                    </div>
-                                    <div class="cbc-swiper-btn cbc-prev-btn">
-                                        &nbsp;
-                                    </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% endif %}
                                 </div>
-                                <!-- /photoSwiper -->
-                                <p class="gallery-caption">
-                                    <strong>Moments of Interaction:</strong> Capturing the spirit of <img class="cbc-sadhana-logo" src="https://cbc.gov.in/sites/default/files/2026-03/Sadhana_text.png" alt="SĀDHANA" width="4313" height="1069"> Saptah.
-                                </p>
+                                <!-- /swiper-wrapper -->
+                                <div class="swiper-pagination">
+                                    &nbsp;
+                                </div>
+                                <div class="cbc-swiper-btn cbc-next-btn">
+                                    &nbsp;
+                                </div>
+                                <div class="cbc-swiper-btn cbc-prev-btn">
+                                    &nbsp;
+                                </div>
                             </div>
-                            <!-- /gallery-card Photo --><!-- Video Gallery -->
-                            <div class="gallery-card">
-                                <h3>
-                                    🎬 Videos
-                                </h3>
-                                <!--
+                            <!-- /photoSwiper -->
+                            <p class="gallery-caption">
+                                <strong>Moments of Interaction:</strong> Capturing the spirit of <img
+                                    class="cbc-sadhana-logo"
+                                    src="https://cbc.gov.in/sites/default/files/2026-03/Sadhana_text.png" alt="SĀDHANA"
+                                    width="4313" height="1069"> Saptah.
+                            </p>
+                        </div>
+                        <!-- /gallery-card Photo --><!-- Video Gallery -->
+                        <div class="gallery-card">
+                            <h3>
+                                🎬 Videos
+                            </h3>
+                            <!--
                                                                             ★ HOW TO ADD A VIDEO:
                                                                             Option A — YouTube: Use the YouTube embed URL:
                                                                               https://www.youtube.com/embed/YOUR_VIDEO_ID
@@ -1352,114 +1454,179 @@
                                 <div class="swiper-slide">
                                                                          block below and paste it.
                                                                                     -->
-                                    <div class="swiper videoSwiper">
-                                        <div class="swiper-wrapper">
-                                            <!-- ★ DYNAMIC VIDEO CAROUSEL VIA TWIG TWEAK ('video_gallery', 'page_2') ★ -->
-                                            {% set video_view_results = drupal_view_result('video_gallery', 'page_2') %}
-                                            {% if video_view_results is not empty %}
-                                                {% for row in video_view_results %}
-                                                    {% set entity = row._entity %}
-                                                    {% if entity.field_video is not empty %}
-                                                        {% for video_item in entity.field_video %}
-                                                            {% if video_item.entity and video_item.entity.field_media_video_file is not empty %}
-                                                            <div class="swiper-slide">
-                                                                <div class="video-container" style="height:100% !important;">
-                                                                    <video style="height:100% !important;object-fit:cover !important;width:100% !important;" controls playsinline>
-                                                                        <source src="{{ file_url(video_item.entity.field_media_video_file.entity.fileuri) }}" type="video/mp4">
-                                                                    </video>
-                                                                </div>
-                                                            </div>
-                                                            {% endif %}
-                                                        {% endfor %}
-                                                    {% endif %}
-                                                {% endfor %}
-                                            {% else %}
-                                                <!-- Fallback Video -->
-                                                <div class="swiper-slide">
-                                                    <div class="video-container" style="height:100% !important;">
-                                                        <video style="height:100% !important;object-fit:cover !important;width:100% !important;" controls playsinline>
-                                                            <source src="/sites/default/files/2026-03/WhatsApp%20Video%202026-03-31%20at%2011.45.51%20AM%20%281%29.mp4" type="video/mp4">
-                                                        </video>
-                                                    </div>
-                                                </div>
-                                            {% endif %}
-                                        </div>
-                                        <!-- /swiper-wrapper -->
-                                        <div class="swiper-pagination">
-                                            &nbsp;
-                                        </div>
-                                        <div class="cbc-swiper-btn cbc-next-btn">
-                                            &nbsp;
-                                        </div>
-                                        <div class="cbc-swiper-btn cbc-prev-btn">
-                                            &nbsp;
+                            <div class="swiper videoSwiper">
+                                <div class="swiper-wrapper">
+                                    <!-- ★ DYNAMIC VIDEO CAROUSEL VIA TWIG TWEAK ('video_gallery', 'page_2') ★ -->
+                                    {% set video_view_results = drupal_view_result('video_gallery', 'page_2') %}
+                                    {% if video_view_results is not empty %}
+                                    {% for row in video_view_results %}
+                                    {% set entity = row._entity %}
+                                    {% if entity.field_video is not empty %}
+                                    {% for video_item in entity.field_video %}
+                                    {% if video_item.entity and video_item.entity.field_media_video_file is not empty %}
+                                    <div class="swiper-slide">
+                                        <div class="video-container" style="height:100% !important;">
+                                            <video
+                                                style="height:100% !important;object-fit:cover !important;width:100% !important;"
+                                                controls playsinline>
+                                                <source
+                                                    src="{{ file_url(video_item.entity.field_media_video_file.entity.fileuri) }}"
+                                                    type="video/mp4">
+                                            </video>
                                         </div>
                                     </div>
-                                    <!-- /videoSwiper -->
-                                    <p class="gallery-caption">
-                                            <strong>Impact Stories:</strong> Watch the transformation in action.
-                                        </p>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% else %}
+                                    <!-- Fallback Video -->
+                                    <div class="swiper-slide">
+                                        <div class="video-container" style="height:100% !important;">
+                                            <video
+                                                style="height:100% !important;object-fit:cover !important;width:100% !important;"
+                                                controls playsinline>
+                                                <source
+                                                    src="/sites/default/files/2026-03/WhatsApp%20Video%202026-03-31%20at%2011.45.51%20AM%20%281%29.mp4"
+                                                    type="video/mp4">
+                                            </video>
+                                        </div>
                                     </div>
-                                    <!-- /gallery-card Video -->
+                                    {% endif %}
                                 </div>
-                                <!-- /gallery-grid -->
+                                <!-- /swiper-wrapper -->
+                                <div class="swiper-pagination">
+                                    &nbsp;
+                                </div>
+                                <div class="cbc-swiper-btn cbc-next-btn">
+                                    &nbsp;
+                                </div>
+                                <div class="cbc-swiper-btn cbc-prev-btn">
+                                    &nbsp;
+                                </div>
                             </div>
-                            <!-- /container -->
+                            <!-- /videoSwiper -->
+                            <p class="gallery-caption">
+                                <strong>Impact Stories:</strong> Watch the transformation in action.
+                            </p>
                         </div>
-                        <!-- /cbc-gallery-section --><!-- ==================================================================
+                        <!-- /gallery-card Video -->
+                    </div>
+                    <!-- /gallery-grid -->
+                </div>
+                <!-- /container -->
+            </div>
+            <!-- /cbc-gallery-section --><!-- ==================================================================
                                                          SECTION 5: DoP&T SOCIAL MEDIA LINKS
                                                          ================================================================== -->
-                        <div class="cbc-social-section" style="background-color:#000b1a;border-top:1px solid rgba(0,174,239,0.1);padding:40px 20px;position:relative;text-align:center;">
-                            <div class="container" style="position:relative;z-index:1;">
-                                <h3 style="color:#ffffff;font-family:&apos;Outfit&apos;,sans-serif;font-size:20px;margin:0 0 5px;">
-                                    <strong>Connect with DoP&amp;T</strong>
-                                </h3>
-                                <p style="color:rgba(255,255,255,0.4);font-size:12px;letter-spacing:0.5px;margin:0 0 20px;">
-                                    Department of Personnel and Training
-                                </p>
-                                <!-- Social icons row — Exact footer style: Tiny circular cyan stroke -->
-                                <div style="align-items:center;display:flex;gap:2rem;justify-content:center;">
-                                    <!-- X (Twitter) --><a style="align-items:center;background-color:rgba(255,255,255,0.03);border-radius:50%;border:1px solid rgba(0,174,239,0.3);display:flex;height:38px;justify-content:center;text-decoration:none;transition:all 0.3s;width:38px;" href="https://x.com/CBC_MK" target="_blank" rel="noopener" onmouseover="this.style.borderColor=&apos;#00adef&apos;;this.style.background=&apos;rgba(0,174,239,0.1)&apos;" onmouseout="this.style.borderColor=&apos;rgba(0,174,239,0.3)&apos;;this.style.background=&apos;rgba(255,255,255,0.03)&apos;"><svg width="14" height="14" viewbox="0 0 24 24" fill="#00adef"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>&nbsp;</a><!-- LinkedIn --><a style="align-items:center;background-color:rgba(255,255,255,0.03);border-radius:50%;border:1px solid rgba(0,174,239,0.3);display:flex;height:38px;justify-content:center;text-decoration:none;transition:all 0.3s;width:38px;" href="https://www.linkedin.com/company/capacity-building-commission/" target="_blank" rel="noopener" onmouseover="this.style.borderColor=&apos;#00adef&apos;;this.style.background=&apos;rgba(0,174,239,0.1)&apos;" onmouseout="this.style.borderColor=&apos;rgba(0,174,239,0.3)&apos;;this.style.background=&apos;rgba(255,255,255,0.03)&apos;"><svg width="16" height="16" viewbox="0 0 24 24" fill="#00adef"> <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>&nbsp;</a><!-- Instagram --><a style="align-items:center;background-color:rgba(255,255,255,0.03);border-radius:50%;border:1px solid rgba(0,174,239,0.3);display:flex;height:38px;justify-content:center;text-decoration:none;transition:all 0.3s;width:38px;" href="https://www.instagram.com/capacitybuildingcommission/" target="_blank" rel="noopener" onmouseover="this.style.borderColor=&apos;#00adef&apos;;this.style.background=&apos;rgba(0,174,239,0.1)&apos;" onmouseout="this.style.borderColor=&apos;rgba(0,174,239,0.3)&apos;;this.style.background=&apos;rgba(255,255,255,0.03)&apos;"><svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="#00adef" stroke-width="2"> <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="0.5" fill="#00adef"></circle></svg>&nbsp;</a><!-- Facebook --><a style="align-items:center;background-color:rgba(255,255,255,0.03);border-radius:50%;border:1px solid rgba(0,174,239,0.3);display:flex;height:38px;justify-content:center;text-decoration:none;transition:all 0.3s;width:38px;" href="https://www.facebook.com/share/1AQvydowQ9/" target="_blank" rel="noopener" onmouseover="this.style.borderColor=&apos;#00adef&apos;;this.style.background=&apos;rgba(0,174,239,0.1)&apos;" onmouseout="this.style.borderColor=&apos;rgba(0,174,239,0.3)&apos;;this.style.background=&apos;rgba(255,255,255,0.03)&apos;"><svg width="18" height="18" viewbox="0 0 24 24" fill="#00adef"> <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"></path></svg>&nbsp;</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ==================================================================
+            <div class="cbc-social-section"
+                style="background-color:#000b1a;border-top:1px solid rgba(0,174,239,0.1);padding:40px 20px;position:relative;text-align:center;">
+                <div class="container" style="position:relative;z-index:1;">
+                    <h3 style="color:#ffffff;font-family:&apos;Outfit&apos;,sans-serif;font-size:20px;margin:0 0 5px;">
+                        <strong>Connect with DoP&amp;T</strong>
+                    </h3>
+                    <p style="color:rgba(255,255,255,0.4);font-size:12px;letter-spacing:0.5px;margin:0 0 20px;">
+                        Department of Personnel and Training
+                    </p>
+                    <!-- Social icons row — Exact footer style: Tiny circular cyan stroke -->
+                    <div style="align-items:center;display:flex;gap:2rem;justify-content:center;">
+                        <!-- X (Twitter) --><a
+                            style="align-items:center;background-color:rgba(255,255,255,0.03);border-radius:50%;border:1px solid rgba(0,174,239,0.3);display:flex;height:38px;justify-content:center;text-decoration:none;transition:all 0.3s;width:38px;"
+                            href="https://x.com/CBC_MK" target="_blank" rel="noopener"
+                            onmouseover="this.style.borderColor=&apos;#00adef&apos;;this.style.background=&apos;rgba(0,174,239,0.1)&apos;"
+                            onmouseout="this.style.borderColor=&apos;rgba(0,174,239,0.3)&apos;;this.style.background=&apos;rgba(255,255,255,0.03)&apos;"><svg
+                                width="14" height="14" viewbox="0 0 24 24" fill="#00adef">
+                                <path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+                                </path>
+                            </svg>&nbsp;</a><!-- LinkedIn --><a
+                            style="align-items:center;background-color:rgba(255,255,255,0.03);border-radius:50%;border:1px solid rgba(0,174,239,0.3);display:flex;height:38px;justify-content:center;text-decoration:none;transition:all 0.3s;width:38px;"
+                            href="https://www.linkedin.com/company/capacity-building-commission/" target="_blank"
+                            rel="noopener"
+                            onmouseover="this.style.borderColor=&apos;#00adef&apos;;this.style.background=&apos;rgba(0,174,239,0.1)&apos;"
+                            onmouseout="this.style.borderColor=&apos;rgba(0,174,239,0.3)&apos;;this.style.background=&apos;rgba(255,255,255,0.03)&apos;"><svg
+                                width="16" height="16" viewbox="0 0 24 24" fill="#00adef">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z">
+                                </path>
+                            </svg>&nbsp;</a><!-- Instagram --><a
+                            style="align-items:center;background-color:rgba(255,255,255,0.03);border-radius:50%;border:1px solid rgba(0,174,239,0.3);display:flex;height:38px;justify-content:center;text-decoration:none;transition:all 0.3s;width:38px;"
+                            href="https://www.instagram.com/capacitybuildingcommission/" target="_blank" rel="noopener"
+                            onmouseover="this.style.borderColor=&apos;#00adef&apos;;this.style.background=&apos;rgba(0,174,239,0.1)&apos;"
+                            onmouseout="this.style.borderColor=&apos;rgba(0,174,239,0.3)&apos;;this.style.background=&apos;rgba(255,255,255,0.03)&apos;"><svg
+                                width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="#00adef"
+                                stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <circle cx="12" cy="12" r="4"></circle>
+                                <circle cx="17.5" cy="6.5" r="0.5" fill="#00adef"></circle>
+                            </svg>&nbsp;</a><!-- Facebook --><a
+                            style="align-items:center;background-color:rgba(255,255,255,0.03);border-radius:50%;border:1px solid rgba(0,174,239,0.3);display:flex;height:38px;justify-content:center;text-decoration:none;transition:all 0.3s;width:38px;"
+                            href="https://www.facebook.com/share/1AQvydowQ9/" target="_blank" rel="noopener"
+                            onmouseover="this.style.borderColor=&apos;#00adef&apos;;this.style.background=&apos;rgba(0,174,239,0.1)&apos;"
+                            onmouseout="this.style.borderColor=&apos;rgba(0,174,239,0.3)&apos;;this.style.background=&apos;rgba(255,255,255,0.03)&apos;"><svg
+                                width="18" height="18" viewbox="0 0 24 24" fill="#00adef">
+                                <path
+                                    d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z">
+                                </path>
+                            </svg>&nbsp;</a>
+                    </div>
+                </div>
+            </div>
+            <!-- ==================================================================
                                                          HIDDEN DATA BLOCK: CALENDAR EVENTS
                                                          Editable via Drupal Basic Page HTML — ZERO JS interaction needed.
                                                          ================================================================== -->
-                        <div style="display:none;" id="cbc-events-data">
-                            <!-- Day 2: 2nd April -->
-                            <div data-day="2" data-img="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&amp;fit=crop&amp;w=800&amp;q=80" data-title="SĀDHANA Saptah Launch Event" data-location="New Delhi" data-date="2nd April, 2026">
-                                &nbsp;
-                            </div>
-                            <!-- Day 3: 3rd April -->
-                            <div data-day="3" data-img="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&amp;fit=crop&amp;w=800&amp;q=80" data-title="Technology Sutra: AI in Governance" data-location="Bengaluru" data-date="3rd April, 2026">
-                                &nbsp;
-                            </div>
-                            <!-- Day 4: 4th April -->
-                            <div data-day="4" data-img="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&amp;fit=crop&amp;w=800&amp;q=80" data-title="Tradition Sutra: Indian Knowledge Systems" data-location="Varanasi" data-date="4th April, 2026">
-                                &nbsp;
-                            </div>
-                            <!-- Day 5: 5th April -->
-                            <div data-day="5" data-img="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&amp;fit=crop&amp;w=800&amp;q=80" data-title="Outcome Sutra: Citizen Centricity Workshop" data-location="Hyderabad" data-date="5th April, 2026">
-                                &nbsp;
-                            </div>
-                            <!-- Day 6: 6th April -->
-                            <div data-day="6" data-img="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&amp;fit=crop&amp;w=800&amp;q=80" data-title="Mid-week Review and Samuhik Charcha" data-location="Online" data-date="6th April, 2026">
-                                &nbsp;
-                            </div>
-                            <!-- Day 7: 7th April -->
-                            <div data-day="7" data-img="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&amp;fit=crop&amp;w=800&amp;q=80" data-title="Inter-ministerial Collaboration Session" data-location="New Delhi" data-date="7th April, 2026">
-                                &nbsp;
-                            </div>
-                            <!-- Day 8: 8th April -->
-                            <div data-day="8" data-img="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&amp;fit=crop&amp;w=800&amp;q=80" data-title="SĀDHANA Saptah Closing Ceremony" data-location="New Delhi" data-date="8th April, 2026">
-                                &nbsp;
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /cbc-custom-landing -->
-  </section>
+            <div style="display:none;" id="cbc-events-data">
+                <!-- Day 2: 2nd April -->
+                <div data-day="2"
+                    data-img="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+                    data-title="SĀDHANA Saptah Launch Event" data-location="New Delhi" data-date="2nd April, 2026">
+                    &nbsp;
+                </div>
+                <!-- Day 3: 3rd April -->
+                <div data-day="3"
+                    data-img="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+                    data-title="Technology Sutra: AI in Governance" data-location="Bengaluru"
+                    data-date="3rd April, 2026">
+                    &nbsp;
+                </div>
+                <!-- Day 4: 4th April -->
+                <div data-day="4"
+                    data-img="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+                    data-title="Tradition Sutra: Indian Knowledge Systems" data-location="Varanasi"
+                    data-date="4th April, 2026">
+                    &nbsp;
+                </div>
+                <!-- Day 5: 5th April -->
+                <div data-day="5"
+                    data-img="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+                    data-title="Outcome Sutra: Citizen Centricity Workshop" data-location="Hyderabad"
+                    data-date="5th April, 2026">
+                    &nbsp;
+                </div>
+                <!-- Day 6: 6th April -->
+                <div data-day="6"
+                    data-img="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+                    data-title="Mid-week Review and Samuhik Charcha" data-location="Online" data-date="6th April, 2026">
+                    &nbsp;
+                </div>
+                <!-- Day 7: 7th April -->
+                <div data-day="7"
+                    data-img="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+                    data-title="Inter-ministerial Collaboration Session" data-location="New Delhi"
+                    data-date="7th April, 2026">
+                    &nbsp;
+                </div>
+                <!-- Day 8: 8th April -->
+                <div data-day="8"
+                    data-img="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+                    data-title="SĀDHANA Saptah Closing Ceremony" data-location="New Delhi" data-date="8th April, 2026">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+        <!-- /cbc-custom-landing -->
+    </section>
 </main>
 
 {% include 'themes/cbc/templates/layout/footer.html.twig' %}
