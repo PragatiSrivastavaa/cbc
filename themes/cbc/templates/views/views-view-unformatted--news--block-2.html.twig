@@ -6,7 +6,7 @@
       <h2 class="wave-text">
         <!-- <span class="header-new-badge">
           <i class="fas fa-star"></i> NEW
-        </span>-->  What's New 
+        </span>-->  {% if language == 'hi' %}नया क्या है{% else %}What's New{% endif %}
       </h2>
       <div class="title-underline"></div>
     </div>
@@ -69,7 +69,7 @@
   <!-- Footer -->
   <div class="news-footer">
     <a href="/whats-new" class="view-all" aria-label="View all what's new">
-      View All <i class="fas fa-arrow-right"></i>
+      {% if language == 'hi' %}सभी देखें{% else %}View All{% endif %} <i class="fas fa-arrow-right"></i>
     </a>
   </div>
 

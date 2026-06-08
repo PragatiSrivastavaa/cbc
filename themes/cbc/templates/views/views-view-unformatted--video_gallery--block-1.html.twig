@@ -3,7 +3,7 @@
             <div class="youtube-section glimpses-card p-3 rounded-4 socil-bg position-relative h-100">
               <div class="d-flex justify-content-between align-items-center mb-3">
                 <h4 class="social-heading d-flex align-items-center gap-2 mb-0">
-                  <i class="fa-regular fa-circle-play text-info"></i> Video Gallery
+                  <i class="fa-regular fa-circle-play text-info"></i> {% if language == 'hi' %}वीडियो गैलरी{% else %}Video Gallery{% endif %}
                 </h4>
                 <div class="d-flex align-items-center gap-3">
                   <div class="carousel-controls d-flex gap-2">
@@ -57,7 +57,7 @@
 
     <div class="video-gallery-footer text-end">
       <a href="/video-gallery" class="view-all-videos-btn" aria-label="View all videos">
-        View All Videos <i class="fas fa-arrow-right"></i>
+        {% if language == 'hi' %}सभी वीडियो देखें{% else %}View All Videos{% endif %} <i class="fas fa-arrow-right"></i>
       </a>
     </div>
 

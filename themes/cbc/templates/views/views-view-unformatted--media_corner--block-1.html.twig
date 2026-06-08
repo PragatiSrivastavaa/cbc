@@ -1,7 +1,7 @@
 
 
               <div class="section-header media-header-bg">
-                <h3 class="section-header-title">MEDIA CORNER</h3>
+                <h3 class="section-header-title">{% if language == 'hi' %}मीडिया कॉर्नर{% else %}MEDIA CORNER{% endif %}</h3>
                 <div class="section-header-controls">
                   <button class="toggle-slide" id="toggleMediaSlideBtn" title="Pause/Play">
                     <i class="fas fa-pause"></i>
@@ -37,6 +37,6 @@
                 </div>
 
                 <div class="media-footer text-end">
-                  <a href="/media-corner" class="view-all" aria-label="View all media corner">View All <i class="fas fa-arrow-right"></i></a>
+                  <a href="/media-corner" class="view-all" aria-label="View all media corner">{% if language == 'hi' %}सभी देखें{% else %}View All{% endif %} <i class="fas fa-arrow-right"></i></a>
                 </div>
               </div>

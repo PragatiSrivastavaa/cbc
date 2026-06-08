@@ -23,7 +23,7 @@
     <div class="circle-glow"></div>
     <div class="inner-white-circle"></div>
     <h2 class="infocus-title">
-      <span class="blink-dot"></span>In Focus
+      <span class="blink-dot"></span>{% if language == 'hi' %}प्रमुख कार्यकलाप{% else %}In Focus{% endif %}
     </h2>
   </div>
 </div>
@@ -53,4 +53,4 @@
 </div>
 
 <!-- Footer: Always Visible -->
-<a href="/states-and-union-territories-uts" class="infocus-btn">Learn More</a>
+<a href="/states-and-union-territories-uts" class="infocus-btn">{% if language == 'hi' %}और जानें{% else %}Learn More{% endif %}</a>

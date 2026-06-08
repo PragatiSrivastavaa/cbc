@@ -8,7 +8,7 @@
           <h3>{{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}'] }}</h3>
           {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ field_event_description }}'] }}
         </div>
-        <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}" class="home-opinion-card-link" aria-label="Read more about {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}']|striptags|trim }}">Read More →</a>
+        <a href="{{ path('entity.node.canonical', {'node': entity.id()}) }}" class="home-opinion-card-link" aria-label="Read more about {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}']|striptags|trim }}">{% if language == 'hi' %}और पढ़ें{% else %}Read More{% endif %} →</a>
       </li>
     {% endfor %}
   </ul>

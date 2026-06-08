@@ -104,8 +104,7 @@
           <div class="nav-item nav-item-infocus">
             <a class="nav-link d-flex align-items-center" href="{{ path('<front>') }}#in-focus-section">
               <span
-                style="font-size: 16px; color: #ffffff; font-weight: 400; font-family: Georgia, 'Times New Roman', serif; font-style: italic; line-height: 0.6;">In
-                Focus</span>
+                style="font-size: 16px; color: #ffffff; font-weight: 400; font-family: Georgia, 'Times New Roman', serif; font-style: italic; line-height: 0.6;">{% if language == 'hi' %}प्रमुख कार्यकलाप{% else %}In Focus{% endif %}</span>
             </a>
           </div>
         </div>
@@ -115,8 +114,13 @@
 
     <div class="d-flex align-items-center">
       <a class="navbar-brand d-flex align-items-center" href="{{ path('<front>') }}">
+        {% if language == 'hi' %}
+        <img src="https://cbc.gov.in/sites/default/files/2026-06/cbchindi-logo.png"
+          alt="भारत सरकार प्रतीक और क्षमता विकास आयोग लोगो" />
+        {% else %}
         <img src="{{ base_path ~ directory }}/img/logo.png"
           alt="Government of India emblem and Capacity Building Commission logo" />
+        {% endif %}
       </a>
       {% if is_front %}
       <!-- <div class="d-lg-none ms-2">
@@ -135,8 +139,7 @@
           <a class="nav-link d-flex align-items-center" href="{{ path('<front>') }}#in-focus-section"
             style="padding-top: 5px !important; padding-bottom: 5px !important;">
             <span
-              style="font-size: 15px; color: #ffffff; font-weight: 400; font-family: Georgia, 'Times New Roman', serif; font-style: italic; line-height: 0.3;">In
-              Focus</span>
+              style="font-size: 15px; color: #ffffff; font-weight: 400; font-family: Georgia, 'Times New Roman', serif; font-style: italic; line-height: 0.3;">{% if language == 'hi' %}फोकस में{% else %}In Focus{% endif %}</span>
           </a>
         </div>
       </div>

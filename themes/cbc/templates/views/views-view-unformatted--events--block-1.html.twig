@@ -40,7 +40,7 @@
                   {% set truncated_description = description|length > 100 ? description|slice(0, 100) ~ '...' : description %}
                   <p class="home-event-card-description">{{ truncated_description }}</p>
                   <a class="home-event-card-read-more" href="{{ path('entity.node.canonical', {'node': node.id}) }}" aria-label="Read more about {{ row.content['#view'].style_plugin.render_tokens[loop.index0]['{{ title }}']|striptags|trim }}">
-                    Read More <i class="fas fa-arrow-right"></i>
+                    {% if language == 'hi' %}और पढ़ें{% else %}Read More{% endif %} <i class="fas fa-arrow-right"></i>
                   </a>
                 </div>
               </li>

@@ -1,6 +1,6 @@
 
               <div class="section-header newsletters-header-bg">
-                <h3 class="section-header-title">Resources</h3>
+                <h3 class="section-header-title">{% if language == 'hi' %}संसाधन{% else %}Resources{% endif %}</h3>
                 <div class="section-header-controls">
                   <button class="toggle-slide" id="toggleNewslettersSlideBtn" title="Pause/Play">
                     <i class="fas fa-pause"></i>
@@ -36,7 +36,7 @@
                   </div>
                 </div>
                 <div class="newsletters-footer text-end">
-                  <a href="/newsletters" class="view-all" aria-label="View all resources">View All <i class="fas fa-arrow-right"></i></a>
+                  <a href="/newsletters" class="view-all" aria-label="View all resources">{% if language == 'hi' %}सभी देखें{% else %}View All{% endif %} <i class="fas fa-arrow-right"></i></a>
                 </div>
               </div>
 
