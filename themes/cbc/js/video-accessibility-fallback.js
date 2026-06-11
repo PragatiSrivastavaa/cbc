@@ -26,7 +26,7 @@
         // 1. Add Caption Track
         if (!video.querySelector('track[kind="captions"]')) {
             const vttContent = `WEBVTT\n\n1\n00:00:00.000 --> 00:00:05.000\n[Video: ${videoName}]\n\n2\n00:00:05.000 --> 00:00:10.000\nCaptions for "${videoName}" are currently unavailable.`;
-            appendTrack(video, vttContent, 'captions', 'Captions Unavailable', true);
+            appendTrack(video, vttContent, 'captions', 'Captions Unavailable', false);
         }
 
         // 2. Add Description Track
