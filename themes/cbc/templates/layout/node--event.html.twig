@@ -9,11 +9,16 @@
             {% for image_item in node.field_event_images %}
               {% if image_item.entity %}
                 <div class="event-image-item">
-                  <img
-                    src="{{ file_url(image_item.entity.fileuri) }}"
-                    alt="{{ node.title.value }} - Image {{ loop.index }}"
-                    loading="lazy"
-                  >
+                  <a href="{{ file_url(image_item.entity.fileuri) }}" class="event-image-zoom colorbox" title="{{ node.title.value }}" data-colorbox-gallery="gallery-event">
+                    <img
+                      src="{{ file_url(image_item.entity.fileuri) }}"
+                      alt="{{ node.title.value }} - Image {{ loop.index }}"
+                      loading="lazy"
+                      style="cursor:zoom-in; transition:transform 0.2s;"
+                      onmouseover="this.style.transform='scale(1.02)'"
+                      onmouseout="this.style.transform='scale(1)'"
+                    >
+                  </a>
                 </div>
               {% endif %}
             {% endfor %}

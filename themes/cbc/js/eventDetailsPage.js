@@ -80,7 +80,10 @@ function displayEventData(event) {
   
   // Display image in article style
   if (imageContainer && event.image) {
-    imageContainer.innerHTML = `<img src="${event.image}" alt="${event.title || 'Event'}" onerror="this.style.display='none'">`;
+    imageContainer.innerHTML = `
+      <a href="${event.image}" class="event-image-zoom" title="${event.title || 'Event'}" style="display:block; position:relative; overflow:hidden; border-radius:12px;">
+        <img src="${event.image}" alt="${event.title || 'Event'}" onerror="this.style.display='none'" style="width:100%; transition:transform 0.2s; cursor:zoom-in;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+      </a>`;
   }
   
   // Display date
@@ -135,4 +138,26 @@ function displayEventData(event) {
   }
 }
 
-
+// Simple generic fallback modal for zooming images without needing new files
+document.addEventListener('click', function(e) {
+  const zoomLink = e.target.closest('.event-image-zoom');
+  if (zoomLink) {
+    e.preventDefault();
+    const src = zoomLink.getAttribute('href');
+    const title = zoomLink.getAttribute('title') || '';
+    
+    const html = `
+      <div id="simpleImgModal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:999999; display:flex; justify-content:center; align-items:center;" onclick="this.remove()">
+        <div style="position:relative; background:#fff; padding:15px; border-radius:5px; max-width:95%; max-height:95%; box-shadow:0 0 15px rgba(0,0,0,0.5);" onclick="event.stopPropagation()">
+          <div style="position:absolute; top:-15px; right:-15px; background:#000; color:#fff; border:2px solid #fff; border-radius:50%; width:36px; height:36px; font-size:22px; line-height:32px; text-align:center; cursor:pointer; box-shadow:0 0 5px rgba(0,0,0,0.5);" onclick="this.parentElement.parentElement.remove()">&times;</div>
+          <img src="${src}" style="max-width:90vw; max-height:80vh; display:block; margin:0 auto;">
+          ${title ? '<div style="margin-top:10px; color:#333; font-weight:bold; font-size:14px; text-align:center;">'+title+'</div>' : ''}
+        </div>
+      </div>
+    `;
+    
+    if (!document.getElementById('simpleImgModal')) {
+      document.body.insertAdjacentHTML('beforeend', html);
+    }
+  }
+});
