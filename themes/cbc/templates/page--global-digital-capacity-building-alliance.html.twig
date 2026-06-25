@@ -1,0 +1,406 @@
+{% include 'themes/cbc/templates/layout/header.html.twig' %}
+
+<style>
+  /* Custom Colors & Borders (Layout is now entirely handled by Bootstrap) */
+  .gdcba-hero {
+    background: linear-gradient(135deg, #12213d 0%, #1a2b4c 100%);
+    box-shadow: 0 10px 30px rgba(26, 43, 76, 0.2);
+  }
+  .gdcba-hero h1 { color: #f3c300; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+  
+  .gdcba-quote {
+    background: linear-gradient(to right, #fdf8e4, #fffdf5);
+    border-left: 6px solid #f3c300;
+  }
+  
+  .gdcba-section-title {
+    color: #1a2b4c;
+    border-bottom: 3px solid #f3c300;
+    display: inline-block;
+  }
+  
+  .gdcba-stat-box {
+    background: linear-gradient(180deg, #f8fafd 0%, #eef2f7 100%);
+    border-top: 5px solid #1a2b4c;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+  }
+  .gdcba-stat-box:hover { transform: translateY(-5px); }
+  .gdcba-stat-box h3 { color: #1a2b4c; font-size: 3.5rem; }
+  
+  .gdcba-list {
+    background: #fcfcfc;
+    border-left: 5px solid #1a2b4c;
+  }
+  
+  .gdcba-grid-item {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+  }
+  .gdcba-grid-item:hover { border-color: #cbd5e1; box-shadow: 0 6px 12px rgba(0,0,0,0.05); }
+  .gdcba-grid-item::before { content: '•'; color: #f3c300; font-size: 2em; margin-right: 15px; vertical-align: middle; }
+  
+  .gdcba-framework-card {
+    border-top: 5px solid #d35400;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transition: transform 0.3s ease;
+  }
+  .gdcba-framework-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+  .gdcba-framework-card h4 { color: #d35400; border-bottom: 2px solid #f0f0f0; }
+  
+  .gdcba-footer {
+    background: linear-gradient(135deg, #1a2b4c 0%, #0d1b33 100%);
+  }
+  .gdcba-footer h2 { color: #f3c300; }
+  
+  .gdcba-img-shadow { box-shadow: 0 12px 30px rgba(0,0,0,0.12); border: 1px solid #eaeaea; }
+</style>
+
+<main id="app-content">
+  <!-- Hero Section -->
+  {% if content.field_hero_section %}
+    {{ content.field_hero_section }}
+  {% else %}
+    <div class="page-hero-section">
+      <div class="page-hero-overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h1 class="page-hero-title">{{ page.page_title|default('Global Digital Capacity Building Alliance') }}</h1>
+            <p class="page-hero-subtitle">{{ page.view_header }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Breadcrumb Section -->
+  {{ page.breadcrumb }}
+
+  <!-- Main Content Section -->
+  <!-- Using Bootstrap's Container exactly like your "About Us" page -->
+<section class="gdcba-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Hero Section -->
+                <div class="gdcba-quote p-4 mt-5 mb-5 rounded-end shadow-sm">
+                    <p class="fs-4 fst-italic fw-bold text-dark mb-2">
+                        “Together, we will shape solutions not just for India but for the world.”
+                    </p>
+                    <p>
+                        <span class="fw-bold">Hon’ble Prime Minister Shri Narendra Modi</span>
+                    </p>
+                </div>
+                <!-- About Section -->
+                <h2 class="gdcba-section-title pb-2 mb-4 fw-bold">
+                    About the Alliance
+                </h2>
+                <p class="mb-3">
+                    The Capacity Building Commission (CBC) launched the blueprint for the Global Digital Capacity Building Alliance (GDCBA) on 20 February 2026, during the India AI Impact Summit, in the presence of the Hon’ble Minister of State for Personnel, Public Grievances and Pensions, Dr. Jitendra Singh.
+                </p>
+                <p class="mb-5">
+                    The Alliance advances a fundamental shift in how institutional capacity is understood: no longer viewed solely as a national asset, but as a Global Public Good—to be collaboratively built, continuously improved, and equitably shared to strengthen governance systems worldwide.
+                </p>
+                <!-- Image 1 -->
+                <div class="text-center mb-5">
+                    <img class="img-fluid rounded-4 gdcba-img-shadow" style="max-height:500px;" src="/sites/default/files/inline-images/image5.jpg" data-entity-uuid="9b034482-ef65-406c-8070-d6e7ef041643" data-entity-type="file" alt="About the Alliance" width="NaN" height="NaN">
+                </div>
+                <!-- Stats Section -->
+                <div class="row g-4 mb-5 text-center">
+                    <div class="col-md-6">
+                        <div class="gdcba-stat-box p-4 h-100">
+                            <h3 class="fw-bold mb-2">
+                                25+
+                            </h3>
+                            <p class="text-uppercase fw-bold text-secondary mb-0 tracking-wider">
+                                Partner Organisations
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="gdcba-stat-box p-4 h-100">
+                            <h3 class="fw-bold mb-2">
+                                10+
+                            </h3>
+                            <p class="text-uppercase fw-bold text-secondary mb-0 tracking-wider">
+                                Countries Engaged
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Platform Section -->
+                <h2 class="gdcba-section-title pb-2 mb-4 fw-bold">
+                    From Blueprint to Platform
+                </h2>
+                <p class="mb-5">
+                    Since its launch, the Alliance has rapidly evolved from a conceptual framework into a growing international platform for cooperation on public sector capacity building. Through a series of bilateral consultations and knowledge-exchange engagements, the GDCBA has engaged government delegations from countries including Sri Lanka, Seychelles, Bhutan, Brazil, Maldives, Niger, Nigeria, Tajikistan, and several other partner nations.
+                </p>
+                <!-- ROW OF 2 IMAGES (THE 100% FIXED VERSION) --><!-- Using Bootstrap row and col-md-6 guarantees it won't break the container -->
+                <div class="row g-4 mb-5 align-items-stretch">
+                    <div class="col-md-6 text-center">
+                        <img class="img-fluid rounded-4 w-100 gdcba-img-shadow" style="height: 100%; object-fit: cover; aspect-ratio: 16/9;" src="/sites/default/files/inline-images/image1.jpg" data-entity-uuid="216635c9-a158-42e6-8f55-a268b2ae7be3" data-entity-type="file" alt="Engagement 1" width="800" height="399">
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img class="img-fluid rounded-4 w-100 gdcba-img-shadow" style="height: 100%; object-fit: cover; aspect-ratio: 16/9;" src="/sites/default/files/inline-images/image2.jpg" data-entity-uuid="7684ba5b-1622-4c02-89db-0e49a9d8fa66" data-entity-type="file" alt="Engagement 2" width="780" height="344">
+                    </div>
+                </div>
+                <p class="mb-5">
+                    These engagements have facilitated dialogue on common governance challenges in the digital age—from workforce transformation and AI readiness to public service delivery and Mission Karmayogi as a replicable model for institutional capability development.
+                </p>
+                <!-- Demand Section -->
+                <h2 class="gdcba-section-title pb-2 mb-4 fw-bold">
+                    Responding to a Shared Global Demand
+                </h2>
+                <p class="mb-5">
+                    These engagements have revealed a shared global demand for scalable, technology-enabled approaches to strengthening state capacity. Central to the Alliance are four goals:
+                </p>
+                <!-- Image 2 -->
+                <div class="text-center mb-5">
+                    <img class="img-fluid rounded-4 gdcba-img-shadow" style="max-height:500px;" src="/sites/default/files/inline-images/image6_0.png" data-entity-uuid="99719318-2f60-4279-bda3-35e8c8a957ed" data-entity-type="file" alt="Shared Global Demand Goals" width="NaN" height="NaN">
+                </div>
+                <p class="mb-3">
+                    In response, the Alliance is developing collaborative pathways across four dimensions:
+                </p>
+                <ul class="gdcba-list p-4 mb-5 rounded shadow-sm list-unstyled">
+                    <li class="mb-2 text-dark fw-semibold">
+                        • Knowledge sharing and peer learning across governance systems
+                    </li>
+                    <li class="mb-2 text-dark fw-semibold">
+                        • Technical assistance tailored to national governance contexts
+                    </li>
+                    <li class="mb-2 text-dark fw-semibold">
+                        • Adaptation of proven digital capacity-building models
+                    </li>
+                    <li class="mb-0 text-dark fw-semibold">
+                        • Joint development of frameworks for AI readiness and digital public infrastructure
+                    </li>
+                </ul>
+                <!-- Partners Section -->
+                <h2 class="gdcba-section-title pb-2 mb-4 fw-bold">
+                    A Multidisciplinary Ecosystem of Partners
+                </h2>
+                <p class="mb-4">
+                    The GDCBA has convened a robust and multidisciplinary ecosystem of more than 25 partners spanning governments, multilateral institutions, academia, industry leaders, technology innovators, startups, and civil society organisations. This growing coalition is contributing expertise across domains such as:
+                </p>
+                <div class="row g-3 mb-5">
+                    <div class="col-md-6">
+                        <div class="gdcba-grid-item p-3 d-flex align-items-center fw-bold text-dark h-100">
+                            Artificial Intelligence &amp; Emerging Tech
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="gdcba-grid-item p-3 d-flex align-items-center fw-bold text-dark h-100">
+                            Digital Public Infrastructure (DPI/DPG)
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="gdcba-grid-item p-3 d-flex align-items-center fw-bold text-dark h-100">
+                            Learning Technologies &amp; EdTech
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="gdcba-grid-item p-3 d-flex align-items-center fw-bold text-dark h-100">
+                            Public Administration &amp; Civil Service Reform
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="gdcba-grid-item p-3 d-flex align-items-center fw-bold text-dark h-100">
+                            Behavioural Insights
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="gdcba-grid-item p-3 d-flex align-items-center fw-bold text-dark h-100">
+                            Organisational Transformation
+                        </div>
+                    </div>
+                </div>
+                <!-- Image 3 -->
+                <div class="text-center mb-5">
+                    <img class="img-fluid rounded-4 gdcba-img-shadow" style="max-height:500px;" src="/sites/default/files/inline-images/image4.png" data-entity-uuid="6a8818a2-4fec-419f-bc28-7718de05744c" data-entity-type="file" alt="Ecosystem Diagram" width="NaN" height="NaN">
+                </div>
+                <!-- Mission Section -->
+                <h2 class="gdcba-section-title pb-2 mb-4 fw-bold">
+                    Mission Karmayogi: A Model for the World
+                </h2>
+                <p class="mb-3">
+                    At the heart of the GDCBA’s model is Mission Karmayogi—India’s national programme for civil service capacity building. Through the iGOT (Integrated Government Online Training) platform, Mission Karmayogi offers a scalable, competency-driven approach to building a future-ready civil service.
+                </p>
+                <p class="mb-5">
+                    The Alliance positions this model not as a prescriptive template, but as a living example of institutional innovation that can be adapted by partner countries according to their own governance needs and digital maturity.
+                </p>
+                <!-- 3 Column Cards -->
+                <div class="row g-4 mb-5">
+                    <div class="col-lg-4">
+                        <div class="gdcba-framework-card p-4 bg-white h-100">
+                            <h4 class="pb-3 mb-3 fw-bold">
+                                Policy &amp; Governance
+                            </h4>
+                            <ul class="text-secondary ps-3 mb-0">
+                                <li class="mb-2">
+                                    Competency Framework &amp; Role-Based Mapping (FRACing)
+                                </li>
+                                <li class="mb-2">
+                                    Training Institution Accreditation Standards
+                                </li>
+                                <li class="mb-2">
+                                    Behavioral Enablement for Citizen-Centric Governance
+                                </li>
+                                <li class="mb-0">
+                                    Content: Quality Assurance &amp; Governance Framework
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="gdcba-framework-card p-4 bg-white h-100">
+                            <h4 class="pb-3 mb-3 fw-bold">
+                                Platform &amp; Technology
+                            </h4>
+                            <ul class="text-secondary ps-3 mb-0">
+                                <li class="mb-2">
+                                    Modular, Digital-First Learning Infrastructure
+                                </li>
+                                <li class="mb-2">
+                                    AI-Personalised Learning Paths per Role
+                                </li>
+                                <li class="mb-2">
+                                    API-First, Cloud-Agnostic Open Architecture
+                                </li>
+                                <li class="mb-0">
+                                    Real-Time Analytics Dashboard and Content Quality Framework
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="gdcba-framework-card p-4 bg-white h-100">
+                            <h4 class="pb-3 mb-3 fw-bold">
+                                Programs &amp; Performance
+                            </h4>
+                            <ul class="text-secondary ps-3 mb-0">
+                                <li class="mb-2">
+                                    Faculty &amp; Training Institution Development
+                                </li>
+                                <li class="mb-2">
+                                    Large-Scale Behavioural Interventions
+                                </li>
+                                <li class="mb-2">
+                                    Performance Measurement &amp; M&amp;E Framework
+                                </li>
+                                <li class="mb-0">
+                                    Global Digital Capacity Building Alliance (GDCBA)
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- ==================================================================
+                     STATIC EVENT GALLERY (From Sadhana Saptah)
+                     ================================================================== -->
+                <script>
+                    (function () {
+                        function getThemeBase() {
+                            var links = document.querySelectorAll('link[rel="stylesheet"]');
+                            for (var i = 0; i < links.length; i++) {
+                                var href = links[i].href || '';
+                                if (href.indexOf('/themes/cbc/') !== -1) { return href.substring(0, href.indexOf('/themes/cbc/')); }
+                            }
+                            var base = window.location.origin;
+                            var path = window.location.pathname;
+                            var drupalRoot = path.split('/themes/')[0];
+                            return base + (drupalRoot || '');
+                        }
+                        var base = getThemeBase();
+                        var theme = base + '/themes/cbc';
+                        if (!document.querySelector('link[href*="sadhana-saptah.css"]')) {
+                            var css = document.createElement('link');
+                            css.rel = 'stylesheet';
+                            css.type = 'text/css';
+                            css.href = theme + '/css/sadhana-saptah.css';
+                            document.head.appendChild(css);
+                        }
+                        function loadJS() {
+                            if (document.querySelector('script[src*="sadhana-saptah.js"]')) return;
+                            var scr = document.createElement('script');
+                            scr.src = theme + '/js/sadhana-saptah.js';
+                            document.body.appendChild(scr);
+                        }
+                        if (document.readyState === 'loading') {
+                            document.addEventListener('DOMContentLoaded', loadJS);
+                        } else {
+                            loadJS();
+                        }
+                    })();
+                </script>
+                <div style="background-color: transparent !important; padding: 0 !important;">
+                    <div class="cbc-gallery-section" style="background-color: transparent !important; padding: 0;">
+                        <div class="cbc-glimpses-header" style="text-align: center;">
+                            <h2 class="gdcba-section-title pb-2 mb-4 fw-bold">
+                                Photo Gallery
+                            </h2>
+                        </div>
+                        <div class="gallery-grid" style="display: block !important;">
+                            <!-- Photo Gallery -->
+                            <div class="gallery-card" style="margin: 0 auto; max-width: 800px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border-radius: 1rem; padding: 1.5rem; background: #fff;">
+                                <h3 style="color: #1a2b4c; border-bottom: 2px solid #f0f0f0; padding-bottom: 1rem; margin-bottom: 1rem; font-weight: bold; text-align: center;">
+                                    📸 Glimpses
+                                </h3>
+                                <div class="swiper photoSwiper" style="border-radius: 0.5rem; overflow: hidden; position: relative;">
+                                    <div class="swiper-wrapper">
+                                        <!-- DYNAMIC PHOTO CAROUSEL VIA TWIG TWEAK ('photo_gallery', 'page_3') -->
+                                        {% set photo_view_results = drupal_view_result('photo_gallery', 'page_3') %}
+                                        {% if photo_view_results is not empty %}
+                                            {% for row in photo_view_results %}
+                                                {% set entity = row._entity %}
+                                                {% if entity.field_images is not empty %}
+                                                    {% for image_item in entity.field_images %}
+                                                        {% if image_item.entity %}
+                                                            <div class="swiper-slide" data-gallery-title="{{ entity.label() }}">
+                                                                <img src="{{ file_url(image_item.entity.fileuri) }}" alt="{{ entity.label() }}" style="width: 100%; height: 100%; object-fit: contain; aspect-ratio: 16/9; background-color: #f1f5f9; border-radius: 0.5rem;">
+                                                            </div>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% else %}
+                                            <div class="swiper-slide">
+                                                <img src="/sites/default/files/inline-images/image1.jpg" alt="Gallery Image 1" style="width: 100%; height: 100%; object-fit: contain; aspect-ratio: 16/9; background-color: #f1f5f9; border-radius: 0.5rem;">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/sites/default/files/inline-images/image2.jpg" alt="Gallery Image 2" style="width: 100%; height: 100%; object-fit: contain; aspect-ratio: 16/9; background-color: #f1f5f9; border-radius: 0.5rem;">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/sites/default/files/inline-images/image5.jpg" alt="Gallery Image 3" style="width: 100%; height: 100%; object-fit: contain; aspect-ratio: 16/9; background-color: #f1f5f9; border-radius: 0.5rem;">
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="swiper-pagination">&nbsp;</div>
+                                    <div class="cbc-swiper-btn cbc-next-btn">&nbsp;</div>
+                                    <div class="cbc-swiper-btn cbc-prev-btn">&nbsp;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Section -->
+                <div class="gdcba-footer text-center p-5 mt-5 mb-5 rounded-4 shadow-sm">
+                    <h2 class="display-6 fw-bold mb-3">
+                        Join the Alliance
+                    </h2>
+                    <p class="text-light mb-4">
+                        Governments, multilateral institutions, academia, and industry are invited to partner with the GDCBA to co-build the future of public sector capacity.
+                    </p>
+                    <div class="d-inline-block px-4 py-3 border border-secondary rounded bg-dark bg-opacity-25">
+                        <span class="text-warning fw-bold">Contact: [Email] | Access the GDCBA Blueprint: [URL Placeholder]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+
+{% include 'themes/cbc/templates/layout/footer.html.twig' %}
