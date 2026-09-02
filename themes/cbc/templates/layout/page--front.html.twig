@@ -109,7 +109,7 @@
       </div>
     </section>
 
-    <!-- Section 2: Social Media, Media Corner, and Newsletters - Side by Side -->
+    <!-- Section 2: Social Media, Media Corner, Resources, and Block Section - Side by Side -->
     <div class="information-corner-header">
       <div class="information-corner-title">
         <h3>{% if language == 'hi' %}सूचना कोना{% else %}Information Corner{% endif %}</h3>
@@ -117,8 +117,8 @@
     </div>
     <div class="whts-sec">
       <div class="row">
-        <!-- Social Media Card - 4 columns -->
-        <div class="col-lg-4">
+        <!-- Social Media Card - 3 columns -->
+        <div class="col-lg-3 col-md-6">
           <div class="social-section-right socil-bg">
             <div class="section-header social-header">
               <h3 class="section-header-title">{% if language == 'hi' %}सोशल मीडिया{% else %}SOCIAL MEDIA{% endif %}</h3>
@@ -136,8 +136,8 @@
           </div>
         </div>
 
-        <!-- Media Corner Card - 4 columns -->
-        <div class="col-lg-4">
+        <!-- Media Corner Card - 3 columns -->
+        <div class="col-lg-3 col-md-6">
           <section class="media-corner-section">
 
 
@@ -147,12 +147,19 @@
           </section>
         </div>
 
-        <!-- Newsletters Card - 4 columns -->
-        <div class="col-lg-4">
+        <!-- Newsletters Card - 3 columns -->
+        <div class="col-lg-3 col-md-6">
           <section class="newsletters-section">
 
             {{ page.newsletters }}
 
+          </section>
+        </div>
+
+        <!-- Block Section Card - 3 columns -->
+        <div class="col-lg-3 col-md-6">
+          <section class="block-corner-section media-corner-section">
+            {{ page.block_section }}
           </section>
         </div>
       </div>

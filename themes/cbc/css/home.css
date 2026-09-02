@@ -3823,7 +3823,8 @@
     margin-top: 15px;
   }
 
-  .whts-sec .col-lg-4 {
+  .whts-sec .col-lg-4,
+  .whts-sec .col-lg-3 {
     flex: 0 0 100%;
     max-width: 100%;
   }
@@ -11416,7 +11417,8 @@ h2.infocus-heading {
     margin-top: 15px;
   }
 
-  .whts-sec .col-lg-4 {
+  .whts-sec .col-lg-4,
+  .whts-sec .col-lg-3 {
     flex: 0 0 100%;
     max-width: 100%;
   }

@@ -1,0 +1,108 @@
+{#
+/**
+ * Template for Blogs View Page (/blogs)
+ */
+#}
+<section class="blogs-page-section py-5 bg-light">
+  <div class="container">
+
+
+    <div class="row g-4">
+      {% for row in rows %}
+        {% set entity = row.content['#row']._entity %}
+        {% set tokens = row.content['#view'].style_plugin.render_tokens[loop.index0] %}
+
+        {# Determine Image URL #}
+        {% set img_url = '' %}
+        {% if entity.field_content_upload_image.0.entity is not empty %}
+          {% set img_url = file_url(entity.field_content_upload_image.0.entity.fileuri) %}
+        {% elseif entity.field_upload_image.0.entity is not empty %}
+          {% set img_url = file_url(entity.field_upload_image.0.entity.fileuri) %}
+        {% elseif entity.field_image.0.entity is not empty %}
+          {% set img_url = file_url(entity.field_image.0.entity.fileuri) %}
+        {% endif %}
+
+        {# Determine Document URL #}
+        {% set doc_url = '' %}
+        {% if entity.field_content_upload_file.0.entity is not empty %}
+          {% set doc_url = file_url(entity.field_content_upload_file.0.entity.fileuri) %}
+        {% elseif entity.field_upload_file.0.entity is not empty %}
+          {% set doc_url = file_url(entity.field_upload_file.0.entity.fileuri) %}
+        {% elseif entity.field_file.0.entity is not empty %}
+          {% set doc_url = file_url(entity.field_file.0.entity.fileuri) %}
+        {% endif %}
+
+        {# Determine External URL #}
+        {% set ext_url = '' %}
+        {% if entity.field_content_url.0.url is not empty %}
+          {% set ext_url = entity.field_content_url.0.url %}
+        {% elseif entity.field_content_url.0.uri is not empty %}
+          {% set ext_url = entity.field_content_url.0.uri %}
+        {% elseif entity.field_url.0.url is not empty %}
+          {% set ext_url = entity.field_url.0.url %}
+        {% elseif entity.field_url.0.uri is not empty %}
+          {% set ext_url = entity.field_url.0.uri %}
+        {% endif %}
+
+        {% set detail_url = path('entity.node.canonical', {'node': entity.id()}) %}
+
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+          <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden w-100 bg-white hover-shadow transition">
+            {% if img_url is not empty %}
+              <div class="blog-card-img-wrapper overflow-hidden" style="height: 210px;">
+                <a href="{{ detail_url }}">
+                  <img
+                    src="{{ img_url }}"
+                    alt="{{ entity.label() }}"
+                    class="card-img-top w-100 h-100"
+                    style="object-fit: cover; transition: transform 0.3s ease;"
+                  >
+                </a>
+              </div>
+            {% endif %}
+
+            <div class="card-body d-flex flex-column p-4">
+              <h4 class="card-title fw-bold text-dark mb-3 fs-5 line-clamp-2">
+                <a href="{{ detail_url }}" class="text-decoration-none text-dark hover-primary">
+                  {{ entity.label() }}
+                </a>
+              </h4>
+
+              {% if entity.field_description.value is not empty %}
+                <p class="card-text text-secondary small mb-4 flex-grow-1">
+                  {{ entity.field_description.value|striptags|slice(0, 140) }}...
+                </p>
+              {% elseif entity.body.value is not empty %}
+                <p class="card-text text-secondary small mb-4 flex-grow-1">
+                  {{ entity.body.value|striptags|slice(0, 140) }}...
+                </p>
+              {% else %}
+                <div class="flex-grow-1"></div>
+              {% endif %}
+
+              <div class="pt-3 border-top d-flex align-items-center justify-content-between">
+                <a href="{{ detail_url }}" class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-bold">
+                  {% if language == 'hi' %}विवरण देखें{% else %}Read Detail{% endif %} <i class="fas fa-arrow-right ms-1"></i>
+                </a>
+
+                <div class="action-icons d-flex gap-2">
+                  {% if doc_url is not empty %}
+                    <a href="{{ doc_url }}" target="_blank" class="btn btn-sm btn-light text-danger rounded-circle" title="Download Document">
+                      <i class="fas fa-file-pdf"></i>
+                    </a>
+                  {% endif %}
+
+                  {% if ext_url is not empty %}
+                    <a href="{{ ext_url }}" target="_blank" class="btn btn-sm btn-light text-primary rounded-circle" title="Visit Link">
+                      <i class="fas fa-external-link-alt"></i>
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

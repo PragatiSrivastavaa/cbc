@@ -12,6 +12,7 @@ function initializeHomePage() {
     initializeCollaborationCarousel();
     initializeNewsBanner();
     initializeMediaCorner();
+    initializeBlockSection();
     initializeNewsletters();
     initializeYouTubeCarousel();
     initializePhotoCarousel();
@@ -1183,6 +1184,92 @@ function initializeMediaCorner() {
       updateIcon();
     });
     mediaWrapper.addEventListener('focusout', () => {
+      isHovered = false;
+      updateIcon();
+    });
+  }
+}
+
+// ============================= Block Section ------------------------------------//
+function initializeBlockSection() {
+  const blockTrack = document.getElementById("blockTrack");
+  const blockBtn = document.getElementById("toggleBlockSlideBtn");
+
+  if (!blockTrack || !blockBtn) return;
+
+  // Prevent double initialization
+  if (blockTrack.hasAttribute('data-initialized')) return;
+  blockTrack.setAttribute('data-initialized', 'true');
+
+  // Duplicate items for seamless scrolling
+  const blockItems = blockTrack.querySelectorAll(".media-item");
+  if (blockItems.length > 0) {
+    blockItems.forEach(item => {
+      const clone = item.cloneNode(true);
+      blockTrack.appendChild(clone);
+    });
+  }
+
+  const blockWrapper = blockTrack.closest('.media-corner-box');
+
+  // --- State ---
+  let isManuallyPaused = false;
+  let isHovered = false;
+  let scrollInterval;
+
+  // --- Icon Helper ---
+  const newBlockBtn = blockBtn.cloneNode(true);
+  blockBtn.parentNode.replaceChild(newBlockBtn, blockBtn);
+  const icon = newBlockBtn.querySelector("i");
+
+  function updateIcon() {
+    const effectivelyPaused = isManuallyPaused || isHovered;
+    if (effectivelyPaused) {
+      icon.classList.remove('fa-pause');
+      icon.classList.add('fa-play');
+      newBlockBtn.setAttribute('aria-label', 'Play Block Section');
+    } else {
+      icon.classList.remove('fa-play');
+      icon.classList.add('fa-pause');
+      newBlockBtn.setAttribute('aria-label', 'Pause Block Section');
+    }
+  }
+
+  // --- Auto-scroll ---
+  function step() {
+    const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
+    if (!isManuallyPaused && !isHovered && !globalPauseActive && blockWrapper) {
+      const halfHeight = blockTrack.scrollHeight / 2;
+      blockWrapper.scrollTop += 0.5;
+      if (blockWrapper.scrollTop >= halfHeight - 1) {
+        blockWrapper.scrollTop = 0;
+      }
+    }
+    scrollInterval = requestAnimationFrame(step);
+  }
+  scrollInterval = requestAnimationFrame(step);
+
+  // --- Manual Pause/Play Button ---
+  newBlockBtn.addEventListener("click", () => {
+    isManuallyPaused = !isManuallyPaused;
+    updateIcon();
+  });
+
+  // --- Hover Pause ---
+  if (blockWrapper) {
+    blockWrapper.addEventListener('mouseenter', () => {
+      isHovered = true;
+      updateIcon();
+    });
+    blockWrapper.addEventListener('mouseleave', () => {
+      isHovered = false;
+      updateIcon();
+    });
+    blockWrapper.addEventListener('focusin', () => {
+      isHovered = true;
+      updateIcon();
+    });
+    blockWrapper.addEventListener('focusout', () => {
       isHovered = false;
       updateIcon();
     });
