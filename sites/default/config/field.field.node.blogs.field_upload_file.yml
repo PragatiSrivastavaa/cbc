@@ -1,0 +1,27 @@
+uuid: 1664ba7c-fe9a-430f-bd71-001ed4909b73
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_upload_file
+    - node.type.blogs
+  module:
+    - file
+id: node.blogs.field_upload_file
+field_name: field_upload_file
+entity_type: node
+bundle: blogs
+label: 'Upload File'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt jpg jpeg png webp pdf'
+  max_filesize: ''
+  description_field: false
+field_type: file

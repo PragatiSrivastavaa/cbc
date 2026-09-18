@@ -1,0 +1,66 @@
+uuid: 899e1b9b-4e30-495b-9b48-3c5550731f20
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.block_section.field_description
+    - field.field.node.block_section.field_upload_file
+    - field.field.node.block_section.field_upload_image
+    - field.field.node.block_section.field_url
+    - node.type.block_section
+  module:
+    - file
+    - image
+    - link
+    - text
+    - user
+id: node.block_section.default
+targetEntityType: node
+bundle: block_section
+mode: default
+content:
+  field_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_upload_file:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_upload_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_url:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

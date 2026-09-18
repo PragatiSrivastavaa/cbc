@@ -1,0 +1,30 @@
+uuid: b54a06ca-8001-4d9f-8626-40ca8349d5b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_description
+    - filter.format.basic_html
+    - filter.format.full_html
+    - filter.format.plain_text
+    - node.type.block_section
+  module:
+    - text
+id: node.block_section.field_description
+field_name: field_description
+entity_type: node
+bundle: block_section
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+  allowed_formats:
+    - basic_html
+    - full_html
+    - plain_text
+field_type: text_with_summary

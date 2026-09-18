@@ -45,23 +45,46 @@ function initializeCarousel() {
   const buttons = document.querySelectorAll('.nav-buttons button');
   const slides = document.querySelectorAll('.slide-content');
   const video = document.getElementById('bg-video');
+  const image = document.getElementById('bg-image');
 
-  // CSP Fix: Read video data from JSON script tag to avoid inline scripts
-  let slideVideos = [];
+  // Read media items data from JSON script tag
+  let slideMedia = [];
+  const mediaDataScript = document.getElementById('carousel-media-data');
   const videoDataScript = document.getElementById('carousel-video-data');
-  if (videoDataScript) {
+
+  if (mediaDataScript) {
     try {
-      slideVideos = JSON.parse(videoDataScript.textContent);
+      slideMedia = JSON.parse(mediaDataScript.textContent);
     } catch (e) {
-      console.error('Error parsing slideVideos:', e);
+      console.error('Error parsing slideMedia:', e);
+    }
+  } else if (videoDataScript) {
+    try {
+      const legacyVideos = JSON.parse(videoDataScript.textContent);
+      slideMedia = legacyVideos.map(url => ({
+        type: url ? 'video' : 'none',
+        url: url,
+        alt: 'CBC Banner'
+      }));
+    } catch (e) {
+      console.error('Error parsing videoDataScript:', e);
     }
   }
 
-  if (!video || !buttons.length || !slides.length) return;
+  if ((!video && !image) || !buttons.length || !slides.length) return;
 
   let currentSlide = 0;
+  let carouselAutoSlide = null;
+  let isCarouselPaused = false;
+  let isVideoMuted = true;
+  const carouselPauseBtn = document.getElementById('carouselPauseBtn');
+  const videoMuteBtn = document.getElementById('videoMuteBtn');
+  const heroPauseContainer = document.querySelector('.hero-pause-container');
 
   function showSlide(index) {
+    if (index < 0 || index >= slides.length) return;
+    currentSlide = index;
+
     slides.forEach((slide, i) => {
       slide.classList.toggle('active', i === index);
       if (i === index) {
@@ -80,87 +103,88 @@ function initializeCarousel() {
       }
     });
 
-    // Change video source for the active slide
-    if (slideVideos[index]) {
-      // Remove existing <source>
-      while (video.firstChild) video.removeChild(video.firstChild);
+    const mediaItem = slideMedia[index];
 
-      // Add new <source>
-      const source = document.createElement('source');
-      source.src = slideVideos[index];
-      source.type = 'video/mp4';
-      video.appendChild(source);
-
-      // Apply filter only to the first video (index 0)
-      if (index === 0) {
-        video.style.filter = 'brightness(115%) saturate(150%)';
-      } else {
-        video.style.filter = 'none';
+    if (mediaItem && mediaItem.type === 'image' && mediaItem.url) {
+      // Show Image slide
+      if (video) {
+        video.pause();
+        video.style.display = 'none';
       }
-
-      video.load();
-      video.muted = isVideoMuted;
-      if (isVideoMuted) {
-        video.setAttribute('muted', 'muted');
-      } else {
-        video.removeAttribute('muted');
+      if (image) {
+        image.src = mediaItem.url;
+        image.alt = mediaItem.alt || mediaItem.title || 'CBC Banner Image';
+        image.style.display = 'block';
       }
-      video.play().catch(err => console.log('Video play failed:', err));
+      if (heroPauseContainer) {
+        heroPauseContainer.style.setProperty('display', 'none', 'important');
+      }
+    } else if (mediaItem && mediaItem.type === 'video' && mediaItem.url) {
+      // Show Video slide
+      if (image) {
+        image.style.display = 'none';
+      }
+      if (video) {
+        video.style.display = 'block';
+
+        // Update video source
+        while (video.firstChild) video.removeChild(video.firstChild);
+        const source = document.createElement('source');
+        source.src = mediaItem.url;
+        source.type = 'video/mp4';
+        video.appendChild(source);
+
+        // Filter for first video if applicable
+        if (index === 0) {
+          video.style.filter = 'brightness(115%) saturate(150%)';
+        } else {
+          video.style.filter = 'none';
+        }
+
+        video.load();
+        video.muted = isVideoMuted;
+        if (isVideoMuted) {
+          video.setAttribute('muted', 'muted');
+        } else {
+          video.removeAttribute('muted');
+        }
+        if (!isCarouselPaused && document.body.getAttribute('data-pause-animations') !== 'true') {
+          video.play().catch(err => console.log('Video play failed:', err));
+        }
+      }
+      if (heroPauseContainer) {
+        heroPauseContainer.style.setProperty('display', 'flex', 'important');
+      }
+      if (videoMuteBtn) {
+        videoMuteBtn.style.setProperty('display', 'flex', 'important');
+      }
     }
 
-    currentSlide = index;
+    restartAutoSlide();
   }
-
-  buttons.forEach((btn, i) => {
-    btn.addEventListener('click', () => {
-      showSlide(i);
-      restartAutoSlide();
-    });
-  });
-
-  // New Navigation Arrows
-  const prevArrow = document.querySelector('.carousel-prev');
-  const nextArrow = document.querySelector('.carousel-next');
-
-  if (prevArrow) {
-    prevArrow.setAttribute('aria-label', 'Previous Slide');
-    prevArrow.addEventListener('click', () => {
-      const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
-      showSlide(prevIndex);
-      restartAutoSlide();
-    });
-  }
-
-  if (nextArrow) {
-    nextArrow.setAttribute('aria-label', 'Next Slide');
-    nextArrow.addEventListener('click', () => {
-      const nextIndex = (currentSlide + 1) % slides.length;
-      showSlide(nextIndex);
-      restartAutoSlide();
-    });
-  }
-
-  // WCAG 2.2.2: Auto-slide with Pause/Play control ---
-  let carouselAutoSlide = null;
-  let isCarouselPaused = false;
-  let isVideoMuted = true;
 
   function startAutoSlide() {
-    if (carouselAutoSlide) clearInterval(carouselAutoSlide);
-    // Increase fallback timer to 60 seconds to ensure long videos play completely
-    // The main transition is handled by the 'ended' event listener below
-    carouselAutoSlide = setInterval(() => {
-      const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
-      if (!isCarouselPaused && !globalPauseActive) {
+    stopAutoSlide();
+    const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
+    if (isCarouselPaused || globalPauseActive) return;
+
+    const mediaItem = slideMedia[currentSlide];
+    // If it's an image slide, auto transition after 6 seconds
+    // If it's a video, use a 60-second fallback timer (main transition is handled by 'ended' event)
+    const duration = (mediaItem && mediaItem.type === 'image') ? 6000 : 60000;
+
+    carouselAutoSlide = setTimeout(() => {
+      const isPausedNow = isCarouselPaused || document.body.getAttribute('data-pause-animations') === 'true';
+      if (!isPausedNow) {
         const nextIndex = (currentSlide + 1) % slides.length;
         showSlide(nextIndex);
       }
-    }, 60000);
+    }, duration);
   }
 
   function stopAutoSlide() {
     if (carouselAutoSlide) {
-      clearInterval(carouselAutoSlide);
+      clearTimeout(carouselAutoSlide);
       carouselAutoSlide = null;
     }
   }
@@ -172,109 +196,93 @@ function initializeCarousel() {
     }
   }
 
+  buttons.forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      showSlide(i);
+    });
+  });
+
+  // Navigation Arrows
+  const prevArrow = document.querySelector('.carousel-prev');
+  const nextArrow = document.querySelector('.carousel-next');
+
+  if (prevArrow) {
+    prevArrow.setAttribute('aria-label', 'Previous Slide');
+    prevArrow.addEventListener('click', () => {
+      const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(prevIndex);
+    });
+  }
+
+  if (nextArrow) {
+    nextArrow.setAttribute('aria-label', 'Next Slide');
+    nextArrow.addEventListener('click', () => {
+      const nextIndex = (currentSlide + 1) % slides.length;
+      showSlide(nextIndex);
+    });
+  }
+
   // Pause/Play Button
-  const carouselPauseBtn = document.getElementById('carouselPauseBtn');
   if (carouselPauseBtn) {
     carouselPauseBtn.addEventListener('click', () => {
       const icon = carouselPauseBtn.querySelector('i');
       if (isCarouselPaused) {
         // Resume
         isCarouselPaused = false;
-        video.play().catch(err => console.log('Video resume failed:', err));
+        const mediaItem = slideMedia[currentSlide];
+        if (video && mediaItem && mediaItem.type === 'video') {
+          video.play().catch(err => console.log('Video resume failed:', err));
+        }
         startAutoSlide();
-        icon.classList.remove('fa-play');
-        icon.classList.add('fa-pause');
+        if (icon) {
+          icon.classList.remove('fa-play');
+          icon.classList.add('fa-pause');
+        }
         carouselPauseBtn.setAttribute('aria-label', 'Pause Video and Carousel');
       } else {
         // Pause
         isCarouselPaused = true;
-        video.pause();
+        if (video) {
+          video.pause();
+        }
         stopAutoSlide();
-        icon.classList.remove('fa-pause');
-        icon.classList.add('fa-play');
+        if (icon) {
+          icon.classList.remove('fa-pause');
+          icon.classList.add('fa-play');
+        }
         carouselPauseBtn.setAttribute('aria-label', 'Play Video and Carousel');
       }
     });
   }
 
   // Mute/Unmute Button
-  const videoMuteBtn = document.getElementById('videoMuteBtn');
   if (videoMuteBtn) {
     videoMuteBtn.addEventListener('click', () => {
       const icon = videoMuteBtn.querySelector('i');
       isVideoMuted = !isVideoMuted;
-      video.muted = isVideoMuted;
+      if (video) {
+        video.muted = isVideoMuted;
+        if (isVideoMuted) {
+          video.setAttribute('muted', 'muted');
+        } else {
+          video.removeAttribute('muted');
+        }
+      }
 
       if (isVideoMuted) {
-        video.setAttribute('muted', 'muted');
-        icon.classList.remove('fa-volume-up');
-        icon.classList.add('fa-volume-mute');
+        if (icon) {
+          icon.classList.remove('fa-volume-up');
+          icon.classList.add('fa-volume-mute');
+        }
         videoMuteBtn.setAttribute('aria-label', 'Unmute Video');
       } else {
-        video.removeAttribute('muted');
-        icon.classList.remove('fa-volume-mute');
-        icon.classList.add('fa-volume-up');
+        if (icon) {
+          icon.classList.remove('fa-volume-mute');
+          icon.classList.add('fa-volume-up');
+        }
         videoMuteBtn.setAttribute('aria-label', 'Mute Video');
       }
     });
-
-    /**
-     * Synchronize the heights of the Photo and Video gallery cards
-     */
-    function syncGalleryHeights() {
-      const galleries = document.querySelectorAll('.glimpses-card');
-      if (galleries.length < 2) return;
-
-      if (window.innerWidth <= 768) {
-        // Don't sync on mobile where they are stacked
-        galleries.forEach(g => g.style.height = 'auto');
-        return;
-      }
-
-      // Reset heights first to get natural content height
-      galleries.forEach(g => g.style.height = 'auto');
-
-      // Small delay to allow layout to settle
-      setTimeout(() => {
-        let maxHeight = 0;
-        galleries.forEach(g => {
-          const h = g.offsetHeight;
-          if (h > maxHeight) maxHeight = h;
-        });
-
-        if (maxHeight > 0) {
-          galleries.forEach(g => {
-            g.style.height = `${maxHeight}px`;
-          });
-        }
-      }, 50);
-    }
-
-    // Initial sync
-    syncGalleryHeights();
-
-    // Sync when images/videos are loaded
-    window.addEventListener('load', syncGalleryHeights);
-
-    // Use ResizeObserver for more reliable syncing if available
-    if (window.ResizeObserver) {
-      const observer = new ResizeObserver(() => {
-        syncGalleryHeights();
-      });
-      const galleries = document.querySelectorAll('.glimpses-card');
-      galleries.forEach(g => observer.observe(g));
-    } else {
-      // Fallback for older browsers
-      let resizeTimer;
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(syncGalleryHeights, 150);
-      });
-    }
-
-    // Periodic check for any dynamic content changes
-    setTimeout(syncGalleryHeights, 1000);
-    setTimeout(syncGalleryHeights, 3000);
   }
 
   // Listen for global pause-animations changes
@@ -283,22 +291,28 @@ function initializeCarousel() {
       if (mutation.attributeName === 'data-pause-animations') {
         const globalPaused = document.body.getAttribute('data-pause-animations') === 'true';
         if (globalPaused) {
-          video.pause();
+          if (video) video.pause();
           stopAutoSlide();
-          // Update button icon to show paused state
           if (carouselPauseBtn) {
             const icon = carouselPauseBtn.querySelector('i');
-            icon.classList.remove('fa-pause');
-            icon.classList.add('fa-play');
+            if (icon) {
+              icon.classList.remove('fa-pause');
+              icon.classList.add('fa-play');
+            }
             carouselPauseBtn.setAttribute('aria-label', 'Play Video and Carousel');
           }
         } else if (!isCarouselPaused) {
-          video.play().catch(err => console.log('Video resume failed:', err));
+          const mediaItem = slideMedia[currentSlide];
+          if (video && mediaItem && mediaItem.type === 'video') {
+            video.play().catch(err => console.log('Video resume failed:', err));
+          }
           startAutoSlide();
           if (carouselPauseBtn) {
             const icon = carouselPauseBtn.querySelector('i');
-            icon.classList.remove('fa-play');
-            icon.classList.add('fa-pause');
+            if (icon) {
+              icon.classList.remove('fa-play');
+              icon.classList.add('fa-pause');
+            }
             carouselPauseBtn.setAttribute('aria-label', 'Pause Video and Carousel');
           }
         }
@@ -307,33 +321,71 @@ function initializeCarousel() {
   });
   carouselObserver.observe(document.body, { attributes: true, attributeFilter: ['data-pause-animations'] });
 
-  // Initialize first slide and start auto-slide
-  showSlide(0);
-  const currentGlobalPause = document.body.getAttribute('data-pause-animations') === 'true';
-  if (!currentGlobalPause) {
-    startAutoSlide();
-  } else {
-    video.pause();
-    if (carouselPauseBtn) {
-      const icon = carouselPauseBtn.querySelector('i');
-      if (icon) {
-        icon.classList.remove('fa-pause');
-        icon.classList.add('fa-play');
+  // Handle video ended to automatically go to next slide
+  if (video) {
+    video.addEventListener('ended', () => {
+      const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
+      if (!isCarouselPaused && !globalPauseActive) {
+        const nextIndex = (currentSlide + 1) % slides.length;
+        showSlide(nextIndex);
       }
-      carouselPauseBtn.setAttribute('aria-label', 'Play Video and Carousel');
-    }
+    });
   }
 
-  // Handle video ended to automatically go to next slide (WCAG: allow full content play)
-  video.addEventListener('ended', () => {
-    const globalPauseActive = document.body.getAttribute('data-pause-animations') === 'true';
-    if (!isCarouselPaused && !globalPauseActive) {
-      const nextIndex = (currentSlide + 1) % slides.length;
-      showSlide(nextIndex);
-      restartAutoSlide();
+  // Initialize first slide
+  showSlide(0);
+}
+
+/**
+ * Synchronize the heights of the Photo and Video gallery cards
+ */
+function syncGalleryHeights() {
+  const galleries = document.querySelectorAll('.glimpses-card');
+  if (galleries.length < 2) return;
+
+  if (window.innerWidth <= 768) {
+    // Don't sync on mobile where they are stacked
+    galleries.forEach(g => g.style.height = 'auto');
+    return;
+  }
+
+  // Reset heights first to get natural content height
+  galleries.forEach(g => g.style.height = 'auto');
+
+  // Small delay to allow layout to settle
+  setTimeout(() => {
+    let maxHeight = 0;
+    galleries.forEach(g => {
+      const h = g.offsetHeight;
+      if (h > maxHeight) maxHeight = h;
+    });
+
+    if (maxHeight > 0) {
+      galleries.forEach(g => {
+        g.style.height = `${maxHeight}px`;
+      });
     }
+  }, 50);
+}
+
+// Initial sync
+syncGalleryHeights();
+window.addEventListener('load', syncGalleryHeights);
+if (window.ResizeObserver) {
+  const observer = new ResizeObserver(() => {
+    syncGalleryHeights();
+  });
+  const galleries = document.querySelectorAll('.glimpses-card');
+  galleries.forEach(g => observer.observe(g));
+} else {
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(syncGalleryHeights, 150);
   });
 }
+setTimeout(syncGalleryHeights, 1000);
+setTimeout(syncGalleryHeights, 3000);
 
 // Initialize everything
 initializeHomePage();

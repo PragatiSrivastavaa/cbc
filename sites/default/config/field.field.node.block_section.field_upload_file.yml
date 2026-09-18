@@ -1,0 +1,27 @@
+uuid: 9e506754-3050-4dba-bd31-7749ce9de386
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_upload_file
+    - node.type.block_section
+  module:
+    - file
+id: node.block_section.field_upload_file
+field_name: field_upload_file
+entity_type: node
+bundle: block_section
+label: 'Upload File'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt jpg jpeg png webp pdf'
+  max_filesize: ''
+  description_field: false
+field_type: file

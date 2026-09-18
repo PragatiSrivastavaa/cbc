@@ -1,48 +1,101 @@
-<div class="carousel" role="region" aria-label="Carousel">
-  <div role="status" aria-live="polite" aria-atomic="true">
+{#
+/**
+ * @file
+ * Default theme implementation to display a view of unformatted rows for Home Banner.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the rows for this view.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set banner_items = [] %}
+{% set legacy_video_urls = [] %}
 
+{% for row in rows %}
+  {% set node = row.content['#row']._entity %}
+  {% set item_type = 'none' %}
+  {% set media_url = '' %}
+  {% set alt_text = node.label %}
 
-  {% set first_video_url = '' %}
-  
-  {# Extract first video URL for the background video element #}
-  {% if rows|length > 0 %}
-    {% set first_node = rows[0].content['#row']._entity %}
-    {% if first_node.field_banner_video.entity is not empty %}
-      {% set media = first_node.field_banner_video.entity %}
-      {% if media.field_media_video_file.entity is not empty %}
-        {% set file = media.field_media_video_file.entity %}
-        {% set first_video_url = file_url(file.uri.value) %}
+  {# 1. Check field_banner_video which is an entity reference to Media #}
+  {% if node.field_banner_video.entity is not empty %}
+    {% set media = node.field_banner_video.entity %}
+    
+    {# Check if media is video #}
+    {% if media.field_media_video_file.entity is not empty %}
+      {% set file = media.field_media_video_file.entity %}
+      {% set media_url = file_url(file.uri.value) %}
+      {% set item_type = 'video' %}
+    {# Check if media is image #}
+    {% elseif media.field_media_image.entity is not empty %}
+      {% set file = media.field_media_image.entity %}
+      {% set media_url = file_url(file.uri.value) %}
+      {% set item_type = 'image' %}
+      {% if media.field_media_image.alt is not empty %}
+        {% set alt_text = media.field_media_image.alt %}
       {% endif %}
+    {% endif %}
+
+  {# 2. Check if direct field_image exists on node #}
+  {% elseif node.field_image.entity is not empty %}
+    {% set file = node.field_image.entity %}
+    {% set media_url = file_url(file.uri.value) %}
+    {% set item_type = 'image' %}
+    {% if node.field_image.alt is not empty %}
+      {% set alt_text = node.field_image.alt %}
+    {% endif %}
+
+  {# 3. Check if direct field_banner_image exists on node #}
+  {% elseif node.field_banner_image.entity is not empty %}
+    {% set file = node.field_banner_image.entity %}
+    {% set media_url = file_url(file.uri.value) %}
+    {% set item_type = 'image' %}
+    {% if node.field_banner_image.alt is not empty %}
+      {% set alt_text = node.field_banner_image.alt %}
     {% endif %}
   {% endif %}
 
-  <video id="bg-video" autoplay muted playsinline preload="auto" aria-label="CBC Introduction Video">
-    {% if first_video_url %}
-      <source src="{{ first_video_url }}" type="video/mp4" />
+  {% set item_data = {
+    'type': item_type,
+    'url': media_url,
+    'alt': alt_text,
+    'title': node.label
+  } %}
+
+  {% set banner_items = banner_items|merge([item_data]) %}
+  {% set legacy_video_urls = legacy_video_urls|merge([item_type == 'video' ? media_url : '']) %}
+{% endfor %}
+
+{% set first_item = banner_items|first %}
+
+<div class="carousel" role="region" aria-label="Carousel">
+  <div role="status" aria-live="polite" aria-atomic="true">
+
+  {# Background Video element #}
+  <video id="bg-video" autoplay muted playsinline preload="auto" aria-label="CBC Introduction Video" style="{% if first_item and first_item.type == 'video' %}{% else %}display: none;{% endif %}">
+    {% if first_item and first_item.type == 'video' and first_item.url %}
+      <source src="{{ first_item.url }}" type="video/mp4" />
     {% endif %}
     Your browser does not support the video tag.
   </video>
+
+  {# Background Image element #}
+  <img id="bg-image" class="bg-banner-image" src="{% if first_item and first_item.type == 'image' %}{{ first_item.url }}{% endif %}" alt="{% if first_item and first_item.type == 'image' %}{{ first_item.alt }}{% else %}CBC Banner Image{% endif %}" style="{% if first_item and first_item.type == 'image' %}{% else %}display: none;{% endif %}" />
 
   <!-- Video Overlay Filter for Light Transitional Effect -->
   <div class="video-overlay-filter"></div>
 
   <ul class="carousel-track list-unstyled p-0 m-0">
-  {% set video_urls = [] %}
   {% for row in rows %}
-    {% set node = row.content['#row']._entity %}
-    {% set video_url = '' %}
-
-    {# Get video from node media field #}
-    {% if node.field_banner_video.entity is not empty %}
-      {% set media = node.field_banner_video.entity %}
-      {% if media.field_media_video_file.entity is not empty %}
-        {% set file = media.field_media_video_file.entity %}
-        {% set video_url = file_url(file.uri.value) %}
-      {% endif %}
-    {% endif %}
-
-    {% set video_urls = video_urls|merge([video_url]) %}
-
     <li class="slide-content {% if loop.first %}active{% endif %}" id="slide{{ loop.index }}">
     </li>
   {% endfor %}
@@ -51,12 +104,11 @@
   <button class="carousel-prev" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
   <button class="carousel-next" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
 
-  <div class="hero-pause-container">
+  <div class="hero-pause-container" style="{% if first_item and first_item.type != 'video' %}display: none !important;{% endif %}">
     <button class="carousel-pause-btn" id="carouselPauseBtn" aria-label="Pause Video and Carousel"><i class="fas fa-pause" aria-hidden="true"></i></button>
     <button class="video-mute-btn" id="videoMuteBtn" aria-label="Unmute Video"><i class="fas fa-volume-mute" aria-hidden="true"></i></button>
   </div>
 
-  {# Move dots to separate container if still needed, or hide them as user didn't ask for them specifically #}
   <div class="nav-buttons p-0 m-0">
     {% for i in 1..rows|length %}
       <button class="{% if i == 1 %}active{% endif %}" data-slide="{{ i }}" {% if i == 1 %}aria-current="true"{% endif %} aria-label="Go to slide {{ i }}"></button>
@@ -66,6 +118,9 @@
   </div>
 </div>
 
+<script type="application/json" id="carousel-media-data">
+  {{ banner_items|json_encode|raw }}
+</script>
 <script type="application/json" id="carousel-video-data">
-  {{ video_urls|json_encode|raw }}
+  {{ legacy_video_urls|json_encode|raw }}
 </script>

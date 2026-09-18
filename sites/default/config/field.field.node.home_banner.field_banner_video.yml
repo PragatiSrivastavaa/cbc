@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_banner_video
+    - media.type.image
     - media.type.video
     - node.type.home_banner
 id: node.home_banner.field_banner_video
@@ -20,10 +21,11 @@ settings:
   handler: 'default:media'
   handler_settings:
     target_bundles:
+      image: image
       video: video
     sort:
       field: _none
       direction: ASC
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: image
 field_type: entity_reference
