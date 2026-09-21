@@ -91,24 +91,14 @@
           {% endif %}
         </div>
         {% endfor %}
-        {% if is_front %}
-        <!-- <div class="d-none d-lg-block">
-          <div class="nav-item nav-item-infocus">
-            <a class="nav-link d-flex align-items-center" href="{{ path('<front>') }}#in-focus-section">
-              <img src="https://cbc.gov.in/sites/default/files/2026-03/Sadhana_text.png" alt="Sadhana" style="height: 15px; width: auto; margin-right: 4px; margin-bottom: 4px;" />
-              <span style="font-size: 15px; color: #284099; font-weight: 400; font-family: Georgia, 'Times New Roman', serif; font-style: italic; line-height: 0.3;">Saptah</span>
-            </a>
-          </div>
-        </div> -->
         <div class="d-none d-lg-block">
           <div class="nav-item nav-item-infocus">
-            <a class="nav-link d-flex align-items-center" href="{{ path('<front>') }}#in-focus-section">
-              <span
-                style="font-size: 16px; color: #ffffff; font-weight: 400; font-family: Georgia, 'Times New Roman', serif; font-style: italic; line-height: 0.6;">{% if language == 'hi' %}प्रमुख कार्यकलाप{% else %}In Focus{% endif %}</span>
+            <a class="nav-link d-flex align-items-center" href="{{ path('<front>') }}#in-focus-section" title="Sādhana श्रृंखला - In Focus" aria-label="Sādhana श्रृंखला In Focus">
+              <img src="{{ base_path }}themes/cbc/img/Sadhana_text.png" alt="Sādhana" style="height: 16px; width: auto; object-fit: contain; margin-right: 4px; margin-bottom: 2px;" />
+              <span style="font-size: 14px; color: #284099; font-weight: 600; font-family: 'Outfit', 'Inter', sans-serif; line-height: 1;">श्रृंखला</span>
             </a>
           </div>
         </div>
-        {% endif %}
       </div>
     </div>
 
@@ -118,32 +108,19 @@
         <img src="https://cbc.gov.in/sites/default/files/2026-06/cbchindi-logo.png"
           alt="भारत सरकार प्रतीक और क्षमता विकास आयोग लोगो" />
         {% else %}
-        <img src="{{ base_path ~ directory }}/img/logo.png"
+        <img src="{{ base_path }}themes/cbc/img/logo.png"
           alt="Government of India emblem and Capacity Building Commission logo" />
         {% endif %}
       </a>
-      {% if is_front %}
-      <!-- <div class="d-lg-none ms-2">
-      <div class="nav-item-infocus">
-        <a class="nav-link d-flex align-items-center" href="{{ path('<front>') }}#in-focus-section"
-          style="padding-top: 5px !important; padding-bottom: 5px !important;">
-          <img src="https://cbc.gov.in/sites/default/files/2026-03/Sadhana_text.png" alt="Sadhana"
-            style="height: 15px; width: auto; margin-right: 4px; margin-bottom: 4px;" />
-          <span
-            style="font-size: 15px; color: #284099; font-weight: 400; font-family: Georgia, 'Times New Roman', serif; font-style: italic; line-height: 0.3;">Saptah</span>
-        </a>
-      </div>
-    </div> -->
       <div class="d-lg-none ms-2">
         <div class="nav-item-infocus">
-          <a class="nav-link d-flex align-items-center" href="{{ path('<front>') }}#in-focus-section"
-            style="padding-top: 5px !important; padding-bottom: 5px !important;">
-            <span
-              style="font-size: 15px; color: #ffffff; font-weight: 400; font-family: Georgia, 'Times New Roman', serif; font-style: italic; line-height: 0.3;">{% if language == 'hi' %}फोकस में{% else %}In Focus{% endif %}</span>
+          <a class="nav-link d-flex align-items-center" href="{{ path('<front>') }}#in-focus-section" title="Sādhana श्रृंखला - In Focus" aria-label="Sādhana श्रृंखला In Focus"
+            style="padding-top: 4px !important; padding-bottom: 4px !important; padding-left: 8px !important; padding-right: 8px !important;">
+            <img src="{{ base_path }}themes/cbc/img/Sadhana_text.png" alt="Sādhana" style="height: 14px; width: auto; object-fit: contain; margin-right: 3px; margin-bottom: 1px;" />
+            <span style="font-size: 13px; color: #284099; font-weight: 600; font-family: 'Outfit', 'Inter', sans-serif; line-height: 1;">श्रृंखला</span>
           </a>
         </div>
       </div>
-      {% endif %}
     </div>
 
   </div>

@@ -1245,26 +1245,40 @@ tbody tr:nth-child(even) {
 .nav-item-infocus::after {
   content: '';
   position: absolute;
-  inset: 4px;
-  background: #004b88;
+  inset: 2px;
+  background: #ffffff;
   border-radius: 50px;
   z-index: -1;
 }
 
 .nav-item-infocus .nav-link {
-  color: #ffffff !important;
-  padding: 6px 8px !important;
-  font-weight: 700 !important;
-  /* text-transform: uppercase; */
-  letter-spacing: 0.5px;
-  font-size: 11px !important;
+  color: #284099 !important;
+  padding: 4px 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.3px;
+  font-size: 13px !important;
   line-height: 1;
-  /* border: none !important; */
-  border-radius: 30px;
-  border: 2px solid #FFC107;
-  border-radius: 30px;
-  /* background-color: #fde7ca; */
-  background-color: #b34700;
+  border: 1.5px solid #FFC107 !important;
+  border-radius: 30px !important;
+  background-color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none !important;
+}
+
+.nav-item-infocus .nav-link:hover {
+  transform: scale(1.04);
+  box-shadow: 0 2px 8px rgba(255, 193, 7, 0.4);
+}
+
+.nav-item-infocus .nav-link img {
+  height: 16px !important;
+  max-height: 18px !important;
+  width: auto !important;
+  display: inline-block !important;
+  object-fit: contain !important;
 }
 
 @keyframes rotate-border {
