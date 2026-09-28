@@ -6,6 +6,8 @@ global-styling:
       css/pages.css: {}
       css/accessibility.css: {}
       css/sadhana-saptah.css: {}
+      css/regional-workshop.css: {}
+
 
 global-scripts:
   js:

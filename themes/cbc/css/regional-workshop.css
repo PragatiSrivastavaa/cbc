@@ -1,0 +1,608 @@
+/* =====================================================
+   REGIONAL WORKSHOP ON MISSION KARMAYOGI - THEME CSS
+   File: themes/cbc/css/regional-workshop.css
+   ===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --cbc-navy: #003366;
+  --cbc-navy-dark: #002244;
+  --cbc-navy-light: #0a4d8c;
+  --cbc-saffron: #f39200;
+  --cbc-saffron-dark: #d97706;
+  --cbc-saffron-light: #fff8ef;
+  --cbc-saffron-soft: #fff3e0;
+  --cbc-slate-bg: #f8fafc;
+  --cbc-card-bg: #ffffff;
+  --cbc-text-main: #1e293b;
+  --cbc-text-muted: #475569;
+  --cbc-text-subtle: #64748b;
+  --cbc-border: #e2e8f0;
+  --cbc-radius: 14px;
+  --cbc-radius-sm: 8px;
+  --cbc-shadow: 0 4px 20px rgba(0, 51, 102, 0.06);
+  --cbc-shadow-hover: 0 10px 30px rgba(0, 51, 102, 0.1);
+}
+
+/* --- Base Page Wrapper with Fixed Header Clearance --- */
+.rw-page-wrapper,
+#app-content.rw-page-wrapper {
+  font-family: 'Plus Jakarta Sans', 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  color: var(--cbc-text-main);
+  background-color: #f8fafc;
+  line-height: 1.7;
+  width: 100%;
+  /* Ensure header never cuts off top banner */
+  padding-top: 145px !important;
+  padding-bottom: 60px !important;
+  box-sizing: border-box;
+}
+
+/* Drupal Toolbar (Logged-in admin) clearance */
+body.toolbar-tray-open .rw-page-wrapper,
+body.toolbar-horizontal .rw-page-wrapper,
+body.toolbar-tray-open #app-content.rw-page-wrapper,
+body.toolbar-horizontal #app-content.rw-page-wrapper {
+  padding-top: 185px !important;
+}
+
+.rw-page-wrapper * {
+  box-sizing: border-box;
+}
+
+.rw-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 40px !important;
+  box-sizing: border-box !important;
+}
+
+/* Global SVG size protection */
+.rw-page-wrapper svg {
+  max-width: 24px !important;
+  max-height: 24px !important;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* --- 1. Top Banner (Matches exactly the container width and side padding) --- */
+.rw-banner-wrapper,
+.rw-banner-card {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 0 24px 0;
+  border-radius: var(--cbc-radius);
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid var(--cbc-border);
+  border-bottom: 4px solid var(--cbc-saffron);
+  box-shadow: var(--cbc-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.rw-banner-wrapper:hover,
+.rw-banner-card:hover {
+  box-shadow: var(--cbc-shadow-hover);
+}
+
+.rw-banner-wrapper img,
+.rw-banner-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* --- 2. Title Hero Section (Centered with clean 24px gap) --- */
+.rw-title-hero {
+  width: 100%;
+  background: linear-gradient(135deg, #002244 0%, #003366 60%, #0a4d8c 100%);
+  border-radius: var(--cbc-radius);
+  padding: 34px 32px 30px 32px;
+  color: #ffffff;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--cbc-shadow-hover);
+  border-left: 5px solid var(--cbc-saffron);
+  text-align: center;
+}
+
+.rw-title-hero h1 {
+  font-size: 2.05rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+  letter-spacing: -0.3px;
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif !important;
+  text-align: center;
+}
+
+.rw-title-subtitle {
+  font-size: 1.08rem;
+  color: #e2e8f0;
+  margin: 0 auto;
+  line-height: 1.55;
+  font-weight: 500;
+  max-width: 950px;
+  text-align: center;
+}
+
+/* --- 3. Structured Section Cards --- */
+.rw-section-card {
+  background: var(--cbc-card-bg);
+  border: 1px solid var(--cbc-border);
+  border-radius: var(--cbc-radius);
+  padding: 32px 30px;
+  width: 100%;
+  margin-bottom: 26px;
+  box-shadow: var(--cbc-shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.rw-section-card:hover {
+  box-shadow: var(--cbc-shadow-hover);
+}
+
+/* Header Row with Icon */
+.rw-header-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 14px;
+}
+
+.rw-header-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--cbc-saffron-light);
+  border: 1px solid #fed7aa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rw-header-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--cbc-saffron-dark);
+}
+
+.rw-section-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--cbc-navy);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.rw-body-text {
+  font-size: 0.98rem;
+  color: var(--cbc-text-main);
+  line-height: 1.8;
+  margin: 0 0 18px 0;
+}
+
+.rw-body-text:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Summit PDF Report Box --- */
+.rw-pdf-box {
+  background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 100%);
+  border: 1px solid #bae0ff;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  box-shadow: 0 2px 8px rgba(0, 51, 102, 0.04);
+}
+
+.rw-pdf-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  min-width: 280px;
+}
+
+.rw-pdf-icon-badge {
+  width: 44px;
+  height: 44px;
+  background: #dc2626;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.25);
+}
+
+.rw-pdf-icon-badge svg {
+  width: 22px;
+  height: 22px;
+  fill: #ffffff;
+  display: block;
+}
+
+.rw-pdf-text {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--cbc-navy);
+  margin: 0;
+  line-height: 1.45;
+}
+
+.rw-pdf-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  background: var(--cbc-navy) !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  padding: 11px 22px !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  font-size: 0.92rem !important;
+  transition: all 0.25s ease !important;
+  box-shadow: 0 4px 12px rgba(0, 51, 102, 0.25) !important;
+  white-space: nowrap !important;
+  border: none !important;
+  line-height: 1.3 !important;
+  flex-shrink: 0 !important;
+}
+
+.rw-pdf-btn:hover {
+  background: var(--cbc-navy-dark) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(0, 51, 102, 0.35) !important;
+  color: #ffffff !important;
+}
+
+/* --- 2x2 Grid for Institutional Gaps --- */
+.rw-gaps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin: 20px 0 6px 0;
+}
+
+.rw-gap-card {
+  background: #ffffff;
+  border: 1px solid var(--cbc-border);
+  border-top: 3px solid var(--cbc-navy);
+  border-radius: 12px;
+  padding: 22px 22px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.rw-gap-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 51, 102, 0.08);
+  border-top-color: var(--cbc-saffron);
+}
+
+.rw-gap-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--cbc-navy);
+  margin: 0 0 10px 0;
+  line-height: 1.35;
+}
+
+.rw-gap-desc {
+  font-size: 0.93rem;
+  color: var(--cbc-text-muted);
+  line-height: 1.65;
+  margin: 0;
+  flex-grow: 1;
+}
+
+/* --- 3 Pillars Grid --- */
+.rw-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 22px 0 6px 0;
+}
+
+.rw-pillar-card {
+  background: #ffffff;
+  border: 1px solid var(--cbc-border);
+  border-radius: 12px;
+  padding: 24px 20px;
+  border-top: 4px solid var(--cbc-navy);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: all 0.25s ease;
+}
+
+.rw-pillar-card:nth-child(2) {
+  border-top-color: var(--cbc-saffron);
+}
+
+.rw-pillar-card:nth-child(3) {
+  border-top-color: #0284c7;
+}
+
+.rw-pillar-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 51, 102, 0.09);
+}
+
+.rw-pillar-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--cbc-navy);
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.rw-pillar-card:nth-child(2) .rw-pillar-num {
+  background: var(--cbc-saffron);
+}
+
+.rw-pillar-card:nth-child(3) .rw-pillar-num {
+  background: #0284c7;
+}
+
+.rw-pillar-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--cbc-navy);
+  margin: 0 0 10px 0;
+  line-height: 1.35;
+  min-height: 46px;
+}
+
+.rw-pillar-desc {
+  font-size: 0.92rem;
+  color: var(--cbc-text-muted);
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1;
+}
+
+/* --- 6 Functions Grid --- */
+.rw-functions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin: 20px 0 22px 0;
+}
+
+.rw-func-item {
+  background: #fbfcfe;
+  border: 1px solid var(--cbc-border);
+  border-left: 4px solid var(--cbc-saffron);
+  border-radius: 10px;
+  padding: 16px 18px;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+
+.rw-func-item:hover {
+  border-left-color: var(--cbc-navy);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 51, 102, 0.06);
+}
+
+.rw-func-title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--cbc-navy);
+  margin: 0 0 6px 0;
+  line-height: 1.35;
+}
+
+.rw-func-desc {
+  font-size: 0.89rem;
+  color: var(--cbc-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* --- Triad Cards (The Demand, The Connection, The Response) --- */
+.rw-triad-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 20px 0 6px 0;
+}
+
+.rw-triad-card {
+  background: #ffffff;
+  border: 1px solid var(--cbc-border);
+  border-radius: 10px;
+  padding: 20px 18px;
+  border-top: 3px solid #003366;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column;
+}
+
+.rw-triad-card:nth-child(2) {
+  border-top-color: var(--cbc-saffron);
+}
+
+.rw-triad-card:nth-child(3) {
+  border-top-color: #10b981;
+}
+
+.rw-triad-tag {
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--cbc-navy);
+  margin-bottom: 6px;
+  display: inline-block;
+}
+
+.rw-triad-card:nth-child(2) .rw-triad-tag {
+  color: var(--cbc-saffron-dark);
+}
+
+.rw-triad-card:nth-child(3) .rw-triad-tag {
+  color: #059669;
+}
+
+.rw-triad-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--cbc-navy);
+  margin: 0 0 8px 0;
+}
+
+.rw-triad-desc {
+  font-size: 0.89rem;
+  color: var(--cbc-text-muted);
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1;
+}
+
+/* --- Workshop Preparatory Checklist --- */
+.rw-prep-card {
+  background: #f8fafc;
+  border: 1px solid var(--cbc-border);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 18px 0 20px 0;
+}
+
+.rw-prep-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.rw-prep-list li {
+  position: relative;
+  padding: 8px 0 8px 28px !important;
+  font-size: 0.94rem;
+  color: var(--cbc-text-main);
+  border-bottom: 1px dashed #e2e8f0;
+  line-height: 1.6;
+}
+
+.rw-prep-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0 !important;
+}
+
+.rw-prep-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 4px;
+  top: 8px;
+  color: var(--cbc-saffron-dark);
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+/* =====================================================
+   BOTTOM VISION & CONCEPT NOTE BOX
+   ===================================================== */
+.rw-bottom-vision {
+  background: linear-gradient(135deg, #002244 0%, #003366 50%, #08427b 100%);
+  color: #ffffff;
+  border-radius: var(--cbc-radius);
+  padding: 40px 30px 32px 30px;
+  text-align: center;
+  width: 100%;
+  margin: 32px 0 10px 0;
+  border-top: 4px solid var(--cbc-saffron);
+  box-shadow: var(--cbc-shadow-hover);
+  position: relative;
+}
+
+.rw-vision-quote {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #f39200;
+  margin: 0 0 16px 0;
+  line-height: 1.35;
+  letter-spacing: 0.3px;
+}
+
+.rw-vision-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 20px;
+  margin-top: 24px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: #e2e8f0;
+  letter-spacing: 0.4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* --- Responsive Breakpoints --- */
+@media (max-width: 992px) {
+  .rw-page-wrapper,
+  #app-content.rw-page-wrapper {
+    padding-top: 120px !important;
+  }
+  body.toolbar-tray-open .rw-page-wrapper,
+  body.toolbar-horizontal .rw-page-wrapper,
+  body.toolbar-tray-open #app-content.rw-page-wrapper,
+  body.toolbar-horizontal #app-content.rw-page-wrapper {
+    padding-top: 160px !important;
+  }
+  .rw-gaps-grid { grid-template-columns: 1fr; }
+  .rw-pillars-grid { grid-template-columns: 1fr; }
+  .rw-functions-grid { grid-template-columns: 1fr; }
+  .rw-triad-grid { grid-template-columns: 1fr; }
+  .rw-title-hero h1 { font-size: 1.65rem; }
+}
+
+@media (max-width: 600px) {
+  .rw-page-wrapper,
+  #app-content.rw-page-wrapper {
+    padding-top: 110px !important;
+    padding-bottom: 40px !important;
+  }
+  body.toolbar-tray-open .rw-page-wrapper,
+  body.toolbar-horizontal .rw-page-wrapper,
+  body.toolbar-tray-open #app-content.rw-page-wrapper,
+  body.toolbar-horizontal #app-content.rw-page-wrapper {
+    padding-top: 145px !important;
+  }
+  .rw-container { padding: 0 14px; }
+  .rw-banner-wrapper,
+  .rw-banner-card { margin-bottom: 18px; }
+  .rw-title-hero { padding: 24px 18px; }
+  .rw-title-hero h1 { font-size: 1.35rem; }
+  .rw-title-subtitle { font-size: 0.95rem; }
+  .rw-section-card { padding: 22px 18px; margin-bottom: 20px; }
+  .rw-section-title { font-size: 1.18rem; }
+  .rw-bottom-vision { padding: 30px 18px 22px 18px; margin: 24px 0 10px 0; }
+  .rw-vision-quote { font-size: 1.15rem; }
+  .rw-vision-footer { font-size: 0.86rem; padding-top: 14px; margin-top: 16px; }
+}

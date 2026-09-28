@@ -1,0 +1,329 @@
+{#
+/**
+ * @file
+ * Theme override for Regional Workshop on Mission Karmayogi page.
+ * Path: /regional-workshop-mission-karmayogi
+ *
+ * Sequence:
+ * 1. Global Header
+ * 2. Top Banner Section (Full width / scaled at the top)
+ * 3. Page Title & Subtitle Hero
+ * 4. Structured Content Sections (Cards, Framework, Pillars, UNNATI, Triad, Checklist)
+ * 5. Bottom Vision & Concept Note Box
+ * 6. Global Footer
+ */
+#}
+
+{% include 'themes/cbc/templates/layout/header.html.twig' %}
+
+<main id="app-content" class="rw-page-wrapper">
+    <!-- Dynamic stylesheet injection with cache busting -->
+    <script>
+        (function () {
+            function getThemeBase() {
+                var links = document.querySelectorAll('link[rel="stylesheet"]');
+                for (var i = 0; i < links.length; i++) {
+                    var href = links[i].href || '';
+                    var idx = href.indexOf('/themes/cbc/');
+                    if (idx !== -1) { return href.substring(0, idx); }
+                }
+                var base = window.location.origin;
+                var path = window.location.pathname;
+                var drupalRoot = path.split('/themes/')[0];
+                return base + (drupalRoot || '');
+            }
+            var base = getThemeBase();
+            var theme = base + '/themes/cbc';
+            var existingCss = document.querySelector('link[href*="regional-workshop.css"]');
+            if (existingCss) { existingCss.remove(); }
+            var css = document.createElement('link');
+            css.rel = 'stylesheet';
+            css.type = 'text/css';
+            css.href = theme + '/css/regional-workshop.css?v=' + Date.now();
+            document.head.appendChild(css);
+        })();
+    </script>
+
+    <!-- MAIN CONTAINER FOR BANNER, HEADING & CONTENT -->
+    <div class="rw-container">
+        
+        <!-- 1. TOP BANNER -->
+        <div class="rw-banner-wrapper">
+            <img src="https://cbc.gov.in/sites/default/files/2026-09/bannar_%20CBC%20copy%20%282%29.webp" 
+                 alt="Sādhana श्रृंखला - Five Validation Workshops for Capacity Building - UNNATI" 
+                 onerror="this.src='/sites/default/files/inline-images/Website%20banner.jpg.jpeg'; this.onerror=null;" 
+                 width="4032" height="1061">
+        </div>
+
+        <!-- 2. PAGE HEADING HERO -->
+        <div class="rw-title-hero">
+            <h1>Regional Workshop on Mission Karmayogi</h1>
+            <p class="rw-title-subtitle">Strengthening Training Institutions towards a Future-Ready and Connected Ecosystem</p>
+        </div>
+
+        {% if page.highlighted %}
+            <div class="highlighted">{{ page.highlighted }}</div>
+        {% endif %}
+        {% if page.help %}
+            <div class="help">{{ page.help }}</div>
+        {% endif %}
+        {% if page.messages %}
+            <div class="messages-area">{{ page.messages }}</div>
+        {% endif %}
+
+        <!-- 3. BACKGROUND SECTION -->
+        <div class="rw-section-card">
+            <div class="rw-header-row">
+                <div class="rw-header-icon">
+                    <svg viewBox="0 0 16 16"><path d="M3 2v12h2V9h8l-2-3.5L13 2H3z"/></svg>
+                </div>
+                <h2 class="rw-section-title">Background</h2>
+            </div>
+            <p class="rw-body-text">
+                Achieving Viksit Bharat 2047 demands an agile, citizen-centric public administration capable of navigating complex governance challenges. A future-ready civil service is the engine of this transformation, underpinned by a responsive capacity-building ecosystem.
+            </p>
+            <p class="rw-body-text">
+                Training Institutions (TIs) must evolve from traditional program providers into strategic hubs that prepare the workforce for shifting priorities and citizen expectations. Advancing this foundation, the Capacity Building Commission (CBC) launched UNNATI (Unified New-Age National Training Initiative)—a centralized digital platform designed to connect TIs, enhance resource visibility, drive collaboration, and benchmark institutional performance.
+            </p>
+            <p class="rw-body-text">
+                To keep pace with evolving governance needs and the mainstreaming of frontier technologies, including AI, TIs must transition into future-ready Capacity Building Institutions. This imperative was validated through a structured consultative process initiated by the CBC in September 2025.
+            </p>
+            <p class="rw-body-text">
+                The sequence of engagements began with a National Orientation Workshop (February 2026), followed by State and UT consultative workshops (March–April 2026) that engaged diverse departments, ATIs, and TIs to identify regional priorities. This was further reinforced by two major national convenings: <strong>SĀDHANA Saptah</strong> (April 2026), which focused on Technology, Tradition, and Tangible Outcomes, and the <strong>National Departmental Summit</strong> (May 2026), themed <em>"Institutionalizing Capacity Building: From Training to Performance-linked Governance."</em>
+            </p>
+            <p class="rw-body-text">
+                To operationalize these synthesized priorities, the CBC is now executing Regional Workshops to translate emerging mandates into specific action.
+            </p>
+            
+            <!-- Summit Report Download Box -->
+            <div class="rw-pdf-box">
+                <div class="rw-pdf-left">
+                    <div class="rw-pdf-icon-badge">
+                        <svg viewBox="0 0 16 16"><path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/></svg>
+                    </div>
+                    <div class="rw-pdf-text">
+                        Report of the National Departmental Summit on “Institutionalizing Capacity Building: from Training to Performance-linked Governance”
+                    </div>
+                </div>
+                <a class="rw-pdf-btn" href="https://cbc.gov.in/sites/default/files/2026-07/Post%20Summit%20Report.pdf" target="_blank" rel="noopener noreferrer">
+                    Download Report (PDF)
+                </a>
+            </div>
+        </div>
+
+        <!-- 4. INSTITUTIONAL GAPS & TRANSFORMATION FRAMEWORK -->
+        <div class="rw-section-card">
+            <div class="rw-header-row">
+                <div class="rw-header-icon">
+                    <svg viewBox="0 0 16 16"><path d="M2.5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2h-11zm1 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M4 4h4v4H4V4zm5 5h3v3H9V9z"/></svg>
+                </div>
+                <h2 class="rw-section-title">Institutional Gaps &amp; The Transformation Framework</h2>
+            </div>
+            <p class="rw-body-text">
+                Consultations across TIs and States/UTs surfaced consistent institutional bottlenecks and practical opportunities for structural reform.
+            </p>
+            <div class="rw-gaps-grid">
+                <div class="rw-gap-card">
+                    <h3 class="rw-gap-title">Fragmented institutional ecosystem</h3>
+                    <p class="rw-gap-desc">
+                        Siloed operations lead to resource duplication and limited visibility of faculty and infrastructure. Stronger TIs and Centers of Excellence must anchor the network by mentoring and sharing assets with lower-capacity institutions.
+                    </p>
+                </div>
+                <div class="rw-gap-card">
+                    <h3 class="rw-gap-title">Governance and institutional sustainability</h3>
+                    <p class="rw-gap-desc">
+                        Multi-layered approvals, dated structures, and resource constraints throttle agility. Institutions, across levels, require new avenues for resource mobilization and optimized asset utilization.
+                    </p>
+                </div>
+                <div class="rw-gap-card">
+                    <h3 class="rw-gap-title">Responsive training planning and delivery</h3>
+                    <p class="rw-gap-desc">
+                        TIs struggle to adapt training calendars to evolving departmental mandates. A shift toward blended, demand-driven delivery aligned tightly with CBPs is essential.
+                    </p>
+                </div>
+                <div class="rw-gap-card">
+                    <h3 class="rw-gap-title">Uneven digital readiness</h3>
+                    <p class="rw-gap-desc">
+                        Foundational digital infrastructure varies drastically across TIs, hindering ecosystem-wide technological transitions.
+                    </p>
+                </div>
+            </div>
+            <p class="rw-body-text" style="margin-top: 18px;">
+                Together, these recommendations point to the need for a common but adaptable approach to strengthening how TIs are governed, plan and operate within the wider ecosystem, while progressively adopting digital technologies.
+            </p>
+        </div>
+
+        <!-- 5. THREE PILLARS OF THE TI TRANSFORMATION -->
+        <div class="rw-section-card">
+            <div class="rw-header-row">
+                <div class="rw-header-icon">
+                    <svg viewBox="0 0 16 16"><path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4.5 0a.5.5 0 0 0-.5.5v11a.5.5 0 0 0 .5.5H5a.5.5 0 0 0 .5-.5v-11a.5.5 0 0 0-.5-.5h-.5zm6 0a.5.5 0 0 0-.5.5v11a.5.5 0 0 0 .5.5h.5a.5.5 0 0 0 .5-.5v-11a.5.5 0 0 0-.5-.5h-.5z"/></svg>
+                </div>
+                <h2 class="rw-section-title">Three Pillars of the TI Transformation</h2>
+            </div>
+            <p class="rw-body-text">
+                The recommendations emerging from the consultations converge around three interconnected pillars of institutional transformation. Together, these form the TI Transformation Framework—providing a common strategic direction for strengthening TIs while granting States/UTs and institutions the flexibility to adapt implementation to their specific contexts.
+            </p>
+            <div class="rw-pillars-grid">
+                <div class="rw-pillar-card">
+                    <span class="rw-pillar-num">I</span>
+                    <h3 class="rw-pillar-title">Structural &amp; Governance</h3>
+                    <p class="rw-pillar-desc">
+                        Empowering institutional leadership and strategic planning with calibrated autonomy and performance-driven accountability.
+                    </p>
+                </div>
+                <div class="rw-pillar-card">
+                    <span class="rw-pillar-num">II</span>
+                    <h3 class="rw-pillar-title">Operational Excellence &amp; Ecosystem Collaboration</h3>
+                    <p class="rw-pillar-desc">
+                        Aligning training delivery with State priorities while institutionalizing the systematic sharing of faculty, knowledge, and infrastructure.
+                    </p>
+                </div>
+                <div class="rw-pillar-card">
+                    <span class="rw-pillar-num">III</span>
+                    <h3 class="rw-pillar-title">Digital &amp; AI Adoption</h3>
+                    <p class="rw-pillar-desc">
+                        Upgrading foundational digital infrastructure while securely integrating AI-supported tools and institutional functioning through approved tools, appropriate safeguards and continued human oversight.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. ENABLING TRANSFORMATION THROUGH UNNATI -->
+        <div class="rw-section-card">
+            <div class="rw-header-row">
+                <div class="rw-header-icon">
+                    <svg viewBox="0 0 16 16"><path d="M13.5 10a2.5 2.5 0 0 1 .47 4.956c-.36.03-.73.044-1.1.044H3.5a3.5 3.5 0 0 1-.7-6.93A4.5 4.5 0 0 1 11.4 5.3a3.5 3.5 0 0 1 2.1 4.7z"/></svg>
+                </div>
+                <h2 class="rw-section-title">Enabling Transformation through UNNATI</h2>
+            </div>
+            <p class="rw-body-text">
+                While the Framework sets the strategic direction, UNNATI provides the digital backbone for progressively operationalising it. By connecting over 700 Training Institutions across the country, UNNATI enables greater institutional visibility, collaboration, continuous improvement and systematic sharing of faculty, knowledge and other resources.
+            </p>
+            <p class="rw-body-text">
+                TIs undertake a diverse and interconnected set of functions across the capacity-building lifecycle. UNNATI can support institutions in strengthening and connecting these core activities:
+            </p>
+            
+            <!-- 6 Functions Grid -->
+            <div class="rw-functions-grid">
+                <div class="rw-func-item">
+                    <h3 class="rw-func-title">Needs Assessment &amp; Design</h3>
+                    <p class="rw-func-desc">
+                        Aligning training calendars and content with Capacity Building Plans (CBPs) generated by Ministries, Departments and Organisations (MDOs) to strengthen role-specific relevance.
+                    </p>
+                </div>
+                <div class="rw-func-item">
+                    <h3 class="rw-func-title">Intervention Delivery</h3>
+                    <p class="rw-func-desc">
+                        Facilitating targeted, high-impact learning programmes.
+                    </p>
+                </div>
+                <div class="rw-func-item">
+                    <h3 class="rw-func-title">Faculty Development</h3>
+                    <p class="rw-func-desc">
+                        Supporting continuous engagement and capability enhancement of faculty and trainers.
+                    </p>
+                </div>
+                <div class="rw-func-item">
+                    <h3 class="rw-func-title">Resource Curation</h3>
+                    <p class="rw-func-desc">
+                        Centralising knowledge resources, including practical case studies, for cross-institutional access and sharing.
+                    </p>
+                </div>
+                <div class="rw-func-item">
+                    <h3 class="rw-func-title">Outcome Assessment</h3>
+                    <p class="rw-func-desc">
+                        Deploying data to evaluate instructional effectiveness and learning retention.
+                    </p>
+                </div>
+                <div class="rw-func-item">
+                    <h3 class="rw-func-title">Institutional Improvement</h3>
+                    <p class="rw-func-desc">
+                        Enabling data-informed improvements to strengthen overall institutional performance.
+                    </p>
+                </div>
+            </div>
+
+            <p class="rw-body-text">
+                Beyond institutional strengthening, UNNATI also strengthens the linkage between institutional capacity and individual learning by enabling greater visibility of an official’s training interventions, acquired competencies within the wider Mission Karmayogi ecosystem. Together it creates a cohesive capacitybuilding system, wherein:
+            </p>
+
+            <!-- Triad -->
+            <div class="rw-triad-grid">
+                <div class="rw-triad-card">
+                    <span class="rw-triad-tag">1. Demand</span>
+                    <h4 class="rw-triad-title">The Demand</h4>
+                    <p class="rw-triad-desc">
+                        CBPs identify competency gaps and generate role-based capacity-building requirements.
+                    </p>
+                </div>
+                <div class="rw-triad-card">
+                    <span class="rw-triad-tag">2. Connection</span>
+                    <h4 class="rw-triad-title">The Connection</h4>
+                    <p class="rw-triad-desc">
+                        UNNATI connects this demand with institutional capabilities, faculty and resources etc.
+                    </p>
+                </div>
+                <div class="rw-triad-card">
+                    <span class="rw-triad-tag">3. Response</span>
+                    <h4 class="rw-triad-title">The Response</h4>
+                    <p class="rw-triad-desc">
+                        The TI Transformation Framework enables institutions to strengthen their governance, operations and digital capabilities to respond effectively to this demand. A detailed concept note on UNNATI is provided at Annexure 1.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. ROLE OF THE REGIONAL WORKSHOPS -->
+        <div class="rw-section-card">
+            <div class="rw-header-row">
+                <div class="rw-header-icon">
+                    <svg viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10zm0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/></svg>
+                </div>
+                <h2 class="rw-section-title">Role of the Regional Workshops: Approach, Format and Way Forward</h2>
+            </div>
+            <p class="rw-body-text">
+                The Regional Consultative Workshops represent the next step in translating the proposed TI Transformation Framework into State-specific action. It will provide a structured forum for States/UTs and TIs to contextualise and validate the three pillars against their institutional realities.
+            </p>
+            <p class="rw-body-text">
+                Rather than prescribing a uniform pathway, the workshops will enable States/UTs to assess their TI ecosystems and institutional capabilities, identify priority areas for strengthening, clarify requirements for UNNATI adoption and develop an initial State Action Plan.
+            </p>
+            <p class="rw-body-text">
+                To facilitate substantive deliberations during the workshop, participating States/UTs will undertake preparatory work using the pre-workshop template provided by the CBC. This exercise shall be anchored by the respective Administrative Training Institute in coordination with the relevant State/UT Administrative Department, and will be supported by the designated CBC Program Coordinator/Sarthi for the State/UT. This will support the collation of relevant information and provide an initial basis for workshop discussions, including:
+            </p>
+
+            <!-- Checklist Card -->
+            <div class="rw-prep-card">
+                <ul class="rw-prep-list">
+                    <li>A review of TI onboarding on UNNATI.</li>
+                    <li>Discussion on iGOT Karmayogi, Karmayogi Quality Framework (KQF) and Karmayogi Kartavya Karyakram (KKK) with respect to the States/ UTs concerned.</li>
+                    <li>An initial reflection on interventions that would be required by the State/UT across the proposed areas of TI Governance and Digital including AI Adoption</li>
+                </ul>
+            </div>
+
+            <p class="rw-body-text">
+                These inputs will form the basis for the Inter State/UT-wise group activity during day 1 of the workshop. States/UT will have the opportunity to refine their draft State/UT Specific Action Plan on day 2 basis the deliberations during the workshop.
+            </p>
+            <p class="rw-body-text">
+                The Regional Workshops will enable continued engagement amongst CBC, States/UTs and TIs, with workshop insights and State Action Plans informing progressive refinement of the Transformation Framework, UNNATI and institutional strengthening.
+            </p>
+            <p class="rw-body-text">
+                The longer-term objective is to build a vibrant &amp; connected network of future-ready Capacity Building Institutions capable of delivering the <strong>Right Capacity Building, for the Right Role, at the Right Time</strong>, contributing to stronger competencies, better governance and improved citizen outcomes.
+            </p>
+        </div>
+
+        <!-- 8. BOTTOM VISION & CONCEPT NOTE BOX -->
+        <div class="rw-bottom-vision">
+            <div class="rw-vision-quote">
+                “Right Capacity Building, for the Right Role, at the Right Time”
+            </div>
+            <div class="rw-vision-footer">
+                <span>Capacity Building Commission — Government of India</span>
+                <span>Sādhana श्रृंखला • Regional Workshop Concept Note</span>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+{% include 'themes/cbc/templates/layout/footer.html.twig' %}
